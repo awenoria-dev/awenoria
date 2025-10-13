@@ -4,107 +4,157 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Awenoria — Audit de conformité automatisé</title>
-  <meta name="description" content="Testez la conformité RGPD, accessibilité et mentions légales de votre site, gratuitement." />
+  <meta name="description" content="Testez la conformité RGPD, accessibilité et mentions légales de votre site, gratuitement.">
 
-  <!-- Favicon / logo d’onglet -->
+  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon-180.png">
+
+  <!-- (optionnel) Police Inter -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --blue:#0073b6; --blue2:#005a8e; --orange:#ff6600;
-      --bg:#f6f9fc; --card:#ffffff; --text:#1f2937; --muted:#6b7280;
-      --r:16px; --shadow:0 10px 30px rgba(0,0,0,.06);
+    :root{
+      --blue:#0073b6; --blue-dark:#005a8e; --accent:#ff6600;
+      --bg:#0b1220;              /* fond sombre moderne */
+      --bg-grad: radial-gradient(1200px 600px at 10% -10%, #0e1b33 0%, transparent 60%),
+                  radial-gradient(900px 500px at 90% 10%, #07253d 0%, transparent 60%),
+                  linear-gradient(180deg, #0b1220 0%, #0b1220 100%);
+      --surface:#0f182a;         /* cartes/verre */
+      --text:#e6eef9; --muted:#98a2b3;
+      --ring: 0 0 0 1px rgba(255,255,255,.06);
+      --shadow-lg: 0 10px 30px rgba(2,6,23,.45), inset 0 1px 0 rgba(255,255,255,.04);
+      --radius:16px;
     }
 
-    *{ box-sizing: border-box }
-    body{ margin:0; font-family: Inter, system-ui, Arial; background:var(--bg); color:var(--text) }
-    a{ color:var(--blue); text-decoration:none }
-    .container{ max-width:1100px; margin:0 auto; padding:24px }
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0; font-family: Inter, system-ui, Arial, sans-serif;
+      color:var(--text); background:var(--bg-grad), var(--bg);
+    }
+    a{ color:#cbe7ff; text-decoration:none }
+    .container{ max-width:1120px; margin:0 auto; padding:24px 20px }
 
-    /* ============ HEADER ============ */
-    header{ background:#fff; box-shadow:0 2px 10px rgba(0,0,0,.05) }
-    .nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 0 }
+    /* ===== HEADER glass + nav animée ===== */
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(10px);
+      background:rgba(15,24,42,.65); box-shadow:var(--ring), 0 10px 30px rgba(2,6,23,.25);
+    }
+    .nav{ display:flex; align-items:center; justify-content:space-between; gap:20px; padding:14px 0 }
 
-    /* Bloc logo cliquable (plus grand + brillance) */
+    /* LOGO + effet sheen premium */
     .brand{
-      position:relative;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:6px 10px;
-      border-radius:14px;
-      text-decoration:none;
-      cursor:pointer;
-      transition: filter .25s ease, transform .12s ease;
+      position:relative; display:inline-flex; align-items:center; justify-content:center;
+      border-radius:14px; padding:6px 10px; cursor:pointer;
+      transition:filter .25s ease, transform .12s ease;
     }
-    .brand__logo{
-      display:block;
-      height:64px;             /* ← augmente si tu veux (72/80px) */
-      width:auto;
-    }
-    /* Effets de surbrillance */
-    .brand::before, .brand::after{
-      content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
-    }
+    .brand__logo{ display:block; height:64px; width:auto }
+    @media(min-width:992px){ .brand__logo{ height:72px } }
+
+    /* halo doux */
     .brand::after{
-      opacity:0; transition:opacity .25s ease; filter:blur(10px);
-      background: radial-gradient(60% 60% at 30% 30%, rgba(0,115,182,.28), transparent 60%);
+      content:""; position:absolute; inset:-6px; border-radius:18px; opacity:.0; pointer-events:none;
+      background:radial-gradient(40% 40% at 30% 30%, rgba(0,115,182,.5), transparent 60%);
+      filter:blur(16px); transition:opacity .3s ease;
     }
+
+    /* reflets obliques + masque pour un sheen propre */
     .brand::before{
-      width:40%; left:-60%; top:0; bottom:0; transform:skewX(-20deg);
-      background:linear-gradient(90deg, rgba(255,255,255,0) 0%,
-        rgba(255,255,255,.35) 45%, rgba(255,255,255,.7) 50%,
-        rgba(255,255,255,.35) 55%, rgba(255,255,255,0) 100%);
-      transition:left .8s ease;
+      content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+      --g: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.2) 46%, rgba(255,255,255,.8) 50%, rgba(255,255,255,.2) 54%, transparent 100%);
+      mask:linear-gradient(#000,#000) padding-box; -webkit-mask-composite: source-in; mask-composite: intersect;
+      background:var(--g); width:45%; left:-60%; top:0; bottom:0; transform:skewX(-18deg);
+      transition:left .9s cubic-bezier(.22,.61,.36,1);
+      opacity:.85;
     }
-    .brand:hover{ filter: drop-shadow(0 4px 18px rgba(0,90,142,.22)) brightness(1.02) }
+    .brand:hover{ filter: drop-shadow(0 6px 26px rgba(0,115,182,.35)) brightness(1.08) }
     .brand:hover::after{ opacity:1 }
     .brand:hover::before{ left:120% }
     .brand:active{ transform:scale(.98) }
-    @media (min-width: 992px){ .brand__logo{ height:72px } }
 
-    /* Navigation */
-    nav a{ margin-left:16px; font-weight:600 }
-    nav a:hover{ color:var(--orange) }
+    /* liens de navigation avec souligné fluide */
+    nav a{
+      position:relative; color:#d7e6f8; font-weight:600; margin-left:18px; padding:8px 0;
+      opacity:.9; transition:opacity .2s ease
+    }
+    nav a:hover{ opacity:1 }
+    nav a::after{
+      content:""; position:absolute; left:0; right:0; bottom:-2px; height:2px;
+      transform:scaleX(0); transform-origin:left;
+      background:linear-gradient(90deg, var(--blue), var(--accent));
+      transition:transform .28s ease;
+    }
+    nav a:hover::after{ transform:scaleX(1) }
 
-    /* ============ HERO ============ */
-    .hero{ display:grid; gap:18px; text-align:center; padding:44px 0 }
-    h1{ font-size:38px; color:var(--blue); margin:0 }
-    .sub{ color:var(--muted); max-width:720px; margin:0 auto }
-    .testbox{ display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap; margin-top:16px }
-    input.url{ width:420px; max-width:90vw; padding:14px 16px; border:1px solid #dbe5ee; border-radius:12px; background:#fff; font-size:16px; outline:none }
-    input.url:focus{ border-color:var(--blue) }
-    .btn{ padding:14px 18px; border-radius:12px; border:none; font-weight:700; cursor:pointer; background:var(--blue); color:#fff }
-    .btn:hover{ background:var(--blue2) }
-    .result{ margin-top:22px; background:#fff; border-radius:var(--r); box-shadow:var(--shadow); padding:22px; display:none; text-align:left }
+    /* ===== HERO ===== */
+    .hero{ display:grid; gap:18px; text-align:center; padding:56px 0 40px }
+    h1{ margin:0; font-size:44px; line-height:1.1; letter-spacing:.2px;
+        background:linear-gradient(180deg,#f7fbff 0%, #a6c9ff 100%);
+        -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .sub{ color:var(--muted); max-width:740px; margin:0 auto }
 
-    /* ============ SIX BULLES ============ */
-    .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:24px }
-    @media (max-width:900px){ .grid{ grid-template-columns:1fr } }
-    .card{ background:var(--card); border-radius:var(--r); padding:20px; box-shadow:var(--shadow); text-align:left }
-    .badge{ display:inline-block; background:var(--orange); color:#fff; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:800 }
+    /* champ + CTA */
+    .testbox{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:center; margin-top:18px }
+    input.url{
+      width:520px; max-width:92vw; padding:16px 16px; border-radius:14px; font-size:16px;
+      color:#e6eef9; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+      outline:none; transition:border-color .2s ease, background .2s ease;
+    }
+    input.url:focus{ border-color:#3aa3ff; background:rgba(255,255,255,.06) }
+
+    .btn{
+      appearance:none; border:none; cursor:pointer; font-weight:800; font-size:16px;
+      padding:14px 20px; border-radius:14px; color:#0b1220;
+      background:linear-gradient(135deg, #56c1ff 0%, #1ea7ff 30%, #0073b6 100%);
+      box-shadow: 0 10px 25px rgba(0,115,182,.35), inset 0 1px 0 rgba(255,255,255,.35);
+      transition: transform .12s ease, filter .2s ease;
+    }
+    .btn:hover{ filter:brightness(1.05) }
+    .btn:active{ transform:translateY(1px) }
+
+    /* Résultats */
+    .result{
+      margin-top:24px; background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08); border-radius:var(--radius);
+      box-shadow:var(--shadow-lg); padding:22px; display:none; text-align:left;
+    }
+
+    /* Cartes */
+    .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:26px }
+    @media(max-width:900px){ .grid{ grid-template-columns:1fr } }
+    .card{
+      background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius); padding:20px; box-shadow:var(--shadow-lg);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .card:hover{ transform:translateY(-2px); border-color:rgba(86,193,255,.35); background:rgba(255,255,255,.06) }
+    .badge{
+      display:inline-block; background:linear-gradient(90deg, var(--accent), #ff8840);
+      color:#0b1220; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:800
+    }
     .card h3{ margin:10px 0 6px }
     .muted{ color:var(--muted); margin:0 }
 
-    /* ============ FOOTER ============ */
-    .footer{ margin-top:40px; padding:24px 0; color:var(--muted); font-size:14px; border-top:1px solid #e7eef5 }
-    .footer a{ color:var(--muted) }
+    /* Footer */
+    .footer{ margin-top:44px; padding:24px 0; color:#b6c2d6; font-size:14px; border-top:1px solid rgba(255,255,255,.08) }
+    .footer a{ color:#b6c2d6 }
 
-    /* Accessibilité : limiter les animations si demandé */
-    @media (prefers-reduced-motion: reduce){
-      .brand::before{ transition:none }
-      .brand:hover::before{ left:-60% }
+    /* Accessibilité : réduit les anims si demandé */
+    @media (prefers-reduced-motion:reduce){
+      .brand::before{ transition:none } .brand:hover::before{ left:-60% }
+      .btn{ transition:none } nav a::after{ transition:none }
+      .card,.brand{ transition:none }
     }
   </style>
 </head>
-
 <body>
+
   <!-- ===== HEADER ===== -->
   <header>
     <div class="container nav">
-      <!-- Logo seul, cliquable vers l’accueil -->
+      <!-- Logo seul, cliquable, sheen premium -->
       <a href="./index.html" class="brand" title="Accueil">
         <img src="./images/logo.png" alt="Awenoria" class="brand__logo">
       </a>
@@ -187,14 +237,11 @@
 
   <!-- ===== SCRIPT ===== -->
   <script>
-    // année dynamique
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // URL du Worker Cloudflare
     const WORKER_URL = "https://awenoria.bmavcontact.workers.dev/analyze";
-
-    function normalizeUrl(u){ if(!u) return ""; u=u.trim(); if(!/^https?:\/\//i.test(u)) u="https://"+u; return u; }
-    function pct(n){ return Number.isFinite(n) ? `${Math.round(n)}%` : "—"; }
+    const normalizeUrl = u => { if(!u) return ""; u=u.trim(); if(!/^https?:\/\//i.test(u)) u="https://"+u; return u; };
+    const pct = n => Number.isFinite(n) ? `${Math.round(n)}%` : "—";
 
     async function analyser(){
       const input=document.getElementById('url');
@@ -205,24 +252,23 @@
       box.style.display='block';
       box.innerHTML='<p>Analyse en cours…</p>';
 
-      try {
+      try{
         const res = await fetch(`${WORKER_URL}?url=${encodeURIComponent(site)}`, { headers:{accept:"application/json"} });
         const data = await res.json();
-
-        if (!res.ok || data.ok === false) throw new Error(data?.error || `Erreur (${res.status})`);
+        if(!res.ok || data.ok===false) throw new Error(data?.error || `Erreur (${res.status})`);
 
         const s=data.scores||{}, rgpd=data.rgpd||{}, legal=data.legal||{}, a11y=data.a11y||{};
         box.innerHTML = `
-          <h2>Résultats pour <b>${data.finalUrl||site}</b></h2>
+          <h2 style="margin:0 0 8px">Résultats pour <b>${data.finalUrl||site}</b></h2>
           <p><b>Score global :</b> ${pct(s.global)}</p>
-          <ul style="list-style:none;padding:0;line-height:1.9">
+          <ul style="list-style:none;padding:0;line-height:1.9;margin:0">
             <li>🔹 <b>RGPD</b> : ${pct(s.rgpd)} ${rgpd.policyLink?"• Politique détectée":"• Politique non détectée"} ${rgpd.cookiesWords?"• Cookies":""}</li>
             <li>🔹 <b>Mentions légales</b> : ${pct(s.mentions)} ${legal.mentionsLink?"• Lien détecté":"• Non détecté"} ${legal.cgvLink?"• CGV":""} ${legal.cguLink?"• CGU":""}</li>
             <li>🔹 <b>Accessibilité</b> : ${pct(s.accessibilite)} • ALT: ${a11y.imgWithAlt||0}/${a11y.imgCount||0} ${a11y.hasAria?"• ARIA":""} ${a11y.hasLandmarks?"• repères":""}</li>
           </ul>
-          <p style="margin-top:10px;color:#6b7280">Analyse via Cloudflare Worker (aucun stockage).</p>`;
-      } catch(e) {
-        box.innerHTML = `<p style="color:#b91c1c"><b>Erreur :</b> ${e.message}</p>`;
+          <p style="margin-top:10px;color:#98a2b3">Analyse via Cloudflare Worker (aucun stockage).</p>`;
+      }catch(e){
+        box.innerHTML = `<p style="color:#ffb4b4"><b>Erreur :</b> ${e.message}</p>`;
         console.error(e);
       }
     }
