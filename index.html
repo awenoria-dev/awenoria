@@ -6,18 +6,23 @@
   <title>Awenoria — Audit de conformité automatisé</title>
   <meta name="description" content="Testez la conformité RGPD, accessibilité et mentions légales de votre site, gratuitement.">
 
-  <!-- Favicons (optionnels) -->
+  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon-180.png">
+  <!-- Optionnels mais recommandés -->
+  <link rel="icon" type="image/svg+xml" href="./images/favicon.svg">
+  <link rel="manifest" href="./site.webmanifest">
+  <meta name="theme-color" content="#005a8e">
 
   <style>
     :root{
       /* PALETTE MARQUE */
       --blue:#0073b6;
-      --blue-dark:#005a8e;    /* couleur par défaut (dominante) */
-      --orange:#ff6600;       /* hover / accents */
+      --blue-dark:#005a8e;
+      --orange:#ff6600;
       /* THEME CLAIR PRO */
-      --bg:#edf3f7;           /* bleu très pâle (pas blanc/gris) */
+      --bg:#edf3f7;
       --bg-grad:
         radial-gradient(900px 480px at 12% -10%, rgba(0,115,182,.06) 0%, transparent 60%),
         radial-gradient(900px 480px at 95% 0%, rgba(0,90,142,.05) 0%, transparent 60%),
@@ -43,9 +48,9 @@
     /* ================= HEADER ================= */
     .header{
       position:sticky; top:0; z-index:60;
-      --bg: transparent;            /* état top : transparent */
+      --bg: transparent;
       --border: transparent;
-      --link: #ffffff;              /* liens clairs quand hero derrière */
+      --link: #ffffff;
       --link-hover: var(--orange);
       --shadow:none;
       background: var(--bg);
@@ -54,10 +59,10 @@
       transition: background-color .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
     .header.scrolled{
-      --bg: rgba(255,255,255,.98);  /* en scroll : fond blanc pro */
+      --bg: rgba(255,255,255,.98);
       --border: var(--stroke);
-      --link: var(--blue-dark);     /* liens bleu foncé */
-      --link-hover: var(--orange);  /* hover orange */
+      --link: var(--blue-dark);
+      --link-hover: var(--orange);
       --shadow: 0 6px 20px rgba(16,32,48,.06);
     }
     .nav{ display:flex; align-items:center; justify-content:space-between; gap:20px; padding:12px 0 }
@@ -69,23 +74,45 @@
     .brand:hover{ filter: drop-shadow(0 6px 14px rgba(0,90,142,.10)) }
     .brand:active{ transform: scale(.99) }
 
-    /* Nav : bleu foncé → orange au hover + surlignage */
-    .mainnav a{
-      position:relative; font-weight:700; margin-left:20px; padding:10px 0;
-      color: var(--link);
-      transition: color .2s ease, opacity .2s ease;
+    /* NAV + DROPDOWNS */
+    .mainnav{ display:flex; align-items:center; gap:4px }
+    .mainnav > li{ list-style:none; position:relative }
+    .mainnav > li > a{
+      position:relative; display:inline-block; font-weight:700; padding:10px 14px;
+      color: var(--link); transition: color .2s ease;
     }
-    .mainnav a::after{
-      content:""; position:absolute; left:0; right:0; bottom:-6px; height:3px;
-      transform:scaleX(0); transform-origin:left;
-      background: var(--orange);
-      transition: transform .22s ease;
-      border-radius:2px;
+    /* soulignage orange au hover/actif */
+    .mainnav > li > a::after{
+      content:""; position:absolute; left:12px; right:12px; bottom:-6px; height:3px;
+      transform:scaleX(0); transform-origin:left; background:var(--orange);
+      transition:transform .22s ease; border-radius:2px;
     }
-    .mainnav a:hover{ color: var(--link-hover) }
-    .mainnav a:hover::after{ transform:scaleX(1) }
-    .mainnav a.active{ color: var(--orange) }
-    .mainnav a.active::after{ transform:scaleX(1) }
+    .mainnav > li > a:hover{ color:var(--link-hover) }
+    .mainnav > li > a:hover::after{ transform:scaleX(1) }
+    .mainnav > li > a.active{ color:var(--orange) }
+    .mainnav > li > a.active::after{ transform:scaleX(1) }
+
+    /* Dropdowns (Conformité, Ressources) */
+    .dropdown{ position:absolute; top:100%; left:0; min-width:240px; padding:8px;
+      background:#fff; border:1px solid var(--stroke); border-radius:12px; box-shadow:var(--shadow-lg);
+      opacity:0; visibility:hidden; transform: translateY(6px);
+      transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+    }
+    .dropdown a{
+      display:block; color:var(--blue-dark); padding:10px 12px; border-radius:10px; font-weight:600;
+    }
+    .dropdown a:hover{ background:#f3f8fc; color:var(--orange) }
+    .mainnav > li:hover .dropdown{ opacity:1; visibility:visible; transform: translateY(0) }
+
+    /* CTA à droite */
+    .cta{
+      margin-left:8px; display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px; border-radius:12px; font-weight:800; color:#fff;
+      background:var(--blue-dark); box-shadow:var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.35);
+      transition: background .18s ease, transform .08s ease, filter .18s ease;
+    }
+    .cta:hover{ background:var(--orange); filter:brightness(1.02) }
+    .cta:active{ transform: translateY(1px) }
 
     /* ================= HERO ================= */
     .hero{ display:grid; gap:18px; text-align:center; padding:56px 0 40px }
@@ -125,22 +152,11 @@
       border:1px solid var(--stroke); box-shadow:var(--shadow-sm);
       padding:20px; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
     }
-    .tile:hover{
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color:#d5e7f4;
-    }
-    .badge{
-      display:inline-block;
-      background: var(--blue-dark);
-      color:#fff; padding:6px 12px; border-radius:999px; font-size:12px; font-weight:800
-    }
+    .tile:hover{ transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color:#d5e7f4 }
+    .badge{ display:inline-block; background: var(--blue-dark); color:#fff; padding:6px 12px; border-radius:999px; font-size:12px; font-weight:800 }
     .tile h3{ margin:10px 0 6px; color:#0f2746 }
     .muted{ color:var(--muted); margin:0 }
-    .tile .cta{
-      margin-top:12px; display:inline-block; font-weight:700; font-size:14px; color:var(--blue-dark);
-      border-bottom:2px solid transparent; transition: color .18s ease, border-color .18s ease;
-    }
+    .tile .cta{ margin-top:12px; display:inline-block; font-weight:700; font-size:14px; color:var(--blue-dark); border-bottom:2px solid transparent; transition: color .18s ease, border-color .18s ease }
     .tile .cta:hover{ color:var(--orange); border-color:var(--orange) }
 
     /* ================= FOOTER ================= */
@@ -158,20 +174,42 @@
         <img src="./images/logo.png" alt="Awenoria" class="brand__logo">
       </a>
 
-      <nav class="mainnav">
-        <a href="index.html" class="active">Accueil</a>
-        <a href="fonctionnalites.html">Fonctionnalités</a>
-        <a href="comment.html">Comment ça marche</a>
-        <a href="tarifs.html">Tarifs</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+      <!-- NAV restructurée -->
+      <ul class="mainnav">
+        <li><a href="index.html" class="active">Accueil</a></li>
+
+        <li>
+          <a href="javascript:void(0)">Conformité ▾</a>
+          <div class="dropdown">
+            <a href="fonctionnalites.html#rgpd">RGPD</a>
+            <a href="fonctionnalites.html#a11y">Accessibilité</a>
+            <a href="fonctionnalites.html#legal">Mentions légales</a>
+          </div>
+        </li>
+
+        <li><a href="fonctionnalites.html">Fonctionnalités</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+
+        <li>
+          <a href="javascript:void(0)">Ressources ▾</a>
+          <div class="dropdown">
+            <a href="comment.html">Pas-à-pas</a>
+            <a href="guides.html">Guides & bonnes pratiques</a>
+            <a href="modeles.html">Modèles juridiques</a>
+          </div>
+        </li>
+
+        <li><a href="a%20propos.html">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+
+        <li><a class="cta" href="#analyse">Analyser</a></li>
+      </ul>
     </div>
   </header>
 
   <!-- ===== HERO ===== -->
   <main class="container">
-    <section class="hero">
+    <section class="hero" id="analyse">
       <h1>Audit automatique de conformité</h1>
       <p class="sub">Testez la conformité RGPD, accessibilité et mentions légales de votre site en un clic.</p>
 
@@ -251,7 +289,7 @@
     // année dynamique
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Header : bascule transparent → blanc en scroll (sans blur)
+    // Header : transparent → blanc en scroll
     (function(){
       const header = document.getElementById('site-header');
       const toggle = () => {
