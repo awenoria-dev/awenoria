@@ -10,25 +10,25 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
 
-  <!-- Police (optionnel) -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
   <style>
     :root{
-      /* Palette pro, claire, légèrement bleutée */
-      --blue:#0073b6; --blue-600:#005a8e; --accent:#ff6600;
-      --bg:#edf3f7;                /* pas blanc, pas gris : bleu très pâle */
-      --bg-grad: radial-gradient(900px 500px at 10% -10%, rgba(0,115,182,.06) 0%, transparent 60%),
-                  radial-gradient(800px 480px at 95% 0%, rgba(0,90,142,.05) 0%, transparent 60%),
-                  linear-gradient(180deg, #f0f5f9 0%, #edf3f7 100%);
+      /* PALETTE MARQUE */
+      --blue:#0073b6;
+      --blue-dark:#005a8e;    /* couleur par défaut (dominante) */
+      --orange:#ff6600;       /* hover / accents */
+      /* THEME CLAIR PRO */
+      --bg:#edf3f7;           /* bleu très pâle (pas blanc/gris) */
+      --bg-grad:
+        radial-gradient(900px 480px at 12% -10%, rgba(0,115,182,.06) 0%, transparent 60%),
+        radial-gradient(900px 480px at 95% 0%, rgba(0,90,142,.05) 0%, transparent 60%),
+        linear-gradient(180deg,#f2f7fb 0%, #edf3f7 100%);
       --surface:#ffffff;
       --stroke:#e6edf3;
-      --text:#142033;
+      --text:#16233a;
       --muted:#5d6b7c;
       --radius:16px;
-      --shadow-sm: 0 4px 12px rgba(16,32,48,.06);
-      --shadow-lg: 0 12px 28px rgba(16,32,48,.10);
+      --shadow-sm:0 4px 12px rgba(16,32,48,.06);
+      --shadow-lg:0 12px 28px rgba(16,32,48,.10);
     }
 
     *{ box-sizing:border-box }
@@ -36,66 +36,78 @@
       margin:0; font-family: Inter, system-ui, Arial, sans-serif;
       color:var(--text); background:var(--bg-grad), var(--bg);
     }
-    a{ color:var(--blue); text-decoration:none }
+    a{ text-decoration:none }
+
     .container{ max-width:1160px; margin:0 auto; padding:24px 20px }
 
-    /* ===== HEADER (sobre & pro) ===== */
-    header{
-      position:sticky; top:0; z-index:50; background: rgba(255,255,255,.75);
-      backdrop-filter:saturate(160%) blur(8px);
-      border-bottom:1px solid var(--stroke);
+    /* ================= HEADER ================= */
+    .header{
+      position:sticky; top:0; z-index:60;
+      --bg: transparent;            /* état top : transparent */
+      --border: transparent;
+      --link: #ffffff;              /* liens clairs quand hero derrière */
+      --link-hover: var(--orange);
+      --shadow:none;
+      background: var(--bg);
+      border-bottom:1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: background-color .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
-    .nav{ display:flex; align-items:center; justify-content:space-between; gap:20px; padding:14px 0 }
+    .header.scrolled{
+      --bg: rgba(255,255,255,.98);  /* en scroll : fond blanc pro */
+      --border: var(--stroke);
+      --link: var(--blue-dark);     /* liens bleu foncé */
+      --link-hover: var(--orange);  /* hover orange */
+      --shadow: 0 6px 20px rgba(16,32,48,.06);
+    }
+    .nav{ display:flex; align-items:center; justify-content:space-between; gap:20px; padding:12px 0 }
 
-    /* Logo : plus grand, épuré, hover discret */
-    .brand{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:4px 6px; border-radius:12px;
-      transition: transform .08s ease, filter .18s ease;
-    }
-    .brand__logo{
-      display:block; height:78px; width:auto;   /* ← plus grand */
-    }
-    @media (min-width:992px){ .brand__logo{ height:86px } }
-    .brand:hover{ filter: drop-shadow(0 6px 16px rgba(0,90,142,.08)) }
+    /* Logo : plus grand, sobre */
+    .brand{ display:inline-flex; align-items:center; padding:4px 6px; border-radius:12px; transition: filter .2s ease, transform .08s ease }
+    .brand__logo{ display:block; height:90px; width:auto }
+    @media(min-width:992px){ .brand__logo{ height:98px } }
+    .brand:hover{ filter: drop-shadow(0 6px 14px rgba(0,90,142,.10)) }
     .brand:active{ transform: scale(.99) }
 
-    /* Nav */
-    nav a{
-      position:relative; font-weight:600; color:#2b3a4b; margin-left:18px; padding:8px 0;
+    /* Nav : bleu foncé → orange au hover + surlignage */
+    .mainnav a{
+      position:relative; font-weight:700; margin-left:20px; padding:10px 0;
+      color: var(--link);
+      transition: color .2s ease, opacity .2s ease;
     }
-    nav a::after{
-      content:""; position:absolute; left:0; right:0; bottom:-2px; height:2px; transform:scaleX(0);
-      background:linear-gradient(90deg, var(--blue), var(--accent));
-      transition:transform .22s ease; transform-origin:left;
+    .mainnav a::after{
+      content:""; position:absolute; left:0; right:0; bottom:-6px; height:3px;
+      transform:scaleX(0); transform-origin:left;
+      background: var(--orange);
+      transition: transform .22s ease;
+      border-radius:2px;
     }
-    nav a:hover::after{ transform:scaleX(1) }
+    .mainnav a:hover{ color: var(--link-hover) }
+    .mainnav a:hover::after{ transform:scaleX(1) }
+    .mainnav a.active{ color: var(--orange) }
+    .mainnav a.active::after{ transform:scaleX(1) }
 
-    /* ===== HERO ===== */
+    /* ================= HERO ================= */
     .hero{ display:grid; gap:18px; text-align:center; padding:56px 0 40px }
-    h1{
-      margin:0; font-size:44px; line-height:1.08; letter-spacing:.2px;
-      color:#0e2340;
-    }
+    h1{ margin:0; font-size:44px; line-height:1.08; letter-spacing:.2px; color:var(--blue-dark) }
     .sub{ color:var(--muted); max-width:760px; margin:0 auto }
 
     .testbox{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:center; margin-top:18px }
     input.url{
       width:560px; max-width:92vw; padding:14px 16px; border-radius:12px; font-size:16px;
-      color:#13263f; background:#fff; border:1px solid var(--stroke); outline:none;
+      color:#14233a; background:#fff; border:1px solid var(--stroke); outline:none;
       transition:border-color .18s ease, box-shadow .18s ease;
       box-shadow: var(--shadow-sm);
     }
-    input.url:focus{ border-color:#9fd6ff; box-shadow: 0 0 0 4px rgba(0,115,182,.10) }
-
+    input.url:focus{ border-color: var(--blue); box-shadow:0 0 0 4px rgba(0,115,182,.12) }
     .btn{
       appearance:none; border:none; cursor:pointer; font-weight:800; font-size:16px;
       padding:14px 18px; border-radius:12px; color:#fff;
-      background:linear-gradient(135deg, #47b7ff 0%, #1ea7ff 35%, #0073b6 100%);
+      background: var(--blue-dark);
       box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.35);
-      transition: filter .18s ease, transform .08s ease;
+      transition: background .18s ease, transform .08s ease, filter .18s ease;
     }
-    .btn:hover{ filter:brightness(1.05) }
+    .btn:hover{ background: var(--orange); filter:brightness(1.02) }
     .btn:active{ transform: translateY(1px) }
 
     .result{
@@ -104,39 +116,34 @@
       padding:22px; display:none; text-align:left;
     }
 
-    /* ===== VIGNETTES : cohérentes, clean, “3D” sobre ===== */
+    /* ================= VIGNETTES ================= */
     .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:26px }
-    @media (max-width:900px){ .grid{ grid-template-columns:1fr } }
+    @media(max-width:900px){ .grid{ grid-template-columns:1fr } }
 
     .tile{
       position:relative; border-radius:var(--radius); background:var(--surface);
       border:1px solid var(--stroke); box-shadow:var(--shadow-sm);
       padding:20px; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
-      overflow:clip;
     }
     .tile:hover{
       transform: translateY(-4px);
       box-shadow: var(--shadow-lg);
       border-color:#d5e7f4;
-      background: #ffffff;
     }
-    .tile::before{
-      content:""; position:absolute; inset:-1px; border-radius:calc(var(--radius) + 2px);
-      background: linear-gradient(90deg, rgba(0,115,182,.10), rgba(255,102,0,.10));
-      opacity:.0; transition:opacity .18s ease;
-    }
-    .tile:hover::before{ opacity:.35 }
-
     .badge{
-      display:inline-block; background:linear-gradient(90deg, var(--blue), #31b8ff);
+      display:inline-block;
+      background: var(--blue-dark);
       color:#fff; padding:6px 12px; border-radius:999px; font-size:12px; font-weight:800
     }
     .tile h3{ margin:10px 0 6px; color:#0f2746 }
     .muted{ color:var(--muted); margin:0 }
-    .tile .cta{ margin-top:12px; display:inline-block; font-weight:700; font-size:14px; color:var(--blue) }
-    .tile .cta:hover{ text-decoration:underline }
+    .tile .cta{
+      margin-top:12px; display:inline-block; font-weight:700; font-size:14px; color:var(--blue-dark);
+      border-bottom:2px solid transparent; transition: color .18s ease, border-color .18s ease;
+    }
+    .tile .cta:hover{ color:var(--orange); border-color:var(--orange) }
 
-    /* ===== FOOTER ===== */
+    /* ================= FOOTER ================= */
     .footer{ margin-top:44px; padding:24px 0; color:#5c6a7a; font-size:14px; border-top:1px solid var(--stroke) }
     .footer a{ color:#5c6a7a }
   </style>
@@ -144,15 +151,15 @@
 <body>
 
   <!-- ===== HEADER ===== -->
-  <header>
+  <header id="site-header" class="header">
     <div class="container nav">
-      <!-- Logo seul, plus grand, hover discret, clic → accueil -->
+      <!-- Logo seul, plus grand, clic → accueil -->
       <a href="./index.html" class="brand" title="Accueil">
         <img src="./images/logo.png" alt="Awenoria" class="brand__logo">
       </a>
 
-      <nav>
-        <a href="index.html"><b>Accueil</b></a>
+      <nav class="mainnav">
+        <a href="index.html" class="active">Accueil</a>
         <a href="fonctionnalites.html">Fonctionnalités</a>
         <a href="comment.html">Comment ça marche</a>
         <a href="tarifs.html">Tarifs</a>
@@ -221,8 +228,9 @@
       </div>
 
       <p style="margin-top:12px">
-        <a href="fonctionnalites.html">Voir toutes les fonctionnalités →</a> &nbsp;·&nbsp;
-        <a href="comment.html">Voir le pas-à-pas détaillé →</a>
+        <a href="fonctionnalites.html" style="color:var(--blue-dark)">Voir toutes les fonctionnalités →</a>
+        &nbsp;·&nbsp;
+        <a href="comment.html" style="color:var(--blue-dark)">Voir le pas-à-pas détaillé →</a>
       </p>
     </section>
   </main>
@@ -238,14 +246,24 @@
     </div>
   </footer>
 
-  <!-- ===== SCRIPT ===== -->
+  <!-- ===== JS ===== -->
   <script>
     // année dynamique
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // URL du Worker Cloudflare
-    const WORKER_URL = "https://awenoria.bmavcontact.workers.dev/analyze";
+    // Header : bascule transparent → blanc en scroll (sans blur)
+    (function(){
+      const header = document.getElementById('site-header');
+      const toggle = () => {
+        if (window.scrollY > 10) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      };
+      toggle();
+      window.addEventListener('scroll', toggle, { passive:true });
+    })();
 
+    // Worker Cloudflare
+    const WORKER_URL = "https://awenoria.bmavcontact.workers.dev/analyze";
     const normalizeUrl = u => { if(!u) return ""; u=u.trim(); if(!/^https?:\/\//i.test(u)) u="https://"+u; return u; };
     const pct = n => Number.isFinite(n) ? `${Math.round(n)}%` : "—";
 
@@ -272,7 +290,7 @@
             <li>🔹 <b>Mentions légales</b> : ${pct(s.mentions)} ${legal.mentionsLink?"• Lien détecté":"• Non détecté"} ${legal.cgvLink?"• CGV":""} ${legal.cguLink?"• CGU":""}</li>
             <li>🔹 <b>Accessibilité</b> : ${pct(s.accessibilite)} • ALT: ${a11y.imgWithAlt||0}/${a11y.imgCount||0} ${a11y.hasAria?"• ARIA":""} ${a11y.hasLandmarks?"• repères":""}</li>
           </ul>
-          <p style="margin-top:10px;color:#5d6b7c">Analyse via Cloudflare Worker (aucun stockage).</p>`;
+          <p style="margin-top:10px;color:var(--muted)">Analyse via Cloudflare Worker (aucun stockage).</p>`;
       }catch(e){
         box.innerHTML = `<p style="color:#b3261e"><b>Erreur :</b> ${e.message}</p>`;
         console.error(e);
