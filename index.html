@@ -135,64 +135,44 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    const WORKER_URL = "https://awenoria.bmavcontact.workers.dev/analyze";
+    <script>
+const WORKER_URL = "https://awenoria.bmavcontact.workers.dev/analyze";
 
-    function normalizeUrl(u){
-      if(!u) return "";
-      u = u.trim();
-      if(!/^https?:\/\//i.test(u)) u = "https://" + u;
-      return u;
-    }
-    function pct(n){ return Number.isFinite(n) ? \`\${Math.round(n)}%\` : "—"; }
+function normalizeUrl(u){ if(!u) return ""; u=u.trim(); if(!/^https?:\/\//i.test(u)) u="https://"+u; return u; }
+function pct(n){ return Number.isFinite(n) ? `${Math.round(n)}%` : "—"; }
 
-    async function analyser() {
-      const input = document.getElementById('url');
-      let site = normalizeUrl(input.value);
-      if (!site) { alert("Merci d'entrer une URL."); return; }
+async function analyser(){
+  const input=document.getElementById('url');
+  const site=normalizeUrl(input.value);
+  if(!site){ alert("Merci d'entrer une URL."); return; }
 
-      const box = document.getElementById('resultat');
-      box.style.display = 'block';
-      box.innerHTML = \`<p>Analyse en cours…</p>\`;
+  const box=document.getElementById('resultat');
+  box.style.display='block';
+  box.innerHTML='<p>Analyse en cours…</p>';
 
-      try {
-        const res = await fetch(\`\${WORKER_URL}?url=\${encodeURIComponent(site)}\`, {
-          headers: { "accept": "application/json" }
-        });
-        const data = await res.json();
+  try {
+    const res = await fetch(`${WORKER_URL}?url=${encodeURIComponent(site)}`, { headers:{accept:"application/json"} });
+    const data = await res.json();
+    console.log("Réponse Worker :", data); // debug dans la console
 
-        if (!res.ok || data.ok === false) {
-          throw new Error(data?.error || \`Erreur serveur (\${res.status})\`);
-        }
+    if (!res.ok || data.ok === false) throw new Error(data?.error || `Erreur (${res.status})`);
 
-        const s = data.scores || {};
-        const rgpd = data.rgpd || {};
-        const legal = data.legal || {};
-        const a11y = data.a11y || {};
+    const s=data.scores||{}, rgpd=data.rgpd||{}, legal=data.legal||{}, a11y=data.a11y||{};
+    box.innerHTML = `
+      <h2>Résultats pour <b>${data.finalUrl||site}</b></h2>
+      <p><b>Score global :</b> ${pct(s.global)}</p>
+      <ul style="list-style:none;padding:0;line-height:1.9">
+        <li>🔹 <b>RGPD</b> : ${pct(s.rgpd)} ${rgpd.policyLink?"• Politique détectée":"• Politique non détectée"} ${rgpd.cookiesWords?"• Cookies":""}</li>
+        <li>🔹 <b>Mentions légales</b> : ${pct(s.mentions)} ${legal.mentionsLink?"• Lien détecté":"• Non détecté"} ${legal.cgvLink?"• CGV":""} ${legal.cguLink?"• CGU":""}</li>
+        <li>🔹 <b>Accessibilité</b> : ${pct(s.accessibilite)} • ALT: ${a11y.imgWithAlt||0}/${a11y.imgCount||0} ${a11y.hasAria?"• ARIA":""} ${a11y.hasLandmarks?"• repères":""}</li>
+      </ul>
+      <p style="margin-top:10px;color:#6b7280">Analyse via Cloudflare Worker (aucun stockage).</p>`;
+  } catch(e) {
+    box.innerHTML = `<p style="color:#b91c1c"><b>Erreur :</b> ${e.message}</p>`;
+    console.error(e);
+  }
+}
+</script>
 
-        box.innerHTML = \`
-          <h2>Résultats pour <b>\${data.finalUrl || site}</b></h2>
-          <p><b>Score global :</b> \${pct(s.global)}</p>
-          <ul style="list-style:none;padding:0;line-height:1.9">
-            <li>🔹 <b>RGPD</b> : \${pct(s.rgpd)}
-                \${rgpd.policyLink ? "• Politique détectée" : "• Politique non détectée"}
-                \${rgpd.cookiesWords ? "• Cookies" : ""}</li>
-            <li>🔹 <b>Mentions légales</b> : \${pct(s.mentions)}
-                \${legal.mentionsLink ? "• Lien détecté" : "• Non détecté"}
-                \${legal.cgvLink ? "• CGV" : ""} \${legal.cguLink ? "• CGU" : ""}</li>
-            <li>🔹 <b>Accessibilité</b> : \${pct(s.accessibilite)}
-                • ALT: \${a11y.imgWithAlt || 0}/\${a11y.imgCount || 0}
-                \${a11y.hasAria ? "• ARIA" : ""} \${a11y.hasLandmarks ? "• repères" : ""}</li>
-          </ul>
-          <p style="margin-top:10px;color:#6b7280">
-            Analyse basée sur le contenu réel via Cloudflare Worker (aucun stockage).
-            La version complète ajoutera des contrôles approfondis (contrastes, scripts cookies, PDF…) et un rapport téléchargeable.
-          </p>
-        \`;
-        box.scrollIntoView({behavior:'smooth', block:'center'});
-      } catch (e) {
-        box.innerHTML = \`<p style="color:#b91c1c"><b>Erreur :</b> \${e.message}</p>\`;
-      }
-    }
-  </script>
 </body>
 </html>
