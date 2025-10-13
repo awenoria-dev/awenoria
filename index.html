@@ -1,42 +1,159 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Awenoria – Audit de conformité automatisé</title>
-  <meta name="description" content="Testez gratuitement la conformité RGPD, accessibilité et mentions légales de votre site.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Awenoria — Audit de conformité automatisé</title>
+  <meta name="description" content="Testez la conformité RGPD, accessibilité et mentions légales de votre site, gratuitement." />
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 40px; background: #f8f9fa; color: #333; }
-    img { width: 120px; margin-bottom: 20px; }
-    input { padding: 8px; width: 260px; border: 1px solid #ccc; border-radius: 4px; }
-    button { padding: 8px 16px; margin-left: 6px; background: #0073b6; color: white; border: none; border-radius: 4px; cursor: pointer; }
-    button:hover { background: #005a8e; }
-    .result { margin-top: 30px; background: #fff; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1); padding: 20px; display: inline-block; }
+    :root{
+      --blue:#0073b6;       /* bleu logo */
+      --blue-dark:#005a8e;
+      --orange:#ff6600;     /* orange logo */
+      --bg:#f6f9fc;         /* fond clair moderne */
+      --text:#1f2937;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --radius:16px;
+      --shadow:0 10px 30px rgba(0,0,0,.06);
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--text); background:var(--bg);}
+    a{color:var(--blue); text-decoration:none}
+    .container{max-width:1100px; margin:0 auto; padding:24px}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700; font-size:18px}
+    .brand img{width:36px; height:auto}
+    .hero{display:grid; grid-template-columns:1fr; gap:22px; text-align:center; padding:56px 0}
+    .hero h1{font-size:44px; line-height:1.1; margin:8px 0}
+    .hero p{font-size:18px; color:var(--muted); margin:0 auto; max-width:720px}
+    .pill{display:inline-flex; align-items:center; gap:8px; background:#e8f3fb; color:var(--blue-dark); padding:8px 14px; border-radius:999px; font-weight:600; font-size:14px}
+    .testbox{display:flex; gap:10px; justify-content:center; align-items:center; margin-top:22px; flex-wrap:wrap}
+    input.url{width:380px; max-width:90vw; padding:14px 16px; border:1px solid #dbe5ee; border-radius:12px; background:#fff; font-size:16px; outline:none}
+    input.url:focus{border-color:var(--blue)}
+    .btn{padding:14px 18px; border-radius:12px; border:none; font-weight:700; cursor:pointer}
+    .btn-primary{background:var(--blue); color:#fff; box-shadow:var(--shadow)}
+    .btn-primary:hover{background:var(--blue-dark)}
+    .btn-outline{background:#fff; color:var(--blue); border:1px solid #dbe5ee}
+    .trust{display:flex; gap:18px; justify-content:center; align-items:center; color:var(--muted); font-size:14px; margin-top:8px}
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:28px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{background:var(--card); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow)}
+    .card h3{margin:8px 0 6px}
+    .badge{display:inline-flex; align-items:center; gap:8px; font-weight:700; color:#fff; background:var(--orange); padding:6px 10px; border-radius:999px; font-size:12px}
+    .result{margin-top:26px; background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; display:none; text-align:left}
+    .how{margin-top:50px}
+    .how .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    @media(max-width:900px){.how .steps{grid-template-columns:1fr}}
+    .footer{margin-top:60px; padding:28px 0; color:var(--muted); font-size:14px; border-top:1px solid #e7eef5}
+    .footer a{color:var(--muted)}
+    .accent{color:var(--orange)}
   </style>
 </head>
 <body>
-  <img src="logo.png" alt="Logo Awenoria">
-  <h1>Awenoria</h1>
-  <p>Analysez la conformité de votre site web en un clic.</p>
-  <input id="url" type="text" placeholder="https://votresite.fr">
-  <button onclick="analyser()">Analyser</button>
+  <header class="container nav">
+    <div class="brand">
+      <img src="logo.png" alt="Logo Awenoria">
+      <span>Awenoria</span>
+    </div>
+    <nav>
+      <a href="#features">Fonctionnalités</a>&nbsp;&nbsp;·&nbsp;&nbsp;
+      <a href="#how">Comment ça marche</a>&nbsp;&nbsp;·&nbsp;&nbsp;
+      <a href="#scan" class="btn btn-outline">Démo</a>
+    </nav>
+  </header>
 
-  <div id="resultat" class="result"></div>
+  <main class="container">
+    <section class="hero" id="scan">
+      <div class="pill">🔒 Données traitées localement — aucune sauvegarde</div>
+      <h1>Testez la conformité <span class="accent">RGPD, Accessibilité, Mentions</span> de votre site</h1>
+      <p>Obtenez un diagnostic immédiat et des recommandations concrètes. Version démo gratuite — parfaite pour une première évaluation avant audit complet.</p>
+
+      <div class="testbox">
+        <input id="url" class="url" type="text" placeholder="https://votresite.fr" />
+        <button class="btn btn-primary" onclick="analyser()">Analyser maintenant</button>
+      </div>
+      <div class="trust">✅ Simulation de démonstration • Pas de collecte de données</div>
+
+      <div id="resultat" class="result"></div>
+    </section>
+
+    <section id="features">
+      <div class="grid">
+        <article class="card">
+          <div class="badge">RGPD</div>
+          <h3>Politique de confidentialité & cookies</h3>
+          <p>Détecte la présence d’une politique RGPD, d’un bandeau cookies et des mentions clés (base légale, DPO, droits…).</p>
+        </article>
+        <article class="card">
+          <div class="badge">Accessibilité</div>
+          <h3>Points d’accessibilité essentiels</h3>
+          <p>Repérage des attributs alt, repères ARIA et contrastes estimés. Génère une déclaration d’accessibilité de base.</p>
+        </article>
+        <article class="card">
+          <div class="badge">Mentions</div>
+          <h3>Mentions légales & e-commerce</h3>
+          <p>Vérifie la présence des mentions éditeur/hébergeur, CGV/CGU et éléments obligatoires pour la vente en ligne.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="how" class="how">
+      <h2>Comment ça marche</h2>
+      <div class="steps">
+        <div class="card">
+          <h3>1. Analyse</h3>
+          <p>Entrez votre URL : nous réalisons une analyse locale (aucune donnée transmise à un serveur).</p>
+        </div>
+        <div class="card">
+          <h3>2. Diagnostic</h3>
+          <p>Un score synthétique par thématique et 3 recommandations prioritaires sont générés instantanément.</p>
+        </div>
+        <div class="card">
+          <h3>3. Suivant</h3>
+          <p>Besoin d’un rapport PDF et de modèles légaux ? La version complète Awenoria vous accompagne.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <div style="display:flex; gap:12px; justify-content:space-between; flex-wrap:wrap;">
+      <span>© <span id="year"></span> Awenoria</span>
+      <span>
+        <a href="mentions.html">Mentions légales</a> ·
+        <a href="confidentialite.html">Confidentialité</a>
+      </span>
+    </div>
+  </footer>
 
   <script>
+    // année footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // démo d'analyse simulée
     function analyser() {
       const url = document.getElementById('url').value.trim();
-      if (!url) return alert("Merci d'entrer une URL.");
-      const score = Math.floor(Math.random() * (95 - 60 + 1)) + 60;
-      document.getElementById('resultat').innerHTML =
-        `<h2>Résultats pour ${url}</h2>
-        <p><b>Score global :</b> ${score}%</p>
-        <ul style='list-style:none;padding:0;'>
-          <li>🔹 RGPD : ${score - 8}%</li>
-          <li>🔹 Mentions légales : ${score - 5}%</li>
-          <li>🔹 Accessibilité : ${score - 12}%</li>
+      if (!url) { alert("Merci d'entrer une URL."); return; }
+
+      const base = Math.floor(Math.random()* (92 - 62 + 1)) + 62;
+      const rgpd = Math.max(40, base - 6);
+      const ml   = Math.max(40, base - 3);
+      const a11y = Math.max(30, base - 12);
+
+      const bloc =
+      `<h2>Résultats pour <b>${url}</b></h2>
+        <p><b>Score global :</b> ${base}%</p>
+        <ul style="list-style:none; padding:0; line-height:1.9">
+          <li>🔹 <b>RGPD</b> : ${rgpd}% — Politique de confidentialité, cookies, droits.</li>
+          <li>🔹 <b>Mentions légales</b> : ${ml}% — Éditeur, hébergeur, CGV/CGU.</li>
+          <li>🔹 <b>Accessibilité</b> : ${a11y}% — textes alternatifs, repères ARIA, contrastes.</li>
         </ul>
-        <p><i>Ce diagnostic est une simulation de démonstration.</i></p>`;
+        <p style="margin-top:10px; color:#6b7280">Ce diagnostic est une simulation de démonstration. La version complète fournit un rapport PDF et des modèles prêts à l’emploi.</p>`;
+      const r = document.getElementById('resultat');
+      r.style.display = 'block';
+      r.innerHTML = bloc;
+      r.scrollIntoView({behavior:'smooth', block:'center'});
     }
   </script>
 </body>
