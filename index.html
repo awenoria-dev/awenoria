@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awenoria – Audit de conformité automatisé</title>
+  <meta name="description" content="Testez gratuitement la conformité RGPD, accessibilité et mentions légales de votre site.">
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 40px; background: #f8f9fa; color: #333; }
+    img { width: 120px; margin-bottom: 20px; }
+    input { padding: 8px; width: 260px; border: 1px solid #ccc; border-radius: 4px; }
+    button { padding: 8px 16px; margin-left: 6px; background: #0073b6; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #005a8e; }
+    .result { margin-top: 30px; background: #fff; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1); padding: 20px; display: inline-block; }
+  </style>
+</head>
+<body>
+  <img src="logo.png" alt="Logo Awenoria">
+  <h1>Awenoria</h1>
+  <p>Analysez la conformité de votre site web en un clic.</p>
+  <input id="url" type="text" placeholder="https://votresite.fr">
+  <button onclick="analyser()">Analyser</button>
+
+  <div id="resultat" class="result"></div>
+
+  <script>
+    function analyser() {
+      const url = document.getElementById('url').value.trim();
+      if (!url) return alert("Merci d'entrer une URL.");
+      const score = Math.floor(Math.random() * (95 - 60 + 1)) + 60;
+      document.getElementById('resultat').innerHTML =
+        `<h2>Résultats pour ${url}</h2>
+        <p><b>Score global :</b> ${score}%</p>
+        <ul style='list-style:none;padding:0;'>
+          <li>🔹 RGPD : ${score - 8}%</li>
+          <li>🔹 Mentions légales : ${score - 5}%</li>
+          <li>🔹 Accessibilité : ${score - 12}%</li>
+        </ul>
+        <p><i>Ce diagnostic est une simulation de démonstration.</i></p>`;
+    }
+  </script>
+</body>
+</html>
