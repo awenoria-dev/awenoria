@@ -1,0 +1,3 @@
+<a href="index.html" class="brand" aria-label="Aller à l’accueil">
+  <img src="images/logo.png" alt="Awenoria" class="brand__logo">
+</a>
