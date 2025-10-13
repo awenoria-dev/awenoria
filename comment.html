@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Awenoria — Comment ça marche</title>
+<style>
+:root{--blue:#0073b6;--blue2:#005a8e;--orange:#ff6600;--bg:#f6f9fc;--card:#fff;--muted:#6b7280;--r:16px;--shadow:0 10px 30px rgba(0,0,0,.06)}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:#1f2937}
+a{color:var(--blue);text-decoration:none}
+.container{max-width:900px;margin:0 auto;padding:24px}
+header{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+.brand img{width:36px}
+h1{margin:14px 0 6px}
+.sub{color:var(--muted)}
+.step{background:var(--card);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);margin-top:16px}
+.step h3{margin:8px 0}
+.footer{margin-top:40px;padding:22px 0;color:var(--muted);font-size:14px;border-top:1px solid #e7eef5}
+ol{line-height:1.9}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand"><img src="logo.png" alt="Awenoria"><span>Awenoria</span></div>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="fonctionnalites.html">Fonctionnalités</a>
+      <a href="comment.html"><b>Comment ça marche</b></a>
+      <a href="tarifs.html">Tarifs</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h1>Comment ça marche</h1>
+  <p class="sub">Processus simple, local et sans collecte.</p>
+
+  <section class="step">
+    <h3>1) Saisie & analyse locale</h3>
+    <ol>
+      <li>Vous entrez l’URL de votre site (ou glissez un PDF à terme).</li>
+      <li>L’analyse est effectuée <b>dans votre navigateur</b> (aucun envoi vers un serveur).</li>
+      <li>Des règles rapides vérifient RGPD, Accessibilité et Mentions clés.</li>
+    </ol>
+  </section>
+
+  <section class="step">
+    <h3>2) Diagnostic & recommandations</h3>
+    <ol>
+      <li>Score global + scores par thématique.</li>
+      <li>3 à 5 recommandations prioritaires avec explications pédagogiques.</li>
+      <li>Liens vers nos modèles légaux pour corriger rapidement.</li>
+    </ol>
+  </section>
+
+  <section class="step">
+    <h3>3) Rapport & documents (au lancement)</h3>
+    <ol>
+      <li>Export d’un <b>rapport PDF</b> : horodaté, synthétique, “preuve d’audit”.</li>
+      <li>Génération de <b>modèles</b> (mentions, politique RGPD, CGV/CGU) à personnaliser.</li>
+      <li>Historique local et suivi de progression de conformité.</li>
+    </ol>
+  </section>
+
+  <section class="step">
+    <h3>4) Abonnement (quand activé)</h3>
+    <ol>
+      <li>Essai 3 jours à 1 € → bascule automatique mensuel/annuel choisi.</li>
+      <li>CB 3D Secure pour tous, SEPA B2B pour pros (avec carte de secours).</li>
+      <li>Portail client : changement de plan, factures, résiliation simple.</li>
+    </ol>
+  </section>
+
+  <p style="margin-top:18px"><a href="index.html">← Retour à l’accueil</a></p>
+</main>
+
+<footer class="container footer">
+  <span>© <span id="y"></span> Awenoria</span>
+  <span style="float:right"><a href="mentions.html">Mentions</a> · <a href="confidentialite.html">Confidentialité</a></span>
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
