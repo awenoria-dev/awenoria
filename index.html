@@ -5,49 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Awenoria — Audit de conformité automatisé</title>
   <meta name="description" content="Testez la conformité RGPD, accessibilité et mentions légales de votre site, gratuitement." />
+
   <style>
-    :root{
-      --blue:#0073b6; --blue2:#005a8e; --orange:#ff6600;
-      --bg:#f6f9fc; --card:#ffffff; --text:#1f2937; --muted:#6b7280;
-      --r:16px; --shadow:0 10px 30px rgba(0,0,0,.06);
+    :root {
+      --blue: #0073b6; --blue2: #005a8e; --orange: #ff6600;
+      --bg: #f6f9fc; --card: #ffffff; --text: #1f2937; --muted: #6b7280;
+      --r: 16px; --shadow: 0 10px 30px rgba(0,0,0,.06);
     }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:var(--text)}
-    a{color:var(--blue);text-decoration:none}
-    .container{max-width:1100px;margin:0 auto;padding:24px}
 
-    /* header */
-    header{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.05)}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
-    .brand img{width:56px}
-    nav a{margin-left:16px;font-weight:600}
-    nav a:hover{color:var(--orange)}
+    * { box-sizing: border-box }
+    body { margin:0; font-family: Inter, system-ui, Arial; background: var(--bg); color: var(--text) }
+    a { color: var(--blue); text-decoration: none }
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px }
 
-    /* hero */
-    .hero{display:grid;gap:18px;text-align:center;padding:44px 0}
-    h1{font-size:38px;color:var(--blue);margin:0}
-    .sub{color:var(--muted);max-width:720px;margin:0 auto}
-    .testbox{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:16px}
-    input.url{width:420px;max-width:90vw;padding:14px 16px;border:1px solid #dbe5ee;border-radius:12px;background:#fff;font-size:16px;outline:none}
-    input.url:focus{border-color:var(--blue)}
-    .btn{padding:14px 18px;border-radius:12px;border:none;font-weight:700;cursor:pointer;background:var(--blue);color:#fff}
-    .btn:hover{background:var(--blue2)}
-    .result{margin-top:22px;background:#fff;border-radius:var(--r);box-shadow:var(--shadow);padding:22px;display:none;text-align:left}
+    /* HEADER */
+    header { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.05) }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0 }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800 }
+    .brand img { width: 56px }
+    nav a { margin-left: 16px; font-weight: 600 }
+    nav a:hover { color: var(--orange) }
 
-    /* six bulles */
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
-    @media(max-width:900px){.grid{grid-template-columns:1fr}}
-    .card{background:var(--card);border-radius:var(--r);padding:20px;box-shadow:var(--shadow);text-align:left}
-    .badge{display:inline-block;background:var(--orange);color:#fff;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800}
-    .card h3{margin:10px 0 6px}
-    .muted{color:var(--muted);margin:0}
+    /* HERO */
+    .hero { display: grid; gap: 18px; text-align: center; padding: 44px 0 }
+    h1 { font-size: 38px; color: var(--blue); margin: 0 }
+    .sub { color: var(--muted); max-width: 720px; margin: 0 auto }
+    .testbox { display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 16px }
+    input.url { width: 420px; max-width: 90vw; padding: 14px 16px; border: 1px solid #dbe5ee; border-radius: 12px; background: #fff; font-size: 16px; outline: none }
+    input.url:focus { border-color: var(--blue) }
+    .btn { padding: 14px 18px; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; background: var(--blue); color: #fff }
+    .btn:hover { background: var(--blue2) }
+    .result { margin-top: 22px; background: #fff; border-radius: var(--r); box-shadow: var(--shadow); padding: 22px; display: none; text-align: left }
 
-    /* footer */
-    .footer{margin-top:40px;padding:24px 0;color:var(--muted);font-size:14px;border-top:1px solid #e7eef5}
-    .footer a{color:var(--muted)}
+    /* SIX BULLES */
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px }
+    @media(max-width:900px){ .grid { grid-template-columns: 1fr } }
+    .card { background: var(--card); border-radius: var(--r); padding: 20px; box-shadow: var(--shadow); text-align: left }
+    .badge { display: inline-block; background: var(--orange); color: #fff; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 800 }
+    .card h3 { margin: 10px 0 6px }
+    .muted { color: var(--muted); margin: 0 }
+
+    /* FOOTER */
+    .footer { margin-top: 40px; padding: 24px 0; color: var(--muted); font-size: 14px; border-top: 1px solid #e7eef5 }
+    .footer a { color: var(--muted) }
   </style>
 </head>
+
 <body>
   <!-- HEADER -->
   <header>
@@ -66,7 +69,7 @@
     </div>
   </header>
 
-  <!-- HERO + INPUT -->
+  <!-- HERO -->
   <main class="container">
     <section class="hero">
       <h1>Audit automatique de conformité</h1>
@@ -131,48 +134,48 @@
     </div>
   </footer>
 
-  <!-- SCRIPT : appelle ton Worker Cloudflare -->
+  <!-- SCRIPT -->
   <script>
+    // année dynamique
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    <script>
-const WORKER_URL = "https://awenoria.bmavcontact.workers.dev/analyze";
+    // URL du Worker Cloudflare
+    const WORKER_URL = "https://awenoria.bmavcontact.workers.dev/analyze";
 
-function normalizeUrl(u){ if(!u) return ""; u=u.trim(); if(!/^https?:\/\//i.test(u)) u="https://"+u; return u; }
-function pct(n){ return Number.isFinite(n) ? `${Math.round(n)}%` : "—"; }
+    function normalizeUrl(u){ if(!u) return ""; u=u.trim(); if(!/^https?:\/\//i.test(u)) u="https://"+u; return u; }
+    function pct(n){ return Number.isFinite(n) ? `${Math.round(n)}%` : "—"; }
 
-async function analyser(){
-  const input=document.getElementById('url');
-  const site=normalizeUrl(input.value);
-  if(!site){ alert("Merci d'entrer une URL."); return; }
+    async function analyser(){
+      const input=document.getElementById('url');
+      const site=normalizeUrl(input.value);
+      if(!site){ alert("Merci d'entrer une URL."); return; }
 
-  const box=document.getElementById('resultat');
-  box.style.display='block';
-  box.innerHTML='<p>Analyse en cours…</p>';
+      const box=document.getElementById('resultat');
+      box.style.display='block';
+      box.innerHTML='<p>Analyse en cours…</p>';
 
-  try {
-    const res = await fetch(`${WORKER_URL}?url=${encodeURIComponent(site)}`, { headers:{accept:"application/json"} });
-    const data = await res.json();
-    console.log("Réponse Worker :", data); // debug dans la console
+      try {
+        const res = await fetch(`${WORKER_URL}?url=${encodeURIComponent(site)}`, { headers:{accept:"application/json"} });
+        const data = await res.json();
+        console.log("Réponse Worker :", data);
 
-    if (!res.ok || data.ok === false) throw new Error(data?.error || `Erreur (${res.status})`);
+        if (!res.ok || data.ok === false) throw new Error(data?.error || `Erreur (${res.status})`);
 
-    const s=data.scores||{}, rgpd=data.rgpd||{}, legal=data.legal||{}, a11y=data.a11y||{};
-    box.innerHTML = `
-      <h2>Résultats pour <b>${data.finalUrl||site}</b></h2>
-      <p><b>Score global :</b> ${pct(s.global)}</p>
-      <ul style="list-style:none;padding:0;line-height:1.9">
-        <li>🔹 <b>RGPD</b> : ${pct(s.rgpd)} ${rgpd.policyLink?"• Politique détectée":"• Politique non détectée"} ${rgpd.cookiesWords?"• Cookies":""}</li>
-        <li>🔹 <b>Mentions légales</b> : ${pct(s.mentions)} ${legal.mentionsLink?"• Lien détecté":"• Non détecté"} ${legal.cgvLink?"• CGV":""} ${legal.cguLink?"• CGU":""}</li>
-        <li>🔹 <b>Accessibilité</b> : ${pct(s.accessibilite)} • ALT: ${a11y.imgWithAlt||0}/${a11y.imgCount||0} ${a11y.hasAria?"• ARIA":""} ${a11y.hasLandmarks?"• repères":""}</li>
-      </ul>
-      <p style="margin-top:10px;color:#6b7280">Analyse via Cloudflare Worker (aucun stockage).</p>`;
-  } catch(e) {
-    box.innerHTML = `<p style="color:#b91c1c"><b>Erreur :</b> ${e.message}</p>`;
-    console.error(e);
-  }
-}
-</script>
-
+        const s=data.scores||{}, rgpd=data.rgpd||{}, legal=data.legal||{}, a11y=data.a11y||{};
+        box.innerHTML = `
+          <h2>Résultats pour <b>${data.finalUrl||site}</b></h2>
+          <p><b>Score global :</b> ${pct(s.global)}</p>
+          <ul style="list-style:none;padding:0;line-height:1.9">
+            <li>🔹 <b>RGPD</b> : ${pct(s.rgpd)} ${rgpd.policyLink?"• Politique détectée":"• Politique non détectée"} ${rgpd.cookiesWords?"• Cookies":""}</li>
+            <li>🔹 <b>Mentions légales</b> : ${pct(s.mentions)} ${legal.mentionsLink?"• Lien détecté":"• Non détecté"} ${legal.cgvLink?"• CGV":""} ${legal.cguLink?"• CGU":""}</li>
+            <li>🔹 <b>Accessibilité</b> : ${pct(s.accessibilite)} • ALT: ${a11y.imgWithAlt||0}/${a11y.imgCount||0} ${a11y.hasAria?"• ARIA":""} ${a11y.hasLandmarks?"• repères":""}</li>
+          </ul>
+          <p style="margin-top:10px;color:#6b7280">Analyse via Cloudflare Worker (aucun stockage).</p>`;
+      } catch(e) {
+        box.innerHTML = `<p style="color:#b91c1c"><b>Erreur :</b> ${e.message}</p>`;
+        console.error(e);
+      }
+    }
+  </script>
 </body>
 </html>
