@@ -9,19 +9,15 @@
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon-180.png">
-  <!-- Optionnels mais recommandés -->
-  <link rel="icon" type="image/svg+xml" href="./images/favicon.svg">
-  <link rel="manifest" href="./site.webmanifest">
   <meta name="theme-color" content="#005a8e">
 
   <style>
     :root{
-      /* PALETTE MARQUE */
+      /* Couleurs marque */
       --blue:#0073b6;
-      --blue-dark:#005a8e;
-      --orange:#ff6600;
-      /* THEME CLAIR PRO */
+      --blue-dark:#005a8e;   /* dominant */
+      --orange:#ff6600;      /* hover/accents */
+      /* Thème clair pro */
       --bg:#edf3f7;
       --bg-grad:
         radial-gradient(900px 480px at 12% -10%, rgba(0,115,182,.06) 0%, transparent 60%),
@@ -42,15 +38,14 @@
       color:var(--text); background:var(--bg-grad), var(--bg);
     }
     a{ text-decoration:none }
-
     .container{ max-width:1160px; margin:0 auto; padding:24px 20px }
 
-    /* ================= HEADER ================= */
+    /* ===== HEADER sticky (transparent en haut → blanc en scroll) ===== */
     .header{
       position:sticky; top:0; z-index:60;
       --bg: transparent;
       --border: transparent;
-      --link: #ffffff;
+      --link: #ffffff;                /* liens clairs quand hero derrière */
       --link-hover: var(--orange);
       --shadow:none;
       background: var(--bg);
@@ -61,60 +56,36 @@
     .header.scrolled{
       --bg: rgba(255,255,255,.98);
       --border: var(--stroke);
-      --link: var(--blue-dark);
-      --link-hover: var(--orange);
+      --link: var(--blue-dark);       /* liens bleu foncé */
+      --link-hover: var(--orange);    /* hover orange */
       --shadow: 0 6px 20px rgba(16,32,48,.06);
     }
     .nav{ display:flex; align-items:center; justify-content:space-between; gap:20px; padding:12px 0 }
 
-    /* Logo : plus grand, sobre */
+    /* Logo : grand, sobre */
     .brand{ display:inline-flex; align-items:center; padding:4px 6px; border-radius:12px; transition: filter .2s ease, transform .08s ease }
     .brand__logo{ display:block; height:90px; width:auto }
     @media(min-width:992px){ .brand__logo{ height:98px } }
     .brand:hover{ filter: drop-shadow(0 6px 14px rgba(0,90,142,.10)) }
     .brand:active{ transform: scale(.99) }
 
-    /* NAV + DROPDOWNS */
-    .mainnav{ display:flex; align-items:center; gap:4px }
-    .mainnav > li{ list-style:none; position:relative }
-    .mainnav > li > a{
-      position:relative; display:inline-block; font-weight:700; padding:10px 14px;
-      color: var(--link); transition: color .2s ease;
+    /* NAV : bleu foncé par défaut, orange au survol + soulignage */
+    .mainnav a{
+      position:relative; font-weight:700; margin-left:20px; padding:10px 0;
+      color: var(--link);
+      transition: color .2s ease, opacity .2s ease;
     }
-    /* soulignage orange au hover/actif */
-    .mainnav > li > a::after{
-      content:""; position:absolute; left:12px; right:12px; bottom:-6px; height:3px;
+    .mainnav a::after{
+      content:""; position:absolute; left:0; right:0; bottom:-6px; height:3px;
       transform:scaleX(0); transform-origin:left; background:var(--orange);
-      transition:transform .22s ease; border-radius:2px;
+      transition: transform .22s ease; border-radius:2px;
     }
-    .mainnav > li > a:hover{ color:var(--link-hover) }
-    .mainnav > li > a:hover::after{ transform:scaleX(1) }
-    .mainnav > li > a.active{ color:var(--orange) }
-    .mainnav > li > a.active::after{ transform:scaleX(1) }
+    .mainnav a:hover{ color: var(--link-hover) }
+    .mainnav a:hover::after{ transform:scaleX(1) }
+    .mainnav a.active{ color: var(--orange) }
+    .mainnav a.active::after{ transform:scaleX(1) }
 
-    /* Dropdowns (Conformité, Ressources) */
-    .dropdown{ position:absolute; top:100%; left:0; min-width:240px; padding:8px;
-      background:#fff; border:1px solid var(--stroke); border-radius:12px; box-shadow:var(--shadow-lg);
-      opacity:0; visibility:hidden; transform: translateY(6px);
-      transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
-    }
-    .dropdown a{
-      display:block; color:var(--blue-dark); padding:10px 12px; border-radius:10px; font-weight:600;
-    }
-    .dropdown a:hover{ background:#f3f8fc; color:var(--orange) }
-    .mainnav > li:hover .dropdown{ opacity:1; visibility:visible; transform: translateY(0) }
-
-    /* CTA à droite */
-    .cta{
-      margin-left:8px; display:inline-flex; align-items:center; gap:8px;
-      padding:10px 14px; border-radius:12px; font-weight:800; color:#fff;
-      background:var(--blue-dark); box-shadow:var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.35);
-      transition: background .18s ease, transform .08s ease, filter .18s ease;
-    }
-    .cta:hover{ background:var(--orange); filter:brightness(1.02) }
-    .cta:active{ transform: translateY(1px) }
-
-    /* ================= HERO ================= */
+    /* ===== HERO ===== */
     .hero{ display:grid; gap:18px; text-align:center; padding:56px 0 40px }
     h1{ margin:0; font-size:44px; line-height:1.08; letter-spacing:.2px; color:var(--blue-dark) }
     .sub{ color:var(--muted); max-width:760px; margin:0 auto }
@@ -123,8 +94,7 @@
     input.url{
       width:560px; max-width:92vw; padding:14px 16px; border-radius:12px; font-size:16px;
       color:#14233a; background:#fff; border:1px solid var(--stroke); outline:none;
-      transition:border-color .18s ease, box-shadow .18s ease;
-      box-shadow: var(--shadow-sm);
+      transition:border-color .18s ease, box-shadow .18s ease; box-shadow: var(--shadow-sm);
     }
     input.url:focus{ border-color: var(--blue); box-shadow:0 0 0 4px rgba(0,115,182,.12) }
     .btn{
@@ -143,7 +113,7 @@
       padding:22px; display:none; text-align:left;
     }
 
-    /* ================= VIGNETTES ================= */
+    /* ===== VIGNETTES ===== */
     .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:26px }
     @media(max-width:900px){ .grid{ grid-template-columns:1fr } }
 
@@ -159,7 +129,7 @@
     .tile .cta{ margin-top:12px; display:inline-block; font-weight:700; font-size:14px; color:var(--blue-dark); border-bottom:2px solid transparent; transition: color .18s ease, border-color .18s ease }
     .tile .cta:hover{ color:var(--orange); border-color:var(--orange) }
 
-    /* ================= FOOTER ================= */
+    /* ===== FOOTER ===== */
     .footer{ margin-top:44px; padding:24px 0; color:#5c6a7a; font-size:14px; border-top:1px solid var(--stroke) }
     .footer a{ color:#5c6a7a }
   </style>
@@ -169,47 +139,24 @@
   <!-- ===== HEADER ===== -->
   <header id="site-header" class="header">
     <div class="container nav">
-      <!-- Logo seul, plus grand, clic → accueil -->
       <a href="./index.html" class="brand" title="Accueil">
         <img src="./images/logo.png" alt="Awenoria" class="brand__logo">
       </a>
 
-      <!-- NAV restructurée -->
-      <ul class="mainnav">
-        <li><a href="index.html" class="active">Accueil</a></li>
-
-        <li>
-          <a href="javascript:void(0)">Conformité ▾</a>
-          <div class="dropdown">
-            <a href="fonctionnalites.html#rgpd">RGPD</a>
-            <a href="fonctionnalites.html#a11y">Accessibilité</a>
-            <a href="fonctionnalites.html#legal">Mentions légales</a>
-          </div>
-        </li>
-
-        <li><a href="fonctionnalites.html">Fonctionnalités</a></li>
-        <li><a href="tarifs.html">Tarifs</a></li>
-
-        <li>
-          <a href="javascript:void(0)">Ressources ▾</a>
-          <div class="dropdown">
-            <a href="comment.html">Pas-à-pas</a>
-            <a href="guides.html">Guides & bonnes pratiques</a>
-            <a href="modeles.html">Modèles juridiques</a>
-          </div>
-        </li>
-
-        <li><a href="a%20propos.html">À propos</a></li>
-        <li><a href="contact.html">Contact</a></li>
-
-        <li><a class="cta" href="#analyse">Analyser</a></li>
-      </ul>
+      <nav class="mainnav">
+        <a href="index.html" class="active">Accueil</a>
+        <a href="fonctionnalites.html">Fonctionnalités</a>
+        <a href="comment.html">Comment ça marche</a>
+        <a href="tarifs.html">Tarifs</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
   </header>
 
   <!-- ===== HERO ===== -->
   <main class="container">
-    <section class="hero" id="analyse">
+    <section class="hero">
       <h1>Audit automatique de conformité</h1>
       <p class="sub">Testez la conformité RGPD, accessibilité et mentions légales de votre site en un clic.</p>
 
