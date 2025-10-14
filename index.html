@@ -5,12 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Awenoria — Audit de conformité automatisé</title>
 <meta name="description" content="Testez la conformité RGPD, l'accessibilité et les mentions légales de votre site en un clic. Résultats clairs, détails exploitables et export PDF." />
-
-<!-- Favicons -->
 <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
-
-<!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -27,7 +23,7 @@ body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-seri
 a{text-decoration:none} img{max-width:100%;display:block}
 .container{max-width:1160px;margin:0 auto;padding:24px 20px}
 
-/* HEADER */
+/* ================= HEADER ================= */
 .header{position:sticky;top:0;z-index:60;background:var(--bg-top);border-bottom:1px solid transparent;transition:.25s}
 .header.scrolled{background:#fff;border-bottom-color:var(--stroke);box-shadow:0 10px 24px rgba(16,32,48,.06)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
@@ -42,7 +38,7 @@ a{text-decoration:none} img{max-width:100%;display:block}
 .dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:var(--blue-dark);font-weight:700}
 .dropdown a:hover{background:#f3f8fc;color:var(--orange)}
 
-/* HERO */
+/* ================= HERO ================= */
 .hero--image{
   position:relative;padding:124px 0 110px;color:#fff;text-align:center;
   background:
@@ -66,14 +62,14 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .btn-hero{height:54px;padding:0 22px;border-radius:9999px;font-size:16px}
 .btn.blue{background:var(--blue)} .btn.blue:hover{background:rgba(0,115,182,.15);color:var(--blue-dark);box-shadow:inset 0 0 0 1px rgba(0,115,182,.35)}
 
-/* SECTION */
+/* ================= SECTIONS ================= */
 .section{padding:88px 0} .section.alt{background:var(--surface);position:relative}
 .section.alt::before{content:"";position:absolute;left:0;right:0;top:-24px;height:24px;background:linear-gradient(180deg,rgba(237,243,247,0),rgba(237,243,247,1))}
-.section-title{margin:0 0 12px;font-size:32px;color:#0f2746;text-align:center}
+.section-title{margin:0 0 12px;font-size:32px;color:#0f2746;text-align:center;white-space:nowrap}
 .section-title::after{content:"";display:block;width:64px;height:4px;margin:10px auto 0;background:var(--orange);border-radius:3px;opacity:.85}
 .section .lead{max-width:860px;margin:6px auto 0;text-align:center;color:var(--muted)}
 
-/* GRID / TILES */
+/* ================= TILES ================= */
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:18px}
 @media(max-width:1024px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.grid{grid-template-columns:1fr}}
@@ -92,7 +88,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .tile .cta:hover{color:var(--orange)}
 .tile.has-bg::after{content:"";position:absolute;right:12px;bottom:12px;width:110px;height:110px;background:var(--tile-bg) no-repeat center/contain;opacity:.10;pointer-events:none}
 
-/* KPIs / STEPS */
+/* ================= KPI / STEPS ================= */
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 @media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
 .kpi{display:flex;flex-direction:column;align-items:flex-start;padding:18px}
@@ -102,7 +98,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .step{background:#fff;border:1px solid var(--stroke);border-radius:16px;padding:18px;box-shadow:var(--shadow-sm)}
 .actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:28px}
 
-/* RESULT WIDGET */
+/* ================= RESULT WIDGET ================= */
 .result{margin-top:22px;background:var(--surface);border:1px solid var(--stroke);border-radius:20px;box-shadow:var(--shadow-sm);padding:22px;display:none;color:var(--text)}
 .result .header{display:flex;justify-content:space-between;align-items:center;margin:-22px -22px 16px;padding:14px 22px;border-bottom:1px solid var(--stroke);background:#fbfdff;border-radius:20px 20px 0 0}
 .result h3{margin:0;font-size:18px}
@@ -112,7 +108,8 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .card-mini{border:1px solid var(--stroke);border-radius:14px;padding:12px;background:#fff}
 .card-mini b{display:block;font-size:14px;margin-bottom:6px}
 .card-mini span{color:var(--muted)}
-.result .footer{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+.result .footer{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.result .btn{border-radius:999px}
 .btn.ghost{background:#fff;color:var(--blue-dark);border:1px solid var(--stroke)}
 .btn.link{background:transparent;color:var(--blue-dark);border:none;padding:8px 10px}
 .detail{display:none;margin-top:12px;border-top:1px dashed var(--stroke);padding-top:12px}
@@ -121,39 +118,51 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .detail h4{margin:0 0 6px}
 .small{font-size:13px;color:var(--muted)}
 
-/* BRANDWORD “Awenoria” stylé — barre bleue + point orange unique */
-.brandword{display:inline-flex;gap:0.06em;align-items:baseline}
+/* ================= BRANDWORD “Awenoria” ============== */
+.brandword{display:inline-flex;gap:0.06em;align-items:baseline;white-space:nowrap}
 .brandword .A{color:var(--blue-dark);font-weight:900}
 .brandword .rest{
   background:linear-gradient(90deg,#0b4f78 0%, #2f86b8 40%, #6fb3d8 100%);
   -webkit-background-clip:text;background-clip:text;
   color:transparent;font-weight:900;position:relative
 }
+/* “i” reconstruit, sans créer d’espace supplémentaire */
 .brandword .i{
-  display:inline-block; position:relative; width:0.5em; height:1em;
-  vertical-align:baseline; color:transparent; overflow:hidden;
+  display:inline-block; position:relative; width:0; height:1em;
+  vertical-align:baseline; overflow:visible; color:transparent;
   background:inherit; -webkit-background-clip:text; background-clip:text;
 }
 .brandword .i::before{
-  content:""; position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+  content:""; position:absolute; bottom:0; left:-0.06em;
   width:0.12em; height:0.72em; border-radius:0.08em; background:inherit;
 }
 .brandword .i::after{
-  content:""; position:absolute; top:-0.30em; left:50%; transform:translateX(-50%);
+  content:""; position:absolute; top:-0.34em; left:-0.12em;
   width:0.34em; height:0.34em; background:var(--orange); border-radius:50%;
 }
 
-/* LISTE JOLIE “Ce que l’audit vérifie” */
-.checkcards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+/* ================= “Ce que l’audit vérifie” (cartes) ================= */
+.checkcards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch;justify-items:center}
 @media(max-width:900px){.checkcards{grid-template-columns:1fr}}
-.cc{background:#fff;border:1px solid var(--stroke);border-radius:16px;padding:16px;box-shadow:var(--shadow-sm)}
+.cc{
+  width:100%; max-width:520px; background:#fff; border:1px solid var(--stroke);
+  border-radius:18px; padding:18px 18px 20px; box-shadow:var(--shadow-sm);
+  transition:.2s; text-align:left;
+}
+.cc:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:#d5e7f4}
 .cc ul{margin:0;padding:0;list-style:none}
-.cc li{position:relative;padding-left:28px;margin:10px 0;cursor:pointer}
-.cc li::before{content:"";position:absolute;left:0;top:.25em;width:18px;height:18px;border-radius:50%;border:2px solid #cce2f1;background:linear-gradient(180deg,#e9f4fb,#d9ecf8)}
-.cc li:hover{color:#0f2746}
+.cc li{position:relative;padding-left:34px;margin:14px 0;cursor:pointer;font-weight:600}
+.cc li::before{
+  content:""; position:absolute; left:0; top:.15em; width:20px; height:20px; border-radius:50%;
+  background:linear-gradient(180deg,#eaf5fd,#d8ecfa); border:2px solid #cbe3f3; box-shadow:inset 0 0 0 2px #fff;
+}
+.cc li::after{
+  content:""; position:absolute; left:6px; top:.52em; width:7px; height:12px; border-right:3px solid var(--blue-dark); border-bottom:3px solid var(--blue-dark); transform:rotate(45deg);
+}
 .cc small{display:block;color:var(--muted)}
+.cc .hint{margin-top:8px;color:var(--muted);font-size:13px}
 
-/* MODAL */
+/* ================= MODAL ================= */
 .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(10,22,34,.45);z-index:90;padding:20px}
 .modal .panel{max-width:780px;width:100%;background:#fff;border-radius:16px;border:1px solid var(--stroke);box-shadow:var(--shadow-lg)}
 .modal .hd{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--stroke);padding:14px 18px}
@@ -162,22 +171,22 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .modal .ft{display:flex;gap:10px;justify-content:flex-end;border-top:1px solid var(--stroke);padding:12px 18px}
 .close-x{background:transparent;border:none;font-size:22px;cursor:pointer}
 
-/* CTA sticky */
+/* ================= CTA sticky ================= */
 .sticky-cta{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;background:#fff;border:1px solid var(--stroke);border-radius:999px;box-shadow:0 16px 32px rgba(16,32,48,.12);padding:8px 12px;display:none;gap:8px;z-index:70}
 .sticky-cta .btn{padding:10px 14px;font-size:14px}
 
-/* Reveal */
+/* ================= Reveal ================= */
 .reveal{opacity:0;transform:translateY(8px);transition:.34s}
 .reveal.is-visible{opacity:1;transform:none}
 
-/* Print ciblé du résultat */
+/* ================= Print ================= */
 @media print{
   body{background:#fff}
   header, .hero--image, .section, .sticky-cta, footer{display:none!important}
   #resultat{display:block!important;border:none;box-shadow:none}
 }
 
-/* Témoignages simples */
+/* ================= Témoignages ================= */
 .testi{overflow:hidden;margin-top:18px}
 .testi-track{display:flex;transition:.5s}
 .testi-card{min-width:100%;padding:16px;border:1px solid var(--stroke);border-radius:16px;background:#fff;box-shadow:var(--shadow-sm);text-align:center}
@@ -185,17 +194,19 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .dot{width:9px;height:9px;border-radius:50%;background:#c7d9e6;display:inline-block;cursor:pointer}
 .dot.active{background:var(--blue-dark)}
 
-/* FAQ compacte/accordéon */
-.faq q{display:block; cursor:pointer; font-weight:800; color:#0f2746; margin:14px 0 6px}
-.faq q::after{content:"▸"; margin-left:6px; opacity:.6}
-.faq q.open::after{content:"▾"}
-.faq .a{display:none; margin:0 0 8px; color:var(--muted)}
+/* ================= FAQ ================= */
+.faq {max-width:760px;margin:0 auto}
+.faq .item{background:#fff;border:1px solid var(--stroke);border-radius:14px;box-shadow:var(--shadow-sm);margin:10px 0;overflow:hidden}
+.faq q{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;font-weight:800;color:#0f2746;margin:0;padding:14px 16px}
+.faq q::after{content:"▸";opacity:.6;transition:.18s}
+.faq q.open::after{content:"▾";opacity:1}
+.faq .a{display:none;margin:0;padding:0 16px 14px;color:var(--muted);border-top:1px dashed var(--stroke)}
 .faq q.open + .a{display:block}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ===== HEADER ===== -->
 <header id="site-header" class="header">
   <div class="container nav">
     <a href="./index.html" class="brand"><img src="./images/logo.png" alt="Awenoria" class="brand__logo"></a>
@@ -240,7 +251,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   </div>
 </header>
 
-<!-- HERO -->
+<!-- ===== HERO ===== -->
 <section class="hero--image">
   <div class="container">
     <h1>Audit automatique de conformité</h1>
@@ -258,7 +269,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   </div>
 </section>
 
-<!-- 4 PILIERS -->
+<!-- ===== 4 PILIERS ===== -->
 <section class="section alt">
   <div class="container">
     <div class="grid">
@@ -290,7 +301,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   </div>
 </section>
 
-<!-- KPIs -->
+<!-- ===== KPIs ===== -->
 <section class="section">
   <div class="container kpis">
     <div class="tile kpi reveal"><strong>2 500+</strong><span>sites analysés</span></div>
@@ -300,14 +311,12 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   </div>
 </section>
 
-<!-- POURQUOI CHOISIR -->
+<!-- ===== POURQUOI CHOISIR ===== -->
 <section class="section alt">
   <div class="container">
     <h2 class="section-title">
       Pourquoi choisir
-      <span class="brandword">
-        <span class="A">A</span><span class="rest">wenor<span class="i" aria-hidden="true"></span>a</span>
-      </span>
+      <span class="brandword"><span class="A">A</span><span class="rest">wenor<span class="i" aria-hidden="true"></span>a</span></span>
     </h2>
     <p id="why-lead" class="lead" data-text="Une plateforme pensée pour les TPE/PME, cabinets et indépendants : rapide, pédagogique et respectueuse de la confidentialité.">
       Une plateforme pensée pour les TPE/PME, cabinets et indépendants : rapide, pédagogique et respectueuse de la confidentialité.
@@ -320,7 +329,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   </div>
 </section>
 
-<!-- COMMENT -->
+<!-- ===== COMMENT ===== -->
 <section class="section">
   <div class="container">
     <h2 class="section-title">Comment ça marche ?</h2>
@@ -336,7 +345,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   </div>
 </section>
 
-<!-- CE QUE L’AUDIT VÉRIFIE -->
+<!-- ===== CE QUE L’AUDIT VÉRIFIE ===== -->
 <section class="section alt">
   <div class="container">
     <h2 class="section-title">Ce que l’audit vérifie</h2>
@@ -366,7 +375,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   </div>
 </section>
 
-<!-- POURQUOI MAINTENANT -->
+<!-- ===== POURQUOI MAINTENANT ===== -->
 <section class="section">
   <div class="container">
     <h2 class="section-title">Pourquoi maintenant ?</h2>
@@ -374,14 +383,12 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   </div>
 </section>
 
-<!-- TEMOINS -->
+<!-- ===== TEMOINS ===== -->
 <section class="section alt">
   <div class="container">
     <h2 class="section-title">
       Ils utilisent
-      <span class="brandword">
-        <span class="A">A</span><span class="rest">wenor<span class="i" aria-hidden="true"></span>a</span>
-      </span>
+      <span class="brandword"><span class="A">A</span><span class="rest">wenor<span class="i" aria-hidden="true"></span>a</span></span>
     </h2>
     <div class="testi" id="testi">
       <div class="testi-track">
@@ -398,28 +405,36 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   </div>
 </section>
 
-<!-- FAQ -->
+<!-- ===== FAQ ===== -->
 <section class="section">
   <div class="container faq">
     <h2 class="section-title">FAQ fréquentes</h2>
 
-    <q>Les données sont-elles stockées ?</q>
-    <div class="a">Par défaut, non : l’analyse se fait côté navigateur. Le rapport PDF est optionnel.</div>
+    <div class="item">
+      <q>Les données sont-elles stockées ?</q>
+      <div class="a">Par défaut, non : l’analyse se fait côté navigateur. Le rapport PDF est optionnel.</div>
+    </div>
 
-    <q>Quelle couverture ?</q>
-    <div class="a">RGPD, accessibilité, mentions légales et cookies côté site. L’outil n’est pas un avis juridique.</div>
+    <div class="item">
+      <q>Quelle couverture ?</q>
+      <div class="a">RGPD, accessibilité, mentions légales et cookies côté site. L’outil n’est pas un avis juridique.</div>
+    </div>
 
-    <q>Compatibilité CMS ?</q>
-    <div class="a">Fonctionne avec tout site public (WordPress, Shopify, Webflow, custom…).</div>
+    <div class="item">
+      <q>Compatibilité CMS ?</q>
+      <div class="a">Fonctionne avec tout site public (WordPress, Shopify, Webflow, custom…).</div>
+    </div>
 
-    <q>Proposez-vous un accompagnement ?</q>
-    <div class="a">Oui, mission d’audit/plan d’action sur demande. Contactez-nous pour un devis.</div>
+    <div class="item">
+      <q>Proposez-vous un accompagnement ?</q>
+      <div class="a">Oui, mission d’audit/plan d’action sur demande. Contactez-nous pour un devis.</div>
+    </div>
 
     <div class="actions" style="margin-top:18px"><a class="btn blue" href="faq.html">Voir toutes les questions →</a></div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
+<!-- ===== CTA FINAL ===== -->
 <section class="section alt">
   <div class="container" style="text-align:center">
     <h2 class="section-title" style="margin-bottom:10px">Prêt à sécuriser votre conformité ?</h2>
@@ -433,7 +448,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ===== FOOTER ===== -->
 <footer class="container footer" style="border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px">
   <div style="display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap">
     <span>© <span id="year"></span> Awenoria</span>
@@ -441,13 +456,13 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   </div>
 </footer>
 
-<!-- CTA STICKY -->
+<!-- ===== CTA STICKY ===== -->
 <div class="sticky-cta" id="stickyCta">
   <a class="btn" href="#resultat" onclick="document.getElementById('url').focus()">Démarrer un audit</a>
   <a class="btn blue" href="contact.html">Parler à un expert</a>
 </div>
 
-<!-- MODAL -->
+<!-- ===== MODAL ===== -->
 <div id="modal" class="modal" role="dialog" aria-modal="true">
   <div class="panel">
     <div class="hd"><strong id="modalTitle"></strong><button class="close-x" aria-label="Fermer" onclick="closeModal()">×</button></div>
@@ -457,14 +472,14 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 </div>
 
 <script>
-/* Année + header */
+/* année + header sticky */
 document.getElementById('year').textContent = new Date().getFullYear();
 (function(){const h=document.getElementById('site-header');const t=()=>{if(window.scrollY>10)h.classList.add('scrolled');else h.classList.remove('scrolled')};t();window.addEventListener('scroll',t,{passive:true})})();
 
-/* Reveal */
+/* reveal on scroll */
 (function(){const els=[...document.querySelectorAll('.reveal')]; const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.12}); els.forEach(el=>io.observe(el));})();
 
-/* Typing effect (hero + why + CTA final) */
+/* typing effect (hero + why + CTA final) */
 (function(){
   function type(el, speed=22){
     if(!el) return;
@@ -479,13 +494,13 @@ document.getElementById('year').textContent = new Date().getFullYear();
   });
 })();
 
-/* Témoignages */
+/* Témoignages slider */
 (function(){const wrap=document.getElementById('testi'); if(!wrap) return; const track=wrap.querySelector('.testi-track'); const dots=[...document.querySelectorAll('#testiNav .dot')]; let i=0; const go=n=>{i=n;track.style.transform=`translateX(-${100*i}%)`;dots.forEach((d,k)=>d.classList.toggle('active',k===i))}; dots.forEach(d=>d.addEventListener('click',()=>go(+d.dataset.i))); setInterval(()=>go((i+1)%dots.length),5000);})();
 
 /* FAQ accordéon */
 (function(){document.querySelectorAll('.faq q').forEach(q=>q.addEventListener('click',()=>q.classList.toggle('open')));})();
 
-/* Sticky CTA : masqué sur HERO + blocs .cta-anchor */
+/* Sticky CTA logique */
 (function(){
   const sc=document.getElementById('stickyCta'); if(!sc) return;
   const hero=document.querySelector('.hero--image'); const anchors=document.querySelectorAll('.cta-anchor');
@@ -495,7 +510,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const ioAnch=new IntersectionObserver(entries=>{anchorVisible=entries.some(e=>e.isIntersecting);apply();},{threshold:.2}); anchors.forEach(a=>ioAnch.observe(a)); apply();
 })();
 
-/* Analyse (Cloudflare Worker) + Résultat + Détail + Export */
+/* Analyse via Cloudflare Worker */
 const WORKER_URL="https://awenoria.bmavcontact.workers.dev/analyze";
 const normalizeUrl=u=>{if(!u) return ""; u=u.trim(); if(!/^https?:\/\//i.test(u)) u="https://"+u; return u;};
 const pct=n=>Number.isFinite(n)?`${Math.round(n)}%`:"—";
