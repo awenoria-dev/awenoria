@@ -18,7 +18,7 @@
   --shadow-lg:0 24px 48px rgba(16,32,48,.10);
   --hero-overlay-rgb:0,90,142; --hero-overlay-alpha:.42; --hero-overlay-alpha-mobile:.52;
 
-  /* couleurs vagues */
+  /* couleurs décor */
   --copper-1:#B86122; --copper-2:#D67A2E; --copper-3:#F2B56C;
   --blue-soft-1:#A9D3FF; --blue-soft-2:#7FB2CB; --blue-soft-3:#6FB3D8;
 }
@@ -155,25 +155,29 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .detail h4{margin:0 0 6px}
 .small{font-size:13px;color:var(--muted)}
 
-/* ================= BRANDWORD (dégradé + i parfait) ================= */
-.brandword{display:inline-flex;gap:0.06em;align-items:baseline;white-space:nowrap;line-height:1}
-.brandword .A{color:var(--blue-dark);font-weight:900}
+/* ================= BRANDWORD “Awenoria” — i parfait ================= */
+.brandword{
+  display:inline-flex; gap:0.06em; align-items:baseline; white-space:nowrap; line-height:1;
+}
+.brandword .A{ color:var(--blue-dark); font-weight:900; }
 .brandword .rest{
   background:linear-gradient(90deg,#0b4f78 0%, #2f86b8 40%, #6fb3d8 100%);
   -webkit-background-clip:text; background-clip:text;
   color:transparent; font-weight:900; position:relative;
 }
+/* Fût du “i” = dotless ı avec le même dégradé que .rest */
 .brandword .i-body{
   position:relative; display:inline-block; font-style:normal; font-size:1em; line-height:1;
-  --i-scaleX: 1; --i-scaleY: 1; --i-ml: 0em; --i-mr: 0em;
-  --idot-left: -0.02em; --idot-top: -0.08em;
-  transform: scale(var(--i-scaleX), var(--i-scaleY));
-  transform-origin: bottom center;
+  background:inherit; -webkit-background-clip:text; background-clip:text; color:transparent;
+  /* micro-réglages possibles : */
+  --i-scaleX: 1; --i-scaleY: 1; --i-ml: 0em; --i-mr: 0em; --idot-top: -0.08em;
+  transform: scale(var(--i-scaleX), var(--i-scaleY)); transform-origin: bottom center;
   margin-left: var(--i-ml); margin-right: var(--i-mr);
 }
+/* Point cuivré */
 .brandword .i-body::after{
-  content:""; position:absolute; left:var(--idot-left); top:var(--idot-top);
-  width:0.28em; height:0.28em; background:var(--orange); border-radius:50%;
+  content:""; position:absolute; left:50%; transform:translateX(-50%);
+  top:var(--idot-top); width:0.28em; height:0.28em; background:var(--orange); border-radius:50%;
 }
 @media (max-width:600px){
   .brandword .i-body{ --idot-top: -0.06em; }
@@ -187,15 +191,6 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .testi-nav{display:flex;gap:8px;justify-content:center;margin-top:10px}
 .dot{width:9px;height:9px;border-radius:50%;background:#c7d9e6;display:inline-block;cursor:pointer}
 .dot.active{background:var(--blue-dark)}
-
-/* ================= FAQ (styles rétablis) ================= */
-.faq {max-width:760px;margin:0 auto}
-.faq .item{background:#fff;border:1px solid var(--stroke);border-radius:14px;box-shadow:var(--shadow-sm);margin:10px 0;overflow:hidden}
-.faq q{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;font-weight:800;color:#0f2746;margin:0;padding:14px 16px}
-.faq q::after{content:"▸";opacity:.6;transition:.18s}
-.faq q.open::after{content:"▾";opacity:1}
-.faq .a{display:none;margin:0;padding:0 16px 14px;color:var(--muted);border-top:1px dashed var(--stroke)}
-.faq q.open + .a{display:block}
 
 /* ================= CTA sticky ================= */
 .sticky-cta{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;background:#fff;border:1px solid var(--stroke);border-radius:999px;box-shadow:0 16px 32px rgba(16,32,48,.12);padding:8px 12px;display:none;gap:8px;z-index:70}
@@ -271,6 +266,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
         <button class="btn btn-hero" onclick="analyser()">Analyser</button>
       </div>
     </div>
+
     <div id="resultat" class="result" aria-live="polite"></div>
   </div>
 </section>
@@ -471,30 +467,48 @@ document.getElementById('year').textContent = new Date().getFullYear();
 /* reveal on scroll */
 (function(){const els=[...document.querySelectorAll('.reveal')]; const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.12}); els.forEach(el=>io.observe(el));})();
 
-/* Typing rejouable à chaque retour */
+/* Typing effect rejouable à chaque retour */
 (function(){
-  const SPEED = 22;
+  const SPEED = 22; // ms/lettre
   const els = [...document.querySelectorAll('.type-on-view')];
+
   els.forEach(el=>{
     const full = (el.getAttribute('data-text') || el.textContent || '').trim();
-    el.dataset.fullText = full; el.textContent = ''; el.__typingTimer = null; el.__ready = true;
+    el.dataset.fullText = full;
+    el.textContent = '';
+    el.__typingTimer = null;
+    el.__ready = true;
   });
+
   function type(el){
     clearTimeout(el.__typingTimer);
     const full = el.dataset.fullText || '';
-    el.textContent = ''; let i = 0;
-    (function tick(){ el.textContent = full.slice(0, ++i);
-      if(i < full.length){ el.__typingTimer = setTimeout(tick, SPEED); }
-      else{ el.__typingTimer = null; el.__ready = false; }
+    el.textContent = '';
+    let i = 0;
+    (function tick(){
+      el.textContent = full.slice(0, ++i);
+      if(i < full.length){
+        el.__typingTimer = setTimeout(tick, SPEED);
+      }else{
+        el.__typingTimer = null;
+        el.__ready = false;
+      }
     })();
   }
+
   const io = new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       const el = entry.target;
-      if(entry.isIntersecting){ if(el.__ready) type(el); }
-      else{ el.__ready = true; clearTimeout(el.__typingTimer); el.__typingTimer = null; }
+      if(entry.isIntersecting){
+        if(el.__ready) type(el);
+      }else{
+        el.__ready = true;
+        clearTimeout(el.__typingTimer);
+        el.__typingTimer = null;
+      }
     });
   }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
+
   els.forEach(el=>io.observe(el));
 })();
 
@@ -511,7 +525,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const ioAnch=new IntersectionObserver(entries=>{anchorVisible=entries.some(e=>e.isIntersecting);apply();},{threshold:.2}); anchors.forEach(a=>ioAnch.observe(a)); apply();
 })();
 
-/* Analyse via Cloudflare Worker */
+/* Analyse via Cloudflare Worker (inchangé) */
 const WORKER_URL="https://awenoria.bmavcontact.workers.dev/analyze";
 const normalizeUrl=u=>{if(!u) return ""; u=u.trim(); if(!/^https?:\/\//i.test(u)) u="https://"+u; return u;};
 const pct=n=>Number.isFinite(n)?`${Math.round(n)}%`:"—";
@@ -585,7 +599,7 @@ async function analyser(){
   }
 }
 
-/* FAQ accordéon fiable + accessible */
+/* FAQ accordéon fiable + accessible (ferme les autres, gère clavier) */
 (function(){
   const items = [...document.querySelectorAll('.faq .item')];
   items.forEach(item=>{
@@ -600,14 +614,24 @@ async function analyser(){
     function openItem(target){
       items.forEach(it=>{
         const qi = it.querySelector('q'), ai = it.querySelector('.a');
-        if(it === target){ qi.classList.add('open');  qi.setAttribute('aria-expanded','true'); ai.style.display = 'block'; }
-        else{ qi.classList.remove('open'); qi.setAttribute('aria-expanded','false'); ai.style.display = 'none'; }
+        if(it === target){
+          qi.classList.add('open');  qi.setAttribute('aria-expanded','true');
+          ai.style.display = 'block';
+        }else{
+          qi.classList.remove('open'); qi.setAttribute('aria-expanded','false');
+          ai.style.display = 'none';
+        }
       });
     }
+
     function toggle(){
       const isOpen = q.getAttribute('aria-expanded') === 'true';
-      if(isOpen){ q.classList.remove('open'); q.setAttribute('aria-expanded','false'); a.style.display = 'none'; }
-      else{ openItem(item); }
+      if(isOpen){
+        q.classList.remove('open'); q.setAttribute('aria-expanded','false');
+        a.style.display = 'none';
+      }else{
+        openItem(item);
+      }
     }
 
     q.addEventListener('click', toggle);
