@@ -610,8 +610,8 @@ modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
 document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>openModal(li.textContent.trim(), li.dataset.topic)));
 </script>
 
-<!-- ===== Neural Waves Canvas (cuivré ↔ bleu clair, hors zone de texte) ===== -->
 <script>
+/* ===== Neural Waves Canvas — FIX masque + mouvement visible ===== */
 (function(){
   const host = document.querySelector('.hero--image');
   const canvas = document.getElementById('neuralCanvas');
@@ -620,170 +620,202 @@ document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>
 
   let dpr=1, W=0, H=0, T=0;
 
-  // ------- Réglages visuels (tweak faciles)
+  // Réglages : vagues repoussées vers les bords
   const CONFIG = {
     waves: [
-      {   // Nappe A (chaud, haut-gauche -> centre)
-        amp: 24, step: 14, speed: 0.8, offsetY: 0.30, biasX: -0.25,
+      { // chaud, haut-gauche -> centre
+        amp: 26, step: 14, speed: 0.85, offsetY: 0.22, biasX: -0.45,
         colors: ['var(--copper-1)','var(--copper-2)','var(--copper-3)']
       },
-      {   // Nappe B (froid, bas-droit -> centre)
-        amp: 20, step: 16, speed: 0.55, offsetY: 0.68, biasX: 0.25,
+      { // froid, bas-droit -> centre
+        amp: 22, step: 16, speed: 0.60, offsetY: 0.78, biasX: 0.45,
         colors: ['var(--blue-soft-1)','var(--blue-soft-2)','var(--blue-soft-3)']
       }
     ],
-    jitter: 0.45,              // micro-vibration
-    noiseScale: 0.0035,        // échelle du bruit
-    glowAlpha: 0.08,           // halo autour des points
-    lineAlpha: 0.16,           // opacité rubans
-    linkAlpha: 0.18,           // opacité liens fins
-    maskPadding: 1.08          // taille de la zone calme (x rayon)
+    jitter: 0.45,
+    noiseScale: 0.0035,
+    glowAlpha: 0.08,
+    lineAlpha: 0.18,
+    linkAlpha: 0.18,
+    maskPadding: 1.04,   // zone « calme » autour du texte
+    showMask: false      // passe à true pour visualiser l’ellipse de masque
   };
 
-  // ------- Perlin 2D léger
+  /* ---------- Perlin 2D léger ---------- */
   const P = new Uint8Array(512);
   for(let i=0;i<256;i++) P[i]=i;
-  for(let i=255;i>0;i--){const j=Math.random()* (i+1) |0; [P[i],P[j]]=[P[j],P[i]];}
+  for(let i=255;i>0;i--){const j=(Math.random()*(i+1))|0; [P[i],P[j]]=[P[j],P[i]];}
   for(let i=0;i<256;i++) P[256+i]=P[i];
   const fade=t=>t*t*t*(t*(t*6-15)+10);
   const lerp=(a,b,t)=>a+(b-a)*t;
   function grad(h,x,y){h&=3;return (h===0? x+y : h===1? -x+y : h===2? x-y : -x-y);}
   function noise2D(x,y){
-    const X = Math.floor(x)&255, Y = Math.floor(y)&255;
-    const xf = x - Math.floor(x), yf = y - Math.floor(y);
-    const u = fade(xf), v = fade(yf);
-    const aa = P[P[X]+Y], ab = P[P[X]+Y+1], ba = P[P[X+1]+Y], bb = P[P[X+1]+Y+1];
-    const x1 = lerp(grad(aa,xf,yf), grad(ba,xf-1,yf), u);
-    const x2 = lerp(grad(ab,xf,yf-1), grad(bb,xf-1,yf-1), u);
-    return (lerp(x1,x2,v)+1)/2; // 0..1
+    const X=Math.floor(x)&255, Y=Math.floor(y)&255;
+    const xf=x-Math.floor(x), yf=y-Math.floor(y);
+    const u=fade(xf), v=fade(yf);
+    const aa=P[P[X]+Y], ab=P[P[X]+Y+1], ba=P[P[X+1]+Y], bb=P[P[X+1]+Y+1];
+    const x1=lerp(grad(aa,xf,yf),   grad(ba,xf-1,yf), u);
+    const x2=lerp(grad(ab,xf,yf-1), grad(bb,xf-1,yf-1), u);
+    return (lerp(x1,x2,v)+1)/2;
   }
 
-  // ------- Utils
   const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim()||v;
   function gradient(colors){
-    const g = ctx.createLinearGradient(0,0, W,0);
-    const n = colors.length;
-    colors.forEach((c,i)=> g.addColorStop(i/(n-1), css(c)));
+    const g = ctx.createLinearGradient(0,0, canvas.clientWidth, 0);
+    colors.forEach((c,i)=> g.addColorStop(i/(colors.length-1), css(c)));
     return g;
   }
 
-  // Masque elliptique central (rien ne s'affiche dessous)
+  // ----- Masque : calé sur le bloc (H1 + champ URL), borné pour ne jamais couvrir tout
   let mask = {cx:0, cy:0, rx:0, ry:0};
   function computeMask(){
-    const container = host.querySelector('.container');
-    const r = container.getBoundingClientRect();
-    const h = host.getBoundingClientRect();
-    // centre de l’ellipse = centre du hero
-    mask.cx = W/(dpr*2); mask.cy = H/(dpr*2);
-    const rxBase = Math.min(r.width*0.60, (h.width||W/dpr)*0.70)*CONFIG.maskPadding;
-    const ryBase = (r.height + 220) * 0.60 * CONFIG.maskPadding;
-    mask.rx = rxBase; mask.ry = ryBase;
-    if(window.innerWidth < 980){ mask.rx*=1.12; mask.ry*=1.18; } // + de calme sur mobile
+    const hrect = host.getBoundingClientRect();
+    const title = host.querySelector('h1')?.getBoundingClientRect();
+    const pill  = host.querySelector('.testbox--pill')?.getBoundingClientRect();
+    // union approximative du titre et du champ
+    let u = title || hrect;
+    if(pill){
+      const l = Math.min(u.left, pill.left), r = Math.max(u.right, pill.right);
+      const t = Math.min(u.top,  pill.top),  b = Math.max(u.bottom,pill.bottom);
+      u = {left:l, right:r, top:t, bottom:b, width:r-l, height:b-t};
+    }
+
+    // centre du masque : centre du bloc texte/URL projeté dans le hero
+    const hostLeft = hrect.left, hostTop = hrect.top;
+    const cxCss = ( (u.left + u.right)/2 - hostLeft );
+    const cyCss = ( (u.top  + u.bottom)/2 - hostTop );
+
+    // rayons de base avec padding, puis BORNAGE
+    let rx = (u.width  * 0.55) * CONFIG.maskPadding;
+    let ry = (u.height * 0.90 + 80) * CONFIG.maskPadding;
+
+    // ne jamais dépasser une fraction raisonnable du hero
+    const rxMax = hrect.width  * 0.42;
+    const ryMax = hrect.height * 0.36;
+    rx = Math.min(rx, rxMax);
+    ry = Math.min(ry, ryMax);
+
+    // garde-fous (évite rx/ry énormes ou nuls)
+    rx = Math.max(40, rx);
+    ry = Math.max(40, ry);
+
+    mask.cx = cxCss; mask.cy = cyCss; mask.rx = rx; mask.ry = ry;
+
+    // sur mobile : un peu plus large, mais toujours borné
+    if(window.innerWidth < 980){
+      mask.rx = Math.min(hrect.width*0.46,  mask.rx*1.10);
+      mask.ry = Math.min(hrect.height*0.42, mask.ry*1.10);
+    }
   }
 
   function resize(){
     const rect = host.getBoundingClientRect();
     dpr = Math.min(2, window.devicePixelRatio||1);
-    W = Math.round(rect.width * dpr);
-    H = Math.round(rect.height * dpr);
-    canvas.width = W; canvas.height = H;
-    canvas.style.width = rect.width+'px';
+    canvas.width  = Math.round(rect.width  * dpr);
+    canvas.height = Math.round(rect.height * dpr);
+    canvas.style.width  = rect.width+'px';
     canvas.style.height = rect.height+'px';
-    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.setTransform(1,0,0,1,0,0); // on dessine l'image finale en pixels natifs
     computeMask();
   }
   window.addEventListener('resize', resize, {passive:true});
   resize();
 
-  // Offscreen layer pour appliquer le masque sans toucher au main ctx
+  // couche offscreen pour les vagues
   const layer = document.createElement('canvas');
   const lctx = layer.getContext('2d');
 
   function draw(){
-    layer.width = W; layer.height = H;
-    lctx.setTransform(dpr,0,0,dpr,0,0);
-    lctx.clearRect(0,0,W,H);
+    layer.width = canvas.width; layer.height = canvas.height;
+    lctx.setTransform(1,0,0,1,0,0);
+    lctx.clearRect(0,0,layer.width,layer.height);
     lctx.globalCompositeOperation = 'lighter';
 
+    const W = canvas.width, H = canvas.height; // en pixels natifs
+
     CONFIG.waves.forEach((wcfg, wi)=>{
-      const speed = wcfg.speed;
       const grad = gradient(wcfg.colors);
 
-      // Ruban de base (ligne douce)
+      // ruban
       lctx.beginPath();
-      for(let x=0; x<=W/dpr; x+=4){
-        // position “bordure” via biasX : <0 = vient de gauche, >0 = de droite
-        const bx = (x/(W/dpr) + 0.5*wcfg.biasX);
+      for(let x=0; x<=W; x+=4){
+        const xCss = x; // même unité
         const yy =
-          (H/dpr)*wcfg.offsetY
-          + wcfg.amp * Math.sin((x*0.012) + (T*0.002*speed) + wi*0.9)
-          + (noise2D(x*CONFIG.noiseScale, T*0.002*speed + wi)*2-1) * wcfg.amp*0.6;
-
-        const y = yy + (bx* (wi? -26:26)); // légère diagonale
-        if(x===0) lctx.moveTo(x,y); else lctx.lineTo(x,y);
+          H*wcfg.offsetY
+          + wcfg.amp * Math.sin((xCss*0.012/dpr) + (T*0.002*wcfg.speed) + wi*0.9)
+          + (noise2D(xCss*CONFIG.noiseScale, T*0.002*wcfg.speed + wi)*2-1) * wcfg.amp*0.6;
+        const bx = (xCss/W + 0.5*wcfg.biasX);
+        const y = yy + (bx * (wi? -26:26));
+        if(x===0) lctx.moveTo(xCss,y); else lctx.lineTo(xCss,y);
       }
       lctx.strokeStyle = grad;
       lctx.globalAlpha = CONFIG.lineAlpha;
-      lctx.lineWidth = 3;
+      lctx.lineWidth = 3*dpr;
       lctx.stroke();
 
-      // Points lumineux + halo
+      // points + halo
       lctx.globalAlpha = 1;
-      for(let x=0; x<=W/dpr; x+=wcfg.step){
-        const n = (noise2D(x*CONFIG.noiseScale*1.2 + wi*10, T*0.003*speed)+noise2D(x*CONFIG.noiseScale*0.6, T*0.002*speed+3))/2;
+      for(let x=0; x<=W; x+=Math.round(wcfg.step*dpr)){
+        const xCss = x;
+        const n = (noise2D(xCss*CONFIG.noiseScale*1.2 + wi*10, T*0.003*wcfg.speed)+noise2D(xCss*CONFIG.noiseScale*0.6, T*0.002*wcfg.speed+3))/2;
         const yBase =
-          (H/dpr)*wcfg.offsetY
-          + wcfg.amp * Math.sin((x*0.012) + (T*0.002*speed) + wi*0.9)
+          H*wcfg.offsetY
+          + wcfg.amp * Math.sin((xCss*0.012/dpr) + (T*0.002*wcfg.speed) + wi*0.9)
           + (n*2-1) * wcfg.amp*0.6;
 
-        const wobble = (Math.random()-0.5)*CONFIG.jitter;
-        const y = yBase + (wcfg.biasX>0 ? (x%2?1:-1): (x%2?-1:1))*0.3 + wobble;
+        const wobble = (Math.random()-0.5)*CONFIG.jitter*dpr;
+        const y = yBase + (wcfg.biasX>0 ? (xCss%2?1:-1): (xCss%2?-1:1))*0.3*dpr + wobble;
 
-        // Point
-        const r = 1.1 + (Math.sin(x*0.04 + T*0.002*speed)*0.5 + 0.6);
-        lctx.beginPath(); lctx.arc(x, y, r, 0, Math.PI*2);
+        const r = (1.1 + (Math.sin(xCss*0.04/dpr + T*0.002*wcfg.speed)*0.5 + 0.6)) * dpr;
+        lctx.beginPath(); lctx.arc(xCss, y, r, 0, Math.PI*2);
         lctx.fillStyle = grad; lctx.globalAlpha = 0.95; lctx.fill();
 
-        // Halo
-        lctx.beginPath(); lctx.arc(x, y, r*4, 0, Math.PI*2);
+        lctx.beginPath(); lctx.arc(xCss, y, r*4, 0, Math.PI*2);
         lctx.globalAlpha = CONFIG.glowAlpha; lctx.fillStyle = grad; lctx.fill();
       }
 
-      // Liens fins (réseau)
-      lctx.globalAlpha = CONFIG.linkAlpha; lctx.lineWidth = 1; lctx.strokeStyle = grad;
-      for(let x=0; x<W/dpr - wcfg.step; x+=wcfg.step*2){
+      // liens fins
+      lctx.globalAlpha = CONFIG.linkAlpha; lctx.lineWidth = 1*dpr; lctx.strokeStyle = grad;
+      const step = Math.round(wcfg.step*dpr);
+      for(let x=0; x<W-step; x+=step*2){
         const y1 =
-          (H/dpr)*wcfg.offsetY
-          + wcfg.amp*Math.sin(x*0.012 + T*0.002*speed + wi*0.9)
-          + (noise2D(x*CONFIG.noiseScale, T*0.002*speed + wi)*2-1) * wcfg.amp*0.6;
+          H*wcfg.offsetY
+          + wcfg.amp*Math.sin((x*0.012/dpr) + T*0.002*wcfg.speed + wi*0.9)
+          + (noise2D(x*CONFIG.noiseScale, T*0.002*wcfg.speed + wi)*2-1) * wcfg.amp*0.6;
         const y2 =
-          (H/dpr)*wcfg.offsetY
-          + wcfg.amp*Math.sin((x+wcfg.step)*0.012 + T*0.002*speed + wi*0.9)
-          + (noise2D((x+wcfg.step)*CONFIG.noiseScale, T*0.002*speed + wi)*2-1) * wcfg.amp*0.6;
-        lctx.beginPath(); lctx.moveTo(x,y1); lctx.lineTo(x+wcfg.step, y2); lctx.stroke();
+          H*wcfg.offsetY
+          + wcfg.amp*Math.sin(((x+step)*0.012/dpr) + T*0.002*wcfg.speed + wi*0.9)
+          + (noise2D((x+step)*CONFIG.noiseScale, T*0.002*wcfg.speed + wi)*2-1) * wcfg.amp*0.6;
+        lctx.beginPath(); lctx.moveTo(x,y1); lctx.lineTo(x+step,y2); lctx.stroke();
       }
       lctx.globalAlpha = 1;
     });
 
-    // Appliquer le masque (zone calme) : on efface l’ellipse au centre
+    // masque central : on « perce » l’ellipse
     lctx.save();
     lctx.globalCompositeOperation = 'destination-out';
     lctx.beginPath();
-    lctx.ellipse(mask.cx, mask.cy, mask.rx, mask.ry, 0, 0, Math.PI*2);
-    lctx.fillStyle = '#000'; lctx.shadowColor='#000';
-    lctx.shadowBlur=40; lctx.fill();
+    lctx.ellipse(mask.cx*dpr, mask.cy*dpr, mask.rx*dpr, mask.ry*dpr, 0, 0, Math.PI*2);
+    lctx.fillStyle = '#000'; lctx.shadowColor='#000'; lctx.shadowBlur=40*dpr; lctx.fill();
     lctx.restore();
 
-    // Dessiner la couche sur le canvas principal
-    ctx.clearRect(0,0,W,H);
+    // option debug : dessine le contour du masque
+    if(CONFIG.showMask){
+      lctx.save();
+      lctx.globalCompositeOperation = 'source-over';
+      lctx.beginPath();
+      lctx.ellipse(mask.cx*dpr, mask.cy*dpr, mask.rx*dpr, mask.ry*dpr, 0, 0, Math.PI*2);
+      lctx.strokeStyle = 'rgba(255,255,255,.35)'; lctx.lineWidth = 1*dpr; lctx.stroke();
+      lctx.restore();
+    }
+
+    // rendu final
+    ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.drawImage(layer,0,0);
 
-    T += 16; // progression du temps
-    requestAnimationFrame(draw);
+    T += 16; requestAnimationFrame(draw);
   }
 
   requestAnimationFrame(draw);
 })();
 </script>
-</body>
-</html>
