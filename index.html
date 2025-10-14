@@ -157,16 +157,23 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 
 /* ================= BRANDWORD “Awenoria” — i parfait ================= */
 .brandword{
-  display:inline-flex; gap:0.18em; /* ← point, pas virgule */
-  align-items:baseline; white-space:nowrap; line-height:1;
+  display:inline-flex;
+  gap:0.18em;               /* point, pas virgule */
+  align-items:baseline;
+  white-space:nowrap;
+  line-height:1;
 }
-.brandword .A{ color:var(--blue-dark); font-weight:900; }
-/* fin de .brandword .rest */
--webkit-background-clip:text; 
-background-clip:text;
-color:transparent; 
-font-weight:900; 
-position:relative;
+.brandword .A{
+  color:var(--blue-dark);
+  font-weight:900;
+}
+.brandword .rest{
+  background:linear-gradient(90deg,#0b4f78 0%, #2f86b8 40%, #6fb3d8 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  font-weight:900;
+  position:relative;
 }
 
 /* Fût du “i” = dotless ı avec le même dégradé que .rest */
@@ -181,23 +188,22 @@ position:relative;
   background-clip:text;
   color:transparent;
 
-  /* micro-réglages (utilise des POINTS, pas des virgules) */
+  /* micro-réglages (utilise des POINTS) */
   --i-scaleX: 1;
-  --i-scaleY: 0.96;      /* < 1 = un peu plus bas (essaie 0.94–0.98) */
+  --i-scaleY: 0.96;      /* < 1 = i un peu plus bas (0.94–0.98) */
   --i-ml: 0em;
   --i-mr: 0em;
-  --idot-top: 0.12em;    /* POSITIF = le point DESCEND */
+  --idot-top: 0.12em;    /* POSITIF = le point descend */
 
   transform: scale(var(--i-scaleX), var(--i-scaleY));
   transform-origin: bottom center;
   margin-left: var(--i-ml);
   margin-right: var(--i-mr);
 
-  /* léger éclaircissement pour mieux fondre dans le dégradé */
   filter: brightness(1.10) saturate(0.85);
 }
 
-/* Point cuivré — compensé pour rester parfaitement rond si scaleY ≠ 1 */
+/* Point cuivré — reste parfaitement rond même si scaleY ≠ 1 */
 .brandword .i-body::after{
   content:"";
   position:absolute;
@@ -210,13 +216,14 @@ position:relative;
   border-radius:50%;
 }
 
-/* Mobile : pas d’override nécessaire. Dé-commente si tu veux affiner. */
+/* (Optionnel) Ajustements mobiles */
 /*
 @media (max-width:600px){
-  .brandword .i-body{ --idot-top: 0.10em; }              // descend un peu le point
-  .brandword .i-body::after{ width:0.18em; height:0.18em; } // point légèrement plus petit
+  .brandword .i-body{ --idot-top: 0.10em; }
+  .brandword .i-body::after{ width:0.18em; height:0.18em; }
 }
 */
+
 /* ================= Témoignages ================= */
 .testi{overflow:hidden;margin-top:18px}
 .testi-track{display:flex;transition:.5s}
