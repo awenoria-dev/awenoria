@@ -18,7 +18,7 @@
   --shadow-lg:0 24px 48px rgba(16,32,48,.10);
   --hero-overlay-rgb:0,90,142; --hero-overlay-alpha:.42; --hero-overlay-alpha-mobile:.52;
 
-  /* Couleurs vagues (chaud/froid harmonisés) */
+  /* couleurs vagues */
   --copper-1:#B86122; --copper-2:#D67A2E; --copper-3:#F2B56C;
   --blue-soft-1:#A9D3FF; --blue-soft-2:#7FB2CB; --blue-soft-3:#6FB3D8;
 }
@@ -45,7 +45,6 @@ a{text-decoration:none} img{max-width:100%;display:block}
 /* ================= HERO ================= */
 .hero--image{
   position:relative; padding:124px 0 110px; text-align:center; color:#fff; overflow:hidden;
-  /* Trame bleutée douce + overlays légers */
   background:
     radial-gradient(1100px 520px at 10% -10%, rgba(255,255,255,.16), rgba(255,255,255,0) 60%),
     radial-gradient(1000px 600px at 120% 10%, rgba(255,255,255,.10), rgba(255,255,255,0) 60%),
@@ -60,7 +59,7 @@ a{text-decoration:none} img{max-width:100%;display:block}
       linear-gradient(180deg, #a8cbe0 0%, #95c1dc 40%, #88bad3 100%);
   }
 }
-/* Vagues CSS-only (cuivré ↔ bleu) repoussées vers les bords, trou au centre */
+/* Vagues décoratives (CSS only) + trou central */
 .hero--image::before,
 .hero--image::after{
   content:""; position:absolute; inset:-8% -8%; z-index:1; pointer-events:none;
@@ -156,36 +155,27 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .detail h4{margin:0 0 6px}
 .small{font-size:13px;color:var(--muted)}
 
-/* ================= BRANDWORD “Awenoria” — i parfait (dégradé aligné) ============== */
+/* ================= BRANDWORD “Awenoria” — vrai i + point cuivré ================= */
 .brandword{
-  display:inline-flex;
-  gap:0.06em;
-  align-items:baseline;
-  white-space:nowrap;
-  line-height:1;
+  display:inline-flex; gap:0.06em; align-items:baseline; white-space:nowrap; line-height:1;
 }
 .brandword .A{ color:var(--blue-dark); font-weight:900; }
+/* le dégradé s'applique à tout le mot, y compris la vraie lettre “i” */
 .brandword .rest{
   background:linear-gradient(90deg,#0b4f78 0%, #2f86b8 40%, #6fb3d8 100%);
   -webkit-background-clip:text; background-clip:text;
   color:transparent; font-weight:900; position:relative;
 }
-.brandword .i{
-  display:inline-block; position:relative; width:0; height:1em;
-  vertical-align:baseline; overflow:visible;
+/* petit span qui dessine uniquement le point du i, le fût étant la vraie lettre */
+.brandword .i-dot{
+  display:inline-block; position:relative; width:0; height:1em; vertical-align:baseline; overflow:visible;
 }
-.brandword .i::before{
-  content:""; position:absolute; left:-0.015em; bottom:0.03em;
-  width:0.115em; height:0.76em; border-radius:0.07em;
-  background:inherit; -webkit-background-clip:border-box; background-clip:border-box;
-}
-.brandword .i::after{
-  content:""; position:absolute; left:50%; transform:translateX(-50%);
-  top:-0.02em; width:0.28em; height:0.28em; background:var(--orange); border-radius:50%;
+.brandword .i-dot::after{
+  content:""; position:absolute; left:-0.02em; top:-0.08em;
+  width:0.28em; height:0.28em; background:var(--orange); border-radius:50%;
 }
 @media (max-width:600px){
-  .brandword .i::before{ height:0.72em; }
-  .brandword .i::after { top:-0.01em; width:0.26em; height:0.26em; }
+  .brandword .i-dot::after{ top:-0.06em; width:0.26em; height:0.26em; }
 }
 
 /* ================= Témoignages ================= */
@@ -263,7 +253,6 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 <section class="hero--image">
   <div class="container">
     <h1>Audit automatique de conformité</h1>
-    <!-- Rejouable: content rempli par l'animation -->
     <p id="hero-lead" class="lead type-on-view" data-text="Testez la conformité RGPD, l'accessibilité et les mentions légales de votre site en un clic. Résultats clairs et actions concrètes."></p>
     <div class="hero-actions">
       <div class="testbox--pill">
@@ -323,7 +312,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   <div class="container">
     <h2 class="section-title">
       Pourquoi choisir
-      <span class="brandword"><span class="A">A</span><span class="rest">wenor<span class="i" aria-hidden="true"></span>a</span></span>
+      <span class="brandword"><span class="A">A</span><span class="rest">wenori<span class="i-dot" aria-hidden="true"></span>a</span></span>
     </h2>
     <p id="why-lead" class="lead type-on-view" data-text="Une plateforme pensée pour les TPE/PME, cabinets et indépendants : rapide, pédagogique et respectueuse de la confidentialité."></p>
     <div class="grid" style="grid-template-columns:repeat(3,1fr)">
@@ -393,7 +382,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   <div class="container">
     <h2 class="section-title">
       Ils utilisent
-      <span class="brandword"><span class="A">A</span><span class="rest">wenor<span class="i" aria-hidden="true"></span>a</span></span>
+      <span class="brandword"><span class="A">A</span><span class="rest">wenori<span class="i-dot" aria-hidden="true"></span>a</span></span>
     </h2>
     <div class="testi" id="testi">
       <div class="testi-track">
