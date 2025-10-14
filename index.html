@@ -265,14 +265,13 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
     <ul class="mainnav">
       <li class="menu-item"><a class="menu-link active" href="index.html">Accueil</a></li>
       <li class="menu-item">
-        <a class="menu-link" href="#offres">Audit ▾</a>
-        <div class="dropdown">
-          <a href="#access-audit">• Accessibilité (RGAA/WCAG)</a>
-          <a href="#rgpd">• RGPD / DPO</a>
-          <a href="#eco">• Éco-conception</a>
-          <a href="#ia-act">• Conformité IA Act</a>
-        </div>
-      </li>
+  <a class="menu-link" href="#" data-page="audit.html">Audit ▾</a>
+  <div class="dropdown">
+    <a href="./fonctionnalites.html">• Fonctionnalités</a>
+    <a href="./comment.html">• Méthodologie</a>
+    <a href="./tarifs.html">• Tarifs</a>
+  </div>
+</li>
       <li class="menu-item">
         <a class="menu-link" href="#ressources">Ressources ▾</a>
         <div class="dropdown">
@@ -839,6 +838,24 @@ document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>
 
   // openItem(items[0]); // pour ouvrir le premier item par défaut
 })();
+</script>
+  <script>
+  // Forcer une navigation "dure" vers une page voisine (même dossier que index.html)
+  (function(){
+    function hardLink(page){
+      var base = location.pathname.replace(/[^\/]*$/, '');
+      var url = base + page + '?v=' + Date.now(); // ?v= anti-cache
+      window.location.assign(url);
+    }
+
+    document.addEventListener('click', function(e){
+      var a = e.target.closest('a[data-page]');
+      if(!a) return;
+      e.preventDefault();
+      var page = a.getAttribute('data-page');
+      if(page) hardLink(page);
+    }, {passive:false});
+  })();
 </script>
 </body>
 </html>
