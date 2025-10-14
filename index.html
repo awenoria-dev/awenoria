@@ -107,7 +107,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .section.alt::before{content:"";position:absolute;left:0;right:0;top:-24px;height:24px;background:linear-gradient(180deg,rgba(237,243,247,0),rgba(237,243,247,1))}
 .section-title{margin:0 0 12px;font-size:32px;color:#0f2746;text-align:center;white-space:nowrap}
 .section-title::after{content:"";display:block;width:64px;height:4px;margin:10px auto 0;background:var(--orange);border-radius:3px;opacity:.85}
-.section .lead{max-width:860px;margin:6px auto 0;text-align:center;color:var(--muted)}
+.section .lead{max-width:860px;margin:6px auto 0;text-align:center;color:#muted}
 
 /* ================= TILES ================= */
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:18px}
@@ -246,6 +246,32 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   body{background:#fff}
   header, .hero--image, .section, .sticky-cta, footer{display:none!important}
   #resultat{display:block!important;border:none;box-shadow:none}
+}
+
+/* =============== FAQ (NOUVEAU STYLE ACCORDÉON) =============== */
+.faq{max-width:760px;margin:0 auto}
+.faq .item{
+  background:#fff;border:1px solid var(--stroke);border-radius:14px;
+  box-shadow:var(--shadow-sm);margin:10px 0;overflow:hidden;
+}
+.faq q{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  cursor:pointer;font-weight:800;color:#0f2746;margin:0;padding:14px 16px;
+}
+.faq q::after{
+  content:"▸"; opacity:.7; transition:.18s; transform-origin:center;
+}
+.faq q.open::after{
+  content:"▾"; opacity:1; transform:rotate(0deg);
+}
+.faq .a{
+  margin:0; padding:0 16px 14px; color:var(--muted);
+  border-top:1px dashed var(--stroke);
+  overflow:hidden; max-height:0; opacity:.0;
+  transition:max-height .28s ease, opacity .22s ease;
+}
+.faq .a.open{
+  opacity:1;
 }
 </style>
 </head>
@@ -401,302 +427,4 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
           <li data-topic="mentions">Éditeur / hébergeur / contact</li>
           <li data-topic="rcs">RCS / SIREN / TVA</li>
           <li data-topic="cgu">CGU / CGV / rétractation e-commerce</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== POURQUOI MAINTENANT ===== -->
-<section class="section">
-  <div class="container">
-    <h2 class="section-title">Pourquoi maintenant ?</h2>
-    <p class="lead">Le cadre européen et français se renforce (protection des données, accessibilité numérique, information des consommateurs). Anticiper les <b>échéances 2025–2026</b> permet d’éviter des non-conformités et de renforcer l’expérience utilisateur. <a class="link-inline" href="pourquoi-2026.html" style="color:var(--blue-dark);font-weight:800">Lire l’article “Pourquoi maintenant ? (2026)”</a>.</p>
-  </div>
-</section>
-
-<!-- ===== TEMOINS ===== -->
-<section class="section alt">
-  <div class="container">
-    <h2 class="section-title">
-      Ils utilisent
-      <span class="brandword" style="--idot-left:43.4%;">
-        <span class="A">A</span><span class="rest">wenor<span class="i-body">ı</span>a</span>
-      </span>
-    </h2>
-    <div class="testi" id="testi">
-      <div class="testi-track">
-        <div class="testi-card"><p>“Très pratique pour démarrer et prioriser.” — Studio web</p></div>
-        <div class="testi-card"><p>“Gain de temps énorme pour nos refontes.” — Agence e-commerce</p></div>
-        <div class="testi-card"><p>“Simple, pédagogique et concret.” — Indépendante</p></div>
-      </div>
-    </div>
-    <div class="testi-nav" id="testiNav">
-      <span class="dot active" data-i="0"></span>
-      <span class="dot" data-i="1"></span>
-      <span class="dot" data-i="2"></span>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FAQ ===== -->
-<section class="section">
-  <div class="container faq">
-    <h2 class="section-title">FAQ fréquentes</h2>
-
-    <div class="item">
-      <q>Les données sont-elles stockées ?</q>
-      <div class="a">Par défaut, non : l’analyse se fait côté navigateur. Le rapport PDF est optionnel.</div>
-    </div>
-
-    <div class="item">
-      <q>Quelle couverture ?</q>
-      <div class="a">RGPD, accessibilité, mentions légales et cookies côté site. L’outil n’est pas un avis juridique.</div>
-    </div>
-
-    <div class="item">
-      <q>Compatibilité CMS ?</q>
-      <div class="a">Fonctionne avec tout site public (WordPress, Shopify, Webflow, custom…).</div>
-    </div>
-
-    <div class="item">
-      <q>Proposez-vous un accompagnement ?</q>
-      <div class="a">Oui, mission d’audit/plan d’action sur demande. Contactez-nous pour un devis.</div>
-    </div>
-
-    <div class="actions" style="margin-top:18px"><a class="btn blue" href="faq.html">Voir toutes les questions →</a></div>
-  </div>
-</section>
-
-<!-- ===== CTA FINAL ===== -->
-<section class="section alt">
-  <div class="container" style="text-align:center">
-    <h2 class="section-title" style="margin-bottom:10px">Prêt à sécuriser votre conformité ?</h2>
-    <p id="cta-lead" class="lead type-on-view" data-text="Testez gratuitement votre site et recevez des recommandations concrètes en quelques minutes."></p>
-    <div class="actions cta-anchor">
-      <a class="btn" href="#resultat" onclick="document.getElementById('url').focus()">Démarrer un audit</a>
-      <a class="btn blue" href="contact.html">Parler à un expert</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer class="container footer" style="border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px">
-  <div style="display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap">
-    <span>© <span id="year"></span> Awenoria</span>
-    <span><a href="mentions.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a></span>
-  </div>
-</footer>
-
-<!-- ===== CTA STICKY ===== -->
-<div class="sticky-cta" id="stickyCta">
-  <a class="btn" href="#resultat" onclick="document.getElementById('url').focus()">Démarrer un audit</a>
-  <a class="btn blue" href="contact.html">Parler à un expert</a>
-</div>
-
-<!-- ===== MODAL ===== -->
-<div id="modal" class="modal" role="dialog" aria-modal="true">
-  <div class="panel">
-    <div class="hd"><strong id="modalTitle"></strong><button class="close-x" aria-label="Fermer" onclick="closeModal()">×</button></div>
-    <div class="bd" id="modalBody"></div>
-    <div class="ft"><button class="btn ghost" onclick="closeModal()">Fermer</button></div>
-  </div>
-</div>
-
-<script>
-/* année + header sticky */
-document.getElementById('year').textContent = new Date().getFullYear();
-(function(){const h=document.getElementById('site-header');const t=()=>{if(window.scrollY>10)h.classList.add('scrolled');else h.classList.remove('scrolled')};t();window.addEventListener('scroll',t,{passive:true})})();
-
-/* Reveal on scroll */
-(function(){const els=[...document.querySelectorAll('.reveal')]; const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.12}); els.forEach(el=>io.observe(el));})();
-
-/* Typing effect (rejoue à chaque retour en vue) */
-(function(){
-  const SPEED = 22;
-  const els = [...document.querySelectorAll('.type-on-view')];
-  els.forEach(el=>{
-    const full = (el.getAttribute('data-text') || el.textContent || '').trim();
-    el.dataset.fullText = full; el.textContent = ''; el.__typingTimer=null; el.__ready=true;
-  });
-  function type(el){
-    clearTimeout(el.__typingTimer);
-    const full = el.dataset.fullText || ''; el.textContent = ''; let i=0;
-    (function tick(){ el.textContent = full.slice(0, ++i);
-      if(i < full.length) el.__typingTimer=setTimeout(tick, SPEED); else {el.__typingTimer=null; el.__ready=false;}
-    })();
-  }
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      const el = entry.target;
-      if(entry.isIntersecting){ if(el.__ready) type(el); }
-      else { el.__ready = true; clearTimeout(el.__typingTimer); el.__typingTimer=null; }
-    });
-  }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
-  els.forEach(el=>io.observe(el));
-})();
-
-/* Témoignages slider */
-(function(){
-  const wrap=document.getElementById('testi'); if(!wrap) return;
-  const track=wrap.querySelector('.testi-track');
-  const dots=[...document.querySelectorAll('#testiNav .dot')];
-  let i=0; const go=n=>{i=n;track.style.transform=`translateX(-${100*i}%)`;dots.forEach((d,k)=>d.classList.toggle('active',k===i))};
-  dots.forEach(d=>d.addEventListener('click',()=>go(+d.dataset.i)));
-  setInterval(()=>go((i+1)%dots.length),5000);
-})();
-
-/* Sticky CTA logique */
-(function(){
-  const sc=document.getElementById('stickyCta'); if(!sc) return;
-  const hero=document.querySelector('.hero--image'); const anchors=document.querySelectorAll('.cta-anchor');
-  let heroVisible=true, anchorVisible=false;
-  const apply=()=>{ sc.style.display=(heroVisible||anchorVisible)?'none':'flex'; };
-  const ioHero=new IntersectionObserver(([e])=>{heroVisible=e.isIntersecting;apply();},{threshold:.05}); ioHero.observe(hero);
-  const ioAnch=new IntersectionObserver(entries=>{anchorVisible=entries.some(e=>e.isIntersecting);apply();},{threshold:.2}); anchors.forEach(a=>ioAnch.observe(a)); apply();
-})();
-
-/* Analyse via Cloudflare Worker (inchangé) */
-const WORKER_URL="https://awenoria.bmavcontact.workers.dev/analyze";
-const normalizeUrl=u=>{if(!u) return ""; u=u.trim(); if(!/^https?:\/\//i.test(u)) u="https://"+u; return u;};
-const pct=n=>Number.isFinite(n)?`${Math.round(n)}%`:"—";
-
-function buildResultUI(data,site){
-  const s=data.scores||{}, rgpd=data.rgpd||{}, legal=data.legal||{}, a11y=data.a11y||{};
-  const box=document.getElementById('resultat'); box.style.display='block';
-  const detailId="detail-"+Date.now();
-  box.innerHTML=`
-    <div class="header">
-      <h3>Résultats pour <span class="tag">${(data.finalUrl||site)}</span></h3>
-      <span class="small">Analyse locale — aucune donnée conservée</span>
-    </div>
-    <div class="summary">
-      <div class="card-mini"><b>RGPD</b><span>${pct(s.rgpd)} · ${rgpd.policyLink?"Politique détectée":"Politique non détectée"} ${rgpd.cookiesWords?"· Cookies":""}</span></div>
-      <div class="card-mini"><b>Mentions légales</b><span>${pct(s.mentions)} · ${legal.mentionsLink?"Lien détecté":"Lien non détecté"}</span></div>
-      <div class="card-mini"><b>Accessibilité</b><span>${pct(s.accessibilite)} · ALT ${a11y.imgWithAlt||0}/${a11y.imgCount||0}</span></div>
-    </div>
-    <div class="footer">
-      <button class="btn" onclick="toggleDetail('${detailId}')">Accéder au détail</button>
-      <button class="btn ghost" onclick="exportResultPDF()">Exporter en PDF</button>
-      <button class="btn link" onclick='downloadJSON(${JSON.stringify(JSON.stringify(data)).replace(/'/g,"&#39;")})'>Télécharger le JSON</button>
-    </div>
-    <div id="${detailId}" class="detail">
-      <div class="grid">
-        <div class="box">
-          <h4>RGPD</h4>
-          <ul>
-            <li>Politique de confidentialité : <b>${rgpd.policyLink?"présente":"absente"}</b></li>
-            <li>Cookies : ${rgpd.cookiesWords?"mots-clés détectés":"non détectés"}</li>
-            <li>Autres indices : ${rgpd.other||"—"}</li>
-          </ul>
-        </div>
-        <div class="box">
-          <h4>Mentions légales</h4>
-          <ul>
-            <li>Lien “mentions” : <b>${legal.mentionsLink?"présent":"absent"}</b></li>
-            <li>Infos éditeur/hébergeur : ${legal.hasPublisher?"détectées":"—"}</li>
-          </ul>
-        </div>
-        <div class="box">
-          <h4>Accessibilité</h4>
-          <ul>
-            <li>Images avec ALT : <b>${a11y.imgWithAlt||0}/${a11y.imgCount||0}</b></li>
-            <li>Autres repères : ${a11y.notes||"—"}</li>
-          </ul>
-        </div>
-      </div>
-      <p class="small" style="margin-top:10px">Pré-diagnostic automatique. Pour un avis formel, <a href="contact.html">contactez un expert</a>.</p>
-    </div>`;
-}
-function toggleDetail(id){const el=document.getElementById(id); if(!el) return; el.style.display = el.style.display==='block' ? 'none' : 'block';}
-function exportResultPDF(){ window.print(); }
-function downloadJSON(jsonString){ const blob=new Blob([JSON.parse(jsonString)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='awenoria-analyse.json'; a.click(); URL.revokeObjectURL(a.href); }
-
-async function analyser(){
-  const input=document.getElementById('url'); const site=normalizeUrl(input.value);
-  const box=document.getElementById('resultat');
-  if(!site){ alert("Merci d'entrer une URL."); return; }
-  box.style.display='block'; box.innerHTML='<p>Analyse en cours…</p>';
-  try{
-    const res=await fetch(`${WORKER_URL}?url=${encodeURIComponent(site)}`,{headers:{accept:"application/json"},mode:'cors',cache:'no-store'});
-    const data=await res.json().catch(()=>({}));
-    if(!res.ok || data.ok===false || !data){ throw new Error(data?.error || `Analyse indisponible (${res.status})`); }
-    buildResultUI(data,site);
-  }catch(e){
-    console.error(e);
-    const demo={finalUrl:site,scores:{global:80,rgpd:72,mentions:58,accessibilite:86},rgpd:{policyLink:true,cookiesWords:true},legal:{mentionsLink:false,hasPublisher:false},a11y:{imgWithAlt:24,imgCount:26}};
-    box.innerHTML = `<p class="small" style="color:#b3261e"><b>Info :</b> l’analyse est momentanément indisponible. Exemple de rapport affiché.</p>`;
-    buildResultUI(demo,site);
-  }
-}
-
-/* MODAL — contenu “Ce que l’audit vérifie” */
-const TOPIC_CONTENT={
-  policy:`<h3>Politique de confidentialité & mentions RGPD</h3><p><b>Objectif.</b> Informer sur les finalités, bases légales, durées, droits et contact DPO.</p><p><b>Évaluation.</b> Présence de la page, accessibilité du lien, sections clés.</p><p><b>À faire.</b> Mettre à jour, clarifier les bases légales et les droits, ajouter les contacts.</p>`,
-  legalbase:`<h3>Base légale, droits, DPO & contacts</h3><p><b>Objectif.</b> Rendre explicites bases légales et droits. Proposer un canal de contact.</p>`,
-  forms:`<h3>Formulaires : information au point de collecte</h3><p><b>Objectif.</b> Donner les infos essentielles au moment de la collecte.</p><p><b>Pratique.</b> Mentions proches du bouton, lien vers la politique, cases consentement.</p>`,
-  alt:`<h3>ALT images & repères ARIA</h3><p><b>Objectif.</b> Accessibilité via lecteurs d’écran.</p><p><b>Évaluation.</b> ALT pertinents, landmarks, titres de liens descriptifs.</p>`,
-  contrast:`<h3>Contrastes, sémantique, navigation clavier</h3><p><b>Objectif.</b> Lisibilité et usage sans souris.</p>`,
-  a11ydec:`<h3>Déclaration d’accessibilité</h3><p><b>Objectif.</b> Informer sur le niveau de conformité et la procédure de contact/médiation.</p>`,
-  mentions:`<h3>Mentions légales — éditeur / hébergeur / contact</h3><p><b>Objectif.</b> Rendre l’éditeur identifiable et joignable.</p>`,
-  rcs:`<h3>RCS / SIREN / TVA</h3><p><b>Objectif.</b> Afficher les identifiants requis.</p>`,
-  cgu:`<h3>CGU / CGV / rétractation e-commerce</h3><p><b>Objectif.</b> Encadrer l’usage et l’achat, informer sur la rétractation et la médiation.</p>`
-};
-const modal=document.getElementById('modal'); const modalTitle=document.getElementById('modalTitle'); const modalBody=document.getElementById('modalBody');
-function openModal(label,key){ modalTitle.textContent=label; modalBody.innerHTML=TOPIC_CONTENT[key]||"<p>Contenu à venir.</p>"; modal.style.display='flex'; }
-function closeModal(){ modal.style.display='none'; }
-modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
-document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>openModal(li.textContent.trim(), li.dataset.topic)));
-
-/* FAQ accordéon fiable + accessible */
-(function(){
-  const items = [...document.querySelectorAll('.faq .item')];
-  items.forEach(item=>{
-    const q = item.querySelector('q');
-    const a = item.querySelector('.a');
-    if(!q || !a) return;
-
-    q.setAttribute('role','button');
-    q.setAttribute('tabindex','0');
-    q.setAttribute('aria-expanded','false');
-
-    function openItem(target){
-      items.forEach(it=>{
-        const qi = it.querySelector('q'), ai = it.querySelector('.a');
-        if(it === target){
-          qi.classList.add('open');  qi.setAttribute('aria-expanded','true');
-          ai.style.display = 'block';
-        }else{
-          qi.classList.remove('open'); qi.setAttribute('aria-expanded','false');
-          ai.style.display = 'none';
-        }
-      });
-    }
-
-    function toggle(){
-      const isOpen = q.getAttribute('aria-expanded') === 'true';
-      if(isOpen){
-        q.classList.remove('open'); q.setAttribute('aria-expanded','false');
-        a.style.display = 'none';
-      }else{
-        openItem(item);
-      }
-    }
-
-    q.addEventListener('click', toggle);
-    q.addEventListener('keydown', e=>{
-      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
-      if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){
-        e.preventDefault();
-        const dir = e.key === 'ArrowDown' ? 1 : -1;
-        const qs = items.map(it=>it.querySelector('q'));
-        const idx = qs.indexOf(q);
-        const next = qs[(idx + dir + qs.length) % qs.length];
-        next.focus();
-      }
-    });
-  });
-})();
-</script>
-</body>
-</html>
+        </ul
