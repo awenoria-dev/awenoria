@@ -17,6 +17,11 @@
   --shadow-sm:0 6px 20px rgba(16,32,48,.06);
   --shadow-lg:0 24px 48px rgba(16,32,48,.10);
   --hero-overlay-rgb:0,90,142; --hero-overlay-alpha:.46; --hero-overlay-alpha-mobile:.54;
+
+  /* >>> couleurs supplémentaires pour la vague orangée */
+  --orange-1:#ff8a00;   /* orange vif */
+  --orange-2:#ff3d00;   /* corail */
+  --blue-1:#0b4f78; --blue-2:#2f86b8; --blue-3:#6fb3d8; /* refs brandword */
 }
 *{box-sizing:border-box} html,body{margin:0}
 body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--text);line-height:1.65}
@@ -40,16 +45,31 @@ a{text-decoration:none} img{max-width:100%;display:block}
 
 /* ================= HERO ================= */
 .hero--image{
-  position:relative;padding:124px 0 110px;color:#fff;text-align:center;
+  position:relative;padding:124px 0 110px;color:#fff;text-align:center;overflow:hidden;
+  /* Trame bleutée soft + overlay (plus d'image jpg) */
   background:
+    radial-gradient(1200px 520px at 10% -10%, rgba(255,255,255,.16), rgba(255,255,255,0) 60%),
+    radial-gradient(1000px 600px at 120% 10%, rgba(255,255,255,.10), rgba(255,255,255,0) 60%),
     linear-gradient(180deg, rgba(var(--hero-overlay-rgb), var(--hero-overlay-alpha)) 0%, rgba(var(--hero-overlay-rgb), var(--hero-overlay-alpha)) 100%),
-    url('./images/hero-bg.jpg?v=2') center/cover no-repeat;
+    linear-gradient(180deg, #6fa8c6, #7fb2cb 40%, #87bbd0 100%);
 }
 @media(max-width:980px){
-  .hero--image{background:
-    linear-gradient(180deg, rgba(var(--hero-overlay-rgb), var(--hero-overlay-alpha-mobile)) 0%, rgba(var(--hero-overlay-rgb), var(--hero-overlay-alpha-mobile)) 100%),
-    url('./images/hero-bg.jpg?v=2') center/cover no-repeat;}
+  .hero--image{
+    background:
+      radial-gradient(900px 420px at 0% -10%, rgba(255,255,255,.18), rgba(255,255,255,0) 60%),
+      linear-gradient(180deg, rgba(var(--hero-overlay-rgb), var(--hero-overlay-alpha-mobile)) 0%, rgba(var(--hero-overlay-rgb), var(--hero-overlay-alpha-mobile)) 100%),
+      linear-gradient(180deg, #6fa8c6, #7fb2cb 40%, #87bbd0 100%);
+  }
 }
+/* Canvas animé des vagues neuronales */
+.neural-bg{
+  position:absolute; inset:0; width:100%; height:100%;
+  z-index:0; pointer-events:none;
+  filter:blur(0.2px); opacity:.95;
+}
+/* Remonter le contenu au-dessus du canvas */
+.hero--image > .container{position:relative; z-index:1}
+
 h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
 @media(max-width:600px){h1{font-size:44px}}
 .lead{color:#eaf3fa;max-width:980px;margin:8px auto 0;font-weight:600}
@@ -193,15 +213,6 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .testi-nav{display:flex;gap:8px;justify-content:center;margin-top:10px}
 .dot{width:9px;height:9px;border-radius:50%;background:#c7d9e6;display:inline-block;cursor:pointer}
 .dot.active{background:var(--blue-dark)}
-
-/* ================= FAQ ================= */
-.faq {max-width:760px;margin:0 auto}
-.faq .item{background:#fff;border:1px solid var(--stroke);border-radius:14px;box-shadow:var(--shadow-sm);margin:10px 0;overflow:hidden}
-.faq q{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;font-weight:800;color:#0f2746;margin:0;padding:14px 16px}
-.faq q::after{content:"▸";opacity:.6;transition:.18s}
-.faq q.open::after{content:"▾";opacity:1}
-.faq .a{display:none;margin:0;padding:0 16px 14px;color:var(--muted);border-top:1px dashed var(--stroke)}
-.faq q.open + .a{display:block}
 </style>
 </head>
 <body>
@@ -253,6 +264,9 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 
 <!-- ===== HERO ===== -->
 <section class="hero--image">
+  <!-- Canvas décoratif animé -->
+  <canvas class="neural-bg" id="neuralCanvas" aria-hidden="true"></canvas>
+
   <div class="container">
     <h1>Audit automatique de conformité</h1>
     <p id="hero-lead" class="lead" data-text="Testez la conformité RGPD, l'accessibilité et les mentions légales de votre site en un clic. Résultats clairs et actions concrètes.">
@@ -605,6 +619,93 @@ function openModal(label,key){ modalTitle.textContent=label; modalBody.innerHTML
 function closeModal(){ modal.style.display='none'; }
 modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
 document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>openModal(li.textContent.trim(), li.dataset.topic)));
+</script>
+
+<!-- ===== Neural Waves Canvas (animation) ===== -->
+<script>
+(function(){
+  const canvas = document.getElementById('neuralCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let w=0,h=0, dpr=1, t=0;
+  const WAVES = 4;          // nombre de nappes
+  const STEP = 14;          // espacement horizontal entre points
+  const AMP_BASE = 26;      // amplitude de base
+  const SPEED = 0.0026;     // vitesse globale
+  const JITTER = 0.6;       // micro-bruit vertical
+
+  function resize(){
+    const rect = canvas.getBoundingClientRect();
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    w = Math.floor(rect.width * dpr);
+    h = Math.floor(rect.height * dpr);
+    canvas.width = w; canvas.height = h;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  window.addEventListener('resize', resize, {passive:true});
+  resize();
+
+  // gradient orange -> corail
+  function cssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+  function makeGrad(){
+    const grad = ctx.createLinearGradient(0, 0, canvas.clientWidth, 0);
+    grad.addColorStop(0, cssVar('--orange-1') || '#ff8a00');
+    grad.addColorStop(1, cssVar('--orange-2') || '#ff3d00');
+    return grad;
+  }
+  let grad = makeGrad();
+  new ResizeObserver(()=>{ grad = makeGrad(); }).observe(canvas);
+
+  function draw(){
+    ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
+    ctx.globalCompositeOperation = 'lighter';
+
+    for(let i=0;i<WAVES;i++){
+      const phase = t*(1 + i*0.15) + i*0.9;
+      const amp = AMP_BASE * (1 - i*0.12);
+      const yBase = canvas.clientHeight*0.35 + i*22;
+
+      // ruban doux
+      ctx.beginPath();
+      for(let x=0; x<=canvas.clientWidth; x+=4){
+        const y = yBase + amp*Math.sin(x*0.012 + phase);
+        if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+      }
+      ctx.strokeStyle = grad;
+      ctx.globalAlpha = 0.14;
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      // points lumineux + glow
+      ctx.globalAlpha = 0.95;
+      for(let x=0; x<=canvas.clientWidth; x+=STEP){
+        const wobble = (Math.random()-0.5)*JITTER;
+        const y = yBase + amp*Math.sin(x*0.012 + phase) + wobble;
+
+        const r = 1.2 + (Math.sin(x*0.04 + phase)*0.6 + 0.6);
+        ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.fillStyle = grad; ctx.fill();
+
+        ctx.beginPath(); ctx.arc(x, y, r*4, 0, Math.PI*2); ctx.globalAlpha = 0.08; ctx.fill();
+        ctx.globalAlpha = 0.95;
+      }
+
+      // liens fins (effet réseau)
+      ctx.globalAlpha = 0.20; ctx.lineWidth = 1;
+      for(let x=0; x<canvas.clientWidth-STEP; x+=STEP*2){
+        const y1 = yBase + amp*Math.sin(x*0.012 + phase);
+        const y2 = yBase + amp*Math.sin((x+STEP)*0.012 + phase);
+        ctx.beginPath(); ctx.moveTo(x, y1); ctx.lineTo(x+STEP, y2);
+        ctx.strokeStyle = grad; ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    t += SPEED;
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+})();
 </script>
 </body>
 </html>
