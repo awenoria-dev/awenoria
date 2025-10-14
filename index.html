@@ -155,27 +155,33 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .detail h4{margin:0 0 6px}
 .small{font-size:13px;color:var(--muted)}
 
-/* ================= BRANDWORD “Awenoria” — vrai i + point cuivré ================= */
-.brandword{
-  display:inline-flex; gap:0.06em; align-items:baseline; white-space:nowrap; line-height:1;
+/* fût du i = “ı” (dotless), réglages fins intégrés */
+.brandword .i-body{
+  position:relative; display:inline-block; font-style:normal; font-size:1em; line-height:1;
+  /* Réglages fins (par défaut 1 = identique aux autres lettres) */
+  --i-scaleX: 1;      /* aplatis/élargis un peu le fût si besoin (ex: 0.98 ou 1.02) */
+  --i-scaleY: 1;      /* étire/compresse en hauteur si besoin (ex: 0.99 ou 1.01) */
+  --i-ml: 0em;        /* micro marge à gauche  (ex: -0.01em) */
+  --i-mr: 0em;        /* micro marge à droite (ex: -0.01em) */
+
+  /* Position du point (par défaut calée) */
+  --idot-left: -0.02em; /* vers la gauche/droite */
+  --idot-top:  -0.08em; /* plus négatif = plus bas */
+
+  transform: scale(var(--i-scaleX), var(--i-scaleY));
+  transform-origin: bottom center;
+  margin-left: var(--i-ml);
+  margin-right: var(--i-mr);
 }
-.brandword .A{ color:var(--blue-dark); font-weight:900; }
-/* le dégradé s'applique à tout le mot, y compris la vraie lettre “i” */
-.brandword .rest{
-  background:linear-gradient(90deg,#0b4f78 0%, #2f86b8 40%, #6fb3d8 100%);
-  -webkit-background-clip:text; background-clip:text;
-  color:transparent; font-weight:900; position:relative;
-}
-/* petit span qui dessine uniquement le point du i, le fût étant la vraie lettre */
-.brandword .i-dot{
-  display:inline-block; position:relative; width:0; height:1em; vertical-align:baseline; overflow:visible;
-}
-.brandword .i-dot::after{
-  content:""; position:absolute; left:-0.02em; top:-0.08em;
+
+.brandword .i-body::after{
+  content:""; position:absolute; left:var(--idot-left); top:var(--idot-top);
   width:0.28em; height:0.28em; background:var(--orange); border-radius:50%;
 }
+
 @media (max-width:600px){
-  .brandword .i-dot::after{ top:-0.06em; width:0.26em; height:0.26em; }
+  .brandword .i-body{ --idot-top: -0.06em; }
+  .brandword .i-body::after{ width:0.26em; height:0.26em; }
 }
 
 /* ================= Témoignages ================= */
