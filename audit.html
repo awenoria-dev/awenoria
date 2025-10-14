@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Audit — Awenoria</title>
+  <meta name="description" content="Comprendre l’audit Awenoria : objectifs, périmètre, méthode et livrables. Lien direct vers fonctionnalités, méthodologie et tarifs.">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--blue:#0073b6;--blue-dark:#005a8e;--orange:#ff6600;--bg-top:#f7f9fc;--bg:#edf3f7;--surface:#fff;--stroke:#e9eef4;--text:#16233a;--muted:#5d6b7c;--radius:20px;--shadow-sm:0 6px 20px rgba(16,32,48,.06);--shadow-lg:0 24px 48px rgba(16,32,48,.10)}
+    *{box-sizing:border-box}html,body{margin:0}body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,var(--bg-top),var(--bg));line-height:1.65}
+    a{text-decoration:none}
+    .container{max-width:1160px;margin:0 auto;padding:24px 20px}
+    /* Header */
+    .header{position:sticky;top:0;z-index:60;background:var(--bg-top);border-bottom:1px solid transparent;transition:.25s}
+    .header.scrolled{background:#fff;border-bottom-color:var(--stroke);box-shadow:0 10px 24px rgba(16,32,48,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
+    .brand__logo{height:92px}@media(min-width:992px){.brand__logo{height:100px}}
+    .mainnav{display:flex;gap:2px;margin-left:auto}.menu-item{list-style:none;position:relative}
+    .menu-link{display:inline-block;padding:14px 14px;border-radius:12px;color:var(--blue-dark);font-weight:800}
+    .menu-link:hover{color:var(--orange);background:rgba(0,115,182,.06)}
+    .menu-link.active{color:var(--orange)}.menu-link.active::after{transform:scaleX(1)}
+    .menu-link::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:var(--orange);border-radius:2px;transform:scaleX(0);transition:.22s}
+    .dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:280px;padding:10px;background:#fff;border:1px solid var(--stroke);border-radius:14px;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(8px);transition:.18s}
+    .menu-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}.dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:var(--blue-dark);font-weight:700}
+    .dropdown a:hover{background:#f3f8fc;color:var(--orange)}
+    .link-inline{color:var(--blue-dark);font-weight:800}.link-inline:hover{color:var(--orange)}
+    /* Hero court */
+    .hero{background:linear-gradient(180deg,#5e8faa,#5e8faa);color:#fff;text-align:center;padding:72px 0 56px}
+    h1{margin:0;font-size:40px;line-height:1.12}
+    .lead{max-width:860px;margin:8px auto 0;color:#eaf3fa;font-weight:600}
+    /* Sections */
+    .section{padding:72px 0}.alt{background:var(--surface)}
+    .title{margin:0 0 10px;text-align:center;font-size:30px;color:#0f2746}
+    .title:after{content:"";display:block;width:60px;height:4px;background:var(--orange);margin:10px auto 0;border-radius:3px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:18px}
+    @media(max-width:960px){.grid{grid-template-columns:1fr}}
+    .card{background:#fff;border:1px solid var(--stroke);border-radius:16px;box-shadow:var(--shadow-sm);padding:20px}
+    .kpi{display:flex;gap:18px}
+    .pill{display:inline-block;background:var(--blue-dark);color:#fff;border-radius:999px;padding:6px 10px;font-weight:800;font-size:12px}
+    .btn{display:inline-block;padding:12px 16px;border-radius:12px;font-weight:800;color:#fff;background:var(--blue-dark);box-shadow:var(--shadow-sm)}
+    .btn:hover{background:var(--orange)}
+    .btn.ghost{background:#fff;color:var(--blue-dark);border:1px solid var(--stroke)}
+    .list{margin:0;padding-left:18px}
+    .footer{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
+  </style>
+</head>
+<body>
+<header id="site-header" class="header">
+  <div class="container nav">
+    <a href="index.html" class="brand"><img src="./images/logo.png" alt="Awenoria" class="brand__logo"></a>
+    <ul class="mainnav">
+      <li class="menu-item"><a class="menu-link" href="index.html">Accueil</a></li>
+      <li class="menu-item">
+        <a class="menu-link active" href="audit.html">Audit ▾</a>
+        <div class="dropdown">
+          <a href="fonctionnalites.html">• Fonctionnalités</a>
+          <a href="comment.html">• Méthodologie</a>
+          <a href="tarifs.html">• Tarifs</a>
+        </div>
+      </li>
+      <li class="menu-item">
+        <a class="menu-link" href="conformite.html">Conformité ▾</a>
+        <div class="dropdown">
+          <a href="fonctionnalites.html#rgpd">• Audit RGPD</a>
+          <a href="fonctionnalites.html#accessibilite">• Audit Accessibilité</a>
+          <a href="fonctionnalites.html#mentions">• Mentions légales</a>
+          <a href="fonctionnalites.html#cookies">• Cookies / CMP</a>
+        </div>
+      </li>
+      <li class="menu-item">
+        <a class="menu-link" href="ressources.html">Ressources ▾</a>
+        <div class="dropdown">
+          <a href="guides.html">• Guides & bonnes pratiques</a>
+          <a href="modeles.html">• Modèles juridiques</a>
+          <a href="faq.html">• FAQ</a>
+          <a href="pourquoi-2026.html">• Pourquoi maintenant ? (2026)</a>
+        </div>
+      </li>
+      <li class="menu-item">
+        <a class="menu-link" href="a-propos.html">À propos ▾</a>
+        <div class="dropdown">
+          <a href="a-propos.html#mission">• Mission & valeurs</a>
+          <a href="mentions.html">• Mentions légales</a>
+          <a href="confidentialite.html">• Confidentialité</a>
+        </div>
+      </li>
+      <li class="menu-item"><a class="menu-link" href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Comprendre l’audit Awenoria</h1>
+    <p class="lead">Définition, objectifs, périmètre, méthode et livrables — et un aperçu des fonctionnalités, de la méthodologie et des tarifs.</p>
+  </div>
+</section>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <h2 class="title">Définition & objectifs</h2>
+      <div class="grid">
+        <article class="card">
+          <span class="pill">Quoi ?</span>
+          <h3>Un diagnostic de conformité web</h3>
+          <p>Awenoria analyse les éléments visibles de votre site pour évaluer la conformité <b>RGPD</b>, <b>accessibilité</b>, <b>mentions légales</b> et <b>cookies/CMP</b>.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Pourquoi ?</span>
+          <h3>Prioriser les actions utiles</h3>
+          <p>Vous obtenez un <b>score global</b> et des <b>recommandations priorisées</b> pour corriger rapidement les points à fort impact.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Pour qui ?</span>
+          <h3>TPE/PME, cabinets, indépendants</h3>
+          <p>Idéal pour un premier diagnostic, un contrôle récurrent, ou pour <b>préparer une refonte</b> et cadrer efficacement le projet.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <h2 class="title">Périmètre & livrables</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Ce qui est couvert</h3>
+          <ul class="list">
+            <li>Politique de confidentialité, bases légales, droits & mentions RGPD</li>
+            <li>Accessibilité : ALT, repères ARIA, contrastes, navigation clavier, déclaration</li>
+            <li>Mentions légales & e-commerce (CGU/CGV, rétractation, médiation)</li>
+            <li>Cookies/CMP : bandeau, refus aussi simple, politique cookies</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Ce qui n’est pas couvert</h3>
+          <ul class="list">
+            <li>Vérifications serveur, contrats, registre de traitements</li>
+            <li>Audit de code source privé, tests utilisateurs, accessibilité avancée (WCAG AA manuelle)</li>
+            <li>Conseil juridique personnalisé (possibilité d’accompagnement sur devis)</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Livrables</h3>
+          <ul class="list">
+            <li>Score global & scores thématiques</li>
+            <li>Recommandations classées par priorité & impact</li>
+            <li>Export PDF (option), suivi & historique (option)</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="title">Découvrir les sous-pages</h2>
+      <div class="grid">
+        <article class="card">
+          <span class="pill">Fonctionnalités</span>
+          <h3>Ce que l’outil vérifie</h3>
+          <p>Les vérifications automatiques et les indicateurs fournis par Awenoria.</p>
+          <p><a class="btn" href="fonctionnalites.html">Voir les fonctionnalités →</a></p>
+        </article>
+        <article class="card">
+          <span class="pill">Méthodologie</span>
+          <h3>Comment nous auditons</h3>
+          <p>La logique de scoring, les sources de règles, les limites et bonnes pratiques.</p>
+          <p><a class="btn" href="comment.html">Voir la méthodologie →</a></p>
+        </article>
+        <article class="card">
+          <span class="pill">Tarifs</span>
+          <h3>Formules & options</h3>
+          <p>Gratuit pour un test rapide, offres pro pour rapports & historique.</p>
+          <p><a class="btn" href="tarifs.html">Voir les tarifs →</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container" style="text-align:center">
+      <h2 class="title" style="margin-bottom:10px">Besoin d’un audit dès maintenant ?</h2>
+      <p class="lead">Démarrez un diagnostic automatique ou échangez avec un expert.</p>
+      <p style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px">
+        <a class="btn" href="index.html#resultat">Démarrer un audit</a>
+        <a class="btn ghost" href="contact.html">Parler à un expert</a>
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="container footer">
+  <div style="display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap">
+    <span>© <span id="year"></span> Awenoria</span>
+    <span><a href="mentions.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  (function(){const h=document.getElementById('site-header');const t=()=>{if(window.scrollY>10)h.classList.add('scrolled');else h.classList.remove('scrolled')};t();window.addEventListener('scroll',t,{passive:true})})();
+</script>
+</body>
+</html>
