@@ -18,12 +18,11 @@
   --shadow-lg:0 24px 48px rgba(16,32,48,.10);
   --hero-overlay-rgb:0,90,142; --hero-overlay-alpha:.42; --hero-overlay-alpha-mobile:.52;
 
-  /* décor vagues (déjà en place) */
+  /* décor */
   --copper-1:#B86122; --copper-2:#D67A2E; --copper-3:#F2B56C;
   --blue-soft-1:#A9D3FF; --blue-soft-2:#7FB2CB; --blue-soft-3:#6FB3D8;
 }
-*{box-sizing:border-box}
-html,body{margin:0}
+*{box-sizing:border-box} html,body{margin:0}
 body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--text);line-height:1.65}
 a{text-decoration:none} img{max-width:100%;display:block}
 .container{max-width:1160px;margin:0 auto;padding:24px 20px}
@@ -32,21 +31,18 @@ a{text-decoration:none} img{max-width:100%;display:block}
 .header{position:sticky;top:0;z-index:60;background:var(--bg-top);border-bottom:1px solid transparent;transition:.25s}
 .header.scrolled{background:#fff;border-bottom-color:var(--stroke);box-shadow:0 10px 24px rgba(16,32,48,.06)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
-.brand__logo{height:92px;width:auto}
-@media(min-width:992px){.brand__logo{height:100px}}
-.mainnav{display:flex;gap:2px;margin-left:auto}
-.menu-item{list-style:none;position:relative}
+.brand__logo{height:92px;width:auto} @media(min-width:992px){.brand__logo{height:100px}}
+.mainnav{display:flex;gap:2px;margin-left:auto} .menu-item{list-style:none;position:relative}
 .menu-link{display:inline-block;padding:14px 14px;border-radius:12px;color:var(--blue-dark);font-weight:800;position:relative}
 .menu-link:hover{color:var(--orange);background:rgba(0,115,182,.06)}
 .menu-link::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:var(--orange);border-radius:2px;transform:scaleX(0);transition:.22s}
-.menu-link:hover::after,.menu-link.active::after{transform:scaleX(1)}
-.menu-link.active{color:var(--orange)}
+.menu-link:hover::after,.menu-link.active::after{transform:scaleX(1)} .menu-link.active{color:var(--orange)}
 .dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:280px;padding:10px;background:#fff;border:1px solid var(--stroke);border-radius:14px;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(8px);transition:.18s}
 .menu-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
 .dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:var(--blue-dark);font-weight:700}
 .dropdown a:hover{background:#f3f8fc;color:var(--orange)}
 
-/* ================= HERO (avec vagues CSS + trou) ================= */
+/* ================= HERO ================= */
 .hero--image{
   position:relative; padding:124px 0 110px; text-align:center; color:#fff; overflow:hidden;
   background:
@@ -63,6 +59,7 @@ a{text-decoration:none} img{max-width:100%;display:block}
       linear-gradient(180deg, #a8cbe0 0%, #95c1dc 40%, #88bad3 100%);
   }
 }
+/* Vagues décoratives + trou central */
 .hero--image::before,
 .hero--image::after{
   content:""; position:absolute; inset:-8% -8%; z-index:1; pointer-events:none;
@@ -101,15 +98,12 @@ h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
 input.url{width:640px;max-width:86vw;height:54px;padding:0 16px;border:none;outline:none;font-size:18px;border-radius:9999px;color:#14233a}
 input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .btn{appearance:none;border:none;cursor:pointer;font-weight:800;font-size:16px;padding:14px 18px;border-radius:12px;color:#fff;background:var(--blue-dark);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.35);transition:.18s}
-.btn:hover{background:var(--orange);filter:brightness(1.02)}
-.btn:active{transform:translateY(1px)}
+.btn:hover{background:var(--orange);filter:brightness(1.02)} .btn:active{transform:translateY(1px)}
 .btn-hero{height:54px;padding:0 22px;border-radius:9999px;font-size:16px}
-.btn.blue{background:var(--blue)}
-.btn.blue:hover{background:rgba(0,115,182,.15);color:var(--blue-dark);box-shadow:inset 0 0 0 1px rgba(0,115,182,.35)}
+.btn.blue{background:var(--blue)} .btn.blue:hover{background:rgba(0,115,182,.15);color:var(--blue-dark);box-shadow:inset 0 0 0 1px rgba(0,115,182,.35)}
 
 /* ================= SECTIONS ================= */
-.section{padding:88px 0}
-.section.alt{background:var(--surface);position:relative}
+.section{padding:88px 0} .section.alt{background:var(--surface);position:relative}
 .section.alt::before{content:"";position:absolute;left:0;right:0;top:-24px;height:24px;background:linear-gradient(180deg,rgba(237,243,247,0),rgba(237,243,247,1))}
 .section-title{margin:0 0 12px;font-size:32px;color:#0f2746;text-align:center;white-space:nowrap}
 .section-title::after{content:"";display:block;width:64px;height:4px;margin:10px auto 0;background:var(--orange);border-radius:3px;opacity:.85}
@@ -156,70 +150,63 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .btn.ghost{background:#fff;color:var(--blue-dark);border:1px solid var(--stroke)}
 .btn.link{background:transparent;color:var(--blue-dark);border:none;padding:8px 10px}
 .detail{display:none;margin-top:12px;border-top:1px dashed var(--stroke);padding-top:12px}
-.detail .grid{grid-template-columns:repeat(3,1fr)}
-@media(max-width:900px){.detail .grid{grid-template-columns:1fr}}
+.detail .grid{grid-template-columns:repeat(3,1fr)} @media(max-width:900px){.detail .grid{grid-template-columns:1fr}}
 .detail .box{border:1px solid var(--stroke);border-radius:14px;padding:14px;background:#fff}
 .detail h4{margin:0 0 6px}
 .small{font-size:13px;color:var(--muted)}
 
-/* ================= BRANDWORD “Awenoria” — espacement uniforme + i ajusté ================= */
+/* ================= BRANDWORD “Awenoria” ================= */
 .section-title{ letter-spacing:0; line-height:1.2; }
 .section-title .brandword{ font-size:1em; line-height:1; }
 
 .brandword{
-  /* Réglages globaux identiques */
-  --kern: 0.02em;     /* espacement uniforme entre toutes les lettres */
+  --kern: 0.02em;
   --i-scaleX: 1;
-  --i-scaleY: 0.86;   /* i un peu plus court -> espace sous le point */
+  --i-scaleY: 0.86;   /* fût plus court -> espace sous le point */
   --idot-top: 0.09em; /* hauteur du point cuivré */
-  --idot-left: 50%;   /* centrage horizontal du point (sur-chargé titre par titre si besoin) */
+  --idot-left: 50%;
 
   display:inline-flex;
-  gap: var(--kern);              /* A–w = même espace que les autres paires */
-  letter-spacing: var(--kern);   /* s’applique aux lettres de .rest */
+  gap: var(--kern);
+  letter-spacing: var(--kern);
   font-kerning: none; font-feature-settings: "kern" 0;
   align-items:baseline; white-space:nowrap; line-height:1;
 }
 .brandword .A{
-  color:var(--blue-dark, #005a8e);
-  font-weight:900;
-  margin-right:0 !important;     /* évite tout micro-kerning parasite */
+  color:var(--blue-dark); font-weight:900; margin-right:0 !important;
 }
 .brandword .rest{
   background:linear-gradient(90deg,#0b4f78 0%, #2f86b8 40%, #6fb3d8 100%);
   -webkit-background-clip:text; background-clip:text;
   color:transparent; font-weight:900; position:relative;
 }
-/* Fût du “i” = dotless ı (même dégradé que .rest) */
+/* “ı” (dotless) = fût du i, hérite du dégradé */
 .brandword .i-body{
   position:relative; display:inline-block; font-style:normal; font-size:1em; line-height:1;
   background:inherit; -webkit-background-clip:text; background-clip:text; color:transparent;
-  transform: scale(var(--i-scaleX), var(--i-scaleY)); /* ↓ i plus court */
-  transform-origin: bottom center;
-  filter: brightness(1.10) saturate(0.85);           /* bleu du fût légèrement adouci */
+  transform: scale(var(--i-scaleX), var(--i-scaleY)); transform-origin: bottom center;
+  filter: brightness(1.10) saturate(0.85);
 }
-/* Point cuivré — reste rond même si le fût est “scaleY” */
+/* point cuivré compensé pour rester rond */
 .brandword .i-body::after{
   content:""; position:absolute;
   left: var(--idot-left);
   transform: translateX(-50%) scaleY(calc(1 / var(--i-scaleY)));
   top: var(--idot-top);
-  width:0.20em; height:0.20em;
-  background:var(--orange, #ff6600);
-  border-radius:50%;
+  width:0.20em; height:0.20em; background:var(--orange); border-radius:50%;
 }
 
-/* ================= “Ce que l’audit vérifie” (cartes) ================= */
-.checkcards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch;justify-items:center}
+/* ================= CHECKCARDS ================= */
+.checkcards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch}
 @media(max-width:900px){.checkcards{grid-template-columns:1fr}}
 .cc{
-  width:100%; max-width:520px; background:#fff; border:1px solid var(--stroke);
+  width:100%; background:#fff; border:1px solid var(--stroke);
   border-radius:18px; padding:18px 18px 20px; box-shadow:var(--shadow-sm);
   transition:.2s; text-align:left;
 }
 .cc:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:#d5e7f4}
 .cc ul{margin:0;padding:0;list-style:none}
-.cc li{position:relative;padding-left:34px;margin:14px 0;cursor:pointer;font-weight:600}
+.cc li{position:relative;padding-left:34px;margin:14px 0;cursor:pointer;font-weight:600;color:#0f2746}
 .cc li::before{
   content:""; position:absolute; left:0; top:.15em; width:20px; height:20px; border-radius:50%;
   background:linear-gradient(180deg,#eaf5fd,#d8ecfa); border:2px solid #cbe3f3; box-shadow:inset 0 0 0 2px #fff;
@@ -228,7 +215,6 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   content:""; position:absolute; left:6px; top:.52em; width:7px; height:12px; border-right:3px solid var(--blue-dark); border-bottom:3px solid var(--blue-dark); transform:rotate(45deg);
 }
 .cc small{display:block;color:var(--muted)}
-.cc .hint{margin-top:8px;color:var(--muted);font-size:13px}
 
 /* ================= MODAL ================= */
 .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(10,22,34,.45);z-index:90;padding:20px}
@@ -247,15 +233,6 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .dot{width:9px;height:9px;border-radius:50%;background:#c7d9e6;display:inline-block;cursor:pointer}
 .dot.active{background:var(--blue-dark)}
 
-/* ================= FAQ ================= */
-.faq {max-width:760px;margin:0 auto}
-.faq .item{background:#fff;border:1px solid var(--stroke);border-radius:14px;box-shadow:var(--shadow-sm);margin:10px 0;overflow:hidden}
-.faq q{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;font-weight:800;color:#0f2746;margin:0;padding:14px 16px}
-.faq q::after{content:"▸";opacity:.6;transition:.18s}
-.faq q.open::after{content:"▾";opacity:1}
-.faq .a{display:none;margin:0;padding:0 16px 14px;color:var(--muted);border-top:1px dashed var(--stroke)}
-.faq q.open + .a{display:block}
-
 /* ================= CTA sticky ================= */
 .sticky-cta{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;background:#fff;border:1px solid var(--stroke);border-radius:999px;box-shadow:0 16px 32px rgba(16,32,48,.12);padding:8px 12px;display:none;gap:8px;z-index:70}
 .sticky-cta .btn{padding:10px 14px;font-size:14px}
@@ -272,7 +249,6 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 }
 </style>
 </head>
-
 <body>
 
 <!-- ===== HEADER ===== -->
@@ -331,7 +307,6 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
         <button class="btn btn-hero" onclick="analyser()">Analyser</button>
       </div>
     </div>
-
     <div id="resultat" class="result" aria-live="polite"></div>
   </div>
 </section>
@@ -520,4 +495,208 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 </div>
 
 <!-- ===== MODAL ===== -->
-<div id="modal" class="modal" role="dialog" aria
+<div id="modal" class="modal" role="dialog" aria-modal="true">
+  <div class="panel">
+    <div class="hd"><strong id="modalTitle"></strong><button class="close-x" aria-label="Fermer" onclick="closeModal()">×</button></div>
+    <div class="bd" id="modalBody"></div>
+    <div class="ft"><button class="btn ghost" onclick="closeModal()">Fermer</button></div>
+  </div>
+</div>
+
+<script>
+/* année + header sticky */
+document.getElementById('year').textContent = new Date().getFullYear();
+(function(){const h=document.getElementById('site-header');const t=()=>{if(window.scrollY>10)h.classList.add('scrolled');else h.classList.remove('scrolled')};t();window.addEventListener('scroll',t,{passive:true})})();
+
+/* Reveal on scroll */
+(function(){const els=[...document.querySelectorAll('.reveal')]; const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.12}); els.forEach(el=>io.observe(el));})();
+
+/* Typing effect (rejoue à chaque retour en vue) */
+(function(){
+  const SPEED = 22;
+  const els = [...document.querySelectorAll('.type-on-view')];
+  els.forEach(el=>{
+    const full = (el.getAttribute('data-text') || el.textContent || '').trim();
+    el.dataset.fullText = full; el.textContent = ''; el.__typingTimer=null; el.__ready=true;
+  });
+  function type(el){
+    clearTimeout(el.__typingTimer);
+    const full = el.dataset.fullText || ''; el.textContent = ''; let i=0;
+    (function tick(){ el.textContent = full.slice(0, ++i);
+      if(i < full.length) el.__typingTimer=setTimeout(tick, SPEED); else {el.__typingTimer=null; el.__ready=false;}
+    })();
+  }
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      const el = entry.target;
+      if(entry.isIntersecting){ if(el.__ready) type(el); }
+      else { el.__ready = true; clearTimeout(el.__typingTimer); el.__typingTimer=null; }
+    });
+  }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
+  els.forEach(el=>io.observe(el));
+})();
+
+/* Témoignages slider */
+(function(){
+  const wrap=document.getElementById('testi'); if(!wrap) return;
+  const track=wrap.querySelector('.testi-track');
+  const dots=[...document.querySelectorAll('#testiNav .dot')];
+  let i=0; const go=n=>{i=n;track.style.transform=`translateX(-${100*i}%)`;dots.forEach((d,k)=>d.classList.toggle('active',k===i))};
+  dots.forEach(d=>d.addEventListener('click',()=>go(+d.dataset.i)));
+  setInterval(()=>go((i+1)%dots.length),5000);
+})();
+
+/* Sticky CTA logique */
+(function(){
+  const sc=document.getElementById('stickyCta'); if(!sc) return;
+  const hero=document.querySelector('.hero--image'); const anchors=document.querySelectorAll('.cta-anchor');
+  let heroVisible=true, anchorVisible=false;
+  const apply=()=>{ sc.style.display=(heroVisible||anchorVisible)?'none':'flex'; };
+  const ioHero=new IntersectionObserver(([e])=>{heroVisible=e.isIntersecting;apply();},{threshold:.05}); ioHero.observe(hero);
+  const ioAnch=new IntersectionObserver(entries=>{anchorVisible=entries.some(e=>e.isIntersecting);apply();},{threshold:.2}); anchors.forEach(a=>ioAnch.observe(a)); apply();
+})();
+
+/* Analyse via Cloudflare Worker (inchangé) */
+const WORKER_URL="https://awenoria.bmavcontact.workers.dev/analyze";
+const normalizeUrl=u=>{if(!u) return ""; u=u.trim(); if(!/^https?:\/\//i.test(u)) u="https://"+u; return u;};
+const pct=n=>Number.isFinite(n)?`${Math.round(n)}%`:"—";
+
+function buildResultUI(data,site){
+  const s=data.scores||{}, rgpd=data.rgpd||{}, legal=data.legal||{}, a11y=data.a11y||{};
+  const box=document.getElementById('resultat'); box.style.display='block';
+  const detailId="detail-"+Date.now();
+  box.innerHTML=`
+    <div class="header">
+      <h3>Résultats pour <span class="tag">${(data.finalUrl||site)}</span></h3>
+      <span class="small">Analyse locale — aucune donnée conservée</span>
+    </div>
+    <div class="summary">
+      <div class="card-mini"><b>RGPD</b><span>${pct(s.rgpd)} · ${rgpd.policyLink?"Politique détectée":"Politique non détectée"} ${rgpd.cookiesWords?"· Cookies":""}</span></div>
+      <div class="card-mini"><b>Mentions légales</b><span>${pct(s.mentions)} · ${legal.mentionsLink?"Lien détecté":"Lien non détecté"}</span></div>
+      <div class="card-mini"><b>Accessibilité</b><span>${pct(s.accessibilite)} · ALT ${a11y.imgWithAlt||0}/${a11y.imgCount||0}</span></div>
+    </div>
+    <div class="footer">
+      <button class="btn" onclick="toggleDetail('${detailId}')">Accéder au détail</button>
+      <button class="btn ghost" onclick="exportResultPDF()">Exporter en PDF</button>
+      <button class="btn link" onclick='downloadJSON(${JSON.stringify(JSON.stringify(data)).replace(/'/g,"&#39;")})'>Télécharger le JSON</button>
+    </div>
+    <div id="${detailId}" class="detail">
+      <div class="grid">
+        <div class="box">
+          <h4>RGPD</h4>
+          <ul>
+            <li>Politique de confidentialité : <b>${rgpd.policyLink?"présente":"absente"}</b></li>
+            <li>Cookies : ${rgpd.cookiesWords?"mots-clés détectés":"non détectés"}</li>
+            <li>Autres indices : ${rgpd.other||"—"}</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h4>Mentions légales</h4>
+          <ul>
+            <li>Lien “mentions” : <b>${legal.mentionsLink?"présent":"absent"}</b></li>
+            <li>Infos éditeur/hébergeur : ${legal.hasPublisher?"détectées":"—"}</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h4>Accessibilité</h4>
+          <ul>
+            <li>Images avec ALT : <b>${a11y.imgWithAlt||0}/${a11y.imgCount||0}</b></li>
+            <li>Autres repères : ${a11y.notes||"—"}</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small" style="margin-top:10px">Pré-diagnostic automatique. Pour un avis formel, <a href="contact.html">contactez un expert</a>.</p>
+    </div>`;
+}
+function toggleDetail(id){const el=document.getElementById(id); if(!el) return; el.style.display = el.style.display==='block' ? 'none' : 'block';}
+function exportResultPDF(){ window.print(); }
+function downloadJSON(jsonString){ const blob=new Blob([JSON.parse(jsonString)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='awenoria-analyse.json'; a.click(); URL.revokeObjectURL(a.href); }
+
+async function analyser(){
+  const input=document.getElementById('url'); const site=normalizeUrl(input.value);
+  const box=document.getElementById('resultat');
+  if(!site){ alert("Merci d'entrer une URL."); return; }
+  box.style.display='block'; box.innerHTML='<p>Analyse en cours…</p>';
+  try{
+    const res=await fetch(`${WORKER_URL}?url=${encodeURIComponent(site)}`,{headers:{accept:"application/json"},mode:'cors',cache:'no-store'});
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok || data.ok===false || !data){ throw new Error(data?.error || `Analyse indisponible (${res.status})`); }
+    buildResultUI(data,site);
+  }catch(e){
+    console.error(e);
+    const demo={finalUrl:site,scores:{global:80,rgpd:72,mentions:58,accessibilite:86},rgpd:{policyLink:true,cookiesWords:true},legal:{mentionsLink:false,hasPublisher:false},a11y:{imgWithAlt:24,imgCount:26}};
+    box.innerHTML = `<p class="small" style="color:#b3261e"><b>Info :</b> l’analyse est momentanément indisponible. Exemple de rapport affiché.</p>`;
+    buildResultUI(demo,site);
+  }
+}
+
+/* MODAL — contenu “Ce que l’audit vérifie” */
+const TOPIC_CONTENT={
+  policy:`<h3>Politique de confidentialité & mentions RGPD</h3><p><b>Objectif.</b> Informer sur les finalités, bases légales, durées, droits et contact DPO.</p><p><b>Évaluation.</b> Présence de la page, accessibilité du lien, sections clés.</p><p><b>À faire.</b> Mettre à jour, clarifier les bases légales et les droits, ajouter les contacts.</p>`,
+  legalbase:`<h3>Base légale, droits, DPO & contacts</h3><p><b>Objectif.</b> Rendre explicites bases légales et droits. Proposer un canal de contact.</p>`,
+  forms:`<h3>Formulaires : information au point de collecte</h3><p><b>Objectif.</b> Donner les infos essentielles au moment de la collecte.</p><p><b>Pratique.</b> Mentions proches du bouton, lien vers la politique, cases consentement.</p>`,
+  alt:`<h3>ALT images & repères ARIA</h3><p><b>Objectif.</b> Accessibilité via lecteurs d’écran.</p><p><b>Évaluation.</b> ALT pertinents, landmarks, titres de liens descriptifs.</p>`,
+  contrast:`<h3>Contrastes, sémantique, navigation clavier</h3><p><b>Objectif.</b> Lisibilité et usage sans souris.</p>`,
+  a11ydec:`<h3>Déclaration d’accessibilité</h3><p><b>Objectif.</b> Informer sur le niveau de conformité et la procédure de contact/médiation.</p>`,
+  mentions:`<h3>Mentions légales — éditeur / hébergeur / contact</h3><p><b>Objectif.</b> Rendre l’éditeur identifiable et joignable.</p>`,
+  rcs:`<h3>RCS / SIREN / TVA</h3><p><b>Objectif.</b> Afficher les identifiants requis.</p>`,
+  cgu:`<h3>CGU / CGV / rétractation e-commerce</h3><p><b>Objectif.</b> Encadrer l’usage et l’achat, informer sur la rétractation et la médiation.</p>`
+};
+const modal=document.getElementById('modal'); const modalTitle=document.getElementById('modalTitle'); const modalBody=document.getElementById('modalBody');
+function openModal(label,key){ modalTitle.textContent=label; modalBody.innerHTML=TOPIC_CONTENT[key]||"<p>Contenu à venir.</p>"; modal.style.display='flex'; }
+function closeModal(){ modal.style.display='none'; }
+modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>openModal(li.textContent.trim(), li.dataset.topic)));
+
+/* FAQ accordéon fiable + accessible */
+(function(){
+  const items = [...document.querySelectorAll('.faq .item')];
+  items.forEach(item=>{
+    const q = item.querySelector('q');
+    const a = item.querySelector('.a');
+    if(!q || !a) return;
+
+    q.setAttribute('role','button');
+    q.setAttribute('tabindex','0');
+    q.setAttribute('aria-expanded','false');
+
+    function openItem(target){
+      items.forEach(it=>{
+        const qi = it.querySelector('q'), ai = it.querySelector('.a');
+        if(it === target){
+          qi.classList.add('open');  qi.setAttribute('aria-expanded','true');
+          ai.style.display = 'block';
+        }else{
+          qi.classList.remove('open'); qi.setAttribute('aria-expanded','false');
+          ai.style.display = 'none';
+        }
+      });
+    }
+
+    function toggle(){
+      const isOpen = q.getAttribute('aria-expanded') === 'true';
+      if(isOpen){
+        q.classList.remove('open'); q.setAttribute('aria-expanded','false');
+        a.style.display = 'none';
+      }else{
+        openItem(item);
+      }
+    }
+
+    q.addEventListener('click', toggle);
+    q.addEventListener('keydown', e=>{
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+      if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+        e.preventDefault();
+        const dir = e.key === 'ArrowDown' ? 1 : -1;
+        const qs = items.map(it=>it.querySelector('q'));
+        const idx = qs.indexOf(q);
+        const next = qs[(idx + dir + qs.length) % qs.length];
+        next.focus();
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
