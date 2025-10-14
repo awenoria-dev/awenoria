@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Awenoria — Pourquoi maintenant ? (2026)</title>
+  <meta name="description" content="Comprendre pourquoi renforcer la conformité de votre site dès maintenant : contexte européen et français, jalons 2025–2026, priorités RGPD, accessibilité et mentions légales.">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
+  <meta name="theme-color" content="#005a8e">
+
+  <!-- Manrope -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --blue:#0073b6;                 /* bleu clair */
+      --blue-dark:#005a8e;            /* bleu foncé dominant */
+      --orange:#ff6600;               /* accent / hover */
+      --bg-top:#f7f9fc;               /* haut du dégradé */
+      --bg:#edf3f7;                   /* bas du dégradé */
+      --bg-grad: linear-gradient(180deg, var(--bg-top) 0%, var(--bg) 100%);
+      --surface:#ffffff;
+      --stroke:#e6edf3;
+      --text:#16233a;
+      --muted:#5d6b7c;
+      --radius:16px;
+      --shadow-sm:0 4px 12px rgba(16,32,48,.06);
+      --shadow-lg:0 14px 30px rgba(16,32,48,.10);
+    }
+
+    *{ box-sizing:border-box }
+    body{ margin:0; font-family: Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--text); background:var(--bg-grad),var(--bg); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    a{ text-decoration:none }
+    .container{ max-width:1160px; margin:0 auto; padding:24px 20px }
+
+    /* HEADER */
+    .header{ position:sticky; top:0; z-index:60; background:var(--bg-top); border-bottom:1px solid transparent; transition: background-color .25s ease, box-shadow .25s ease, border-color .25s ease }
+    .header.scrolled{ background:#fff; border-bottom-color:var(--stroke); box-shadow:0 6px 20px rgba(16,32,48,.06) }
+    .nav{ display:flex; align-items:center; justify-content:space-between; gap:20px; padding:10px 0; min-height:80px }
+    .brand{ display:inline-flex; align-items:center; padding:4px 6px; border-radius:12px; transition: filter .2s ease, transform .08s ease }
+    .brand__logo{ display:block; height:92px; width:auto }
+    @media(min-width:992px){ .brand__logo{ height:100px } }
+    .brand:hover{ filter: drop-shadow(0 6px 14px rgba(0,90,142,.10)) }
+    .brand:active{ transform: scale(.99) }
+
+    .mainnav{ display:flex; align-items:center; gap:2px; margin-left:auto }
+    .menu-item{ list-style:none; position:relative }
+    .menu-link{ position:relative; display:inline-block; padding:14px 14px; border-radius:12px; color:var(--blue-dark); font-weight:800; letter-spacing:.1px; line-height:1; transition: color .2s ease, background .2s ease }
+    .menu-link:focus-visible{ outline:none; box-shadow:0 0 0 4px rgba(0,115,182,.18) }
+    .menu-link::after{ content:""; position:absolute; left:12px; right:12px; bottom:6px; height:3px; background:var(--orange); border-radius:2px; opacity:.9; transform:scaleX(0); transform-origin:left; transition:transform .22s ease }
+    .menu-link:hover{ color:var(--orange); background:rgba(0,115,182,.06) }
+    .menu-link:hover::after, .menu-link.active::after{ transform:scaleX(1) }
+    .menu-link.active{ color:var(--orange) }
+
+    .dropdown{ position:absolute; top:calc(100% + 10px); left:0; min-width:280px; padding:10px; background:#fff; border:1px solid var(--stroke); border-radius:14px; box-shadow:var(--shadow-lg); opacity:0; visibility:hidden; transform:translateY(8px); transition:opacity .18s ease, transform .18s ease, visibility .18s ease }
+    .menu-item:hover > .dropdown{ opacity:1; visibility:visible; transform:translateY(0) }
+    .dropdown a{ display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:10px; color:var(--blue-dark); font-weight:700; transition: background .18s ease, color .18s ease, transform .18s ease }
+    .dropdown a:hover{ background:#f3f8fc; color:var(--orange); transform:translateY(-1px) }
+
+    /* PAGE */
+    .section{ padding:48px 0 }
+    .section.alt{ background:var(--surface) }
+    h1{ margin:0; font-size:42px; line-height:1.08; color:var(--blue-dark) }
+    h2{ margin:0 0 10px; font-size:28px; color:#0f2746 }
+    .lead{ color:var(--muted); max-width:840px }
+    .muted{ color:var(--muted) }
+
+    .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px }
+    .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:20px }
+    @media(max-width:900px){ .grid-3,.grid-2{ grid-template-columns:1fr } }
+
+    .tile{ background:#fff; border:1px solid var(--stroke); border-radius:16px; box-shadow:var(--shadow-sm); padding:18px; transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease }
+    .tile:hover{ transform:translateY(-3px); box-shadow:var(--shadow-lg); border-color:#d5e7f4 }
+    .badge{ display:inline-block; background: var(--blue-dark); color:#fff; padding:6px 12px; border-radius:999px; font-size:12px; font-weight:800 }
+
+    .timeline{ position:relative; margin-top:8px }
+    .timeline::before{ content:""; position:absolute; left:12px; top:0; bottom:0; width:2px; background:#dfe8f0 }
+    .milestone{ position:relative; padding-left:36px; margin:14px 0 }
+    .milestone::before{ content:""; position:absolute; left:6px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--blue-dark) }
+    .milestone h3{ margin:0 0 4px; color:#0f2746; font-size:18px }
+    .milestone p{ margin:0; color:var(--muted) }
+
+    .notice{ background:#fff; border:1px dashed #d5e7f4; padding:14px; border-radius:12px; color:var(--muted) }
+
+    .btn{ appearance:none; border:none; cursor:pointer; font-weight:800; font-size:16px; padding:14px 18px; border-radius:12px; color:#fff; background: var(--blue-dark); box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.35); transition: background .18s ease, transform .08s ease, filter .18s ease }
+    .btn:hover{ background:var(--orange); filter:brightness(1.02) }
+    .btn.secondary{ background:#fff; color:var(--blue-dark); border:1px solid var(--stroke); box-shadow:var(--shadow-sm) }
+    .btn.secondary:hover{ border-color:#d5e7f4; color:var(--orange) }
+
+    /* Reveal */
+    .reveal{ opacity:0; transform:translateY(10px); transition:opacity .4s ease, transform .4s ease }
+    .reveal.is-visible{ opacity:1; transform:none }
+
+    /* Footer */
+    .footer{ margin-top:44px; padding:24px 0; color:#5c6a7a; font-size:14px; border-top:1px solid var(--stroke) }
+    .footer a{ color:#5c6a7a }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header id="site-header" class="header">
+    <div class="container nav">
+      <a href="./index.html" class="brand" title="Accueil">
+        <img src="./images/logo.png" alt="Awenoria" class="brand__logo">
+      </a>
+      <ul class="mainnav" aria-label="Navigation principale">
+        <li class="menu-item"><a class="menu-link" href="index.html">Accueil</a></li>
+        <li class="menu-item">
+          <a class="menu-link" href="fonctionnalites.html">Audit ▾</a>
+          <div class="dropdown" role="menu">
+            <a href="fonctionnalites.html">• Fonctionnalités</a>
+            <a href="comment.html">• Méthodologie</a>
+            <a href="tarifs.html">• Tarifs</a>
+          </div>
+        </li>
+        <li class="menu-item">
+          <a class="menu-link" href="javascript:void(0)">Conformité ▾</a>
+          <div class="dropdown" role="menu">
+            <a href="fonctionnalites.html#rgpd">• Audit RGPD</a>
+            <a href="fonctionnalites.html#a11y">• Audit Accessibilité</a>
+            <a href="fonctionnalites.html#legal">• Mentions légales</a>
+          </div>
+        </li>
+        <li class="menu-item">
+          <a class="menu-link active" href="guides.html">Ressources ▾</a>
+          <div class="dropdown" role="menu">
+            <a href="guides.html">• Guides & bonnes pratiques</a>
+            <a href="modeles.html">• Modèles juridiques</a>
+            <a href="faq.html">• FAQ</a>
+            <a class="menu-link active" href="pourquoi-2026.html">• Pourquoi maintenant ? (2026)</a>
+          </div>
+        </li>
+        <li class="menu-item">
+          <a class="menu-link" href="javascript:void(0)">À propos ▾</a>
+          <div class="dropdown" role="menu">
+            <a href="a-propos.html">• Mission & valeurs</a>
+            <a href="mentions.html">• Mentions légales</a>
+            <a href="confidentialite.html">• Confidentialité</a>
+          </div>
+        </li>
+        <li class="menu-item"><a class="menu-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="section">
+      <div class="container">
+        <h1 class="reveal">Pourquoi maintenant ? (2026)</h1>
+        <p class="lead reveal">Le cadre européen et français se renforce sur trois axes : <b>protection des données</b>, <b>accessibilité numérique</b> et <b>information des consommateurs</b>. Anticiper en 2025–2026 permet d’éviter des non‑conformités, de réduire les risques et d’améliorer l’expérience utilisateur.</p>
+      </div>
+    </section>
+
+    <!-- RAISONS PRINCIPALES -->
+    <section class="section alt">
+      <div class="container">
+        <h2 class="reveal">Les 3 raisons clés d’anticiper</h2>
+        <div class="grid-3">
+          <article class="tile reveal"><span class="badge">1</span><h3>Exigences accrues</h3><p class="muted">Clarification des attentes, contrôles plus réguliers, attentes marché/clients plus élevées.</p></article>
+          <article class="tile reveal"><span class="badge">2</span><h3>Risques maîtrisés</h3><p class="muted">Limiter les non‑conformités (données, accessibilité, mentions), éviter litiges et perte de confiance.</p></article>
+          <article class="tile reveal"><span class="badge">3</span><h3>Gain d’efficacité</h3><p class="muted">Des corrections prioritaires, des modèles prêts à l’emploi et une meilleure lisibilité du site.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE 2025–2026 (générique) -->
+    <section class="section">
+      <div class="container">
+        <h2 class="reveal">Repères 2025–2026</h2>
+        <div class="grid-2">
+          <div class="tile reveal">
+            <h3 style="margin-top:0">2025 — Consolidation</h3>
+            <div class="timeline">
+              <div class="milestone"><h3>RGPD (pratiques)</h3><p>Mise à niveau des politiques, bandeau cookies conforme, clauses formulaires, registre à jour.</p></div>
+              <div class="milestone"><h3>Accessibilité (bases A11y)</h3><p>Contrastes, structure sémantique, focus visibles, textes alternatifs essentiels.</p></div>
+              <div class="milestone"><h3>Mentions légales</h3><p>Pages légales complètes et à jour, contacts/médiation, informations e‑commerce le cas échéant.</p></div>
+            </div>
+          </div>
+          <div class="tile reveal">
+            <h3 style="margin-top:0">2026 — Généralisation</h3>
+            <div class="timeline">
+              <div class="milestone"><h3>Contrôles et attentes</h3><p>Demande accrue de conformité côté clients/partenaires, vérifications plus fréquentes.</p></div>
+              <div class="milestone"><h3>Professionnalisation</h3><p>Documentation et preuves (journaux de consentement, rapports, historique des mises à jour).</p></div>
+              <div class="milestone"><h3>Accessibilité continue</h3><p>Améliorations progressives, déclaration et plan d’action à jour sur le site.</p></div>
+            </div>
+          </div>
+        </div>
+        <p class="notice reveal" style="margin-top:16px">Ces repères sont génériques et <b>ne remplacent pas</b> vos obligations sectorielles spécifiques ni un avis juridique. Adaptez‑les à votre contexte.</p>
+      </div>
+    </section>
+
+    <!-- PRIORITES D’ACTION -->
+    <section class="section alt">
+      <div class="container">
+        <h2 class="reveal">Priorités d’action</h2>
+        <div class="grid-3">
+          <article class="tile reveal"><h3>1) Pages légales</h3><p class="muted">Mentions légales, Politique de confidentialité et Cookies — liens visibles en pied de page.</p></article>
+          <article class="tile reveal"><h3>2) Cookies & consentement</h3><p class="muted">CMP conforme, refus aussi simple que l’acceptation, preuve du consentement.</p></article>
+          <article class="tile reveal"><h3>3) Accessibilité utile</h3><p class="muted">Contrastes, ALT, navigation clavier, focus — mettez à jour votre déclaration.</p></article>
+          <article class="tile reveal"><h3>4) Formulaires</h3><p class="muted">Information au point de collecte (finalités, base légale, droits) et liens internes utiles.</p></article>
+          <article class="tile reveal"><h3>5) Documentation</h3><p class="muted">Registre des traitements, DPA avec sous‑traitants, politiques internes minimales.</p></article>
+          <article class="tile reveal"><h3>6) Preuves</h3><p class="muted">Captures, rapports, dates de mise à jour, export des consentements.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMENT AIDONS-NOUS ? -->
+    <section class="section">
+      <div class="container grid-2">
+        <div class="tile reveal">
+          <h2 style="margin-top:0">Comment Awenoria vous aide</h2>
+          <ul style="line-height:1.9">
+            <li>Audit automatique avec score global et recommandations par thématique.</li>
+            <li>Guides & modèles pour corriger vite (RGPD, A11y, Mentions).</li>
+            <li>Options de rapport PDF, historique et suivi.</li>
+            <li>Accompagnement ponctuel (atelier) ou mission d’audit sur mesure.</li>
+          </ul>
+          <div style="margin-top:12px">
+            <a class="btn" href="index.html#resultat">Lancer un audit</a>
+            <a class="btn secondary" style="margin-left:8px" href="contact.html">Parler à un expert</a>
+          </div>
+        </div>
+        <div class="tile reveal">
+          <h2 style="margin-top:0">Ressources utiles</h2>
+          <p class="muted">Pour aller plus loin :</p>
+          <ul style="line-height:1.9">
+            <li><a href="guides.html">Guides & bonnes pratiques</a></li>
+            <li><a href="modeles.html">Modèles juridiques</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="fonctionnalites.html#rgpd">Fonctionnalités — RGPD</a></li>
+            <li><a href="fonctionnalites.html#a11y">Fonctionnalités — Accessibilité</a></li>
+            <li><a href="fonctionnalites.html#legal">Fonctionnalités — Mentions légales</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section alt">
+      <div class="container" style="text-align:center">
+        <h2 class="reveal">Anticipez 2026 dès aujourd’hui</h2>
+        <p class="lead reveal" style="margin:0 auto">Démarrez par un diagnostic clair, corrigez l’essentiel, documentez — et gardez vos preuves.</p>
+        <div class="reveal" style="margin-top:12px">
+          <a class="btn" href="index.html#resultat">Démarrer un audit</a>
+          <a class="btn secondary" style="margin-left:8px" href="contact.html">Contacter un expert</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="container footer">
+    <div style="display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap">
+      <span>© <span id="year"></span> Awenoria</span>
+      <span>
+        <a href="mentions.html">Mentions légales</a> ·
+        <a href="confidentialite.html">Confidentialité</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    // Année dynamique
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Header sticky color swap
+    (function(){
+      const header = document.getElementById('site-header');
+      const toggle = () => { if (window.scrollY > 10) header.classList.add('scrolled'); else header.classList.remove('scrolled'); };
+      toggle();
+      window.addEventListener('scroll', toggle, { passive:true });
+    })();
+
+    // Reveal on scroll
+    (function(){
+      const els=[...document.querySelectorAll('.reveal')];
+      const io=new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+      },{threshold:.12});
+      els.forEach(el=>io.observe(el));
+    })();
+  </script>
+</body>
+</html>
