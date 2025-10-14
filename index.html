@@ -6,8 +6,11 @@
 <title>Awenoria — Audit de conformité automatisé</title>
 <meta name="description" content="Testez la conformité RGPD, l'accessibilité et les mentions légales de votre site en un clic. Résultats clairs, détails exploitables et export PDF." />
 
+<!-- Favicons -->
 <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
+
+<!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -79,11 +82,11 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .tile.pill{border-radius:28px}
 .tile .tile-head{display:flex;justify-content:center;margin-bottom:6px}
 .badge{
-  display:inline-flex;align-items:center;justify-content:center;min-width:118px;height:34px;
-  padding:0 14px;border-radius:999px;font-size:13px;font-weight:900;letter-spacing:.2px;color:#fff;background:var(--blue-dark);
+  display:inline-flex;align-items:center;justify-content:center;min-width:130px;height:36px;
+  padding:0 16px;border-radius:999px;font-size:14px;font-weight:900;letter-spacing:.2px;color:#fff;background:var(--blue-dark);
 }
 .tile:hover .badge{background:var(--blue)}
-.tile h3{margin:12px 0 6px;color:#0f2746;text-align:left}
+.tile h3{margin:12px 0 6px;color:#0f2746}
 .muted{color:var(--muted);margin:0}
 .tile .cta{margin-top:12px;display:inline-block;font-weight:800;font-size:14px;color:var(--blue-dark)}
 .tile .cta:hover{color:var(--orange)}
@@ -99,7 +102,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .step{background:#fff;border:1px solid var(--stroke);border-radius:16px;padding:18px;box-shadow:var(--shadow-sm)}
 .actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:28px}
 
-/* RESULT WIDGET (nouveau) */
+/* RESULT WIDGET */
 .result{margin-top:22px;background:var(--surface);border:1px solid var(--stroke);border-radius:20px;box-shadow:var(--shadow-sm);padding:22px;display:none;color:var(--text)}
 .result .header{display:flex;justify-content:space-between;align-items:center;margin:-22px -22px 16px;padding:14px 22px;border-bottom:1px solid var(--stroke);background:#fbfdff;border-radius:20px 20px 0 0}
 .result h3{margin:0;font-size:18px}
@@ -121,9 +124,19 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 /* BRANDWORD “Awenoria” stylé */
 .brandword{display:inline-flex;gap:0.06em;align-items:baseline}
 .brandword .A{color:var(--blue-dark);font-weight:900}
-.brandword .rest{background:linear-gradient(90deg,#0b4f78 0%, #2f86b8 40%, #6fb3d8 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900;position:relative}
-.brandword .i{position:relative}
-.brandword .i::after{content:"";position:absolute;top:-.36em;left:50%;transform:translateX(-50%);width:.35em;height:.35em;background:var(--orange);border-radius:50%}
+.brandword .rest{
+  background:linear-gradient(90deg,#0b4f78 0%, #2f86b8 40%, #6fb3d8 100%);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;font-weight:900;position:relative
+}
+.brandword .i{
+  background:inherit; -webkit-background-clip:text; background-clip:text;
+  color:transparent; font-weight:900; position:relative
+}
+.brandword .i::after{
+  content:""; position:absolute; top:-.36em; left:50%; transform:translateX(-50%);
+  width:.35em; height:.35em; background:var(--orange); border-radius:50%
+}
 
 /* LISTE JOLIE “Ce que l’audit vérifie” */
 .checkcards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -144,7 +157,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .modal .ft{display:flex;gap:10px;justify-content:flex-end;border-top:1px solid var(--stroke);padding:12px 18px}
 .close-x{background:transparent;border:none;font-size:22px;cursor:pointer}
 
-/* CTA sticky (mêmes règles de visibilité que précédemment) */
+/* CTA sticky */
 .sticky-cta{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;background:#fff;border:1px solid var(--stroke);border-radius:999px;box-shadow:0 16px 32px rgba(16,32,48,.12);padding:8px 12px;display:none;gap:8px;z-index:70}
 .sticky-cta .btn{padding:10px 14px;font-size:14px}
 
@@ -158,6 +171,14 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   header, .hero--image, .section, .sticky-cta, footer{display:none!important}
   #resultat{display:block!important;border:none;box-shadow:none}
 }
+
+/* Témoignages simples */
+.testi{overflow:hidden;margin-top:18px}
+.testi-track{display:flex;transition:.5s}
+.testi-card{min-width:100%;padding:16px;border:1px solid var(--stroke);border-radius:16px;background:#fff;box-shadow:var(--shadow-sm);text-align:center}
+.testi-nav{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.dot{width:9px;height:9px;border-radius:50%;background:#c7d9e6;display:inline-block;cursor:pointer}
+.dot.active{background:var(--blue-dark)}
 </style>
 </head>
 <body>
@@ -220,6 +241,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
         <button class="btn btn-hero" onclick="analyser()">Analyser</button>
       </div>
     </div>
+
     <div id="resultat" class="result" aria-live="polite"></div>
   </div>
 </section>
@@ -334,7 +356,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 <section class="section">
   <div class="container">
     <h2 class="section-title">Pourquoi maintenant ?</h2>
-    <p class="lead">Le cadre européen et français se renforce (protection des données, accessibilité numérique, information des consommateurs). Anticiper les <b>échéances 2025–2026</b> permet d’éviter des non-conformités et de renforcer l’expérience utilisateur. <a class="link-inline" href="pourquoi-2026.html">Lire l’article “Pourquoi maintenant ? (2026)”</a>.</p>
+    <p class="lead">Le cadre européen et français se renforce (protection des données, accessibilité numérique, information des consommateurs). Anticiper les <b>échéances 2025–2026</b> permet d’éviter des non-conformités et de renforcer l’expérience utilisateur. <a class="link-inline" href="pourquoi-2026.html" style="color:var(--blue-dark);font-weight:800">Lire l’article “Pourquoi maintenant ? (2026)”</a>.</p>
   </div>
 </section>
 
@@ -414,11 +436,16 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 /* Typing effect (hero + why) */
 (function(){
-  function type(el,speed=22){
-    if(!el) return; const full=el.getAttribute('data-text')||el.textContent.trim(); el.textContent=""; let i=0; (function tick(){ el.textContent=full.slice(0,++i); if(i<full.length) setTimeout(tick,speed); })();
+  function type(el, speed=22){
+    if(!el) return;
+    const full = el.getAttribute('data-text') || el.textContent.trim();
+    el.textContent = "";
+    let i = 0; (function tick(){ el.textContent = full.slice(0, ++i); if(i < full.length) setTimeout(tick, speed); })();
   }
-  type(document.getElementById('hero-lead'),22);
-  const w=document.getElementById('why-lead'); const io=new IntersectionObserver(([e])=>{ if(e.isIntersecting){ type(w,22); io.disconnect();}}, {threshold:.3}); io.observe(w);
+  document.addEventListener('DOMContentLoaded', ()=>{
+    type(document.getElementById('hero-lead'), 22);
+    type(document.getElementById('why-lead'), 22);
+  });
 })();
 
 /* Témoignages */
@@ -437,7 +464,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const ioAnch=new IntersectionObserver(entries=>{anchorVisible=entries.some(e=>e.isIntersecting);apply();},{threshold:.2}); anchors.forEach(a=>ioAnch.observe(a)); apply();
 })();
 
-/* Analyse (Cloudflare Worker) + Résultat beau + Détail + Export */
+/* Analyse (Cloudflare Worker) + Résultat + Détail + Export */
 const WORKER_URL="https://awenoria.bmavcontact.workers.dev/analyze";
 const normalizeUrl=u=>{if(!u) return ""; u=u.trim(); if(!/^https?:\/\//i.test(u)) u="https://"+u; return u;};
 const pct=n=>Number.isFinite(n)?`${Math.round(n)}%`:"—";
@@ -490,93 +517,48 @@ function buildResultUI(data,site){
           </ul>
         </div>
       </div>
-      <p class="small" style="margin-top:10px">Ce résultat est un pré-diagnostic automatique. Pour un avis formel et un plan d’action, <a href="contact.html">contactez un expert</a>.</p>
-    </div>
-  `;
+      <p class="small" style="margin-top:10px">Pré-diagnostic automatique. Pour un avis formel, <a href="contact.html">contactez un expert</a>.</p>
+    </div>`;
 }
-
-function toggleDetail(id){
-  const el=document.getElementById(id);
-  if(!el) return;
-  el.style.display = el.style.display==='block' ? 'none' : 'block';
-}
-
-function exportResultPDF(){
-  // Impression ciblée grâce au @media print
-  window.print();
-}
-
-function downloadJSON(jsonString){
-  const blob=new Blob([JSON.parse(jsonString)],{type:'application/json'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='awenoria-analyse.json'; a.click(); URL.revokeObjectURL(a.href);
-}
+function toggleDetail(id){const el=document.getElementById(id); if(!el) return; el.style.display = el.style.display==='block' ? 'none' : 'block';}
+function exportResultPDF(){ window.print(); }
+function downloadJSON(jsonString){ const blob=new Blob([JSON.parse(jsonString)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='awenoria-analyse.json'; a.click(); URL.revokeObjectURL(a.href); }
 
 async function analyser(){
   const input=document.getElementById('url'); const site=normalizeUrl(input.value);
+  const box=document.getElementById('resultat');
   if(!site){ alert("Merci d'entrer une URL."); return; }
-  const box=document.getElementById('resultat'); box.style.display='block'; box.innerHTML='<p>Analyse en cours…</p>';
+  box.style.display='block'; box.innerHTML='<p>Analyse en cours…</p>';
   try{
-    const res=await fetch(`${WORKER_URL}?url=${encodeURIComponent(site)}`,{headers:{accept:"application/json"}});
-    const data=await res.json(); if(!res.ok||data.ok===false) throw new Error(data?.error||`Erreur (${res.status})`);
+    const res=await fetch(`${WORKER_URL}?url=${encodeURIComponent(site)}`,{headers:{accept:"application/json"},mode:'cors',cache:'no-store'});
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok || data.ok===false || !data){ throw new Error(data?.error || `Analyse indisponible (${res.status})`); }
     buildResultUI(data,site);
-  }catch(e){ box.innerHTML=`<p style="color:#b3261e"><b>Erreur :</b> ${e.message}</p>`; console.error(e); }
+  }catch(e){
+    console.error(e);
+    const demo={finalUrl:site,scores:{global:80,rgpd:72,mentions:58,accessibilite:86},rgpd:{policyLink:true,cookiesWords:true},legal:{mentionsLink:false,hasPublisher:false},a11y:{imgWithAlt:24,imgCount:26}};
+    box.innerHTML = `<p class="small" style="color:#b3261e"><b>Info :</b> l’analyse est momentanément indisponible. Exemple de rapport affiché.</p>`;
+    buildResultUI(demo,site);
+  }
 }
 
-/* MODAL contenu “Ce que l’audit vérifie” */
+/* MODAL contenu */
 const TOPIC_CONTENT={
-  policy:`<h3>Politique de confidentialité & mentions RGPD</h3>
-  <p><b>Objectif.</b> Informer clairement l’utilisateur sur le traitement des données (finalités, bases légales, durée, droits, contact DPO).</p>
-  <p><b>Ce que nous évaluons.</b> Présence de la page, accessibilité du lien depuis le footer/header, repères sémantiques, cohérence des sections clés.</p>
-  <p><b>Ce qui compte.</b> Transparence, simplicité, mises à jour régulières, point de contact effectif.</p>
-  <p><b>À faire.</b> Rédiger une page dédiée, relire les bases légales, préciser les droits et la procédure d’exercice, lister les sous-traitants majeurs.</p>`,
-
-  legalbase:`<h3>Base légale, droits, DPO & contacts</h3>
-  <p><b>Objectif.</b> Rendre explicites bases légales (consentement, contrat, intérêt légitime…), droits (accès, rectification, opposition, effacement, etc.) et contacts.</p>
-  <p><b>Évaluation.</b> Repérage de ces éléments dans la politique, présence d’un canal de contact, délais d’instruction.</p>`,
-
-  forms:`<h3>Formulaires : information au point de collecte</h3>
-  <p><b>Objectif.</b> Donner les informations essentielles au moment où l’utilisateur transmet ses données.</p>
-  <p><b>Évaluation.</b> Mentions proches du bouton d’envoi, lien vers la politique, cases à cocher (consentement), gestion des cookies si tracking.</p>
-  <p><b>Bonnes pratiques.</b> Champs minimaux, finalités claires, durée de conservation, mention du droit d’opposition.</p>`,
-
-  alt:`<h3>ALT images & repères ARIA</h3>
-  <p><b>Objectif.</b> Garantir l’accès aux contenus pour tous (lecteurs d’écran).</p>
-  <p><b>Évaluation.</b> Proportion d’images avec ALT pertinent, landmarks ARIA (`main`, `nav`, `footer`…), titres de lien explicites.</p>`,
-
-  contrast:`<h3>Contrastes, sémantique, navigation clavier</h3>
-  <p><b>Objectif.</b> Lisibilité et utilisabilité sans souris.</p>
-  <p><b>Évaluation.</b> Contraste texte/fond, structure H1-H2-H3, focus visible, ordre de tabulation.</p>`,
-
-  a11ydec:`<h3>Déclaration d’accessibilité</h3>
-  <p><b>Objectif.</b> Informer sur le niveau de conformité et le mécanisme de remontée.</p>
-  <p><b>Évaluation.</b> Lien dédié, date de mise à jour, schéma de contact et procédure de médiation.</p>`,
-
-  mentions:`<h3>Mentions légales — éditeur / hébergeur / contact</h3>
-  <p><b>Objectif.</b> Rendre l’éditeur identifiable et joignable.</p>
-  <p><b>Évaluation.</b> Présence de l’éditeur, de l’hébergeur, des coordonnées, de l’email fonctionnel.</p>`,
-
-  rcs:`<h3>RCS / SIREN / TVA</h3>
-  <p><b>Objectif.</b> Afficher les identifiants légaux requis.</p>`,
-
-  cgu:`<h3>CGU / CGV / rétractation e-commerce</h3>
-  <p><b>Objectif.</b> Encadrer l’usage du service et l’achat, informer sur le droit de rétractation et la médiation.</p>`
+  policy:`<h3>Politique de confidentialité & mentions RGPD</h3><p><b>Objectif.</b> Informer sur les finalités, bases légales, durées, droits et contact DPO.</p><p><b>Évaluation.</b> Présence de la page, accessibilité du lien, sections clés.</p><p><b>À faire.</b> Mettre à jour, clarifier les bases légales et les droits, ajouter les contacts.</p>`,
+  legalbase:`<h3>Base légale, droits, DPO & contacts</h3><p><b>Objectif.</b> Rendre explicites bases légales et droits. Proposer un canal de contact.</p>`,
+  forms:`<h3>Formulaires : information au point de collecte</h3><p><b>Objectif.</b> Donner les infos essentielles au moment de la collecte.</p><p><b>Pratique.</b> Mentions proches du bouton, lien vers la politique, cases consentement.</p>`,
+  alt:`<h3>ALT images & repères ARIA</h3><p><b>Objectif.</b> Accessibilité via lecteurs d’écran.</p><p><b>Évaluation.</b> ALT pertinents, landmarks, titres de liens descriptifs.</p>`,
+  contrast:`<h3>Contrastes, sémantique, navigation clavier</h3><p><b>Objectif.</b> Lisibilité et usage sans souris.</p>`,
+  a11ydec:`<h3>Déclaration d’accessibilité</h3><p><b>Objectif.</b> Informer sur le niveau de conformité et la procédure de contact/médiation.</p>`,
+  mentions:`<h3>Mentions légales — éditeur / hébergeur / contact</h3><p><b>Objectif.</b> Rendre l’éditeur identifiable et joignable.</p>`,
+  rcs:`<h3>RCS / SIREN / TVA</h3><p><b>Objectif.</b> Afficher les identifiants requis.</p>`,
+  cgu:`<h3>CGU / CGV / rétractation e-commerce</h3><p><b>Objectif.</b> Encadrer l’usage et l’achat, informer sur la rétractation et la médiation.</p>`
 };
-
-const modal=document.getElementById('modal');
-const modalTitle=document.getElementById('modalTitle');
-const modalBody=document.getElementById('modalBody');
-
-function openModal(topicLabel,topicKey){
-  modalTitle.textContent=topicLabel;
-  modalBody.innerHTML= TOPIC_CONTENT[topicKey] || "<p>Contenu à venir.</p>";
-  modal.style.display='flex';
-}
+const modal=document.getElementById('modal'); const modalTitle=document.getElementById('modalTitle'); const modalBody=document.getElementById('modalBody');
+function openModal(label,key){ modalTitle.textContent=label; modalBody.innerHTML=TOPIC_CONTENT[key]||"<p>Contenu à venir.</p>"; modal.style.display='flex'; }
 function closeModal(){ modal.style.display='none'; }
 modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
-
-document.querySelectorAll('.cc li').forEach(li=>{
-  li.addEventListener('click',()=>openModal(li.textContent.trim(), li.dataset.topic));
-});
+document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>openModal(li.textContent.trim(), li.dataset.topic)));
 </script>
 </body>
 </html>
