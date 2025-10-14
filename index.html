@@ -161,48 +161,48 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .section-title{ letter-spacing:0; line-height:1.2; }
 .section-title .brandword{ font-size:1em; line-height:1; }
 
+<!-- ====== Brandword Awenoria — BLOC CORRIGÉ (CSS + HTML) ====== -->
+<style>
+/* Titres : même rendu partout */
+.section-title{ letter-spacing:0; line-height:1.2; }
+.section-title .brandword{ font-size:1em; line-height:1; }
+
 /* ================= BRANDWORD “Awenoria” ================= */
 .brandword{
-  /* Réglages globaux (identiques pour tous les brandwords) */
-  --kern: 0.02em;   /* espacement uniforme entre TOUTES les lettres */
+  /* Réglages globaux identiques */
+  --kern: 0.02em;     /* espacement uniforme entre TOUTES les lettres */
   --i-scaleX: 1;
-  --i-scaleY: 0.86; /* i un peu plus court -> petit espace sous le point */
-  --idot-top: 0.09em;  /* hauteur du point cuivré (ne bouge pas) */
-  --idot-left: 50%;    /* centrage horizontal du point (peut varier par titre) */
+  --i-scaleY: 0.86;   /* i un peu plus court -> espace sous le point */
+  --idot-top: 0.09em; /* hauteur du point cuivré */
+  --idot-left: 50%;   /* centrage horizontal du point (peut varier par titre) */
 
   display:inline-flex;
-  gap: var(--kern);              /* espace A–w = même que le reste */
-  letter-spacing: var(--kern);   /* appliqué aux lettres de .rest */
-  font-kerning: none;            /* on neutralise le kerning auto */
+  gap: var(--kern);              /* A–w = même espace que le reste */
+  letter-spacing: var(--kern);   /* s’applique aux lettres de .rest */
+  font-kerning: none;
   font-feature-settings: "kern" 0;
   align-items:baseline;
   white-space:nowrap;
   line-height:1;
 }
-
 .brandword .A{
   color:var(--blue-dark, #005a8e);
   font-weight:900;
-  margin-right:0 !important; /* on s’assure qu’il n’y a pas de micro-kerning résiduel */
+  margin-right:0 !important;
 }
-
 .brandword .rest{
   background:linear-gradient(90deg,#0b4f78 0%, #2f86b8 40%, #6fb3d8 100%);
   -webkit-background-clip:text; background-clip:text;
   color:transparent; font-weight:900; position:relative;
 }
-
 /* Fût du “i” = dotless ı (même dégradé que .rest) */
 .brandword .i-body{
   position:relative; display:inline-block; font-style:normal; font-size:1em; line-height:1;
   background:inherit; -webkit-background-clip:text; background-clip:text; color:transparent;
   transform: scale(var(--i-scaleX), var(--i-scaleY)); /* ↓ i plus court */
   transform-origin: bottom center;
-
-  /* bleu légèrement adouci pour mieux fondre dans le dégradé */
   filter: brightness(1.10) saturate(0.85);
 }
-
 /* Point cuivré — reste rond même si le fût est “scaleY” */
 .brandword .i-body::after{
   content:""; position:absolute;
@@ -213,9 +213,14 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   background:var(--orange, #ff6600);
   border-radius:50%;
 }
+
+/* (Optionnel) Tes règles Témoignages que tu avais en dehors d’un <style>.
+   Les remettre ici évite qu’elles s’affichent en texte si tu recolles le bloc. */
+.testi{overflow:hidden;margin-top:18px}
+.testi-track{display:flex;transition:.5s}
 </style>
 
-<!-- Titre 1 : Pourquoi choisir Awenorıa  -->
+<!-- Titre 1 : Pourquoi choisir Awenorıa -->
 <h2 class="section-title">
   Pourquoi choisir
   <span class="brandword" style="--idot-left:45.8%;">
@@ -223,14 +228,14 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   </span>
 </h2>
 
-<!-- Titre 2 : Ils utilisent Awenorıa  -->
+<!-- Titre 2 : Ils utilisent Awenorıa -->
 <h2 class="section-title">
   Ils utilisent
   <span class="brandword" style="--idot-left:43.4%;">
     <span class="A">A</span><span class="rest">wenor<span class="i-body">ı</span>a</span>
   </span>
 </h2>
-<!-- ====== /Bloc complet ====== -->
+<!-- ====== /Bloc corrigé ====== -->
 
 /* ================= Témoignages ================= */
 .testi{overflow:hidden;margin-top:18px}
