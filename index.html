@@ -155,49 +155,59 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .detail h4{margin:0 0 6px}
 .small{font-size:13px;color:var(--muted)}
 
-<!-- ====== Awenoria brandword (HTML + CSS + JS) ====== -->
+<!-- ===== Brandword Awenoria — bloc complet (HTML + CSS) ===== -->
 <style>
-/* ================= BRANDWORD “Awenoria” ================= */
+/* Contexte propre pour des titres homogènes */
+.section-title{ letter-spacing:0; line-height:1.2; }
+.section-title .brandword{ font-size:1em; line-height:1; }
+
+/* ===== Awenoria : espacement uniforme + i plus bas ===== */
 .brandword{
+  /* Réglages globaux */
+  --kern: 0.02em;       /* espacement uniforme entre TOUTES les lettres */
+  --i-scaleX: 1;
+  --i-scaleY: 0.92;     /* ↓ i un peu plus court (crée un espace entre fût et point) */
+  --idot-top: 0.13em;   /* garde le point à la bonne hauteur */
+  --idot-left: 50%;
+
   display:inline-flex;
-  gap:0.02em;                 /* A et w plus proches */
+  gap: var(--kern);           /* espace A–w = même valeur que les autres paires */
+  letter-spacing: var(--kern);/* s’applique au texte de .rest */
+  font-kerning: none;         /* désactive le kerning auto qui casse l’uniformité */
+  font-feature-settings: "kern" 0;
   align-items:baseline;
   white-space:nowrap;
   line-height:1;
 }
+
 .brandword .A{
   color:var(--blue-dark, #005a8e);
   font-weight:900;
-  margin-right:-0.01em;       /* micro-kerning A→w */
+  margin-right:0 !important;  /* annule tout ancien micro-kerning résiduel */
 }
+
 .brandword .rest{
   background:linear-gradient(90deg,#0b4f78 0%, #2f86b8 40%, #6fb3d8 100%);
   -webkit-background-clip:text; background-clip:text;
   color:transparent; font-weight:900; position:relative;
 }
 
-/* Fût du “i” = dotless ı (dégradé identique au reste) */
+/* Fût du “i” = dotless ı, même dégradé que .rest */
 .brandword .i-body{
   position:relative; display:inline-block; font-style:normal; font-size:1em; line-height:1;
   background:inherit; -webkit-background-clip:text; background-clip:text; color:transparent;
 
-  /* Ajustements */
-  --i-scaleX: 1;
-  --i-scaleY: 0.94;     /* i un peu plus court en hauteur (0.93–0.96) */
-  --i-ml: 0em; --i-mr: 0em;
-  --idot-top: 0.13em;   /* point un peu plus bas (0.12–0.16em) */
-
-  transform: scale(var(--i-scaleX), var(--i-scaleY));
+  transform: scale(var(--i-scaleX), var(--i-scaleY)); /* ↓ i plus court */
   transform-origin: bottom center;
-  margin-left: var(--i-ml); margin-right: var(--i-mr);
 
-  /* adoucit légèrement la teinte bleue du fût */
+  /* adoucit un peu le bleu du fût pour mieux fondre dans le dégradé global */
   filter: brightness(1.10) saturate(0.85);
 }
 
-/* Point cuivré (reste rond même si scaleY ≠ 1) */
+/* Point cuivré — reste rond même si le fût est “scaleY” */
 .brandword .i-body::after{
-  content:""; position:absolute; left:50%;
+  content:""; position:absolute;
+  left: var(--idot-left);
   transform: translateX(-50%) scaleY(calc(1 / var(--i-scaleY)));
   top: var(--idot-top);
   width:0.20em; height:0.20em;
@@ -206,26 +216,22 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 }
 </style>
 
-<!-- Exemple 1 : “Pourquoi choisir Awenorıa” (pas d’espace entre les spans !) -->
+<!-- Titre 1 : Pourquoi choisir Awenorıa -->
 <h2 class="section-title">
   Pourquoi choisir
-  <span class="brandword"><span class="A">A</span><span class="rest">wenor<span class="i-body">ı</span>a</span></span>
+  <span class="brandword">
+    <span class="A">A</span><span class="rest">wenor<span class="i-body">ı</span>a</span>
+  </span>
 </h2>
 
-<!-- Exemple 2 : “Ils utilisent Awenorıa” (pas d’espace inutile après “A”) -->
+<!-- Titre 2 : Ils utilisent Awenorıa -->
 <h2 class="section-title">
   Ils utilisent
-  <span class="brandword"><span class="A">A</span><span class="rest">wenor<span class="i-body">ı</span>a</span></span>
+  <span class="brandword">
+    <span class="A">A</span><span class="rest">wenor<span class="i-body">ı</span>a</span>
+  </span>
 </h2>
-
-<script>
-/* Pas de JS nécessaire pour le rendu du mot.
-   Tu peux ajuster finement sans tout casser :
-   - i plus court : dans .brandword .i-body -> --i-scaleY: 0.93;
-   - descendre/monter le point : --idot-top: 0.14em / 0.12em.
-*/
-</script>
-<!-- ====== /Awenoria brandword ====== -->
+<!-- ===== /Brandword Awenoria ===== -->
 
 /* ================= Témoignages ================= */
 .testi{overflow:hidden;margin-top:18px}
