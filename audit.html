@@ -4,46 +4,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Audit — Awenoria</title>
-  <meta name="description" content="Comprendre l’audit Awenoria : objectifs, périmètre, méthode et livrables. Lien direct vers fonctionnalités, méthodologie et tarifs.">
+  <meta name="description" content="Comprendre l’audit Awenoria : définition, objectifs, périmètre, offres, méthode et référentiels couverts. Liens vers fonctionnalités, méthodologie et tarifs.">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{--blue:#0073b6;--blue-dark:#005a8e;--orange:#ff6600;--bg-top:#f7f9fc;--bg:#edf3f7;--surface:#fff;--stroke:#e9eef4;--text:#16233a;--muted:#5d6b7c;--radius:20px;--shadow-sm:0 6px 20px rgba(16,32,48,.06);--shadow-lg:0 24px 48px rgba(16,32,48,.10)}
-    *{box-sizing:border-box}html,body{margin:0}body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,var(--bg-top),var(--bg));line-height:1.65}
+    :root{
+      --blue:#0073b6;--blue-dark:#005a8e;--orange:#ff6600;
+      --bg-top:#f7f9fc;--bg:#edf3f7;--surface:#fff;--stroke:#e9eef4;
+      --text:#16233a;--muted:#5d6b7c;
+      --shadow-sm:0 6px 20px rgba(16,32,48,.06);
+      --shadow-lg:0 24px 48px rgba(16,32,48,.10)
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,var(--bg-top),var(--bg));line-height:1.65}
     a{text-decoration:none}
     .container{max-width:1160px;margin:0 auto;padding:24px 20px}
+
     /* Header */
     .header{position:sticky;top:0;z-index:60;background:var(--bg-top);border-bottom:1px solid transparent;transition:.25s}
     .header.scrolled{background:#fff;border-bottom-color:var(--stroke);box-shadow:0 10px 24px rgba(16,32,48,.06)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
     .brand__logo{height:92px}@media(min-width:992px){.brand__logo{height:100px}}
-    .mainnav{display:flex;gap:2px;margin-left:auto}.menu-item{list-style:none;position:relative}
+    .mainnav{display:flex;gap:2px;margin-left:auto}
+    .menu-item{list-style:none;position:relative}
     .menu-link{display:inline-block;padding:14px 14px;border-radius:12px;color:var(--blue-dark);font-weight:800}
     .menu-link:hover{color:var(--orange);background:rgba(0,115,182,.06)}
-    .menu-link.active{color:var(--orange)}.menu-link.active::after{transform:scaleX(1)}
+    .menu-link.active{color:var(--orange)}
     .menu-link::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:var(--orange);border-radius:2px;transform:scaleX(0);transition:.22s}
+    .menu-link.active::after{transform:scaleX(1)}
     .dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:280px;padding:10px;background:#fff;border:1px solid var(--stroke);border-radius:14px;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(8px);transition:.18s}
-    .menu-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}.dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:var(--blue-dark);font-weight:700}
+    .menu-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+    .dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:var(--blue-dark);font-weight:700}
     .dropdown a:hover{background:#f3f8fc;color:var(--orange)}
-    .link-inline{color:var(--blue-dark);font-weight:800}.link-inline:hover{color:var(--orange)}
-    /* Hero court */
+
+    /* Hero */
     .hero{background:linear-gradient(180deg,#5e8faa,#5e8faa);color:#fff;text-align:center;padding:72px 0 56px}
     h1{margin:0;font-size:40px;line-height:1.12}
     .lead{max-width:860px;margin:8px auto 0;color:#eaf3fa;font-weight:600}
-    /* Sections */
-    .section{padding:72px 0}.alt{background:var(--surface)}
+
+    /* Sections & cards */
+    .section{padding:72px 0}
+    .alt{background:var(--surface)}
     .title{margin:0 0 10px;text-align:center;font-size:30px;color:#0f2746}
     .title:after{content:"";display:block;width:60px;height:4px;background:var(--orange);margin:10px auto 0;border-radius:3px}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:18px}
     @media(max-width:960px){.grid{grid-template-columns:1fr}}
     .card{background:#fff;border:1px solid var(--stroke);border-radius:16px;box-shadow:var(--shadow-sm);padding:20px}
-    .kpi{display:flex;gap:18px}
     .pill{display:inline-block;background:var(--blue-dark);color:#fff;border-radius:999px;padding:6px 10px;font-weight:800;font-size:12px}
     .btn{display:inline-block;padding:12px 16px;border-radius:12px;font-weight:800;color:#fff;background:var(--blue-dark);box-shadow:var(--shadow-sm)}
     .btn:hover{background:var(--orange)}
     .btn.ghost{background:#fff;color:var(--blue-dark);border:1px solid var(--stroke)}
     .list{margin:0;padding-left:18px}
+    .small{font-size:13px;color:var(--muted)}
+    .foot-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+
+    /* Footer */
     .footer{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
   </style>
 </head>
@@ -95,11 +112,13 @@
 <section class="hero">
   <div class="container">
     <h1>Comprendre l’audit Awenoria</h1>
-    <p class="lead">Définition, objectifs, périmètre, méthode et livrables — et un aperçu des fonctionnalités, de la méthodologie et des tarifs.</p>
+    <p class="lead">Définition, objectifs, périmètre & livrables — avec nos offres, notre méthode et les référentiels couverts.</p>
   </div>
 </section>
 
 <main>
+
+  <!-- ===== Base : définition & objectifs ===== -->
   <section class="section">
     <div class="container">
       <h2 class="title">Définition & objectifs</h2>
@@ -123,6 +142,7 @@
     </div>
   </section>
 
+  <!-- ===== Base : périmètre & livrables ===== -->
   <section class="section alt">
     <div class="container">
       <h2 class="title">Périmètre & livrables</h2>
@@ -140,8 +160,8 @@
           <h3>Ce qui n’est pas couvert</h3>
           <ul class="list">
             <li>Vérifications serveur, contrats, registre de traitements</li>
-            <li>Audit de code source privé, tests utilisateurs, accessibilité avancée (WCAG AA manuelle)</li>
-            <li>Conseil juridique personnalisé (possibilité d’accompagnement sur devis)</li>
+            <li>Audit de code source privé, tests utilisateurs avancés</li>
+            <li>Conseil juridique personnalisé (possible en accompagnement)</li>
           </ul>
         </article>
         <article class="card">
@@ -156,7 +176,114 @@
     </div>
   </section>
 
+  <!-- ===== NOUVEAU : Offres ===== -->
   <section class="section">
+    <div class="container">
+      <h2 class="title">Nos offres d’audit</h2>
+      <p class="lead" style="text-align:center">Fourchettes indicatives — le devis tient compte du périmètre réel (pages, gabarits, complexité, apps…).</p>
+      <div class="grid">
+        <article class="card">
+          <span class="pill">Initier</span>
+          <h3>Audit initial</h3>
+          <p>État des lieux & priorisation. Déclaration livrée selon le périmètre.</p>
+          <p class="small"><b>2 000 € à 6 000 € HT</b></p>
+        </article>
+        <article class="card">
+          <span class="pill">Contrôler</span>
+          <h3>Audit + Recette</h3>
+          <p>Audit initial puis contrôle des corrections. Nouvelle déclaration après recette.</p>
+          <p class="small"><b>3 500 € à 8 000 € HT</b></p>
+        </article>
+        <article class="card">
+          <span class="pill">Accompagner</span>
+          <h3>Audit & accompagnement</h3>
+          <p>Coaching technique, ateliers, revues de code, aide à la mise en œuvre.</p>
+          <p class="small"><b>4 000 € à 8 000 € HT</b></p>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:12px">
+        <article class="card">
+          <span class="pill">Se conformer</span>
+          <h3>Pack complet</h3>
+          <p>Audit initial + accompagnement + audit de contrôle (recette) + nouvelle déclaration.</p>
+          <p class="small"><b>4 500 € à 9 900 € HT</b></p>
+        </article>
+        <article class="card">
+          <h3>Options</h3>
+          <ul class="list">
+            <li>Éco-conception (RGESN / AFNOR SPEC 2201)</li>
+            <li>Apps mobiles (alignement WCAG / RAAM 1)</li>
+            <li>Cadrage documentaire IA Act (rôles & risques)</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Financement</h3>
+          <p class="small">Certaines actions de formation/sensibilisation peuvent être finançables (ex. OPCO). Contacte-nous pour cadrer.</p>
+          <p><a class="btn ghost" href="contact.html">Demander un devis</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NOUVEAU : Méthode ===== -->
+  <section class="section alt">
+    <div class="container">
+      <h2 class="title">Notre méthode</h2>
+      <div class="grid">
+        <article class="card">
+          <span class="pill">1</span>
+          <h3>Cadrage</h3>
+          <p>Périmètre, échantillon représentatif (gabarits, parcours), risques métier, objectifs et modalités (environnement, accès, planning).</p>
+        </article>
+        <article class="card">
+          <span class="pill">2</span>
+          <h3>Audit</h3>
+          <p>Tests manuels & outillés, lecture de code, contrôles documentaires (politiques, mentions, cookies), vérifications UX et conformité.</p>
+        </article>
+        <article class="card">
+          <span class="pill">3</span>
+          <h3>Restitution</h3>
+          <p>Rapport priorisé + recommandations actionnables. Option : check de corrections (recette) et nouvelle déclaration.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NOUVEAU : Référentiels couverts ===== -->
+  <section class="section">
+    <div class="container">
+      <h2 class="title">Référentiels couverts</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Accessibilité</h3>
+          <p class="small">RGAA (méthode FR alignée WCAG) & WCAG 2.x (W3C). Possibilité d’évaluation mobile selon RAAM 1 (Lux.).</p>
+        </article>
+        <article class="card">
+          <h3>Documents & PDF</h3>
+          <p class="small">RAPDF (Lux.) pour documents PDF accessibles : aspects éditoriaux et techniques.</p>
+        </article>
+        <article class="card">
+          <h3>Cadre européen</h3>
+          <p class="small">EN 301 549 pour l’exigence UE d’accessibilité des services et produits numériques.</p>
+        </article>
+        <article class="card">
+          <h3>Protection des données</h3>
+          <p class="small">RGPD : information au point de collecte, bases légales, droits, cookies/CMP, mentions clés.</p>
+        </article>
+        <article class="card">
+          <h3>Éco-conception</h3>
+          <p class="small">RGESN & AFNOR SPEC 2201 : sobriété, performance utile, choix techniques responsables.</p>
+        </article>
+        <article class="card">
+          <h3>IA Act (UE)</h3>
+          <p class="small">Sensibilisation aux obligations selon le rôle : fournisseur / déployeur / distributeur, approche par niveau de risque.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Base : liens vers sous-pages ===== -->
+  <section class="section alt">
     <div class="container">
       <h2 class="title">Découvrir les sous-pages</h2>
       <div class="grid">
@@ -169,7 +296,7 @@
         <article class="card">
           <span class="pill">Méthodologie</span>
           <h3>Comment nous auditons</h3>
-          <p>La logique de scoring, les sources de règles, les limites et bonnes pratiques.</p>
+          <p>Logique de scoring, sources de règles, limites et bonnes pratiques.</p>
           <p><a class="btn" href="comment.html">Voir la méthodologie →</a></p>
         </article>
         <article class="card">
@@ -182,16 +309,18 @@
     </div>
   </section>
 
-  <section class="section alt">
+  <!-- ===== CTA ===== -->
+  <section class="section">
     <div class="container" style="text-align:center">
       <h2 class="title" style="margin-bottom:10px">Besoin d’un audit dès maintenant ?</h2>
       <p class="lead">Démarrez un diagnostic automatique ou échangez avec un expert.</p>
-      <p style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px">
+      <p class="foot-cta">
         <a class="btn" href="index.html#resultat">Démarrer un audit</a>
         <a class="btn ghost" href="contact.html">Parler à un expert</a>
       </p>
     </div>
   </section>
+
 </main>
 
 <footer class="container footer">
@@ -203,7 +332,11 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-  (function(){const h=document.getElementById('site-header');const t=()=>{if(window.scrollY>10)h.classList.add('scrolled');else h.classList.remove('scrolled')};t();window.addEventListener('scroll',t,{passive:true})})();
+  (function(){
+    const h=document.getElementById('site-header');
+    const t=()=>{ if(window.scrollY>10) h.classList.add('scrolled'); else h.classList.remove('scrolled'); };
+    t(); window.addEventListener('scroll',t,{passive:true});
+  })();
 </script>
 </body>
 </html>
