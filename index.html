@@ -132,26 +132,69 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .detail h4{margin:0 0 6px}
 .small{font-size:13px;color:var(--muted)}
 
-/* ================= BRANDWORD “Awenoria” ============== */
-.brandword{display:inline-flex;gap:0.06em;align-items:baseline;white-space:nowrap}
-.brandword .A{color:var(--blue-dark);font-weight:900}
+/* ================= BRANDWORD “Awenoria” (fix du i) ============== */
+.brandword{
+  display:inline-flex;
+  gap:0.06em;
+  align-items:baseline;
+  white-space:nowrap;
+  line-height:1;
+}
+.brandword .A{
+  color:var(--blue-dark);
+  font-weight:900;
+}
+
+/* le reste du mot en dégradé bleu */
 .brandword .rest{
   background:linear-gradient(90deg,#0b4f78 0%, #2f86b8 40%, #6fb3d8 100%);
-  -webkit-background-clip:text;background-clip:text;
-  color:transparent;font-weight:900;position:relative
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent;
+  font-weight:900;
+  position:relative;
 }
+
+/* Reconstruit le “i” :
+   — barre bleue SOLIDE
+   — point cuivré aligné comme le logo */
 .brandword .i{
-  display:inline-block; position:relative; width:0; height:1em;
-  vertical-align:baseline; overflow:visible; color:transparent;
-  background:inherit; -webkit-background-clip:text; background-clip:text;
+  display:inline-block;
+  position:relative;
+  width:0;
+  height:1em;
+  vertical-align:baseline;
+  overflow:visible;
 }
+
+/* barre du i (bleu foncé, toujours visible) */
 .brandword .i::before{
-  content:""; position:absolute; bottom:0; left:-0.06em;
-  width:0.12em; height:0.72em; border-radius:0.08em; background:inherit;
+  content:"";
+  position:absolute;
+  left:-0.02em;          /* centrage fin */
+  bottom:0.05em;         /* posé sur la ligne de base */
+  width:0.12em;
+  height:0.74em;
+  border-radius:0.07em;
+  background:#0b4f78;    /* bleu uni comme le logo */
 }
+
+/* point du i (cuivré) */
 .brandword .i::after{
-  content:""; position:absolute; top:-0.34em; left:-0.12em;
-  width:0.34em; height:0.34em; background:var(--orange); border-radius:50%;
+  content:"";
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  top:-0.14em;           /* plus bas qu’avant */
+  width:0.32em;
+  height:0.32em;
+  background:var(--orange);
+  border-radius:50%;
+}
+
+/* micro-ajustements mobiles */
+@media (max-width:600px){
+  .brandword .i::before{ height:0.70em; }
+  .brandword .i::after { top:-0.12em; width:0.30em; height:0.30em; }
 }
 
 /* ================= “Ce que l’audit vérifie” (cartes) ================= */
