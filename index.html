@@ -45,7 +45,7 @@ a{text-decoration:none} img{max-width:100%;display:block}
 /* ================= HERO ================= */
 .hero--image{
   position:relative; padding:124px 0 110px; text-align:center; color:#fff; overflow:hidden;
-  /* Trame bleutée douce (sans image) + overlay */
+  /* Trame bleutée douce + overlays légers */
   background:
     radial-gradient(1100px 520px at 10% -10%, rgba(255,255,255,.16), rgba(255,255,255,0) 60%),
     radial-gradient(1000px 600px at 120% 10%, rgba(255,255,255,.10), rgba(255,255,255,0) 60%),
@@ -60,8 +60,35 @@ a{text-decoration:none} img{max-width:100%;display:block}
       linear-gradient(180deg, #a8cbe0 0%, #95c1dc 40%, #88bad3 100%);
   }
 }
-/* Canvas décoratif animé (derrière tout le contenu) */
-.neural-bg{position:absolute; inset:0; width:100%; height:100%; z-index:1; pointer-events:none;}
+/* Vagues CSS-only (cuivré ↔ bleu) repoussées vers les bords, trou au centre */
+.hero--image::before,
+.hero--image::after{
+  content:""; position:absolute; inset:-8% -8%; z-index:1; pointer-events:none;
+  opacity:.65; mix-blend-mode:screen; animation: awen-waves 24s ease-in-out infinite;
+  -webkit-mask: radial-gradient(ellipse at 50% 52%, transparent 0 28%, #000 32%);
+          mask: radial-gradient(ellipse at 50% 52%, transparent 0 28%, #000 32%);
+  filter: blur(22px) saturate(115%);
+}
+.hero--image::before{
+  background:
+    radial-gradient(900px 420px at -12% 10%, #B86122 0%, rgba(184,97,34,0) 60%),
+    radial-gradient(700px 380px at 18% -6%, #D67A2E 0%, rgba(214,122,46,0) 60%),
+    radial-gradient(900px 520px at 8% 24%, #F2B56C 0%, rgba(242,181,108,0) 65%);
+}
+.hero--image::after{
+  background:
+    radial-gradient(950px 540px at 112% 92%, #A9D3FF 0%, rgba(169,211,255,0) 65%),
+    radial-gradient(760px 400px at 86% 104%, #7FB2CB 0%, rgba(127,178,203,0) 62%),
+    radial-gradient(880px 420px at 96% 82%, #6FB3D8 0%, rgba(111,179,216,0) 62%);
+  animation-delay:-6s;
+}
+@keyframes awen-waves{
+  0%{transform:translate3d(0,0,0) scale(1)}
+  25%{transform:translate3d(3%,-2%,0) scale(1.03)}
+  50%{transform:translate3d(-2%,2%,0) scale(1.02)}
+  75%{transform:translate3d(4%,1%,0) scale(1.035)}
+  100%{transform:translate3d(0,0,0) scale(1)}
+}
 .hero--image > .container{position:relative; z-index:2}
 
 h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
@@ -91,10 +118,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .tile:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#d5e7f4}
 .tile.pill{border-radius:28px}
 .tile .tile-head{display:flex;justify-content:center;margin-bottom:6px}
-.badge{
-  display:inline-flex;align-items:center;justify-content:center;min-width:130px;height:36px;
-  padding:0 16px;border-radius:999px;font-size:14px;font-weight:900;letter-spacing:.2px;color:#fff;background:var(--blue-dark);
-}
+.badge{display:inline-flex;align-items:center;justify-content:center;min-width:130px;height:36px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:900;letter-spacing:.2px;color:#fff;background:var(--blue-dark)}
 .tile:hover .badge{background:var(--blue)}
 .tile h3{margin:12px 0 6px;color:#0f2746}
 .muted{color:var(--muted);margin:0}
@@ -132,7 +156,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .detail h4{margin:0 0 6px}
 .small{font-size:13px;color:var(--muted)}
 
-/* ================= BRANDWORD “Awenoria” (fix du i) ============== */
+/* ================= BRANDWORD “Awenoria” — i parfait (dégradé aligné) ============== */
 .brandword{
   display:inline-flex;
   gap:0.06em;
@@ -140,92 +164,37 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   white-space:nowrap;
   line-height:1;
 }
-.brandword .A{
-  color:var(--blue-dark);
-  font-weight:900;
-}
-
-/* le reste du mot en dégradé bleu */
+.brandword .A{ color:var(--blue-dark); font-weight:900; }
 .brandword .rest{
   background:linear-gradient(90deg,#0b4f78 0%, #2f86b8 40%, #6fb3d8 100%);
   -webkit-background-clip:text; background-clip:text;
-  color:transparent;
-  font-weight:900;
-  position:relative;
+  color:transparent; font-weight:900; position:relative;
 }
-
-/* Reconstruit le “i” :
-   — barre bleue SOLIDE
-   — point cuivré aligné comme le logo */
 .brandword .i{
-  display:inline-block;
-  position:relative;
-  width:0;
-  height:1em;
-  vertical-align:baseline;
-  overflow:visible;
+  display:inline-block; position:relative; width:0; height:1em;
+  vertical-align:baseline; overflow:visible;
 }
-
-/* barre du i (bleu foncé, toujours visible) */
 .brandword .i::before{
-  content:"";
-  position:absolute;
-  left:-0.02em;          /* centrage fin */
-  bottom:0.05em;         /* posé sur la ligne de base */
-  width:0.12em;
-  height:0.74em;
-  border-radius:0.07em;
-  background:#0b4f78;    /* bleu uni comme le logo */
+  content:""; position:absolute; left:-0.015em; bottom:0.03em;
+  width:0.115em; height:0.76em; border-radius:0.07em;
+  background:inherit; -webkit-background-clip:border-box; background-clip:border-box;
 }
-
-/* point du i (cuivré) */
 .brandword .i::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  top:-0.14em;           /* plus bas qu’avant */
-  width:0.32em;
-  height:0.32em;
-  background:var(--orange);
-  border-radius:50%;
+  content:""; position:absolute; left:50%; transform:translateX(-50%);
+  top:-0.02em; width:0.28em; height:0.28em; background:var(--orange); border-radius:50%;
 }
-
-/* micro-ajustements mobiles */
 @media (max-width:600px){
-  .brandword .i::before{ height:0.70em; }
-  .brandword .i::after { top:-0.12em; width:0.30em; height:0.30em; }
+  .brandword .i::before{ height:0.72em; }
+  .brandword .i::after { top:-0.01em; width:0.26em; height:0.26em; }
 }
 
-/* ================= “Ce que l’audit vérifie” (cartes) ================= */
-.checkcards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch;justify-items:center}
-@media(max-width:900px){.checkcards{grid-template-columns:1fr}}
-.cc{
-  width:100%; max-width:520px; background:#fff; border:1px solid var(--stroke);
-  border-radius:18px; padding:18px 18px 20px; box-shadow:var(--shadow-sm);
-  transition:.2s; text-align:left;
-}
-.cc:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:#d5e7f4}
-.cc ul{margin:0;padding:0;list-style:none}
-.cc li{position:relative;padding-left:34px;margin:14px 0;cursor:pointer;font-weight:600}
-.cc li::before{
-  content:""; position:absolute; left:0; top:.15em; width:20px; height:20px; border-radius:50%;
-  background:linear-gradient(180deg,#eaf5fd,#d8ecfa); border:2px solid #cbe3f3; box-shadow:inset 0 0 0 2px #fff;
-}
-.cc li::after{
-  content:""; position:absolute; left:6px; top:.52em; width:7px; height:12px; border-right:3px solid var(--blue-dark); border-bottom:3px solid var(--blue-dark); transform:rotate(45deg);
-}
-.cc small{display:block;color:var(--muted)}
-.cc .hint{margin-top:8px;color:var(--muted);font-size:13px}
-
-/* ================= MODAL ================= */
-.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(10,22,34,.45);z-index:90;padding:20px}
-.modal .panel{max-width:780px;width:100%;background:#fff;border-radius:16px;border:1px solid var(--stroke);box-shadow:var(--shadow-lg)}
-.modal .hd{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--stroke);padding:14px 18px}
-.modal .bd{padding:16px 18px;color:var(--text)}
-.modal .bd h3{margin:8px 0 10px}
-.modal .ft{display:flex;gap:10px;justify-content:flex-end;border-top:1px solid var(--stroke);padding:12px 18px}
-.close-x{background:transparent;border:none;font-size:22px;cursor:pointer}
+/* ================= Témoignages ================= */
+.testi{overflow:hidden;margin-top:18px}
+.testi-track{display:flex;transition:.5s}
+.testi-card{min-width:100%;padding:16px;border:1px solid var(--stroke);border-radius:16px;background:#fff;box-shadow:var(--shadow-sm);text-align:center}
+.testi-nav{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.dot{width:9px;height:9px;border-radius:50%;background:#c7d9e6;display:inline-block;cursor:pointer}
+.dot.active{background:var(--blue-dark)}
 
 /* ================= CTA sticky ================= */
 .sticky-cta{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;background:#fff;border:1px solid var(--stroke);border-radius:999px;box-shadow:0 16px 32px rgba(16,32,48,.12);padding:8px 12px;display:none;gap:8px;z-index:70}
@@ -241,14 +210,6 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   header, .hero--image, .section, .sticky-cta, footer{display:none!important}
   #resultat{display:block!important;border:none;box-shadow:none}
 }
-
-/* ================= Témoignages ================= */
-.testi{overflow:hidden;margin-top:18px}
-.testi-track{display:flex;transition:.5s}
-.testi-card{min-width:100%;padding:16px;border:1px solid var(--stroke);border-radius:16px;background:#fff;box-shadow:var(--shadow-sm);text-align:center}
-.testi-nav{display:flex;gap:8px;justify-content:center;margin-top:10px}
-.dot{width:9px;height:9px;border-radius:50%;background:#c7d9e6;display:inline-block;cursor:pointer}
-.dot.active{background:var(--blue-dark)}
 </style>
 </head>
 <body>
@@ -300,14 +261,10 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 
 <!-- ===== HERO ===== -->
 <section class="hero--image">
-  <!-- Canvas décoratif animé -->
-  <canvas class="neural-bg" id="neuralCanvas" aria-hidden="true"></canvas>
-
   <div class="container">
     <h1>Audit automatique de conformité</h1>
-    <p id="hero-lead" class="lead" data-text="Testez la conformité RGPD, l'accessibilité et les mentions légales de votre site en un clic. Résultats clairs et actions concrètes.">
-      Testez la conformité RGPD, l'accessibilité et les mentions légales de votre site en un clic. Résultats clairs et actions concrètes.
-    </p>
+    <!-- Rejouable: content rempli par l'animation -->
+    <p id="hero-lead" class="lead type-on-view" data-text="Testez la conformité RGPD, l'accessibilité et les mentions légales de votre site en un clic. Résultats clairs et actions concrètes."></p>
     <div class="hero-actions">
       <div class="testbox--pill">
         <input id="url" class="url" type="text" placeholder="https://votresite.fr" />
@@ -368,9 +325,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
       Pourquoi choisir
       <span class="brandword"><span class="A">A</span><span class="rest">wenor<span class="i" aria-hidden="true"></span>a</span></span>
     </h2>
-    <p id="why-lead" class="lead" data-text="Une plateforme pensée pour les TPE/PME, cabinets et indépendants : rapide, pédagogique et respectueuse de la confidentialité.">
-      Une plateforme pensée pour les TPE/PME, cabinets et indépendants : rapide, pédagogique et respectueuse de la confidentialité.
-    </p>
+    <p id="why-lead" class="lead type-on-view" data-text="Une plateforme pensée pour les TPE/PME, cabinets et indépendants : rapide, pédagogique et respectueuse de la confidentialité."></p>
     <div class="grid" style="grid-template-columns:repeat(3,1fr)">
       <article class="tile pill reveal"><div class="tile-head"><span class="badge">Couverture</span></div><h3>Multi-normes</h3><p class="muted">Un seul outil pour vérifier l’essentiel : RGPD, accessibilité, mentions légales et cookies.</p></article>
       <article class="tile pill reveal"><div class="tile-head"><span class="badge">Impact</span></div><h3>Diagnostic priorisé</h3><p class="muted">Score global + recommandations classées par impact, avec exemples concrets.</p></article>
@@ -488,9 +443,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 <section class="section alt">
   <div class="container" style="text-align:center">
     <h2 class="section-title" style="margin-bottom:10px">Prêt à sécuriser votre conformité ?</h2>
-    <p id="cta-lead" class="lead" data-text="Testez gratuitement votre site et recevez des recommandations concrètes en quelques minutes.">
-      Testez gratuitement votre site et recevez des recommandations concrètes en quelques minutes.
-    </p>
+    <p id="cta-lead" class="lead type-on-view" data-text="Testez gratuitement votre site et recevez des recommandations concrètes en quelques minutes."></p>
     <div class="actions cta-anchor">
       <a class="btn" href="#resultat" onclick="document.getElementById('url').focus()">Démarrer un audit</a>
       <a class="btn blue" href="contact.html">Parler à un expert</a>
@@ -529,26 +482,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
 /* reveal on scroll */
 (function(){const els=[...document.querySelectorAll('.reveal')]; const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.12}); els.forEach(el=>io.observe(el));})();
 
-/* typing effect (hero + why + CTA final) */
-(function(){
-  function type(el, speed=22){
-    if(!el) return;
-    const full = el.getAttribute('data-text') || el.textContent.trim();
-    el.textContent = "";
-    let i = 0; (function tick(){ el.textContent = full.slice(0, ++i); if(i < full.length) setTimeout(tick, speed); })();
-  }
-  document.addEventListener('DOMContentLoaded', ()=>{
-    type(document.getElementById('hero-lead'), 22);
-    type(document.getElementById('why-lead'), 22);
-    type(document.getElementById('cta-lead'), 22);
-  });
-})();
-
 /* Témoignages slider */
 (function(){const wrap=document.getElementById('testi'); if(!wrap) return; const track=wrap.querySelector('.testi-track'); const dots=[...document.querySelectorAll('#testiNav .dot')]; let i=0; const go=n=>{i=n;track.style.transform=`translateX(-${100*i}%)`;dots.forEach((d,k)=>d.classList.toggle('active',k===i))}; dots.forEach(d=>d.addEventListener('click',()=>go(+d.dataset.i))); setInterval(()=>go((i+1)%dots.length),5000);})();
-
-/* FAQ accordéon */
-(function(){document.querySelectorAll('.faq q').forEach(q=>q.addEventListener('click',()=>q.classList.toggle('open')));})();
 
 /* Sticky CTA logique */
 (function(){
@@ -634,6 +569,101 @@ async function analyser(){
   }
 }
 
+/* ===== Typing effect rejouable à chaque retour ===== */
+(function(){
+  const SPEED = 22; // ms/lettre
+  const els = [...document.querySelectorAll('.type-on-view')];
+
+  els.forEach(el=>{
+    const full = (el.getAttribute('data-text') || el.textContent || '').trim();
+    el.dataset.fullText = full;
+    el.textContent = '';
+    el.__typingTimer = null;
+    el.__ready = true;
+  });
+
+  function type(el){
+    clearTimeout(el.__typingTimer);
+    const full = el.dataset.fullText || '';
+    el.textContent = '';
+    let i = 0;
+    (function tick(){
+      el.textContent = full.slice(0, ++i);
+      if(i < full.length){
+        el.__typingTimer = setTimeout(tick, SPEED);
+      }else{
+        el.__typingTimer = null;
+        el.__ready = false;
+      }
+    })();
+  }
+
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      const el = entry.target;
+      if(entry.isIntersecting){
+        if(el.__ready) type(el);
+      }else{
+        el.__ready = true;
+        clearTimeout(el.__typingTimer);
+        el.__typingTimer = null;
+      }
+    });
+  }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
+
+  els.forEach(el=>io.observe(el));
+})();
+
+/* ===== FAQ accordéon fiable + accessible ===== */
+(function(){
+  const items = [...document.querySelectorAll('.faq .item')];
+  items.forEach(item=>{
+    const q = item.querySelector('q');
+    const a = item.querySelector('.a');
+    if(!q || !a) return;
+
+    q.setAttribute('role','button');
+    q.setAttribute('tabindex','0');
+    q.setAttribute('aria-expanded','false');
+
+    function openItem(target){
+      items.forEach(it=>{
+        const qi = it.querySelector('q'), ai = it.querySelector('.a');
+        if(it === target){
+          qi.classList.add('open');  qi.setAttribute('aria-expanded','true');
+          ai.style.display = 'block';
+        }else{
+          qi.classList.remove('open'); qi.setAttribute('aria-expanded','false');
+          ai.style.display = 'none';
+        }
+      });
+    }
+
+    function toggle(){
+      const isOpen = q.getAttribute('aria-expanded') === 'true';
+      if(isOpen){
+        q.classList.remove('open'); q.setAttribute('aria-expanded','false');
+        a.style.display = 'none';
+      }else{
+        openItem(item);
+      }
+    }
+
+    q.addEventListener('click', toggle);
+    q.addEventListener('keydown', e=>{
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+      if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+        e.preventDefault();
+        const dir = e.key === 'ArrowDown' ? 1 : -1;
+        const qs = items.map(it=>it.querySelector('q'));
+        const idx = qs.indexOf(q);
+        const next = qs[(idx + dir + qs.length) % qs.length];
+        next.focus();
+      }
+    });
+  });
+})();
+
 /* MODAL contenu */
 const TOPIC_CONTENT={
   policy:`<h3>Politique de confidentialité & mentions RGPD</h3><p><b>Objectif.</b> Informer sur les finalités, bases légales, durées, droits et contact DPO.</p><p><b>Évaluation.</b> Présence de la page, accessibilité du lien, sections clés.</p><p><b>À faire.</b> Mettre à jour, clarifier les bases légales et les droits, ajouter les contacts.</p>`,
@@ -652,193 +682,5 @@ function closeModal(){ modal.style.display='none'; }
 modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
 document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>openModal(li.textContent.trim(), li.dataset.topic)));
 </script>
-
-<script>
-<!-- ===== Neural Waves Canvas — version visible (cuivré ↔ bleu clair) ===== -->
-<script>
-(function(){
-  const host = document.querySelector('.hero--image');
-  const canvas = document.getElementById('neuralCanvas');
-  if(!host || !canvas) return;
-  const ctx = canvas.getContext('2d');
-
-  let dpr=1, T=0;
-
-  /* === CONFIG plus visible === */
-  const CONFIG = {
-    waves: [
-      { // chaud, haut-gauche -> centre
-        amp: 34, step: 12, speed: 0.95, offsetY: 0.24, biasX: -0.45,
-        colors: ['var(--copper-1)','var(--copper-2)','var(--copper-3)']
-      },
-      { // froid, bas-droit -> centre
-        amp: 28, step: 14, speed: 0.70, offsetY: 0.76, biasX: 0.45,
-        colors: ['var(--blue-soft-1)','var(--blue-soft-2)','var(--blue-soft-3)']
-      }
-    ],
-    jitter: 0.45,
-    noiseScale: 0.0035,
-    glowAlpha: 0.12,   // halo plus visible
-    lineAlpha: 0.35,   // lignes plus visibles
-    linkAlpha: 0.28,   // liens plus visibles
-    maskPadding: 1.02, // un peu moins large -> plus d'espace visible
-    showMask: false
-  };
-
-  /* ---------- Perlin 2D léger ---------- */
-  const P = new Uint8Array(512);
-  for(let i=0;i<256;i++) P[i]=i;
-  for(let i=255;i>0;i--){const j=(Math.random()*(i+1))|0; [P[i],P[j]]=[P[j],P[i]];}
-  for(let i=0;i<256;i++) P[256+i]=P[i];
-  const fade=t=>t*t*t*(t*(t*6-15)+10);
-  const lerp=(a,b,t)=>a+(b-a)*t;
-  function grad(h,x,y){h&=3;return (h===0? x+y : h===1? -x+y : h===2? x-y : -x-y);}
-  function noise2D(x,y){
-    const X=Math.floor(x)&255, Y=Math.floor(y)&255;
-    const xf=x-Math.floor(x), yf=y-Math.floor(y);
-    const u=fade(xf), v=fade(yf);
-    const aa=P[P[X]+Y], ab=P[P[X]+Y+1], ba=P[P[X+1]+Y], bb=P[P[X+1]+Y+1];
-    const x1=lerp(grad(aa,xf,yf),   grad(ba,xf-1,yf), u);
-    const x2=lerp(grad(ab,xf,yf-1), grad(bb,xf-1,yf-1), u);
-    return (lerp(x1,x2,v)+1)/2;
-  }
-
-  const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim()||v;
-  function gradient(colors, width){
-    const g = ctx.createLinearGradient(0,0, width, 0);
-    colors.forEach((c,i)=> g.addColorStop(i/(colors.length-1), css(c)));
-    return g;
-  }
-
-  // ----- Masque : calé sur le bloc (H1 + champ URL), borné -----
-  let mask = {cx:0, cy:0, rx:0, ry:0};
-  function computeMask(){
-    const hrect = host.getBoundingClientRect();
-    const title = host.querySelector('h1')?.getBoundingClientRect();
-    const pill  = host.querySelector('.testbox--pill')?.getBoundingClientRect();
-    let u = title || hrect;
-    if(pill){
-      const l = Math.min(u.left, pill.left), r = Math.max(u.right, pill.right);
-      const t = Math.min(u.top,  pill.top),  b = Math.max(u.bottom,pill.bottom);
-      u = {left:l, right:r, top:t, bottom:b, width:r-l, height:b-t};
-    }
-    const hostLeft = hrect.left, hostTop = hrect.top;
-    const cxCss = ( (u.left + u.right)/2 - hostLeft );
-    const cyCss = ( (u.top  + u.bottom)/2 - hostTop );
-
-    let rx = (u.width  * 0.55) * CONFIG.maskPadding;
-    let ry = (u.height * 0.90 + 80) * CONFIG.maskPadding;
-
-    const rxMax = hrect.width  * 0.42;
-    const ryMax = hrect.height * 0.36;
-    rx = Math.min(rx, rxMax); ry = Math.min(ry, ryMax);
-    rx = Math.max(40, rx);    ry = Math.max(40, ry);
-
-    mask.cx = cxCss; mask.cy = cyCss; mask.rx = rx; mask.ry = ry;
-
-    if(window.innerWidth < 980){
-      mask.rx = Math.min(hrect.width*0.46,  mask.rx*1.10);
-      mask.ry = Math.min(hrect.height*0.42, mask.ry*1.10);
-    }
-  }
-
-  function resize(){
-    const rect = host.getBoundingClientRect();
-    dpr = Math.min(2, window.devicePixelRatio||1);
-    canvas.width  = Math.round(rect.width  * dpr);
-    canvas.height = Math.round(rect.height * dpr);
-    canvas.style.width  = rect.width+'px';
-    canvas.style.height = rect.height+'px';
-    ctx.setTransform(1,0,0,1,0,0);
-    computeMask();
-  }
-  window.addEventListener('resize', resize, {passive:true});
-  resize();
-
-  const layer = document.createElement('canvas');
-  const lctx = layer.getContext('2d');
-
-  function draw(){
-    layer.width = canvas.width; layer.height = canvas.height;
-    lctx.setTransform(1,0,0,1,0,0);
-    lctx.clearRect(0,0,layer.width,layer.height);
-
-    // --- blend mode (fallback) ---
-    lctx.globalCompositeOperation = 'lighter';
-    try{ lctx.globalCompositeOperation = 'screen'; }catch(e){}
-
-    const W = canvas.width, H = canvas.height;
-
-    CONFIG.waves.forEach((wcfg, wi)=>{
-      const grad = gradient(wcfg.colors, W);
-
-      // ruban
-      lctx.beginPath();
-      for(let x=0; x<=W; x+=4){
-        const yy =
-          H*wcfg.offsetY
-          + wcfg.amp * Math.sin((x*0.012/dpr) + (T*0.002*wcfg.speed) + wi*0.9)
-          + (noise2D(x*CONFIG.noiseScale, T*0.002*wcfg.speed + wi)*2-1) * wcfg.amp*0.6;
-        const bx = (x/W + 0.5*wcfg.biasX);
-        const y = yy + (bx * (wi? -26:26));
-        if(x===0) lctx.moveTo(x,y); else lctx.lineTo(x,y);
-      }
-      lctx.strokeStyle = grad;
-      lctx.globalAlpha = CONFIG.lineAlpha;
-      lctx.lineWidth = 3*dpr;
-      lctx.stroke();
-
-      // points + halo
-      lctx.globalAlpha = 1;
-      const stepPx = Math.round(wcfg.step*dpr);
-      for(let x=0; x<=W; x+=stepPx){
-        const n = (noise2D(x*CONFIG.noiseScale*1.2 + wi*10, T*0.003*wcfg.speed)+noise2D(x*CONFIG.noiseScale*0.6, T*0.002*wcfg.speed+3))/2;
-        const yBase =
-          H*wcfg.offsetY
-          + wcfg.amp * Math.sin((x*0.012/dpr) + (T*0.002*wcfg.speed) + wi*0.9)
-          + (n*2-1) * wcfg.amp*0.6;
-
-        const wobble = (Math.random()-0.5)*CONFIG.jitter*dpr;
-        const y = yBase + (wcfg.biasX>0 ? (x%2?1:-1): (x%2?-1:1))*0.3*dpr + wobble;
-
-        const r = (1.1 + (Math.sin(x*0.04/dpr + T*0.002*wcfg.speed)*0.5 + 0.6)) * dpr;
-        lctx.beginPath(); lctx.arc(x, y, r, 0, Math.PI*2);
-        lctx.fillStyle = grad; lctx.globalAlpha = 0.95; lctx.fill();
-
-        lctx.beginPath(); lctx.arc(x, y, r*4, 0, Math.PI*2);
-        lctx.globalAlpha = CONFIG.glowAlpha; lctx.fillStyle = grad; lctx.fill();
-      }
-
-      // liens fins
-      lctx.globalAlpha = CONFIG.linkAlpha; lctx.lineWidth = 1*dpr; lctx.strokeStyle = grad;
-      for(let x=0; x<W-stepPx; x+=stepPx*2){
-        const y1 =
-          H*wcfg.offsetY
-          + wcfg.amp*Math.sin((x*0.012/dpr) + T*0.002*wcfg.speed + wi*0.9)
-          + (noise2D(x*CONFIG.noiseScale, T*0.002*wcfg.speed + wi)*2-1) * wcfg.amp*0.6;
-        const y2 =
-          H*wcfg.offsetY
-          + wcfg.amp*Math.sin(((x+stepPx)*0.012/dpr) + T*0.002*wcfg.speed + wi*0.9)
-          + (noise2D((x+stepPx)*CONFIG.noiseScale, T*0.002*wcfg.speed + wi)*2-1) * wcfg.amp*0.6;
-        lctx.beginPath(); lctx.moveTo(x,y1); lctx.lineTo(x+stepPx,y2); lctx.stroke();
-      }
-      lctx.globalAlpha = 1;
-    });
-
-    // masque central : on « perce » l’ellipse
-    lctx.save();
-    lctx.globalCompositeOperation = 'destination-out';
-    lctx.beginPath();
-    lctx.ellipse(mask.cx*dpr, mask.cy*dpr, mask.rx*dpr, mask.ry*dpr, 0, 0, Math.PI*2);
-    lctx.fillStyle = '#000'; lctx.shadowColor='#000'; lctx.shadowBlur=40*dpr; lctx.fill();
-    lctx.restore();
-
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.drawImage(layer,0,0);
-
-    T += 16; requestAnimationFrame(draw);
-  }
-
-  requestAnimationFrame(draw);
-})();
-</script>
+</body>
+</html>
