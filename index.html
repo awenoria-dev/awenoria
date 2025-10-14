@@ -155,29 +155,23 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .detail h4{margin:0 0 6px}
 .small{font-size:13px;color:var(--muted)}
 
-<!-- ====== Brandword Awenoria — bloc complet (CSS + HTML) ====== -->
-<style>
-/* Titres : même rendu partout */
-.section-title{ letter-spacing:0; line-height:1.2; }
-.section-title .brandword{ font-size:1em; line-height:1; }
-
 <!-- ====== Brandword Awenoria — BLOC CORRIGÉ (CSS + HTML) ====== -->
 <style>
 /* Titres : même rendu partout */
-.section-title{ letter-spacing:0; line-height:1.2; }
+.section-title{ letter-spacing:0; line-height:1.2; margin:0 0 10px; }
 .section-title .brandword{ font-size:1em; line-height:1; }
 
 /* ================= BRANDWORD “Awenoria” ================= */
 .brandword{
   /* Réglages globaux identiques */
-  --kern: 0.02em;     /* espacement uniforme entre TOUTES les lettres */
+  --kern: 0.02em;     /* espacement uniforme entre toutes les lettres */
   --i-scaleX: 1;
   --i-scaleY: 0.86;   /* i un peu plus court -> espace sous le point */
   --idot-top: 0.09em; /* hauteur du point cuivré */
-  --idot-left: 50%;   /* centrage horizontal du point (peut varier par titre) */
+  --idot-left: 50%;   /* centrage horizontal du point */
 
   display:inline-flex;
-  gap: var(--kern);              /* A–w = même espace que le reste */
+  gap: var(--kern);              /* A–w = même espace que les autres paires */
   letter-spacing: var(--kern);   /* s’applique aux lettres de .rest */
   font-kerning: none;
   font-feature-settings: "kern" 0;
@@ -188,7 +182,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .brandword .A{
   color:var(--blue-dark, #005a8e);
   font-weight:900;
-  margin-right:0 !important;
+  margin-right:0 !important;     /* évite un micro-kerning parasite */
 }
 .brandword .rest{
   background:linear-gradient(90deg,#0b4f78 0%, #2f86b8 40%, #6fb3d8 100%);
@@ -201,7 +195,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   background:inherit; -webkit-background-clip:text; background-clip:text; color:transparent;
   transform: scale(var(--i-scaleX), var(--i-scaleY)); /* ↓ i plus court */
   transform-origin: bottom center;
-  filter: brightness(1.10) saturate(0.85);
+  filter: brightness(1.10) saturate(0.85);           /* bleu du fût légèrement adouci */
 }
 /* Point cuivré — reste rond même si le fût est “scaleY” */
 .brandword .i-body::after{
@@ -214,8 +208,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   border-radius:50%;
 }
 
-/* (Optionnel) Tes règles Témoignages que tu avais en dehors d’un <style>.
-   Les remettre ici évite qu’elles s’affichent en texte si tu recolles le bloc. */
+/* (Optionnel) Ces deux règles étaient visibles chez toi car hors <style> */
 .testi{overflow:hidden;margin-top:18px}
 .testi-track{display:flex;transition:.5s}
 </style>
