@@ -61,8 +61,8 @@ a{text-decoration:none} img{max-width:100%;display:block}
   }
 }
 /* Canvas décoratif animé (derrière tout le contenu) */
-.neural-bg{position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none;}
-.hero--image > .container{position:relative; z-index:1}
+.neural-bg{position:absolute; inset:0; width:100%; height:100%; z-index:1; pointer-events:none;}
+.hero--image > .container{position:relative; z-index:2}
 
 h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
 @media(max-width:600px){h1{font-size:44px}}
@@ -611,34 +611,35 @@ document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>
 </script>
 
 <script>
-/* ===== Neural Waves Canvas — FIX masque + mouvement visible ===== */
+<!-- ===== Neural Waves Canvas — version visible (cuivré ↔ bleu clair) ===== -->
+<script>
 (function(){
   const host = document.querySelector('.hero--image');
   const canvas = document.getElementById('neuralCanvas');
   if(!host || !canvas) return;
   const ctx = canvas.getContext('2d');
 
-  let dpr=1, W=0, H=0, T=0;
+  let dpr=1, T=0;
 
-  // Réglages : vagues repoussées vers les bords
+  /* === CONFIG plus visible === */
   const CONFIG = {
     waves: [
       { // chaud, haut-gauche -> centre
-        amp: 26, step: 14, speed: 0.85, offsetY: 0.22, biasX: -0.45,
+        amp: 34, step: 12, speed: 0.95, offsetY: 0.24, biasX: -0.45,
         colors: ['var(--copper-1)','var(--copper-2)','var(--copper-3)']
       },
       { // froid, bas-droit -> centre
-        amp: 22, step: 16, speed: 0.60, offsetY: 0.78, biasX: 0.45,
+        amp: 28, step: 14, speed: 0.70, offsetY: 0.76, biasX: 0.45,
         colors: ['var(--blue-soft-1)','var(--blue-soft-2)','var(--blue-soft-3)']
       }
     ],
     jitter: 0.45,
     noiseScale: 0.0035,
-    glowAlpha: 0.08,
-    lineAlpha: 0.18,
-    linkAlpha: 0.18,
-    maskPadding: 1.04,   // zone « calme » autour du texte
-    showMask: false      // passe à true pour visualiser l’ellipse de masque
+    glowAlpha: 0.12,   // halo plus visible
+    lineAlpha: 0.35,   // lignes plus visibles
+    linkAlpha: 0.28,   // liens plus visibles
+    maskPadding: 1.02, // un peu moins large -> plus d'espace visible
+    showMask: false
   };
 
   /* ---------- Perlin 2D léger ---------- */
@@ -660,48 +661,38 @@ document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>
   }
 
   const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim()||v;
-  function gradient(colors){
-    const g = ctx.createLinearGradient(0,0, canvas.clientWidth, 0);
+  function gradient(colors, width){
+    const g = ctx.createLinearGradient(0,0, width, 0);
     colors.forEach((c,i)=> g.addColorStop(i/(colors.length-1), css(c)));
     return g;
   }
 
-  // ----- Masque : calé sur le bloc (H1 + champ URL), borné pour ne jamais couvrir tout
+  // ----- Masque : calé sur le bloc (H1 + champ URL), borné -----
   let mask = {cx:0, cy:0, rx:0, ry:0};
   function computeMask(){
     const hrect = host.getBoundingClientRect();
     const title = host.querySelector('h1')?.getBoundingClientRect();
     const pill  = host.querySelector('.testbox--pill')?.getBoundingClientRect();
-    // union approximative du titre et du champ
     let u = title || hrect;
     if(pill){
       const l = Math.min(u.left, pill.left), r = Math.max(u.right, pill.right);
       const t = Math.min(u.top,  pill.top),  b = Math.max(u.bottom,pill.bottom);
       u = {left:l, right:r, top:t, bottom:b, width:r-l, height:b-t};
     }
-
-    // centre du masque : centre du bloc texte/URL projeté dans le hero
     const hostLeft = hrect.left, hostTop = hrect.top;
     const cxCss = ( (u.left + u.right)/2 - hostLeft );
     const cyCss = ( (u.top  + u.bottom)/2 - hostTop );
 
-    // rayons de base avec padding, puis BORNAGE
     let rx = (u.width  * 0.55) * CONFIG.maskPadding;
     let ry = (u.height * 0.90 + 80) * CONFIG.maskPadding;
 
-    // ne jamais dépasser une fraction raisonnable du hero
     const rxMax = hrect.width  * 0.42;
     const ryMax = hrect.height * 0.36;
-    rx = Math.min(rx, rxMax);
-    ry = Math.min(ry, ryMax);
-
-    // garde-fous (évite rx/ry énormes ou nuls)
-    rx = Math.max(40, rx);
-    ry = Math.max(40, ry);
+    rx = Math.min(rx, rxMax); ry = Math.min(ry, ryMax);
+    rx = Math.max(40, rx);    ry = Math.max(40, ry);
 
     mask.cx = cxCss; mask.cy = cyCss; mask.rx = rx; mask.ry = ry;
 
-    // sur mobile : un peu plus large, mais toujours borné
     if(window.innerWidth < 980){
       mask.rx = Math.min(hrect.width*0.46,  mask.rx*1.10);
       mask.ry = Math.min(hrect.height*0.42, mask.ry*1.10);
@@ -715,13 +706,12 @@ document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>
     canvas.height = Math.round(rect.height * dpr);
     canvas.style.width  = rect.width+'px';
     canvas.style.height = rect.height+'px';
-    ctx.setTransform(1,0,0,1,0,0); // on dessine l'image finale en pixels natifs
+    ctx.setTransform(1,0,0,1,0,0);
     computeMask();
   }
   window.addEventListener('resize', resize, {passive:true});
   resize();
 
-  // couche offscreen pour les vagues
   const layer = document.createElement('canvas');
   const lctx = layer.getContext('2d');
 
@@ -729,24 +719,26 @@ document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>
     layer.width = canvas.width; layer.height = canvas.height;
     lctx.setTransform(1,0,0,1,0,0);
     lctx.clearRect(0,0,layer.width,layer.height);
-    lctx.globalCompositeOperation = 'lighter';
 
-    const W = canvas.width, H = canvas.height; // en pixels natifs
+    // --- blend mode (fallback) ---
+    lctx.globalCompositeOperation = 'lighter';
+    try{ lctx.globalCompositeOperation = 'screen'; }catch(e){}
+
+    const W = canvas.width, H = canvas.height;
 
     CONFIG.waves.forEach((wcfg, wi)=>{
-      const grad = gradient(wcfg.colors);
+      const grad = gradient(wcfg.colors, W);
 
       // ruban
       lctx.beginPath();
       for(let x=0; x<=W; x+=4){
-        const xCss = x; // même unité
         const yy =
           H*wcfg.offsetY
-          + wcfg.amp * Math.sin((xCss*0.012/dpr) + (T*0.002*wcfg.speed) + wi*0.9)
-          + (noise2D(xCss*CONFIG.noiseScale, T*0.002*wcfg.speed + wi)*2-1) * wcfg.amp*0.6;
-        const bx = (xCss/W + 0.5*wcfg.biasX);
+          + wcfg.amp * Math.sin((x*0.012/dpr) + (T*0.002*wcfg.speed) + wi*0.9)
+          + (noise2D(x*CONFIG.noiseScale, T*0.002*wcfg.speed + wi)*2-1) * wcfg.amp*0.6;
+        const bx = (x/W + 0.5*wcfg.biasX);
         const y = yy + (bx * (wi? -26:26));
-        if(x===0) lctx.moveTo(xCss,y); else lctx.lineTo(xCss,y);
+        if(x===0) lctx.moveTo(x,y); else lctx.lineTo(x,y);
       }
       lctx.strokeStyle = grad;
       lctx.globalAlpha = CONFIG.lineAlpha;
@@ -755,38 +747,37 @@ document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>
 
       // points + halo
       lctx.globalAlpha = 1;
-      for(let x=0; x<=W; x+=Math.round(wcfg.step*dpr)){
-        const xCss = x;
-        const n = (noise2D(xCss*CONFIG.noiseScale*1.2 + wi*10, T*0.003*wcfg.speed)+noise2D(xCss*CONFIG.noiseScale*0.6, T*0.002*wcfg.speed+3))/2;
+      const stepPx = Math.round(wcfg.step*dpr);
+      for(let x=0; x<=W; x+=stepPx){
+        const n = (noise2D(x*CONFIG.noiseScale*1.2 + wi*10, T*0.003*wcfg.speed)+noise2D(x*CONFIG.noiseScale*0.6, T*0.002*wcfg.speed+3))/2;
         const yBase =
           H*wcfg.offsetY
-          + wcfg.amp * Math.sin((xCss*0.012/dpr) + (T*0.002*wcfg.speed) + wi*0.9)
+          + wcfg.amp * Math.sin((x*0.012/dpr) + (T*0.002*wcfg.speed) + wi*0.9)
           + (n*2-1) * wcfg.amp*0.6;
 
         const wobble = (Math.random()-0.5)*CONFIG.jitter*dpr;
-        const y = yBase + (wcfg.biasX>0 ? (xCss%2?1:-1): (xCss%2?-1:1))*0.3*dpr + wobble;
+        const y = yBase + (wcfg.biasX>0 ? (x%2?1:-1): (x%2?-1:1))*0.3*dpr + wobble;
 
-        const r = (1.1 + (Math.sin(xCss*0.04/dpr + T*0.002*wcfg.speed)*0.5 + 0.6)) * dpr;
-        lctx.beginPath(); lctx.arc(xCss, y, r, 0, Math.PI*2);
+        const r = (1.1 + (Math.sin(x*0.04/dpr + T*0.002*wcfg.speed)*0.5 + 0.6)) * dpr;
+        lctx.beginPath(); lctx.arc(x, y, r, 0, Math.PI*2);
         lctx.fillStyle = grad; lctx.globalAlpha = 0.95; lctx.fill();
 
-        lctx.beginPath(); lctx.arc(xCss, y, r*4, 0, Math.PI*2);
+        lctx.beginPath(); lctx.arc(x, y, r*4, 0, Math.PI*2);
         lctx.globalAlpha = CONFIG.glowAlpha; lctx.fillStyle = grad; lctx.fill();
       }
 
       // liens fins
       lctx.globalAlpha = CONFIG.linkAlpha; lctx.lineWidth = 1*dpr; lctx.strokeStyle = grad;
-      const step = Math.round(wcfg.step*dpr);
-      for(let x=0; x<W-step; x+=step*2){
+      for(let x=0; x<W-stepPx; x+=stepPx*2){
         const y1 =
           H*wcfg.offsetY
           + wcfg.amp*Math.sin((x*0.012/dpr) + T*0.002*wcfg.speed + wi*0.9)
           + (noise2D(x*CONFIG.noiseScale, T*0.002*wcfg.speed + wi)*2-1) * wcfg.amp*0.6;
         const y2 =
           H*wcfg.offsetY
-          + wcfg.amp*Math.sin(((x+step)*0.012/dpr) + T*0.002*wcfg.speed + wi*0.9)
-          + (noise2D((x+step)*CONFIG.noiseScale, T*0.002*wcfg.speed + wi)*2-1) * wcfg.amp*0.6;
-        lctx.beginPath(); lctx.moveTo(x,y1); lctx.lineTo(x+step,y2); lctx.stroke();
+          + wcfg.amp*Math.sin(((x+stepPx)*0.012/dpr) + T*0.002*wcfg.speed + wi*0.9)
+          + (noise2D((x+stepPx)*CONFIG.noiseScale, T*0.002*wcfg.speed + wi)*2-1) * wcfg.amp*0.6;
+        lctx.beginPath(); lctx.moveTo(x,y1); lctx.lineTo(x+stepPx,y2); lctx.stroke();
       }
       lctx.globalAlpha = 1;
     });
@@ -799,17 +790,6 @@ document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>
     lctx.fillStyle = '#000'; lctx.shadowColor='#000'; lctx.shadowBlur=40*dpr; lctx.fill();
     lctx.restore();
 
-    // option debug : dessine le contour du masque
-    if(CONFIG.showMask){
-      lctx.save();
-      lctx.globalCompositeOperation = 'source-over';
-      lctx.beginPath();
-      lctx.ellipse(mask.cx*dpr, mask.cy*dpr, mask.rx*dpr, mask.ry*dpr, 0, 0, Math.PI*2);
-      lctx.strokeStyle = 'rgba(255,255,255,.35)'; lctx.lineWidth = 1*dpr; lctx.stroke();
-      lctx.restore();
-    }
-
-    // rendu final
     ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.drawImage(layer,0,0);
 
