@@ -17,9 +17,9 @@
   <style>
     :root{
       /* Identité */
-      --blue:#0073b6;
-      --blue-dark:#005a8e;
-      --orange:#ff6600;
+      --blue:#0073b6;      /* bleu clair */
+      --blue-dark:#005a8e; /* bleu foncé */
+      --orange:#ff6600;    /* accent */
 
       /* Trame */
       --bg-top:#f7f9fc;
@@ -38,7 +38,7 @@
 
       /* Overlay du hero */
       --hero-overlay-rgb: 0,90,142;    /* #005a8e */
-      --hero-overlay-alpha: .46;       /* plus clair que précédemment */
+      --hero-overlay-alpha: .46;       /* clair */
       --hero-overlay-alpha-mobile: .54;
     }
 
@@ -54,7 +54,7 @@
     img{ max-width:100%; display:block }
     .container{ max-width:1160px; margin:0 auto; padding:24px 20px }
 
-    /* ================= HEADER (inchangé) ================= */
+    /* ================= HEADER (opaque en haut → blanc au scroll) ================= */
     .header{
       position:sticky; top:0; z-index:60;
       background:var(--bg-top);
@@ -101,11 +101,11 @@
     }
     .dropdown a:hover{ background:#f3f8fc; color:var(--orange); transform:translateY(-1px) }
 
-    /* Lien inline (sans trait orange) */
+    /* Lien inline (dans le corps de page) */
     .link-inline{ color:var(--blue-dark); font-weight:800; border-bottom:0; transition:color .18s ease, opacity .18s ease }
     .link-inline:hover{ color:var(--orange); opacity:.95 }
 
-    /* ================= HERO (image + overlay + encadré pilule) ================= */
+    /* ================= HERO (image + overlay + pilule) ================= */
     .hero--image{
       position:relative; padding:124px 0 110px; color:#fff; text-align:center;
       background-color:#3b7fa3; /* fallback si image absente */
@@ -124,15 +124,15 @@
           url('./images/hero-bg.jpg?v=1') center/cover no-repeat;
       }
     }
-    h1{ margin:0; font-size:50px; line-height:1.06; color:#fff }
+    h1{ margin:0; font-size:50px; line-height:1.06; color:#fff; text-align:center }
     @media(max-width:600px){ h1{ font-size:44px } }
-    .lead{ color:#eaf3fa; max-width:980px; margin:8px auto 0; font-weight:600 }
+    .lead{ color:#eaf3fa; max-width:980px; margin:8px auto 0; font-weight:600; text-align:center }
 
     .hero-actions{ margin-top:24px; display:flex; justify-content:center }
     .testbox--pill{
       display:inline-flex; align-items:center; gap:8px;
       background:#fff; border:1px solid var(--stroke); border-radius:9999px;
-      padding:6px; box-shadow:var(--shadow-lg); overflow:hidden; /* évite le dépassement */
+      padding:6px; box-shadow:var(--shadow-lg); overflow:hidden;
     }
     input.url{
       width:640px; max-width:86vw; height:54px; padding:0 16px;
@@ -187,7 +187,7 @@
     .tile.pill{ border-radius:28px }
     .tile .tile-head{ display:flex; align-items:center; gap:10px; margin-bottom:6px }
 
-    /* Pastilles texte (pas d'emojis) */
+    /* Pastilles texte (pro, sans emojis) */
     .badge{
       display:inline-block; padding:7px 12px; border-radius:999px; font-size:12px; font-weight:800; letter-spacing:.2px;
       color:#fff; background:var(--blue-dark); transition:background .18s ease, color .18s ease, box-shadow .18s ease;
@@ -198,7 +198,7 @@
     .tile .cta{ margin-top:12px; display:inline-block; font-weight:800; font-size:14px; color:var(--blue-dark); transition:color .18s ease }
     .tile .cta:hover{ color:var(--orange) }
 
-    /* Watermarks par carte (images transparentes optionnelles) */
+    /* Watermarks par carte (si fichiers présents) */
     .tile.has-bg::after{
       content:""; position:absolute; right:12px; bottom:12px; width:110px; height:110px;
       background: var(--tile-bg) no-repeat center/contain;
@@ -263,7 +263,7 @@
         <li class="menu-item"><a class="menu-link active" href="index.html">Accueil</a></li>
 
         <li class="menu-item">
-          <a class="menu-link" href="fonctionnalites.html">Audit ▾</a>
+          <a class="menu-link" href="audit.html">Audit ▾</a>
           <div class="dropdown" role="menu">
             <a href="fonctionnalites.html">• Fonctionnalités</a>
             <a href="comment.html">• Méthodologie</a>
@@ -272,7 +272,7 @@
         </li>
 
         <li class="menu-item">
-          <a class="menu-link" href="javascript:void(0)">Conformité ▾</a>
+          <a class="menu-link" href="conformite.html">Conformité ▾</a>
           <div class="dropdown" role="menu">
             <a href="fonctionnalites.html#rgpd">• Audit RGPD</a>
             <a href="fonctionnalites.html#accessibilite">• Audit Accessibilité</a>
@@ -282,7 +282,7 @@
         </li>
 
         <li class="menu-item">
-          <a class="menu-link" href="javascript:void(0)">Ressources ▾</a>
+          <a class="menu-link" href="ressources.html">Ressources ▾</a>
           <div class="dropdown" role="menu">
             <a href="guides.html">• Guides & bonnes pratiques</a>
             <a href="modeles.html">• Modèles juridiques</a>
@@ -292,7 +292,7 @@
         </li>
 
         <li class="menu-item">
-          <a class="menu-link" href="javascript:void(0)">À propos ▾</a>
+          <a class="menu-link" href="a-propos.html">À propos ▾</a>
           <div class="dropdown" role="menu">
             <a href="a-propos.html#mission">• Mission & valeurs</a>
             <a href="mentions.html">• Mentions légales</a>
@@ -577,18 +577,32 @@
       setInterval(()=>go((i+1)%dots.length), 5000);
     })();
 
-    // CTA sticky : caché si hero visible OU si blocs CTA visibles
+    // CTA sticky : visible partout sauf HERO + blocs CTA marqués .cta-anchor
     (function(){
       const sc = document.getElementById('stickyCta'); if(!sc) return;
       const hero = document.querySelector('.hero--image');
       const anchors = document.querySelectorAll('.cta-anchor');
-      const ioHero = new IntersectionObserver(([e])=>{ sc.style.display = e.isIntersecting ? 'none':'flex'; },{threshold:.01});
+
+      let heroVisible = true;
+      let anchorVisible = false;
+
+      const apply = () => {
+        sc.style.display = (heroVisible || anchorVisible) ? 'none' : 'flex';
+      };
+
+      const ioHero = new IntersectionObserver(([e])=>{
+        heroVisible = e.isIntersecting;
+        apply();
+      },{threshold:.05});
       ioHero.observe(hero);
+
       const ioAnch = new IntersectionObserver((entries)=>{
-        const anyVisible = entries.some(e=>e.isIntersecting);
-        if(anyVisible) sc.style.display = 'none';
-      },{threshold:.15});
+        anchorVisible = entries.some(e=>e.isIntersecting);
+        apply();
+      },{threshold:.2});
       anchors.forEach(a=>ioAnch.observe(a));
+
+      apply();
     })();
 
     // FAQ accordéon
