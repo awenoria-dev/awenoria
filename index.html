@@ -16,12 +16,11 @@
   --text:#16233a; --muted:#5d6b7c; --radius:20px;
   --shadow-sm:0 6px 20px rgba(16,32,48,.06);
   --shadow-lg:0 24px 48px rgba(16,32,48,.10);
-  --hero-overlay-rgb:0,90,142; --hero-overlay-alpha:.46; --hero-overlay-alpha-mobile:.54;
+  --hero-overlay-rgb:0,90,142; --hero-overlay-alpha:.42; --hero-overlay-alpha-mobile:.52;
 
-  /* >>> couleurs supplémentaires pour la vague orangée */
-  --orange-1:#ff8a00;   /* orange vif */
-  --orange-2:#ff3d00;   /* corail */
-  --blue-1:#0b4f78; --blue-2:#2f86b8; --blue-3:#6fb3d8; /* refs brandword */
+  /* Couleurs vagues (chaud/froid harmonisés) */
+  --copper-1:#B86122; --copper-2:#D67A2E; --copper-3:#F2B56C;
+  --blue-soft-1:#A9D3FF; --blue-soft-2:#7FB2CB; --blue-soft-3:#6FB3D8;
 }
 *{box-sizing:border-box} html,body{margin:0}
 body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--text);line-height:1.65}
@@ -45,29 +44,24 @@ a{text-decoration:none} img{max-width:100%;display:block}
 
 /* ================= HERO ================= */
 .hero--image{
-  position:relative;padding:124px 0 110px;color:#fff;text-align:center;overflow:hidden;
-  /* Trame bleutée soft + overlay (plus d'image jpg) */
+  position:relative; padding:124px 0 110px; text-align:center; color:#fff; overflow:hidden;
+  /* Trame bleutée douce (sans image) + overlay */
   background:
-    radial-gradient(1200px 520px at 10% -10%, rgba(255,255,255,.16), rgba(255,255,255,0) 60%),
+    radial-gradient(1100px 520px at 10% -10%, rgba(255,255,255,.16), rgba(255,255,255,0) 60%),
     radial-gradient(1000px 600px at 120% 10%, rgba(255,255,255,.10), rgba(255,255,255,0) 60%),
     linear-gradient(180deg, rgba(var(--hero-overlay-rgb), var(--hero-overlay-alpha)) 0%, rgba(var(--hero-overlay-rgb), var(--hero-overlay-alpha)) 100%),
-    linear-gradient(180deg, #6fa8c6, #7fb2cb 40%, #87bbd0 100%);
+    linear-gradient(180deg, #a8cbe0 0%, #95c1dc 40%, #88bad3 100%);
 }
 @media(max-width:980px){
   .hero--image{
     background:
       radial-gradient(900px 420px at 0% -10%, rgba(255,255,255,.18), rgba(255,255,255,0) 60%),
       linear-gradient(180deg, rgba(var(--hero-overlay-rgb), var(--hero-overlay-alpha-mobile)) 0%, rgba(var(--hero-overlay-rgb), var(--hero-overlay-alpha-mobile)) 100%),
-      linear-gradient(180deg, #6fa8c6, #7fb2cb 40%, #87bbd0 100%);
+      linear-gradient(180deg, #a8cbe0 0%, #95c1dc 40%, #88bad3 100%);
   }
 }
-/* Canvas animé des vagues neuronales */
-.neural-bg{
-  position:absolute; inset:0; width:100%; height:100%;
-  z-index:0; pointer-events:none;
-  filter:blur(0.2px); opacity:.95;
-}
-/* Remonter le contenu au-dessus du canvas */
+/* Canvas décoratif animé (derrière tout le contenu) */
+.neural-bg{position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none;}
 .hero--image > .container{position:relative; z-index:1}
 
 h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
@@ -146,7 +140,6 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
   -webkit-background-clip:text;background-clip:text;
   color:transparent;font-weight:900;position:relative
 }
-/* “i” reconstruit, sans créer d’espace supplémentaire */
 .brandword .i{
   display:inline-block; position:relative; width:0; height:1em;
   vertical-align:baseline; overflow:visible; color:transparent;
@@ -524,7 +517,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const ioAnch=new IntersectionObserver(entries=>{anchorVisible=entries.some(e=>e.isIntersecting);apply();},{threshold:.2}); anchors.forEach(a=>ioAnch.observe(a)); apply();
 })();
 
-/* Analyse via Cloudflare Worker */
+/* Analyse via Cloudflare Worker (inchangé) */
 const WORKER_URL="https://awenoria.bmavcontact.workers.dev/analyze";
 const normalizeUrl=u=>{if(!u) return ""; u=u.trim(); if(!/^https?:\/\//i.test(u)) u="https://"+u; return u;};
 const pct=n=>Number.isFinite(n)?`${Math.round(n)}%`:"—";
@@ -533,25 +526,21 @@ function buildResultUI(data,site){
   const s=data.scores||{}, rgpd=data.rgpd||{}, legal=data.legal||{}, a11y=data.a11y||{};
   const box=document.getElementById('resultat'); box.style.display='block';
   const detailId="detail-"+Date.now();
-
   box.innerHTML=`
     <div class="header">
       <h3>Résultats pour <span class="tag">${(data.finalUrl||site)}</span></h3>
       <span class="small">Analyse locale — aucune donnée conservée</span>
     </div>
-
     <div class="summary">
       <div class="card-mini"><b>RGPD</b><span>${pct(s.rgpd)} · ${rgpd.policyLink?"Politique détectée":"Politique non détectée"} ${rgpd.cookiesWords?"· Cookies":""}</span></div>
       <div class="card-mini"><b>Mentions légales</b><span>${pct(s.mentions)} · ${legal.mentionsLink?"Lien détecté":"Lien non détecté"}</span></div>
       <div class="card-mini"><b>Accessibilité</b><span>${pct(s.accessibilite)} · ALT ${a11y.imgWithAlt||0}/${a11y.imgCount||0}</span></div>
     </div>
-
     <div class="footer">
       <button class="btn" onclick="toggleDetail('${detailId}')">Accéder au détail</button>
       <button class="btn ghost" onclick="exportResultPDF()">Exporter en PDF</button>
       <button class="btn link" onclick='downloadJSON(${JSON.stringify(JSON.stringify(data)).replace(/'/g,"&#39;")})'>Télécharger le JSON</button>
     </div>
-
     <div id="${detailId}" class="detail">
       <div class="grid">
         <div class="box">
@@ -621,89 +610,178 @@ modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
 document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>openModal(li.textContent.trim(), li.dataset.topic)));
 </script>
 
-<!-- ===== Neural Waves Canvas (animation) ===== -->
+<!-- ===== Neural Waves Canvas (cuivré ↔ bleu clair, hors zone de texte) ===== -->
 <script>
 (function(){
+  const host = document.querySelector('.hero--image');
   const canvas = document.getElementById('neuralCanvas');
-  if(!canvas) return;
+  if(!host || !canvas) return;
   const ctx = canvas.getContext('2d');
 
-  let w=0,h=0, dpr=1, t=0;
-  const WAVES = 4;          // nombre de nappes
-  const STEP = 14;          // espacement horizontal entre points
-  const AMP_BASE = 26;      // amplitude de base
-  const SPEED = 0.0026;     // vitesse globale
-  const JITTER = 0.6;       // micro-bruit vertical
+  let dpr=1, W=0, H=0, T=0;
+
+  // ------- Réglages visuels (tweak faciles)
+  const CONFIG = {
+    waves: [
+      {   // Nappe A (chaud, haut-gauche -> centre)
+        amp: 24, step: 14, speed: 0.8, offsetY: 0.30, biasX: -0.25,
+        colors: ['var(--copper-1)','var(--copper-2)','var(--copper-3)']
+      },
+      {   // Nappe B (froid, bas-droit -> centre)
+        amp: 20, step: 16, speed: 0.55, offsetY: 0.68, biasX: 0.25,
+        colors: ['var(--blue-soft-1)','var(--blue-soft-2)','var(--blue-soft-3)']
+      }
+    ],
+    jitter: 0.45,              // micro-vibration
+    noiseScale: 0.0035,        // échelle du bruit
+    glowAlpha: 0.08,           // halo autour des points
+    lineAlpha: 0.16,           // opacité rubans
+    linkAlpha: 0.18,           // opacité liens fins
+    maskPadding: 1.08          // taille de la zone calme (x rayon)
+  };
+
+  // ------- Perlin 2D léger
+  const P = new Uint8Array(512);
+  for(let i=0;i<256;i++) P[i]=i;
+  for(let i=255;i>0;i--){const j=Math.random()* (i+1) |0; [P[i],P[j]]=[P[j],P[i]];}
+  for(let i=0;i<256;i++) P[256+i]=P[i];
+  const fade=t=>t*t*t*(t*(t*6-15)+10);
+  const lerp=(a,b,t)=>a+(b-a)*t;
+  function grad(h,x,y){h&=3;return (h===0? x+y : h===1? -x+y : h===2? x-y : -x-y);}
+  function noise2D(x,y){
+    const X = Math.floor(x)&255, Y = Math.floor(y)&255;
+    const xf = x - Math.floor(x), yf = y - Math.floor(y);
+    const u = fade(xf), v = fade(yf);
+    const aa = P[P[X]+Y], ab = P[P[X]+Y+1], ba = P[P[X+1]+Y], bb = P[P[X+1]+Y+1];
+    const x1 = lerp(grad(aa,xf,yf), grad(ba,xf-1,yf), u);
+    const x2 = lerp(grad(ab,xf,yf-1), grad(bb,xf-1,yf-1), u);
+    return (lerp(x1,x2,v)+1)/2; // 0..1
+  }
+
+  // ------- Utils
+  const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim()||v;
+  function gradient(colors){
+    const g = ctx.createLinearGradient(0,0, W,0);
+    const n = colors.length;
+    colors.forEach((c,i)=> g.addColorStop(i/(n-1), css(c)));
+    return g;
+  }
+
+  // Masque elliptique central (rien ne s'affiche dessous)
+  let mask = {cx:0, cy:0, rx:0, ry:0};
+  function computeMask(){
+    const container = host.querySelector('.container');
+    const r = container.getBoundingClientRect();
+    const h = host.getBoundingClientRect();
+    // centre de l’ellipse = centre du hero
+    mask.cx = W/(dpr*2); mask.cy = H/(dpr*2);
+    const rxBase = Math.min(r.width*0.60, (h.width||W/dpr)*0.70)*CONFIG.maskPadding;
+    const ryBase = (r.height + 220) * 0.60 * CONFIG.maskPadding;
+    mask.rx = rxBase; mask.ry = ryBase;
+    if(window.innerWidth < 980){ mask.rx*=1.12; mask.ry*=1.18; } // + de calme sur mobile
+  }
 
   function resize(){
-    const rect = canvas.getBoundingClientRect();
-    dpr = Math.min(2, window.devicePixelRatio || 1);
-    w = Math.floor(rect.width * dpr);
-    h = Math.floor(rect.height * dpr);
-    canvas.width = w; canvas.height = h;
+    const rect = host.getBoundingClientRect();
+    dpr = Math.min(2, window.devicePixelRatio||1);
+    W = Math.round(rect.width * dpr);
+    H = Math.round(rect.height * dpr);
+    canvas.width = W; canvas.height = H;
+    canvas.style.width = rect.width+'px';
+    canvas.style.height = rect.height+'px';
     ctx.setTransform(dpr,0,0,dpr,0,0);
+    computeMask();
   }
   window.addEventListener('resize', resize, {passive:true});
   resize();
 
-  // gradient orange -> corail
-  function cssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
-  function makeGrad(){
-    const grad = ctx.createLinearGradient(0, 0, canvas.clientWidth, 0);
-    grad.addColorStop(0, cssVar('--orange-1') || '#ff8a00');
-    grad.addColorStop(1, cssVar('--orange-2') || '#ff3d00');
-    return grad;
-  }
-  let grad = makeGrad();
-  new ResizeObserver(()=>{ grad = makeGrad(); }).observe(canvas);
+  // Offscreen layer pour appliquer le masque sans toucher au main ctx
+  const layer = document.createElement('canvas');
+  const lctx = layer.getContext('2d');
 
   function draw(){
-    ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
-    ctx.globalCompositeOperation = 'lighter';
+    layer.width = W; layer.height = H;
+    lctx.setTransform(dpr,0,0,dpr,0,0);
+    lctx.clearRect(0,0,W,H);
+    lctx.globalCompositeOperation = 'lighter';
 
-    for(let i=0;i<WAVES;i++){
-      const phase = t*(1 + i*0.15) + i*0.9;
-      const amp = AMP_BASE * (1 - i*0.12);
-      const yBase = canvas.clientHeight*0.35 + i*22;
+    CONFIG.waves.forEach((wcfg, wi)=>{
+      const speed = wcfg.speed;
+      const grad = gradient(wcfg.colors);
 
-      // ruban doux
-      ctx.beginPath();
-      for(let x=0; x<=canvas.clientWidth; x+=4){
-        const y = yBase + amp*Math.sin(x*0.012 + phase);
-        if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+      // Ruban de base (ligne douce)
+      lctx.beginPath();
+      for(let x=0; x<=W/dpr; x+=4){
+        // position “bordure” via biasX : <0 = vient de gauche, >0 = de droite
+        const bx = (x/(W/dpr) + 0.5*wcfg.biasX);
+        const yy =
+          (H/dpr)*wcfg.offsetY
+          + wcfg.amp * Math.sin((x*0.012) + (T*0.002*speed) + wi*0.9)
+          + (noise2D(x*CONFIG.noiseScale, T*0.002*speed + wi)*2-1) * wcfg.amp*0.6;
+
+        const y = yy + (bx* (wi? -26:26)); // légère diagonale
+        if(x===0) lctx.moveTo(x,y); else lctx.lineTo(x,y);
       }
-      ctx.strokeStyle = grad;
-      ctx.globalAlpha = 0.14;
-      ctx.lineWidth = 3;
-      ctx.stroke();
+      lctx.strokeStyle = grad;
+      lctx.globalAlpha = CONFIG.lineAlpha;
+      lctx.lineWidth = 3;
+      lctx.stroke();
 
-      // points lumineux + glow
-      ctx.globalAlpha = 0.95;
-      for(let x=0; x<=canvas.clientWidth; x+=STEP){
-        const wobble = (Math.random()-0.5)*JITTER;
-        const y = yBase + amp*Math.sin(x*0.012 + phase) + wobble;
+      // Points lumineux + halo
+      lctx.globalAlpha = 1;
+      for(let x=0; x<=W/dpr; x+=wcfg.step){
+        const n = (noise2D(x*CONFIG.noiseScale*1.2 + wi*10, T*0.003*speed)+noise2D(x*CONFIG.noiseScale*0.6, T*0.002*speed+3))/2;
+        const yBase =
+          (H/dpr)*wcfg.offsetY
+          + wcfg.amp * Math.sin((x*0.012) + (T*0.002*speed) + wi*0.9)
+          + (n*2-1) * wcfg.amp*0.6;
 
-        const r = 1.2 + (Math.sin(x*0.04 + phase)*0.6 + 0.6);
-        ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.fillStyle = grad; ctx.fill();
+        const wobble = (Math.random()-0.5)*CONFIG.jitter;
+        const y = yBase + (wcfg.biasX>0 ? (x%2?1:-1): (x%2?-1:1))*0.3 + wobble;
 
-        ctx.beginPath(); ctx.arc(x, y, r*4, 0, Math.PI*2); ctx.globalAlpha = 0.08; ctx.fill();
-        ctx.globalAlpha = 0.95;
+        // Point
+        const r = 1.1 + (Math.sin(x*0.04 + T*0.002*speed)*0.5 + 0.6);
+        lctx.beginPath(); lctx.arc(x, y, r, 0, Math.PI*2);
+        lctx.fillStyle = grad; lctx.globalAlpha = 0.95; lctx.fill();
+
+        // Halo
+        lctx.beginPath(); lctx.arc(x, y, r*4, 0, Math.PI*2);
+        lctx.globalAlpha = CONFIG.glowAlpha; lctx.fillStyle = grad; lctx.fill();
       }
 
-      // liens fins (effet réseau)
-      ctx.globalAlpha = 0.20; ctx.lineWidth = 1;
-      for(let x=0; x<canvas.clientWidth-STEP; x+=STEP*2){
-        const y1 = yBase + amp*Math.sin(x*0.012 + phase);
-        const y2 = yBase + amp*Math.sin((x+STEP)*0.012 + phase);
-        ctx.beginPath(); ctx.moveTo(x, y1); ctx.lineTo(x+STEP, y2);
-        ctx.strokeStyle = grad; ctx.stroke();
+      // Liens fins (réseau)
+      lctx.globalAlpha = CONFIG.linkAlpha; lctx.lineWidth = 1; lctx.strokeStyle = grad;
+      for(let x=0; x<W/dpr - wcfg.step; x+=wcfg.step*2){
+        const y1 =
+          (H/dpr)*wcfg.offsetY
+          + wcfg.amp*Math.sin(x*0.012 + T*0.002*speed + wi*0.9)
+          + (noise2D(x*CONFIG.noiseScale, T*0.002*speed + wi)*2-1) * wcfg.amp*0.6;
+        const y2 =
+          (H/dpr)*wcfg.offsetY
+          + wcfg.amp*Math.sin((x+wcfg.step)*0.012 + T*0.002*speed + wi*0.9)
+          + (noise2D((x+wcfg.step)*CONFIG.noiseScale, T*0.002*speed + wi)*2-1) * wcfg.amp*0.6;
+        lctx.beginPath(); lctx.moveTo(x,y1); lctx.lineTo(x+wcfg.step, y2); lctx.stroke();
       }
-      ctx.globalAlpha = 1;
-    }
+      lctx.globalAlpha = 1;
+    });
 
-    t += SPEED;
+    // Appliquer le masque (zone calme) : on efface l’ellipse au centre
+    lctx.save();
+    lctx.globalCompositeOperation = 'destination-out';
+    lctx.beginPath();
+    lctx.ellipse(mask.cx, mask.cy, mask.rx, mask.ry, 0, 0, Math.PI*2);
+    lctx.fillStyle = '#000'; lctx.shadowColor='#000';
+    lctx.shadowBlur=40; lctx.fill();
+    lctx.restore();
+
+    // Dessiner la couche sur le canvas principal
+    ctx.clearRect(0,0,W,H);
+    ctx.drawImage(layer,0,0);
+
+    T += 16; // progression du temps
     requestAnimationFrame(draw);
   }
+
   requestAnimationFrame(draw);
 })();
 </script>
