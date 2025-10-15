@@ -4,21 +4,22 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Awenoria — Tarifs & formules</title>
-<meta name="description" content="Le luxe de l’audit RGPD & accessibilité à prix démocratisé. Offres claires, remises en paiement en une fois, expérience premium et fluide.">
+<meta name="description" content="Le luxe de l’audit à prix démocratisé. Offres claires, remises en paiement en une fois, expérience premium et fluide.">
 <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  /* palette claire & désirable */
-  --ink:#0f2140; --muted:#6d7c8e;
+  /* palette lumineuse premium */
+  --ink:#0e2138; --muted:#6e7c8e;
   --accent:#ff7a1a; --accent-2:#ffb067;       /* cuivre → doré */
+  --red-copper:#e34d4b;                       /* badge remise */
   --blue:#0d63a5; --blue-dark:#0a4f86;
   --bg-top:#f9fbfe; --bg:#eef4f9;
-  --surface:#fff; --stroke:#e5eef6;
+  --surface:#fff; --stroke:#e6eff7;
   --shadow-sm:0 14px 34px rgba(16,32,48,.10);
-  --shadow-lg:0 64px 120px rgba(16,32,48,.22);
+  --shadow-lg:0 68px 130px rgba(16,32,48,.22);
   --radius:28px;
   --hero-overlay-rgb:0,90,142; --hero-overlay-alpha:.42; --hero-overlay-alpha-mobile:.52;
 }
@@ -27,7 +28,7 @@ body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-seri
 a{text-decoration:none}
 .container{max-width:1280px;margin:0 auto;padding:24px 22px}
 
-/* ===== HEADER (identique index + Ressources) ===== */
+/* ===== HEADER (avec Ressources) ===== */
 .header{position:sticky;top:0;z-index:60;background:var(--bg-top);border-bottom:1px solid transparent;transition:.25s}
 .header.scrolled{background:#fff;border-bottom-color:var(--stroke);box-shadow:0 10px 24px rgba(16,32,48,.06)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
@@ -42,10 +43,10 @@ a{text-decoration:none}
 .dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:#0b446e;font-weight:700}
 .dropdown a:hover{background:#f3f8fc;color:var(--accent)}
 
-/* ===== HERO BLEUTÉ ===== */
+/* ===== HERO ===== */
 .hero--image{
   position:relative; text-align:center; color:#fff; overflow:hidden;
-  min-height:42vh; display:grid; place-items:center;
+  min-height:40vh; display:grid; place-items:center;
   background:
     radial-gradient(1100px 520px at 10% -10%, rgba(255,255,255,.16), rgba(255,255,255,0) 60%),
     radial-gradient(1000px 600px at 120% 10%, rgba(255,255,255,.10), rgba(255,255,255,0) 60%),
@@ -74,12 +75,10 @@ a{text-decoration:none}
 @keyframes awen-waves{0%{transform:translate3d(0,0,0) scale(1)}25%{transform:translate3d(3%,-2%,0) scale(1.03)}50%{transform:translate3d(-2%,2%,0) scale(1.02)}75%{transform:translate3d(4%,1%,0) scale(1.035)}100%{transform:translate3d(0,0,0) scale(1)}}
 .hero--image .inner{position:relative; z-index:2; padding:56px 20px 24px}
 .hero--image h1{margin:0 0 8px;font-size:54px;line-height:1.06;color:#fff}
-.hero--image .lead{color:#eaf3fa;max-width:980px;margin:0 auto;font-weight:600}
 
 /* ===== SECTION ===== */
-.section{padding:24px 0 30px}
+.section{padding:22px 0 28px}
 .section-title{margin:10px 0 6px;font-size:36px;color:#0d2440;text-align:center}
-.section-sub{color:#7a8897;text-align:center;margin:0 0 20px}
 
 /* ===== SCÈNE IMMERSIVE ===== */
 .scene{
@@ -88,8 +87,7 @@ a{text-decoration:none}
   margin:16px auto 0; border-radius:34px;
   background:linear-gradient(180deg,#f8fbff, #eef4fb);
   border:1px solid var(--stroke); box-shadow:var(--shadow-sm);
-  overflow:visible; /* jamais de carte tronquée */
-  padding-bottom:64px; /* sécurité bas */
+  overflow:visible; padding-bottom:64px;
 }
 
 /* halo */
@@ -105,11 +103,18 @@ a{text-decoration:none}
 .viewport{position:absolute; inset:0; display:grid; align-items:center; overflow:visible}
 .track{
   position:relative; display:flex; gap:48px; align-items:stretch;
-  padding:40px 14vw 120px;     /* padding top + bottom => rubans visibles */
+  padding:40px 14vw 120px;
   overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
   z-index:1; overflow-y:visible;
 }
 .track::-webkit-scrollbar{display:none}
+
+/* zones de scroll automatique (survol bords) */
+.edge{position:absolute; top:0; bottom:0; width:11vw; z-index:3}
+.edge.left{left:0} .edge.right{right:0}
+.edge:after{content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(255,255,255,.0),rgba(255,255,255,.7)); opacity:0; transition:.2s}
+.edge.left:after{transform:scaleX(-1)}
+.edge:hover:after{opacity:.35}
 
 /* CARTES XXL */
 .card{
@@ -132,14 +137,30 @@ a{text-decoration:none}
   pointer-events:none;
 }
 
-/* rubans / badge (toujours visibles) */
+/* rubans / badges */
 .ribbon{
-  position:absolute; top:-10px; left:18px; z-index:5;
+  position:absolute; top:-12px; left:18px; z-index:5;
   background:linear-gradient(90deg,var(--accent),var(--accent-2));
   color:#fff; font-weight:900; font-size:12px; letter-spacing:.2px;
   border-radius:999px; padding:9px 14px; box-shadow:var(--shadow-sm)
 }
-.popular{position:absolute; top:-10px; right:18px; z-index:5; background:#0f2746; color:#fff; font-weight:900; font-size:12px; border-radius:999px; padding:9px 14px; box-shadow:var(--shadow-sm)}
+.popular{position:absolute; top:-12px; right:18px; z-index:5; background:#0f2746; color:#fff; font-weight:900; font-size:12px; border-radius:999px; padding:9px 14px; box-shadow:var(--shadow-sm)}
+
+/* badge remise rond (clic = ouvre détails) */
+.discount{
+  position:absolute; top:18px; right:18px; z-index:6;
+  display:grid; place-items:center; width:58px; height:58px; border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, #ff9a95, var(--red-copper));
+  color:#fff; font-weight:900; border:none; cursor:pointer; box-shadow:0 10px 26px rgba(227,77,75,.38);
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.discount:hover{transform:scale(1.1)}
+.discount::after{
+  content:"En savoir plus"; position:absolute; bottom:-28px; white-space:nowrap;
+  background:#fff; color:#0f2542; border:1px solid var(--stroke); border-radius:999px; font-size:11px; padding:4px 8px; box-shadow:var(--shadow-sm);
+  opacity:0; transform:translateY(6px); transition:.18s ease;
+}
+.discount:hover::after{opacity:1; transform:none}
 
 /* contenu */
 .subtitle{margin:4px auto 6px;text-align:center;color:#5c6e83;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
@@ -149,7 +170,7 @@ a{text-decoration:none}
 .per{font-size:15px;color:var(--muted)}
 .promise{margin:8px auto 4px;text-align:center;color:#0f2542;font-weight:700}
 
-/* avantages minimalistes */
+/* avantages */
 .features{margin:16px 0 0;padding:0;list-style:none}
 .features li{display:flex;gap:12px;align-items:flex-start;margin:12px 0}
 .icon{flex:0 0 22px;height:22px;border-radius:999px;border:2px solid #cfe1f1;display:grid;place-items:center}
@@ -163,13 +184,22 @@ a{text-decoration:none}
 .btn[disabled]{opacity:.55;cursor:not-allowed}
 .note{margin-top:10px;color:var(--muted);font-size:13px;text-align:center}
 
+/* mini-bar de remise en bas de carte (visible surtout au centre) */
+.savebar{
+  margin-top:12px; display:flex; justify-content:center; gap:8px; align-items:center;
+  background:#fff6ee; border:1px solid #ffdfc7; color:#8a4200; font-weight:800; font-size:12px;
+  padding:8px 12px; border-radius:12px;
+  opacity:.0; transform:translateY(6px); transition:.22s;
+}
+.card.center .savebar{opacity:1; transform:none}
+
 /* détails (clic) */
 .details{margin-top:12px;border:1px dashed #d9e6f3;border-radius:16px;background:#fbfeff;overflow:hidden;max-height:0;opacity:0;transition:max-height .3s ease, opacity .3s ease}
 .card.show-details .details{max-height:240px;opacity:1}
 .details-inner{padding:12px 14px;font-size:14px}
 .details b{color:#0f2746}
 
-/* Flèches verre 4.5D */
+/* Flèches verre */
 .arrow{
   position:absolute; top:50%; transform:translateY(-50%); z-index:4;
   width:64px;height:64px;border-radius:20px;
@@ -188,17 +218,6 @@ a{text-decoration:none}
 .dots{position:absolute; left:50%; bottom:16px; transform:translateX(-50%); display:flex; gap:10px; z-index:3}
 .dot{width:10px;height:10px;border-radius:50%;background:#c7d9e6}
 .dot.active{background:var(--blue-dark)}
-
-/* BARRE sélection */
-.selection{
-  position:relative; z-index:3; margin:18px auto 0; max-width:980px;
-  background:#fff; border:1px solid var(--stroke); border-radius:999px; box-shadow:var(--shadow-sm);
-  display:flex; align-items:center; gap:14px; padding:10px 12px 10px 14px; flex-wrap:wrap; justify-content:center;
-}
-.selection strong{color:#0e2138}
-.selection .save{padding:6px 10px;border-radius:999px;background:#fff6ee;border:1px solid #ffdfc7;color:#8a4200;font-weight:800;font-size:12px}
-.selection .buy{margin-left:auto}
-@media(max-width:680px){.selection{border-radius:18px;justify-content:flex-start}.selection .buy{margin-left:0;width:100%}}
 
 /* footer */
 .footer{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
@@ -237,17 +256,19 @@ a{text-decoration:none}
 <section class="hero--image">
   <div class="inner">
     <h1>Tarifs & formules</h1>
-    <p class="lead">Luxe de l’audit, prix démocratisé. Choisissez la simplicité qui vous fait gagner du temps — et de la conformité.</p>
   </div>
 </section>
 
 <section class="section" aria-label="Offres Awenoria">
   <div class="container">
-    <h2 class="section-title">Choisissez votre vitesse</h2>
-    <p class="section-sub">Grandes cartes. Défilement naturel. Détails à la demande.</p>
+    <h2 class="section-title">Nos offres</h2>
   </div>
 
   <div class="scene">
+    <!-- zones de survol pour auto-scroll -->
+    <div class="edge left"  id="edgeLeft"></div>
+    <div class="edge right" id="edgeRight"></div>
+
     <button class="arrow left" id="prev" aria-label="Précédent">
       <svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="#0b4e80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
@@ -260,20 +281,26 @@ a{text-decoration:none}
         <!-- Créateurs -->
         <article class="card" tabindex="0" data-plan="crea" data-monthly="1" data-annual="10" data-market="2">
           <span class="ribbon" data-ribbon></span>
+          <button class="discount" data-jump title="Remise paiement en 1 fois"></button>
+
           <p class="subtitle">Essentiel</p>
           <h3 class="h3">Créateurs</h3>
           <div class="price-row"><span class="price">1 €</span><span class="per">/ mois</span></div>
           <p class="promise">Le point de départ propre et rassurant.</p>
+
           <ul class="features">
             <li><span class="icon" aria-hidden="true"></span>Scan démo + synthèse immédiate</li>
             <li><span class="icon" aria-hidden="true"></span>Modèles de mentions légales</li>
             <li><span class="icon" aria-hidden="true"></span>Conseils RGPD indispensables</li>
           </ul>
+
           <div class="cta">
             <button class="btn" disabled>Essai 3 jours → Mensuel</button>
             <button class="btn ghost" disabled>Annuel 10 €</button>
             <button class="btn ghost" data-toggle>Détails</button>
           </div>
+
+          <div class="savebar" data-savebar></div>
           <div class="details"><div class="details-inner" data-details></div></div>
           <p class="note">Paiement à l’ouverture commerciale.</p>
         </article>
@@ -281,20 +308,26 @@ a{text-decoration:none}
         <!-- Micro & Assos -->
         <article class="card" tabindex="0" data-plan="micro" data-monthly="2" data-annual="20" data-market="5">
           <span class="ribbon" data-ribbon></span>
+          <button class="discount" data-jump title="Remise paiement en 1 fois"></button>
+
           <p class="subtitle">Le meilleur départ</p>
           <h3 class="h3">Micro & Assos</h3>
           <div class="price-row"><span class="price">2 €</span><span class="per">/ mois</span></div>
           <p class="promise">Tout ce qu’il faut, rien d’inutile.</p>
+
           <ul class="features">
             <li><span class="icon" aria-hidden="true"></span>Scan site + analyse PDF locale</li>
             <li><span class="icon" aria-hidden="true"></span>Rapport PDF “preuve d’audit”</li>
             <li><span class="icon" aria-hidden="true"></span>Templates RGPD/CGV prêts à remplir</li>
           </ul>
+
           <div class="cta">
             <button class="btn" disabled>Essai 3 jours → Mensuel</button>
             <button class="btn ghost" disabled>Annuel 20 €</button>
             <button class="btn ghost" data-toggle>Détails</button>
           </div>
+
+          <div class="savebar" data-savebar></div>
           <div class="details"><div class="details-inner" data-details></div></div>
           <p class="note">Paiement à l’ouverture commerciale.</p>
         </article>
@@ -303,20 +336,26 @@ a{text-decoration:none}
         <article class="card" tabindex="0" data-plan="pros" data-monthly="9.9" data-annual="85" data-market="19">
           <span class="ribbon" data-ribbon></span>
           <span class="popular">Populaire</span>
+          <button class="discount" data-jump title="Remise paiement en 1 fois"></button>
+
           <p class="subtitle">Gain de temps maximal</p>
           <h3 class="h3">Pros & Agences</h3>
           <div class="price-row"><span class="price">9,90 €</span><span class="per">/ mois</span></div>
           <p class="promise">Productivité, rigueur, livrables prêts client.</p>
+
           <ul class="features">
             <li><span class="icon" aria-hidden="true"></span>Audit multi-thèmes (RGPD / A11y / Mentions)</li>
             <li><span class="icon" aria-hidden="true"></span>Génération & suivi de documents</li>
             <li><span class="icon" aria-hidden="true"></span>Portail client, export complet</li>
           </ul>
+
           <div class="cta">
             <button class="btn" disabled>Essai 3 jours → Mensuel</button>
             <button class="btn ghost" disabled>Annuel 85 €</button>
             <button class="btn ghost" data-toggle>Détails</button>
           </div>
+
+          <div class="savebar" data-savebar></div>
           <div class="details"><div class="details-inner" data-details></div></div>
           <p class="note">Paiement à l’ouverture commerciale.</p>
         </article>
@@ -324,21 +363,6 @@ a{text-decoration:none}
 
       <div class="dots" id="dots" aria-hidden="false"></div>
     </div>
-  </div>
-
-  <!-- Barre d’action liée à la carte centrée -->
-  <div class="container">
-    <div class="selection" id="selectionBar" aria-live="polite">
-      <span>Offre sélectionnée&nbsp;: <strong id="selName">—</strong> · <span id="selMonthly">—</span>/mois</span>
-      <span class="save" id="selSave">Paiement en 1 fois : —</span>
-      <span class="buy"><button class="btn" disabled>Choisir cette offre</button></span>
-    </div>
-  </div>
-
-  <div class="container">
-    <p class="note" style="margin-top:14px">
-      Au lancement : CB 3D Secure pour tous, SEPA B2B (avec carte de secours) pour pros, et option Wero pour paiements annuels uniques.
-    </p>
   </div>
 </section>
 
@@ -358,15 +382,22 @@ document.getElementById('year').textContent = new Date().getFullYear();
 const euro=n=>(Math.round(n*100)/100).toLocaleString('fr-FR',{minimumFractionDigits:(n%1?2:0),maximumFractionDigits:2})+' €';
 const pct =n=>(Math.round(n*10)/10).toLocaleString('fr-FR')+' %';
 
-/* rubans + détails */
+/* rubans + détails + badges + savebar */
 document.querySelectorAll('.card[data-plan]').forEach(card=>{
   const name = card.querySelector('.h3')?.textContent.trim() || '';
   const m=parseFloat(card.dataset.monthly||'0');
   const a=parseFloat(card.dataset.annual||'0');
   const market=parseFloat(card.dataset.market||'0');
   const yearFull=m*12, rate=yearFull?((yearFull-a)/yearFull*100):0;
+
   const rb=card.querySelector('[data-ribbon]');
   if(rb) rb.textContent=`Paiement en 1 fois : −${pct(rate)} (${euro(a)}/an)`;
+
+  const badge=card.querySelector('[data-jump]');
+  if(badge) badge.textContent = `-${pct(rate)}`;
+
+  const savebar=card.querySelector('[data-savebar]');
+  if(savebar) savebar.textContent = `Paiement en 1 fois : −${pct(rate)} (${euro(a)}/an)`;
 
   const details=card.querySelector('[data-details]');
   if(details){
@@ -380,17 +411,22 @@ document.querySelectorAll('.card[data-plan]').forEach(card=>{
       <div class="note">Estimations indicatives — adaptez selon votre benchmark.</div>
     `;
   }
+
+  /* badge = scroll au centre + ouvre détails */
+  badge?.addEventListener('click', ()=>{
+    card.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+    setTimeout(()=>card.classList.add('show-details'), 260);
+  });
+
+  /* bouton détails */
   card.querySelector('[data-toggle]')?.addEventListener('click',()=>card.classList.toggle('show-details'));
 });
 
-/* carrousel — fluide & naturel */
+/* carrousel — centre actif */
 const track=document.getElementById('track');
 const cards=[...track.querySelectorAll('.card')];
 const dots=document.getElementById('dots');
 const prev=document.getElementById('prev'), next=document.getElementById('next');
-const selName=document.getElementById('selName');
-const selMonthly=document.getElementById('selMonthly');
-const selSave=document.getElementById('selSave');
 
 function idxCenter(){
   const mid=track.getBoundingClientRect().left + track.clientWidth/2;
@@ -409,14 +445,6 @@ function setActive(i){
     c.style.opacity = c.classList.contains('center') ? 1 : (dist>=2 ? 0.42 : 0.58);
   });
   [...dots.children].forEach((d,j)=>d.classList.toggle('active', j===i));
-
-  const active = cards[i];
-  const m=parseFloat(active.dataset.monthly||'0');
-  const a=parseFloat(active.dataset.annual||'0');
-  const rate = m? ((m*12-a)/(m*12)*100) : 0;
-  selName.textContent = active.querySelector('.h3')?.textContent.trim() || '';
-  selMonthly.textContent = euro(m);
-  selSave.textContent = `Paiement en 1 fois : −${pct(rate)} (${euro(a)}/an)`;
 }
 function buildDots(){
   dots.innerHTML='';
@@ -427,24 +455,17 @@ function buildDots(){
     dots.appendChild(s);
   });
 }
+buildDots(); setActive(0);
 
+/* défilement par delta (flèches) */
 function goDelta(dir=1){
-  // défile d’une largeur de carte (rapide et intuitif)
-  const w = cards[0].getBoundingClientRect().width + 48; // carte + gap
+  const w = cards[0].getBoundingClientRect().width + 48;
   track.scrollBy({ left: dir*w, behavior:'smooth' });
 }
 function goTo(i){
   i=Math.max(0,Math.min(cards.length-1,i));
   cards[i].scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
 }
-
-buildDots(); setActive(0);
-
-/* scroll / resize -> recalcul */
-track.addEventListener('scroll', ()=>{ requestAnimationFrame(()=>setActive(idxCenter())); }, {passive:true});
-window.addEventListener('resize', ()=>setActive(idxCenter()));
-
-/* flèches → plus rapides */
 prev.addEventListener('click', ()=>goDelta(-1));
 next.addEventListener('click', ()=>goDelta(+1));
 
@@ -457,21 +478,38 @@ track.addEventListener('pointerdown', e=>{dragging=true; startX=e.clientX; scrol
 track.addEventListener('pointermove', e=>{ if(!dragging) return; track.scrollLeft = scrollX - (e.clientX-startX);});
 track.addEventListener('pointerup', ()=>{dragging=false});
 
-/* molette : vertical = scroll page (pas bloqué) ; SHIFT+molette = horizontal */
+/* molette : vertical = scroll page ; SHIFT ou deltaX = horizontal */
 track.addEventListener('wheel', e=>{
   const wantsHorizontal = e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY);
   if(wantsHorizontal){
     track.scrollLeft += (Math.abs(e.deltaX) > 0 ? e.deltaX : e.deltaY);
     e.preventDefault();
-  }
-}, {passive:false});
+  } // sinon laisse la page scroller
+},{passive:false});
+
+/* auto-scroll au survol des bords (sans cliquer) */
+const edgeL=document.getElementById('edgeLeft'), edgeR=document.getElementById('edgeRight');
+let raf=null, dir=0;
+function step(){
+  if(dir!==0){ track.scrollLeft += dir*12; raf=requestAnimationFrame(step); }
+}
+function start(d){ dir=d; if(!raf) raf=requestAnimationFrame(step); }
+function stop(){ dir=0; if(raf){cancelAnimationFrame(raf); raf=null;} }
+edgeL.addEventListener('mouseenter', ()=>start(-1));
+edgeR.addEventListener('mouseenter', ()=>start(+1));
+edgeL.addEventListener('mouseleave', stop);
+edgeR.addEventListener('mouseleave', stop);
+
+/* recalc actif */
+track.addEventListener('scroll', ()=>{ requestAnimationFrame(()=>setActive(idxCenter())); }, {passive:true});
+window.addEventListener('resize', ()=>setActive(idxCenter()));
 
 /* CTAs désactivées (pré-lancement) */
 document.querySelectorAll('.btn[disabled]').forEach(b=>{
   b.addEventListener('click', ()=> alert('Le paiement sera activé au lancement officiel. Merci !'));
 });
 
-/* nav “dure” comme index */
+/* nav dure */
 (function(){
   function hardLink(page){ const base=location.pathname.replace(/[^\/]*$/,''); window.location.assign(base+page+'?v='+Date.now()); }
   document.addEventListener('click', e=>{ const a=e.target.closest('a[data-page]'); if(!a) return; e.preventDefault(); hardLink(a.getAttribute('data-page')); }, {passive:false});
