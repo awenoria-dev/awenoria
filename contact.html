@@ -17,7 +17,7 @@
   --shadow-sm:0 6px 20px rgba(16,32,48,.06);
   --shadow-lg:0 24px 48px rgba(16,32,48,.10);
 
-  /* décor (hérités de l’accueil) */
+  /* décor accueil */
   --hero-overlay-rgb:0,90,142; --hero-overlay-alpha:.42; --hero-overlay-alpha-mobile:.52;
   --copper-1:#B86122; --copper-2:#D67A2E; --copper-3:#F2B56C;
   --blue-soft-1:#A9D3FF; --blue-soft-2:#7FB2CB; --blue-soft-3:#6FB3D8;
@@ -28,7 +28,7 @@ a{text-decoration:none;color:var(--blue-dark)}
 img{max-width:100%;display:block}
 .container{max-width:1160px;margin:0 auto;padding:24px 20px}
 
-/* ===== HEADER (identique) ===== */
+/* ===== HEADER (identique accueil) ===== */
 .header{position:sticky;top:0;z-index:60;background:var(--bg-top);border-bottom:1px solid transparent;transition:.25s}
 .header.scrolled{background:#fff;border-bottom-color:var(--stroke);box-shadow:0 10px 24px rgba(16,32,48,.06)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
@@ -43,7 +43,7 @@ img{max-width:100%;display:block}
 .dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:var(--blue-dark);font-weight:700}
 .dropdown a:hover{background:#f3f8fc;color:var(--orange)}
 
-/* ===== HERO (même bleuté animé que l’accueil) ===== */
+/* ===== HERO (strictement le même que l’accueil) ===== */
 .hero--image{
   position:relative; padding:124px 0 110px; text-align:center; color:#fff; overflow:hidden;
   background:
@@ -60,8 +60,7 @@ img{max-width:100%;display:block}
       linear-gradient(180deg, #a8cbe0 0%, #95c1dc 40%, #88bad3 100%);
   }
 }
-.hero--image::before,
-.hero--image::after{
+.hero--image::before,.hero--image::after{
   content:""; position:absolute; inset:-8% -8%; z-index:1; pointer-events:none;
   opacity:.65; mix-blend-mode:screen; animation: awen-waves 24s ease-in-out infinite;
   -webkit-mask: radial-gradient(ellipse at 50% 52%, transparent 0 28%, #000 32%);
@@ -88,12 +87,14 @@ img{max-width:100%;display:block}
   75%{transform:translate3d(4%,1%,0) scale(1.035)}
   100%{transform:translate3d(0,0,0) scale(1)}
 }
-.hero--image > .container{position:relative; z-index:2}
+.hero--image>.container{position:relative;z-index:2}
 h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
 @media(max-width:600px){h1{font-size:44px}}
 .lead{color:#eaf3fa;max-width:980px;margin:8px auto 0;font-weight:600}
+.type-on-view{min-height:1.2em} /* empêche “sauts” pendant le typing */
 
-/* ===== FORM CARD ===== */
+/* ===== FORM CARD (centrée, non tronquée) ===== */
+.form-wrap{position:relative;z-index:3}
 .card{max-width:980px;margin:-46px auto 0;background:#fff;border:1px solid var(--stroke);border-radius:20px;padding:22px;box-shadow:var(--shadow-lg)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:900px){.grid{grid-template-columns:1fr}}
@@ -157,84 +158,86 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
 <section class="hero--image">
   <div class="container">
     <h1>Nous contacter</h1>
-    <p class="lead">Une question, un devis, un partenariat ? Votre message nous parvient via un envoi sécurisé.</p>
+    <p id="hero-lead" class="lead type-on-view" data-text="Une question, un devis, un partenariat ? Votre message nous parvient via un envoi sécurisé."></p>
   </div>
 </section>
 
-<!-- ===== FORM ===== -->
-<main class="container">
-  <div class="card">
-    <form id="contactForm" action="https://awenoria.bmavcontact.workers.dev/contact" method="POST" novalidate>
-      <div class="grid">
-        <div>
-          <label class="req">Votre demande</label>
-          <select name="demande" class="input" required>
-            <option value="">Choisissez un élément dans la liste</option>
-            <option>Demande de rendez-vous</option>
-            <option>Demande de devis</option>
-            <option>Partenariat</option>
-            <option>Autre</option>
-          </select>
+<!-- ===== FORMULAIRE ===== -->
+<section class="form-wrap">
+  <div class="container">
+    <div class="card">
+      <form id="contactForm" action="https://awenoria.bmavcontact.workers.dev/contact" method="POST" novalidate>
+        <div class="grid">
+          <div>
+            <label class="req">Votre demande</label>
+            <select name="demande" class="input" required>
+              <option value="">Choisissez un élément dans la liste</option>
+              <option>Demande de rendez-vous</option>
+              <option>Demande de devis</option>
+              <option>Partenariat</option>
+              <option>Autre</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="req">Choisissez le destinataire</label>
+            <select name="destinataire" class="input" required>
+              <option value="">Choisissez un élément dans la liste</option>
+              <option>RGPD</option>
+              <option>Hébergement</option>
+              <option>Logiciels et outils</option>
+              <option>Écoconception</option>
+              <option>Accessibilité</option>
+              <option>Autre</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="req">Votre adresse e-mail</label>
+            <input class="input" type="email" name="email" placeholder="du type nom@exemple.com" required>
+          </div>
+
+          <div>
+            <label>Téléphone (facultatif)</label>
+            <input class="input" type="tel" name="phone" placeholder="+33 6 12 34 56 78">
+          </div>
+
+          <div style="grid-column:1/-1">
+            <label class="req">Votre message</label>
+            <textarea class="input" name="message" rows="6" placeholder="Votre message…" required></textarea>
+          </div>
         </div>
 
-        <div>
-          <label class="req">Choisissez le destinataire</label>
-          <select name="destinataire" class="input" required>
-            <option value="">Choisissez un élément dans la liste</option>
-            <option>RGPD</option>
-            <option>Hébergement</option>
-            <option>Logiciels et outils</option>
-            <option>Écoconception</option>
-            <option>Accessibilité</option>
-            <option>Autre</option>
-          </select>
+        <div class="hr"></div>
+
+        <!-- Consentement optionnel -->
+        <label style="display:block;margin-top:6px">
+          <input type="checkbox" name="no_marketing" value="1"> Je ne souhaite pas recevoir de communication commerciale.
+        </label>
+
+        <p class="note">
+          Les données collectées sont indispensables au traitement de votre demande. Vous disposez de droits d’accès, de rectification, d’effacement,
+          d’opposition et de limitation. Pour en savoir plus, consultez notre <a href="confidentialite.html">Politique de confidentialité</a>.
+        </p>
+
+        <!-- Honeypots anti-bot -->
+        <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
+
+        <!-- Turnstile -->
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAB6sOpFo1gDVnkX1"></div>
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+        <div style="margin-top:12px">
+          <button class="btn" type="submit">Envoyer</button>
         </div>
 
-        <div>
-          <label class="req">Votre adresse e-mail</label>
-          <input class="input" type="email" name="email" placeholder="du type nom@exemple.com" required>
-        </div>
-
-        <div>
-          <label>Téléphone (facultatif)</label>
-          <input class="input" type="tel" name="phone" placeholder="+33 6 12 34 56 78">
-        </div>
-
-        <div style="grid-column:1/-1">
-          <label class="req">Votre message</label>
-          <textarea class="input" name="message" rows="6" placeholder="Votre message…" required></textarea>
-        </div>
-      </div>
-
-      <div class="hr"></div>
-
-      <!-- Consentement optionnel -->
-      <label style="display:block;margin-top:6px">
-        <input type="checkbox" name="no_marketing" value="1"> Je ne souhaite pas recevoir de communication commerciale.
-      </label>
-
-      <p class="note">
-        Les données collectées sont indispensables au traitement de votre demande. Vous disposez de droits d’accès, de rectification, d’effacement,
-        d’opposition et de limitation. Pour en savoir plus, consultez notre <a href="confidentialite.html">Politique de confidentialité</a>.
-      </p>
-
-      <!-- Honeypots invisibles anti-bot -->
-      <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
-      <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
-
-      <!-- Turnstile -->
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAAB6sOpFo1gDVnkX1"></div>
-      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-      <div style="margin-top:12px">
-        <button class="btn" type="submit">Envoyer</button>
-      </div>
-
-      <div id="ok" class="success">Merci, votre message a bien été envoyé ✅</div>
-      <div id="ko" class="error">Oups, l’envoi a échoué. Réessayez ou écrivez-nous : contact@awenoria.fr</div>
-    </form>
+        <div id="ok" class="success">Merci, votre message a bien été envoyé ✅</div>
+        <div id="ko" class="error">Oups, l’envoi a échoué. Réessayez ou écrivez-nous : contact@awenoria.fr</div>
+      </form>
+    </div>
   </div>
-</main>
+</section>
 
 <!-- ===== FOOTER ===== -->
 <footer class="container footer">
@@ -249,25 +252,43 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
 document.getElementById('year').textContent = new Date().getFullYear();
 (function(){const h=document.getElementById('site-header');const t=()=>{if(window.scrollY>10)h.classList.add('scrolled');else h.classList.remove('scrolled')};t();window.addEventListener('scroll',t,{passive:true})})();
 
-/* Envoi vers le Worker (sans recharger la page) */
+/* Typing effect (même script que l’accueil) */
+(function(){
+  const SPEED = 22;
+  const els = [...document.querySelectorAll('.type-on-view')];
+  els.forEach(el=>{
+    const full = (el.getAttribute('data-text') || el.textContent || '').trim();
+    el.dataset.fullText = full; el.textContent = ''; el.__typingTimer=null; el.__ready=true;
+  });
+  function type(el){
+    clearTimeout(el.__typingTimer);
+    const full = el.dataset.fullText || ''; el.textContent = ''; let i=0;
+    (function tick(){ el.textContent = full.slice(0, ++i);
+      if(i < full.length) el.__typingTimer=setTimeout(tick, SPEED); else {el.__typingTimer=null; el.__ready=false;}
+    })();
+  }
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      const el = entry.target;
+      if(entry.isIntersecting){ if(el.__ready) type(el); }
+      else { el.__ready = true; clearTimeout(el.__typingTimer); el.__typingTimer=null; }
+    });
+  }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
+  els.forEach(el=>io.observe(el));
+})();
+
+/* Envoi vers le Worker (sans rechargement) */
 const form = document.getElementById('contactForm');
 form.addEventListener('submit', async (e)=>{
   e.preventDefault();
   document.getElementById('ok').style.display='none';
   document.getElementById('ko').style.display='none';
-
   try{
     const r = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
     const j = await r.json().catch(()=>({}));
-    if(r.ok && j.ok){
-      document.getElementById('ok').style.display='block';
-      form.reset(); // Turnstile se réinitialise tout seul
-    }else{
-      document.getElementById('ko').style.display='block';
-    }
-  }catch(err){
-    document.getElementById('ko').style.display='block';
-  }
+    if(r.ok && j.ok){ document.getElementById('ok').style.display='block'; form.reset(); }
+    else{ document.getElementById('ko').style.display='block'; }
+  }catch(err){ document.getElementById('ko').style.display='block'; }
 });
 </script>
 </body>
