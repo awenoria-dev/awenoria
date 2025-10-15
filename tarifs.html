@@ -4,24 +4,31 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Awenoria — Tarifs & formules</title>
-<meta name="description" content="Choisissez votre formule Awenoria. Paiement en une fois avec remise immédiate. Comparateur intégré vs tarifs moyens du marché." />
+<meta name="description" content="Formules Awenoria. Carrousel premium : comparez les offres, remises en paiement en une fois, et économies vs marché." />
 <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* ===== PALETTE PREMIUM ===== */
 :root{
-  --blue:#0073b6; --blue-dark:#005a8e; --orange:#ff6600;
-  --bg-top:#f7f9fc; --bg:#edf3f7; --surface:#fff; --stroke:#e9eef4;
-  --text:#16233a; --muted:#5d6b7c; --radius:20px;
-  --shadow-sm:0 6px 20px rgba(16,32,48,.06);
-  --shadow-lg:0 24px 48px rgba(16,32,48,.10);
+  --ink:#0e223a;            /* texte */
+  --muted:#5e6c7b;          /* secondaire */
+  --accent:#ff6a00;         /* micro-accent */
+  --blue:#0d63a5;           /* bouton */
+  --blue-dark:#0a4e83;
+  --bg-top:#f7f9fc; --bg:#edf3f7;
+  --surface:#ffffff; --stroke:#e7eef5;
+  --glass:rgba(255,255,255,.72);
+  --shadow-sm:0 10px 22px rgba(20,45,70,.08);
+  --shadow-lg:0 28px 60px rgba(16,32,48,.18);
+  --radius:22px;
   --hero-overlay-rgb:0,90,142; --hero-overlay-alpha:.42; --hero-overlay-alpha-mobile:.52;
 }
 *{box-sizing:border-box} html,body{margin:0}
-body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--text);line-height:1.65}
-a{text-decoration:none} img{max-width:100%;display:block}
-.container{max-width:1160px;margin:0 auto;padding:24px 20px}
+body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--ink);line-height:1.65}
+a{text-decoration:none}
+.container{max-width:1180px;margin:0 auto;padding:24px 20px}
 
 /* ===== HEADER (identique index) ===== */
 .header{position:sticky;top:0;z-index:60;background:var(--bg-top);border-bottom:1px solid transparent;transition:.25s}
@@ -29,30 +36,30 @@ a{text-decoration:none} img{max-width:100%;display:block}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
 .brand__logo{height:92px;width:auto} @media(min-width:992px){.brand__logo{height:100px}}
 .mainnav{display:flex;gap:2px;margin-left:auto} .menu-item{list-style:none;position:relative}
-.menu-link{display:inline-block;padding:14px 14px;border-radius:12px;color:var(--blue-dark);font-weight:800;position:relative}
-.menu-link:hover{color:var(--orange);background:rgba(0,115,182,.06)}
-.menu-link::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:var(--orange);border-radius:2px;transform:scaleX(0);transition:.22s}
-.menu-link:hover::after,.menu-link.active::after{transform:scaleX(1)} .menu-link.active{color:var(--orange)}
+.menu-link{display:inline-block;padding:14px 14px;border-radius:12px;color:#0b446e;font-weight:800;position:relative}
+.menu-link:hover{color:var(--accent);background:rgba(13,99,165,.06)}
+.menu-link::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:var(--accent);border-radius:2px;transform:scaleX(0);transition:.22s}
+.menu-link:hover::after,.menu-link.active::after{transform:scaleX(1)} .menu-link.active{color:var(--accent)}
 .dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:280px;padding:10px;background:#fff;border:1px solid var(--stroke);border-radius:14px;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(8px);transition:.18s}
 .menu-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
-.dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:var(--blue-dark);font-weight:700}
-.dropdown a:hover{background:#f3f8fc;color:var(--orange)}
+.dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:#0b446e;font-weight:700}
+.dropdown a:hover{background:#f3f8fc;color:var(--accent)}
 
-/* ===== HERO ===== */
+/* ===== HERO (bandeau bleuté animé identique index) ===== */
 .hero--image{
-  position:relative; padding:124px 0 96px; text-align:center; color:#fff; overflow:hidden;
+  position:relative; padding:120px 0 84px; text-align:center; color:#fff; overflow:hidden;
   background:
     radial-gradient(1100px 520px at 10% -10%, rgba(255,255,255,.16), rgba(255,255,255,0) 60%),
     radial-gradient(1000px 600px at 120% 10%, rgba(255,255,255,.10), rgba(255,255,255,0) 60%),
     linear-gradient(180deg, rgba(var(--hero-overlay-rgb), var(--hero-overlay-alpha)) 0%, rgba(var(--hero-overlay-rgb), var(--hero-overlay-alpha)) 100%),
-    linear-gradient(180deg, #a8cbe0 0%, #95c1dc 40%, #88bad3 100%);
+    linear-gradient(180deg, #aacfe3 0%, #97c4de 40%, #89bbd3 100%);
 }
 @media(max-width:980px){
   .hero--image{
     background:
       radial-gradient(900px 420px at 0% -10%, rgba(255,255,255,.18), rgba(255,255,255,0) 60%),
       linear-gradient(180deg, rgba(var(--hero-overlay-rgb), var(--hero-overlay-alpha-mobile)) 0%, rgba(var(--hero-overlay-rgb), var(--hero-overlay-alpha-mobile)) 100%),
-      linear-gradient(180deg, #a8cbe0 0%, #95c1dc 40%, #88bad3 100%);
+      linear-gradient(180deg, #aacfe3 0%, #97c4de 40%, #89bbd3 100%);
   }
 }
 .hero--image::before,
@@ -88,65 +95,94 @@ h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
 @media(max-width:600px){h1{font-size:44px}}
 .lead{color:#eaf3fa;max-width:980px;margin:8px auto 0;font-weight:600}
 
-/* ===== Sections ===== */
-.section{padding:88px 0}
-.section.alt{background:var(--surface);position:relative}
-.section.alt::before{content:"";position:absolute;left:0;right:0;top:-24px;height:24px;background:linear-gradient(180deg,rgba(237,243,247,0),rgba(237,243,247,1))}
-.section-title{margin:0 0 12px;font-size:32px;color:#0f2746;text-align:center;white-space:nowrap}
-.section-title::after{content:"";display:block;width:64px;height:4px;margin:10px auto 0;background:var(--orange);border-radius:3px;opacity:.85}
+/* ===== SECTION TITLE ===== */
+.section{padding:84px 0}
+.section-title{margin:0 0 8px;font-size:32px;color:#0d2440;text-align:center}
+.section-sub{color:#7a8897;text-align:center;margin:0 0 18px}
 
-/* ===== Cards / grille ===== */
-.grid{display:grid;gap:24px}
-@media(min-width:1024px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:1023px){.grid.cols-3{grid-template-columns:1fr}}
-.tile{position:relative;border-radius:28px;background:#fff;border:1px solid var(--stroke);box-shadow:var(--shadow-sm);padding:22px;transition:.18s}
-.tile:hover{transform:translateY(-4px);box-shadow:0 24px 48px rgba(16,32,48,.12);border-color:#d5e7f4}
-.tile .tile-head{display:flex;justify-content:center;margin-bottom:6px}
-.badge{display:inline-flex;align-items:center;justify-content:center;min-width:130px;height:36px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:900;letter-spacing:.2px;color:#fff;background:var(--blue-dark)}
-.badge.outline{background:#fff;color:var(--blue-dark);border:1px solid var(--stroke)}
-.muted{color:var(--muted);margin:0}
+/* ===== CARROUSEL ===== */
+.cards-shell{position:relative;margin-top:12px}
+.cards-viewport{
+  overflow-x:auto; overflow-y:visible; -webkit-overflow-scrolling:touch;
+  scroll-snap-type:x mandatory; scroll-padding:12px;
+  padding:24px 12px 40px; margin:0 -12px;
+  display:flex; gap:24px; align-items:stretch;
+}
+.cards-viewport::-webkit-scrollbar{display:none}
+.edge-fade{
+  pointer-events:none; position:absolute; inset:0; z-index:2;
+  background:
+    linear-gradient(90deg, rgba(237,243,247,1), rgba(237,243,247,0) 80px) left/40% 100% no-repeat,
+    linear-gradient(-90deg, rgba(237,243,247,1), rgba(237,243,247,0) 80px) right/40% 100% no-repeat;
+  mask-composite: exclude;
+}
+.card{
+  scroll-snap-align:center; position:relative; flex:0 0 min(86vw, 360px);
+  border-radius:var(--radius); background:var(--surface);
+  border:1px solid var(--stroke); box-shadow:var(--shadow-sm);
+  padding:22px; transition:.28s transform, .28s filter, .28s box-shadow, .28s border-color, .28s opacity;
+  transform-origin:center bottom;
+  filter:saturate(.92) brightness(.98);
+  opacity:.7;
+}
+.card.is-center{
+  transform:scale(1.06); box-shadow:var(--shadow-lg); border-color:#d8e7f5;
+  filter:saturate(1) brightness(1);
+  opacity:1;
+}
+.card.is-left,.card.is-right{transform:scale(.94)}
+/* cartes “verre” */
+.card.is-center::before{
+  content:""; position:absolute; inset:0; border-radius:var(--radius);
+  background:linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,0) 40%);
+  pointer-events:none;
+}
 
-/* ===== Prix / rubans ===== */
-.price-wrap{display:flex;align-items:baseline;gap:8px;justify-content:center;margin:8px 0 2px}
-.price{font-size:34px;font-weight:900;line-height:1}
+/* bannières / badges */
+.ribbon{
+  position:absolute; top:12px; left:12px; z-index:3;
+  background:linear-gradient(90deg, var(--accent), #ff8740);
+  color:#fff; font-weight:900; font-size:12px; border-radius:999px; padding:5px 11px; box-shadow:var(--shadow-sm)
+}
+.popular{
+  position:absolute; top:12px; right:12px; z-index:3;
+  background:#0f2746; color:#fff; font-weight:900; font-size:12px; border-radius:999px; padding:5px 11px; box-shadow:var(--shadow-sm)
+}
+
+/* contenu carte */
+.card h3{margin:8px 0 0;color:#0f2746;text-align:center}
+.price-row{display:flex;align-items:baseline;justify-content:center;gap:8px;margin:6px 0 8px}
+.price{font-size:38px;font-weight:900;letter-spacing:.2px}
 .per{font-size:14px;color:var(--muted)}
-.annuel-ribbon{
-  position:absolute; top:14px; left:14px;
-  background:linear-gradient(90deg,var(--orange),#ff8840);
-  color:#fff; font-weight:900; font-size:12px; border-radius:999px; padding:4px 10px; box-shadow:var(--shadow-sm);
-}
-.popular-bubble{
-  position:absolute; top:14px; right:14px;
-  background:#0f2746; color:#fff; font-weight:900; font-size:12px; border-radius:999px; padding:4px 10px; box-shadow:var(--shadow-sm);
-}
-
-/* ===== Boutons ===== */
-.btn{appearance:none;border:none;cursor:pointer;font-weight:800;font-size:16px;padding:14px 18px;border-radius:12px;color:#fff;background:var(--blue-dark);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.35);transition:.18s}
-.btn:hover{background:var(--orange);filter:brightness(1.02)} .btn:active{transform:translateY(1px)}
-.btn.ghost{background:#fff;color:var(--blue-dark);border:1px solid var(--stroke)}
-.btn[disabled]{opacity:.55;cursor:not-allowed}
-.features{margin:12px 0 0 0;padding-left:18px}
+ul.features{margin:12px 0 0;padding-left:18px}
 .features li{margin:8px 0}
-.note{margin-top:8px;color:var(--muted);font-size:13px}
+.btn{appearance:none;border:none;cursor:pointer;font-weight:800;font-size:16px;padding:14px 18px;border-radius:12px;color:#fff;background:var(--blue-dark);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.35);transition:.18s}
+.btn:hover{background:var(--blue);filter:brightness(1.02)} .btn:active{transform:translateY(1px)}
+.btn.ghost{background:#fff;color:#0b446e;border:1px solid var(--stroke)}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+.note{margin-top:8px;color:var(--muted);font-size:13px;text-align:center}
 
-/* ===== Popover comparatif ===== */
+/* popover */
 .popover{
-  position:absolute; left:50%; transform:translateX(-50%); bottom:100%; margin-bottom:10px;
+  position:absolute; left:50%; transform:translateX(-50%); bottom:100%; margin-bottom:12px;
   min-width:240px; max-width:280px; padding:12px 14px; background:#fff; border:1px solid var(--stroke);
-  border-radius:14px; box-shadow:var(--shadow-lg); font-size:14px; color:var(--text); display:none; z-index:10;
+  border-radius:14px; box-shadow:var(--shadow-lg); font-size:14px; color:var(--ink); display:none; z-index:4;
 }
 .popover:after{
-  content:""; position:absolute; left:50%; transform:translateX(-50%);
+  content:""; position:absolute; left:50%; transform:translateX(-50%) rotate(45deg);
   bottom:-7px; width:14px; height:14px; background:#fff; border-left:1px solid var(--stroke); border-bottom:1px solid var(--stroke);
-  transform-origin:center; rotate:45deg;
 }
-.tile:hover .popover, .tile:focus-within .popover{display:block}
+.card:hover .popover,.card:focus-within .popover{display:block}
 
-/* ===== Reveal ===== */
-.reveal{opacity:0;transform:translateY(8px);transition:.34s}
-.reveal.is-visible{opacity:1;transform:none}
+/* contrôles */
+.controls{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px}
+.navbtn{appearance:none;border:1px solid var(--stroke);background:#fff;border-radius:999px;padding:10px 12px;cursor:pointer;box-shadow:var(--shadow-sm)}
+.navbtn:hover{border-color:#d7e6f3}
+.dots{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:8px}
+.dot{width:9px;height:9px;border-radius:50%;background:#c7d9e6}
+.dot.active{background:var(--blue-dark)}
 
-/* ===== Footer ===== */
+/* Footer */
 .footer{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
 </style>
 </head>
@@ -175,14 +211,7 @@ h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
           <a href="faq.html">• FAQ</a>
         </div>
       </li>
-      <li class="menu-item">
-        <a class="menu-link" href="a-propos.html">À propos ▾</a>
-        <div class="dropdown">
-          <a href="a-propos.html#mission">• Mission & valeurs</a>
-          <a href="mentions.html">• Mentions légales</a>
-          <a href="confidentialite.html">• Confidentialité</a>
-        </div>
-      </li>
+      <li class="menu-item"><a class="menu-link" href="a-propos.html">À propos</a></li>
       <li class="menu-item"><a class="menu-link" href="contact.html">Contact</a></li>
     </ul>
   </div>
@@ -192,102 +221,88 @@ h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
 <section class="hero--image">
   <div class="container">
     <h1>Tarifs & formules</h1>
-    <p class="lead type-on-view" data-text="Paiement en une fois : économisez jusqu’à 28 %. Comparateur inclus pour situer nos prix vs marché."></p>
+    <p class="lead">Un rendu premium, clair et élégant. Paiement en une fois : remises automatiques, comparatif vs marché.</p>
   </div>
 </section>
 
-<!-- ===== PLANS ===== -->
-<section class="section alt">
+<!-- ===== CARROUSEL ===== -->
+<section class="section">
   <div class="container">
     <h2 class="section-title">Nos offres</h2>
-    <p class="lead" style="text-align:center;max-width:860px;margin:6px auto 0">
-      Boutons affichés à titre de démonstration (paiement à l’ouverture commerciale).
-    </p>
+    <p class="section-sub">Survolez/scroll pour comparer. La carte centrale est mise en avant.</p>
 
-    <div class="grid cols-3" style="margin-top:18px">
-      <!-- Créateurs -->
-      <article class="tile reveal" tabindex="0"
-        data-plan="crea" data-monthly="1" data-annual="10" data-market="2.0">
-        <span class="annuel-ribbon" data-ribbon></span>
-        <div class="tile-head"><span class="badge">Créateurs</span></div>
-        <div class="price-wrap">
-          <div class="price">1 €</div><div class="per">/ mois</div>
-        </div>
-        <ul class="features">
-          <li>Scan démo + rapport synthèse</li>
-          <li>Modèles de mentions légales</li>
-          <li>Conseils RGPD essentiels</li>
-        </ul>
-        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
-          <button class="btn" title="Paiement bientôt disponible" disabled>Essai 3 jours → Mensuel</button>
-          <button class="btn ghost" disabled>Annuel 10 €</button>
-        </div>
-        <p class="note" style="text-align:center">Idéal pour sécuriser les bases.</p>
+    <div class="cards-shell">
+      <div class="edge-fade" aria-hidden="true"></div>
+      <div id="carousel" class="cards-viewport" role="region" aria-label="Carrousel des offres">
+        <!-- Carte 1 -->
+        <article class="card" tabindex="0"
+          data-plan="crea" data-monthly="1" data-annual="10" data-market="2.0">
+          <span class="ribbon" data-ribbon></span>
+          <h3>Créateurs</h3>
+          <div class="price-row"><span class="price">1 €</span><span class="per">/ mois</span></div>
+          <ul class="features">
+            <li>Scan démo + rapport synthèse</li>
+            <li>Modèles de mentions légales</li>
+            <li>Conseils RGPD essentiels</li>
+          </ul>
+          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+            <button class="btn" disabled>Essai 3 jours → Mensuel</button>
+            <button class="btn ghost" disabled>Annuel 10 €</button>
+          </div>
+          <p class="note">Idéal pour sécuriser les bases.</p>
+          <div class="popover" data-popover></div>
+        </article>
 
-        <div class="popover" role="status" aria-live="polite" data-popover></div>
-      </article>
+        <!-- Carte 2 -->
+        <article class="card" tabindex="0"
+          data-plan="micro" data-monthly="2" data-annual="20" data-market="5.0">
+          <span class="ribbon" data-ribbon></span>
+          <h3>Micro & Assos</h3>
+          <div class="price-row"><span class="price">2 €</span><span class="per">/ mois</span></div>
+          <ul class="features">
+            <li>Scan site + Analyse PDF locale</li>
+            <li>Rapport PDF “preuve d’audit”</li>
+            <li>Templates RGPD/CGV prêts à remplir</li>
+          </ul>
+          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+            <button class="btn" disabled>Essai 3 jours → Mensuel</button>
+            <button class="btn ghost" disabled>Annuel 20 €</button>
+          </div>
+          <p class="note">Pour structures légères et associations.</p>
+          <div class="popover" data-popover></div>
+        </article>
 
-      <!-- Micro & Assos -->
-      <article class="tile reveal" tabindex="0"
-        data-plan="micro" data-monthly="2" data-annual="20" data-market="5.0">
-        <span class="annuel-ribbon" data-ribbon></span>
-        <div class="tile-head"><span class="badge">Micro & Assos</span></div>
-        <div class="price-wrap">
-          <div class="price">2 €</div><div class="per">/ mois</div>
-        </div>
-        <ul class="features">
-          <li>Scan site + Analyse PDF locale</li>
-          <li>Rapport PDF “preuve d’audit”</li>
-          <li>Templates RGPD/CGV prêts à remplir</li>
-        </ul>
-        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
-          <button class="btn" title="Paiement bientôt disponible" disabled>Essai 3 jours → Mensuel</button>
-          <button class="btn ghost" disabled>Annuel 20 €</button>
-        </div>
-        <p class="note" style="text-align:center">Pour structures légères et associations.</p>
+        <!-- Carte 3 -->
+        <article class="card" tabindex="0"
+          data-plan="pros" data-monthly="9.9" data-annual="85" data-market="19">
+          <span class="ribbon" data-ribbon></span>
+          <span class="popular">Populaire</span>
+          <h3>Pros & Agences</h3>
+          <div class="price-row"><span class="price">9,90 €</span><span class="per">/ mois</span></div>
+          <ul class="features">
+            <li>Audit multi-thèmes (RGPD / A11y / Mentions)</li>
+            <li>Génération & suivi de documents</li>
+            <li>Portail client, export complet</li>
+          </ul>
+          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+            <button class="btn" disabled>Essai 3 jours → Mensuel</button>
+            <button class="btn ghost" disabled>Annuel 85 €</button>
+          </div>
+          <p class="note">Pour un usage récurrent et collaboratif.</p>
+          <div class="popover" data-popover></div>
+        </article>
+      </div>
 
-        <div class="popover" role="status" aria-live="polite" data-popover></div>
-      </article>
-
-      <!-- Pros & Agences (Populaire directement dans la bulle) -->
-      <article class="tile reveal" tabindex="0"
-        data-plan="pros" data-monthly="9.9" data-annual="85" data-market="19">
-        <span class="annuel-ribbon" data-ribbon></span>
-        <div class="tile-head"><span class="badge">Pros & Agences</span></div>
-        <div class="price-wrap">
-          <div class="price">9,90 €</div><div class="per">/ mois</div>
-        </div>
-        <span class="popular-bubble">Populaire</span>
-        <ul class="features">
-          <li>Audit multi-thèmes (RGPD / A11y / Mentions)</li>
-          <li>Génération & suivi de documents</li>
-          <li>Portail client, export complet</li>
-        </ul>
-        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
-          <button class="btn" title="Paiement bientôt disponible" disabled>Essai 3 jours → Mensuel</button>
-          <button class="btn ghost" disabled>Annuel 85 €</button>
-        </div>
-        <p class="note" style="text-align:center">Pensé pour un usage récurrent et collaboratif.</p>
-
-        <div class="popover" role="status" aria-live="polite" data-popover></div>
-      </article>
+      <div class="controls" aria-hidden="false">
+        <button class="navbtn" id="prev" aria-label="Précédent">‹</button>
+        <button class="navbtn" id="next" aria-label="Suivant">›</button>
+      </div>
+      <div class="dots" id="dots" aria-hidden="false"></div>
     </div>
 
-    <p class="note" style="text-align:center;margin-top:16px">
-      Au lancement : CB 3D Secure pour tous, SEPA B2B (avec carte de secours) pour pros, et option Wero pour paiements annuels uniques.
+    <p class="note" style="margin-top:18px">
+      Au lancement : CB 3D Secure pour tous, SEPA B2B pour pros (avec carte de secours), et option Wero pour paiements annuels uniques.
     </p>
-  </div>
-</section>
-
-<!-- ===== CTA ===== -->
-<section class="section">
-  <div class="container" style="text-align:center">
-    <h2 class="section-title" style="margin-bottom:10px">Besoin d’un devis adapté ?</h2>
-    <p class="lead">Parlons périmètre (nombre de gabarits, complexité, apps, PDF…).</p>
-    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:16px">
-      <a class="btn" href="contact.html">Parler à un expert</a>
-      <a class="btn ghost" href="index.html#resultat">Tester l’audit gratuit</a>
-    </div>
   </div>
 </section>
 
@@ -300,79 +315,106 @@ h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
 </footer>
 
 <script>
-/* année + header sticky (comme index) */
+/* année + header sticky */
 document.getElementById('year').textContent = new Date().getFullYear();
 (function(){const h=document.getElementById('site-header');const t=()=>{if(window.scrollY>10)h.classList.add('scrolled');else h.classList.remove('scrolled')};t();window.addEventListener('scroll',t,{passive:true})})();
 
-/* Reveal on scroll */
-(function(){const els=[...document.querySelectorAll('.reveal')]; const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.12}); els.forEach(el=>io.observe(el));})();
+/* helpers */
+const MARKET_FALLBACK = { crea:2.0, micro:5.0, pros:19.0 };
+const euro=n=> (Math.round(n*100)/100).toLocaleString('fr-FR',{minimumFractionDigits:(n%1?2:0),maximumFractionDigits:2})+' €';
+const pct = n=> (Math.round(n*10)/10).toLocaleString('fr-FR')+' %';
 
-/* Effet de “dactylo” sur le sous-titre */
-(function(){
-  const SPEED = 22;
-  const els = [...document.querySelectorAll('.type-on-view')];
-  els.forEach(el=>{const full=(el.getAttribute('data-text')||el.textContent||'').trim(); el.dataset.fullText=full; el.textContent=''; el.__typingTimer=null; el.__ready=true;});
-  function type(el){clearTimeout(el.__typingTimer); const full=el.dataset.fullText||''; el.textContent=''; let i=0;(function tick(){el.textContent=full.slice(0,++i); if(i<full.length) el.__typingTimer=setTimeout(tick,SPEED); else {el.__typingTimer=null; el.__ready=false;}})();}
-  const io=new IntersectionObserver(entries=>{entries.forEach(entry=>{const el=entry.target; if(entry.isIntersecting){ if(el.__ready) type(el);} else { el.__ready=true; clearTimeout(el.__typingTimer); el.__typingTimer=null; }});},{threshold:.4,rootMargin:'0px 0px -10% 0px'}); els.forEach(el=>io.observe(el));
-})();
+/* rubans + popovers */
+document.querySelectorAll('.card[data-plan]').forEach(card=>{
+  const plan=card.dataset.plan;
+  const m=parseFloat(card.dataset.monthly||'0');
+  const a=parseFloat(card.dataset.annual||'0');
+  const market=parseFloat(card.dataset.market||MARKET_FALLBACK[plan]||0);
+  const yearFull = m*12;
+  const rate = yearFull>0 ? ( (yearFull-a)/yearFull*100 ) : 0;
 
-/* Rubans “paiement en 1 fois” + popovers comparatifs
-   — Les “tarifs moyens du marché” sont indicatifs : modifie data-market sur chaque carte ou ici via MARKET_FALLBACK. */
-const MARKET_FALLBACK = { crea: 2.0, micro: 5.0, pros: 19.0 }; // € / mois — à ajuster selon ta veille
+  const rb = card.querySelector('[data-ribbon]');
+  if(rb) rb.textContent = `Paiement en 1 fois : −${pct(rate)} (${euro(a)}/an)`;
 
-function euro(n){ return (Math.round(n*100)/100).toLocaleString('fr-FR',{minimumFractionDigits: (n%1?2:0), maximumFractionDigits:2}) + " €"; }
-function pct(n){ return (Math.round(n*10)/10).toLocaleString('fr-FR') + " %"; }
-
-document.querySelectorAll('.tile[data-plan]').forEach(card=>{
-  const plan = card.dataset.plan;
-  const monthly = parseFloat(card.dataset.monthly||'0');
-  const annual = parseFloat(card.dataset.annual||'0');
-  const market = parseFloat(card.dataset.market||MARKET_FALLBACK[plan]||0);
-
-  // Ruban annual: calc remise vs 12 × mensuel
-  const yearFull = monthly*12;
-  const discountRate = yearFull>0 ? ( (yearFull-annual)/yearFull*100 ) : 0;
-  const ribbon = card.querySelector('[data-ribbon]');
-  if(ribbon){
-    ribbon.textContent = `Paiement en 1 fois : −${pct(discountRate)} (${euro(annual)}/an)`;
-  }
-
-  // Popover comparatif (survol/focus)
-  const pop = card.querySelector('[data-popover]');
-  if(pop && market>0){
-    const monthlySave = Math.max(0, market - monthly);
-    const monthlySaveRate = market>0 ? (monthlySave/market*100) : 0;
-    const annualSaveIfOneShot = Math.max(0, yearFull - annual); // économie vs 12×mensuel en payant en 1 fois
-    pop.innerHTML = `
+  const p = card.querySelector('[data-popover]');
+  if(p){
+    const saveM = Math.max(0, market - m);
+    const saveRate = market>0 ? (saveM/market*100) : 0;
+    const saveAn = Math.max(0, yearFull - a);
+    p.innerHTML = `
       <b>Comparatif marché</b><br>
-      Moyen marché estimé : <b>${euro(market)}/mois</b><br>
-      Votre économie mensuelle : <b>${euro(monthlySave)}</b> (${pct(monthlySaveRate)})<br>
-      Paiement en 1 fois : gagnez <b>${euro(annualSaveIfOneShot)}</b> / an (${pct(discountRate)} vs mensuel).
-      <p class="mini" style="margin:6px 0 0;color:var(--muted)">
-        Estimations indicatives — adaptez selon votre benchmark.
-      </p>
-    `;
+      Marché estimé : <b>${euro(market)}/mois</b><br>
+      Économie mensuelle : <b>${euro(saveM)}</b> (${pct(saveRate)})<br>
+      Paiement en 1 fois : gagnez <b>${euro(saveAn)}</b>/an (${pct(rate)} vs mensuel).
+      <p class="note" style="margin:6px 0 0">Estimations indicatives.</p>`;
   }
 });
 
-/* Désactivation paiement (pré-lancement) */
-document.querySelectorAll('button[disabled]').forEach(b=>{
+/* Carrousel — centre = carte la plus proche du centre viewport */
+const viewport = document.getElementById('carousel');
+const cards = [...viewport.querySelectorAll('.card')];
+const dots = document.getElementById('dots');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
+
+function updateCenter(){
+  const mid = viewport.getBoundingClientRect().left + viewport.clientWidth/2;
+  let closest=-1, min=1e9;
+  cards.forEach((c,i)=>{
+    const r=c.getBoundingClientRect();
+    const center = r.left + r.width/2;
+    const d = Math.abs(center-mid);
+    if(d<min){min=d;closest=i;}
+  });
+  cards.forEach((c,i)=>{
+    c.classList.toggle('is-center', i===closest);
+    c.classList.toggle('is-left', i<closest);
+    c.classList.toggle('is-right', i>closest);
+  });
+  [...dots.children].forEach((d,i)=>d.classList.toggle('active', i===closest));
+  return closest;
+}
+function go(i){
+  const card = cards[Math.max(0, Math.min(cards.length-1, i))];
+  card.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+}
+function buildDots(){
+  dots.innerHTML='';
+  cards.forEach((_,i)=>{
+    const s=document.createElement('span'); s.className='dot'+(i===0?' active':''); s.role='button'; s.tabIndex=0;
+    s.addEventListener('click',()=>go(i));
+    s.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();go(i);} });
+    dots.appendChild(s);
+  });
+}
+buildDots(); updateCenter();
+
+viewport.addEventListener('scroll', ()=>{ window.requestAnimationFrame(updateCenter); }, {passive:true});
+window.addEventListener('resize', updateCenter);
+prev.addEventListener('click', ()=>{ go(updateCenter()-1); });
+next.addEventListener('click', ()=>{ go(updateCenter()+1); });
+
+/* clavier sur viewport */
+viewport.addEventListener('keydown', e=>{
+  if(e.key==='ArrowRight') { e.preventDefault(); go(updateCenter()+1); }
+  if(e.key==='ArrowLeft')  { e.preventDefault(); go(updateCenter()-1); }
+});
+
+/* pré-lancement : boutons désactivés */
+document.querySelectorAll('.btn[disabled]').forEach(b=>{
   b.addEventListener('click', ()=> alert('Le paiement sera activé au lancement officiel. Merci !'));
 });
 
-/* Navigation “dure” via data-page (cohérent avec index) */
+/* navigation “dure” comme sur index */
 (function(){
   function hardLink(page){
-    var base = location.pathname.replace(/[^\/]*$/, '');
-    var url = base + page + '?v=' + Date.now();
+    const base = location.pathname.replace(/[^\/]*$/, '');
+    const url = base + page + '?v=' + Date.now();
     window.location.assign(url);
   }
   document.addEventListener('click', function(e){
-    var a = e.target.closest('a[data-page]');
-    if(!a) return;
-    e.preventDefault();
-    var page = a.getAttribute('data-page');
-    if(page) hardLink(page);
+    const a=e.target.closest('a[data-page]'); if(!a) return;
+    e.preventDefault(); const page=a.getAttribute('data-page'); if(page) hardLink(page);
   }, {passive:false});
 })();
 </script>
