@@ -9,6 +9,23 @@
 <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+<!-- SEO: ContactPoint -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"Awenoria",
+  "url":"https://awenoria-dev.github.io/awenoria/",
+  "contactPoint":[{
+    "@type":"ContactPoint",
+    "contactType":"customer support",
+    "email":"contact@awenoria.fr",
+    "availableLanguage":["fr","en"],
+    "areaServed":"FR"
+  }]
+}
+</script>
+
 <style>
 :root{
   --blue:#0073b6; --blue-dark:#005a8e; --orange:#ff6600;
@@ -20,6 +37,9 @@
   --hero-overlay-rgb:0,90,142; --hero-overlay-alpha:.42; --hero-overlay-alpha-mobile:.52;
   --copper-1:#B86122; --copper-2:#D67A2E; --copper-3:#F2B56C;
   --blue-soft-1:#A9D3FF; --blue-soft-2:#7FB2CB; --blue-soft-3:#6FB3D8;
+
+  --grad-btn: linear-gradient(90deg,#005a8e 0%, #007ec2 50%, #00a2df 100%);
+  --grad-btn-hover: linear-gradient(90deg,#ff7a1a 0%, #ff6600 50%, #ff8840 100%);
 }
 *{box-sizing:border-box} html,body{margin:0}
 body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--text);line-height:1.65}
@@ -42,7 +62,7 @@ img{max-width:100%;display:block}
 .dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:var(--blue-dark);font-weight:700}
 .dropdown a:hover{background:#f3f8fc;color:var(--orange)}
 
-/* ===== HERO ===== */
+/* ===== HERO HAUT DE GAMME ===== */
 .hero--image{
   position:relative; padding:124px 0 110px; text-align:center; color:#fff; overflow:hidden;
   background:
@@ -92,12 +112,24 @@ h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
 .lead{color:#eaf3fa;max-width:980px;margin:8px auto 0;font-weight:600}
 .type-on-view{min-height:1.2em}
 
-/* ===== FORM CARD ===== */
-.form-wrap{position:relative;z-index:3;margin-top:64px;} /* espace sûr sous le bandeau */
+/* ===== LAYOUT : 2 COLONNES ===== */
+.form-wrap{position:relative;z-index:3;margin-top:64px;}
 @media(max-width:900px){.form-wrap{margin-top:40px}}
-.card{max-width:980px;margin:0 auto;background:#fff;border:1px solid var(--stroke);border-radius:20px;padding:22px;box-shadow:var(--shadow-lg)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.grid-2{display:grid;grid-template-columns:420px 1fr;gap:20px;max-width:1160px;margin:0 auto}
+@media(max-width:1080px){.grid-2{grid-template-columns:1fr;}}
+.card{background:#fff;border:1px solid var(--stroke);border-radius:20px;padding:22px;box-shadow:var(--shadow-lg)}
+
+/* colonne infos */
+.info .badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--stroke);border-radius:9999px;padding:8px 12px;font-weight:800;color:var(--blue-dark);box-shadow:var(--shadow-sm)}
+.info .list{margin:14px 0 0;padding:0;list-style:none}
+.info .list li{display:flex;gap:10px;align-items:flex-start;margin:10px 0;color:var(--muted)}
+.info .cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.info .cta{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--stroke);border-radius:12px;padding:10px 12px;font-weight:800;color:var(--blue-dark);background:#fff;box-shadow:var(--shadow-sm)}
+.info .cta:hover{color:var(--orange);border-color:#d5e7f4;box-shadow:var(--shadow-lg)}
+
+/* formulaire */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:680px){.form-grid{grid-template-columns:1fr}}
 label{font-weight:800;font-size:14px}
 .req::after{content:" *";color:#b3261e}
 .input, textarea, select{
@@ -106,16 +138,18 @@ label{font-weight:800;font-size:14px}
 }
 .input:focus, textarea:focus, select:focus{border-color:#8ec5e9; box-shadow:0 0 0 3px rgba(0,115,182,.12); outline:0}
 select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(45deg,transparent 50%,#7aa9c7 50%),linear-gradient(135deg,#7aa9c7 50%,transparent 50%),linear-gradient(to right,#dbe5ee,#dbe5ee);background-position:calc(100% - 18px) calc(1em - 2px),calc(100% - 13px) calc(1em - 2px),calc(100% - 2.5em) .5em;background-size:5px 5px,5px 5px,1px 1.8em;background-repeat:no-repeat}
+.help{font-size:12px;color:var(--muted);margin-top:4px}
 
 /* actions */
 .actions{display:flex;gap:12px;justify-content:flex-end;align-items:center;margin-top:14px}
-@media(max-width:900px){.actions{flex-direction:column;align-items:stretch}}
+@media(max-width:680px){.actions{flex-direction:column;align-items:stretch}}
 .btn{
   appearance:none;border:none;cursor:pointer;font-weight:900;font-size:16px;line-height:1;
   padding:16px 22px;border-radius:9999px;color:#fff;background:var(--blue-dark);
-  box-shadow:0 10px 24px rgba(0,115,182,.18); transition:.18s; display:inline-flex;align-items:center;gap:10px;
+  background-image:var(--grad-btn);
+  box-shadow:0 10px 24px rgba(0,115,182,.18); transition:.22s; display:inline-flex;align-items:center;gap:10px;
 }
-.btn:hover{background:var(--orange); transform:translateY(-1px)}
+.btn:hover{background-image:var(--grad-btn-hover); transform:translateY(-1px)}
 .btn:disabled{opacity:.7; cursor:not-allowed}
 .btn .spinner{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite}
 .btn.loading .spinner{display:inline-block}
@@ -135,7 +169,7 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
 .fade{animation:fadeIn .25s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(2px)} to{opacity:1;transform:none}}
 
-/* ===== MINI FAQ ===== */
+/* mini FAQ */
 .section{padding:72px 0}
 .section-title{margin:0 0 12px;font-size:32px;color:#0f2746;text-align:center}
 .section-title::after{content:"";display:block;width:64px;height:4px;margin:10px auto 0;background:var(--orange);border-radius:3px;opacity:.85}
@@ -143,7 +177,7 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
 .pill-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--stroke);border-radius:9999px;padding:12px 18px;font-weight:800;box-shadow:var(--shadow-sm);color:var(--blue-dark)}
 .pill-btn:hover{color:var(--orange);border-color:#d5e7f4;box-shadow:var(--shadow-lg)}
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 .footer{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
 </style>
 </head>
@@ -192,20 +226,39 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
   </div>
 </section>
 
-<!-- ===== FORMULAIRE ===== -->
+<!-- ===== 2 COLONNES ===== -->
 <section class="form-wrap">
-  <div class="container">
+  <div class="grid-2">
+
+    <!-- Colonne gauche : infos -->
+    <aside class="card info">
+      <span class="badge">Service client</span>
+      <ul class="list">
+        <li>📧 <strong>contact@awenoria.fr</strong></li>
+        <li>⏱️ Réponse sous 24–48 h ouvrées</li>
+        <li>🔒 Données traitées en France, RGPD</li>
+      </ul>
+      <div class="cta-row">
+        <a class="cta" href="faq.html">FAQ complète →</a>
+        <a class="cta" href="https://wa.me/33600000000" target="_blank" rel="noopener">WhatsApp Business</a>
+        <a class="cta" href="https://calendly.com/" target="_blank" rel="noopener">Programmer un appel</a>
+      </div>
+      <hr style="border:none;border-top:1px dashed var(--stroke);margin:16px 0">
+      <p class="note">Besoin d’une réponse rapide ? Indiquez-le dans votre message, nous prioriserons votre demande.</p>
+    </aside>
+
+    <!-- Colonne droite : formulaire -->
     <div class="card">
       <form id="contactForm" action="https://awenoria.bmavcontact.workers.dev/contact" method="POST" novalidate>
-        <div class="grid">
+        <div class="form-grid">
           <div>
             <label class="req">Votre demande</label>
-            <select name="demande" class="input" required>
+            <select name="demande" class="input" id="demande" required>
               <option value="">Choisissez un élément dans la liste</option>
-              <option>Demande de rendez-vous</option>
-              <option>Demande de devis</option>
-              <option>Partenariat</option>
-              <option>Autre</option>
+              <option value="rdv">Demande de rendez-vous</option>
+              <option value="devis">Demande de devis</option>
+              <option value="partenariat">Partenariat</option>
+              <option value="autre">Autre</option>
             </select>
           </div>
 
@@ -229,16 +282,28 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
 
           <div>
             <label>Téléphone (facultatif)</label>
-            <input class="input" type="tel" name="phone" placeholder="+33 6 12 34 56 78">
+            <input class="input" type="tel" name="phone" inputmode="tel" autocomplete="tel"
+                   placeholder="+33 X XX XX XX XX" pattern="^(\+?\d[\d\s]{7,}|)$">
+            <div class="help">Format conseillé : +33 X XX XX XX XX (facultatif)</div>
+          </div>
+
+          <div id="societeWrap" style="display:none">
+            <label class="req">Nom de votre société</label>
+            <input class="input" type="text" name="societe" placeholder="Votre société">
+          </div>
+
+          <div id="precisionWrap" style="display:none">
+            <label class="req">Précisez votre demande</label>
+            <input class="input" type="text" name="precision" placeholder="Quelques mots pour préciser">
           </div>
 
           <div style="grid-column:1/-1">
             <label class="req">Votre message</label>
-            <textarea class="input" name="message" rows="6" placeholder="Votre message…" required></textarea>
+            <textarea class="input" name="message" rows="7" placeholder="Votre message…" required></textarea>
           </div>
         </div>
 
-        <!-- Checkboxes -->
+        <!-- Opt-in & RGPD -->
         <label class="check">
           <input type="checkbox" name="no_marketing" value="1">
           <span>Je ne souhaite pas recevoir de communication commerciale.</span>
@@ -254,17 +319,23 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
           <a href="confidentialite.html">Politique de confidentialité</a>.
         </p>
 
-        <!-- Honeypots -->
+        <!-- Honeypots anti-bot -->
         <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
         <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
 
         <div class="actions">
-          <!-- Turnstile compact/discret -->
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAB6sOpFo1gDVnkX1" data-appearance="interaction-only"></div>
+          <!-- Turnstile compact, lazy-loaded -->
+          <div id="turnstileMount"
+               class="cf-turnstile"
+               data-sitekey="0x4AAAAAAB6sOpFo1gDVnkX1"
+               data-appearance="interaction-only"
+               data-callback="awenTurnstileOK">
+          </div>
+
           <button id="sendBtn" class="btn" type="submit">
             <span class="spinner" aria-hidden="true"></span>
             <span>Envoyer</span>
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true">✈️</span>
           </button>
         </div>
 
@@ -280,6 +351,7 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
         </div>
       </form>
     </div>
+
   </div>
 </section>
 
@@ -301,9 +373,7 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
   </div>
 </footer>
 
-<!-- Turnstile -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
+<!-- Turnstile (lazy) sera chargé dynamiquement -->
 <script>
 /* année + header sticky */
 document.getElementById('year').textContent = new Date().getFullYear();
@@ -334,7 +404,41 @@ document.getElementById('year').textContent = new Date().getFullYear();
   els.forEach(el=>io.observe(el));
 })();
 
-/* envoi vers le Worker */
+/* Champs conditionnels */
+(function(){
+  const select = document.getElementById('demande');
+  const societeWrap = document.getElementById('societeWrap');
+  const precisionWrap = document.getElementById('precisionWrap');
+
+  function update(){
+    const v = select.value;
+    societeWrap.style.display   = (v === 'partenariat' || v === 'devis') ? 'block' : 'none';
+    precisionWrap.style.display = (v === 'autre') ? 'block' : 'none';
+
+    // required dynamique
+    societeWrap.querySelector('input').required   = (v === 'partenariat' || v === 'devis');
+    precisionWrap.querySelector('input').required = (v === 'autre');
+  }
+  select.addEventListener('change', update);
+  update();
+})();
+
+/* Lazy-load Turnstile dès interaction avec le form */
+let turnstileLoaded = false;
+function loadTurnstile(){
+  if(turnstileLoaded) return;
+  turnstileLoaded = true;
+  const s = document.createElement('script');
+  s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+  s.async = true; s.defer = true;
+  document.head.appendChild(s);
+}
+['focusin','pointerdown','touchstart'].forEach(ev=>{
+  document.getElementById('contactForm').addEventListener(ev, loadTurnstile, { once:true, passive:true });
+});
+window.awenTurnstileOK = function(){ /* callback OK si besoin */ };
+
+/* Envoi vers le Worker */
 const form   = document.getElementById('contactForm');
 const btn    = document.getElementById('sendBtn');
 const okBox  = document.getElementById('msgOk');
@@ -346,6 +450,9 @@ function hide(el){ el.style.display='none'; el.classList.remove('fade'); }
 form.addEventListener('submit', async (e)=>{
   e.preventDefault();
   hide(okBox); hide(koBox);
+
+  // Validation douce côté front (ex: email requis)
+  if(!form.reportValidity()){ return; }
 
   btn.classList.add('loading'); btn.disabled = true;
 
