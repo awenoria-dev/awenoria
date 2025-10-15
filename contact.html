@@ -17,7 +17,6 @@
   --shadow-sm:0 6px 20px rgba(16,32,48,.06);
   --shadow-lg:0 24px 48px rgba(16,32,48,.10);
 
-  /* décor accueil */
   --hero-overlay-rgb:0,90,142; --hero-overlay-alpha:.42; --hero-overlay-alpha-mobile:.52;
   --copper-1:#B86122; --copper-2:#D67A2E; --copper-3:#F2B56C;
   --blue-soft-1:#A9D3FF; --blue-soft-2:#7FB2CB; --blue-soft-3:#6FB3D8;
@@ -28,7 +27,7 @@ a{text-decoration:none;color:var(--blue-dark)}
 img{max-width:100%;display:block}
 .container{max-width:1160px;margin:0 auto;padding:24px 20px}
 
-/* ===== HEADER (identique accueil) ===== */
+/* ===== HEADER ===== */
 .header{position:sticky;top:0;z-index:60;background:var(--bg-top);border-bottom:1px solid transparent;transition:.25s}
 .header.scrolled{background:#fff;border-bottom-color:var(--stroke);box-shadow:0 10px 24px rgba(16,32,48,.06)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
@@ -43,7 +42,7 @@ img{max-width:100%;display:block}
 .dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:var(--blue-dark);font-weight:700}
 .dropdown a:hover{background:#f3f8fc;color:var(--orange)}
 
-/* ===== HERO (strictement le même que l’accueil) ===== */
+/* ===== HERO ===== */
 .hero--image{
   position:relative; padding:124px 0 110px; text-align:center; color:#fff; overflow:hidden;
   background:
@@ -91,11 +90,11 @@ img{max-width:100%;display:block}
 h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
 @media(max-width:600px){h1{font-size:44px}}
 .lead{color:#eaf3fa;max-width:980px;margin:8px auto 0;font-weight:600}
-.type-on-view{min-height:1.2em} /* empêche “sauts” pendant le typing */
+.type-on-view{min-height:1.2em}
 
-/* ===== FORM CARD (centrée, non tronquée) ===== */
-.form-wrap{position:relative;z-index:3}
-.card{max-width:980px;margin:-46px auto 0;background:#fff;border:1px solid var(--stroke);border-radius:20px;padding:22px;box-shadow:var(--shadow-lg)}
+/* ===== FORM CARD (ajustement d'espacement) ===== */
+.form-wrap{position:relative;z-index:3;margin-top:32px;} /* ↓ espace sous le bandeau */
+.card{max-width:980px;margin:0 auto;background:#fff;border:1px solid var(--stroke);border-radius:20px;padding:22px;box-shadow:var(--shadow-lg)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:900px){.grid{grid-template-columns:1fr}}
 label{font-weight:800;font-size:14px}
@@ -112,6 +111,14 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
 .success{display:none;margin-top:10px;background:#e8f8ee;border:1px solid #bfe8cc;color:#276749;padding:10px 12px;border-radius:10px}
 .error{display:none;margin-top:10px;background:#fde8e8;border:1px solid #f5b5b5;color:#8a221c;padding:10px 12px;border-radius:10px}
 .hr{height:1px;background:var(--stroke);margin:12px 0}
+
+/* ===== FAQ MINI ===== */
+.section{padding:72px 0}
+.section-title{margin:0 0 12px;font-size:32px;color:#0f2746;text-align:center}
+.section-title::after{content:"";display:block;width:64px;height:4px;margin:10px auto 0;background:var(--orange);border-radius:3px;opacity:.85}
+.cta-row{display:flex;justify-content:center;margin-top:16px}
+.pill-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--stroke);border-radius:9999px;padding:10px 16px;font-weight:800;box-shadow:var(--shadow-sm);color:var(--blue-dark)}
+.pill-btn:hover{color:var(--orange);border-color:#d5e7f4;box-shadow:var(--shadow-lg)}
 
 /* ===== FOOTER ===== */
 .footer{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
@@ -210,7 +217,6 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
 
         <div class="hr"></div>
 
-        <!-- Consentement optionnel -->
         <label style="display:block;margin-top:6px">
           <input type="checkbox" name="no_marketing" value="1"> Je ne souhaite pas recevoir de communication commerciale.
         </label>
@@ -220,7 +226,7 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
           d’opposition et de limitation. Pour en savoir plus, consultez notre <a href="confidentialite.html">Politique de confidentialité</a>.
         </p>
 
-        <!-- Honeypots anti-bot -->
+        <!-- Honeypots -->
         <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
         <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
 
@@ -239,6 +245,16 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
   </div>
 </section>
 
+<!-- ===== MINI FAQ ===== -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">FAQ fréquentes</h2>
+    <div class="cta-row">
+      <a class="pill-btn" href="faq.html" aria-label="Voir toutes les questions">Voir toutes les questions →</a>
+    </div>
+  </div>
+</section>
+
 <!-- ===== FOOTER ===== -->
 <footer class="container footer">
   <div style="display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap">
@@ -252,7 +268,7 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
 document.getElementById('year').textContent = new Date().getFullYear();
 (function(){const h=document.getElementById('site-header');const t=()=>{if(window.scrollY>10)h.classList.add('scrolled');else h.classList.remove('scrolled')};t();window.addEventListener('scroll',t,{passive:true})})();
 
-/* Typing effect (même script que l’accueil) */
+/* typing identique à l’accueil */
 (function(){
   const SPEED = 22;
   const els = [...document.querySelectorAll('.type-on-view')];
@@ -277,7 +293,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   els.forEach(el=>io.observe(el));
 })();
 
-/* Envoi vers le Worker (sans rechargement) */
+/* envoi vers le Worker */
 const form = document.getElementById('contactForm');
 form.addEventListener('submit', async (e)=>{
   e.preventDefault();
