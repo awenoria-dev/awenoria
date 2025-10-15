@@ -92,8 +92,9 @@ h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
 .lead{color:#eaf3fa;max-width:980px;margin:8px auto 0;font-weight:600}
 .type-on-view{min-height:1.2em}
 
-/* ===== FORM CARD (ajustement d'espacement) ===== */
-.form-wrap{position:relative;z-index:3;margin-top:32px;} /* ↓ espace sous le bandeau */
+/* ===== FORM CARD ===== */
+.form-wrap{position:relative;z-index:3;margin-top:64px;} /* espace sûr sous le bandeau */
+@media(max-width:900px){.form-wrap{margin-top:40px}}
 .card{max-width:980px;margin:0 auto;background:#fff;border:1px solid var(--stroke);border-radius:20px;padding:22px;box-shadow:var(--shadow-lg)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:900px){.grid{grid-template-columns:1fr}}
@@ -103,21 +104,43 @@ label{font-weight:800;font-size:14px}
   width:100%; padding:12px 14px; border:1px solid #dbe5ee; border-radius:12px;
   background:#fff; outline:none; transition:.2s; font:inherit;
 }
-.input:focus, textarea:focus, select:focus{border-color:#8ec5e9; box-shadow:0 0 0 3px rgba(0,115,182,.12)}
+.input:focus, textarea:focus, select:focus{border-color:#8ec5e9; box-shadow:0 0 0 3px rgba(0,115,182,.12); outline:0}
 select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(45deg,transparent 50%,#7aa9c7 50%),linear-gradient(135deg,#7aa9c7 50%,transparent 50%),linear-gradient(to right,#dbe5ee,#dbe5ee);background-position:calc(100% - 18px) calc(1em - 2px),calc(100% - 13px) calc(1em - 2px),calc(100% - 2.5em) .5em;background-size:5px 5px,5px 5px,1px 1.8em;background-repeat:no-repeat}
-.btn{appearance:none;border:none;cursor:pointer;font-weight:800;font-size:16px;padding:14px 18px;border-radius:12px;color:#fff;background:var(--blue-dark);box-shadow:var(--shadow-lg);transition:.18s}
-.btn:hover{background:var(--orange)}
-.note{font-size:13px;color:var(--muted);margin-top:8px}
-.success{display:none;margin-top:10px;background:#e8f8ee;border:1px solid #bfe8cc;color:#276749;padding:10px 12px;border-radius:10px}
-.error{display:none;margin-top:10px;background:#fde8e8;border:1px solid #f5b5b5;color:#8a221c;padding:10px 12px;border-radius:10px}
-.hr{height:1px;background:var(--stroke);margin:12px 0}
 
-/* ===== FAQ MINI ===== */
+/* actions */
+.actions{display:flex;gap:12px;justify-content:flex-end;align-items:center;margin-top:14px}
+@media(max-width:900px){.actions{flex-direction:column;align-items:stretch}}
+.btn{
+  appearance:none;border:none;cursor:pointer;font-weight:900;font-size:16px;line-height:1;
+  padding:16px 22px;border-radius:9999px;color:#fff;background:var(--blue-dark);
+  box-shadow:0 10px 24px rgba(0,115,182,.18); transition:.18s; display:inline-flex;align-items:center;gap:10px;
+}
+.btn:hover{background:var(--orange); transform:translateY(-1px)}
+.btn:disabled{opacity:.7; cursor:not-allowed}
+.btn .spinner{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite}
+.btn.loading .spinner{display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* note & checkboxes */
+.note{font-size:13px;color:var(--muted);margin-top:8px}
+.check{display:flex;align-items:flex-start;gap:8px;margin-top:8px}
+.check input{margin-top:3px}
+
+/* status messages */
+.status{display:none;border-radius:12px;padding:12px 14px;font-weight:700;align-items:center;gap:10px}
+.status svg{flex:0 0 auto}
+.status.ok{display:flex;background:#eaf7ef;border:1px solid #cdebd7;color:#0c5132}
+.status.ko{display:flex;background:#fdecea;border:1px solid #f5c2c0;color:#842029}
+.status-wrap{margin-top:10px}
+.fade{animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(2px)} to{opacity:1;transform:none}}
+
+/* ===== MINI FAQ ===== */
 .section{padding:72px 0}
 .section-title{margin:0 0 12px;font-size:32px;color:#0f2746;text-align:center}
 .section-title::after{content:"";display:block;width:64px;height:4px;margin:10px auto 0;background:var(--orange);border-radius:3px;opacity:.85}
 .cta-row{display:flex;justify-content:center;margin-top:16px}
-.pill-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--stroke);border-radius:9999px;padding:10px 16px;font-weight:800;box-shadow:var(--shadow-sm);color:var(--blue-dark)}
+.pill-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--stroke);border-radius:9999px;padding:12px 18px;font-weight:800;box-shadow:var(--shadow-sm);color:var(--blue-dark)}
 .pill-btn:hover{color:var(--orange);border-color:#d5e7f4;box-shadow:var(--shadow-lg)}
 
 /* ===== FOOTER ===== */
@@ -215,31 +238,46 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
           </div>
         </div>
 
-        <div class="hr"></div>
-
-        <label style="display:block;margin-top:6px">
-          <input type="checkbox" name="no_marketing" value="1"> Je ne souhaite pas recevoir de communication commerciale.
+        <!-- Checkboxes -->
+        <label class="check">
+          <input type="checkbox" name="no_marketing" value="1">
+          <span>Je ne souhaite pas recevoir de communication commerciale.</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" name="optin_news" value="1">
+          <span>Je souhaite recevoir ponctuellement les actualités d’Awenoria (désinscription possible à tout moment).</span>
         </label>
 
         <p class="note">
-          Les données collectées sont indispensables au traitement de votre demande. Vous disposez de droits d’accès, de rectification, d’effacement,
-          d’opposition et de limitation. Pour en savoir plus, consultez notre <a href="confidentialite.html">Politique de confidentialité</a>.
+          Les données collectées sont indispensables au traitement de votre demande. Vous disposez de droits d’accès,
+          de rectification, d’effacement, d’opposition et de limitation. Pour en savoir plus, consultez notre
+          <a href="confidentialite.html">Politique de confidentialité</a>.
         </p>
 
         <!-- Honeypots -->
         <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
         <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
 
-        <!-- Turnstile -->
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAAB6sOpFo1gDVnkX1"></div>
-        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-        <div style="margin-top:12px">
-          <button class="btn" type="submit">Envoyer</button>
+        <div class="actions">
+          <!-- Turnstile compact/discret -->
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAB6sOpFo1gDVnkX1" data-appearance="interaction-only"></div>
+          <button id="sendBtn" class="btn" type="submit">
+            <span class="spinner" aria-hidden="true"></span>
+            <span>Envoyer</span>
+            <span aria-hidden="true">→</span>
+          </button>
         </div>
 
-        <div id="ok" class="success">Merci, votre message a bien été envoyé ✅</div>
-        <div id="ko" class="error">Oups, l’envoi a échoué. Réessayez ou écrivez-nous : contact@awenoria.fr</div>
+        <div class="status-wrap" aria-live="polite">
+          <div id="msgOk" class="status ok" role="status">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7L10 17l-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Message envoyé. Nous revenons vers vous sous 24–48 h ouvrées.
+          </div>
+          <div id="msgKo" class="status ko" role="alert">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.29 3.86l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.71-3.14l-8-14a2 2 0 0 0-3.42 0Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            L’envoi a échoué. Réessayez ou écrivez-nous : contact@awenoria.fr.
+          </div>
+        </div>
       </form>
     </div>
   </div>
@@ -262,6 +300,9 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
     <span><a href="mentions.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a></span>
   </div>
 </footer>
+
+<!-- Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script>
 /* année + header sticky */
@@ -294,17 +335,27 @@ document.getElementById('year').textContent = new Date().getFullYear();
 })();
 
 /* envoi vers le Worker */
-const form = document.getElementById('contactForm');
+const form   = document.getElementById('contactForm');
+const btn    = document.getElementById('sendBtn');
+const okBox  = document.getElementById('msgOk');
+const koBox  = document.getElementById('msgKo');
+
+function show(el){ el.classList.add('fade'); el.style.display='flex'; }
+function hide(el){ el.style.display='none'; el.classList.remove('fade'); }
+
 form.addEventListener('submit', async (e)=>{
   e.preventDefault();
-  document.getElementById('ok').style.display='none';
-  document.getElementById('ko').style.display='none';
+  hide(okBox); hide(koBox);
+
+  btn.classList.add('loading'); btn.disabled = true;
+
   try{
     const r = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
     const j = await r.json().catch(()=>({}));
-    if(r.ok && j.ok){ document.getElementById('ok').style.display='block'; form.reset(); }
-    else{ document.getElementById('ko').style.display='block'; }
-  }catch(err){ document.getElementById('ko').style.display='block'; }
+    if(r.ok && j.ok){ show(okBox); form.reset(); setTimeout(()=>hide(okBox), 7000); }
+    else{ show(koBox); setTimeout(()=>hide(koBox), 9000); }
+  }catch(err){ show(koBox); setTimeout(()=>hide(koBox), 9000); }
+  finally{ btn.classList.remove('loading'); btn.disabled = false; }
 });
 </script>
 </body>
