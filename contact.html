@@ -121,39 +121,55 @@ h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
 .form-wrap{position:relative;z-index:3;margin-top:64px;}
 @media(max-width:900px){.form-wrap{margin-top:40px}}
 .grid-2{display:grid;grid-template-columns:420px 1fr;gap:20px;max-width:1160px;margin:0 auto}
-@media(max-width:1080px){.grid-2{grid-template-columns:1fr;}}
+@media(max-width:1080px){.grid-2{grid-template-columns:1fr}}
 .card{background:#fff;border:1px solid var(--stroke);border-radius:20px;padding:18px 20px;box-shadow:var(--shadow-lg)}
 
 /* ===== Colonne infos ===== */
 .info{display:flex;flex-direction:column;gap:8px}
+/* Badge Service client — icône retirée */
 .info .badge{
-  align-self:flex-start; display:inline-flex; align-items:center; gap:10px;
+  align-self:flex-start; display:inline-flex; align-items:center; gap:0;
   padding:10px 14px; border-radius:16px; font-weight:900; letter-spacing:.2px;
   color:#0e2a45; background:linear-gradient(180deg,#ffffff,#f7fafc);
   border:1px solid rgba(16,32,48,.08);
   box-shadow:0 2px 6px rgba(16,32,48,.06), inset 0 1px 0 rgba(255,255,255,.8);
 }
-.info .badge svg{width:18px;height:18px;color:#3b516a;opacity:.95}
+.info .badge svg{display:none} /* plus d'icône */
 .info .list{margin:6px 0 0;padding:0;list-style:none}
 .info .list li{display:flex;gap:10px;align-items:flex-start;margin:8px 0;color:var(--muted)}
 .info .list svg{flex:0 0 auto;width:18px;height:18px;color:#3b516a;opacity:.92}
 
-/* CTA en pile */
+/* CTA en pile (ombres adoucies et rendu plus net) */
 .info .cta-col{display:flex;flex-direction:column;gap:10px;margin-top:10px}
-.info .cta{display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--stroke);border-radius:12px;padding:12px 14px;font-weight:800;color:var(--blue-dark);background:#fff;box-shadow:var(--shadow-sm)}
-.info .cta:hover{color:var(--orange);border-color:#d5e7f4;box-shadow:var(--shadow-lg)}
-/* FAQ cuivre (mise en avant) */
-.info .cta.faq{color:#fff;background:linear-gradient(180deg,var(--copper-2),var(--copper-1));border-color:transparent;text-shadow:0 1px 0 rgba(0,0,0,.12)}
-.info .cta.faq:hover{filter:saturate(1.05) brightness(1.03)}
-/* WhatsApp & Calendly brand */
-.info .cta.whatsapp{color:#fff;background:linear-gradient(180deg,var(--wa),var(--wa-dark));border-color:transparent}
-.info .cta.whatsapp:hover{filter:saturate(1.05) brightness(1.03)}
+.info .cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  border:1px solid rgba(16,32,48,.06);
+  border-radius:12px;padding:12px 14px;font-weight:800;color:var(--blue-dark);
+  background:#fff; box-shadow:0 2px 8px rgba(16,32,48,.04);
+  transition:.18s;
+}
+.info .cta:hover{color:var(--orange);box-shadow:0 6px 16px rgba(16,32,48,.10)}
+
+/* FAQ cuivre (mise en avant) — plus vive, moins “terne” */
+.info .cta.faq{color:#fff;background:linear-gradient(180deg,var(--copper-2),var(--copper-1));border-color:transparent;filter:saturate(1.12) brightness(1.04);text-shadow:0 1px 0 rgba(0,0,0,.12);box-shadow:0 6px 16px rgba(16,32,48,.10)}
+.info .cta.faq:hover{filter:saturate(1.18) brightness(1.06)}
+
+/* WhatsApp & Calendly brand — ombre allégée, plus lisibles */
+.info .cta.whatsapp{color:#fff;background:linear-gradient(180deg,var(--wa),var(--wa-dark));border-color:transparent;filter:saturate(1.12) brightness(1.04);box-shadow:0 6px 16px rgba(16,32,48,.10)}
+.info .cta.whatsapp:hover{filter:saturate(1.18) brightness(1.06)}
 .info .cta.calendly{color:#fff;background:linear-gradient(180deg,var(--cal),#0052cc);border-color:transparent}
 .info .cta.calendly:hover{filter:saturate(1.05) brightness(1.03)}
+
+/* séparateurs & note */
 .info hr{border:none;border-top:1px dashed var(--stroke);margin:10px 0}
 .info .note{font-size:13px;color:var(--muted);margin:0}
-.info .brand-mark{width:120px;height:auto;margin:8px auto 2px;display:block;opacity:.95;filter:drop-shadow(0 4px 10px rgba(16,32,48,.06))}
-@media (max-width:1080px){ .info .brand-mark{width:110px} }
+
+/* Logo (marque) — plus visible */
+.info .brand-mark{
+  width:140px;height:auto;margin:8px auto 2px;display:block;
+  opacity:1; filter:drop-shadow(0 6px 12px rgba(16,32,48,.12)) contrast(1.08);
+}
+@media (max-width:1080px){ .info .brand-mark{width:130px} }
 
 /* ===== Formulaire ===== */
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -167,6 +183,9 @@ label{font-weight:800;font-size:14px}
 .input:focus, textarea:focus, select:focus{border-color:#8ec5e9; box-shadow:0 0 0 3px rgba(0,115,182,.12); outline:0}
 select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(45deg,transparent 50%,#7aa9c7 50%),linear-gradient(135deg,#7aa9c7 50%,transparent 50%),linear-gradient(to right,#dbe5ee,#dbe5ee);background-position:calc(100% - 18px) calc(1em - 2px),calc(100% - 13px) calc(1em - 2px),calc(100% - 2.5em) .5em;background-size:5px 5px,5px 5px,1px 1.8em;background-repeat:no-repeat}
 .help{font-size:12px;color:var(--muted);margin-top:4px}
+
+/* textarea fixe : pas de redimensionnement */
+textarea{resize:none}
 
 /* actions */
 .actions{display:flex;gap:12px;justify-content:flex-end;align-items:center;margin-top:14px}
@@ -252,14 +271,8 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
 
     <!-- Colonne gauche : infos -->
     <aside class="card info">
-      <!-- BADGE SERVICE CLIENT premium -->
+      <!-- BADGE SERVICE CLIENT (sans icône) -->
       <span class="badge badge--service" aria-label="Service client">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M5 13a7 7 0 0 1 14 0v4a2 2 0 0 1-2 2h-2.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-          <rect x="3.8" y="11.2" width="2.8" height="4.6" rx="1.2" stroke="currentColor" stroke-width="1.6" fill="none"/>
-          <rect x="17.4" y="11.2" width="2.8" height="4.6" rx="1.2" stroke="currentColor" stroke-width="1.6" fill="none"/>
-          <path d="M11.5 19h-1.6a1.4 1.4 0 0 1 0-2.8H14" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-        </svg>
         <span>Service client</span>
       </span>
 
@@ -290,9 +303,9 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
         </li>
       </ul>
 
-      <!-- CTA en pile + couleurs de marque -->
+      <!-- CTA en pile + couleurs de marque (flèche retirée sur FAQ) -->
       <div class="cta-col">
-        <a class="cta faq" href="faq.html">FAQ complète →</a>
+        <a class="cta faq" href="faq.html">FAQ complète</a>
         <a class="cta whatsapp" href="https://wa.me/33600000000" target="_blank" rel="noopener">WhatsApp Business</a>
         <a class="cta calendly" href="https://calendly.com/" target="_blank" rel="noopener">Programmer un appel</a>
       </div>
@@ -300,7 +313,7 @@ select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(
       <hr>
       <p class="note">Besoin d’une réponse rapide ? Indiquez-le dans votre message, nous prioriserons votre demande.</p>
 
-      <!-- Logo discret sous la note -->
+      <!-- Logo discret sous la note (plus visible) -->
       <img class="brand-mark" src="./images/awenoria-mark.png" alt="Awenoria">
     </aside>
 
