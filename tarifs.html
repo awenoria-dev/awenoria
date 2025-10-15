@@ -62,30 +62,27 @@ body{
 
 /* ===== Header — minimal, airy, sticky ===== */
 .header{position:sticky;top:0;z-index:60; backdrop-filter:saturate(180%) blur(14px);
-  background:color-mix(in oklab, var(--scrim) 64%, transparent);
-  border-bottom:1px solid color-mix(in oklab, var(--stroke) 80%, transparent);
+  background:rgba(255,255,255,.72); /* translucide en haut */
+  border-bottom:1px solid transparent;
   transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
-.header.scrolled{box-shadow:0 8px 30px rgba(0,0,0,.06);}
-.nav{display:flex;align-items:center;gap:18px;min-height:72px}
-.brand__logo{height:64px;width:auto}
-@media(min-width:992px){.brand__logo{height:72px}}
+.header.scrolled{background:#fff; /* opaque comme avant en défilement */
+  border-bottom-color:var(--stroke); box-shadow:0 10px 24px rgba(0,0,0,.06);}
+.nav{display:flex;align-items:center;gap:18px;min-height:76px}
+.brand__logo{height:72px;width:auto}
+@media(min-width:992px){.brand__logo{height:84px}}
 
 .mainnav{display:flex;gap:6px;margin-left:auto}
 .menu-item{list-style:none;position:relative}
-.menu-link{
-  display:inline-flex;align-items:center;gap:6px;padding:10px 12px;border-radius:12px;
-  font-weight:700;color:var(--ink);opacity:.9; text-decoration:none;
-}
-.menu-link:hover{opacity:1; background:color-mix(in oklab, var(--stroke) 14%, transparent)}
-.menu-link.active{color:var(--blue)}
-.dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:280px;padding:10px;background:var(--surface);
-  border:1px solid var(--stroke);border-radius:16px;box-shadow:var(--shadow-md);opacity:0;visibility:hidden;transform:translateY(8px);transition:.18s}
+.menu-link{display:inline-flex;align-items:center;gap:6px;padding:12px 14px;border-radius:12px;font-weight:800;color:#1d1d1f;opacity:.92;text-decoration:none}
+.menu-link:hover{opacity:1; background:rgba(0,0,0,.04)}
+.menu-link.active{color:#0071e3}
+.dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:280px;padding:10px;background:#fff;border:1px solid var(--stroke);border-radius:16px;box-shadow:0 24px 48px rgba(0,0,0,.12);opacity:0;visibility:hidden;transform:translateY(8px);transition:.18s}
 .menu-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
-.dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:var(--ink);font-weight:700;text-decoration:none}
-.dropdown a:hover{background:color-mix(in oklab, var(--stroke) 18%, transparent)}
+.dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:#1d1d1f;font-weight:700;text-decoration:none}
+.dropdown a:hover{background:rgba(0,0,0,.04)}
 
-/* ===== Hero — soft spotlight + gradient glass ===== */
+/* ===== Hero */ — soft spotlight + gradient glass ===== */
 .hero--image{position:relative; text-align:center; color:#fff; overflow:hidden; min-height:46vh; display:grid; place-items:center;
   background:
     radial-gradient(1200px 520px at 10% -10%, rgba(255,255,255,.16), rgba(255,255,255,0) 60%),
@@ -127,11 +124,27 @@ body{
 .edge:hover:after{opacity:.35}
 
 /* ===== Pricing Cards (glass + gradient border) ===== */
-.card{scroll-snap-align:center; position:relative; flex:0 0 min(640px,92vw); border-radius:var(--radius);
-  background:linear-gradient(180deg, color-mix(in oklab, var(--surface) 92%, transparent), color-mix(in oklab, var(--surface) 86%, transparent));
-  border:1px solid var(--stroke); box-shadow:var(--shadow-sm); padding:36px 36px 26px; transition:.38s transform, .38s filter, .38s box-shadow, .38s opacity, .38s border-color; transform-origin:center center;
-  filter:saturate(.88) brightness(.98) blur(.2px); opacity:.56; overflow:visible; isolation:isolate;
+.card{scroll-snap-align:center; position:relative; flex:0 0 min(520px,88vw); border-radius:var(--radius); height:min(74vh,740px); min-height:640px; 
+  display:flex; flex-direction:column; justify-content:flex-end; padding:28px; overflow:hidden; isolation:isolate;
+  background: var(--tile-bg, #f5f5f7);
+  color: var(--tile-fg, var(--ink));
+  outline:1px solid var(--stroke); box-shadow:var(--shadow-sm); transition:.38s transform, .38s filter, .38s box-shadow, .38s opacity, .38s border-color;
+  filter:saturate(.9) brightness(.98) blur(.2px); opacity:.56;
 }
+.card::before{content:""; position:absolute; inset:0; background: var(--tile-img, none), var(--tile-overlay, none); background-size:cover; background-position:center; z-index:0;}
+.card.center{transform:perspective(1400px) translateZ(0) scale(1.08); filter:none; opacity:1; box-shadow:var(--shadow-lg); outline-color:color-mix(in oklab, var(--stroke) 55%, transparent)}
+.card.left{transform:perspective(1400px) rotateY(4.5deg) scale(.94)}
+.card.right{transform:perspective(1400px) rotateY(-4.5deg) scale(.94)}
+.card .subtitle{position:relative; z-index:1; margin:0 0 4px; text-align:left; color:color-mix(in oklab, var(--tile-fg) 70%, transparent); font-weight:800; font-size:12px; letter-spacing:.12em; text-transform:uppercase}
+.card .h3{position:relative; z-index:1; margin:0 0 8px; text-align:left; color:var(--tile-fg); letter-spacing:-.01em; font-weight:900; font-size:clamp(26px,3.6vw,34px)}
+.card .price-row{position:relative; z-index:1; justify-content:flex-start}
+.card .promise{position:relative; z-index:1; text-align:left}
+.card .features{position:relative; z-index:1}
+.card .cta{position:relative; z-index:1; justify-content:flex-start}
+/* Themes */
+.card.theme-dark{--tile-bg:#0d0d0f; --tile-fg:#f5f5f7; --tile-overlay:linear-gradient(180deg, rgba(0,0,0,.2) 0%, rgba(0,0,0,.5) 60%, rgba(0,0,0,.7) 100%);} 
+.card.theme-light{--tile-bg:#f5f5f7; --tile-fg:#1d1d1f; --tile-overlay:linear-gradient(180deg, rgba(255,255,255,0) 35%, rgba(255,255,255,.86) 100%);} 
+.card.theme-aurora{--tile-bg:#0a0f24; --tile-fg:#fff; --tile-overlay:linear-gradient(180deg, rgba(0,0,0,.1) 0%, rgba(0,0,0,.55) 100%), radial-gradient(800px 400px at 20% 10%, #2e8bff33, transparent 60%), radial-gradient(700px 600px at 90% 0%, #ff3b3033, transparent 60%);}
 .card::before{ /* subtle gradient ring */
   content:""; position:absolute; inset:-1px; border-radius:inherit; padding:1px; background:
   linear-gradient(180deg, color-mix(in oklab, var(--stroke-strong) 55%, transparent), color-mix(in oklab, var(--stroke) 45%, transparent)); -webkit-mask:
@@ -207,7 +220,7 @@ body{
 </style>
 </head>
 <body>
-<header id="site-header" class="header">
+<header id="site-header" class="header" aria-label="Barre de navigation">
   <div class="container nav">
     <a href="./index.html" class="brand" aria-label="Awenoria – Accueil"><img src="./images/logo.png" alt="Awenoria" class="brand__logo"></a>
     <ul class="mainnav" role="menubar" aria-label="Navigation principale">
@@ -263,86 +276,86 @@ body{
     <div class="viewport">
       <div class="track" id="track">
         <!-- Créateurs -->
-        <article class="card" tabindex="0" data-plan="crea" data-monthly="1" data-annual="10" data-market="2">
-          <span class="ribbon" data-ribbon></span>
-          <button class="discount" data-jump title="Remise paiement en 1 fois"></button>
+        <article class="card theme-aurora" tabindex="0" data-plan="crea" data-monthly="1" data-annual="10" data-market="2" style="--tile-img: radial-gradient(900px 600px at 80% 10%, #5ec2ff22, transparent 60%), radial-gradient(700px 500px at 10% 10%, #ff7a1a22, transparent 60%);">
+  <span class="ribbon" data-ribbon></span>
+  <button class="discount" data-jump title="Remise paiement en 1 fois"></button>
 
-          <p class="subtitle">Essentiel</p>
-          <h3 class="h3">Créateurs</h3>
-          <div class="price-row"><span class="price">1 €</span><span class="per">/ mois</span></div>
-          <p class="promise">Le point de départ propre et rassurant.</p>
+  <p class="subtitle">Performances & autonomie</p>
+  <h3 class="h3">Plus vite.<br>Plus longtemps.</h3>
+  <div class="price-row"><span class="price">1 €</span><span class="per">/ mois</span></div>
+  <p class="promise">Le point de départ propre et rassurant.</p>
 
-          <ul class="features">
-            <li><span class="icon" aria-hidden="true"></span>Scan démo + synthèse immédiate</li>
-            <li><span class="icon" aria-hidden="true"></span>Modèles de mentions légales</li>
-            <li><span class="icon" aria-hidden="true"></span>Conseils RGPD indispensables</li>
-          </ul>
+  <ul class="features">
+    <li><span class="icon" aria-hidden="true"></span>Scan démo + synthèse immédiate</li>
+    <li><span class="icon" aria-hidden="true"></span>Modèles de mentions légales</li>
+    <li><span class="icon" aria-hidden="true"></span>Conseils RGPD indispensables</li>
+  </ul>
 
-          <div class="cta">
-            <button class="btn" disabled>Essai 3 jours → Mensuel</button>
-            <button class="btn ghost" disabled>Annuel 10 €</button>
-            <button class="btn ghost" data-toggle>Détails</button>
-          </div>
+  <div class="cta">
+    <button class="btn" disabled>Essai 3 jours → Mensuel</button>
+    <button class="btn ghost" disabled>Annuel 10 €</button>
+    <button class="btn ghost" data-toggle>Détails</button>
+  </div>
 
-          <div class="savebar" data-savebar></div>
-          <div class="details"><div class="details-inner" data-details></div></div>
-          <p class="note">Paiement à l’ouverture commerciale.</p>
-        </article>
+  <div class="savebar" data-savebar></div>
+  <div class="details"><div class="details-inner" data-details></div></div>
+  <p class="note">Paiement à l’ouverture commerciale.</p>
+</article>
 
         <!-- Micro & Assos -->
-        <article class="card" tabindex="0" data-plan="micro" data-monthly="2" data-annual="20" data-market="5">
-          <span class="ribbon" data-ribbon></span>
-          <button class="discount" data-jump title="Remise paiement en 1 fois"></button>
+        <article class="card theme-dark" tabindex="0" data-plan="micro" data-monthly="2" data-annual="20" data-market="5" style="--tile-img: linear-gradient(180deg, #161617 0%, #0b0b0c 100%);">
+  <span class="ribbon" data-ribbon></span>
+  <button class="discount" data-jump title="Remise paiement en 1 fois"></button>
 
-          <p class="subtitle">Le meilleur départ</p>
-          <h3 class="h3">Micro & Assos</h3>
-          <div class="price-row"><span class="price">2 €</span><span class="per">/ mois</span></div>
-          <p class="promise">Tout ce qu’il faut, rien d’inutile.</p>
+  <p class="subtitle">Conçu pour l’IA</p>
+  <h3 class="h3">Intelligence et sécurité<br>embarquées.</h3>
+  <div class="price-row"><span class="price">2 €</span><span class="per">/ mois</span></div>
+  <p class="promise">Tout ce qu’il faut, rien d’inutile.</p>
 
-          <ul class="features">
-            <li><span class="icon" aria-hidden="true"></span>Scan site + analyse PDF locale</li>
-            <li><span class="icon" aria-hidden="true"></span>Rapport PDF “preuve d’audit”</li>
-            <li><span class="icon" aria-hidden="true"></span>Templates RGPD/CGV prêts à remplir</li>
-          </ul>
+  <ul class="features">
+    <li><span class="icon" aria-hidden="true"></span>Scan site + analyse PDF locale</li>
+    <li><span class="icon" aria-hidden="true"></span>Rapport PDF “preuve d’audit”</li>
+    <li><span class="icon" aria-hidden="true"></span>Templates RGPD/CGV prêts à remplir</li>
+  </ul>
 
-          <div class="cta">
-            <button class="btn" disabled>Essai 3 jours → Mensuel</button>
-            <button class="btn ghost" disabled>Annuel 20 €</button>
-            <button class="btn ghost" data-toggle>Détails</button>
-          </div>
+  <div class="cta">
+    <button class="btn" disabled>Essai 3 jours → Mensuel</button>
+    <button class="btn ghost" disabled>Annuel 20 €</button>
+    <button class="btn ghost" data-toggle>Détails</button>
+  </div>
 
-          <div class="savebar" data-savebar></div>
-          <div class="details"><div class="details-inner" data-details></div></div>
-          <p class="note">Paiement à l’ouverture commerciale.</p>
-        </article>
+  <div class="savebar" data-savebar></div>
+  <div class="details"><div class="details-inner" data-details></div></div>
+  <p class="note">Paiement à l’ouverture commerciale.</p>
+</article>
 
         <!-- Pros & Agences -->
-        <article class="card" tabindex="0" data-plan="pros" data-monthly="9.9" data-annual="85" data-market="19">
-          <span class="ribbon" data-ribbon></span>
-          <span class="popular" aria-label="Populaire">Populaire</span>
-          <button class="discount" data-jump title="Remise paiement en 1 fois"></button>
+        <article class="card theme-light" tabindex="0" data-plan="pros" data-monthly="9.9" data-annual="85" data-market="19" style="--tile-img: linear-gradient(180deg, #ffffff 0%, #f6f6f8 52%, #ececf0 100%);">
+  <span class="ribbon" data-ribbon></span>
+  <span class="popular" aria-label="Populaire">Populaire</span>
+  <button class="discount" data-jump title="Remise paiement en 1 fois"></button>
 
-          <p class="subtitle">Gain de temps maximal</p>
-          <h3 class="h3">Pros & Agences</h3>
-          <div class="price-row"><span class="price">9,90 €</span><span class="per">/ mois</span></div>
-          <p class="promise">Productivité, rigueur, livrables prêts client.</p>
+  <p class="subtitle">macOS & Awenoria</p>
+  <h3 class="h3">Facile à utiliser.<br>Et à adopter.</h3>
+  <div class="price-row"><span class="price">9,90 €</span><span class="per">/ mois</span></div>
+  <p class="promise">Productivité, rigueur, livrables prêts client.</p>
 
-          <ul class="features">
-            <li><span class="icon" aria-hidden="true"></span>Audit multi-thèmes (RGPD / A11y / Mentions)</li>
-            <li><span class="icon" aria-hidden="true"></span>Génération & suivi de documents</li>
-            <li><span class="icon" aria-hidden="true"></span>Portail client, export complet</li>
-          </ul>
+  <ul class="features">
+    <li><span class="icon" aria-hidden="true"></span>Audit multi-thèmes (RGPD / A11y / Mentions)</li>
+    <li><span class="icon" aria-hidden="true"></span>Génération & suivi de documents</li>
+    <li><span class="icon" aria-hidden="true"></span>Portail client, export complet</li>
+  </ul>
 
-          <div class="cta">
-            <button class="btn" disabled>Essai 3 jours → Mensuel</button>
-            <button class="btn ghost" disabled>Annuel 85 €</button>
-            <button class="btn ghost" data-toggle>Détails</button>
-          </div>
+  <div class="cta">
+    <button class="btn" disabled>Essai 3 jours → Mensuel</button>
+    <button class="btn ghost" disabled>Annuel 85 €</button>
+    <button class="btn ghost" data-toggle>Détails</button>
+  </div>
 
-          <div class="savebar" data-savebar></div>
-          <div class="details"><div class="details-inner" data-details></div></div>
-          <p class="note">Paiement à l’ouverture commerciale.</p>
-        </article>
+  <div class="savebar" data-savebar></div>
+  <div class="details"><div class="details-inner" data-details></div></div>
+  <p class="note">Paiement à l’ouverture commerciale.</p>
+</article>
       </div>
 
       <div class="dots" id="dots" aria-hidden="false"></div>
