@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Politique cookies — Awenoria</title>
-  <meta name="description" content="Politique d’utilisation des cookies et traceurs d’Awenoria : catégories, durées, finalités, preuve du consentement et paramétrage.">
+  <meta name="description" content="Politique relative aux cookies et autres traceurs utilisés sur le site Awenoria : finalités, bases légales, durées, partenaires, et gestion de vos préférences.">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,20 +13,22 @@
     :root{
       --blue:#0073b6; --blue-dark:#005a8e; --orange:#ff6600;
       --bg-top:#f7f9fc; --bg:#edf3f7; --surface:#fff; --stroke:#e9eef4;
-      --text:#16233a; --muted:#5d6b7c; --radius:20px;
+      --text:#16233a; --muted:#5d6b7c;
       --shadow-sm:0 6px 20px rgba(16,32,48,.06); --shadow-lg:0 24px 48px rgba(16,32,48,.10);
+      --radius:16px;
     }
     *{box-sizing:border-box} html,body{margin:0}
     body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--text);line-height:1.65}
     a{text-decoration:none;color:var(--blue-dark)} a:hover{color:var(--orange)}
     .container{max-width:1160px;margin:0 auto;padding:24px 20px}
 
-    /* Header */
+    /* Header (cohérent avec le reste du site) */
     .header{position:sticky;top:0;z-index:60;background:var(--bg-top);border-bottom:1px solid transparent;transition:.25s}
     .header.scrolled{background:#fff;border-bottom-color:var(--stroke);box-shadow:0 10px 24px rgba(16,32,48,.06)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
     .brand__logo{height:92px;width:auto} @media(min-width:992px){.brand__logo{height:100px}}
-    .mainnav{display:flex;gap:2px;margin-left:auto} .menu-item{list-style:none;position:relative}
+    .mainnav{display:flex;gap:2px;margin-left:auto}
+    .menu-item{list-style:none;position:relative}
     .menu-link{display:inline-block;padding:14px 14px;border-radius:12px;color:var(--blue-dark);font-weight:800;position:relative}
     .menu-link:hover{color:var(--orange);background:rgba(0,115,182,.06)}
     .menu-link::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:var(--orange);border-radius:2px;transform:scaleX(0);transition:.22s}
@@ -39,24 +41,33 @@
     /* Hero */
     .hero{background:linear-gradient(180deg,#5e8faa,#5e8faa);color:#fff;text-align:center;padding:72px 0 56px}
     h1{margin:0;font-size:40px;line-height:1.12}
-    .lead{max-width:860px;margin:8px auto 0;color:#eaf3fa;font-weight:600}
+    .lead{max-width:920px;margin:8px auto 0;color:#eaf3fa;font-weight:600}
 
-    /* Sections / tables */
+    /* Sections & cards */
     .section{padding:72px 0}
     .title{margin:0 0 10px;text-align:center;font-size:30px;color:#0f2746}
     .title:after{content:"";display:block;width:60px;height:4px;background:var(--orange);margin:10px auto 0;border-radius:3px}
-    .grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:18px}
-    .card{background:#fff;border:1px solid var(--stroke);border-radius:16px;box-shadow:var(--shadow-sm);padding:20px}
+    .grid{display:grid;gap:24px}
+    .cols-2{grid-template-columns:repeat(2,1fr)} @media(max-width:980px){.cols-2{grid-template-columns:1fr}}
+    .card{background:#fff;border:1px solid var(--stroke);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:20px}
     .muted{color:var(--muted)}
-    h2{margin:16px 0 8px;font-size:22px}
-    h3{margin:16px 0 6px;font-size:18px}
-    .btn{display:inline-block;padding:10px 14px;border-radius:12px;font-weight:800;color:#fff;background:var(--blue-dark);box-shadow:var(--shadow-sm)}
+    .pill{display:inline-block;background:var(--blue-dark);color:#fff;border-radius:999px;padding:6px 10px;font-weight:800;font-size:12px}
+    .btn{display:inline-block;padding:12px 16px;border-radius:12px;font-weight:800;color:#fff;background:var(--blue-dark);box-shadow:var(--shadow-sm)}
     .btn:hover{background:var(--orange)}
-    table{width:100%;border-collapse:collapse}
-    th,td{padding:10px;border:1px solid var(--stroke);text-align:left}
-    th{background:#fbfdff}
+    .btn.ghost{background:#fff;color:var(--blue-dark);border:1px solid var(--stroke)}
+    .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+    .table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--stroke);border-radius:12px;overflow:hidden}
+    .table th,.table td{padding:12px 14px;border-bottom:1px solid var(--stroke);vertical-align:top}
+    .table th{background:#f6fbff;text-align:left;font-weight:800;color:#0f2746}
+    .table tr:last-child td{border-bottom:none}
 
+    /* Footer */
     .footer{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
+
+    /* Petites notes */
+    .note{font-size:13px;color:var(--muted)}
+    .kblock{display:flex;gap:16px;align-items:flex-start}
+    .kblock .icon{flex:0 0 auto;width:42px;height:42px;border-radius:10px;background:linear-gradient(180deg,#eaf5fd,#d8ecfa);display:grid;place-items:center;border:1px solid #cbe3f3}
   </style>
 </head>
 <body>
@@ -92,8 +103,8 @@
         </div>
       </li>
       <li class="menu-item"><a class="menu-link" href="confidentialite.html">Confidentialité</a></li>
-      <li class="menu-item"><a class="menu-link active" href="politique-cookies.html">Politique cookies</a></li>
       <li class="menu-item"><a class="menu-link" href="mentions.html">Mentions légales</a></li>
+      <li class="menu-item"><a class="menu-link active" href="politique-cookies.html">Politique cookies</a></li>
       <li class="menu-item"><a class="menu-link" href="contact.html">Contact</a></li>
     </ul>
   </div>
@@ -102,88 +113,155 @@
 <section class="hero">
   <div class="container">
     <h1>Politique cookies</h1>
-    <p class="lead">Tout savoir sur nos cookies et traceurs : finalités, durées, partenaires et comment gérer vos préférences.</p>
+    <p class="lead">Tout savoir sur les cookies et autres traceurs utilisés sur ce site, et <b>gérer vos préférences</b>.</p>
   </div>
 </section>
 
 <main>
+  <!-- Intro + bases légales -->
   <section class="section">
-    <div class="container grid">
-      <article class="card">
-        <h2>1) Qu’est-ce qu’un cookie ?</h2>
-        <p>Un cookie est un petit fichier déposé sur votre navigateur pour mémoriser certaines informations. D’autres technologies similaires existent (storage, pixels, SDK, empreinte du navigateur). Nous parlons de « cookies/traceurs » pour simplifier.</p>
+    <div class="container">
+      <div class="grid cols-2">
+        <article class="card">
+          <h2>Qu’est-ce qu’un cookie&nbsp;?</h2>
+          <p>Un «&nbsp;cookie&nbsp;» est un petit fichier texte déposé sur votre terminal (ordinateur, mobile, tablette) lors de la visite d’un site. D’autres traceurs peuvent être utilisés (local storage, pixels, SDK, etc.). Ils permettent, par exemple, de mémoriser vos préférences, de mesurer l’audience ou de personnaliser les contenus.</p>
+          <p>Le dépôt/lecture de traceurs non strictement nécessaires requiert votre <b>consentement</b>. Vous pouvez le <a href="#prefs">modifier à tout moment</a>.</p>
+        </article>
 
-        <h2>2) Principes de consentement</h2>
-        <ul>
-          <li><b>Blocage par défaut</b> des traceurs non nécessaires.</li>
-          <li><b>Refus aussi simple</b> que l’acceptation.</li>
-          <li><b>Preuve du consentement</b> consignée (horodatage, choix, version du bandeau).</li>
-          <li>Vos choix sont conservés <b>6 mois</b> maximum, puis on vous les redemande.</li>
-        </ul>
-        <p><button class="btn" onclick="(window.AwenoriaConsent||{}).open?.()">Gérer mes cookies</button></p>
+        <article class="card">
+          <h2>Bases légales & durée</h2>
+          <ul>
+            <li><b>Strictement nécessaires</b> : intérêt légitime (exemption consentement), durée limitée au fonctionnement.</li>
+            <li><b>Mesure d’audience</b> : <span class="muted">consentement</span> (ou exemption si configuration conforme — voir ci-dessous).</li>
+            <li><b>Fonctionnalités & personnalisation</b> : <b>consentement</b>.</li>
+            <li><b>Publicité & réseaux sociaux</b> : <b>consentement</b>.</li>
+          </ul>
+          <p>Le détail des durées de conservation figure dans le tableau ci-dessous.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-        <h2>3) Catégories de cookies</h2>
+  <!-- Tableau des traceurs -->
+  <section class="section alt">
+    <div class="container">
+      <h2 class="title">Liste des traceurs</h2>
+      <p class="muted" style="text-align:center;margin-top:6px">Complétez ce tableau avec vos propres traceurs. Supprime ou ajoute des lignes si nécessaire.</p>
 
-        <h3>3.1 — Strictement nécessaires (exempts de consentement)</h3>
-        <p>Indispensables au fonctionnement du site (équilibrage de charge, sécurité, préférence de langue, conservation du refus/consentement).</p>
-
-        <h3>3.2 — Mesure d’audience</h3>
-        <p>Statistiques agrégées de fréquentation. Si un outil non exempté est utilisé, nous demandons votre consentement préalable.</p>
-
-        <h3>3.3 — Fonctionnalités</h3>
-        <p>Améliorations de confort (ex. enregistrement d’un formulaire inachevé, personnalisation non essentielle).</p>
-
-        <h3>3.4 — Marketing / Partenaires</h3>
-        <p>Traceurs publicitaires, retargeting, réseaux sociaux. <b>Soumis au consentement.</b></p>
-
-        <h2>4) Détail des cookies</h2>
-        <p class="muted">Tableau indicatif – ta CMP Pro peut alimenter dynamiquement cette table via JS (sinon, complète statiquement).</p>
-
-        <table aria-label="Liste des cookies">
+      <div class="card" style="margin-top:18px">
+        <table class="table" aria-describedby="tbl-desc">
+          <caption id="tbl-desc" class="muted" style="caption-side:bottom;padding:10px 0 0">Dernière mise à jour : [[JJ/MM/AAAA]]</caption>
           <thead>
             <tr>
+              <th>Catégorie</th>
               <th>Nom</th>
-              <th>Fournisseur</th>
               <th>Finalité</th>
               <th>Durée</th>
-              <th>Catégorie</th>
+              <th>Fournisseur</th>
+              <th>Transfert hors UE</th>
             </tr>
           </thead>
-          <tbody id="cookieTableBody">
-            <!-- Exemples par défaut -->
+          <tbody>
+            <!-- Nécessaires -->
             <tr>
-              <td>awenoria_consent</td>
-              <td>Awenoria (interne)</td>
-              <td>Stocker vos choix de consentement (preuve)</td>
-              <td>6 mois</td>
-              <td>Strictement nécessaire</td>
+              <td><b>Nécessaires</b></td>
+              <td>[[awenoria_session]]</td>
+              <td>Maintenir la session utilisateur et la sécurité.</td>
+              <td>Session</td>
+              <td>Awenoria (éditeur)</td>
+              <td>Non</td>
             </tr>
             <tr>
-              <td>_cfuvid</td>
-              <td>Cloudflare</td>
-              <td>Sécurité/anti-abus (WAF)</td>
-              <td>Session à 30 jours</td>
-              <td>Strictement nécessaire</td>
+              <td><b>Nécessaires</b></td>
+              <td>[[consent_state]]</td>
+              <td>Enregistrer vos choix de consentement.</td>
+              <td>6 mois</td>
+              <td>Awenoria (éditeur)</td>
+              <td>Non</td>
+            </tr>
+
+            <!-- Mesure d'audience -->
+            <tr>
+              <td><b>Mesure d’audience</b></td>
+              <td>[[matomo_*]] / [[plausible_*]] / [[ga_*]]</td>
+              <td>Mesurer la fréquentation et les performances du site.</td>
+              <td>[[13 mois]]</td>
+              <td>[[Matomo|Plausible|Google Analytics]]</td>
+              <td>[[Oui/Non — précisez pays & garanties]]</td>
+            </tr>
+
+            <!-- Fonctionnalités -->
+            <tr>
+              <td><b>Fonctionnalités</b></td>
+              <td>[[intercom_*]] / [[hotjar_*]]</td>
+              <td>Améliorer l’expérience (chat, feedback, cartes de chaleur conformes).</td>
+              <td>[[6 mois]]</td>
+              <td>[[Fournisseur]]</td>
+              <td>[[Oui/Non]]</td>
+            </tr>
+
+            <!-- Publicité -->
+            <tr>
+              <td><b>Publicité</b></td>
+              <td>[[fbp]] / [[fbc]] / [[_gcl_au]]</td>
+              <td>Mesurer et optimiser les campagnes publicitaires.</td>
+              <td>[[90 jours]]</td>
+              <td>[[Meta|Google|…]]</td>
+              <td>[[Oui/Non]]</td>
             </tr>
           </tbody>
         </table>
 
-        <h2>5) Comment modifier vos choix ?</h2>
-        <p>À tout moment, vous pouvez <b>rouvrir le module</b> et mettre à jour vos préférences :</p>
-        <p><button class="btn" onclick="(window.AwenoriaConsent||{}).open?.()">Gérer mes cookies</button></p>
+        <p class="note" style="margin-top:12px">
+          <b>Exemption mesure d’audience :</b> certains outils (ex. Matomo, AT Internet) peuvent être exemptés de consentement si strictement limités (IP tronquée, pas de recoupement, durée courte, opt-out, respect du DNT, etc.). Si vous êtes dans ce cas, précisez-le ici et configurez l’outil en conséquence.
+        </p>
+      </div>
+    </div>
+  </section>
 
-        <h2>6) Durées de conservation</h2>
-        <ul>
-          <li>Choix de consentement : <b>6 mois</b>.</li>
-          <li>Cookies de mesure d’audience : jusqu’à <b>13 mois</b>.</li>
-          <li>Données associées : jusqu’à <b>25 mois</b> maximum (statistiques agrégées).</li>
-        </ul>
+  <!-- Préférences / CMP -->
+  <section id="prefs" class="section">
+    <div class="container">
+      <h2 class="title">Gérer vos préférences</h2>
+      <div class="grid cols-2" style="margin-top:18px">
+        <article class="card">
+          <div class="kblock">
+            <div class="icon" aria-hidden="true">⚙️</div>
+            <div>
+              <h3 style="margin:0 0 6px">Centre de préférences</h3>
+              <p>Vous pouvez modifier vos choix à tout moment&nbsp;:</p>
+              <div class="btn-row" role="group" aria-label="Actions de consentement">
+                <button class="btn" data-consent="accept_all">Tout accepter</button>
+                <button class="btn ghost" data-consent="refuse_all">Tout refuser</button>
+                <button class="btn" data-consent="customize">Personnaliser</button>
+              </div>
+              <p class="note" style="margin-top:10px">Ces boutons appellent votre CMP si elle est présente (<code>__tcfapi</code>, <code>__cmp</code>, etc.). À défaut, un mécanisme local minimal est appliqué (aucun traceur non-essentiel par défaut).</p>
+            </div>
+          </div>
+        </article>
 
-        <h2>7) Vos droits</h2>
-        <p>Pour en savoir plus sur le traitement de vos données et vos droits (accès, effacement, opposition…), consultez notre <a href="confidentialite.html">Politique de confidentialité</a> ou écrivez-nous à <a href="mailto:vosdroits@dpo101.fr">vosdroits@dpo101.fr</a> (objet : « Droit des personnes »). Autorité de contrôle : <a href="https://www.cnil.fr">CNIL</a>.</p>
+        <article class="card">
+          <h3 style="margin-top:0">Signal “Do Not Track” et retrait</h3>
+          <p>Si votre navigateur envoie le signal «&nbsp;Do Not Track&nbsp;», nous nous efforçons de le respecter lorsque c’est techniquement possible. Vous pouvez également supprimer manuellement les cookies via les paramètres de votre navigateur.</p>
+          <ul class="note">
+            <li>Chrome/Edge : Paramètres ▶ Confidentialité et sécurité ▶ Cookies et autres données</li>
+            <li>Firefox : Paramètres ▶ Vie privée et sécurité ▶ Cookies et données de sites</li>
+            <li>Safari : Réglages ▶ Safari ▶ Avancé ▶ Données de sites web</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
 
-        <p class="muted">Dernière mise à jour : <span id="lastUpdate">—</span></p>
-      </article>
+  <!-- Responsable & contact -->
+  <section class="section alt">
+    <div class="container">
+      <div class="card">
+        <h2>Responsable & contact</h2>
+        <p>Le responsable du site est <b>[[Dénomination sociale]]</b>, [[forme juridique]] au capital de [[capital social]] €, immatriculée au RCS de [[Ville]] sous le n° [[SIREN]], siège social [[Adresse complète]].</p>
+        <p>Pour toute question sur cette politique ou l’exercice de vos droits, écrivez à <a href="mailto:[[vosdroits@votredomaine.fr]]">[[vosdroits@votredomaine.fr]]</a>.</p>
+        <p class="note">Dernière mise à jour : [[JJ/MM/AAAA]]</p>
+      </div>
     </div>
   </section>
 </main>
@@ -191,38 +269,88 @@
 <footer class="container footer">
   <div style="display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap">
     <span>© <span id="year"></span> Awenoria</span>
-    <span>
-      <a href="mentions.html">Mentions légales</a> ·
-      <a href="confidentialite.html">Confidentialité</a> ·
-      <a class="menu-link active" href="politique-cookies.html">Politique cookies</a> ·
-      <a href="#" onclick="(window.AwenoriaConsent||{}).open?.();return false;">Gérer mes cookies</a>
-    </span>
+    <span><a href="mentions.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a> · <a href="politique-cookies.html">Politique cookies</a></span>
   </div>
 </footer>
 
 <script>
+  // Année + header sticky
   document.getElementById('year').textContent = new Date().getFullYear();
-  document.getElementById('lastUpdate').textContent = '2025-10-15';
-  (function(){const h=document.getElementById('site-header');const t=()=>{if(window.scrollY>10)h.classList.add('scrolled');else h.classList.remove('scrolled')};t();window.addEventListener('scroll',t,{passive:true})})();
+  (function(){
+    const h=document.getElementById('site-header');
+    const t=()=>{if(window.scrollY>10)h.classList.add('scrolled');else h.classList.remove('scrolled')};
+    t(); window.addEventListener('scroll',t,{passive:true});
+  })();
+
+  // Navigation "dure" vers audit.html depuis le menu si data-page
   (function(){
     function hardLink(page){
       var base = location.pathname.replace(/[^\/]*$/, '');
-      var url = base + page + '?v=' + Date.now();
+      var url  = base + page + '?v=' + Date.now();
       window.location.assign(url);
     }
     document.addEventListener('click', function(e){
-      var a = e.target.closest('a[data-page]'); if(!a) return;
-      e.preventDefault(); var page = a.getAttribute('data-page'); if(page) hardLink(page);
+      var a = e.target.closest('a[data-page]');
+      if(!a) return;
+      e.preventDefault();
+      var page = a.getAttribute('data-page');
+      if(page) hardLink(page);
     }, {passive:false});
   })();
 
-  // Si ta CMP expose une API listant les cookies, tu peux peupler le tableau ici :
-  // if(window.AwenoriaConsent && AwenoriaConsent.listCookies){
-  //   const rows = AwenoriaConsent.listCookies().map(c=>{
-  //     return `<tr><td>${c.name}</td><td>${c.vendor}</td><td>${c.purpose}</td><td>${c.duration}</td><td>${c.category}</td></tr>`;
-  //   }).join('');
-  //   document.getElementById('cookieTableBody').innerHTML = rows;
-  // }
+  // ----- Intégration CMP "pro" (si présente) + fallback local -----
+  (function(){
+    // Détecte TCF v2 (__tcfapi) ou CMP générique (__cmp) si déjà chargée sur le site
+    function hasTCF(){ return typeof window.__tcfapi === 'function'; }
+    function hasCMP(){ return typeof window.__cmp === 'function'; }
+
+    // Fallback minimaliste (localStorage) — ne dépose AUCUN cookie non essentiel
+    const KEY = 'awenoria_consent';
+    function readLocal(){ try{ return JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ return {}; } }
+    function writeLocal(v){ try{ localStorage.setItem(KEY, JSON.stringify(v)); }catch(e){} }
+
+    function acceptAll(){
+      if(hasTCF()){
+        // TCF v2 : montrer la modal puis accepter (variable selon CMP)
+        try{ window.__tcfapi('setConsent', 2, ()=>{}, {gdprApplies:true, purpose:{consents: 'all'}}); }catch(e){}
+      }else if(hasCMP()){
+        try{ window.__cmp('setConsentUi', true); }catch(e){}
+      }else{
+        writeLocal({all:true, ts:Date.now()});
+        document.dispatchEvent(new CustomEvent('awenoria:consentChange', {detail:{all:true}}));
+        alert('Préférences enregistrées (version locale).');
+      }
+    }
+
+    function refuseAll(){
+      if(hasTCF()){
+        try{ window.__tcfapi('setConsent', 2, ()=>{}, {gdprApplies:true, purpose:{consents: 'none'}}); }catch(e){}
+      }else if(hasCMP()){
+        try{ window.__cmp('denyAll'); }catch(e){}
+      }else{
+        writeLocal({all:false, ts:Date.now()});
+        document.dispatchEvent(new CustomEvent('awenoria:consentChange', {detail:{all:false}}));
+        alert('Refus enregistré (version locale).');
+      }
+    }
+
+    function customize(){
+      if(hasTCF()){
+        try{ window.__tcfapi('displayConsentUi'); }catch(e){ alert('Centre de préférences indisponible.'); }
+      }else if(hasCMP()){
+        try{ window.__cmp('openSettings'); }catch(e){ alert('Centre de préférences indisponible.'); }
+      }else{
+        alert('Centre de préférences non installé. Aucune activation de traceurs non essentiels sans votre accord.');
+      }
+    }
+
+    document.querySelectorAll('[data-consent="accept_all"]').forEach(b=>b.addEventListener('click',acceptAll));
+    document.querySelectorAll('[data-consent="refuse_all"]').forEach(b=>b.addEventListener('click',refuseAll));
+    document.querySelectorAll('[data-consent="customize"]').forEach(b=>b.addEventListener('click',customize));
+
+    // Expose état (utile à votre code d’intégration)
+    window.awenoriaConsent = { read: readLocal };
+  })();
 </script>
 </body>
 </html>
