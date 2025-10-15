@@ -4,37 +4,65 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Conformité — Awenoria</title>
-  <meta name="description" content="Panorama des thématiques de conformité web : RGPD, accessibilité, mentions légales, cookies/CMP. Accès direct aux vérifications.">
+  <meta name="description" content="Accompagnement conformité : RGPD (PIA/DPIA, politiques, formulaires), Accessibilité (WCAG/RGAA), Mentions & e-commerce, et obligations IA Act (fournisseurs, déployeurs, distributeurs).">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{--blue:#0073b6;--blue-dark:#005a8e;--orange:#ff6600;--bg-top:#f7f9fc;--bg:#edf3f7;--surface:#fff;--stroke:#e9eef4;--text:#16233a;--muted:#5d6b7c;--radius:20px;--shadow-sm:0 6px 20px rgba(16,32,48,.06)}
-    *{box-sizing:border-box}html,body{margin:0}body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--text);line-height:1.65}
-    a{text-decoration:none}.container{max-width:1160px;margin:0 auto;padding:24px 20px}
+    :root{
+      --blue:#0073b6; --blue-dark:#005a8e; --orange:#ff6600;
+      --bg-top:#f7f9fc; --bg:#edf3f7; --surface:#fff; --stroke:#e9eef4;
+      --text:#16233a; --muted:#5d6b7c; --radius:20px;
+      --shadow-sm:0 6px 20px rgba(16,32,48,.06);
+      --shadow-lg:0 24px 48px rgba(16,32,48,.10);
+    }
+    *{box-sizing:border-box} html,body{margin:0}
+    body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--text);line-height:1.65}
+    a{text-decoration:none} img{max-width:100%;display:block}
+    .container{max-width:1160px;margin:0 auto;padding:24px 20px}
+
+    /* Header */
     .header{position:sticky;top:0;z-index:60;background:var(--bg-top);border-bottom:1px solid transparent;transition:.25s}
     .header.scrolled{background:#fff;border-bottom-color:var(--stroke);box-shadow:0 10px 24px rgba(16,32,48,.06)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
-    .brand__logo{height:92px}@media(min-width:992px){.brand__logo{height:100px}}
-    .mainnav{display:flex;gap:2px;margin-left:auto}.menu-item{list-style:none;position:relative}
-    .menu-link{display:inline-block;padding:14px 14px;border-radius:12px;color:var(--blue-dark);font-weight:800}
+    .brand__logo{height:92px;width:auto} @media(min-width:992px){.brand__logo{height:100px}}
+    .mainnav{display:flex;gap:2px;margin-left:auto} .menu-item{list-style:none;position:relative}
+    .menu-link{display:inline-block;padding:14px 14px;border-radius:12px;color:var(--blue-dark);font-weight:800;position:relative}
     .menu-link:hover{color:var(--orange);background:rgba(0,115,182,.06)}
-    .menu-link.active{color:var(--orange)}.menu-link::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:var(--orange);border-radius:2px;transform:scaleX(0);transition:.22s}
-    .menu-link.active::after{transform:scaleX(1)}.dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:280px;padding:10px;background:#fff;border:1px solid var(--stroke);border-radius:14px;box-shadow:0 24px 48px rgba(16,32,48,.1);opacity:0;visibility:hidden;transform:translateY(8px);transition:.18s}
-    .menu-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}.dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:var(--blue-dark);font-weight:700}
+    .menu-link::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:var(--orange);border-radius:2px;transform:scaleX(0);transition:.22s}
+    .menu-link:hover::after,.menu-link.active::after{transform:scaleX(1)} .menu-link.active{color:var(--orange)}
+    .dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:280px;padding:10px;background:#fff;border:1px solid var(--stroke);border-radius:14px;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(8px);transition:.18s}
+    .menu-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+    .dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:var(--blue-dark);font-weight:700}
     .dropdown a:hover{background:#f3f8fc;color:var(--orange)}
+
+    /* Hero */
     .hero{background:linear-gradient(180deg,#5e8faa,#5e8faa);color:#fff;text-align:center;padding:72px 0 56px}
-    h1{margin:0;font-size:40px}.lead{max-width:860px;margin:8px auto 0;color:#eaf3fa;font-weight:600}
-    .section{padding:72px 0}.alt{background:var(--surface)}
-    .title{text-align:center;margin:0 0 10px;font-size:30px;color:#0f2746}.title:after{content:"";display:block;width:60px;height:4px;background:var(--orange);margin:10px auto 0;border-radius:3px}
-    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:18px}
-    @media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.grid{grid-template-columns:1fr}}
+    h1{margin:0;font-size:40px;line-height:1.12}
+    .lead{max-width:900px;margin:8px auto 0;color:#eaf3fa;font-weight:600}
+
+    /* Sections */
+    .section{padding:72px 0}
+    .section.alt{background:var(--surface)}
+    .title{margin:0 0 10px;text-align:center;font-size:30px;color:#0f2746}
+    .title:after{content:"";display:block;width:60px;height:4px;background:var(--orange);margin:10px auto 0;border-radius:3px}
+
+    .grid{display:grid;gap:24px;margin-top:18px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    @media(max-width:980px){.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}}
+
     .card{background:#fff;border:1px solid var(--stroke);border-radius:16px;box-shadow:var(--shadow-sm);padding:20px}
     .pill{display:inline-block;background:var(--blue-dark);color:#fff;border-radius:999px;padding:6px 10px;font-weight:800;font-size:12px}
-    .btn{display:inline-block;padding:12px 16px;border-radius:12px;font-weight:800;color:#fff;background:var(--blue-dark)}
-    .btn:hover{background:var(--orange)}
     .list{margin:0;padding-left:18px}
+    .muted{color:var(--muted)}
+    .small{font-size:13px;color:var(--muted)}
+    .btn{display:inline-block;padding:12px 16px;border-radius:12px;font-weight:800;color:#fff;background:var(--blue-dark);box-shadow:var(--shadow-sm)}
+    .btn:hover{background:var(--orange)}
+    .btn.ghost{background:#fff;color:var(--blue-dark);border:1px solid var(--stroke)}
+
     .footer{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
+    .kbd{display:inline-block;background:#f3f8fc;border:1px solid #d5e7f4;padding:2px 6px;border-radius:6px;font-size:12px}
   </style>
 </head>
 <body>
@@ -54,10 +82,10 @@
       <li class="menu-item">
         <a class="menu-link active" href="conformite.html">Conformité ▾</a>
         <div class="dropdown">
-          <a href="fonctionnalites.html#rgpd">• Audit RGPD</a>
-          <a href="fonctionnalites.html#accessibilite">• Audit Accessibilité</a>
-          <a href="fonctionnalites.html#mentions">• Mentions légales</a>
-          <a href="fonctionnalites.html#cookies">• Cookies / CMP</a>
+          <a href="#rgpd">• Audit RGPD</a>
+          <a href="#accessibilite">• Audit Accessibilité</a>
+          <a href="#mentions">• Mentions légales</a>
+          <a href="#iaact">• IA Act</a>
         </div>
       </li>
       <li class="menu-item">
@@ -84,64 +112,192 @@
 
 <section class="hero">
   <div class="container">
-    <h1>Panorama de conformité</h1>
-    <p class="lead">Les quatre piliers couverts par Awenoria. Explorez chaque thème et accédez aux vérifications utiles.</p>
+    <h1>Accompagnement conformité</h1>
+    <p class="lead">Nous vous aidons à passer du diagnostic à la mise en conformité : RGPD, accessibilité, mentions & e-commerce, et obligations liées à l’IA Act.</p>
   </div>
 </section>
 
 <main>
+  <!-- Bloc intro -->
   <section class="section">
     <div class="container">
-      <h2 class="title">Les 4 piliers</h2>
-      <div class="grid">
+      <h2 class="title">De l’audit aux actions concrètes</h2>
+      <div class="grid cols-3">
         <article class="card">
-          <span class="pill">RGPD</span>
-          <h3>Protection des données</h3>
+          <span class="pill">1. Diagnostiquer</span>
+          <h3>Audit Awenoria</h3>
+          <p>Score global + recommandations priorisées. Détection côté site public, complétée par une lecture critique manuelle.</p>
+          <p><a class="btn" href="audit.html">Voir l’audit →</a></p>
+        </article>
+        <article class="card">
+          <span class="pill">2. Mettre en conformité</span>
+          <h3>Plan d’actions guidé</h3>
+          <p>Nous vous aidons à implémenter : pages, libellés, politiques, flux de consentement, correctifs d’accessibilité, mentions légales.</p>
+        </article>
+        <article class="card">
+          <span class="pill">3. Prouver & maintenir</span>
+          <h3>Preuves & suivi</h3>
+          <p>Exports (PDF/JSON), journalisation CMP, traces de mise à jour, check trimestriel possible pour rester conforme.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- RGPD -->
+  <section id="rgpd" class="section alt">
+    <div class="container">
+      <h2 class="title">RGPD : de la politique au PIA</h2>
+      <div class="grid cols-3">
+        <article class="card">
+          <h3>Politique & information</h3>
           <ul class="list">
-            <li>Politique, bases légales, droits, DPO</li>
-            <li>Formulaires & information au point de collecte</li>
-            <li>Lien : <a href="fonctionnalites.html#rgpd">détails des vérifications</a></li>
+            <li>Rédaction/MAJ de la politique de confidentialité</li>
+            <li>Mentions au point de collecte (formulaires)</li>
+            <li>Page droits & canal de contact (DPO si applicable)</li>
           </ul>
         </article>
         <article class="card">
-          <span class="pill">Accessibilité</span>
-          <h3>Accessibilité numérique</h3>
+          <h3>Base légale & cookies</h3>
           <ul class="list">
-            <li>ALT, ARIA, contrastes, clavier</li>
-            <li>Déclaration d’accessibilité</li>
-            <li>Lien : <a href="fonctionnalites.html#accessibilite">vérifications</a></li>
+            <li>Qualification des bases légales par finalité</li>
+            <li>Paramétrage CMP (refus aussi simple) & politique cookies</li>
+            <li>Journalisation du consentement (preuve)</li>
           </ul>
         </article>
         <article class="card">
-          <span class="pill">Mentions</span>
-          <h3>Mentions légales & e-commerce</h3>
+          <h3>PIA / Registre</h3>
           <ul class="list">
-            <li>Éditeur, hébergeur, RCS/SIREN</li>
-            <li>CGU/CGV, rétractation, médiation</li>
-            <li>Lien : <a href="fonctionnalites.html#mentions">vérifications</a></li>
+            <li>Cartographie & registre (responsable/sous-traitants)</li>
+            <li>Analyse d’impact (PIA/DPIA) lorsque requis</li>
+            <li>Kits : modèles, procédures, preuve de mise à jour</li>
+          </ul>
+        </article>
+      </div>
+      <p class="small muted" style="text-align:center;margin-top:10px">L’audit Awenoria se concentre “côté site”. Les livrables RGPD internes (registre, PIA) sont proposés en accompagnement sur devis.</p>
+    </div>
+  </section>
+
+  <!-- Accessibilité -->
+  <section id="accessibilite" class="section">
+    <div class="container">
+      <h2 class="title">Accessibilité (WCAG/RGAA)</h2>
+      <div class="grid cols-3">
+        <article class="card">
+          <h3>Corrections rapides</h3>
+          <ul class="list">
+            <li>ALT manquants/inadaptés</li>
+            <li>Hiérarchie de titres & sémantique</li>
+            <li>Intitulés de liens, focus visible</li>
           </ul>
         </article>
         <article class="card">
-          <span class="pill">Cookies / CMP</span>
-          <h3>Consentement & preuve</h3>
+          <h3>Améliorations UX</h3>
           <ul class="list">
-            <li>Bandeau conforme & refus aussi simple</li>
-            <li>Politique cookies, journalisation</li>
-            <li>Lien : <a href="fonctionnalites.html#cookies">vérifications</a></li>
+            <li>Contrastes & couleurs</li>
+            <li>Navigation clavier & ordre de tabulation</li>
+            <li>Composants ARIA : repères, rôles, états</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Déclaration & suivi</h3>
+          <ul class="list">
+            <li>Page “Déclaration d’accessibilité”</li>
+            <li>Dérogations documentées, plan d’amélioration</li>
+            <li>Procédure de contact & médiation</li>
           </ul>
         </article>
       </div>
     </div>
   </section>
 
+  <!-- Mentions légales / e-commerce -->
+  <section id="mentions" class="section alt">
+    <div class="container">
+      <h2 class="title">Mentions légales & e-commerce</h2>
+      <div class="grid cols-3">
+        <article class="card">
+          <h3>Identification complète</h3>
+          <ul class="list">
+            <li>Éditeur, contact, hébergeur</li>
+            <li>RCS / SIREN / TVA le cas échéant</li>
+            <li>Traductions/versions si multi-langues</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>CGU/CGV & information</h3>
+          <ul class="list">
+            <li>Conditions essentielles, garanties</li>
+            <li>Droit de rétractation (si applicable)</li>
+            <li>Médiation à la consommation, SAV</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Traçabilité</h3>
+          <ul class="list">
+            <li>Liens visibles (footer/header)</li>
+            <li>Date de dernière mise à jour</li>
+            <li>Arborescence claire & URLs stables</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- IA Act -->
+  <section id="iaact" class="section">
+    <div class="container">
+      <h2 class="title">Conformité IA Act (UE)</h2>
+      <p class="muted" style="text-align:center;max-width:860px;margin:6px auto 0">
+        L’IA Act adopte une approche par niveaux de risques. Nous vous aidons à qualifier votre système, à documenter les exigences applicables et à préparer la mise en circulation et la surveillance post-commercialisation.
+      </p>
+      <div class="grid cols-3" style="margin-top:18px">
+        <article class="card">
+          <span class="pill">Fournisseurs</span>
+          <h3>Vous développez une IA ?</h3>
+          <ul class="list">
+            <li>Qualification du système & analyse des risques</li>
+            <li>Documentation technique, gouvernance des données</li>
+            <li>Transparence & instructions d’utilisation</li>
+            <li>Surveillance post-commercialisation</li>
+          </ul>
+          <p class="small muted">À partir de 990 € selon périmètre.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Déployeurs</span>
+          <h3>Vous utilisez/déployez une IA ?</h3>
+          <ul class="list">
+            <li>Vérification des obligations du fournisseur</li>
+            <li>Évaluation d’usage : contexte, supervision humaine</li>
+            <li>Transparence vis-à-vis des utilisateurs finaux</li>
+            <li>Suivi des incidents & remontées</li>
+          </ul>
+          <p class="small muted">À partir de 990 € selon périmètre.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Distributeurs/Intégrateurs</span>
+          <h3>Vous revendez ou intégrez une IA ?</h3>
+          <ul class="list">
+            <li>Contrôle de la conformité du fournisseur</li>
+            <li>Exigences d’étiquetage & information</li>
+            <li>Traçabilité, gestion des versions/modèles</li>
+            <li>Surveillance & support client</li>
+          </ul>
+          <p class="small muted">À partir de 990 € selon périmètre.</p>
+        </article>
+      </div>
+      <p class="small muted" style="text-align:center;margin-top:10px">Nous fournissons des check-lists, modèles de politiques et matrices de risques adaptées à votre rôle (fournisseur, déployeur, distributeur).</p>
+    </div>
+  </section>
+
+  <!-- CTA final -->
   <section class="section alt">
     <div class="container" style="text-align:center">
-      <h2 class="title" style="margin-bottom:10px">Aller plus loin</h2>
-      <p class="lead">Découvrez la <a href="comment.html">méthodologie</a> et nos <a href="tarifs.html">formules</a> adaptées aux TPE/PME et cabinets.</p>
-      <p style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px">
+      <h2 class="title" style="margin-bottom:10px">Prêts à avancer ?</h2>
+      <p class="lead">Testez gratuitement une URL pour obtenir un premier score, puis choisissez l’accompagnement adapté.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px">
         <a class="btn" href="index.html#resultat">Démarrer un audit</a>
-        <a class="btn" style="background:#fff;color:var(--blue-dark);border:1px solid var(--stroke)" href="contact.html">Parler à un expert</a>
-      </p>
+        <a class="btn ghost" href="contact.html">Demander un devis</a>
+      </div>
     </div>
   </section>
 </main>
