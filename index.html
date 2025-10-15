@@ -258,92 +258,93 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 </head>
 <body>
 
-<!-- ===== HEADER (corrigé) ===== -->
+<!-- ===== HEADER (index, chemins absolus) ===== -->
 <header id="site-header" class="header">
   <div class="container nav">
-    <a href="./index.html" class="brand">
-      <img src="./images/logo.png" alt="Awenoria" class="brand__logo">
+    <a href="/awenoria/index.html" class="brand">
+      <img src="/awenoria/images/logo.png" alt="Awenoria" class="brand__logo">
     </a>
 
     <ul class="mainnav">
-      <li class="menu-item"><a class="menu-link" href="index.html">Accueil</a></li>
+      <li class="menu-item"><a class="menu-link active" href="/awenoria/index.html">Accueil</a></li>
 
       <!-- UN SEUL ONGLET AUDIT -->
       <li class="menu-item">
-        <!-- CLIC : ouvre la page complète -->
-        <a
-          class="menu-link"
-          href="https://awenoria-dev.github.io/awenoria/audit.html?v=1760563506790"
-          data-page="https://awenoria-dev.github.io/awenoria/audit.html?v=1760563506790"
-        >
-          Audit ▾
-        </a>
+        <!-- CLIC = ouvre la page Audit -->
+        <a class="menu-link" href="/awenoria/audit.html" data-page="/awenoria/audit.html">Audit ▾</a>
 
-        <!-- SURVOL : tous les sous-liens -->
+        <!-- SURVOL = sous-liens (ancres sur audit.html) -->
         <div class="dropdown">
-          <!-- Anciennes sous-sections du 1er Audit -->
-          <a href="#access-audit">• Accessibilité (RGAA/WCAG)</a>
-          <a href="#rgpd">• RGPD / DPO</a>
-          <a href="#eco">• Éco-conception</a>
-          <a href="#ia-act">• Conformité IA Act</a>
-
-          <hr class="drop-sep">
-
-          <!-- Sous-sections du second Audit -->
-          <a href="https://awenoria-dev.github.io/awenoria/audit.html#features">• Fonctionnalités</a>
-          <a href="https://awenoria-dev.github.io/awenoria/audit.html#methode">• Méthodologie</a>
-          <a href="https://awenoria-dev.github.io/awenoria/audit.html#tarifs">• Tarifs</a>
+          <a href="/awenoria/audit.html#definition">• Définition & objectifs</a>
+          <a href="/awenoria/audit.html#offres">• Offres</a>
+          <a href="/awenoria/audit.html#comparatif">• Comparatif</a>
+          <a href="/awenoria/audit.html#methode">• Méthode</a>
+          <a href="/awenoria/audit.html#referentiels">• Référentiels</a>
+          <a href="/awenoria/audit.html#livrables">• Livrables</a>
+          <a href="/awenoria/audit.html#faq">• FAQ</a>
         </div>
       </li>
 
       <li class="menu-item">
-        <a class="menu-link" href="#ressources">Ressources ▾</a>
+        <a class="menu-link" href="#" data-page="/awenoria/conformite.html">Conformité ▾</a>
         <div class="dropdown">
-          <a href="guides.html">• Guides & bonnes pratiques</a>
-          <a href="modeles.html">• Modèles juridiques</a>
-          <a href="#externes">• Articles externes</a>
-          <a href="faq.html">• FAQ</a>
+          <a href="/awenoria/audit.html#rgpd">• Audit RGPD</a>
+          <a href="/awenoria/audit.html#accessibilite">• Audit Accessibilité</a>
+          <a href="/awenoria/audit.html#mentions">• Mentions légales</a>
+          <a href="/awenoria/audit.html#cookies">• Cookies / CMP</a>
         </div>
       </li>
 
       <li class="menu-item">
-        <a class="menu-link" href="a-propos.html">À propos ▾</a>
+        <a class="menu-link" href="#" data-page="/awenoria/ressources.html">Ressources ▾</a>
         <div class="dropdown">
-          <a href="a-propos.html#mission">• Mission & valeurs</a>
-          <a href="mentions.html">• Mentions légales</a>
-          <a href="confidentialite.html">• Confidentialité</a>
+          <a href="/awenoria/guides.html">• Guides & bonnes pratiques</a>
+          <a href="/awenoria/modeles.html">• Modèles juridiques</a>
+          <a href="/awenoria/faq.html">• FAQ</a>
+          <a href="/awenoria/pourquoi-2026.html">• Pourquoi maintenant ? (2026)</a>
         </div>
       </li>
 
-      <li class="menu-item"><a class="menu-link" href="contact.html">Contact</a></li>
+      <li class="menu-item">
+        <a class="menu-link" href="#" data-page="/awenoria/a-propos.html">À propos ▾</a>
+        <div class="dropdown">
+          <a href="/awenoria/a-propos.html#mission">• Mission & valeurs</a>
+          <a href="/awenoria/mentions.html">• Mentions légales</a>
+          <a href="/awenoria/confidentialite.html">• Confidentialité</a>
+        </div>
+      </li>
+
+      <li class="menu-item"><a class="menu-link" href="/awenoria/contact.html">Contact</a></li>
     </ul>
   </div>
 </header>
 
 <style>
-  /* séparateur visuel entre les groupes de liens */
-  .dropdown .drop-sep {
-    border: 0;
-    height: 1px;
-    background: var(--stroke);
-    margin: 6px 8px;
-  }
+  /* (optionnel) séparateur dans le dropdown */
+  .dropdown .drop-sep{border:0;height:1px;background:var(--stroke);margin:6px 8px}
 </style>
 
 <script>
-  // Navigation "dure" améliorée (ouvre les pages voisines même en mode GitHub Pages)
+  // Header sticky (si pas déjà présent plus bas)
+  (function(){
+    const h=document.getElementById('site-header');
+    if(!h) return;
+    const t=()=>{ if(window.scrollY>10) h.classList.add('scrolled'); else h.classList.remove('scrolled'); };
+    t(); window.addEventListener('scroll',t,{passive:true});
+  })();
+
+  // Navigation "dure" sur les liens data-page (évite le cache & marche partout)
   (function(){
     function hardLink(raw){
       if(!raw) return;
-      try {
+      try{
         var u = new URL(raw, window.location.href);
         u.searchParams.set('v', Date.now().toString()); // anti-cache
         window.location.assign(u.toString());
-      } catch(e) {
+      }catch(e){
         window.location.assign(raw);
       }
     }
-
     document.addEventListener('click', function(e){
       var a = e.target.closest('a[data-page]');
       if(!a) return;
