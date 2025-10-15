@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Confidentialité — Awenoria</title>
-  <meta name="description" content="Politique de confidentialité : responsable de traitement, finalités et bases légales, durées de conservation, sous-traitants, transferts, cookies, droits et contact.">
+  <meta name="description" content="Politique de protection des données d'Awenoria : finalités, bases légales, destinataires, durées de conservation, transferts, droits RGPD et contact DPO." />
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,10 +19,10 @@
     }
     *{box-sizing:border-box} html,body{margin:0}
     body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--text);line-height:1.65}
-    a{text-decoration:none} img{max-width:100%;display:block}
+    a{text-decoration:none;color:var(--blue-dark)} a:hover{color:var(--orange)}
     .container{max-width:1160px;margin:0 auto;padding:24px 20px}
 
-    /* Header */
+    /* Header (identique au site) */
     .header{position:sticky;top:0;z-index:60;background:var(--bg-top);border-bottom:1px solid transparent;transition:.25s}
     .header.scrolled{background:#fff;border-bottom-color:var(--stroke);box-shadow:0 10px 24px rgba(16,32,48,.06)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
@@ -31,7 +31,7 @@
     .menu-link{display:inline-block;padding:14px 14px;border-radius:12px;color:var(--blue-dark);font-weight:800;position:relative}
     .menu-link:hover{color:var(--orange);background:rgba(0,115,182,.06)}
     .menu-link::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:var(--orange);border-radius:2px;transform:scaleX(0);transition:.22s}
-    .menu-link:hover::after,.menu-link.active::after{transform:scaleX(1)} .menu-link.active{color:var(--orange)}
+    .menu-link.active{color:var(--orange)} .menu-link.active::after{transform:scaleX(1)}
     .dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:280px;padding:10px;background:#fff;border:1px solid var(--stroke);border-radius:14px;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(8px);transition:.18s}
     .menu-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
     .dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:var(--blue-dark);font-weight:700}
@@ -40,27 +40,23 @@
     /* Hero */
     .hero{background:linear-gradient(180deg,#5e8faa,#5e8faa);color:#fff;text-align:center;padding:72px 0 56px}
     h1{margin:0;font-size:40px;line-height:1.12}
-    .lead{max-width:950px;margin:8px auto 0;color:#eaf3fa;font-weight:600}
+    .lead{max-width:860px;margin:8px auto 0;color:#eaf3fa;font-weight:600}
 
-    /* Sections */
+    /* Sections & cartes */
     .section{padding:72px 0}
-    .section.alt{background:var(--surface)}
     .title{margin:0 0 10px;text-align:center;font-size:30px;color:#0f2746}
     .title:after{content:"";display:block;width:60px;height:4px;background:var(--orange);margin:10px auto 0;border-radius:3px}
-    .muted{color:var(--muted)} .small{font-size:13px;color:var(--muted)}
-
-    /* Layout */
-    .grid{display:grid;gap:24px;margin-top:18px}
-    .cols-2{grid-template-columns:2fr 1fr}
-    @media(max-width:980px){.cols-2{grid-template-columns:1fr}}
-
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-top:18px}
+    @media(max-width:980px){.grid{grid-template-columns:1fr}}
     .card{background:#fff;border:1px solid var(--stroke);border-radius:16px;box-shadow:var(--shadow-sm);padding:20px}
-    .toc{position:sticky;top:96px}
-    .toc a{display:block;padding:8px 10px;border-radius:10px;color:#0f2746}
-    .toc a:hover{background:#f3f8fc;color:var(--orange)}
-    .kbd{display:inline-block;background:#f3f8fc;border:1px solid #d5e7f4;padding:2px 6px;border-radius:6px;font-size:12px}
-    .notice{background:#f6fafc;border:1px solid #dceaf5;border-radius:12px;padding:12px}
-    .badge{display:inline-block;background:var(--blue-dark);color:#fff;border-radius:999px;padding:4px 10px;font-weight:800;font-size:12px}
+    .muted{color:var(--muted)}
+    h2{margin:16px 0 8px;font-size:22px}
+    h3{margin:16px 0 6px;font-size:18px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:12px;font-weight:800;color:#fff;background:var(--blue-dark);box-shadow:var(--shadow-sm)}
+    .btn:hover{background:var(--orange)}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;border:1px solid var(--stroke);text-align:left}
+    th{background:#fbfdff}
 
     .footer{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
   </style>
@@ -73,7 +69,8 @@
     <ul class="mainnav">
       <li class="menu-item"><a class="menu-link" href="index.html">Accueil</a></li>
       <li class="menu-item">
-        <a class="menu-link" href="audit.html">Audit ▾</a>
+        <!-- IMPORTANT : ce lien ouvre bien la page audit.html -->
+        <a class="menu-link" href="#" data-page="audit.html">Audit ▾</a>
         <div class="dropdown">
           <a href="fonctionnalites.html">• Fonctionnalités</a>
           <a href="comment.html">• Méthodologie</a>
@@ -83,30 +80,25 @@
       <li class="menu-item">
         <a class="menu-link" href="conformite.html">Conformité ▾</a>
         <div class="dropdown">
-          <a href="conformite.html#rgpd">• Audit RGPD</a>
-          <a href="conformite.html#accessibilite">• Audit Accessibilité</a>
-          <a href="conformite.html#mentions">• Mentions légales</a>
-          <a href="conformite.html#iaact">• IA Act</a>
+          <a href="fonctionnalites.html#rgpd">• Audit RGPD</a>
+          <a href="fonctionnalites.html#accessibilite">• Audit Accessibilité</a>
+          <a href="fonctionnalites.html#mentions">• Mentions légales</a>
+          <a href="fonctionnalites.html#cookies">• Cookies / CMP</a>
         </div>
       </li>
       <li class="menu-item">
-        <a class="menu-link active" href="ressources.html">Ressources ▾</a>
+        <a class="menu-link" href="ressources.html">Ressources ▾</a>
         <div class="dropdown">
           <a href="guides.html">• Guides & bonnes pratiques</a>
           <a href="modeles.html">• Modèles juridiques</a>
           <a href="faq.html">• FAQ</a>
-          <a href="ressources.html#iaact">• Dossier IA Act</a>
           <a href="pourquoi-2026.html">• Pourquoi maintenant ? (2026)</a>
         </div>
       </li>
       <li class="menu-item">
-        <a class="menu-link" href="a-propos.html">À propos ▾</a>
-        <div class="dropdown">
-          <a href="a-propos.html#mission">• Mission & valeurs</a>
-          <a href="mentions.html">• Mentions légales</a>
-          <a href="#top">• Confidentialité</a>
-        </div>
+        <a class="menu-link active" href="confidentialite.html">Confidentialité</a>
       </li>
+      <li class="menu-item"><a class="menu-link" href="mentions.html">Mentions légales</a></li>
       <li class="menu-item"><a class="menu-link" href="contact.html">Contact</a></li>
     </ul>
   </div>
@@ -114,117 +106,113 @@
 
 <section class="hero">
   <div class="container">
-    <h1 id="top">Politique de confidentialité</h1>
-    <p class="lead">Explique comment nous traitons vos données : finalités, bases légales, durées, destinataires, transferts, cookies, droits et contacts.</p>
-    <p class="small" style="margin-top:6px">Dernière mise à jour : <span id="lastUpdate">[[JJ/MM/AAAA]]</span></p>
+    <h1>Politique de confidentialité</h1>
+    <p class="lead">Comment Awenoria traite les données personnelles : finalités, bases légales, durées, destinataires, transferts et vos droits.</p>
   </div>
 </section>
 
 <main>
   <section class="section">
-    <div class="container grid cols-2">
-      <!-- Corps -->
-      <div class="card">
-        <div class="notice" style="margin-bottom:16px">
-          <b>Comment personnaliser ?</b> Remplace les champs entre <span class="kbd">[[…]]</span>.
-          Pense aussi à lier la <a href="politique-cookies.html">Politique cookies</a> (ou ta page dédiée).
-        </div>
+    <div class="container grid">
+      <!-- Colonne principale -->
+      <article class="card">
+        <h2>1) Responsable de traitement</h2>
+        <p>L’<b>éditeur du site Awenoria</b> (voir <a href="mentions.html">Mentions légales</a>) est responsable des traitements décrits ci-dessous.  
+        Contact confidentialité / DPO : <a href="mailto:vosdroits@dpo101.fr">vosdroits@dpo101.fr</a> (objet : « Droit des personnes »).  
+        Contact général : <a href="mailto:contact@dpo101.fr">contact@dpo101.fr</a>.</p>
 
-        <h2 id="responsable">1) Responsable de traitement</h2>
-        <p>
-          [[Raison sociale]] [[forme juridique]] — [[adresse complète]].<br/>
-          RCS [[Ville]] [[n° RCS]] — SIREN [[n°]] — TVA [[n° intracom]].<br/>
-          Contact général : <a href="mailto:[[email contact]]">[[email contact]]</a> — Tél. [[téléphone]].<br/>
-          Délégué à la Protection des Données (le cas échéant) : [[Nom / prestataire DPO]] — <a href="mailto:[[email DPO]]">[[email DPO]]</a>.
-        </p>
+        <h2>2) Quelles données, pourquoi et sur quelle base ?</h2>
+        <table>
+          <thead>
+            <tr><th>Finalité</th><th>Données traitées</th><th>Base légale</th><th>Durée de conservation</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Diagnostic automatique</b> de pages publiques (audit RGPD / accessibilité / mentions / cookies)</td>
+              <td>URL saisie, logs techniques nécessaires au fonctionnement ; par défaut, l’analyse s’effectue <b>localement dans votre navigateur</b>. Si vous activez des options (ex : export PDF côté service), des métadonnées minimales peuvent transiter (URL, horodatage, scores).</td>
+              <td>Intérêt légitime (art. 6-1 f) : fournir un outil de diagnostic fiable et sécurisé.</td>
+              <td><b>Local</b> : pas de stockage par nos soins.  
+                  <b>Serveur (option)</b> : métadonnées d’audit ≤ 6 mois.</td>
+            </tr>
+            <tr>
+              <td><b>Formulaire de contact</b> et suivi des demandes</td>
+              <td>Identité, société, email, téléphone, contenu du message</td>
+              <td>Intérêt légitime (répondre à vos demandes)</td>
+              <td>Jusqu’à 3 ans après le dernier échange, puis archivage légal si nécessaire</td>
+            </tr>
+            <tr>
+              <td><b>Prospection B2B</b> (avec votre accord)</td>
+              <td>Nom, email professionnel, préférences</td>
+              <td>Consentement (art. 6-1 a)</td>
+              <td>Jusqu’au retrait du consentement ou 3 ans d’inactivité</td>
+            </tr>
+            <tr>
+              <td><b>Mesure d’audience</b></td>
+              <td>Identifiants de cookies/traceurs, pages vues, événements agrégés/anonymisés</td>
+              <td>Consentement (sauf mesure strictement nécessaire / ex. exemptée)</td>
+              <td>Jusqu’à 13 mois (statistiques), choix de consentement : 6 mois</td>
+            </tr>
+            <tr>
+              <td><b>Sécurité / logs</b></td>
+              <td>Logs techniques (IP, user-agent, événements sécurité)</td>
+              <td>Intérêt légitime (sécuriser le service)</td>
+              <td>Jusqu’à 6 mois (sauf événement nécessitant conservation plus longue)</td>
+            </tr>
+            <tr>
+              <td><b>Preuve du consentement cookies</b></td>
+              <td>Journal local des choix, horodatage (stockage côté navigateur)</td>
+              <td>Obligation CNIL (preuve du consentement) + intérêt légitime</td>
+              <td>6 mois (renouvelable)</td>
+            </tr>
+          </tbody>
+        </table>
 
-        <h2 id="finalites">2) Finalités & bases légales</h2>
+        <h2>3) Origine des données</h2>
+        <p>Les données proviennent directement de vous (saisie formulaire, préférences cookies) et de votre activité sur le site (logs techniques, mesures d’audience anonymisées le cas échéant).</p>
+
+        <h2>4) Destinataires</h2>
         <ul>
-          <li><b>Prise de contact / devis</b> — base légale : exécution de mesures précontractuelles.</li>
-          <li><b>Prospection par email</b> — base légale : consentement (ou intérêt légitime selon les cas B2B/B2C conformément à ePrivacy/LCEN).</li>
-          <li><b>Analytics / mesure d’audience</b> — base légale : consentement si le traceur n’est pas strictement nécessaire.</li>
-          <li><b>Recrutement</b> — base légale : intérêt légitime et/ou mesures précontractuelles.</li>
-          <li><b>Gestion des cookies & preuve du consentement (CMP)</b> — base légale : obligation légale / consentement.</li>
+          <li>Équipe Awenoria et personnes habilitées à traiter les demandes.</li>
+          <li>Hébergeurs et prestataires techniques (ex. hébergement du site / CDN, solutions d’analytique si activées).</li>
+          <li>Le cas échéant, sous-traitants impliqués dans l’exécution de nos services (contrats, confidentialité et sécurité à l’appui).</li>
         </ul>
 
-        <h2 id="donnees">3) Données traitées & durées de conservation</h2>
+        <h2>5) Transferts hors UE</h2>
+        <p>Certains fournisseurs peuvent être situés hors UE. Lorsque c’est le cas, nous nous assurons de l’existence d’un <b>mécanisme de transfert</b> adéquat (décision d’adéquation ou clauses contractuelles types), et de garanties appropriées.</p>
+
+        <h2>6) Vos droits</h2>
+        <p>Vous disposez des droits d’<b>accès</b>, <b>rectification</b>, <b>effacement</b>, <b>limitation</b>, <b>opposition</b>, et <b>portabilité</b>, ainsi que du droit de définir des <b>directives post-mortem</b>.  
+        Pour l’emailing/prospection fondé sur le consentement, vous pouvez retirer votre consentement à tout moment.</p>
+        <p>Exercer vos droits : <a href="mailto:vosdroits@dpo101.fr">vosdroits@dpo101.fr</a> (objet : « Droit des personnes »). Nous pouvons vous demander des informations complémentaires pour vérifier votre identité.</p>
+        <p>Réclamation : vous pouvez saisir la <b>CNIL</b> (<a href="https://www.cnil.fr">cnil.fr</a> – 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07).</p>
+
+        <h2>7) Sécurité</h2>
+        <p>Nous mettons en œuvre des mesures techniques et organisationnelles adaptées : chiffrement en transit (HTTPS), contrôle d’accès, journalisation sécurité, politique de conservation limitée et revue régulière.</p>
+
+        <h2>8) Cookies & traceurs</h2>
+        <p>Pour comprendre les catégories de cookies, les durées et gérer vos choix : voir notre <a href="politique-cookies.html">Politique cookies</a>.  
+        Vous pouvez <b>modifier vos préférences</b> à tout moment :
+          <button class="btn" onclick="(window.AwenoriaConsent||{}).open?.()">Gérer mes cookies</button>
+        </p>
+
+        <p class="muted">Dernière mise à jour : <span id="lastUpdate">—</span></p>
+      </article>
+
+      <!-- Colonne latérale -->
+      <aside class="card">
+        <h3>Raccourcis utiles</h3>
+        <p><a class="btn" href="#" onclick="(window.AwenoriaConsent||{}).open?.();return false;">Gérer mes cookies</a></p>
+        <p><a href="politique-cookies.html">Politique cookies</a></p>
+        <p><a href="mentions.html">Mentions légales</a></p>
+        <p><a href="contact.html">Contact</a></p>
+
+        <h3>Rappels pratiques</h3>
         <ul>
-          <li><b>Formulaires</b> : identité, coordonnées, contenu du message — conservation : [[durée ex. 24 mois]] après dernier contact.</li>
-          <li><b>Prospection</b> : email, préférences — conservation : [[durée ex. 3 ans]] à compter du dernier contact ou retrait du consentement.</li>
-          <li><b>Analytics</b> : identifiants de cookies, logs — conservation : [[durée ex. 13 mois]] (et statistiques agrégées au-delà).</li>
-          <li><b>Candidatures</b> : CV, LM, échanges — conservation : [[durée ex. 24 mois]] après dernier contact.</li>
+          <li>Analyse par défaut <b>locale</b> (navigateur).</li>
+          <li>Options serveur (ex. export PDF) : métadonnées minimales.</li>
+          <li>Refus aussi simple que l’acceptation (cookies).</li>
         </ul>
-        <p class="small">Au-delà, archivage légal si nécessaire (comptable, contentieux), puis suppression ou anonymisation.</p>
-
-        <h2 id="destinataires">4) Destinataires & sous-traitants</h2>
-        <p>Accès limité aux personnes habilitées en interne. Sous-traitants : [[hébergeur]], [[outil emailing]], [[CMP]], [[CRM]], situés [[UE / hors UE]].</p>
-
-        <h2 id="transferts">5) Transferts hors UE</h2>
-        <p>
-          En cas de transfert vers un pays tiers, nous appliquons des garanties appropriées (Clauses Contractuelles Types de la Commission européenne et, si besoin, mesures complémentaires).
-          Détails disponibles sur demande : <a href="mailto:[[email RGPD]]">[[email RGPD]]</a>.
-        </p>
-
-        <h2 id="cookies">6) Cookies & traceurs</h2>
-        <p>
-          Les cookies non essentiels ne sont déposés qu’avec votre consentement. Le refus est aussi simple que l’acceptation.
-          Vous pouvez modifier vos choix à tout moment via le centre de préférences (lien “Gérer mes cookies” dans le pied de page).
-          Consultez notre <a href="politique-cookies.html">Politique cookies</a> pour la liste détaillée (finalité, durée, tiers) et la preuve du consentement (journal CMP).
-        </p>
-
-        <h2 id="droits">7) Vos droits</h2>
-        <p>
-          Vous disposez des droits d’accès, rectification, effacement, limitation, opposition et portabilité.
-          Vous pouvez retirer votre consentement à tout moment.
-          Pour exercer vos droits : <a href="mailto:[[email RGPD]]">[[email RGPD]]</a> ou courrier à [[adresse postale]].<br/>
-          Réclamation possible auprès de la CNIL : <a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a>.
-        </p>
-
-        <h2 id="securite">8) Sécurité</h2>
-        <p>
-          Mesures techniques et organisationnelles proportionnées : chiffrement en transit (HTTPS), contrôle des accès, mises à jour, journalisation des accès administrateurs, principes de minimisation.
-        </p>
-
-        <h2 id="maj">9) Modifications de la Politique</h2>
-        <p>
-          Nous pouvons faire évoluer la Politique pour refléter les changements légaux ou techniques. La date de mise à jour est indiquée en en-tête.
-        </p>
-
-        <h2 id="contact">10) Contact</h2>
-        <p>
-          Pour toute question liée à cette Politique : <a href="mailto:[[email RGPD]]">[[email RGPD]]</a> — [[adresse postale complète]].<br/>
-          DPO (si désigné) : [[Nom / prestataire DPO]] — <a href="mailto:[[email DPO]]">[[email DPO]]</a>.
-        </p>
-      </div>
-
-      <!-- Sommaire -->
-      <aside class="card toc">
-        <span class="badge">Sommaire</span>
-        <nav style="margin-top:10px">
-          <a href="#responsable">1) Responsable</a>
-          <a href="#finalites">2) Finalités & bases</a>
-          <a href="#donnees">3) Données & durées</a>
-          <a href="#destinataires">4) Destinataires</a>
-          <a href="#transferts">5) Transferts</a>
-          <a href="#cookies">6) Cookies</a>
-          <a href="#droits">7) Droits</a>
-          <a href="#securite">8) Sécurité</a>
-          <a href="#maj">9) Modifications</a>
-          <a href="#contact">10) Contact</a>
-        </nav>
       </aside>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section alt">
-    <div class="container" style="text-align:center">
-      <h2 class="title" style="margin-bottom:10px">Besoin d’une relecture experte ?</h2>
-      <p class="lead">On peut adapter cette Politique à tes outils (CMP, CRM, emailing) et préparer les preuves utiles.</p>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px">
-        <a class="btn" style="display:inline-block;padding:10px 14px;border-radius:10px;font-weight:800;color:#fff;background:var(--blue-dark)" href="contact.html">Parler à un expert</a>
-        <a class="btn" style="display:inline-block;padding:10px 14px;border-radius:10px;font-weight:800;color:#fff;background:var(--blue-dark)" href="tarifs.html">Voir les offres</a>
-      </div>
     </div>
   </section>
 </main>
@@ -232,21 +220,43 @@
 <footer class="container footer">
   <div style="display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap">
     <span>© <span id="year"></span> Awenoria</span>
-    <span><a href="mentions.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a></span>
+    <span>
+      <a href="mentions.html">Mentions légales</a> ·
+      <a class="menu-link active" href="confidentialite.html">Confidentialité</a> ·
+      <a href="politique-cookies.html">Politique cookies</a> ·
+      <a href="#" onclick="(window.AwenoriaConsent||{}).open?.();return false;">Gérer mes cookies</a>
+    </span>
   </div>
 </footer>
 
+<!-- Utilitaires (année, header sticky, nav “Audit” vers audit.html) -->
 <script>
-  // année + header sticky
   document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('lastUpdate').textContent = '2025-10-15';
+
   (function(){
     const h=document.getElementById('site-header');
     const t=()=>{ if(window.scrollY>10) h.classList.add('scrolled'); else h.classList.remove('scrolled'); };
     t(); window.addEventListener('scroll',t,{passive:true});
   })();
 
-  // si tu veux, remplace automatiquement la date par la date du jour
-  // document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString('fr-FR');
+  // Force le clic “Audit” à ouvrir audit.html (cohérent avec ton menu)
+  (function(){
+    function hardLink(page){
+      var base = location.pathname.replace(/[^\/]*$/, '');
+      var url = base + page + '?v=' + Date.now(); // anti-cache
+      window.location.assign(url);
+    }
+    document.addEventListener('click', function(e){
+      var a = e.target.closest('a[data-page]');
+      if(!a) return;
+      e.preventDefault();
+      var page = a.getAttribute('data-page');
+      if(page) hardLink(page);
+    }, {passive:false});
+  })();
 </script>
+
+<!-- Rappel : le bandeau cookies “Pro” doit être présent sur toutes les pages du site -->
 </body>
 </html>
