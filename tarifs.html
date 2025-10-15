@@ -4,31 +4,30 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Awenoria — Tarifs & formules</title>
-<meta name="description" content="Audit premium à prix démocratisé. Comparez les offres Awenoria : remises en paiement en une fois, détails clairs, expérience fluide façon Apple." />
+<meta name="description" content="Le luxe de l’audit RGPD & accessibilité à prix démocratisé. Offres claires, remises en paiement en une fois, expérience premium et fluide.">
 <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ===== PALETTE CLAIRE & LUMIÈRE ===== */
 :root{
-  --ink:#0e2138; --muted:#667689;
-  --accent:#ff7a1a; /* cuivre doux */
+  /* palette claire & désirable */
+  --ink:#0e2138; --muted:#6b7a8c;
+  --accent:#ff7a1a;          /* cuivre doux */
   --blue:#0d63a5; --blue-dark:#0a4f86;
   --bg-top:#f8fbfe; --bg:#edf3f7;
-  --surface:#ffffff; --stroke:#e4edf6;
-  --glass:rgba(255,255,255,.68);
+  --surface:#fff; --stroke:#e4edf6;
   --shadow-sm:0 14px 34px rgba(16,32,48,.10);
-  --shadow-lg:0 40px 88px rgba(16,32,48,.22);
-  --radius:26px;
+  --shadow-lg:0 50px 110px rgba(16,32,48,.22);
+  --radius:28px;
   --hero-overlay-rgb:0,90,142; --hero-overlay-alpha:.42; --hero-overlay-alpha-mobile:.52;
 }
 *{box-sizing:border-box} html,body{margin:0}
 body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--ink);line-height:1.65}
 a{text-decoration:none}
-.container{max-width:1200px;margin:0 auto;padding:24px 20px}
+.container{max-width:1280px;margin:0 auto;padding:24px 22px}
 
-/* ===== HEADER (identique index + onglet Ressources) ===== */
+/* ===== HEADER (même que l’index + Ressources) ===== */
 .header{position:sticky;top:0;z-index:60;background:var(--bg-top);border-bottom:1px solid transparent;transition:.25s}
 .header.scrolled{background:#fff;border-bottom-color:var(--stroke);box-shadow:0 10px 24px rgba(16,32,48,.06)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
@@ -38,12 +37,12 @@ a{text-decoration:none}
 .menu-link:hover{color:var(--accent);background:rgba(13,99,165,.06)}
 .menu-link::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:var(--accent);border-radius:2px;transform:scaleX(0);transition:.22s}
 .menu-link:hover::after,.menu-link.active::after{transform:scaleX(1)} .menu-link.active{color:var(--accent)}
-.dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:280px;padding:10px;background:#fff;border:1px solid var(--stroke);border-radius:14px;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(8px);transition:.18s}
+.dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:280px;padding:10px;background:#fff;border:1px solid var(--stroke);border-radius:14px;box-shadow:0 24px 48px rgba(16,32,48,.12);opacity:0;visibility:hidden;transform:translateY(8px);transition:.18s}
 .menu-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
 .dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:#0b446e;font-weight:700}
 .dropdown a:hover{background:#f3f8fc;color:var(--accent)}
 
-/* ===== HERO BLEUTÉ (lumière) ===== */
+/* ===== HERO BLEUTÉ (lumineux) ===== */
 .hero--image{
   position:relative; text-align:center; color:#fff; overflow:hidden;
   min-height:44vh; display:grid; place-items:center;
@@ -74,121 +73,132 @@ a{text-decoration:none}
 }
 @keyframes awen-waves{0%{transform:translate3d(0,0,0) scale(1)}25%{transform:translate3d(3%,-2%,0) scale(1.03)}50%{transform:translate3d(-2%,2%,0) scale(1.02)}75%{transform:translate3d(4%,1%,0) scale(1.035)}100%{transform:translate3d(0,0,0) scale(1)}}
 .hero--image > .inner{position:relative; z-index:2; padding:56px 20px 24px}
-.hero--image h1{margin:0 0 8px;font-size:52px;line-height:1.06;color:#fff}
+.hero--image h1{margin:0 0 8px;font-size:54px;line-height:1.06;color:#fff}
 .hero--image .lead{color:#eaf3fa;max-width:980px;margin:0 auto;font-weight:600}
 
-/* ===== SECTION PLEIN ÉCRAN (carrousel) ===== */
-.section{padding:26px 0 54px}
-.section-title{margin:6px 0 4px;font-size:34px;color:#0d2440;text-align:center}
-.section-sub{color:#7a8897;text-align:center;margin:0 0 18px}
+/* ===== SECTION IMMERSIVE ===== */
+.section{padding:26px 0 30px}
+.section-title{margin:10px 0 6px;font-size:36px;color:#0d2440;text-align:center}
+.section-sub{color:#7a8897;text-align:center;margin:0 0 22px}
 
-/* Scène plein écran */
-.stage{
+/* ===== SCÈNE (plein écran) ===== */
+.scene{
   position:relative;
-  height:72vh; min-height:560px; max-height:860px;
-  margin:10px auto 0; border-radius:30px;
-  background:linear-gradient(180deg,#f6faff,#eef4fb);
+  height:78vh; min-height:640px; max-height:940px;
+  margin:16px auto 0; border-radius:34px;
+  background:linear-gradient(180deg,#f7fbff, #eef4fb);
   border:1px solid var(--stroke); box-shadow:var(--shadow-sm);
-  overflow:hidden;
+  overflow:visible; /* <- important : plus de carte tronquée */
 }
 
-/* Halo lumineux */
-.stage::before{
-  content:""; position:absolute; left:50%; top:48%;
-  width:1200px; height:1200px; transform:translate(-50%,-50%);
-  background:radial-gradient(ellipse at center, rgba(255,255,255,.9) 0%, rgba(255,255,255,0) 60%);
-  filter:blur(40px); pointer-events:none; z-index:0;
+/* halo */
+.scene::before{
+  content:""; position:absolute; left:50%; top:52%;
+  width:min(1600px,95vw); height:min(1600px,95vw);
+  transform:translate(-50%,-50%);
+  background:radial-gradient(ellipse at center, rgba(255,255,255,.92) 0%, rgba(255,255,255,0) 62%);
+  filter:blur(48px); pointer-events:none; z-index:0;
 }
 
-/* Viewport & piste */
-.viewport{position:absolute; inset:0; display:grid; align-items:center}
+/* viewport + piste */
+.viewport{position:absolute; inset:0; display:grid; align-items:center; overflow:visible}
 .track{
-  position:relative; display:flex; gap:38px; align-items:stretch;
-  padding:0 10vw; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
-  z-index:1;
+  position:relative; display:flex; gap:44px; align-items:stretch;
+  padding:0 14vw; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+  z-index:1; overflow-y:visible;
 }
 .track::-webkit-scrollbar{display:none}
 
-/* Carte XL */
+/* CARTES XXL */
 .card{
-  scroll-snap-align:center; position:relative; flex:0 0 520px;
+  scroll-snap-align:center; position:relative; flex:0 0 min(620px,88vw);
   border-radius:var(--radius); background:var(--surface);
   border:1px solid var(--stroke); box-shadow:var(--shadow-sm);
-  padding:28px 28px 22px; transition:.38s transform, .38s filter, .38s box-shadow, .38s opacity, .38s border-color;
-  transform-origin:center center; filter:saturate(.8) brightness(.95) blur(.5px); opacity:.55;
+  padding:32px 32px 24px; transition:.42s transform, .42s filter, .42s box-shadow, .42s opacity, .42s border-color;
+  transform-origin:center center; filter:saturate(.78) brightness(.94) blur(.5px); opacity:.52;
 }
 .card.center{
-  transform:perspective(1200px) translateZ(0) scale(1.18);
+  transform:perspective(1300px) translateZ(0) scale(1.22);
   filter:none; opacity:1; box-shadow:var(--shadow-lg); border-color:#d6e6f4;
 }
-.card.left{transform:perspective(1200px) rotateY(8deg) scale(.9)}
-.card.right{transform:perspective(1200px) rotateY(-8deg) scale(.9)}
+.card.left{transform:perspective(1300px) rotateY(7deg) scale(.9)}
+.card.right{transform:perspective(1300px) rotateY(-7deg) scale(.9)}
 .card.center::after{
   content:""; position:absolute; inset:0; border-radius:var(--radius);
   background:linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,0) 46%);
   pointer-events:none;
 }
 
-/* Rubans / badge */
+/* rubans / badge */
 .ribbon{
-  position:absolute; top:14px; left:14px; z-index:3;
+  position:absolute; top:16px; left:16px; z-index:3;
   background:linear-gradient(90deg,var(--accent),#ff9a4a);
   color:#fff; font-weight:900; font-size:12px; letter-spacing:.2px;
-  border-radius:999px; padding:7px 12px; box-shadow:var(--shadow-sm)
+  border-radius:999px; padding:8px 13px; box-shadow:var(--shadow-sm)
 }
-.popular{position:absolute; top:14px; right:14px; z-index:3; background:#0f2746; color:#fff; font-weight:900; font-size:12px; border-radius:999px; padding:7px 12px; box-shadow:var(--shadow-sm)}
+.popular{position:absolute; top:16px; right:16px; z-index:3; background:#0f2746; color:#fff; font-weight:900; font-size:12px; border-radius:999px; padding:8px 13px; box-shadow:var(--shadow-sm)}
 
-/* Contenu */
-.h3{margin:14px 0 8px;text-align:center;color:#102b47;letter-spacing:.2px;font-weight:800}
-.price-row{display:flex;align-items:baseline;justify-content:center;gap:8px;margin:2px 0 4px}
-.price{font-size:48px;font-weight:900;letter-spacing:.2px}
+/* contenu */
+.h3{margin:16px 0 8px;text-align:center;color:#102b47;letter-spacing:.2px;font-weight:800}
+.subtitle{margin:0 auto 6px;text-align:center;color:#5c6e83;font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase}
+.price-row{display:flex;align-items:baseline;justify-content:center;gap:8px;margin:2px 0 10px}
+.price{font-size:52px;font-weight:900;letter-spacing:.2px}
 .per{font-size:15px;color:var(--muted)}
+.promise{margin:8px auto 4px;text-align:center;color:#102b47;font-weight:700}
 
-/* Avantages minimalistes */
-.features{margin:14px 0 0;padding:0;list-style:none}
-.features li{display:flex;gap:10px;align-items:flex-start;margin:10px 0}
+/* avantages minimalistes */
+.features{margin:16px 0 0;padding:0;list-style:none}
+.features li{display:flex;gap:12px;align-items:flex-start;margin:11px 0}
 .icon{flex:0 0 22px;height:22px;border-radius:999px;border:2px solid #cfe1f1;display:grid;place-items:center}
 .icon:before{content:"";display:block;width:8px;height:14px;border-right:3px solid var(--blue-dark);border-bottom:3px solid var(--blue-dark);transform:rotate(45deg) translate(-1px,-2px)}
 
 /* CTA */
-.cta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:14px}
 .btn{appearance:none;border:none;cursor:pointer;font-weight:800;font-size:16px;padding:14px 18px;border-radius:12px;color:#fff;background:var(--blue-dark);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.35);transition:.18s}
 .btn:hover{background:var(--blue)} .btn:active{transform:translateY(1px)}
 .btn.ghost{background:#fff;color:#0b446e;border:1px solid var(--stroke)}
 .btn[disabled]{opacity:.55;cursor:not-allowed}
 .note{margin-top:10px;color:var(--muted);font-size:13px;text-align:center}
 
-/* Panneau de détails (clic) */
-.details{
-  margin-top:12px;border:1px dashed #d9e6f3;border-radius:16px;background:#fbfeff;overflow:hidden;
-  max-height:0;opacity:0;transition:max-height .36s ease, opacity .36s ease;
-}
+/* détails (clic) */
+.details{margin-top:12px;border:1px dashed #d9e6f3;border-radius:16px;background:#fbfeff;overflow:hidden;max-height:0;opacity:0;transition:max-height .36s ease, opacity .36s ease}
 .card.show-details .details{max-height:240px;opacity:1}
 .details-inner{padding:12px 14px;font-size:14px}
 .details b{color:#0f2746}
 
-/* Contrôles latéraux */
+/* flèches */
 .arrow{
   position:absolute; top:50%; transform:translateY(-50%); z-index:2;
-  width:56px;height:56px;border-radius:999px;border:1px solid var(--stroke);background:#fff;box-shadow:var(--shadow-sm);
+  width:60px;height:60px;border-radius:999px;border:1px solid var(--stroke);background:#fff;box-shadow:var(--shadow-sm);
   display:grid;place-items:center;cursor:pointer;user-select:none;font-size:22px;color:#0c3d62;
 }
 .arrow:hover{border-color:#cfe2f0}
-.arrow.left{left:22px}
-.arrow.right{right:22px}
+.arrow.left{left:22px} .arrow.right{right:22px}
 @media(max-width:820px){.arrow{display:none}}
 
+/* dots */
 .dots{position:absolute; left:50%; bottom:14px; transform:translateX(-50%); display:flex; gap:10px; z-index:2}
 .dot{width:10px;height:10px;border-radius:50%;background:#c7d9e6}
 .dot.active{background:var(--blue-dark)}
 
-/* Footer */
+/* BARRE DE SÉLECTION (conversion) */
+.selection{
+  position:relative; z-index:3; margin:18px auto 0; max-width:980px;
+  background:#fff; border:1px solid var(--stroke); border-radius:999px; box-shadow:var(--shadow-sm);
+  display:flex; align-items:center; gap:14px; padding:10px 12px 10px 14px; flex-wrap:wrap; justify-content:center;
+}
+.selection strong{color:#0e2138}
+.selection .save{padding:6px 10px;border-radius:999px;background:#fff7f1;border:1px solid #ffe1cf;color:#8a4200;font-weight:800;font-size:12px}
+.selection .buy{margin-left:auto}
+@media(max-width:680px){.selection{border-radius:18px;justify-content:flex-start}.selection .buy{margin-left:0;width:100%}}
+
+/* footer */
 .footer{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
 </style>
 </head>
 <body>
 
-<!-- ===== HEADER (avec RESSOURCES) ===== -->
+<!-- ===== HEADER ===== -->
 <header id="site-header" class="header">
   <div class="container nav">
     <a href="./index.html" class="brand"><img src="./images/logo.png" alt="Awenoria" class="brand__logo"></a>
@@ -221,18 +231,18 @@ a{text-decoration:none}
 <section class="hero--image">
   <div class="inner">
     <h1>Tarifs & formules</h1>
-    <p class="lead">Luxe de l’audit, prix démocratisé. Navigation fluide, détails à la demande, remises en paiement en une fois.</p>
+    <p class="lead">Luxe de l’audit, prix démocratisé. Choisissez la simplicité qui vous fait gagner du temps — et de la conformité.</p>
   </div>
 </section>
 
-<!-- ===== CARROUSEL PLEIN ÉCRAN ===== -->
-<section class="section" aria-label="Sélection des offres">
+<!-- ===== CARROUSEL IMMERSIF ===== -->
+<section class="section" aria-label="Offres Awenoria">
   <div class="container">
-    <h2 class="section-title">Nos offres</h2>
-    <p class="section-sub">Faites défiler, cliquez pour centrer, puis touchez “Détails” pour en voir plus.</p>
+    <h2 class="section-title">Choisissez votre vitesse</h2>
+    <p class="section-sub">Cartes élargies. Faites défiler, cliquez pour centrer, ouvrez les détails quand vous voulez.</p>
   </div>
 
-  <div class="stage">
+  <div class="scene">
     <button class="arrow left" id="prev" aria-label="Précédent">‹</button>
     <button class="arrow right" id="next" aria-label="Suivant">›</button>
 
@@ -241,12 +251,14 @@ a{text-decoration:none}
         <!-- Créateurs -->
         <article class="card" tabindex="0" data-plan="crea" data-monthly="1" data-annual="10" data-market="2">
           <span class="ribbon" data-ribbon></span>
+          <p class="subtitle">Essentiel</p>
           <h3 class="h3">Créateurs</h3>
           <div class="price-row"><span class="price">1 €</span><span class="per">/ mois</span></div>
+          <p class="promise">Le point de départ propre et rassurant.</p>
           <ul class="features">
-            <li><span class="icon" aria-hidden="true"></span>Scan démo + rapport synthèse</li>
+            <li><span class="icon" aria-hidden="true"></span>Scan démo + synthèse immédiate</li>
             <li><span class="icon" aria-hidden="true"></span>Modèles de mentions légales</li>
-            <li><span class="icon" aria-hidden="true"></span>Conseils RGPD essentiels</li>
+            <li><span class="icon" aria-hidden="true"></span>Conseils RGPD indispensables</li>
           </ul>
           <div class="cta">
             <button class="btn" disabled>Essai 3 jours → Mensuel</button>
@@ -254,16 +266,18 @@ a{text-decoration:none}
             <button class="btn ghost" data-toggle>Détails</button>
           </div>
           <div class="details"><div class="details-inner" data-details></div></div>
-          <p class="note">Idéal pour démarrer proprement.</p>
+          <p class="note">Paiement à l’ouverture commerciale.</p>
         </article>
 
         <!-- Micro & Assos -->
         <article class="card" tabindex="0" data-plan="micro" data-monthly="2" data-annual="20" data-market="5">
           <span class="ribbon" data-ribbon></span>
+          <p class="subtitle">Le meilleur départ</p>
           <h3 class="h3">Micro & Assos</h3>
           <div class="price-row"><span class="price">2 €</span><span class="per">/ mois</span></div>
+          <p class="promise">Tout ce qu’il faut, rien d’inutile.</p>
           <ul class="features">
-            <li><span class="icon" aria-hidden="true"></span>Scan site + Analyse PDF locale</li>
+            <li><span class="icon" aria-hidden="true"></span>Scan site + analyse PDF locale</li>
             <li><span class="icon" aria-hidden="true"></span>Rapport PDF “preuve d’audit”</li>
             <li><span class="icon" aria-hidden="true"></span>Templates RGPD/CGV prêts à remplir</li>
           </ul>
@@ -273,15 +287,17 @@ a{text-decoration:none}
             <button class="btn ghost" data-toggle>Détails</button>
           </div>
           <div class="details"><div class="details-inner" data-details></div></div>
-          <p class="note">Pour structures légères et associations.</p>
+          <p class="note">Paiement à l’ouverture commerciale.</p>
         </article>
 
         <!-- Pros & Agences -->
         <article class="card" tabindex="0" data-plan="pros" data-monthly="9.9" data-annual="85" data-market="19">
           <span class="ribbon" data-ribbon></span>
           <span class="popular">Populaire</span>
+          <p class="subtitle">Gain de temps maximal</p>
           <h3 class="h3">Pros & Agences</h3>
           <div class="price-row"><span class="price">9,90 €</span><span class="per">/ mois</span></div>
+          <p class="promise">Productivité, rigueur, livrables prêts client.</p>
           <ul class="features">
             <li><span class="icon" aria-hidden="true"></span>Audit multi-thèmes (RGPD / A11y / Mentions)</li>
             <li><span class="icon" aria-hidden="true"></span>Génération & suivi de documents</li>
@@ -293,11 +309,20 @@ a{text-decoration:none}
             <button class="btn ghost" data-toggle>Détails</button>
           </div>
           <div class="details"><div class="details-inner" data-details></div></div>
-          <p class="note">Pensé pour un usage récurrent et collaboratif.</p>
+          <p class="note">Paiement à l’ouverture commerciale.</p>
         </article>
       </div>
 
       <div class="dots" id="dots" aria-hidden="false"></div>
+    </div>
+  </div>
+
+  <!-- Barre d’action liée à la carte centrée -->
+  <div class="container">
+    <div class="selection" id="selectionBar" aria-live="polite">
+      <span>Offre sélectionnée&nbsp;: <strong id="selName">—</strong> · <span id="selMonthly">—</span>/mois</span>
+      <span class="save" id="selSave">Paiement en 1 fois : —</span>
+      <span class="buy"><button class="btn" disabled>Choisir cette offre</button></span>
     </div>
   </div>
 
@@ -321,17 +346,17 @@ a{text-decoration:none}
 document.getElementById('year').textContent = new Date().getFullYear();
 (function(){const h=document.getElementById('site-header');const t=()=>{h.classList.toggle('scrolled',window.scrollY>10)};t();window.addEventListener('scroll',t,{passive:true})})();
 
-/* utilitaires */
+/* utils */
 const euro=n=>(Math.round(n*100)/100).toLocaleString('fr-FR',{minimumFractionDigits:(n%1?2:0),maximumFractionDigits:2})+' €';
 const pct =n=>(Math.round(n*10)/10).toLocaleString('fr-FR')+' %';
 
-/* rubans + panneaux de détails (comparatif & remise) */
+/* rubans + détails */
 document.querySelectorAll('.card[data-plan]').forEach(card=>{
+  const name = card.querySelector('.h3')?.textContent.trim() || '';
   const m=parseFloat(card.dataset.monthly||'0');
   const a=parseFloat(card.dataset.annual||'0');
   const market=parseFloat(card.dataset.market||'0');
   const yearFull=m*12, rate=yearFull?((yearFull-a)/yearFull*100):0;
-
   const rb=card.querySelector('[data-ribbon]');
   if(rb) rb.textContent=`Paiement en 1 fois : −${pct(rate)} (${euro(a)}/an)`;
 
@@ -341,20 +366,23 @@ document.querySelectorAll('.card[data-plan]').forEach(card=>{
     const saveRate=market?saveM/market*100:0;
     const saveAn=Math.max(0, yearFull-a);
     details.innerHTML = `
-      <b>Comparatif marché</b> — Prix moyen estimé&nbsp;: <b>${euro(market)}/mois</b><br>
-      Économie mensuelle vs marché&nbsp;: <b>${euro(saveM)}</b> (${pct(saveRate)}).<br>
-      En paiement en une fois&nbsp;: <b>${euro(saveAn)}</b> gagnés / an (${pct(rate)} vs mensuel).<br>
-      <span class="note">Estimations indicatives — ajustez selon votre veille.</span>
+      <b>${name}</b> — Prix marché estimé : <b>${euro(market)}/mois</b>.<br>
+      Économie mensuelle : <b>${euro(saveM)}</b> (${pct(saveRate)}).<br>
+      En paiement en une fois : <b>${euro(saveAn)}</b> gagnés / an (${pct(rate)} vs mensuel).
+      <div class="note">Estimations indicatives — adaptez selon votre benchmark.</div>
     `;
   }
   card.querySelector('[data-toggle]')?.addEventListener('click',()=>card.classList.toggle('show-details'));
 });
 
-/* CARROUSEL – centrage, parallaxe, interactions riches */
+/* carrousel */
 const track=document.getElementById('track');
 const cards=[...track.querySelectorAll('.card')];
 const dots=document.getElementById('dots');
 const prev=document.getElementById('prev'), next=document.getElementById('next');
+const selName=document.getElementById('selName');
+const selMonthly=document.getElementById('selMonthly');
+const selSave=document.getElementById('selSave');
 
 function idxCenter(){
   const mid=track.getBoundingClientRect().left + track.clientWidth/2;
@@ -365,20 +393,28 @@ function idxCenter(){
 function setActive(i){
   cards.forEach((c,j)=>{
     c.classList.toggle('center', j===i);
-    c.classList.toggle('left',   j<i);
-    c.classList.toggle('right',  j>i);
-    // parallaxe subtile selon distance au centre
+    c.classList.toggle('left', j<i);
+    c.classList.toggle('right', j>i);
     const dist=Math.abs(j-i);
-    const blur = Math.min(0.6, dist*0.3);
-    c.style.filter = c.classList.contains('center') ? 'none' : `saturate(.8) brightness(.95) blur(${blur}px)`;
-    c.style.opacity = c.classList.contains('center') ? 1 : (dist>=2 ? 0.45 : 0.6);
+    const blur=Math.min(0.8, dist*0.35);
+    c.style.filter = c.classList.contains('center') ? 'none' : `saturate(.78) brightness(.94) blur(${blur}px)`;
+    c.style.opacity = c.classList.contains('center') ? 1 : (dist>=2 ? 0.42 : 0.58);
   });
   [...dots.children].forEach((d,j)=>d.classList.toggle('active', j===i));
+
+  // maj barre sélection
+  const active = cards[i];
+  const m=parseFloat(active.dataset.monthly||'0');
+  const a=parseFloat(active.dataset.annual||'0');
+  const rate = m? ((m*12-a)/(m*12)*100) : 0;
+  selName.textContent = active.querySelector('.h3')?.textContent.trim() || '';
+  selMonthly.textContent = euro(m);
+  selSave.textContent = `Paiement en 1 fois : −${pct(rate)} (${euro(a)}/an)`;
 }
 function go(i){
   i=Math.max(0,Math.min(cards.length-1,i));
   cards[i].scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
-  setTimeout(()=>setActive(i),240);
+  setTimeout(()=>setActive(i),260);
 }
 function buildDots(){
   dots.innerHTML='';
@@ -391,18 +427,14 @@ function buildDots(){
 }
 buildDots(); setActive(0);
 
-/* scroll / resize -> recalcul */
+/* scroll/resize -> recalcul */
 track.addEventListener('scroll', ()=>{ requestAnimationFrame(()=>setActive(idxCenter())); }, {passive:true});
 window.addEventListener('resize', ()=>setActive(idxCenter()));
 
-/* flèches / clic carte / clavier */
+/* actions */
 prev.addEventListener('click', ()=>go(idxCenter()-1));
 next.addEventListener('click', ()=>go(idxCenter()+1));
 cards.forEach((c,i)=>c.addEventListener('click', ()=>go(i)));
-document.addEventListener('keydown', e=>{
-  if(e.key==='ArrowRight') go(idxCenter()+1);
-  if(e.key==='ArrowLeft')  go(idxCenter()-1);
-});
 
 /* drag desktop */
 let dragging=false, startX=0, scrollX=0;
@@ -410,17 +442,17 @@ track.addEventListener('pointerdown', e=>{dragging=true; startX=e.clientX; scrol
 track.addEventListener('pointermove', e=>{ if(!dragging) return; track.scrollLeft = scrollX - (e.clientX-startX);});
 track.addEventListener('pointerup', ()=>{dragging=false});
 
-/* molette verticale -> scroll horizontal */
+/* molette verticale -> horizontal */
 track.addEventListener('wheel', e=>{
   if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){ track.scrollLeft += e.deltaY; e.preventDefault(); }
 },{passive:false});
 
-/* pré-lancement : CTA désactivés */
+/* CTAs désactivées (pré-lancement) */
 document.querySelectorAll('.btn[disabled]').forEach(b=>{
   b.addEventListener('click', ()=> alert('Le paiement sera activé au lancement officiel. Merci !'));
 });
 
-/* navigation “dure” comme sur l’index */
+/* nav “dure” comme index */
 (function(){
   function hardLink(page){ const base=location.pathname.replace(/[^\/]*$/,''); window.location.assign(base+page+'?v='+Date.now()); }
   document.addEventListener('click', e=>{ const a=e.target.closest('a[data-page]'); if(!a) return; e.preventDefault(); hardLink(a.getAttribute('data-page')); }, {passive:false});
