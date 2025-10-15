@@ -258,28 +258,44 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
+<!-- ===== HEADER (corrigé) ===== -->
 <header id="site-header" class="header">
   <div class="container nav">
-    <a href="./index.html" class="brand"><img src="./images/logo.png" alt="Awenoria" class="brand__logo"></a>
+    <a href="./index.html" class="brand">
+      <img src="./images/logo.png" alt="Awenoria" class="brand__logo">
+    </a>
+
     <ul class="mainnav">
-      <li class="menu-item"><a class="menu-link active" href="index.html">Accueil</a></li>
+      <li class="menu-item"><a class="menu-link" href="index.html">Accueil</a></li>
+
+      <!-- UN SEUL ONGLET AUDIT -->
       <li class="menu-item">
-        <a class="menu-link" href="#offres">Audit ▾</a>
+        <!-- CLIC : ouvre la page complète -->
+        <a
+          class="menu-link"
+          href="https://awenoria-dev.github.io/awenoria/audit.html?v=1760563506790"
+          data-page="https://awenoria-dev.github.io/awenoria/audit.html?v=1760563506790"
+        >
+          Audit ▾
+        </a>
+
+        <!-- SURVOL : tous les sous-liens -->
         <div class="dropdown">
+          <!-- Anciennes sous-sections du 1er Audit -->
           <a href="#access-audit">• Accessibilité (RGAA/WCAG)</a>
           <a href="#rgpd">• RGPD / DPO</a>
           <a href="#eco">• Éco-conception</a>
           <a href="#ia-act">• Conformité IA Act</a>
+
+          <hr class="drop-sep">
+
+          <!-- Sous-sections du second Audit -->
+          <a href="https://awenoria-dev.github.io/awenoria/audit.html#features">• Fonctionnalités</a>
+          <a href="https://awenoria-dev.github.io/awenoria/audit.html#methode">• Méthodologie</a>
+          <a href="https://awenoria-dev.github.io/awenoria/audit.html#tarifs">• Tarifs</a>
         </div>
       </li>
-  <a class="menu-link" href="#" data-page="audit.html">Audit ▾</a>
-  <div class="dropdown">
-    <a href="./fonctionnalites.html">• Fonctionnalités</a>
-    <a href="./comment.html">• Méthodologie</a>
-    <a href="./tarifs.html">• Tarifs</a>
-  </div>
-</li>
+
       <li class="menu-item">
         <a class="menu-link" href="#ressources">Ressources ▾</a>
         <div class="dropdown">
@@ -289,6 +305,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
           <a href="faq.html">• FAQ</a>
         </div>
       </li>
+
       <li class="menu-item">
         <a class="menu-link" href="a-propos.html">À propos ▾</a>
         <div class="dropdown">
@@ -297,10 +314,44 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
           <a href="confidentialite.html">• Confidentialité</a>
         </div>
       </li>
+
       <li class="menu-item"><a class="menu-link" href="contact.html">Contact</a></li>
     </ul>
   </div>
 </header>
+
+<style>
+  /* séparateur visuel entre les groupes de liens */
+  .dropdown .drop-sep {
+    border: 0;
+    height: 1px;
+    background: var(--stroke);
+    margin: 6px 8px;
+  }
+</style>
+
+<script>
+  // Navigation "dure" améliorée (ouvre les pages voisines même en mode GitHub Pages)
+  (function(){
+    function hardLink(raw){
+      if(!raw) return;
+      try {
+        var u = new URL(raw, window.location.href);
+        u.searchParams.set('v', Date.now().toString()); // anti-cache
+        window.location.assign(u.toString());
+      } catch(e) {
+        window.location.assign(raw);
+      }
+    }
+
+    document.addEventListener('click', function(e){
+      var a = e.target.closest('a[data-page]');
+      if(!a) return;
+      e.preventDefault();
+      hardLink(a.getAttribute('data-page'));
+    }, {passive:false});
+  })();
+</script>
 
 <!-- ===== HERO ===== -->
 <section class="hero--image">
