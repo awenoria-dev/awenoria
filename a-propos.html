@@ -138,6 +138,20 @@ h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
 footer.container{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
 
 @media print{ header, .hero--image, .actions, footer{display:none!important} }
+/* ==== EXTRA (À PROPOS) ==== */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:1024px){.team{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.team{grid-template-columns:1fr}}
+.member{position:relative;border:1px solid var(--stroke);border-radius:20px;background:#fff;box-shadow:var(--shadow-sm);padding:22px;text-align:center;transition:.18s}
+.member:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#d5e7f4}
+.avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 10px;background:#f3f8fc;border:1px solid var(--stroke);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
+.member h4{margin:8px 0 4px;color:#0f2746}
+.member .role{color:var(--muted);font-size:14px;margin:0}
+
+.roadmap{max-width:860px;margin:0 auto;padding:0;list-style:none}
+.roadmap li{position:relative;padding:0 0 16px 34px;margin:0 0 14px;border-left:2px dashed #d7e6f2}
+.roadmap li::before{content:"";position:absolute;left:-6px;top:2px;width:14px;height:14px;border-radius:50%;background:linear-gradient(180deg,#eaf5fd,#d8ecfa);border:2px solid #cbe3f3;box-shadow:0 0 0 3px #fff}
+.roadmap b{color:#0f2746}
 </style>
 </head>
 <body>
@@ -296,6 +310,79 @@ footer.container{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44
     <div class="actions cta-anchor">
       <a class="btn" href="index.html#resultat">Tester un site</a>
       <a class="btn blue" href="contact.html">Parler à un expert</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ÉQUIPE ===== -->
+<section class="section" id="equipe">
+  <div class="container">
+    <h2 class="section-title">L'équipe</h2>
+    <p class="lead">Une équipe pluridisciplinaire (juridique, accessibilité, produit) au service d'une conformité utile et actionnable.</p>
+    <div class="team">
+      <article class="member reveal">
+        <div class="avatar" style="background:url('./images/team-1.jpg') center/cover"></div>
+        <h4>Alexandre M.</h4>
+        <p class="role">Fondateur · Produit & conformité</p>
+      </article>
+      <article class="member reveal">
+        <div class="avatar" style="background:url('./images/team-2.jpg') center/cover"></div>
+        <h4>Camille R.</h4>
+        <p class="role">Juriste RGPD / DPO</p>
+      </article>
+      <article class="member reveal">
+        <div class="avatar" style="background:url('./images/team-3.jpg') center/cover"></div>
+        <h4>Yann G.</h4>
+        <p class="role">Expert accessibilité RGAA/WCAG</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TIMELINE ===== -->
+<section class="section alt" id="histoire">
+  <div class="container">
+    <h2 class="section-title">Notre histoire en bref</h2>
+    <ul class="roadmap">
+      <li><b>2023</b> — Premier prototype d'audit local côté navigateur.</li>
+      <li><b>2024</b> — Ajout des volets Mentions & Accessibilité, génération d'exemples d'actions.</li>
+      <li><b>2025</b> — Lancement public, offre d'accompagnement (audits humains, formations, IA Act).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== ENGAGEMENTS ===== -->
+<section class="section" id="engagements">
+  <div class="container">
+    <h2 class="section-title">Nos engagements</h2>
+    <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+      <article class="tile pill reveal"><div class="tile-head"><span class="badge">Confidentialité</span></div><h3>Privacy by design</h3><p class="muted">Analyse locale par défaut ; options d'export et de suivi maîtrisées par l'utilisateur.</p></article>
+      <article class="tile pill reveal"><div class="tile-head"><span class="badge">Accessibilité</span></div><h3>Design inclusif</h3><p class="muted">Cohérence RGAA/WCAG et amélioration continue des composants UI.</p></article>
+      <article class="tile pill reveal"><div class="tile-head"><span class="badge">Transparence</span></div><h3>Clarté des livrables</h3><p class="muted">Méthodologie documentée, exemples d'actions et limites explicites du pré-diagnostic.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRESSE & RESSOURCES ===== -->
+<section class="section alt" id="presse">
+  <div class="container">
+    <h2 class="section-title">Presse & ressources</h2>
+    <p class="lead">Dossier de presse, logos, captures et éléments de langage sur demande.</p>
+    <div class="actions cta-anchor">
+      <a class="btn blue" href="contact.html">Demander le kit presse</a>
+      <a class="btn" href="modeles.html">Découvrir nos modèles</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT CTA ===== -->
+<section class="section" id="contact-cta">
+  <div class="container" style="text-align:center">
+    <h2 class="section-title" style="margin-bottom:10px">Envie d'échanger ?</h2>
+    <p class="lead">Parlez-nous de votre périmètre : nous vous aiderons à choisir la bonne combinaison (outil + audit humain).</p>
+    <div class="actions cta-anchor">
+      <a class="btn" href="contact.html">Parler à un expert</a>
+      <a class="btn blue" href="index.html#resultat">Tester un site</a>
     </div>
   </div>
 </section>
