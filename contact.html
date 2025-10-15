@@ -96,7 +96,11 @@ h1{margin:0;font-size:50px;line-height:1.06;color:#fff}
 .field{display:flex;flex-direction:column}
 label{font-weight:800;color:#0f2746;margin:6px 0 6px}
 .req{color:#b3261e;margin-left:4px}
-input,select,textarea{appearance:none;border:1px solid var(--stroke);border-radius:12px;padding:12px 14px;font:inherit;background:#fff;outline:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
+input,select,textarea{appearance:none;-webkit-appearance:none;-moz-appearance:none;border:1px solid var(--stroke);border-radius:12px;padding:12px 14px;font:inherit;background:#fff;outline:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
+/* Select premium (chevron custom) */
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23005a8e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:18px;padding-right:42px}
+select:focus{outline:none!important;border-color:rgba(0,115,182,.45)!important;box-shadow:0 0 0 4px rgba(0,115,182,.12)!important}
+select::-ms-expand{display:none}
 input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 textarea{min-height:140px;resize:vertical}
 .help{font-size:13px;color:var(--muted);margin-top:6px}
@@ -231,9 +235,8 @@ footer.container{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44
           <p class="error" id="err-email">Merci d’indiquer un e‑mail valide.</p>
         </div>
         <div class="field">
-          <label for="anti">Répondez à la question suivante : Combien font 5 + 2 ? <span class="req">*</span></label>
-          <input id="anti" name="anti" type="text" inputmode="numeric" pattern="7" required aria-describedby="antiHelp">
-          <p id="antiHelp" class="help">Anti‑bot simple : saisissez 7.</p>
+          <label id="antiLabel" for="anti">Question anti‑robot <span class="req">*</span></label>
+          <input id="anti" name="anti" type="text" inputmode="numeric" required>
           <p class="error" id="err-anti">Réponse incorrecte.</p>
         </div>
       </div>
@@ -296,6 +299,25 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // UX: compteur de caractères
 (function(){const ta=document.getElementById('message'); const c=document.getElementById('msgCount'); if(!ta||!c) return; const upd=()=>c.textContent=ta.value.length; ta.addEventListener('input',upd); upd();})();
 
+// CAPTCHA arithmétique aléatoire
+let __captchaAnswer = null;
+function newCaptcha(){
+  const a = Math.floor(2 + Math.random()*8); // 2..9
+  const b = Math.floor(1 + Math.random()*9); // 1..9
+  const ops = ['+','−','×'];
+  const op = ops[Math.floor(Math.random()*ops.length)];
+  let ans;
+  if(op === '+') ans = a + b;
+  else if(op === '−') { // éviter les négatifs
+    const x = Math.max(a,b), y = Math.min(a,b);
+    document.getElementById('antiLabel').innerHTML = `Question anti‑robot <span class="req">*</span> — combien font <b>${x} − ${y}</b> ?`;
+    __captchaAnswer = x - y; return;
+  } else { ans = a * b; }
+  document.getElementById('antiLabel').innerHTML = `Question anti‑robot <span class="req">*</span> — combien font <b>${a} ${op} ${b}</b> ?`;
+  __captchaAnswer = ans;
+}
+newCaptcha();
+
 // Validation & envoi
 const form=document.getElementById('contactForm');
 form.addEventListener('submit', async (e)=>{
@@ -310,7 +332,7 @@ form.addEventListener('submit', async (e)=>{
   if(!form.email.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value)) show('err-email');
   if(!form.demande.value) show('err-demande');
   if(!form.destinataire.value) show('err-destinataire');
-  if((form.anti.value||'').trim() !== '7') show('err-anti');
+  if((form.anti.value||'').trim() !== String(__captchaAnswer)) show('err-anti');
   if(!form.message.value.trim()) show('err-message');
 
   if(!ok) return;
