@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Audit — Awenoria</title>
-  <meta name="description" content="Audit de conformité Awenoria : définition, formes d’audit, offres, méthode, référentiels couverts, livrables et limites.">
+  <title>Audit de conformité — Awenoria</title>
+  <meta name="description" content="Audit de conformité web pro/premium : RGPD, accessibilité, mentions légales, cookies/CMP. Offres Starter, Pro, Expert. Méthodologie, référentiels et livrables.">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --blue:#0073b6; --blue-dark:#005a8e; --orange:#ff6600;
       --bg-top:#f7f9fc; --bg:#edf3f7; --surface:#fff; --stroke:#e9eef4;
       --text:#16233a; --muted:#5d6b7c; --radius:20px;
-      --shadow-sm:0 6px 20px rgba(16,32,48,.06); --shadow-lg:0 24px 48px rgba(16,32,48,.10);
+      --shadow-sm:0 6px 20px rgba(16,32,48,.06); --shadow-lg:0 24px 48px rgba(16,32,48,.10)
     }
     *{box-sizing:border-box} html,body{margin:0}
-    body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--text);line-height:1.65}
+    body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,var(--bg-top),var(--bg));line-height:1.65}
     a{text-decoration:none;color:var(--blue-dark)} a:hover{color:var(--orange)}
     .container{max-width:1160px;margin:0 auto;padding:24px 20px}
 
@@ -38,38 +39,48 @@
     /* Hero */
     .hero{background:linear-gradient(180deg,#5e8faa,#5e8faa);color:#fff;text-align:center;padding:72px 0 56px}
     h1{margin:0;font-size:40px;line-height:1.12}
-    .lead{max-width:860px;margin:8px auto 0;color:#eaf3fa;font-weight:600}
+    .lead{max-width:920px;margin:8px auto 0;color:#eaf3fa;font-weight:600}
+    .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.15);backdrop-filter:blur(2px);font-weight:800}
 
     /* Sections */
     .section{padding:72px 0}
     .title{margin:0 0 10px;text-align:center;font-size:30px;color:#0f2746}
     .title:after{content:"";display:block;width:60px;height:4px;background:var(--orange);margin:10px auto 0;border-radius:3px}
     .grid{display:grid;gap:24px;margin-top:18px}
-    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
-    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
-    @media(max-width:980px){.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    .cols-2{grid-template-columns:repeat(2,1fr)}
+    @media(max-width:980px){.cols-3,.cols-2{grid-template-columns:1fr}}
 
     .card{background:#fff;border:1px solid var(--stroke);border-radius:16px;box-shadow:var(--shadow-sm);padding:20px}
     .pill{display:inline-block;background:var(--blue-dark);color:#fff;border-radius:999px;padding:6px 10px;font-weight:800;font-size:12px}
     .muted{color:var(--muted)}
-    .kpi{display:flex;gap:18px}
     .btn{display:inline-block;padding:12px 16px;border-radius:12px;font-weight:800;color:#fff;background:var(--blue-dark);box-shadow:var(--shadow-sm)}
     .btn:hover{background:var(--orange)}
     .btn.ghost{background:#fff;color:var(--blue-dark);border:1px solid var(--stroke)}
+    .btn.inline{padding:8px 12px;border-radius:10px;font-size:14px}
     .list{margin:0;padding-left:18px}
-    .chip{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid var(--stroke);background:#fff;margin:4px 6px 0 0;font-weight:700;font-size:12px}
-    .price{font-weight:900;font-size:26px;margin:8px 0 0}
     .hr{height:1px;background:var(--stroke);margin:12px 0}
+    .kpi{display:flex;gap:14px;flex-wrap:wrap}
+    .chip{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid var(--stroke);background:#fff;font-weight:700;font-size:12px}
+    .table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border:1px solid var(--stroke);border-radius:14px}
+    .table th,.table td{padding:12px 14px;border-bottom:1px solid var(--stroke);text-align:left;vertical-align:top}
+    .table th{background:#fbfdff;font-weight:900;color:#0f2746}
+    .table tr:last-child td{border-bottom:none}
+    .note{font-size:13px;color:var(--muted)}
     .footer{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
   </style>
 </head>
 <body>
+
+<!-- ===== HEADER ===== -->
 <header id="site-header" class="header">
   <div class="container nav">
     <a href="index.html" class="brand"><img src="./images/logo.png" alt="Awenoria" class="brand__logo"></a>
     <ul class="mainnav">
       <li class="menu-item"><a class="menu-link" href="index.html">Accueil</a></li>
       <li class="menu-item">
+        <!-- IMPORTANT : ce lien ouvre bien cette page audit.html via le script plus bas -->
         <a class="menu-link active" href="#" data-page="audit.html">Audit ▾</a>
         <div class="dropdown">
           <a href="fonctionnalites.html">• Fonctionnalités</a>
@@ -103,24 +114,30 @@
   </div>
 </header>
 
+<!-- ===== HERO ===== -->
 <section class="hero">
   <div class="container">
-    <h1>Comprendre l’audit Awenoria</h1>
-    <p class="lead">Définition, formes d’audit, offres, méthode, référentiels couverts, livrables et limites.</p>
+    <h1>Audit de conformité — version Pro/Premium</h1>
+    <p class="lead">Diagnostic web structuré (RGPD, accessibilité, mentions, cookies/CMP) avec scoring, preuves, plan d’action et options d’accompagnement.</p>
+    <div class="badges">
+      <span class="badge">Scores + priorisation</span>
+      <span class="badge">Export PDF/JSON</span>
+      <span class="badge">Revue experte (Pro/Expert)</span>
+    </div>
   </div>
 </section>
 
 <main>
 
-  <!-- Définition & objectifs -->
+  <!-- Définition & objectifs (base conservée) -->
   <section class="section">
     <div class="container">
       <h2 class="title">Définition & objectifs</h2>
       <div class="grid cols-3">
         <article class="card">
           <span class="pill">Quoi ?</span>
-          <h3>Un diagnostic de conformité web</h3>
-          <p>Awenoria analyse les éléments visibles de votre site pour évaluer la conformité <b>RGPD</b>, <b>accessibilité</b>, <b>mentions légales</b> et <b>cookies/CMP</b>.</p>
+          <h3>Diagnostic de conformité web</h3>
+          <p>Awenoria analyse les éléments visibles de votre site pour évaluer <b>RGPD</b>, <b>accessibilité</b>, <b>mentions légales</b> et <b>cookies/CMP</b>.</p>
         </article>
         <article class="card">
           <span class="pill">Pourquoi ?</span>
@@ -129,43 +146,41 @@
         </article>
         <article class="card">
           <span class="pill">Pour qui ?</span>
-          <h3>TPE/PME, cabinets, indépendants</h3>
+          <h3>TPE/PME, agences, indépendants</h3>
           <p>Idéal pour un premier diagnostic, un contrôle récurrent, ou pour <b>préparer une refonte</b> et cadrer efficacement le projet.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Formes d’audit -->
-  <section class="section alt">
+  <!-- Formes d’audit existantes (base conservée) + périmètre/livrables -->
+  <section class="section" style="padding-top:0">
     <div class="container">
-      <h2 class="title">Formes d’audit disponibles</h2>
       <div class="grid cols-3">
         <article class="card">
-          <h3>Audit automatique</h3>
-          <p>Analyse instantanée côté navigateur, sans stockage par défaut. Parfait pour un <b>pré-diagnostic</b>.</p>
+          <h3>Ce qui est couvert</h3>
           <ul class="list">
-            <li>Score global & par thème</li>
-            <li>Liste d’actions rapides</li>
-            <li>Export JSON/PDF (option)</li>
+            <li>Politique de confidentialité, bases légales, droits & mentions RGPD</li>
+            <li>Accessibilité : ALT, repères ARIA, contrastes, clavier, déclaration</li>
+            <li>Mentions légales & e-commerce (CGU/CGV, rétractation, médiation)</li>
+            <li>Cookies/CMP : bandeau, refus aussi simple, politique cookies</li>
           </ul>
         </article>
         <article class="card">
-          <h3>Audit assisté</h3>
-          <p>Un expert passe en revue vos résultats, qualifie les priorités et fournit un <b>plan d’action</b> court.</p>
+          <h3>Ce qui n’est pas couvert</h3>
           <ul class="list">
-            <li>Revue humaine ciblée</li>
-            <li>Correctifs & exemples</li>
-            <li>Points de vigilance métiers</li>
+            <li>Contrats, registre de traitements, sécurité interne</li>
+            <li>Audit de code serveur, tests utilisateurs complets</li>
+            <li>Audit RGAA/WCAG exhaustif (hors échantillons Expert)</li>
           </ul>
         </article>
         <article class="card">
-          <h3>Audit approfondi</h3>
-          <p>Approche sur mesure : parcours utilisateurs, pages clés, conformité e-commerce, <b>accessibilité manuelle</b> (échantillon, niveau à définir).</p>
+          <h3>Livrables</h3>
           <ul class="list">
-            <li>Ateliers courts</li>
-            <li>Rapport détaillé illustré</li>
-            <li>Suivi & re-tests</li>
+            <li>Score global + scores par thème</li>
+            <li>Plan d’action priorisé (impact/effort)</li>
+            <li>Export PDF (Pro/Expert) & JSON</li>
+            <li>Session de restitution (Pro/Expert)</li>
           </ul>
         </article>
       </div>
@@ -175,153 +190,154 @@
   <!-- Offres -->
   <section class="section">
     <div class="container">
-      <h2 class="title">Offres & options</h2>
+      <h2 class="title">Offres d’audit</h2>
       <div class="grid cols-3">
         <article class="card">
-          <span class="pill">Démarrage</span>
-          <h3>Starter (Auto)</h3>
-          <p class="muted">Pour tester rapidement un site public.</p>
+          <span class="pill">Starter</span>
+          <h3>Diagnostic automatisé</h3>
+          <ul class="list">
+            <li>Score global + thématiques</li>
+            <li>Recommandations standard</li>
+            <li>Export JSON</li>
+            <li>Sans stockage par défaut</li>
+          </ul>
           <div class="hr"></div>
-          <div>
-            <span class="chip">Score global</span>
-            <span class="chip">Reco priorisées</span>
-            <span class="chip">Export PDF (option)</span>
-          </div>
-          <p class="price">Gratuit</p>
-          <p><a class="btn" href="index.html#resultat">Lancer un test</a></p>
+          <a class="btn inline" href="index.html#resultat">Tester mon site</a>
         </article>
 
         <article class="card">
-          <span class="pill">Accompagnement</span>
-          <h3>Pro (Assisté)</h3>
-          <p class="muted">Relecture d’un expert & plan d’action court.</p>
+          <span class="pill">Pro</span>
+          <h3>+ Revue experte</h3>
+          <ul class="list">
+            <li>Tout Starter</li>
+            <li><b>Revue humaine ciblée</b> (pages clés)</li>
+            <li>Rapport PDF illustré</li>
+            <li>Restitution 45 min</li>
+          </ul>
           <div class="hr"></div>
-          <div>
-            <span class="chip">Revue humaine</span>
-            <span class="chip">Correctifs concrets</span>
-            <span class="chip">Appel de restitution</span>
-          </div>
-          <p class="price">Sur devis</p>
-          <p><a class="btn" href="contact.html">Parler à un expert</a></p>
+          <a class="btn inline" href="contact.html">Obtenir un devis</a>
         </article>
 
         <article class="card">
-          <span class="pill">Sur mesure</span>
-          <h3>Expert (Approfondi)</h3>
-          <p class="muted">Parcours clés, conformité e-commerce, échantillon RGAA/WCAG.</p>
+          <span class="pill">Expert</span>
+          <h3>+ Échantillons manuels</h3>
+          <ul class="list">
+            <li>Tout Pro</li>
+            <li>Tests manuels accessibilité (échantillons)</li>
+            <li>Re-tests après corrections</li>
+            <li>Suivi & historique (option)</li>
+          </ul>
           <div class="hr"></div>
-          <div>
-            <span class="chip">Rapport illustré</span>
-            <span class="chip">Suivi & re-tests</span>
-            <span class="chip">Support équipes</span>
-          </div>
-          <p class="price">Sur devis</p>
-          <p><a class="btn" href="tarifs.html">Voir les tarifs</a></p>
+          <a class="btn inline" href="contact.html">Parler à un expert</a>
         </article>
+      </div>
+
+      <!-- Tableau comparatif -->
+      <div class="card" style="margin-top:18px">
+        <h3>Comparatif rapide</h3>
+        <table class="table" aria-label="Comparatif des offres">
+          <thead>
+            <tr><th>Éléments</th><th>Starter</th><th>Pro</th><th>Expert</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Score global + thèmes</td><td>Oui</td><td>Oui</td><td>Oui</td></tr>
+            <tr><td>Recommandations priorisées</td><td>Oui</td><td>Oui (ajustées)</td><td>Oui (ajustées)</td></tr>
+            <tr><td>Export JSON</td><td>Oui</td><td>Oui</td><td>Oui</td></tr>
+            <tr><td>Rapport PDF illustré</td><td>—</td><td>Oui</td><td>Oui</td></tr>
+            <tr><td>Revue humaine ciblée</td><td>—</td><td>Oui</td><td>Oui</td></tr>
+            <tr><td>Tests manuels accessibilité</td><td>—</td><td>—</td><td>Échantillons</td></tr>
+            <tr><td>Re-tests & suivi</td><td>—</td><td>Option</td><td>Oui (option étendue)</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Les prestations “Pro/Expert” sont réalisées sur devis en fonction du périmètre.</p>
       </div>
     </div>
   </section>
 
-  <!-- Méthode -->
+  <!-- Méthodologie -->
   <section class="section alt">
     <div class="container">
-      <h2 class="title">Méthode d’audit</h2>
-      <div class="grid cols-3">
-        <article class="card">
-          <h3>1) Cadrage</h3>
-          <p>URL de référence, pages clés, périmètre (RGPD, accessibilité, mentions, cookies). Définition des objectifs et du format de livrables.</p>
-          <ul class="list">
-            <li>Carto pages & parcours</li>
-            <li>Hypothèses de risques</li>
-            <li>Critères de réussite</li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>2) Analyse</h3>
-          <p>Audit automatique (Awenoria) + revues ciblées. Échantillonnage manuel si demandé (ex. RGAA/WCAG sur composants critiques).</p>
-          <ul class="list">
-            <li>Vérifs outillées</li>
-            <li>Preuves & captures</li>
-            <li>Qualification des écarts</li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>3) Restitution</h3>
-          <p>Priorisation (impact/effort), feuilles de route et supports pour l’équipe (exemples de mentions, modèles, user stories).</p>
-          <ul class="list">
-            <li>Plan d’action</li>
-            <li>Rapport illustré</li>
-            <li>Suivi & re-tests</li>
-          </ul>
-        </article>
+      <h2 class="title">Méthodologie</h2>
+      <div class="grid cols-4" style="grid-template-columns:repeat(4,1fr);gap:18px">
+        <article class="card"><span class="pill">1</span><h3>Cadrage</h3><p>Périmètre, pages clés, objectifs, contraintes.</p></article>
+        <article class="card"><span class="pill">2</span><h3>Analyse</h3><p>Audit auto côté navigateur + revue humaine (Pro/Expert).</p></article>
+        <article class="card"><span class="pill">3</span><h3>Scoring</h3><p>Poids par impact/risque, agrégation par thème → score global.</p></article>
+        <article class="card"><span class="pill">4</span><h3>Restitution</h3><p>Plan d’action priorisé, exemples, re-tests (selon offre).</p></article>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h3>Référentiels mobilisés (côté site)</h3>
+        <div class="kpi" style="margin-top:6px">
+          <span class="chip">RGPD — information, droits, base légale</span>
+          <span class="chip">e-privacy/cookies — bannière & refus aussi simple</span>
+          <span class="chip">Mentions légales — éditeur, hébergeur, identifiants</span>
+          <span class="chip">Accessibilité — principes WCAG/RGAA de base</span>
+        </div>
+        <p class="muted" style="margin-top:8px">Les contrôles côté serveur (registre, contrats, sécurité) ne sont pas inclus dans l’audit automatique.</p>
       </div>
     </div>
   </section>
 
-  <!-- Référentiels -->
+  <!-- Preuves & Confidentialité -->
   <section class="section">
     <div class="container">
-      <h2 class="title">Référentiels & règles couvertes</h2>
+      <h2 class="title">Preuves & confidentialité</h2>
       <div class="grid cols-2">
         <article class="card">
-          <h3>RGPD & e-privacy (côté site)</h3>
+          <h3>Preuves collectées</h3>
           <ul class="list">
-            <li>Information au point de collecte (finalités, droits, base légale, DPO/contact)</li>
-            <li>Politique de confidentialité : sections clés, liens visibles</li>
-            <li>Cookies/CMP : bannière, refus aussi simple, preuve du consentement</li>
-            <li>Mentions légales : éditeur, hébergeur, contacts</li>
-            <li>E-commerce : CGV, droit de rétractation, médiation conso (si applicable)</li>
+            <li>Indices côté client (DOM, attributs ALT/ARIA, liens, bannières)</li>
+            <li>Capture de libellés & chemins (si export activé)</li>
+            <li>Justifications par règle (rapport Pro/Expert)</li>
           </ul>
         </article>
         <article class="card">
-          <h3>Accessibilité & UX de base</h3>
+          <h3>Confidentialité</h3>
           <ul class="list">
-            <li>Alternatives textuelles (ALT), sémantique et repères ARIA</li>
-            <li>Contrastes & lisibilité, focus & navigation clavier</li>
-            <li>Déclaration d’accessibilité (si applicable)</li>
-            <li>Échantillons manuels inspirés RGAA/WCAG sur composants clés (offre Expert)</li>
+            <li>Analyse <b>locale</b> par défaut, sans stockage</li>
+            <li>Exports PDF/JSON à la demande</li>
+            <li>Suppression/retention contrôlée lors d’un accompagnement</li>
           </ul>
+          <p class="muted">Voir aussi : <a href="confidentialite.html">Confidentialité</a> & <a href="politique-cookies.html">Politique cookies</a>.</p>
         </article>
       </div>
-      <p class="muted" style="margin-top:10px">Important : Awenoria produit un <b>pré-diagnostic</b> sur la base d’indices visibles côté site. Les vérifications internes (registre de traitements, contrats, sécurité serveur, AIPD/PIA complet, etc.) relèvent d’un accompagnement séparé.</p>
+      <div class="hr"></div>
+      <p>
+        <a class="btn" href="index.html#resultat">Lancer un diagnostic</a>
+        <a class="btn ghost" href="contact.html">Obtenir un devis</a>
+      </p>
     </div>
   </section>
 
-  <!-- Livrables & limites -->
+  <!-- (Optionnel) Revue de presse / témoignages -->
   <section class="section alt">
     <div class="container">
-      <h2 class="title">Livrables & limites</h2>
+      <h2 class="title">Ils en parlent</h2>
       <div class="grid cols-3">
         <article class="card">
-          <h3>Livrables</h3>
-          <ul class="list">
-            <li>Score global & thématiques</li>
-            <li>Recommandations classées (impact/effort)</li>
-            <li>Rapport PDF illustré (option)</li>
-            <li>Export JSON & historique (option)</li>
-          </ul>
+          <h3>Médias (indépendants)</h3>
+          <p class="muted">Intégrez ici, si vous en avez, des articles de presse qui citent votre démarche (liens externes).</p>
         </article>
         <article class="card">
-          <h3>Limites</h3>
-          <ul class="list">
-            <li>Pas d’accès au code privé ni aux systèmes internes</li>
-            <li>Pas d’avis juridique personnalisé sans mission dédiée</li>
-            <li>Accessibilité manuelle étendue sur demande (échantillonnage)</li>
-          </ul>
+          <h3>Témoignages</h3>
+          <p>“Restitution claire et actionnable — on a gagné du temps sur la refonte.”</p>
         </article>
         <article class="card">
-          <h3>Prochaines étapes</h3>
-          <ul class="list">
-            <li>Lancer un test automatique</li>
-            <li>Programmer une revue experte</li>
-            <li>Planifier re-tests post-correctifs</li>
-          </ul>
-          <p style="margin-top:10px">
-            <a class="btn" href="index.html#resultat">Démarrer un audit</a>
-            <a class="btn ghost" href="contact.html">Parler à un expert</a>
-          </p>
+          <h3>Références</h3>
+          <p class="muted">Logos clients/secteurs (santé, e-commerce, immobilier…) si autorisés.</p>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="section">
+    <div class="container" style="text-align:center">
+      <h2 class="title" style="margin-bottom:10px">Prêt à passer en version Pro/Premium ?</h2>
+      <p class="lead" style="color:var(--muted)">Un premier diagnostic gratuit, puis un accompagnement sur-mesure si besoin.</p>
+      <p style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px">
+        <a class="btn" href="index.html#resultat">Démarrer un audit</a>
+        <a class="btn ghost" href="contact.html">Parler à un expert</a>
+      </p>
     </div>
   </section>
 
@@ -330,11 +346,7 @@
 <footer class="container footer">
   <div style="display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap">
     <span>© <span id="year"></span> Awenoria</span>
-    <span>
-      <a href="mentions.html">Mentions légales</a> ·
-      <a href="confidentialite.html">Confidentialité</a> ·
-      <a href="politique-cookies.html">Politique cookies</a>
-    </span>
+    <span><a href="mentions.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a> · <a href="politique-cookies.html">Politique cookies</a></span>
   </div>
 </footer>
 
@@ -343,15 +355,16 @@
   document.getElementById('year').textContent = new Date().getFullYear();
   (function(){const h=document.getElementById('site-header');const t=()=>{if(window.scrollY>10)h.classList.add('scrolled');else h.classList.remove('scrolled')};t();window.addEventListener('scroll',t,{passive:true})})();
 
-  // Forcer une navigation "dure" vers audit.html depuis le menu (GitHub Pages / sous-dossiers OK)
+  // Forcer l'ouverture "dure" d'audit.html depuis le menu (GitHub Pages/sous-dossiers ok)
   (function(){
     function hardLink(page){
       var base = location.pathname.replace(/[^\/]*$/, '');
-      var url = base + page + '?v=' + Date.now();
+      var url = base + page + '?v=' + Date.now(); // anti-cache léger
       window.location.assign(url);
     }
     document.addEventListener('click', function(e){
-      var a = e.target.closest('a[data-page]'); if(!a) return;
+      var a = e.target.closest('a[data-page]');
+      if(!a) return;
       e.preventDefault();
       var page = a.getAttribute('data-page');
       if(page) hardLink(page);
