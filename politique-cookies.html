@@ -4,24 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Politique cookies — Awenoria</title>
-  <meta name="description" content="Politique d'utilisation des cookies d'Awenoria : finalités, catégories, durée, tiers, gestion du consentement et droits RGPD." />
+  <meta name="description" content="Politique d’utilisation des cookies et traceurs d’Awenoria : catégories, durées, finalités, preuve du consentement et paramétrage.">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --blue:#0073b6; --blue-dark:#005a8e; --orange:#ff6600;
       --bg-top:#f7f9fc; --bg:#edf3f7; --surface:#fff; --stroke:#e9eef4;
       --text:#16233a; --muted:#5d6b7c; --radius:20px;
-      --shadow-sm:0 6px 20px rgba(16,32,48,.06);
-      --shadow-lg:0 24px 48px rgba(16,32,48,.10);
+      --shadow-sm:0 6px 20px rgba(16,32,48,.06); --shadow-lg:0 24px 48px rgba(16,32,48,.10);
     }
     *{box-sizing:border-box} html,body{margin:0}
     body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--text);line-height:1.65}
     a{text-decoration:none;color:var(--blue-dark)} a:hover{color:var(--orange)}
     .container{max-width:1160px;margin:0 auto;padding:24px 20px}
 
-    /* Header (identique au site) */
+    /* Header */
     .header{position:sticky;top:0;z-index:60;background:var(--bg-top);border-bottom:1px solid transparent;transition:.25s}
     .header.scrolled{background:#fff;border-bottom-color:var(--stroke);box-shadow:0 10px 24px rgba(16,32,48,.06)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
@@ -36,17 +36,16 @@
     .dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:var(--blue-dark);font-weight:700}
     .dropdown a:hover{background:#f3f8fc;color:var(--orange)}
 
-    /* Hero court */
+    /* Hero */
     .hero{background:linear-gradient(180deg,#5e8faa,#5e8faa);color:#fff;text-align:center;padding:72px 0 56px}
     h1{margin:0;font-size:40px;line-height:1.12}
     .lead{max-width:860px;margin:8px auto 0;color:#eaf3fa;font-weight:600}
 
-    /* Contenu */
+    /* Sections / tables */
     .section{padding:72px 0}
     .title{margin:0 0 10px;text-align:center;font-size:30px;color:#0f2746}
     .title:after{content:"";display:block;width:60px;height:4px;background:var(--orange);margin:10px auto 0;border-radius:3px}
-    .grid{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-top:18px}
-    @media(max-width:980px){.grid{grid-template-columns:1fr}}
+    .grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:18px}
     .card{background:#fff;border:1px solid var(--stroke);border-radius:16px;box-shadow:var(--shadow-sm);padding:20px}
     .muted{color:var(--muted)}
     h2{margin:16px 0 8px;font-size:22px}
@@ -56,18 +55,17 @@
     table{width:100%;border-collapse:collapse}
     th,td{padding:10px;border:1px solid var(--stroke);text-align:left}
     th{background:#fbfdff}
+
     .footer{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
   </style>
 </head>
 <body>
-
 <header id="site-header" class="header">
   <div class="container nav">
     <a href="index.html" class="brand"><img src="./images/logo.png" alt="Awenoria" class="brand__logo"></a>
     <ul class="mainnav">
       <li class="menu-item"><a class="menu-link" href="index.html">Accueil</a></li>
       <li class="menu-item">
-        <!-- IMPORTANT: ce lien ouvre bien la page audit.html -->
         <a class="menu-link" href="#" data-page="audit.html">Audit ▾</a>
         <div class="dropdown">
           <a href="fonctionnalites.html">• Fonctionnalités</a>
@@ -93,14 +91,9 @@
           <a href="pourquoi-2026.html">• Pourquoi maintenant ? (2026)</a>
         </div>
       </li>
-      <li class="menu-item">
-        <a class="menu-link" href="a-propos.html">À propos ▾</a>
-        <div class="dropdown">
-          <a href="a-propos.html#mission">• Mission & valeurs</a>
-          <a href="mentions.html">• Mentions légales</a>
-          <a class="menu-link active" href="confidentialite.html">• Confidentialité</a>
-        </div>
-      </li>
+      <li class="menu-item"><a class="menu-link" href="confidentialite.html">Confidentialité</a></li>
+      <li class="menu-item"><a class="menu-link active" href="politique-cookies.html">Politique cookies</a></li>
+      <li class="menu-item"><a class="menu-link" href="mentions.html">Mentions légales</a></li>
       <li class="menu-item"><a class="menu-link" href="contact.html">Contact</a></li>
     </ul>
   </div>
@@ -108,8 +101,8 @@
 
 <section class="hero">
   <div class="container">
-    <h1>Politique d’utilisation des cookies</h1>
-    <p class="lead">Comprendre nos cookies, choisir vos préférences, et les modifier à tout moment.</p>
+    <h1>Politique cookies</h1>
+    <p class="lead">Tout savoir sur nos cookies et traceurs : finalités, durées, partenaires et comment gérer vos préférences.</p>
   </div>
 </section>
 
@@ -118,69 +111,79 @@
     <div class="container grid">
       <article class="card">
         <h2>1) Qu’est-ce qu’un cookie ?</h2>
-        <p>Un « cookie » est un petit fichier déposé sur votre navigateur (ou une technologie équivalente) qui permet au site de fonctionner, de sécuriser votre session, de mesurer l’audience, et éventuellement de personnaliser l’expérience. Certains cookies sont strictement nécessaires, d’autres nécessitent votre consentement préalable.</p>
+        <p>Un cookie est un petit fichier déposé sur votre navigateur pour mémoriser certaines informations. D’autres technologies similaires existent (storage, pixels, SDK, empreinte du navigateur). Nous parlons de « cookies/traceurs » pour simplifier.</p>
 
-        <h2>2) Nos catégories de cookies</h2>
-        <p>Les catégories ci-dessous sont **exactement** celles proposées dans notre bandeau de consentement :</p>
+        <h2>2) Principes de consentement</h2>
         <ul>
-          <li><b>Strictement nécessaires</b> (toujours actifs) : indispensables au fonctionnement du site (sécurité, gestion de session, mémorisation du choix de consentement).</li>
-          <li><b>Mesure d’audience</b> : statistiques anonymisées ou agrégées pour améliorer le site (ex. Matomo, Google Analytics configuré).</li>
-          <li><b>Personnalisation</b> : amélioration de fonctionnalités non publicitaires (ex. préférences d’interface, lecteur vidéo enrichi).</li>
-          <li><b>Publicité</b> : mesure de conversion et personnalisation publicitaire (tiers).</li>
+          <li><b>Blocage par défaut</b> des traceurs non nécessaires.</li>
+          <li><b>Refus aussi simple</b> que l’acceptation.</li>
+          <li><b>Preuve du consentement</b> consignée (horodatage, choix, version du bandeau).</li>
+          <li>Vos choix sont conservés <b>6 mois</b> maximum, puis on vous les redemande.</li>
         </ul>
+        <p><button class="btn" onclick="(window.AwenoriaConsent||{}).open?.()">Gérer mes cookies</button></p>
 
-        <h2>3) Détail indicatif des cookies/outils</h2>
-        <p class="muted">Exemples à adapter si besoin (renseigne tes outils réels). Les cookies tiers ne sont chargés qu’après accord sur leur catégorie.</p>
-        <table>
+        <h2>3) Catégories de cookies</h2>
+
+        <h3>3.1 — Strictement nécessaires (exempts de consentement)</h3>
+        <p>Indispensables au fonctionnement du site (équilibrage de charge, sécurité, préférence de langue, conservation du refus/consentement).</p>
+
+        <h3>3.2 — Mesure d’audience</h3>
+        <p>Statistiques agrégées de fréquentation. Si un outil non exempté est utilisé, nous demandons votre consentement préalable.</p>
+
+        <h3>3.3 — Fonctionnalités</h3>
+        <p>Améliorations de confort (ex. enregistrement d’un formulaire inachevé, personnalisation non essentielle).</p>
+
+        <h3>3.4 — Marketing / Partenaires</h3>
+        <p>Traceurs publicitaires, retargeting, réseaux sociaux. <b>Soumis au consentement.</b></p>
+
+        <h2>4) Détail des cookies</h2>
+        <p class="muted">Tableau indicatif – ta CMP Pro peut alimenter dynamiquement cette table via JS (sinon, complète statiquement).</p>
+
+        <table aria-label="Liste des cookies">
           <thead>
-            <tr><th>Catégorie</th><th>Outil</th><th>Finalité</th><th>Durée</th><th>Fournisseur</th></tr>
+            <tr>
+              <th>Nom</th>
+              <th>Fournisseur</th>
+              <th>Finalité</th>
+              <th>Durée</th>
+              <th>Catégorie</th>
+            </tr>
           </thead>
-          <tbody>
-            <tr><td>Nécessaires</td><td>awenoriaConsentV1</td><td>Enregistrer vos choix de consentement</td><td>6 mois</td><td>Awenoria</td></tr>
-            <tr><td>Analytics</td><td>Matomo</td><td>Mesure d’audience (anonymisée)</td><td>13 mois (par défaut)</td><td>Auto-hébergé / Matomo</td></tr>
-            <tr><td>Analytics</td><td>Google Analytics (gtag)</td><td>Statistiques (IP anonymisée)</td><td>14 mois (exemple)</td><td>Google LLC</td></tr>
-            <tr><td>Publicité</td><td>Meta Pixel</td><td>Mesure de conversion / retargeting</td><td>90 jours (exemple)</td><td>Meta Platforms</td></tr>
+          <tbody id="cookieTableBody">
+            <!-- Exemples par défaut -->
+            <tr>
+              <td>awenoria_consent</td>
+              <td>Awenoria (interne)</td>
+              <td>Stocker vos choix de consentement (preuve)</td>
+              <td>6 mois</td>
+              <td>Strictement nécessaire</td>
+            </tr>
+            <tr>
+              <td>_cfuvid</td>
+              <td>Cloudflare</td>
+              <td>Sécurité/anti-abus (WAF)</td>
+              <td>Session à 30 jours</td>
+              <td>Strictement nécessaire</td>
+            </tr>
           </tbody>
         </table>
 
-        <h2>4) Base légale & durée</h2>
+        <h2>5) Comment modifier vos choix ?</h2>
+        <p>À tout moment, vous pouvez <b>rouvrir le module</b> et mettre à jour vos préférences :</p>
+        <p><button class="btn" onclick="(window.AwenoriaConsent||{}).open?.()">Gérer mes cookies</button></p>
+
+        <h2>6) Durées de conservation</h2>
         <ul>
-          <li><b>Nécessaires</b> : intérêt légitime / obligation technique (pas de consentement requis).</li>
-          <li><b>Autres catégories</b> : <b>consentement</b> (libre, spécifique, éclairé, univoque), que vous pouvez retirer à tout moment.</li>
+          <li>Choix de consentement : <b>6 mois</b>.</li>
+          <li>Cookies de mesure d’audience : jusqu’à <b>13 mois</b>.</li>
+          <li>Données associées : jusqu’à <b>25 mois</b> maximum (statistiques agrégées).</li>
         </ul>
-        <p>La durée de conservation des choix de consentement est de <b>6 mois</b> (modifiable). Les durées des cookies tiers sont fixées par leurs éditeurs.</p>
-
-        <h2>5) Gérer vos préférences</h2>
-        <p>
-          Vous pouvez modifier vos choix à tout moment :
-          <button class="btn" onclick="(window.AwenoriaConsent||{}).open?.()">Gérer mes cookies</button>
-        </p>
-
-        <h2>6) Destinataires & transferts</h2>
-        <p>Les données de mesure d’audience et/ou publicitaires peuvent être transmises aux fournisseurs des solutions concernées (ex. Google, Meta), y compris hors UE selon leurs mécanismes de transfert. Référez-vous à leurs politiques pour plus d’informations.</p>
 
         <h2>7) Vos droits</h2>
-        <p>Conformément au RGPD, vous disposez des droits d’accès, rectification, opposition, limitation, effacement et portabilité, ainsi que du droit d’introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr">cnil.fr</a>).</p>
-
-        <h2>8) Contact DPO / confidentialité</h2>
-        <p>Pour toute question, contactez-nous : <a href="mailto:vosdroits@dpo101.fr">vosdroits@dpo101.fr</a> (objet : « Droit des personnes »). Voir aussi notre <a href="confidentialite.html">Politique de confidentialité</a>.</p>
+        <p>Pour en savoir plus sur le traitement de vos données et vos droits (accès, effacement, opposition…), consultez notre <a href="confidentialite.html">Politique de confidentialité</a> ou écrivez-nous à <a href="mailto:vosdroits@dpo101.fr">vosdroits@dpo101.fr</a> (objet : « Droit des personnes »). Autorité de contrôle : <a href="https://www.cnil.fr">CNIL</a>.</p>
 
         <p class="muted">Dernière mise à jour : <span id="lastUpdate">—</span></p>
       </article>
-
-      <aside class="card">
-        <h3>Actions rapides</h3>
-        <p><a class="btn" href="#" onclick="(window.AwenoriaConsent||{}).open?.();return false;">Gérer mes cookies</a></p>
-        <p><a href="confidentialite.html">Politique de confidentialité</a></p>
-        <p><a href="mentions.html">Mentions légales</a></p>
-
-        <h3>Rappels CNIL</h3>
-        <ul>
-          <li>Refus aussi simple que l’acceptation.</li>
-          <li>Preuve du consentement (journal horodaté local).</li>
-          <li>Possibilité de changer d’avis à tout moment.</li>
-        </ul>
-      </aside>
     </div>
   </section>
 </main>
@@ -188,16 +191,19 @@
 <footer class="container footer">
   <div style="display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap">
     <span>© <span id="year"></span> Awenoria</span>
-    <span><a href="mentions.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a> · <a href="#" onclick="(window.AwenoriaConsent||{}).open?.();return false;">Gérer mes cookies</a></span>
+    <span>
+      <a href="mentions.html">Mentions légales</a> ·
+      <a href="confidentialite.html">Confidentialité</a> ·
+      <a class="menu-link active" href="politique-cookies.html">Politique cookies</a> ·
+      <a href="#" onclick="(window.AwenoriaConsent||{}).open?.();return false;">Gérer mes cookies</a>
+    </span>
   </div>
 </footer>
 
-<!-- Script utilitaires (année, header sticky, nav “Audit” vers audit.html) -->
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   document.getElementById('lastUpdate').textContent = '2025-10-15';
   (function(){const h=document.getElementById('site-header');const t=()=>{if(window.scrollY>10)h.classList.add('scrolled');else h.classList.remove('scrolled')};t();window.addEventListener('scroll',t,{passive:true})})();
-  // Force le clic “Audit” vers audit.html (cohérent avec ton site)
   (function(){
     function hardLink(page){
       var base = location.pathname.replace(/[^\/]*$/, '');
@@ -205,17 +211,18 @@
       window.location.assign(url);
     }
     document.addEventListener('click', function(e){
-      var a = e.target.closest('a[data-page]');
-      if(!a) return;
-      e.preventDefault();
-      var page = a.getAttribute('data-page');
-      if(page) hardLink(page);
+      var a = e.target.closest('a[data-page]'); if(!a) return;
+      e.preventDefault(); var page = a.getAttribute('data-page'); if(page) hardLink(page);
     }, {passive:false});
   })();
+
+  // Si ta CMP expose une API listant les cookies, tu peux peupler le tableau ici :
+  // if(window.AwenoriaConsent && AwenoriaConsent.listCookies){
+  //   const rows = AwenoriaConsent.listCookies().map(c=>{
+  //     return `<tr><td>${c.name}</td><td>${c.vendor}</td><td>${c.purpose}</td><td>${c.duration}</td><td>${c.category}</td></tr>`;
+  //   }).join('');
+  //   document.getElementById('cookieTableBody').innerHTML = rows;
+  // }
 </script>
-
-<!-- IMPORTANT : ton bandeau “Awenoria Consent (Pro)” doit être présent sur la page -->
-<!-- (Colle le bloc que je t’ai donné précédemment juste avant </body> sur toutes les pages, y compris ici) -->
-
 </body>
 </html>
