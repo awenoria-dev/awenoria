@@ -4,189 +4,277 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Accueil – Awenoria</title>
-  <meta name="description" content="Accueil Awenoria avec carrousel pleine largeur, tuiles promo, blocs info, navbar sticky." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Awenoria – accueil avec carrousel, services en mega-menu, comptes client/partenaire et footer complet." />
+
+  <!-- Police locale (remplace par ta vraie police si besoin) -->
   <style>
-    :root {
-      --bg: #0b0c10;
-      --panel: #0f1116;
-      --muted: #8892a6;
-      --text: #e8edf5;
-      --brand: #4fb0ff;
-      --accent: #7df3b2;
-      --radius: 16px;
-      --shadow: 0 12px 28px rgba(0,0,0,.28);
-      --maxw: 1200px;
-    }
-
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; background: radial-gradient(1200px 600px at 20% -10%, #151824 0%, var(--bg) 55%);
-      color: var(--text);
-      /* Police globale : remplacez la source @font-face ci-dessous par la police d'epsicap.fr si besoin */
-      font-family: "AwenoriaUI", Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* ===== NAVBAR ===== */
-    .navbar { position: sticky; top: 0; z-index: 60; background: rgba(15,17,22,.75); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.06); }
-    .nav-wrap { max-width: var(--maxw); margin: 0 auto; padding: 10px 20px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; }
-
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); min-width: 0; }
-    /* replace the gradient block with actual images */
-    .brand-img { width: 36px; height: 36px; object-fit: contain; display: block; }
-    .brand-wordmark { height: 22px; object-fit: contain; display: block; filter: drop-shadow(0 2px 6px rgba(0,0,0,.2)); }
-
-    .nav-links { justify-self: center; }
-    .nav-links ul { list-style: none; display: flex; gap: 16px; margin: 0; padding: 0; }
-    .nav-links a { text-decoration: none; color: var(--text); opacity: .9; font-weight: 600; padding: 8px 10px; border-radius: 10px; }
-    .nav-links a:hover { background: rgba(255,255,255,.06); }
-
-    .nav-cta { justify-self: end; display: flex; gap: 10px; align-items: center; }
-    .btn { background: #1b88ff; color: #fff; border: none; padding: 10px 14px; border-radius: 12px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
-    .btn.ghost { background: transparent; border: 1px solid rgba(255,255,255,.16); }
-
-    /* ===== CARROUSEL PLEINE LARGEUR ===== */
-    .carousel-wrap { position: relative; overflow: hidden; }
-    .carousel { position: relative; width: 100%; }
-    .slides { display: flex; transition: transform .5s ease; will-change: transform; }
-    .slide { min-width: 100%; height: clamp(260px, 44vw, 520px); position: relative; }
-    .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .slide .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55)); }
-    .slide .caption { position: absolute; left: max(20px, calc((100% - var(--maxw))/2 + 20px)); bottom: 24px; max-width: 560px; }
-    .slide h2 { margin: 0 0 6px; font-size: clamp(22px, 4vw, 42px); }
-    .slide p { margin: 0 0 12px; color: var(--text); opacity: .9; }
-
-    .ctrl { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255,255,255,.28); background: rgba(0,0,0,.35); display: grid; place-items: center; cursor: pointer; }
-    .ctrl:hover { background: rgba(0,0,0,.5); }
-    .ctrl.prev { left: 12px; } .ctrl.next { right: 12px; }
-    .ctrl svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2; }
-
-    .dots { position: absolute; left: 0; right: 0; bottom: 12px; display: flex; justify-content: center; gap: 8px; }
-    .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.45); border: none; }
-    .dot[aria-current="true"] { background: #fff; }
-
-    /* ===== CONTENU PRINCIPAL ===== */
-    .section { max-width: var(--maxw); margin: 32px auto; padding: 0 20px; }
-    .muted { color: var(--muted); }
-
-    /* Tuiles promo (grandes cartes image) */
-    .tiles { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
-    .tile { position: relative; border-radius: var(--radius); overflow: hidden; background: #0e1016; border: 1px solid rgba(255,255,255,.06); box-shadow: var(--shadow); }
-    .tile img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
-    .tile .t-caption { position: absolute; left: 14px; bottom: 14px; background: rgba(0,0,0,.45); padding: 10px 12px; border-radius: 12px; font-weight: 700; }
-
-    /* Blocs info (texte + icône) */
-    .info-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
-    .info { background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: start; }
-    .info .ico { width: 42px; height: 42px; border-radius: 10px; background: linear-gradient(135deg, var(--brand), var(--accent)); display: grid; place-items: center; font-weight: 800; color: #0b0c10; }
-    .info h3 { margin: 2px 0 6px; font-size: 18px; }
-
-    /* FOOTER */
-    footer { border-top: 1px solid rgba(255,255,255,.08); padding: 26px 20px; margin-top: 40px; }
-    .foot-wrap { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; }
-    .foot-links { display: flex; gap: 14px; flex-wrap: wrap; }
-    .foot-links a { color: var(--muted); text-decoration: none; }
-    .foot-links a:hover { color: var(--text); }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .tiles { grid-template-columns: 1fr 1fr; }
-      .info-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 620px) {
-      .nav-links { display: none; }
-      .tiles, .info-grid { grid-template-columns: 1fr; }
-      .slide { height: 300px; }
-      .brand-wordmark { height: 18px; }
-    }
-  
-    /* ===== FOOTER (style type Coca — adapté à Awenoria) ===== */
-    .cc-footer { background: #0a0a0a; color: #eaeaea; padding: 28px 0 12px; border-top: 1px solid rgba(255,255,255,.12); }
-    .cc-container { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
-    .cc-top { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 16px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,.12); }
-    .cc-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
-    .cc-brand img { height: 28px; object-fit: contain; display: block; }
-    .cc-locale { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; text-decoration: none; color: #eaeaea; }
-    .cc-locale svg { width: 18px; height: 18px; stroke: #eaeaea; fill: none; }
-    .cc-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)) auto; gap: 22px; padding: 20px 0; }
-    .cc-col h4 { margin: 0 0 12px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #a7afbf; }
-    .cc-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-    .cc-col a { color: #eaeaea; text-decoration: none; font-weight: 600; }
-    .cc-col a:hover { text-decoration: underline; }
-    .cc-social { display: flex; align-items: center; gap: 14px; justify-self: end; }
-    .cc-social a { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.5); }
-    .cc-social svg { width: 18px; height: 18px; fill: none; stroke: #eaeaea; stroke-width: 2; }
-    .cc-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 12px; display: grid; grid-template-columns: 1fr auto; gap: 12px; }
-    .cc-bottom small { color: #b8bfcc; }
-    @media (max-width: 900px){ .cc-grid { grid-template-columns: 1fr 1fr; } .cc-social { justify-self: start; } }
-    @media (max-width: 600px){ .cc-top { grid-template-columns: 1fr; gap: 10px; } .cc-bottom { grid-template-columns: 1fr; } }
-  
-    /* === Police personnalisée : placez votre fichier dans /fonts/ et adaptez le src === */
-    @font-face {
+    @font-face{
       font-family: "AwenoriaUI";
       src: url("fonts/awenoria-ui.woff2") format("woff2");
       font-weight: 100 900;
       font-display: swap;
     }
 
-    /* ===== Account (bouton rond + menu) ===== */
-    .account { position: relative; }
-    .account-btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 40px; height: 40px; border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.4); background: rgba(255,255,255,.06);
-      cursor: pointer; transition: background .2s ease, transform .06s ease; color: var(--text);
+    :root{
+      --bg:#0b0c10;
+      --panel:#0f1116;
+      --muted:#8892a6;
+      --text:#e8edf5;
+      --brand:#4fb0ff;
+      --accent:#7df3b2;
+      --radius:16px;
+      --shadow:0 12px 28px rgba(0,0,0,.28);
+      --maxw:1200px;
+      --nav-h:56px; /* hauteur cible barre */
     }
-    .account-btn:hover { background: rgba(255,255,255,.12); }
-    .account-btn:active { transform: translateY(1px); }
-    .account-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
-    .account-menu {
-      position: absolute; right: 0; top: 52px; width: min(86vw, 340px);
-      border-radius: 18px; border: 1px solid rgba(255,255,255,.16);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      backdrop-filter: blur(10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,.35);
-      padding: 12px; display: none;
-    }
-    .account-menu.open { display: block; animation: fadeIn .16s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px);} to { opacity: 1; transform: translateY(0);} }
 
-    .acc-item { display: grid; grid-template-columns: 40px 1fr 24px; gap: 10px; align-items: center; padding: 12px; border-radius: 14px; text-decoration: none; color: var(--text); }
-    .acc-item:hover { background: rgba(255,255,255,.06); }
-    .acc-ico { width: 40px; height: 40px; border-radius: 999px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.2); }
-    .acc-ico svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
-    .acc-title { font-weight: 700; margin: 0; }
-    .acc-sub { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
-    .acc-arrow svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 20% -10%, #151824 0%, var(--bg) 55%);
+      color:var(--text);
+      font-family:"AwenoriaUI", Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* ===== NAVBAR ===== */
+    header.navbar{
+      position:sticky; top:0; z-index:70;
+      background:rgba(15,17,22,.8);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav-wrap{
+      max-width:var(--maxw); margin:0 auto; padding:8px 20px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      min-height:var(--nav-h);
+    }
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); min-width:0;}
+    .brand-img{width:36px; height:36px; object-fit:contain; display:block;}
+    .brand-title{font-weight:800; letter-spacing:.2px; white-space:nowrap;}
+
+    /* nav centre */
+    .nav-main{display:flex; align-items:center; gap:24px; flex:1; justify-content:center;}
+    .nav-main a,.nav-main button{
+      appearance:none; background:none; border:none; cursor:pointer;
+      color:var(--text); text-decoration:none; font-weight:700;
+      height:var(--nav-h); padding:0 12px; border-radius:10px;
+      display:inline-flex; align-items:center; gap:8px;
+    }
+    .nav-main a:hover, .nav-main button:hover{background:rgba(255,255,255,.06)}
+
+    /* actions droite */
+    .nav-actions{display:flex; align-items:center; gap:12px;}
+    .btn{background:#1b88ff; color:#fff; border:none; border-radius:10px; font-weight:700;
+      height:var(--nav-h); padding:0 16px; text-decoration:none; display:inline-flex; align-items:center;}
+    .btn.ghost{background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.16)}
+
+    /* ===== Mega-menu “Nos services” ===== */
+    .dropdown{position:relative}
+    .dropdown-toggle{display:inline-flex; align-items:center; gap:6px}
+    .dropdown-toggle svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+    .mega{
+      position:absolute; left:50%; transform:translateX(-50%);
+      top:calc(100% + 10px);
+      width:min(1000px, 94vw);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:18px; padding:16px; display:none;
+      box-shadow:0 20px 40px rgba(0,0,0,.35); backdrop-filter:blur(10px);
+    }
+    .mega.open{display:block; animation:fadeIn .16s ease}
+    @keyframes fadeIn{from{opacity:0; transform:translate(-50%, -4px)} to{opacity:1; transform:translate(-50%, 0)}}
+
+    .mega-head{padding:6px 10px 12px; color:var(--muted); font-size:14px}
+    .mega-grid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px}
+    .pill{
+      background:#11161a; /* pastille pale */
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px; padding:14px; text-decoration:none; color:var(--text);
+      display:flex; flex-direction:column; gap:8px; min-height:120px;
+    }
+    .pill:hover{background:rgba(255,255,255,.06)}
+    .pill .tag{
+      display:inline-block; align-self:flex-start;
+      background:#19343a; color:#bfe7ff; /* style badge */
+      border-radius:999px; padding:4px 10px; font-size:12px; font-weight:800;
+      letter-spacing:.04em;
+    }
+    .pill h5{margin:2px 0 0; font-size:16px}
+    .pill p{margin:0; color:var(--muted); font-size:14px}
+
+    /* ===== Account (bouton rond + menu) ===== */
+    .account{position:relative}
+    .account-btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.4); background:rgba(255,255,255,.06);
+      cursor:pointer; transition:background .2s ease, transform .06s ease; color:var(--text);
+    }
+    .account-btn:hover{background:rgba(255,255,255,.12)}
+    .account-btn:active{transform:translateY(1px)}
+    .account-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+    .account-menu{
+      position:absolute; right:0; top:56px; width:min(86vw, 340px);
+      border-radius:18px; border:1px solid rgba(255,255,255,.16);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      backdrop-filter:blur(10px); box-shadow:0 20px 40px rgba(0,0,0,.35);
+      padding:12px; display:none;
+    }
+    .account-menu.open{display:block; animation:fadeIn .16s ease}
+    .acc-item{display:grid; grid-template-columns:40px 1fr 24px; gap:10px; align-items:center; padding:12px; border-radius:14px; text-decoration:none; color:var(--text)}
+    .acc-item:hover{background:rgba(255,255,255,.06)}
+    .acc-ico{width:40px; height:40px; border-radius:999px; display:grid; place-items:center; border:1px solid rgba(255,255,255,.2)}
+    .acc-ico svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+    .acc-title{margin:0; font-weight:800}
+    .acc-sub{margin:2px 0 0; color:var(--muted); font-size:14px}
+    .acc-arrow svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+
+    /* ===== HERO / CAROUSEL ===== */
+    .carousel-wrap{position:relative; overflow:hidden}
+    .carousel{position:relative; width:100%}
+    .slides{display:flex; transition:transform .5s ease; will-change:transform}
+    .slide{min-width:100%; height:clamp(260px, 44vw, 520px); position:relative}
+    .slide img{width:100%; height:100%; object-fit:cover; display:block}
+    .slide .overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55))}
+    .slide .caption{position:absolute; left:max(20px, calc((100% - var(--maxw))/2 + 20px)); bottom:24px; max-width:560px}
+    .slide h2{margin:0 0 6px; font-size:clamp(22px, 4vw, 42px)}
+    .slide p{margin:0 0 12px; color:var(--text); opacity:.9}
+    .ctrl{position:absolute; top:50%; transform:translateY(-50%); width:46px; height:46px; border-radius:50%; border:1px solid rgba(255,255,255,.28); background:rgba(0,0,0,.35); display:grid; place-items:center; cursor:pointer}
+    .ctrl:hover{background:rgba(0,0,0,.5)}
+    .ctrl.prev{left:12px} .ctrl.next{right:12px}
+    .ctrl svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2}
+    .dots{position:absolute; left:0; right:0; bottom:12px; display:flex; justify-content:center; gap:8px}
+    .dot{width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.45); border:none}
+    .dot[aria-current="true"]{background:#fff}
+
+    /* ===== CONTENT ===== */
+    .section{max-width:var(--maxw); margin:32px auto; padding:0 20px}
+    .muted{color:var(--muted)}
+    .tiles{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px}
+    .tile{position:relative; border-radius:var(--radius); overflow:hidden; background:#0e1016; border:1px solid rgba(255,255,255,.06); box-shadow:var(--shadow)}
+    .tile img{width:100%; aspect-ratio:16/9; object-fit:cover; display:block}
+    .tile .t-caption{position:absolute; left:14px; bottom:14px; background:rgba(0,0,0,.45); padding:10px 12px; border-radius:12px; font-weight:700}
+    .info-grid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px}
+    .info{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); display:grid; grid-template-columns:42px 1fr; gap:12px; align-items:start}
+    .info .ico{width:42px; height:42px; border-radius:10px; background:linear-gradient(135deg, var(--brand), var(--accent)); display:grid; place-items:center; font-weight:800; color:#0b0c10}
+    .info h3{margin:2px 0 6px; font-size:18px}
+
+    /* ===== FOOTER (style Coca adapté) ===== */
+    .cc-footer{background:#0a0a0a; color:#eaeaea; padding:28px 0 12px; border-top:1px solid rgba(255,255,255,.12)}
+    .cc-container{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+    .cc-top{display:grid; grid-template-columns:1fr auto; align-items:center; gap:16px; padding-bottom:14px; border-bottom:1px solid rgba(255,255,255,.12)}
+    .cc-brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit}
+    .cc-brand img{height:28px; object-fit:contain; display:block}
+    .cc-locale{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid rgba(255,255,255,.25); border-radius:999px; text-decoration:none; color:#eaeaea}
+    .cc-locale svg{width:18px;height:18px;stroke:#eaeaea; fill:none}
+    .cc-grid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)) auto; gap:22px; padding:20px 0}
+    .cc-col h4{margin:0 0 12px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#a7afbf}
+    .cc-col ul{list-style:none; margin:0; padding:0; display:grid; gap:10px}
+    .cc-col a{color:#eaeaea; text-decoration:none; font-weight:600}
+    .cc-col a:hover{text-decoration:underline}
+    .cc-social{display:flex; align-items:center; gap:14px; justify-self:end}
+    .cc-social a{display:grid; place-items:center; width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,.5)}
+    .cc-social svg{width:18px;height:18px; fill:none; stroke:#eaeaea; stroke-width:2}
+    .cc-bottom{border-top:1px solid rgba(255,255,255,.12); padding-top:12px; display:grid; grid-template-columns:1fr auto; gap:12px}
+    .cc-bottom small{color:#b8bfcc}
+
+    /* ===== Responsive ===== */
+    @media (max-width:1024px){ .mega-grid{grid-template-columns:1fr 1fr} }
+    @media (max-width:900px){
+      .tiles{grid-template-columns:1fr 1fr}
+      .info-grid{grid-template-columns:1fr 1fr}
+      .nav-main{display:none} /* simple : on masque le mega menu sur mobile (à faire : burger si besoin) */
+    }
+    @media (max-width:620px){
+      .tiles,.info-grid{grid-template-columns:1fr}
+      .slide{height:300px}
+      .cc-grid{grid-template-columns:1fr 1fr}
+      .cc-social{justify-self:start}
+      .cc-top{grid-template-columns:1fr; gap:10px}
+      .cc-bottom{grid-template-columns:1fr}
+    }
   </style>
 </head>
 <body>
+
   <!-- ===== NAVBAR ===== -->
   <header class="navbar" role="banner">
     <div class="nav-wrap">
+
+      <!-- Marque -->
       <a class="brand" href="#" aria-label="Aller à l'accueil">
-        <!-- Remplace les src ci-dessous par les chemins de TON repo (ex: /images/logo-simple-a.png) -->
-        <img class="brand-img" src="/images/logo-simple-a.png" alt="Logo Awenoria (A)" />
-        <img class="brand-wordmark" src="/images/awenoria-wordmark.png" alt="Awenoria" />
+        <img class="brand-img" src="images/logo.png" alt="Logo Awenoria">
+        <span class="brand-title">Awenoria</span>
       </a>
 
-      <nav class="nav-links" aria-label="Navigation principale">
-        <ul>
-          <li><a href="#qui-sommes-nous">Qui sommes-nous ?</a></li>
-          <li><a href="#services">Nos services</a></li>
-          <li><a href="#actualites">Actualité</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+      <!-- Menu principal (avec Nos services en mega-menu) -->
+      <nav class="nav-main" aria-label="Navigation principale">
+        <a href="#qui-sommes-nous">Qui sommes-nous ?</a>
+
+        <div class="dropdown" id="servicesDropdown">
+          <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Nos services
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+
+          <!-- Mega-menu -->
+          <div class="mega" role="menu" aria-label="Nos services">
+            <div class="mega-head">Audits & accompagnements</div>
+            <div class="mega-grid">
+
+              <a class="pill" href="#svc-accessibilite" role="menuitem">
+                <span class="tag">Accessibilité</span>
+                <h5>Audit RGAA / WCAG</h5>
+                <p>Échantillon représentatif, RAPDF & E301 549.</p>
+              </a>
+
+              <a class="pill" href="#svc-rgpd" role="menuitem">
+                <span class="tag">RGPD</span>
+                <h5>Audit RGPD & DPO</h5>
+                <p>Diagnostic de conformité, AIPD/PIA, feuille de route.</p>
+              </a>
+
+              <a class="pill" href="#svc-eco" role="menuitem">
+                <span class="tag">Éco-conception</span>
+                <h5>Audit RGSEN</h5>
+                <p>Score, recommandations & plan d’action.</p>
+              </a>
+
+              <a class="pill" href="#svc-formations" role="menuitem">
+                <span class="tag">Formations</span>
+                <h5>Accessibilité & RGPD</h5>
+                <p>Parcours adaptés (auditeur, dev, UX/UI, chef de projet...).</p>
+              </a>
+
+              <a class="pill" href="#svc-ia" role="menuitem">
+                <span class="tag">IA Act</span>
+                <h5>Conformité IA (UE)</h5>
+                <p>Analyse des risques, documentation, exigences fournisseurs.</p>
+              </a>
+
+              <a class="pill" href="#svc-accompagnement" role="menuitem">
+                <span class="tag">Accompagnement</span>
+                <h5>De l’audit à l’action</h5>
+                <p>Feuille de route, code review, ateliers, préparation à la publi.</p>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+        <a href="#actualites">Actualité</a>
+        <a href="#contact">Contact</a>
       </nav>
 
-      <div class="nav-cta">
+      <!-- Actions à droite (alignées sur une ligne) -->
+      <div class="nav-actions">
         <a class="btn ghost" href="#scan-url">Scan URL</a>
         <a class="btn" href="#expert">Parler à un expert</a>
-        <!-- Compte : bouton rond + menu -->
+
+        <!-- Compte -->
         <div class="account">
           <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
             <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
@@ -215,10 +303,11 @@
           </div>
         </div>
       </div>
+
     </div>
   </header>
 
-  <!-- ===== CARROUSEL ===== -->
+  <!-- ===== HERO (carrousel) ===== -->
   <section class="carousel-wrap" aria-roledescription="carrousel" aria-label="Mises en avant" aria-live="polite" id="hero">
     <div class="carousel" id="carousel">
       <div class="slides">
@@ -250,73 +339,40 @@
           </figcaption>
         </figure>
       </div>
-      <button class="ctrl prev" aria-label="Diapo précédente">
-        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button class="ctrl next" aria-label="Diapo suivante">
-        <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
-      </button>
+      <button class="ctrl prev" aria-label="Diapo précédente"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="ctrl next" aria-label="Diapo suivante"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
       <div class="dots" role="tablist" aria-label="Sélecteurs de diapo"></div>
     </div>
   </section>
 
-  <!-- ===== TUILES PROMO ===== -->
+  <!-- ===== SERVICES (cartes exemple) ===== -->
   <section id="services" class="section">
     <h2>Nos services</h2>
     <p class="muted">Trois grandes tuiles image pour présenter tes offres principales.</p>
     <div class="tiles">
-      <a class="tile" href="#" aria-label="Service 1">
-        <img src="https://images.unsplash.com/photo-1543357480-c60d40007a8d?q=80&w=1200&auto=format&fit=crop" alt="Service 1" />
-        <span class="t-caption">Service 1</span>
-      </a>
-      <a class="tile" href="#" aria-label="Service 2">
-        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop" alt="Service 2" />
-        <span class="t-caption">Service 2</span>
-      </a>
-      <a class="tile" href="#" aria-label="Service 3">
-        <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop" alt="Service 3" />
-        <span class="t-caption">Service 3</span>
-      </a>
+      <a class="tile" href="#svc-accessibilite"><img src="https://images.unsplash.com/photo-1543357480-c60d40007a8d?q=80&w=1200&auto=format&fit=crop" alt="Service 1" /><span class="t-caption">Accessibilité</span></a>
+      <a class="tile" href="#svc-rgpd"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop" alt="Service 2" /><span class="t-caption">RGPD & DPO</span></a>
+      <a class="tile" href="#svc-eco"><img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop" alt="Service 3" /><span class="t-caption">Éco-conception</span></a>
     </div>
   </section>
 
-  <!-- ===== BLOCS INFO ===== -->
+  <!-- ===== QUI SOMMES-NOUS ===== -->
   <section id="qui-sommes-nous" class="section">
     <h2>Qui sommes-nous ?</h2>
     <p class="muted">Trois blocs informatifs pour présenter Awenoria (mission, méthodes, garanties).</p>
     <div class="info-grid">
-      <article class="info">
-        <div class="ico">A</div>
-        <div>
-          <h3>Expertise</h3>
-          <p class="muted">Des standards élevés et des méthodes éprouvées.</p>
-        </div>
-      </article>
-      <article class="info">
-        <div class="ico">W</div>
-        <div>
-          <h3>Approche</h3>
-          <p class="muted">Transparence, pédagogie et résultats mesurables.</p>
-        </div>
-      </article>
-      <article class="info">
-        <div class="ico">N</div>
-        <div>
-          <h3>Relation</h3>
-          <p class="muted">Accompagnement humain et réactif, sur-mesure.</p>
-        </div>
-      </article>
+      <article class="info"><div class="ico">A</div><div><h3>Expertise</h3><p class="muted">Des standards élevés et des méthodes éprouvées.</p></div></article>
+      <article class="info"><div class="ico">W</div><div><h3>Approche</h3><p class="muted">Transparence, pédagogie et résultats mesurables.</p></div></article>
+      <article class="info"><div class="ico">N</div><div><h3>Relation</h3><p class="muted">Accompagnement humain et réactif, sur-mesure.</p></div></article>
     </div>
   </section>
 
   <!-- ===== FOOTER (type Coca adapté) ===== -->
   <footer class="cc-footer" role="contentinfo" id="contact">
     <div class="cc-container">
-      <!-- Barre du haut : marque + pays -->
       <div class="cc-top">
         <a class="cc-brand" href="#" aria-label="Awenoria">
-          <img src="images/logo.png" alt="Awenoria">
-          <strong>Awenoria</strong>
+          <img src="images/logo.png" alt="Awenoria"><strong>Awenoria</strong>
         </a>
         <a class="cc-locale" href="#" aria-label="Changer de pays">
           <svg viewBox="0 0 24 24"><path d="M12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9zm0 0c2.5-2.8 4-5.8 4-9 0-3.2-1.5-6.2-4-9m0 18C9.5 18.2 8 15.2 8 12c0-3.2 1.5-6.2 4-9"/></svg>
@@ -324,7 +380,6 @@
         </a>
       </div>
 
-      <!-- Grille de liens + réseaux -->
       <div class="cc-grid">
         <div class="cc-col">
           <h4>À propos de nous</h4>
@@ -351,19 +406,15 @@
           </ul>
         </div>
         <div class="cc-social" aria-label="Réseaux sociaux">
-          <a href="#" aria-label="Facebook">
-            <svg viewBox="0 0 24 24"><path d="M15 8h-2c-.6 0-1 .4-1 1v2h3l-.5 3H12v7H9v-7H7v-3h2V9a3 3 0 013-3h3v2z"/></svg>
-          </a>
-          <a href="#" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24"><path d="M6.94 7.5A1.94 1.94 0 116.93 3a1.94 1.94 0 01.01 4.5zM4.5 9h5v11h-5V9zm7 0h4.7v1.7h.1c.7-1.3 2.3-2.1 3.7-2.1 3.9 0 4.6 2.6 4.6 6v5.4h-5V15c0-1.3 0-3-1.8-3s-2.2 1.4-2.2 2.9V20h-5V9z"/></svg>
-          </a>
-          <a href="#" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24"><path d="M20.5 12.2A8.5 8.5 0 113.8 18l-1.2 4.2 4.3-1.1a8.5 8.5 0 0013.6-8.9zM8.9 7.8c.2-.4.4-.4.6-.4h.5c.2 0 .4 0 .5.4.2.4.6 1.4.6 1.5 0 .2 0 .3-.1.5-.1.2-.2.3-.4.5l-.2.2c-.1.1-.2.2 0 .5.2.2.8 1.4 2 2 .9.5 1.2.4 1.4.3.2-.1.6-.5.7-.7.2-.2.4-.2.6-.1.2.1 1.3.6 1.5.7.2.1.3.2.4.3 0 .2 0 1.1-.5 1.7-.5.6-1.1.7-1.3.7-.3.1-2.5.4-4.7-1.1-2-1.3-3.1-3.6-3.2-3.8-.2-.2-.5-1.3-.5-1.7 0-.4.2-.9.3-1.1z"/></svg>
-          </a>
+          <!-- Facebook -->
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M15 8h-2c-.6 0-1 .4-1 1v2h3l-.5 3H12v7H9v-7H7v-3h2V9a3 3 0 013-3h3v2z"/></svg></a>
+          <!-- LinkedIn -->
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M6.94 7.5A1.94 1.94 0 116.93 3a1.94 1.94 0 01.01 4.5zM4.5 9h5v11h-5V9zm7 0h4.7v1.7h.1c.7-1.3 2.3-2.1 3.7-2.1 3.9 0 4.6 2.6 4.6 6v5.4h-5V15c0-1.3 0-3-1.8-3s-2.2 1.4-2.2 2.9V20h-5V9z"/></svg></a>
+          <!-- WhatsApp -->
+          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M20.5 12.2A8.5 8.5 0 113.8 18l-1.2 4.2 4.3-1.1a8.5 8.5 0 0013.6-8.9zM8.9 7.8c.2-.4.4-.4.6-.4h.5c.2 0 .4 0 .5.4.2.4.6 1.4.6 1.5 0 .2 0 .3-.1.5-.1.2-.2.3-.4.5l-.2.2c-.1.1-.2.2 0 .5.2.2.8 1.4 2 2 .9.5 1.2.4 1.4.3.2-.1.6-.5.7-.7.2-.2.4-.2.6-.1.2.1 1.3.6 1.5.7.2.1.3.2.4.3 0 .2 0 1.1-.5 1.7-.5.6-1.1.7-1.3.7-.3.1-2.5.4-4.7-1.1-2-1.3-3.1-3.6-3.2-3.8-.2-.2-.5-1.3-.5-1.7 0-.4.2-.9.3-1.1z"/></svg></a>
         </div>
       </div>
 
-      <!-- Bas de page -->
       <div class="cc-bottom">
         <small>Ce site vous propose des contenus et des informations sur les services d'Awenoria.</small>
         <small>© 2025 Awenoria. Tous Droits Réservés.</small>
@@ -371,74 +422,80 @@
     </div>
   </footer>
 
+  <!-- ===== JS ===== -->
   <script>
-    // util
-    const qs = (s, el=document) => el.querySelector(s);
-    const qsa = (s, el=document) => [...el.querySelectorAll(s)];
-    qs('#year').textContent = new Date().getFullYear();
+    /* util */
+    const qs=(s,el=document)=>el.querySelector(s);
+    const qsa=(s,el=document)=>[...el.querySelectorAll(s)];
 
-    // carousel
+    /* footer year if needed */
+    /* (tu peux ajouter <span id="year"></span> si tu veux) */
+    /* Carousel */
     (function initCarousel(id){
-      const root = document.getElementById(id);
-      if (!root) return;
-      const slides = qs('.slides', root);
-      const items = qsa('.slide', root);
-      const prev = qs('.prev', root);
-      const next = qs('.next', root);
-      const dotsWrap = qs('.dots', root);
-      let index = 0; let timer = null; const AUTOPLAY = 4500;
+      const root=qs('#'+id); if(!root) return;
+      const slides=qs('.slides',root);
+      const items=qsa('.slide',root);
+      const prev=qs('.prev',root);
+      const next=qs('.next',root);
+      const dotsWrap=qs('.dots',root);
+      let index=0, timer=null; const AUTOPLAY=4500;
 
-      items.forEach((_, i) => {
-        const b = document.createElement('button');
-        b.className = 'dot'; b.setAttribute('role','tab');
-        b.setAttribute('aria-label','Aller à la diapo ' + (i+1));
-        b.addEventListener('click', () => go(i));
+      items.forEach((_,i)=>{
+        const b=document.createElement('button');
+        b.className='dot'; b.setAttribute('role','tab');
+        b.setAttribute('aria-label','Aller à la diapo '+(i+1));
+        b.addEventListener('click',()=>go(i));
         dotsWrap.appendChild(b);
       });
 
       function update(){
-        slides.style.transform = `translateX(${-index*100}%)`;
-        qsa('.dot', dotsWrap).forEach((d,i)=> d.setAttribute('aria-current', i===index ? 'true':'false'));
-        items.forEach((s,i)=> s.setAttribute('aria-hidden', i===index ? 'false':'true'));
+        slides.style.transform=`translateX(${-index*100}%)`;
+        qsa('.dot',dotsWrap).forEach((d,i)=>d.setAttribute('aria-current',i===index?'true':'false'));
+        items.forEach((s,i)=>s.setAttribute('aria-hidden',i===index?'false':'true'));
       }
-      function go(i){ index = (i + items.length) % items.length; update(); }
+      function go(i){ index=(i+items.length)%items.length; update(); }
       function nextFn(){ go(index+1); }
       function prevFn(){ go(index-1); }
 
-      prev.addEventListener('click', prevFn);
-      next.addEventListener('click', nextFn);
+      prev.addEventListener('click',prevFn);
+      next.addEventListener('click',nextFn);
+      root.addEventListener('keydown',e=>{ if(e.key==='ArrowLeft') prevFn(); if(e.key==='ArrowRight') nextFn(); });
+      root.tabIndex=0;
 
-      // clavier
-      root.addEventListener('keydown', (e)=>{ if(e.key==='ArrowLeft') prevFn(); if(e.key==='ArrowRight') nextFn(); });
-      root.tabIndex = 0;
-
-      // auto
-      function start(){ stop(); timer = setInterval(nextFn, AUTOPLAY); }
+      function start(){ stop(); timer=setInterval(nextFn,AUTOPLAY); }
       function stop(){ if(timer) clearInterval(timer); }
-      root.addEventListener('mouseenter', stop);
-      root.addEventListener('mouseleave', start);
-      document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
+      root.addEventListener('mouseenter',stop);
+      root.addEventListener('mouseleave',start);
+      document.addEventListener('visibilitychange',()=>document.hidden?stop():start());
 
       update(); start();
     })('carousel');
-  </script>
-  <script>
-    // ===== Account dropdown logic =====
+
+    /* Account dropdown */
     (function(){
-      const btn = document.getElementById('accountBtn');
-      const menu = document.getElementById('accountMenu');
-      if(!btn || !menu) return;
-      const open = ()=>{ menu.classList.add('open'); btn.setAttribute('aria-expanded','true'); };
-      const close = ()=>{ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
-      btn.addEventListener('click', (e)=>{
-        e.stopPropagation();
-        menu.classList.toggle('open');
-        btn.setAttribute('aria-expanded', menu.classList.contains('open'));
-      });
-      document.addEventListener('click', (e)=>{ if(!menu.contains(e.target) && e.target !== btn) close(); });
-      btn.addEventListener('keydown', (e)=>{ if(e.key==='ArrowDown'){ e.preventDefault(); open(); const first = menu.querySelector('[role="menuitem"]'); first && first.focus(); }});
-      menu.querySelectorAll('[role="menuitem"]').forEach(a=> a.setAttribute('tabindex','0'));
-      menu.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ close(); btn.focus(); }});
+      const btn=qs('#accountBtn'), menu=qs('#accountMenu'); if(!btn||!menu) return;
+      const toggle=()=>{ const open=!menu.classList.contains('open'); menu.classList.toggle('open'); btn.setAttribute('aria-expanded',open); };
+      btn.addEventListener('click',e=>{ e.stopPropagation(); toggle(); });
+      document.addEventListener('click',e=>{ if(menu.classList.contains('open') && !menu.contains(e.target) && e.target!==btn) { menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }});
+      btn.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'){ e.preventDefault(); menu.classList.add('open'); btn.setAttribute('aria-expanded','true'); const first=menu.querySelector('[role="menuitem"]'); first && first.focus(); }});
+      menu.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
+      menu.addEventListener('keydown',e=>{ if(e.key==='Escape'){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.focus(); }});
+    })();
+
+    /* Mega-menu Nos services */
+    (function(){
+      const dd=qs('#servicesDropdown'); if(!dd) return;
+      const btn=dd.querySelector('.dropdown-toggle');
+      const panel=dd.querySelector('.mega');
+      const open=()=>{panel.classList.add('open'); btn.setAttribute('aria-expanded','true');};
+      const close=()=>{panel.classList.remove('open'); btn.setAttribute('aria-expanded','false');};
+      btn.addEventListener('click',e=>{ e.stopPropagation(); panel.classList.toggle('open'); btn.setAttribute('aria-expanded', panel.classList.contains('open')); });
+      dd.addEventListener('mouseenter',open);
+      dd.addEventListener('mouseleave',close);
+      document.addEventListener('click',e=>{ if(!dd.contains(e.target)) close(); });
+      btn.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'){ e.preventDefault(); open(); const first=panel.querySelector('[role="menuitem"]'); first && first.focus(); }});
+      panel.addEventListener('keydown',e=>{ if(e.key==='Escape'){ close(); btn.focus(); }});
+      panel.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
     })();
   </script>
 </body>
