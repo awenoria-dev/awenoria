@@ -302,12 +302,42 @@
         <div class="subnote"><span class="badge">Excellent ★★★★★</span><span>Recommandé par nos clients</span></div>
       </div>
      <div class="hero-card">
-  <img
-    src="images/hero-bg.png?v=3"
-    alt="Awenoria – expertise et accompagnement"
-    onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop';"
-  >
+  <img id="heroImage"
+       src=""
+       alt="Awenoria – expertise et accompagnement">
 </div>
+
+<script>
+  // 
+  (function () {
+    var img = document.getElementById('heroImage');
+
+    // 
+    var candidats = [
+      'images/hero-bg.png?v=5',
+      'images/hero-bg.jpg?v=5',
+      'hero-bg.png?v=5',
+      'hero-bg.jpg?v=5'
+    ];
+
+    var i = 0;
+    function essayerSuivant() {
+      if (i >= candidats.length) {
+        // Fallback si rien ne marche
+        img.src = 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop';
+        return;
+      }
+      var url = candidats[i++];
+      var test = new Image();
+      test.onload = function(){ img.src = url; };
+      test.onerror = essayerSuivant;
+      test.src = url;
+    }
+
+    essayerSuivant();
+  })();
+</script>
+
     </div>
   </section>
 
