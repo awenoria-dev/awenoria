@@ -100,17 +100,38 @@
       .slide { height: 300px; }
       .brand-wordmark { height: 18px; }
     }
+  
+    /* ===== FOOTER (style type Coca — adapté à Awenoria) ===== */
+    .cc-footer { background: #0a0a0a; color: #eaeaea; padding: 28px 0 12px; border-top: 1px solid rgba(255,255,255,.12); }
+    .cc-container { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+    .cc-top { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 16px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .cc-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+    .cc-brand img { height: 28px; object-fit: contain; display: block; }
+    .cc-locale { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; text-decoration: none; color: #eaeaea; }
+    .cc-locale svg { width: 18px; height: 18px; stroke: #eaeaea; fill: none; }
+    .cc-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)) auto; gap: 22px; padding: 20px 0; }
+    .cc-col h4 { margin: 0 0 12px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #a7afbf; }
+    .cc-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .cc-col a { color: #eaeaea; text-decoration: none; font-weight: 600; }
+    .cc-col a:hover { text-decoration: underline; }
+    .cc-social { display: flex; align-items: center; gap: 14px; justify-self: end; }
+    .cc-social a { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.5); }
+    .cc-social svg { width: 18px; height: 18px; fill: none; stroke: #eaeaea; stroke-width: 2; }
+    .cc-bottom { border-top: 1px solid rgba(255,255,255,.12); padding-top: 12px; display: grid; grid-template-columns: 1fr auto; gap: 12px; }
+    .cc-bottom small { color: #b8bfcc; }
+    @media (max-width: 900px){ .cc-grid { grid-template-columns: 1fr 1fr; } .cc-social { justify-self: start; } }
+    @media (max-width: 600px){ .cc-top { grid-template-columns: 1fr; gap: 10px; } .cc-bottom { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <!-- ===== NAVBAR ===== -->
- <header class="navbar" role="banner">
-  <div class="nav-wrap">
-    <a class="brand" href="#" aria-label="Aller à l'accueil">
-      <img class="brand-img" src="images/logo.png" alt="Logo Awenoria">
-      <span class="brand-title">Awenoria</span>
-    </a>
-
+  <header class="navbar" role="banner">
+    <div class="nav-wrap">
+      <a class="brand" href="#" aria-label="Aller à l'accueil">
+        <!-- Remplace les src ci-dessous par les chemins de TON repo (ex: /images/logo-simple-a.png) -->
+        <img class="brand-img" src="/images/logo-simple-a.png" alt="Logo Awenoria (A)" />
+        <img class="brand-wordmark" src="/images/awenoria-wordmark.png" alt="Awenoria" />
+      </a>
 
       <nav class="nav-links" aria-label="Navigation principale">
         <ul>
@@ -219,15 +240,65 @@
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer id="contact" role="contentinfo">
-    <div class="foot-wrap">
-      <small class="muted">© <span id="year"></span> Awenoria. Tous droits réservés.</small>
-      <nav class="foot-links" aria-label="Liens de pied de page">
-        <a href="#scan-url">Scan URL</a>
-        <a href="#expert">Parler à un expert</a>
-        <a href="#actualites">Actualité</a>
-      </nav>
+  <!-- ===== FOOTER (type Coca adapté) ===== -->
+  <footer class="cc-footer" role="contentinfo" id="contact">
+    <div class="cc-container">
+      <!-- Barre du haut : marque + pays -->
+      <div class="cc-top">
+        <a class="cc-brand" href="#" aria-label="Awenoria">
+          <img src="images/logo.png" alt="Awenoria">
+          <strong>Awenoria</strong>
+        </a>
+        <a class="cc-locale" href="#" aria-label="Changer de pays">
+          <svg viewBox="0 0 24 24"><path d="M12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9zm0 0c2.5-2.8 4-5.8 4-9 0-3.2-1.5-6.2-4-9m0 18C9.5 18.2 8 15.2 8 12c0-3.2 1.5-6.2 4-9"/></svg>
+          <span>France</span>
+        </a>
+      </div>
+
+      <!-- Grille de liens + réseaux -->
+      <div class="cc-grid">
+        <div class="cc-col">
+          <h4>À propos de nous</h4>
+          <ul>
+            <li><a href="#actualites">Nos actualités</a></li>
+            <li><a href="#qui-sommes-nous">Histoire</a></li>
+            <li><a href="#carriere">Carrière</a></li>
+          </ul>
+        </div>
+        <div class="cc-col">
+          <h4>Besoin d'aide ?</h4>
+          <ul>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Nous contacter</a></li>
+          </ul>
+        </div>
+        <div class="cc-col">
+          <h4>Utilisation</h4>
+          <ul>
+            <li><a href="#conditions">Conditions d'utilisation</a></li>
+            <li><a href="#confidentialite">Politique de Confidentialité</a></li>
+            <li><a href="#cookies">Politique d'utilisation des cookies</a></li>
+            <li><a href="#param-cookies">Paramètres des cookies</a></li>
+          </ul>
+        </div>
+        <div class="cc-social" aria-label="Réseaux sociaux">
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M15 8h-2c-.6 0-1 .4-1 1v2h3l-.5 3H12v7H9v-7H7v-3h2V9a3 3 0 013-3h3v2z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M6.94 7.5A1.94 1.94 0 116.93 3a1.94 1.94 0 01.01 4.5zM4.5 9h5v11h-5V9zm7 0h4.7v1.7h.1c.7-1.3 2.3-2.1 3.7-2.1 3.9 0 4.6 2.6 4.6 6v5.4h-5V15c0-1.3 0-3-1.8-3s-2.2 1.4-2.2 2.9V20h-5V9z"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M20.5 12.2A8.5 8.5 0 113.8 18l-1.2 4.2 4.3-1.1a8.5 8.5 0 0013.6-8.9zM8.9 7.8c.2-.4.4-.4.6-.4h.5c.2 0 .4 0 .5.4.2.4.6 1.4.6 1.5 0 .2 0 .3-.1.5-.1.2-.2.3-.4.5l-.2.2c-.1.1-.2.2 0 .5.2.2.8 1.4 2 2 .9.5 1.2.4 1.4.3.2-.1.6-.5.7-.7.2-.2.4-.2.6-.1.2.1 1.3.6 1.5.7.2.1.3.2.4.3 0 .2 0 1.1-.5 1.7-.5.6-1.1.7-1.3.7-.3.1-2.5.4-4.7-1.1-2-1.3-3.1-3.6-3.2-3.8-.2-.2-.5-1.3-.5-1.7 0-.4.2-.9.3-1.1z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bas de page -->
+      <div class="cc-bottom">
+        <small>Ce site vous propose des contenus et des informations sur les services d'Awenoria.</small>
+        <small>© 2025 Awenoria. Tous Droits Réservés.</small>
+      </div>
     </div>
   </footer>
 
