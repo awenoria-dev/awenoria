@@ -95,10 +95,18 @@
     .checks li{ display:grid; grid-template-columns:20px 1fr; gap:10px; align-items:start; color:var(--text); }
     .checks li svg{ width:18px; height:18px; stroke:var(--accent); fill:none; stroke-width:3; margin-top:2px; }
     .hero-intro .cta-row{ display:flex; flex-wrap:wrap; gap:10px; }
+    /* Boutons élégants (comme avant) */
+    .hero-intro .btn{ height:38px; line-height:38px; padding:0 16px; border-radius:10px; font-weight:800; letter-spacing:.01em; box-shadow:0 6px 16px rgba(27,136,255,.22); }
+    .hero-intro .btn:hover{ filter:brightness(1.06); transform:translateY(-1px); transition:.15s ease; }
+    .hero-intro .btn:active{ transform:translateY(0); }
+    .hero-intro .btn.ghost{ background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.22); box-shadow:none; }
+    .hero-intro .btn.ghost:hover{ background:rgba(255,255,255,.06); }
     .hero-card{ border:1px solid rgba(255,255,255,.1); border-radius:18px; background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); overflow:hidden; box-shadow:var(--shadow); }
     .hero-card img{ width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:16/10; }
     .hero-intro .subnote{ display:inline-flex; align-items:center; gap:8px; margin-top:12px; color:var(--muted); font-size:14px; }
     .hero-intro .badge{ display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:999px; padding:6px 10px; font-weight:700; font-size:12px; letter-spacing:.02em; }
+
+    @media (max-width:900px){ .hero-intro .wrap{ grid-template-columns:1fr; } }
 
     /* ===== CAROUSEL ===== */
     .carousel-wrap{position:relative; overflow:hidden}
@@ -151,7 +159,7 @@
 
     /* ===== Responsive ===== */
     @media (max-width:1024px){ .mega-grid{grid-template-columns:1fr 1fr} }
-    @media (max-width:720px){ .tiles{grid-template-columns:1fr 1fr} .info-grid{grid-template-columns:1fr 1fr} .nav-main{display:none} } .info-grid{grid-template-columns:1fr 1fr} .nav-main{display:none} }
+    @media (max-width:720px){ .tiles{grid-template-columns:1fr 1fr} .info-grid{grid-template-columns:1fr 1fr} /* on conserve le menu visible et wrap */ .nav-main{display:flex !important; flex-wrap:wrap; gap:10px; justify-content:flex-start;} } .info-grid{grid-template-columns:1fr 1fr} .nav-main{display:none} }
     @media (max-width:620px){ .tiles,.info-grid{grid-template-columns:1fr} .slide{height:300px} .cc-grid{grid-template-columns:1fr 1fr} .cc-social{justify-self:start} .cc-top{grid-template-columns:1fr; gap:10px} .cc-bottom{grid-template-columns:1fr} }
   </style>
 </head>
@@ -233,7 +241,7 @@
         <div class="subnote"><span class="badge">Excellent ★★★★★</span><span>Recommandé par nos clients</span></div>
       </div>
       <div class="hero-card">
-        <img src="images/hero-bg.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop';" alt="Awenoria – expertise et accompagnement">
+        <img src="images/hero-bg.png?v=1" alt="Awenoria – expertise et accompagnement">
       </div>
     </div>
   </section>
