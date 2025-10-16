@@ -24,7 +24,10 @@
     * { box-sizing: border-box; }
     body {
       margin: 0; background: radial-gradient(1200px 600px at 20% -10%, #151824 0%, var(--bg) 55%);
-      color: var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.5;
+      color: var(--text);
+      /* Police globale : remplacez la source @font-face ci-dessous par la police d'epsicap.fr si besoin */
+      font-family: "AwenoriaUI", Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
     }
 
@@ -121,6 +124,44 @@
     .cc-bottom small { color: #b8bfcc; }
     @media (max-width: 900px){ .cc-grid { grid-template-columns: 1fr 1fr; } .cc-social { justify-self: start; } }
     @media (max-width: 600px){ .cc-top { grid-template-columns: 1fr; gap: 10px; } .cc-bottom { grid-template-columns: 1fr; } }
+  
+    /* === Police personnalisée : placez votre fichier dans /fonts/ et adaptez le src === */
+    @font-face {
+      font-family: "AwenoriaUI";
+      src: url("fonts/awenoria-ui.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: swap;
+    }
+
+    /* ===== Account (bouton rond + menu) ===== */
+    .account { position: relative; }
+    .account-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.4); background: rgba(255,255,255,.06);
+      cursor: pointer; transition: background .2s ease, transform .06s ease; color: var(--text);
+    }
+    .account-btn:hover { background: rgba(255,255,255,.12); }
+    .account-btn:active { transform: translateY(1px); }
+    .account-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .account-menu {
+      position: absolute; right: 0; top: 52px; width: min(86vw, 340px);
+      border-radius: 18px; border: 1px solid rgba(255,255,255,.16);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,.35);
+      padding: 12px; display: none;
+    }
+    .account-menu.open { display: block; animation: fadeIn .16s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px);} to { opacity: 1; transform: translateY(0);} }
+
+    .acc-item { display: grid; grid-template-columns: 40px 1fr 24px; gap: 10px; align-items: center; padding: 12px; border-radius: 14px; text-decoration: none; color: var(--text); }
+    .acc-item:hover { background: rgba(255,255,255,.06); }
+    .acc-ico { width: 40px; height: 40px; border-radius: 999px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.2); }
+    .acc-ico svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .acc-title { font-weight: 700; margin: 0; }
+    .acc-sub { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+    .acc-arrow svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
   </style>
 </head>
 <body>
@@ -145,6 +186,34 @@
       <div class="nav-cta">
         <a class="btn ghost" href="#scan-url">Scan URL</a>
         <a class="btn" href="#expert">Parler à un expert</a>
+        <!-- Compte : bouton rond + menu -->
+        <div class="account">
+          <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
+            <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
+          </button>
+          <div class="account-menu" id="accountMenu" role="menu" aria-label="Connexion">
+            <a class="acc-item" href="#login-client" role="menuitem">
+              <div class="acc-ico">
+                <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
+              </div>
+              <div>
+                <p class="acc-title">Connexion Client</p>
+                <p class="acc-sub">Je suis un particulier</p>
+              </div>
+              <div class="acc-arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
+            </a>
+            <a class="acc-item" href="#login-partenaire" role="menuitem">
+              <div class="acc-ico">
+                <svg viewBox="0 0 24 24"><path d="M16 11a4 4 0 10-8 0 4 4 0 008 0zm-9 6c-2 1-3 2-3 3v1h16v-1c0-1-1-2-3-3-1 .6-2 1-5 1s-4-.4-5-1z"/></svg>
+              </div>
+              <div>
+                <p class="acc-title">Connexion Partenaire</p>
+                <p class="acc-sub">Je suis un professionnel</p>
+              </div>
+              <div class="acc-arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -352,6 +421,25 @@
 
       update(); start();
     })('carousel');
+  </script>
+  <script>
+    // ===== Account dropdown logic =====
+    (function(){
+      const btn = document.getElementById('accountBtn');
+      const menu = document.getElementById('accountMenu');
+      if(!btn || !menu) return;
+      const open = ()=>{ menu.classList.add('open'); btn.setAttribute('aria-expanded','true'); };
+      const close = ()=>{ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
+      btn.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', menu.classList.contains('open'));
+      });
+      document.addEventListener('click', (e)=>{ if(!menu.contains(e.target) && e.target !== btn) close(); });
+      btn.addEventListener('keydown', (e)=>{ if(e.key==='ArrowDown'){ e.preventDefault(); open(); const first = menu.querySelector('[role="menuitem"]'); first && first.focus(); }});
+      menu.querySelectorAll('[role="menuitem"]').forEach(a=> a.setAttribute('tabindex','0'));
+      menu.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ close(); btn.focus(); }});
+    })();
   </script>
 </body>
 </html>
