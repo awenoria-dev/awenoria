@@ -5,8 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Awenoria — Audit de conformité automatisé</title>
 <meta name="description" content="Testez la conformité RGPD, l'accessibilité et les mentions légales de votre site en un clic. Résultats clairs, détails exploitables et export PDF." />
+
+<!-- Perf: icônes + fonts -->
 <link rel="icon" type="image/png" sizes="32x32" href="/awenoria/images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/awenoria/images/favicon-16.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -17,12 +20,12 @@
   --shadow-sm:0 6px 20px rgba(16,32,48,.06);
   --shadow-lg:0 24px 48px rgba(16,32,48,.10);
   --hero-overlay-rgb:0,90,142; --hero-overlay-alpha:.42; --hero-overlay-alpha-mobile:.52;
-
   /* décor */
   --copper-1:#B86122; --copper-2:#D67A2E; --copper-3:#F2B56C;
   --blue-soft-1:#A9D3FF; --blue-soft-2:#7FB2CB; --blue-soft-3:#6FB3D8;
 }
-*{box-sizing:border-box} html,body{margin:0}
+*{box-sizing:border-box}
+html,body{margin:0}
 body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--text);line-height:1.65}
 a{text-decoration:none} img{max-width:100%;display:block}
 .container{max-width:1160px;margin:0 auto;padding:24px 20px}
@@ -30,25 +33,15 @@ a{text-decoration:none} img{max-width:100%;display:block}
 /* ================= HEADER ================= */
 .header{position:sticky;top:0;z-index:60;background:var(--bg-top);border-bottom:1px solid transparent;transition:.25s}
 .header.scrolled{background:#fff;border-bottom-color:var(--stroke);box-shadow:0 10px 24px rgba(16,32,48,.06)}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
+.nav{display:flex;align-items:center;justify-content:flex-start;gap:20px;min-height:84px} /* Accueil à gauche */
 .brand__logo{height:92px;width:auto} @media(min-width:992px){.brand__logo{height:100px}}
-.mainnav{display:flex;gap:2px;margin-left:auto}
+.mainnav{display:flex;gap:2px;margin-left:16px} /* espace logo ↔ Accueil */
 .menu-item{list-style:none;position:relative}
 .menu-link{display:inline-block;padding:14px 14px;border-radius:12px;color:var(--blue-dark);font-weight:800;position:relative}
 .menu-link:hover{color:var(--orange);background:rgba(0,115,182,.06)}
 .menu-link::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:3px;background:var(--orange);border-radius:2px;transform:scaleX(0);transition:.22s}
-.menu-link:hover::after,.menu-link.active::after{transform:scaleX(1)} .menu-link.active{color:var(--orange)}
-.dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:280px;padding:10px;background:#fff;border:1px solid var(--stroke);border-radius:14px;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translateY(8px);transition:.18s}
-.menu-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
-.dropdown a{display:flex;padding:10px 12px;border-radius:10px;color:var(--blue-dark);font-weight:700;white-space:nowrap}
-.dropdown a:hover{background:#f3f8fc;color:var(--orange)}
-/* mobile : menu “stack” et dropdown visibles */
-@media (max-width:860px){
-  .mainnav{gap:8px;flex-wrap:wrap}
-  .menu-item{position:static}
-  .dropdown{position:static;transform:none;opacity:1;visibility:visible;box-shadow:none;border:0;padding:6px 0}
-  .dropdown a{padding:8px 10px}
-}
+.menu-link:hover::after,.menu-link.active::after{transform:scaleX(1)}
+.menu-link.active{color:var(--orange)}
 
 /* ================= HERO ================= */
 .hero--image{
@@ -110,7 +103,8 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .btn.blue{background:var(--blue)} .btn.blue:hover{background:rgba(0,115,182,.15);color:var(--blue-dark);box-shadow:inset 0 0 0 1px rgba(0,115,182,.35)}
 
 /* ================= SECTIONS ================= */
-.section{padding:88px 0} .section.alt{background:var(--surface);position:relative}
+.section{padding:88px 0}
+.section.alt{background:var(--surface);position:relative}
 .section.alt::before{content:"";position:absolute;left:0;right:0;top:-24px;height:24px;background:linear-gradient(180deg,rgba(237,243,247,0),rgba(237,243,247,1))}
 .section-title{margin:0 0 12px;font-size:32px;color:#0f2746;text-align:center;white-space:nowrap}
 .section-title::after{content:"";display:block;width:64px;height:4px;margin:10px auto 0;background:var(--orange);border-radius:3px;opacity:.85}
@@ -157,7 +151,8 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .btn.ghost{background:#fff;color:var(--blue-dark);border:1px solid var(--stroke)}
 .btn.link{background:transparent;color:var(--blue-dark);border:none;padding:8px 10px}
 .detail{display:none;margin-top:12px;border-top:1px dashed var(--stroke);padding-top:12px}
-.detail .grid{grid-template-columns:repeat(3,1fr)} @media(max-width:900px){.detail .grid{grid-template-columns:1fr}}
+.detail .grid{grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){.detail .grid{grid-template-columns:1fr}}
 .detail .box{border:1px solid var(--stroke);border-radius:14px;padding:14px;background:#fff}
 .detail h4{margin:0 0 6px}
 .small{font-size:13px;color:var(--muted)}
@@ -165,37 +160,13 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 /* ================= BRANDWORD “Awenoria” ================= */
 .section-title{ letter-spacing:0; line-height:1.2; }
 .section-title .brandword{ font-size:1em; line-height:1; }
-
-.brandword{
-  --kern: 0.02em;
-  --i-scaleX: 1;
-  --i-scaleY: 0.86;
-  --idot-top: 0.09em;
-  --idot-left: 50%;
-  display:inline-flex;
-  gap: var(--kern);
-  letter-spacing: var(--kern);
-  font-kerning: none; font-feature-settings: "kern" 0;
-  align-items:baseline; white-space:nowrap; line-height:1;
-}
+.brandword{ --kern:0.02em; --i-scaleX:1; --i-scaleY:0.86; --idot-top:0.09em; --idot-left:50%;
+  display:inline-flex; gap:var(--kern); letter-spacing:var(--kern); font-kerning:none; font-feature-settings:"kern" 0;
+  align-items:baseline; white-space:nowrap; line-height:1; }
 .brandword .A{ color:var(--blue-dark); font-weight:900; margin-right:0 !important; }
-.brandword .rest{
-  background:linear-gradient(90deg,#0b4f78 0%, #2f86b8 40%, #6fb3d8 100%);
-  -webkit-background-clip:text; background-clip:text;
-  color:transparent; font-weight:900; position:relative;
-}
-.brandword .i-body{
-  position:relative; display:inline-block; font-style:normal; font-size:1em; line-height:1;
-  background:inherit; -webkit-background-clip:text; background-clip:text; color:transparent;
-  transform: scale(var(--i-scaleX), var(--i-scaleY)); transform-origin: bottom center;
-  filter: brightness(1.10) saturate(0.85);
-}
-.brandword .i-body::after{
-  content:""; position:absolute; left: var(--idot-left);
-  transform: translateX(-50%) scaleY(calc(1 / var(--i-scaleY)));
-  top: var(--idot-top);
-  width:0.20em; height:0.20em; background:var(--orange); border-radius:50%;
-}
+.brandword .rest{ background:linear-gradient(90deg,#0b4f78 0%, #2f86b8 40%, #6fb3d8 100%); -webkit-background-clip:text; background-clip:text; color:transparent; font-weight:900; position:relative; }
+.brandword .i-body{ position:relative; display:inline-block; font-style:normal; font-size:1em; line-height:1; background:inherit; -webkit-background-clip:text; background-clip:text; color:transparent; transform:scale(var(--i-scaleX), var(--i-scaleY)); transform-origin:bottom center; filter:brightness(1.10) saturate(0.85); }
+.brandword .i-body::after{ content:""; position:absolute; left:var(--idot-left); transform:translateX(-50%) scaleY(calc(1 / var(--i-scaleY))); top:var(--idot-top); width:0.20em; height:0.20em; background:var(--orange); border-radius:50%; }
 
 /* ================= CHECKCARDS ================= */
 .checkcards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch}
@@ -204,13 +175,8 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .cc:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:#d5e7f4}
 .cc ul{margin:0;padding:0;list-style:none}
 .cc li{position:relative;padding-left:34px;margin:14px 0;cursor:pointer;font-weight:600;color:#0f2746}
-.cc li::before{
-  content:""; position:absolute; left:0; top:.15em; width:20px; height:20px; border-radius:50%;
-  background:linear-gradient(180deg,#eaf5fd,#d8ecfa); border:2px solid #cbe3f3; box-shadow:inset 0 0 0 2px #fff;
-}
-.cc li::after{
-  content:""; position:absolute; left:6px; top:.52em; width:7px; height:12px; border-right:3px solid var(--blue-dark); border-bottom:3px solid var(--blue-dark); transform:rotate(45deg);
-}
+.cc li::before{content:""; position:absolute; left:0; top:.15em; width:20px; height:20px; border-radius:50%; background:linear-gradient(180deg,#eaf5fd,#d8ecfa); border:2px solid #cbe3f3; box-shadow:inset 0 0 0 2px #fff;}
+.cc li::after{content:""; position:absolute; left:6px; top:.52em; width:7px; height:12px; border-right:3px solid var(--blue-dark); border-bottom:3px solid var(--blue-dark); transform:rotate(45deg);}
 .cc small{display:block;color:var(--muted)}
 
 /* ================= MODAL ================= */
@@ -238,28 +204,16 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 .reveal{opacity:0;transform:translateY(8px);transition:.34s}
 .reveal.is-visible{opacity:1;transform:none}
 
+/* ================= Accessibilité utilitaire ================= */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
 /* ================= Print ================= */
 @media print{
+  @page{ margin:12mm; }
   body{background:#fff}
   header, .hero--image, .section, .sticky-cta, footer{display:none!important}
   #resultat{display:block!important;border:none;box-shadow:none}
 }
-
-/* ===== FAQ PREMIUM ===== */
-.faq{max-width:860px;margin:0 auto}
-.faq__list{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:12px}
-.faq-item{background:#fff;border:1px solid var(--stroke);border-radius:16px;box-shadow:var(--shadow-sm);overflow:hidden;transition:border-color .2s, box-shadow .2s, transform .2s;}
-.faq-item:hover{border-color:#d5e7f4;box-shadow:var(--shadow-lg);transform:translateY(-1px)}
-.faq-q{-webkit-tap-highlight-color:transparent;appearance:none;border:0;background:transparent;width:100%;display:flex;align-items:center;gap:12px; text-align:left;padding:16px 18px; cursor:pointer; font-weight:800; color:#0f2746; font-size:16px;}
-.faq-q:focus{outline:none}
-.faq-q:focus-visible{box-shadow:0 0 0 4px rgba(0,115,182,.15) inset}
-.faq-q .chev{margin-left:auto;flex:0 0 auto;transition:transform .24s ease}
-.faq-item[open] .chev{transform:rotate(180deg)}
-.faq-a{padding:0 18px; font-size:15px; color:var(--muted);display:block; overflow:hidden; max-height:0; transition:max-height .3s ease;border-top:1px dashed var(--stroke); background:#fff;}
-.faq-a__inner{padding:12px 0 16px}
-.faq-item[open]::before{content:""; display:block; height:3px;background:linear-gradient(90deg, var(--orange), #ff8840 50%, var(--blue) 100%);}
-.mini{font-size:13px;color:var(--muted)}
-.badge.outline{background:#fff;color:var(--blue-dark);border:1px solid var(--stroke)}
 </style>
 </head>
 <body>
@@ -268,17 +222,17 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 <header id="site-header" class="header" role="banner">
   <div class="container nav">
     <a href="/awenoria/index.html" class="brand" aria-label="Aller à l’accueil">
-      <img src="/awenoria/images/logo.png" alt="Awenoria" class="brand__logo">
+      <!-- Dimensions pour limiter le CLS -->
+      <img src="/awenoria/images/logo.png" alt="Awenoria" class="brand__logo" width="200" height="60">
     </a>
 
-<nav aria-label="Navigation principale">
-  <ul class="mainnav" role="menubar">
-    <li class="menu-item" role="none">
-      <a class="menu-link active" role="menuitem" href="/awenoria/index.html">Accueil</a>
-    </li>
-  </ul>
-</nav>
-
+    <nav aria-label="Navigation principale">
+      <ul class="mainnav" role="menubar">
+        <li class="menu-item" role="none">
+          <a class="menu-link active" role="menuitem" href="/awenoria/index.html">Accueil</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -289,6 +243,7 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
     <p id="hero-lead" class="lead type-on-view" data-text="Testez la conformité RGPD, l'accessibilité et les mentions légales de votre site en un clic. Résultats clairs et actions concrètes."></p>
     <div class="hero-actions">
       <div class="testbox--pill">
+        <label for="url" class="sr-only">URL du site à analyser</label>
         <input id="url" class="url" type="text" placeholder="https://votresite.fr" />
         <button class="btn btn-hero" onclick="analyser()">Analyser</button>
       </div>
@@ -624,24 +579,20 @@ input.url:focus{box-shadow:0 0 0 4px rgba(0,115,182,.12)}
 <script>
 /* année + header sticky */
 document.getElementById('year').textContent = new Date().getFullYear();
-(function(){const h=document.getElementById('site-header');const t=()=>{if(window.scrollY>10)h.classList.add('scrolled');else h.classList.remove('scrolled')};t();window.addEventListener('scroll',t,{passive:true})})();
-
-/* Accessibilité ARIA : synchro de aria-expanded au focus/blur */
 (function(){
-  var items = document.querySelectorAll('.menu-item');
-  items.forEach(function(li){
-    var link = li.querySelector('.menu-link');
-    var dd = li.querySelector('.dropdown');
-    if(!link || !dd) return;
-    link.addEventListener('focus', function(){ link.setAttribute('aria-expanded','true'); });
-    link.addEventListener('blur', function(){ link.setAttribute('aria-expanded','false'); });
-    dd.addEventListener('focusin', function(){ link.setAttribute('aria-expanded','true'); });
-    dd.addEventListener('focusout', function(){ link.setAttribute('aria-expanded','false'); });
-  });
+  const h=document.getElementById('site-header');
+  const t=()=>{ if(window.scrollY>10) h.classList.add('scrolled'); else h.classList.remove('scrolled'); };
+  t(); window.addEventListener('scroll',t,{passive:true});
 })();
 
 /* Reveal on scroll */
-(function(){const els=[...document.querySelectorAll('.reveal')]; const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.12}); els.forEach(el=>io.observe(el));})();
+(function(){
+  const els=[...document.querySelectorAll('.reveal')];
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+  }),{threshold:.12});
+  els.forEach(el=>io.observe(el));
+})();
 
 /* Typing effect (rejoue à chaque retour en vue) */
 (function(){
@@ -681,25 +632,30 @@ document.getElementById('year').textContent = new Date().getFullYear();
 /* Sticky CTA logique */
 (function(){
   const sc=document.getElementById('stickyCta'); if(!sc) return;
-  const hero=document.querySelector('.hero--image'); const anchors=document.querySelectorAll('.cta-anchor');
+  const hero=document.querySelector('.hero--image');
+  const anchors=document.querySelectorAll('.cta-anchor');
   let heroVisible=true, anchorVisible=false;
   const apply=()=>{ sc.style.display=(heroVisible||anchorVisible)?'none':'flex'; };
   const ioHero=new IntersectionObserver(([e])=>{heroVisible=e.isIntersecting;apply();},{threshold:.05}); ioHero.observe(hero);
   const ioAnch=new IntersectionObserver(entries=>{anchorVisible=entries.some(e=>e.isIntersecting);apply();},{threshold:.2}); anchors.forEach(a=>ioAnch.observe(a)); apply();
 })();
 
-/* Analyse via Cloudflare Worker */
+/* ===== Utilitaires sûrs ===== */
 const WORKER_URL="https://awenoria.bmavcontact.workers.dev/analyze?v=fix1";
-const normalizeUrl=u=>{if(!u) return ""; u=u.trim(); if(!/^https?:\/\//i.test(u)) u="https://"+u; return u;};
+const normalizeUrl=u=>{ if(!u) return ""; u=u.trim(); if(!/^https?:\/\//i.test(u)) u="https://"+u; return u; };
 const pct=n=>Number.isFinite(n)?`${Math.round(n)}%`:"—";
+const esc = s => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 
+/* ===== Rendu du résultat (XSS-safe) ===== */
 function buildResultUI(data,site){
   const s=data.scores||{}, rgpd=data.rgpd||{}, legal=data.legal||{}, a11y=data.a11y||{};
   const box=document.getElementById('resultat'); box.style.display='block';
   const detailId="detail-"+Date.now();
+  const safeUrl = esc(data.finalUrl||site);
+  const safeOther = esc(rgpd.other||"—");
   box.innerHTML=`
     <div class="header">
-      <h3>Résultats pour <span class="tag">${(data.finalUrl||site)}</span></h3>
+      <h3>Résultats pour <span class="tag">${safeUrl}</span></h3>
       <span class="small">Analyse locale — aucune donnée conservée</span>
     </div>
     <div class="summary">
@@ -710,7 +666,7 @@ function buildResultUI(data,site){
     <div class="footer">
       <button class="btn" onclick="toggleDetail('${detailId}')">Accéder au détail</button>
       <button class="btn ghost" onclick="exportResultPDF()">Exporter en PDF</button>
-      <button class="btn link" onclick='downloadJSON(${JSON.stringify(JSON.stringify(data)).replace(/'/g,"&#39;")})'>Télécharger le JSON</button>
+      <button class="btn link" onclick="downloadJSON(window.__awen_lastData)">Télécharger le JSON</button>
     </div>
     <div id="${detailId}" class="detail">
       <div class="grid">
@@ -719,7 +675,7 @@ function buildResultUI(data,site){
           <ul>
             <li>Politique de confidentialité : <b>${rgpd.policyLink?"présente":"absente"}</b></li>
             <li>Cookies : ${rgpd.cookiesWords?"mots-clés détectés":"non détectés"}</li>
-            <li>Autres indices : ${rgpd.other||"—"}</li>
+            <li>Autres indices : ${safeOther}</li>
           </ul>
         </div>
         <div class="box">
@@ -733,7 +689,7 @@ function buildResultUI(data,site){
           <h4>Accessibilité</h4>
           <ul>
             <li>Images avec ALT : <b>${a11y.imgWithAlt||0}/${a11y.imgCount||0}</b></li>
-            <li>Autres repères : ${a11y.notes||"—"}</li>
+            <li>Autres repères : ${esc(a11y.notes||"—")}</li>
           </ul>
         </div>
       </div>
@@ -742,8 +698,15 @@ function buildResultUI(data,site){
 }
 function toggleDetail(id){const el=document.getElementById(id); if(!el) return; el.style.display = el.style.display==='block' ? 'none' : 'block';}
 function exportResultPDF(){ window.print(); }
-function downloadJSON(jsonString){ const blob=new Blob([JSON.parse(jsonString)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='awenoria-analyse.json'; a.click(); URL.revokeObjectURL(a.href); }
+function downloadJSON(obj){
+  if(!obj){ alert("Aucun résultat à exporter pour le moment."); return; }
+  const pretty = JSON.stringify(obj, null, 2);
+  const blob=new Blob([pretty],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='awenoria-analyse.json'; a.click(); URL.revokeObjectURL(a.href);
+}
 
+/* ===== Analyse ===== */
 async function analyser(){
   const input=document.getElementById('url'); const site=normalizeUrl(input.value);
   const box=document.getElementById('resultat');
@@ -753,16 +716,18 @@ async function analyser(){
     const res=await fetch(`${WORKER_URL}&url=${encodeURIComponent(site)}`,{headers:{accept:"application/json"},mode:'cors',cache:'no-store'});
     const data=await res.json().catch(()=>({}));
     if(!res.ok || data.ok===false || !data){ throw new Error(data?.error || `Analyse indisponible (${res.status})`); }
+    window.__awen_lastData = data;
     buildResultUI(data,site);
   }catch(e){
     console.error(e);
-    const demo={finalUrl:site,scores:{global:80,rgpd:72,mentions:58,accessibilite:86},rgpd:{policyLink:true,cookiesWords:true},legal:{mentionsLink:false,hasPublisher:false},a11y:{imgWithAlt:24,imgCount:26}};
+    const demo={finalUrl:site,scores:{global:80,rgpd:72,mentions:58,accessibilite:86},rgpd:{policyLink:true,cookiesWords:true,other:"—"},legal:{mentionsLink:false,hasPublisher:false},a11y:{imgWithAlt:24,imgCount:26,notes:"—"}};
+    window.__awen_lastData = demo;
     box.innerHTML = `<p class="small" style="color:#b3261e"><b>Info :</b> l’analyse est momentanément indisponible. Exemple de rapport affiché.</p>`;
     buildResultUI(demo,site);
   }
 }
 
-/* MODAL — contenu “Ce que l’audit vérifie” */
+/* ===== MODAL — contenu “Ce que l’audit vérifie” ===== */
 const TOPIC_CONTENT={
   policy:`<h3>Politique de confidentialité & mentions RGPD</h3><p><b>Objectif.</b> Informer sur les finalités, bases légales, durées, droits et point de contact (DPO/Privacy).</p><p><b>Évaluation.</b> Présence de la page, accès au lien, sections clés, lisibilité.</p><p><b>À faire.</b> Clarifier bases légales & droits, ajouter contacts, maintenir la mise à jour.</p>`,
   legalbase:`<h3>Base légale, droits, DPO & contacts</h3><p><b>Objectif.</b> Rendre explicites bases légales et droits. Proposer un canal de contact (formulaire/dédié).</p>`,
@@ -779,67 +744,6 @@ function openModal(label,key){ modalTitle.textContent=label; modalBody.innerHTML
 function closeModal(){ modal.style.display='none'; }
 modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
 document.querySelectorAll('.cc li').forEach(li=>li.addEventListener('click',()=>openModal(li.textContent.trim(), li.dataset.topic)));
-
-/* ===== FAQ Premium — accordéon accessible + animation hauteur auto ===== */
-(function(){
-  const list = document.getElementById('faqList');
-  if(!list) return;
-
-  const items = [...list.querySelectorAll('.faq-item')];
-
-  function closeItem(li){
-    if(!li.hasAttribute('open')) return;
-    const btn = li.querySelector('.faq-q');
-    const panel = li.querySelector('.faq-a');
-    btn.setAttribute('aria-expanded','false');
-    li.removeAttribute('open');
-    panel.style.maxHeight = panel.scrollHeight + 'px';
-    requestAnimationFrame(()=>{ panel.style.maxHeight = '0px'; });
-  }
-
-  function openItem(li){
-    items.forEach(it=>{ if(it!==li) closeItem(it); });
-
-    const btn = li.querySelector('.faq-q');
-    const panel = li.querySelector('.faq-a');
-
-    btn.setAttribute('aria-expanded','true');
-    li.setAttribute('open','');
-
-    panel.style.maxHeight = '0px';
-    requestAnimationFrame(()=>{
-      panel.style.maxHeight = panel.scrollHeight + 'px';
-    });
-
-    panel.addEventListener('transitionend', function tidy(e){
-      if(e.propertyName === 'max-height' && li.hasAttribute('open')){
-        panel.style.maxHeight = 'none';
-        panel.removeEventListener('transitionend', tidy);
-      }
-    });
-  }
-
-  items.forEach(li=>{
-    const btn = li.querySelector('.faq-q');
-    const panel = li.querySelector('.faq-a');
-    if(!btn || !panel) return;
-
-    btn.addEventListener('click', ()=>{
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      expanded ? closeItem(li) : openItem(li);
-    });
-
-    btn.addEventListener('keydown', (e)=>{
-      const idx = items.indexOf(li);
-      if(e.key === 'ArrowDown'){ e.preventDefault(); items[(idx+1)%items.length].querySelector('.faq-q').focus(); }
-      if(e.key === 'ArrowUp'){ e.preventDefault(); items[(idx-1+items.length)%items.length].querySelector('.faq-q').focus(); }
-      if(e.key === 'Home'){ e.preventDefault(); items[0].querySelector('.faq-q').focus(); }
-      if(e.key === 'End'){ e.preventDefault(); items[items.length-1].querySelector('.faq-q').focus(); }
-    });
-  });
-
-  // openItem(items[0]); // pour ouvrir le premier item par défaut
-})();
 </script>
 </body>
 </html>
