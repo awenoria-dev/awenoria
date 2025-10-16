@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Accueil – Démo (structure type grande enseigne)</title>
+  <meta name="description" content="Accueil avec carrousel pleine largeur, tuiles promo, blocs info, navbar sticky. Inspiré de la structure des grandes enseignes, sans éléments visuels propriétaires." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --panel: #0f1116;
+      --muted: #8892a6;
+      --text: #e8edf5;
+      --brand: #4fb0ff;     /* couleurs perso, rien de McDo */
+      --accent: #7df3b2;
+      --radius: 16px;
+      --shadow: 0 12px 28px rgba(0,0,0,.28);
+      --maxw: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: radial-gradient(1200px 600px at 20% -10%, #151824 0%, var(--bg) 55%);
+      color: var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.5;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar { position: sticky; top: 0; z-index: 60; background: rgba(15,17,22,.75); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.06); }
+    .nav-wrap { max-width: var(--maxw); margin: 0 auto; padding: 10px 20px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+    .brand-logo { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg,var(--brand),#2563eb); box-shadow: var(--shadow); }
+    .brand-title { font-weight: 800; letter-spacing: .2px; }
+    .nav-links { justify-self: center; }
+    .nav-links ul { list-style: none; display: flex; gap: 16px; margin: 0; padding: 0; }
+    .nav-links a { text-decoration: none; color: var(--text); opacity: .9; font-weight: 600; padding: 8px 10px; border-radius: 10px; }
+    .nav-links a:hover { background: rgba(255,255,255,.06); }
+    .nav-cta { justify-self: end; display: flex; gap: 10px; align-items: center; }
+    .btn { background: #1b88ff; color: #fff; border: none; padding: 10px 14px; border-radius: 12px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+    .btn.ghost { background: transparent; border: 1px solid rgba(255,255,255,.16); }
+
+    /* ===== CARROUSEL PLEINE LARGEUR ===== */
+    .carousel-wrap { position: relative; overflow: hidden; }
+    .carousel { position: relative; width: 100%; }
+    .slides { display: flex; transition: transform .5s ease; will-change: transform; }
+    .slide { min-width: 100%; height: clamp(260px, 44vw, 520px); position: relative; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .slide .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55)); }
+    .slide .caption { position: absolute; left: max(20px, calc((100% - var(--maxw))/2 + 20px)); bottom: 24px; max-width: 560px; }
+    .slide h2 { margin: 0 0 6px; font-size: clamp(22px, 4vw, 42px); }
+    .slide p { margin: 0 0 12px; color: var(--text); opacity: .9; }
+
+    .ctrl { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255,255,255,.28); background: rgba(0,0,0,.35); display: grid; place-items: center; cursor: pointer; }
+    .ctrl:hover { background: rgba(0,0,0,.5); }
+    .ctrl.prev { left: 12px; } .ctrl.next { right: 12px; }
+    .ctrl svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2; }
+
+    .dots { position: absolute; left: 0; right: 0; bottom: 12px; display: flex; justify-content: center; gap: 8px; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.45); border: none; }
+    .dot[aria-current="true"] { background: #fff; }
+
+    /* ===== CONTENU PRINCIPAL ===== */
+    .section { max-width: var(--maxw); margin: 32px auto; padding: 0 20px; }
+    .muted { color: var(--muted); }
+
+    /* Tuiles promo (grandes cartes image) */
+    .tiles { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .tile { position: relative; border-radius: var(--radius); overflow: hidden; background: #0e1016; border: 1px solid rgba(255,255,255,.06); box-shadow: var(--shadow); }
+    .tile img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+    .tile .t-caption { position: absolute; left: 14px; bottom: 14px; background: rgba(0,0,0,.45); padding: 10px 12px; border-radius: 12px; font-weight: 700; }
+
+    /* Blocs info (texte + icône) */
+    .info-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .info { background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: start; }
+    .info .ico { width: 42px; height: 42px; border-radius: 10px; background: linear-gradient(135deg, var(--brand), var(--accent)); display: grid; place-items: center; font-weight: 800; color: #0b0c10; }
+    .info h3 { margin: 2px 0 6px; font-size: 18px; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid rgba(255,255,255,.08); padding: 26px 20px; margin-top: 40px; }
+    .foot-wrap { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; }
+    .foot-links { display: flex; gap: 14px; flex-wrap: wrap; }
+    .foot-links a { color: var(--muted); text-decoration: none; }
+    .foot-links a:hover { color: var(--text); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .tiles { grid-template-columns: 1fr 1fr; }
+      .info-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      .nav-links { display: none; }
+      .tiles, .info-grid { grid-template-columns: 1fr; }
+      .slide { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" role="banner">
+    <div class="nav-wrap">
+      <a class="brand" href="#" aria-label="Aller à l'accueil">
+        <span class="brand-logo" aria-hidden="true"></span>
+        <span class="brand-title">Mon Site</span>
+      </a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <ul>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#promos">Promos</a></li>
+          <li><a href="#engagements">Engagements</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn ghost" href="#trouver">Trouver un point</a>
+        <a class="btn" href="#commander">Commander</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== CARROUSEL ===== -->
+  <section class="carousel-wrap" aria-roledescription="carrousel" aria-label="Mises en avant" aria-live="polite" id="hero">
+    <div class="carousel" id="carousel">
+      <div class="slides">
+        <figure class="slide" aria-label="Slide 1">
+          <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1600&auto=format&fit=crop" alt="Visuel mise en avant 1" />
+          <div class="overlay" aria-hidden="true"></div>
+          <figcaption class="caption">
+            <h2>Grande mise en avant #1</h2>
+            <p class="muted">Texte court pour présenter la promo principale ou une nouveauté.</p>
+            <a class="btn" href="#promos">Voir l'offre</a>
+          </figcaption>
+        </figure>
+        <figure class="slide" aria-label="Slide 2">
+          <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1600&auto=format&fit=crop" alt="Visuel mise en avant 2" />
+          <div class="overlay" aria-hidden="true"></div>
+          <figcaption class="caption">
+            <h2>Grande mise en avant #2</h2>
+            <p class="muted">Seconde diapo : autre offre, campagne ou produit.</p>
+            <a class="btn ghost" href="#menu">Découvrir le menu</a>
+          </figcaption>
+        </figure>
+        <figure class="slide" aria-label="Slide 3">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1600&auto=format&fit=crop" alt="Visuel mise en avant 3" />
+          <div class="overlay" aria-hidden="true"></div>
+          <figcaption class="caption">
+            <h2>Grande mise en avant #3</h2>
+            <p class="muted">Troisième visuel, toujours remplaçable par tes images.</p>
+            <a class="btn" href="#engagements">En savoir plus</a>
+          </figcaption>
+        </figure>
+      </div>
+      <button class="ctrl prev" aria-label="Diapo précédente">
+        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="ctrl next" aria-label="Diapo suivante">
+        <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="dots" role="tablist" aria-label="Sélecteurs de diapo"></div>
+    </div>
+  </section>
+
+  <!-- ===== TUILES PROMO ===== -->
+  <section id="promos" class="section">
+    <h2>Promotions / mises en avant</h2>
+    <p class="muted">Trois grandes tuiles image pour pousser des offres ou catégories.</p>
+    <div class="tiles">
+      <a class="tile" href="#" aria-label="Offre 1">
+        <img src="https://images.unsplash.com/photo-1543357480-c60d40007a8d?q=80&w=1200&auto=format&fit=crop" alt="Offre 1" />
+        <span class="t-caption">Offre 1</span>
+      </a>
+      <a class="tile" href="#" aria-label="Offre 2">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop" alt="Offre 2" />
+        <span class="t-caption">Offre 2</span>
+      </a>
+      <a class="tile" href="#" aria-label="Offre 3">
+        <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1200&auto=format&fit=crop" alt="Offre 3" />
+        <span class="t-caption">Offre 3</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== BLOCS INFO ===== -->
+  <section id="engagements" class="section">
+    <h2>Nos engagements</h2>
+    <p class="muted">Exemple de trois blocs informatifs (icône + texte), pour raconter une histoire de marque, des garanties qualité, etc.</p>
+    <div class="info-grid">
+      <article class="info">
+        <div class="ico">A</div>
+        <div>
+          <h3>Qualité</h3>
+          <p class="muted">Des standards élevés et des contrôles réguliers. Texte d'exemple.</p>
+        </div>
+      </article>
+      <article class="info">
+        <div class="ico">B</div>
+        <div>
+          <h3>Origines</h3>
+          <p class="muted">Transparence sur les filières et les fournisseurs. Texte d'exemple.</p>
+        </div>
+      </article>
+      <article class="info">
+        <div class="ico">C</div>
+        <div>
+          <h3>Service</h3>
+          <p class="muted">Une expérience fluide en restaurant et en ligne.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer role="contentinfo">
+    <div class="foot-wrap">
+      <small class="muted">© <span id="year"></span> Mon Site. Tous droits réservés.</small>
+      <nav class="foot-links" aria-label="Liens de pied de page">
+        <a href="#">Mentions légales</a>
+        <a href="#">Vie privée</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // util
+    const qs = (s, el=document) => el.querySelector(s);
+    const qsa = (s, el=document) => [...el.querySelectorAll(s)];
+    qs('#year').textContent = new Date().getFullYear();
+
+    // carousel
+    (function initCarousel(id){
+      const root = document.getElementById(id);
+      if (!root) return;
+      const slides = qs('.slides', root);
+      const items = qsa('.slide', root);
+      const prev = qs('.prev', root);
+      const next = qs('.next', root);
+      const dotsWrap = qs('.dots', root);
+      let index = 0; let timer = null; const AUTOPLAY = 4500;
+
+      items.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'dot'; b.setAttribute('role','tab');
+        b.setAttribute('aria-label','Aller à la diapo ' + (i+1));
+        b.addEventListener('click', () => go(i));
+        dotsWrap.appendChild(b);
+      });
+
+      function update(){
+        slides.style.transform = `translateX(${-index*100}%)`;
+        qsa('.dot', dotsWrap).forEach((d,i)=> d.setAttribute('aria-current', i===index ? 'true':'false'));
+        items.forEach((s,i)=> s.setAttribute('aria-hidden', i===index ? 'false':'true'));
+      }
+      function go(i){ index = (i + items.length) % items.length; update(); }
+      function nextFn(){ go(index+1); }
+      function prevFn(){ go(index-1); }
+
+      prev.addEventListener('click', prevFn);
+      next.addEventListener('click', nextFn);
+
+      // clavier
+      root.addEventListener('keydown', (e)=>{ if(e.key==='ArrowLeft') prevFn(); if(e.key==='ArrowRight') nextFn(); });
+      root.tabIndex = 0;
+
+      // auto
+      function start(){ stop(); timer = setInterval(nextFn, AUTOPLAY); }
+      function stop(){ if(timer) clearInterval(timer); }
+      root.addEventListener('mouseenter', stop);
+      root.addEventListener('mouseleave', start);
+      document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
+
+      update(); start();
+    })('carousel');
+  </script>
+</body>
+</html>
