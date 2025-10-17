@@ -134,7 +134,7 @@
     .kicker{ color:#7ec9db; font-weight:800; letter-spacing:.06em; text-transform:uppercase; font-size:12px; margin-bottom:10px; }
     .hero-intro h1{ margin:0 0 10px; font-size:clamp(28px,5vw,42px); line-height:1.15; }
     .hero-intro::before { content: ""; position: absolute; top: 0; left: 0; width: 65%; height: 100%; background: linear-gradient(to right, rgba(14, 59, 71, 0.95), rgba(14, 59, 71, 0.2), transparent); pointer-events: none; z-index: 1;}
-    .hero-intro .wrap { position: relative; z-index: 2;}
+    .hero-intro .wrap{position:relative;z-index:2;max-width:1280px;grid-template-columns:1.5fr 1fr;column-gap:40px;align-items:center;}.hero-card img{display:block;width:100%;max-width:560px;max-height:clamp(260px,38vw,420px);height:auto;object-fit:contain;filter:none!important;opacity:1!important;mix-blend-mode:normal;}@media(max-width:900px){.hero-intro .wrap{grid-template-columns:1fr;}.hero-card img{max-width:100%;max-height:none;}}
 
     .hero-intro .lead{ color:var(--muted); margin:0 0 16px; font-size:16px; }
     .checks{ list-style:none; padding:0; margin:0 0 18px; display:grid; gap:8px; }
