@@ -55,14 +55,8 @@
     }
 
     .brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text);min-width:0}
-    /* taille du logo navbar */
-    .brand-img{
-      height: 65px !important;
-      width: auto !important;
-      object-fit: contain;
-      display:block;
-    }
-    .brand-title{font-weight:800;white-space:nowrap; display:none;} /* texte masqué */
+    .brand-img{height:65px;width:auto;object-fit:contain;display:block}
+    .brand-title{display:none}
 
     .nav-main{
       display: flex; align-items: center; gap: 18px;
@@ -79,13 +73,8 @@
     .dropdown-toggle svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
 
     .nav-actions{ display:flex; align-items:center; gap:8px; margin-left:6px; }
-    .nav-actions .btn{
-      height:32px !important; line-height:32px !important;
-      padding:0 10px !important; border-radius:8px !important;
-      font-size:12px !important; display:inline-flex; align-items:center; justify-content:center; white-space:nowrap;
-    }
+    .btn{ background:var(--brand); color:#fff; border:none; font-weight:700; text-decoration:none; padding:0 12px; height:32px; line-height:32px; border-radius:8px }
     .btn.ghost{ background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,.18); }
-    .btn{ background:var(--brand); color:#fff; border:none; font-weight:700; text-decoration:none; }
 
     .account{position:relative}
     .account-btn{
@@ -133,10 +122,10 @@
     .pill h5{ margin:2px 0 0; font-size:16px }
     .pill p{ margin:0; color:var(--muted); font-size:14px }
 
-    /* ===== HERO INTRO ===== */
+    /* ===== HERO INTRO (2 colonnes desktop) ===== */
     .hero-intro{
       position: relative;
-      padding: 52px 0 36px;
+      padding: 72px 0 48px; /* plus aéré */
       background: var(--bg);
       border-bottom: 1px solid rgba(255,255,255,.06);
       color: var(--text);
@@ -145,92 +134,67 @@
     }
     .hero-intro::before{
       content:"";
-      position:absolute;
-      inset:0;
+      position:absolute; inset:0;
       background:linear-gradient(135deg, rgba(0,0,0,.25), rgba(0,0,0,.45));
-      pointer-events:none;
-      z-index:1;
+      pointer-events:none; z-index:1;
     }
     .hero-intro .wrap{
-      position:relative;
-      z-index:2;
-      max-width:1280px;
-      margin:0 auto;
-      padding:0 20px;
-      display:grid;
-      /* >>> L'intro passe en 1 colonne : l'image a été supprimée */
-      grid-template-columns:1fr;
-      column-gap:40px;
-      align-items:center;
+      position:relative; z-index:2;
+      max-width:1280px; margin:0 auto; padding:0 20px;
+      display:grid; grid-template-columns:1fr; gap:28px; align-items:center;
+    }
+    @media (min-width:980px){
+      .hero-intro .wrap{ grid-template-columns:1fr minmax(320px,460px); gap:48px; }
     }
 
-    /* Texte et boutons */
-    .kicker{
-      color:#7ec9db;
-      font-weight:800;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      font-size:12px;
-      margin-bottom:10px;
-    }
     .hero-intro h1{
-      margin:0 0 10px;
-      font-size:clamp(28px,5vw,42px);
+      margin:0 0 16px;
+      font-size:clamp(30px,5vw,44px);
       line-height:1.15;
     }
     .hero-intro .lead{
       color:var(--muted);
-      margin:0 0 16px;
-      font-size:16px;
+      margin:0 0 22px;
+      font-size:17px;
     }
     .checks{
-      list-style:none;
-      padding:0;
-      margin:0 0 18px;
-      display:grid;
-      gap:8px;
+      list-style:none; padding:0; margin:0 0 22px;
+      display:grid; gap:12px;
     }
     .checks li{
-      display:grid;
-      grid-template-columns:20px 1fr;
-      gap:10px;
-      align-items:start;
-      color:var(--text);
+      display:grid; grid-template-columns:22px 1fr; gap:12px; align-items:start;
+      color:var(--text); font-size:16px;
     }
-    .checks li svg{
-      width:18px;
-      height:18px;
-      stroke:var(--accent);
-      fill:none;
-      stroke-width:3;
-      margin-top:2px;
-    }
-    .hero-intro .cta-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
+    .checks li svg{ width:20px; height:20px; stroke:var(--accent); fill:none; stroke-width:3; margin-top:2px; }
+    .hero-intro .cta-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:4px; }
     .hero-intro .btn{
-      height:38px;
-      line-height:38px;
-      padding:0 16px;
-      border-radius:10px;
-      font-weight:800;
-      letter-spacing:.01em;
-      box-shadow:0 6px 16px rgba(27,136,255,.22);
+      height:42px; line-height:42px; padding:0 18px; border-radius:10px;
+      font-weight:800; letter-spacing:.01em; box-shadow:0 6px 16px rgba(27,136,255,.22);
     }
-    .hero-intro .btn:hover{
-      filter:brightness(1.06);
-      transform:translateY(-1px);
-      transition:.15s ease;
-    }
-    .hero-intro .btn.ghost{
-      background:transparent;
-      color:var(--text);
-      border:1px solid rgba(255,255,255,.22);
-      box-shadow:none;
-    }
+    .hero-intro .btn:hover{ filter:brightness(1.06); transform:translateY(-1px); transition:.15s ease; }
+    .hero-intro .btn.ghost{ background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.22); box-shadow:none; }
     .hero-intro .btn.ghost:hover{background:rgba(255,255,255,.06);}
+
+    /* Boîte URL (déplacée ici, colonne droite) */
+    .url-box{
+      width:100%;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:18px;
+      padding:12px;
+      box-shadow:var(--shadow);
+      display:flex; gap:10px; align-items:center;
+    }
+    .url-box input{
+      flex:1; height:44px; border:none; outline:none;
+      border-radius:12px; padding:0 12px;
+      font-size:15px; color:#0b0c10; background:#fff;
+    }
+    .url-box button{
+      height:44px; padding:0 16px; border-radius:12px; border:none; cursor:pointer;
+      font-weight:800; background:#0b5ea5; color:#fff;
+    }
+    .url-box button:hover{ filter:brightness(1.05); }
 
     /* ===== CAROUSEL ===== */
     .carousel-wrap{position:relative; overflow:hidden}
@@ -251,14 +215,14 @@
     .dot[aria-current="true"]{background:#fff}
 
     /* ===== CONTENT ===== */
-    .section{max-width:var(--maxw); margin:32px auto; padding:0 20px}
+    .section{max-width:var(--maxw); margin:40px auto; padding:0 20px}
     .muted{color:var(--muted)}
-    .tiles{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px}
+    .tiles{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px}
     .tile{position:relative; border-radius:var(--radius); overflow:hidden; background:#0e1016; border:1px solid rgba(255,255,255,.06); box-shadow:var(--shadow)}
     .tile img{width:100%; aspect-ratio:16/9; object-fit:cover; display:block}
     .tile .t-caption{position:absolute; left:14px; bottom:14px; background:rgba(0,0,0,.45); padding:10px 12px; border-radius:12px; font-weight:700}
-    .info-grid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px}
-    .info{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); display:grid; grid-template-columns:42px 1fr; gap:12px; align-items:start}
+    .info-grid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px}
+    .info{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); display:grid; grid-template-columns:42px 1fr; gap:12px; align-items:start}
     .info .ico{width:42px; height:42px; border-radius:10px; background:linear-gradient(135deg, var(--brand), var(--accent)); display:grid; place-items:center; font-weight:800; color:#0b0c10}
     .info h3{margin:2px 0 6px; font-size:18px}
 
@@ -304,6 +268,23 @@
     @media (max-width: 9999px){
       .nav-main[style*="display:none"], .nav-main.hidden { display:flex !important; }
     }
+
+    /* ===== Curseur pour l'effet de frappe ===== */
+    .type-on-view::after{
+      content:"";
+      display:inline-block;
+      width:2px;
+      height:0.9em;
+      background: currentColor;
+      margin-left:3px;
+      vertical-align:-0.12em;
+      opacity:0; /* caché pendant la frappe */
+    }
+    .type-on-view.caret::after{
+      opacity:1;
+      animation: awenBlink 1s steps(1) infinite; /* clignote après la fin */
+    }
+    @keyframes awenBlink { 50% { opacity: 0; } }
   </style>
 </head>
 <body>
@@ -312,7 +293,6 @@
     <div class="nav-wrap">
       <a class="brand" href="#" aria-label="Aller à l'accueil">
         <img class="brand-img" src="images/logo.png" alt="Logo Awenoria">
-        <!-- <span class="brand-title">Awenoria</span> -->
       </a>
 
       <nav class="nav-main" aria-label="Navigation principale">
@@ -341,7 +321,7 @@
       </nav>
 
       <div class="nav-actions">
-        <a class="btn ghost" href="#scan-url">Scan URL</a>
+        <!-- Bouton "Scan URL" SUPPRIMÉ de la navbar -->
         <a class="btn" href="#expert">Parler à un expert</a>
         <div class="account">
           <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
@@ -361,28 +341,44 @@
           </div>
         </div>
       </div>
-
     </div>
   </header>
 
-  <!-- ===== INTRO AVANT CARROUSEL (image supprimée) ===== -->
+  <!-- ===== INTRO AVANT CARROUSEL ===== -->
   <section class="hero-intro" id="intro">
     <div class="wrap">
+      <!-- Colonne gauche : Titre + texte -->
       <div>
-        <div class="kicker">Awenoria</div>
-        <h1>Boostez votre conformité & vos performances digitales</h1>
-        <p class="lead">Audits, conformité RGPD & IA, éco-conception, formations et accompagnement opérationnel. Nous alignons vos produits avec les meilleures pratiques — sans alourdir vos équipes.</p>
+        <!-- “Awenoria” (kicker) supprimé -->
+        <h1 class="type-on-view" aria-live="polite"
+            data-text="Boostez votre conformité &amp; vos performances digitales"></h1>
+
+        <p class="lead">
+          Audits, conformité RGPD &amp; IA, éco-conception, formations et accompagnement opérationnel.
+          Nous alignons vos produits avec les meilleures pratiques — sans alourdir vos équipes.
+        </p>
+
         <ul class="checks">
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Diagnostics concrets avec feuille de route actionnable.</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Parcours formations adaptés (produit, dev, design, DPO).</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Accompagnement « du cadrage à la mise en prod ».</li>
         </ul>
+
         <div class="cta-row">
           <a class="btn" href="#services">Découvrir nos services</a>
           <a class="btn ghost" href="#expert">Prendre rendez-vous</a>
         </div>
-        <div class="subnote"><span class="badge">Excellent ★★★★★</span><span>Recommandé par nos clients</span></div>
+
+        <div class="subnote" style="margin-top:10px"><span class="badge">Excellent ★★★★★</span> <span>Recommandé par nos clients</span></div>
       </div>
+
+      <!-- Colonne droite : Scan URL (déplacé ici) -->
+      <aside>
+        <div class="url-box" id="scan-url">
+          <input type="url" placeholder="https://votresite.fr" aria-label="Adresse du site à analyser">
+          <button type="button">Analyser</button>
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -537,6 +533,58 @@
       document.addEventListener('click',e=>{ if(!dd.contains(e.target)) close(); });
       btn.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'){ e.preventDefault(); open(); const first=panel.querySelector('[role="menuitem"]'); first && first.focus(); }});
       panel.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
+    })();
+
+    /* Effet machine à écrire : rejoue à chaque retour en vue + curseur clignotant à la fin */
+    (function(){
+      const SPEED = 45; // ms par caractère (lent)
+      const els = [...document.querySelectorAll('.type-on-view')];
+
+      // Prépare les éléments
+      els.forEach(el=>{
+        const full = (el.getAttribute('data-text') || el.textContent || '').trim();
+        el.dataset.fullText = full;
+        el.textContent = '';
+        el.__typingTimer = null;
+        el.__ready = true;             // autorise la lecture quand il entre dans le viewport
+        el.classList.remove('caret');  // pas de curseur pendant la frappe
+        el.setAttribute('aria-live','polite');
+      });
+
+      function type(el){
+        clearTimeout(el.__typingTimer);
+        const full = el.dataset.fullText || '';
+        el.textContent = '';
+        el.classList.remove('caret');
+        let i = 0;
+        (function tick(){
+          el.textContent = full.slice(0, ++i);
+          if(i < full.length){
+            el.__typingTimer = setTimeout(tick, SPEED);
+          }else{
+            el.__typingTimer = null;
+            el.__ready = false;        // ne rejoue pas tant qu'on ne sort pas du viewport
+            el.classList.add('caret'); // puis curseur qui clignote
+          }
+        })();
+      }
+
+      const io = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          const el = entry.target;
+          if(entry.isIntersecting){
+            if(el.__ready) type(el);
+          }else{
+            // en sortant : on autorise à rejouer et on coupe le timer
+            el.__ready = true;
+            el.classList.remove('caret');
+            clearTimeout(el.__typingTimer);
+            el.__typingTimer = null;
+          }
+        });
+      }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
+
+      els.forEach(el=>io.observe(el));
     })();
   </script>
 </body>
