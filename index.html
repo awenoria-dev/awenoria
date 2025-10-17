@@ -26,6 +26,13 @@
       --shadow:0 12px 28px rgba(0,0,0,.28);
       --maxw:1200px;
       --nav-h:34px; /* nav compacte */
+
+      /* Glassmorphism teinte bleu/vert (réf. PJ3) */
+      --glass-bg: rgba(255,255,255,.06);
+      --glass-brd: rgba(255,255,255,.18);
+      --glass-tint: rgba(0,164,201,.18);
+      --txt-primary:#EAF4FF;
+      --txt-muted:#BFD6E6;
     }
 
     *{box-sizing:border-box}
@@ -125,7 +132,7 @@
     /* ===== HERO INTRO (2 colonnes desktop) ===== */
     .hero-intro{
       position: relative;
-      padding: 72px 0 48px; /* plus aéré */
+      padding: 72px 0 48px;
       background: var(--bg);
       border-bottom: 1px solid rgba(255,255,255,.06);
       color: var(--text);
@@ -147,16 +154,24 @@
       .hero-intro .wrap{ grid-template-columns:1fr minmax(320px,460px); gap:48px; }
     }
 
+    /* Titre & lead sur une ligne (desktop large), wrap en mobile */
     .hero-intro h1{
-      margin:0 0 16px;
+      margin:0 0 12px;
       font-size:clamp(30px,5vw,44px);
-      line-height:1.15;
+      line-height:1.1;
+      white-space:normal;
     }
     .hero-intro .lead{
       color:var(--muted);
-      margin:0 0 22px;
+      margin:0 0 18px;
       font-size:17px;
+      white-space:normal;
     }
+    @media (min-width:1200px){
+      .hero-intro h1,
+      .hero-intro .lead{ white-space:nowrap; }
+    }
+
     .checks{
       list-style:none; padding:0; margin:0 0 22px;
       display:grid; gap:12px;
@@ -175,26 +190,61 @@
     .hero-intro .btn.ghost{ background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.22); box-shadow:none; }
     .hero-intro .btn.ghost:hover{background:rgba(255,255,255,.06);}
 
-    /* Boîte URL (déplacée ici, colonne droite) */
-    .url-box{
+    /* ===== Barre URL (glass + futuriste) ===== */
+    aside.hero-aside{ /* abaisse la barre pour l’aligner visuellement avec la ligne "Parcours formations…" */
+      margin-top: clamp(12px, 5vh, 40px);
+    }
+
+    .url-box{               /* conteneur pill translucide */
       width:100%;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:18px;
-      padding:12px;
-      box-shadow:var(--shadow);
-      display:flex; gap:10px; align-items:center;
+      border-radius: 16px;
+      padding: .35rem;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border: 1px solid var(--glass-brd);
+      backdrop-filter: blur(10px) saturate(140%);
+      -webkit-backdrop-filter: blur(10px) saturate(140%);
+      display:flex; gap:.6rem; align-items:center;
+      box-shadow: var(--shadow);
     }
-    .url-box input{
-      flex:1; height:44px; border:none; outline:none;
-      border-radius:12px; padding:0 12px;
-      font-size:15px; color:#0b0c10; background:#fff;
+    .url-input{            /* bulle interne élégante (pas de fond blanc) */
+      flex:1;
+      padding: 1rem 1.1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(16,22,27,.55);
+      color: var(--txt-primary);
+      outline: none;
+      font-size: 15px;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,.35);
     }
-    .url-box button{
-      height:44px; padding:0 16px; border-radius:12px; border:none; cursor:pointer;
-      font-weight:800; background:#0b5ea5; color:#fff;
+    .url-input::placeholder{ color: var(--txt-muted); opacity:.9; }
+    .url-input:focus{
+      border-color: rgba(0,164,201,.45);
+      box-shadow: 0 0 0 4px rgba(0,164,201,.18), inset 0 2px 6px rgba(0,0,0,.35);
     }
-    .url-box button:hover{ filter:brightness(1.05); }
+
+    .btn-analyser{         /* bouton futuriste inspiré du menu services */
+      padding: .9rem 1.2rem;
+      border-radius: 14px;
+      border: 1px solid var(--glass-brd);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04)) padding-box,
+        linear-gradient(180deg, rgba(255,255,255,.25), rgba(255,255,255,0)) border-box;
+      backdrop-filter: blur(8px) saturate(140%);
+      -webkit-backdrop-filter: blur(8px) saturate(140%);
+      color: var(--txt-primary);
+      font-weight: 800;
+      letter-spacing:.2px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.12);
+      transition: transform .12s ease, box-shadow .2s ease, background .2s ease;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn-analyser:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 12px 38px rgba(0,164,201,.25), inset 0 0 0 999px var(--glass-tint);
+    }
+    .btn-analyser:active{ transform: translateY(0); }
 
     /* ===== CAROUSEL ===== */
     .carousel-wrap{position:relative; overflow:hidden}
@@ -231,7 +281,11 @@
     .cc-container{max-width:var(--maxw); margin:0 auto; padding:0 20px}
     .cc-top{display:grid; grid-template-columns:1fr auto; align-items:center; gap:16px; padding-bottom:14px; border-bottom:1px solid rgba(255,255,255,.12)}
     .cc-brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit}
-    .cc-brand img{height:28px; object-fit:contain; display:block}
+    .cc-brand img{height:44px; object-fit:contain; display:block} /* logo plus gros */
+    .cc-brand .brand-text{
+      position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;
+    } /* masque “Awenoria” en bas de page */
+
     .cc-locale{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid rgba(255,255,255,.25); border-radius:999px; text-decoration:none; color:#eaeaea}
     .cc-locale svg{width:18px;height:18px;stroke:#eaeaea; fill:none}
     .cc-grid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)) auto; gap:22px; padding:20px 0}
@@ -248,12 +302,15 @@
     /* ===== Responsive ===== */
     @media (max-width:1024px){
       .mega-grid{grid-template-columns:1fr 1fr}
+      aside.hero-aside{ margin-top: 8px; } /* rapproche un peu sur tablettes */
+      .hero-intro h1, .hero-intro .lead{ white-space:normal; }
     }
     @media (max-width:720px){
       .tiles{grid-template-columns:1fr 1fr}
       .info-grid{grid-template-columns:1fr 1fr}
       .nav-main{display:flex !important; flex-wrap:wrap; gap:10px; justify-content:flex-start;}
       .hero-intro .wrap{ grid-template-columns:1fr; }
+      aside.hero-aside{ margin-top: 10px; }
     }
     @media (max-width:620px){
       .tiles,.info-grid{grid-template-columns:1fr}
@@ -321,7 +378,6 @@
       </nav>
 
       <div class="nav-actions">
-        <!-- Bouton "Scan URL" SUPPRIMÉ de la navbar -->
         <a class="btn" href="#expert">Parler à un expert</a>
         <div class="account">
           <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
@@ -349,7 +405,6 @@
     <div class="wrap">
       <!-- Colonne gauche : Titre + texte -->
       <div>
-        <!-- “Awenoria” (kicker) supprimé -->
         <h1 class="type-on-view" aria-live="polite"
             data-text="Boostez votre conformité &amp; vos performances digitales"></h1>
 
@@ -373,10 +428,10 @@
       </div>
 
       <!-- Colonne droite : Scan URL (déplacé ici) -->
-      <aside>
+      <aside class="hero-aside">
         <div class="url-box" id="scan-url">
-          <input type="url" placeholder="https://votresite.fr" aria-label="Adresse du site à analyser">
-          <button type="button">Analyser</button>
+          <input class="url-input" type="url" placeholder="https://votresite.fr" aria-label="Adresse du site à analyser">
+          <button class="btn-analyser" type="button">Analyser</button>
         </div>
       </aside>
     </div>
@@ -447,7 +502,8 @@
     <div class="cc-container">
       <div class="cc-top">
         <a class="cc-brand" href="#" aria-label="Awenoria">
-          <img src="images/logo.png" alt="Awenoria"><strong>Awenoria</strong>
+          <img src="images/logo.png" alt="Awenoria">
+          <strong class="brand-text">Awenoria</strong> <!-- masqué visuellement -->
         </a>
         <a class="cc-locale" href="#" aria-label="Changer de pays">
           <svg viewBox="0 0 24 24"><path d="M12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9zm0 0c2.5-2.8 4-5.8 4-9 0-3.2-1.5-6.2-4-9m0 18C9.5 18.2 8 15.2 8 12c0-3.2 1.5-6.2 4-9"/></svg>
@@ -537,17 +593,16 @@
 
     /* Effet machine à écrire : rejoue à chaque retour en vue + curseur clignotant à la fin */
     (function(){
-      const SPEED = 45; // ms par caractère (lent)
+      const SPEED = 45;
       const els = [...document.querySelectorAll('.type-on-view')];
 
-      // Prépare les éléments
       els.forEach(el=>{
         const full = (el.getAttribute('data-text') || el.textContent || '').trim();
         el.dataset.fullText = full;
         el.textContent = '';
         el.__typingTimer = null;
-        el.__ready = true;             // autorise la lecture quand il entre dans le viewport
-        el.classList.remove('caret');  // pas de curseur pendant la frappe
+        el.__ready = true;
+        el.classList.remove('caret');
         el.setAttribute('aria-live','polite');
       });
 
@@ -563,8 +618,8 @@
             el.__typingTimer = setTimeout(tick, SPEED);
           }else{
             el.__typingTimer = null;
-            el.__ready = false;        // ne rejoue pas tant qu'on ne sort pas du viewport
-            el.classList.add('caret'); // puis curseur qui clignote
+            el.__ready = false;
+            el.classList.add('caret');
           }
         })();
       }
@@ -575,7 +630,6 @@
           if(entry.isIntersecting){
             if(el.__ready) type(el);
           }else{
-            // en sortant : on autorise à rejouer et on coupe le timer
             el.__ready = true;
             el.classList.remove('caret');
             clearTimeout(el.__typingTimer);
