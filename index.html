@@ -49,7 +49,7 @@
     header.navbar{position:sticky;top:0;z-index:1100;background:rgba(15,17,22,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
     .nav-wrap{max-width:var(--maxw);margin:0 auto;padding:6px 14px;display:flex;align-items:center;gap:14px}
     .brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text)}
-    .brand-img{height:92px;width:auto;object-fit:contain;display:block} /* logos + grands */
+    .brand-img{height:65px;width:auto;object-fit:contain;display:block}
     .nav-main{display:flex;align-items:center;gap:18px;flex:1;justify-content:center;margin-left:8px}
     .nav-main a,.nav-main button{appearance:none;background:none;border:none;cursor:pointer;color:var(--text);text-decoration:none;font-weight:700;height:var(--nav-h);line-height:var(--nav-h);padding:0 10px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
     .nav-main a:hover,.nav-main button:hover{background:rgba(255,255,255,.06)}
@@ -58,7 +58,7 @@
     .btn{background:var(--brand);color:#fff;border:none;font-weight:700;text-decoration:none;padding:0 12px;height:32px;line-height:32px;border-radius:8px}
     .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.18)}
 
-    /* Account + mega menu (inchangé)… */
+    /* Account + mega menu */
     .account{position:relative}
     .account-btn{width:32px;height:32px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.06);color:var(--text);display:inline-flex;align-items:center;justify-content:center}
     .account-btn:hover{background:rgba(255,255,255,.12)}
@@ -103,20 +103,20 @@
     .hero-intro .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.22);box-shadow:none}
     .hero-intro .btn.ghost:hover{background:rgba(255,255,255,.06)}
 
-    /* BARRE URL : largeur légèrement réduite. La hauteur ne bouge pas ici. */
-    aside.hero-aside{margin-top:0}
+    /* === Barre URL : styles d'origine === */
+    aside.hero-aside{margin-top:clamp(12px,5vh,40px)}
     @media (min-width:980px){
       aside.hero-aside{
         grid-column: 1 / -1;
-        align-self:start;
-        width: min(760px, 88vw); /* un soupçon moins large */
+        justify-self: center;
+        width: min(860px, 92vw);
       }
     }
 
     .url-box{
       width:100%;
       border-radius:16px;
-      padding:.45rem;
+      padding:.35rem;
       background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
       border:1px solid var(--glass-brd);
       backdrop-filter:blur(10px) saturate(140%);
@@ -124,12 +124,16 @@
       display:flex;gap:.6rem;align-items:center;
       box-shadow:var(--shadow);
     }
-    .url-input{flex:1;padding:1.1rem 1.15rem;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(16,22,27,.55);color:var(--txt-primary);outline:none;font-size:15px;box-shadow:inset 0 2px 6px rgba(0,0,0,.35)}
+    .url-input{
+      flex:1;padding:1rem 1.1rem;border-radius:12px;border:1px solid rgba(255,255,255,.15);
+      background:rgba(16,22,27,.55);color:var(--txt-primary);outline:none;font-size:15px;
+      box-shadow:inset 0 2px 6px rgba(0,0,0,.35)
+    }
     .url-input::placeholder{color:var(--txt-muted);opacity:.9}
     .url-input:focus{border-color:rgba(0,164,201,.45);box-shadow:0 0 0 4px rgba(0,164,201,.18), inset 0 2px 6px rgba(0,0,0,.35)}
 
     .btn-analyser{
-      padding:1.05rem 1.2rem;border-radius:14px;border:1px solid var(--glass-brd);
+      padding:.9rem 1.2rem;border-radius:14px;border:1px solid var(--glass-brd);
       background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.04)) padding-box,
                  linear-gradient(180deg,rgba(255,255,255,.25),rgba(255,255,255,0)) border-box;
       backdrop-filter:blur(8px) saturate(140%);-webkit-backdrop-filter:blur(8px) saturate(140%);
@@ -140,24 +144,54 @@
     .btn-analyser:hover{transform:translateY(-1px);box-shadow:0 12px 38px rgba(0,164,201,.25), inset 0 0 0 999px var(--glass-tint)}
     .btn-analyser:active{transform:translateY(0)}
 
-    /* SECTION Why Awenoria (dégradé et point cuivre déjà faits précédemment) */
+    /* CAROUSEL */
+    .carousel-wrap{position:relative;overflow:hidden}
+    .carousel{position:relative;width:100%}
+    .slides{display:flex;transition:transform .5s ease;will-change:transform}
+    .slide{min-width:100%;height:clamp(260px,44vw,520px);position:relative}
+    .slide img{width:100%;height:100%;object-fit:cover;display:block}
+    .slide .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.55))}
+    .slide .caption{position:absolute;left:max(20px,calc((100% - var(--maxw))/2 + 20px));bottom:24px;max-width:560px}
+    .slide h2{margin:0 0 6px;font-size:clamp(22px,4vw,42px)}
+    .slide p{margin:0 0 12px;color:var(--text);opacity:.9}
+    .ctrl{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(0,0,0,.35);display:grid;place-items:center;cursor:pointer}
+    .ctrl:hover{background:rgba(0,0,0,.5)}
+    .ctrl.prev{left:12px}.ctrl.next{right:12px}
+    .ctrl svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2}
+    .dots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:8px}
+    .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.45);border:none}
+    .dot[aria-current="true"]{background:#fff}
+
+    /* SECTION Why Awenoria */
     .section{max-width:var(--maxw);margin:40px auto;padding:0 20px}
     .why-title{margin:10px 0 18px;text-align:center;font-size:clamp(26px,4vw,40px);font-weight:900}
     .why-title .brandmark{
-      background: linear-gradient(90deg,#00A3FF,#00D4BE);
+      background: linear-gradient(90deg,#88c6ff,#7df3b2);
       -webkit-background-clip: text; background-clip: text; color: transparent;
       position: relative;
     }
-    .why-title .brandmark .i-dot{position:relative; display:inline-block;}
-    .why-title .brandmark .i-dot::after{content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:1.15em; width:.46em; height:.46em; border-radius:50%; background:#ff8a3d;}
+    .why-title .brandmark::after{
+      content:""; display:inline-block; width:.45em; height:.45em; border-radius:50%;
+      background:#ff8a3d; margin-left:.15em; transform:translateY(-.2em);
+    }
     .why-underline{width:80px;height:4px;border-radius:999px;background:#ff8a3d;margin:10px auto 26px;opacity:.85}
 
     .why-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
     @media (max-width:1024px){ .why-grid{grid-template-columns:1fr 1fr} }
     @media (max-width:620px){ .why-grid{grid-template-columns:1fr} }
 
-    .why-card{position:relative;border-radius:22px;padding:22px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.16);box-shadow:0 18px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter: blur(10px) saturate(140%); -webkit-backdrop-filter: blur(10px) saturate(140%);display:flex;flex-direction:column;gap:10px;min-height:160px;}
-    .why-badge{align-self:flex-start;border-radius:999px;padding:6px 14px;font-weight:900;background:rgba(0,164,201,.18);border:1px solid rgba(255,255,255,.22);color:#d9f1ff;letter-spacing:.02em;font-size:13px}
+    .why-card{
+      position:relative;border-radius:22px;padding:22px;
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:0 18px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
+      backdrop-filter: blur(10px) saturate(140%); -webkit-backdrop-filter: blur(10px) saturate(140%);
+      display:flex;flex-direction:column;gap:10px;min-height:160px;
+    }
+    .why-badge{
+      align-self:flex-start;border-radius:999px;padding:6px 14px;font-weight:900;
+      background:rgba(0,164,201,.18);border:1px solid rgba(255,255,255,.22);color:#d9f1ff;letter-spacing:.02em;font-size:13px
+    }
     .why-card h3{margin:2px 0 4px;font-size:20px}
     .why-card p{margin:0;color:var(--muted)}
 
@@ -166,7 +200,7 @@
     .cc-container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
     .cc-top{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
     .cc-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
-    .cc-brand img{height:70px;object-fit:contain;display:block}
+    .cc-brand img{height:44px;object-fit:contain;display:block}
     .cc-brand .brand-text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
     .cc-locale{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(255,255,255,.25);border-radius:999px;text-decoration:none;color:#eaeaea}
     .cc-locale svg{width:18px;height:18px;stroke:#eaeaea;fill:none}
@@ -181,13 +215,14 @@
     .cc-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:grid;grid-template-columns:1fr auto;gap:12px}
     .cc-bottom small{color:#b8bfcc}
 
+    /* Responsive tweaks préexistants */
     @media (max-width:1024px){ .mega-grid{grid-template-columns:1fr 1fr} }
     @media (max-width:720px){
       .nav-main{display:flex !important;flex-wrap:wrap;gap:10px;justify-content:flex-start}
       .hero-intro .wrap{grid-template-columns:1fr}
-      aside.hero-aside{margin-top:0} /* sur mobile, on laisse la position naturelle */
     }
     @media (max-width:620px){ .slide{height:300px} .cc-grid{grid-template-columns:1fr 1fr} .cc-social{justify-self:start} .cc-top{grid-template-columns:1fr;gap:10px} .cc-bottom{grid-template-columns:1fr} }
+
     @media (max-width: 9999px){ .nav-main[style*="display:none"], .nav-main.hidden{display:flex !important} }
 
     /* Curseur typing */
@@ -205,7 +240,6 @@
       </a>
 
       <nav class="nav-main" aria-label="Navigation principale">
-        <!-- remis -->
         <a href="#qui-sommes-nous">Qui sommes-nous ?</a>
 
         <div class="dropdown" id="servicesDropdown">
@@ -226,7 +260,7 @@
           </div>
         </div>
 
-        <a href="#actualites">Actualité</a>
+        <a href="#services">Pourquoi Awenoria</a>
         <a href="#contact">Contact</a>
       </nav>
 
@@ -267,7 +301,7 @@
 
         <ul class="checks">
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Diagnostics concrets avec feuille de route actionnable.</li>
-          <li id="anchor-li"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Parcours formations adaptés (produit, dev, design, DPO).</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Parcours formations adaptés (produit, dev, design, DPO).</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Accompagnement « du cadrage à la mise en prod ».</li>
         </ul>
 
@@ -279,7 +313,7 @@
         <div class="subnote" style="margin-top:10px"><span class="badge">Excellent ★★★★★</span> <span>Recommandé par nos clients</span></div>
       </div>
 
-      <!-- Barre URL : alignée pile sur la 2e puce -->
+      <!-- Barre URL centrée -->
       <aside class="hero-aside">
         <div class="url-box" id="scan-url">
           <input class="url-input" type="url" placeholder="https://votresite.fr" aria-label="Adresse du site à analyser">
@@ -290,42 +324,220 @@
   </section>
 
   <!-- CARROUSEL -->
-  <!-- (inchangé) … -->
+  <section class="carousel-wrap" aria-roledescription="carrousel" aria-label="Mises en avant" aria-live="polite" id="hero">
+    <div class="carousel" id="carousel">
+      <div class="slides">
+        <figure class="slide" aria-label="Slide 1">
+          <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1600&auto=format&fit=crop" alt="Visuel mise en avant 1" />
+          <div class="overlay" aria-hidden="true"></div>
+          <figcaption class="caption">
+            <h2>Mise en avant #1</h2>
+            <p class="muted">Texte court pour une promo, un cas client, une actu.</p>
+            <a class="btn" href="#actualites">Voir l'actualité</a>
+          </figcaption>
+        </figure>
+        <figure class="slide" aria-label="Slide 2">
+          <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1600&auto=format&fit=crop" alt="Visuel mise en avant 2" />
+          <div class="overlay" aria-hidden="true"></div>
+          <figcaption class="caption">
+            <h2>Mise en avant #2</h2>
+            <p class="muted">Ex : lancement de service, webinar, ebook…</p>
+            <a class="btn ghost" href="#services">Découvrir nos services</a>
+          </figcaption>
+        </figure>
+        <figure class="slide" aria-label="Slide 3">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1600&auto=format&fit=crop" alt="Visuel mise en avant 3" />
+          <div class="overlay" aria-hidden="true"></div>
+          <figcaption class="caption">
+            <h2>Mise en avant #3</h2>
+            <p class="muted">Renforce la crédibilité d'Awenoria avec une preuve.</p>
+            <a class="btn" href="#expert">Parler à un expert</a>
+          </figcaption>
+        </figure>
+      </div>
+      <button class="ctrl prev" aria-label="Diapo précédente"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="ctrl next" aria-label="Diapo suivante"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+      <div class="dots" role="tablist" aria-label="Sélecteurs de diapo"></div>
+    </div>
+  </section>
 
-  <!-- SECTIONS suivantes (inchangées) … -->
+  <!-- POURQUOI CHOISIR AWENORIA -->
+  <section id="services" class="section">
+    <h2 class="why-title">Pourquoi choisir <span class="brandmark">Awenoria</span></h2>
+    <div class="why-underline" aria-hidden="true"></div>
 
+    <div class="why-grid">
+      <article class="why-card">
+        <span class="why-badge">Automatisé</span>
+        <h3>Analyse locale</h3>
+        <p>Pas d’envoi de données sensibles : l’essentiel est évalué côté navigateur.</p>
+      </article>
+
+      <article class="why-card">
+        <span class="why-badge">Rapide</span>
+        <h3>Diagnostic immédiat</h3>
+        <p>Scores thématiques, priorisation et actions concrètes. Export PDF à venir.</p>
+      </article>
+
+      <article class="why-card">
+        <span class="why-badge">Évolutif</span>
+        <h3>Suivi &amp; modèles</h3>
+        <p>Guides, modèles juridiques et mises à jour réglementaires pour rester conforme.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- QUI SOMMES-NOUS -->
+  <section id="qui-sommes-nous" class="section">
+    <h2>Qui sommes-nous ?</h2>
+    <p class="muted">Trois blocs informatifs pour présenter Awenoria (mission, méthodes, garanties).</p>
+    <div class="info-grid">
+      <article class="info"><div class="ico">A</div><div><h3>Expertise</h3><p class="muted">Des standards élevés et des méthodes éprouvées.</p></div></article>
+      <article class="info"><div class="ico">W</div><div><h3>Approche</h3><p class="muted">Transparence, pédagogie et résultats mesurables.</p></div></article>
+      <article class="info"><div class="ico">N</div><div><h3>Relation</h3><p class="muted">Accompagnement humain et réactif, sur-mesure.</p></div></article>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="cc-footer" role="contentinfo" id="contact">
-    <!-- (inchangé) … -->
+    <div class="cc-container">
+      <div class="cc-top">
+        <a class="cc-brand" href="#" aria-label="Awenoria">
+          <img src="images/logo.png" alt="Awenoria">
+          <strong class="brand-text">Awenoria</strong>
+        </a>
+        <a class="cc-locale" href="#" aria-label="Changer de pays">
+          <svg viewBox="0 0 24 24"><path d="M12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9zm0 0c2.5-2.8 4-5.8 4-9 0-3.2-1.5-6.2-4-9m0 18C9.5 18.2 8 15.2 8 12c0-3.2 1.5-6.2 4-9"/></svg>
+          <span>France</span>
+        </a>
+      </div>
+      <div class="cc-grid">
+        <div class="cc-col">
+          <h4>À propos de nous</h4>
+          <ul>
+            <li><a href="#actualites">Nos actualités</a></li>
+            <li><a href="#qui-sommes-nous">Histoire</a></li>
+            <li><a href="#carriere">Carrière</a></li>
+          </ul>
+        </div>
+        <div class="cc-col">
+          <h4>Besoin d'aide ?</h4>
+          <ul>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Nous contacter</a></li>
+          </ul>
+        </div>
+        <div class="cc-col">
+          <h4>Utilisation</h4>
+          <ul>
+            <li><a href="#conditions">Conditions d'utilisation</a></li>
+            <li><a href="#confidentialite">Politique de Confidentialité</a></li>
+            <li><a href="#cookies">Politique d'utilisation des cookies</a></li>
+            <li><a href="#param-cookies">Paramètres des cookies</a></li>
+          </ul>
+        </div>
+        <div class="cc-social" aria-label="Réseaux sociaux">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M15 8h-2c-.6 0-1 .4-1 1v2h3l-.5 3H12v7H9v-7H7v-3h2V9a3 3 0 013-3h3v2z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M6.94 7.5A1.94 1.94 0 116.93 3a1.94 1.94 0 01.01 4.5zM4.5 9h5v11h-5V9zm7 0h4.7v1.7h.1c.7-1.3 2.3-2.1 3.7-2.1 3.9 0 4.6 2.6 4.6 6v5.4h-5V15c0-1.3 0-3-1.8-3s-2.2 1.4-2.2 2.9V20h-5V9z"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M20.5 12.2A8.5 8.5 0 113.8 18l-1.2 4.2 4.3-1.1a8.5 8.5 0 0013.6-8.9zM8.9 7.8c.2-.4.4-.4.6-.4h.5c.2 0 .4 0 .5.4.2.4.6 1.4.6 1.5 0 .2 0 .3-.1.5-.1.2-.2.3-.4.5l-.2.2c-.1.1-.2.2 0 .5.2.2.8 1.4 2 2 .9.5 1.2.4 1.4.3.2-.1.6-.5.7-.7.2-.2.4-.2.6-.1.2.1 1.3.6 1.5.7.2.1.3.2.4.3 0 .2 0 1.1-.5 1.7-.5.6-1.1.7-1.3.7-.3.1-2.5.4-4.7-1.1-2-1.3-3.1-3.6-3.2-3.8-.2-.2-.5-1.3-.5-1.7 0-.4.2-.9.3-1.1z"/></svg></a>
+        </div>
+      </div>
+      <div class="cc-bottom">
+        <small>Ce site vous propose des contenus et des informations sur les services d'Awenoria.</small>
+        <small>© 2025 Awenoria. Tous Droits Réservés.</small>
+      </div>
+    </div>
   </footer>
 
   <script>
     const qs=(s,el=document)=>el.querySelector(s); const qsa=(s,el=document)=>[...el.querySelectorAll(s)];
 
-    /* Carousel (inchangé) … (garde ton script existant) */
+    /* Carousel */
+    (function initCarousel(id){
+      const root=qs('#'+id); if(!root) return;
+      const slides=qs('.slides',root); const items=qsa('.slide',root);
+      const prev=qs('.prev',root); const next=qs('.next',root); const dotsWrap=qs('.dots',root);
+      let index=0, timer=null; const AUTOPLAY=4500;
+      items.forEach((_,i)=>{ const b=document.createElement('button'); b.className='dot'; b.setAttribute('role','tab'); b.setAttribute('aria-label','Aller à la diapo '+(i+1)); b.addEventListener('click',()=>go(i)); dotsWrap.appendChild(b); });
+      function update(){ slides.style.transform=`translateX(${-index*100}%)`; qsa('.dot',dotsWrap).forEach((d,i)=>d.setAttribute('aria-current',i===index?'true':'false')); items.forEach((s,i)=>s.setAttribute('aria-hidden',i===index?'false':'true')); }
+      function go(i){ index=(i+items.length)%items.length; update(); }
+      function nextFn(){ go(index+1); } function prevFn(){ go(index-1); }
+      prev.addEventListener('click',prevFn); next.addEventListener('click',nextFn);
+      root.addEventListener('keydown',e=>{ if(e.key==='ArrowLeft') prevFn(); if(e.key==='ArrowRight') nextFn(); }); root.tabIndex=0;
+      function start(){ stop(); timer=setInterval(nextFn,AUTOPLAY); } function stop(){ if(timer) clearInterval(timer); }
+      root.addEventListener('mouseenter',stop); root.addEventListener('mouseleave',start); document.addEventListener('visibilitychange',()=>document.hidden?stop():start());
+      update(); start();
+    })('carousel');
 
-    /* Account dropdown (inchangé) … */
-
-    /* Mega-menu (inchangé) … */
-
-    /* Typing effect (inchangé) … */
-
-    /* ===== ALIGNEMENT PRÉCIS DE LA BARRE D’URL SUR LA 2e PUCE ===== */
+    /* Account dropdown */
     (function(){
-      const wrap = qs('.hero-intro .wrap');
-      const left = wrap ? wrap.firstElementChild : null;
-      const li2 = left ? left.querySelector('.checks li:nth-child(2)') : null;
-      const aside = wrap ? qs('aside.hero-aside', wrap) : null;
+      const btn=qs('#accountBtn'), menu=qs('#accountMenu'); if(!btn||!menu) return;
+      const toggle=()=>{ const open=!menu.classList.contains('open'); menu.classList.toggle('open'); btn.setAttribute('aria-expanded',open); };
+      btn.addEventListener('click',e=>{ e.stopPropagation(); toggle(); });
+      document.addEventListener('click',e=>{ if(menu.classList.contains('open') && !menu.contains(e.target) && e.target!==btn){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); } });
+      btn.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'){ e.preventDefault(); menu.classList.add('open'); btn.setAttribute('aria-expanded','true'); const first=menu.querySelector('[role="menuitem"]'); first && first.focus(); }});
+      menu.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
+      menu.addEventListener('keydown',e=>{ if(e.key==='Escape'){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.focus(); }});
+    })();
+
+    /* Mega-menu */
+    (function(){
+      const dd=qs('#servicesDropdown'); if(!dd) return; const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega');
+      const open=()=>{ panel.classList.add('open'); btn.setAttribute('aria-expanded','true'); };
+      const close=()=>{ panel.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
+      btn.addEventListener('click',e=>{ e.stopPropagation(); panel.classList.toggle('open'); btn.setAttribute('aria-expanded', panel.classList.contains('open')); });
+      dd.addEventListener('mouseenter',open); dd.addEventListener('mouseleave',close);
+      document.addEventListener('click',e=>{ if(!dd.contains(e.target)) close(); });
+      btn.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'){ e.preventDefault(); open(); const first=panel.querySelector('[role="menuitem"]'); first && first.focus(); }});
+      panel.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
+    })();
+
+    /* Typing effect */
+    (function(){
+      const SPEED = 45; 
+      const els = [...document.querySelectorAll('.type-on-view')];
+      els.forEach(el=>{
+        const full = (el.getAttribute('data-text') || el.textContent || '').trim();
+        el.dataset.fullText = full; el.textContent=''; el.__typingTimer=null; el.__ready=true;
+        el.classList.remove('caret'); el.setAttribute('aria-live','polite');
+      });
+      function type(el){
+        clearTimeout(el.__typingTimer); const full = el.dataset.fullText || ''; el.textContent=''; el.classList.remove('caret'); let i=0;
+        (function tick(){ el.textContent = full.slice(0, ++i); if(i<full.length){ el.__typingTimer=setTimeout(tick,SPEED);} else { el.__typingTimer=null; el.__ready=false; el.classList.add('caret'); } })();
+      }
+      const io = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          const el = entry.target;
+          if(entry.isIntersecting){ if(el.__ready) type(el); }
+          else{ el.__ready=true; el.classList.remove('caret'); clearTimeout(el.__typingTimer); el.__typingTimer=null; }
+        });
+      }, { threshold: .4, rootMargin: '0px 0px -10% 0px' });
+      els.forEach(el=>io.observe(el));
+    })();
+
+    /* ===== Correctif : aligne la barre d'analyse sur la 2e puce ===== */
+    (function(){
+      const wrap  = document.querySelector('.hero-intro .wrap');
+      const left  = wrap ? wrap.firstElementChild : null;
+      const li2   = left ? left.querySelector('.checks li:nth-child(2)') : null;
+      const aside = wrap ? wrap.querySelector('aside.hero-aside') : null;
 
       function alignURLBar(){
         if(!wrap || !left || !li2 || !aside) return;
-        if (window.innerWidth < 980){ aside.style.marginTop = ''; return; } // sur mobile : flow naturel
-        const liTop = li2.getBoundingClientRect().top;
-        const leftTop = left.getBoundingClientRect().top;
-        const delta = Math.round(liTop - leftTop);
-        aside.style.marginTop = delta + 'px';
+        // Sur mobile : on garde le flux naturel
+        if (window.innerWidth < 980){
+          aside.style.marginTop = '';
+          aside.style.width = '';
+          return;
+        }
+        const liBox   = li2.getBoundingClientRect();
+        const leftBox = left.getBoundingClientRect();
+        const offset  = Math.round(liBox.top - leftBox.top); // haut de la phrase
+        aside.style.marginTop = offset + 'px';
+        // largeur d'origine conservée
       }
 
-      window.addEventListener('load', alignURLBar);
+      window.addEventListener('load',   alignURLBar);
       window.addEventListener('resize', alignURLBar);
     })();
   </script>
