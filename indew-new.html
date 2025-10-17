@@ -127,6 +127,7 @@
     .pill h5{ margin:2px 0 0; font-size:16px }
     .pill p{ margin:0; color:var(--muted); font-size:14px }
 
+    /* ===== HERO INTRO ===== */
     .hero-intro{position:relative;padding:52px 0 36px;background:linear-gradient(135deg,#0e3b47 0%,#0b2833 100%);border-bottom:1px solid rgba(255,255,255,.06);color:var(--text);}
     .hero-intro::before{content:"";position:absolute;top:0;left:0;width:65%;height:100%;background:linear-gradient(to right,rgba(14,59,71,1),rgba(14,59,71,.6),transparent);pointer-events:none;z-index:1;}
     .hero-intro .wrap{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1.5fr 1fr;column-gap:40px;align-items:center;}
@@ -147,6 +148,37 @@
     .hero-intro .subnote{display:inline-flex;align-items:center;gap:8px;margin-top:12px;color:var(--muted);font-size:14px;}
     .hero-intro .badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 10px;font-weight:700;font-size:12px;letter-spacing:.02em;}
     @media(max-width:900px){.hero-intro .wrap{grid-template-columns:1fr;}.hero-card img{max-width:100%;max-height:none;}}
+
+    /* === HERO ART (carte Europe + code) — corrigé (luminance) === */
+    .hero-art{
+      width:100%;
+      max-width:560px;
+      aspect-ratio: 1 / 1;
+      background: rgba(180, 225, 230, 0.95); /* couleur visible des lignes */
+
+      /* masque basé sur la luminance du PNG (zones claires visibles) */
+      -webkit-mask-image: url('images/hero-bg.png');
+      mask-image: url('images/hero-bg.png');
+      -webkit-mask-mode: luminance;
+      mask-mode: luminance;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      mask-position: center;
+      -webkit-mask-size: contain;
+      mask-size: contain;
+
+      mix-blend-mode: screen;
+      opacity: .9;
+    }
+    /* Fallback si le navigateur ne gère pas le masque */
+    @supports not (mask-image: url("")) and not (-webkit-mask-image: url("")){
+      .hero-art{
+        background: url('images/hero-bg.png') center/contain no-repeat;
+        opacity: .85;
+        mix-blend-mode: lighten;
+      }
+    }
 
     /* ===== CAROUSEL ===== */
     .carousel-wrap{position:relative; overflow:hidden}
@@ -221,25 +253,6 @@
     @media (max-width: 9999px){
       .nav-main[style*="display:none"], .nav-main.hidden { display:flex !important; }
     }
-
-    /* === HERO ART (carte Europe + code) — AJOUT === */
-    .hero-art{
-      width:100%;
-      max-width:560px;
-      aspect-ratio: 1 / 1; /* ajuste si besoin (ex. 4/3, 16/9) */
-      background: rgba(180, 225, 230, .92); /* couleur visible des lignes */
-      -webkit-mask: url('images/hero-bg.png?v=5') center / contain no-repeat;
-              mask: url('images/hero-bg.png?v=5') center / contain no-repeat;
-      mix-blend-mode: screen; /* fondu parfait avec le fond */
-    }
-    /* Fallback si le navigateur ne gère pas mask-image */
-    @supports not (mask-image: url("")) and not (-webkit-mask-image: url("")){
-      .hero-art{
-        background: url('images/hero-bg.png?v=5') center/contain no-repeat;
-        opacity: .85;
-        mix-blend-mode: lighten;
-      }
-    }
   </style>
 </head>
 <body>
@@ -247,7 +260,7 @@
   <header class="navbar" role="banner">
     <div class="nav-wrap">
       <a class="brand" href="#" aria-label="Aller à l'accueil">
-        <img class="brand-img" src="images/logo.png?v=2" alt="Logo Awenoria">
+        <img class="brand-img" src="images/logo.png" alt="Logo Awenoria">
         <span class="brand-title">Awenoria</span>
       </a>
 
@@ -394,7 +407,7 @@
     <div class="cc-container">
       <div class="cc-top">
         <a class="cc-brand" href="#" aria-label="Awenoria">
-          <img src="images/logo.png?v=2" alt="Awenoria"><strong>Awenoria</strong>
+          <img src="images/logo.png" alt="Awenoria"><strong>Awenoria</strong>
         </a>
         <a class="cc-locale" href="#" aria-label="Changer de pays">
           <svg viewBox="0 0 24 24"><path d="M12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9zm0 0c2.5-2.8 4-5.8 4-9 0-3.2-1.5-6.2-4-9m0 18C9.5 18.2 8 15.2 8 12c0-3.2 1.5-6.2 4-9"/></svg>
