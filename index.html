@@ -31,7 +31,7 @@
       --glass-brd: rgba(255,255,255,.18);
       --glass-tint: rgba(0,164,201,.18);
       --txt-primary:#EAF4FF;
-      --txt-muted:#BFD6E6);
+      --txt-muted:#BFD6E6;
     }
 
     *{box-sizing:border-box}
@@ -58,7 +58,7 @@
     .btn{background:var(--brand);color:#fff;border:none;font-weight:700;text-decoration:none;padding:0 12px;height:32px;line-height:32px;border-radius:8px}
     .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.18)}
 
-    /* Account + mega menu (inchangé)… */
+    /* Account + mega menu (original) */
     .account{position:relative}
     .account-btn{width:32px;height:32px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.06);color:var(--text);display:inline-flex;align-items:center;justify-content:center}
     .account-btn:hover{background:rgba(255,255,255,.12)}
@@ -103,18 +103,16 @@
     .hero-intro .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.22);box-shadow:none}
     .hero-intro .btn.ghost:hover{background:rgba(255,255,255,.06)}
 
-    /* === Barre URL (styles inchangés) === */
+    /* === Barre URL : colonne de droite, largeur un peu réduite === */
     aside.hero-aside{margin-top:clamp(12px,5vh,40px)}
     @media (min-width:980px){
       aside.hero-aside{
-        /* AJOUT : la barre se met dans la 2e colonne pour être à droite du texte */
         grid-column: 2;
         justify-self: start;
-        width: min(640px, 44vw);   /* un peu moins large, comme sur ta capture */
-        margin-top: 0;            /* sera piloté par JS pour l’alignement exact */
+        width: min(640px, 44vw);
+        margin-top: 0; /* piloté par JS pour l’alignement */
       }
     }
-
     .url-box{
       width:100%;
       border-radius:16px;
@@ -133,7 +131,6 @@
     }
     .url-input::placeholder{color:var(--txt-muted);opacity:.9}
     .url-input:focus{border-color:rgba(0,164,201,.45);box-shadow:0 0 0 4px rgba(0,164,201,.18), inset 0 2px 6px rgba(0,0,0,.35)}
-
     .btn-analyser{
       padding:.9rem 1.2rem;border-radius:14px;border:1px solid var(--glass-brd);
       background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.04)) padding-box,
@@ -164,7 +161,7 @@
     .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.45);border:none}
     .dot[aria-current="true"]{background:#fff}
 
-    /* SECTIONs */
+    /* Sections & cartes */
     .section{max-width:var(--maxw);margin:40px auto;padding:0 20px}
     .why-title{margin:10px 0 18px;text-align:center;font-size:clamp(26px,4vw,40px);font-weight:900}
     .why-underline{width:80px;height:4px;border-radius:999px;background:#ff8a3d;margin:10px auto 26px;opacity:.85}
@@ -188,12 +185,52 @@
     .why-card h3{margin:2px 0 4px;font-size:20px}
     .why-card p{margin:0;color:var(--muted)}
 
-    /* AJOUT : marque "Awenoria" avec dégradé + point cuivré comme sur ta page À propos */
+    /* Mot Awenoria (dégradé + point cuivré) */
     .brandword{--i-scaleX:1;--i-scaleY:.86;--idot-top:.09em;--idot-left:50%;display:inline-flex;gap:.02em;align-items:baseline;line-height:1;white-space:nowrap;font-kerning:none;font-feature-settings:"kern" 0;}
     .brandword .A{color:#0aa3ff;font-weight:900}
     .brandword .rest{background:linear-gradient(90deg,#0aa3ff 0%, #00d4be 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900;position:relative}
     .brandword .i-body{position:relative;display:inline-block;font-style:normal;font-size:1em;line-height:1;background:inherit;-webkit-background-clip:text;background-clip:text;color:transparent;transform:scale(var(--i-scaleX),var(--i-scaleY));transform-origin:bottom center;filter:brightness(1.06) saturate(.95)}
     .brandword .i-body::after{content:"";position:absolute;left:var(--idot-left);transform:translateX(-50%) scaleY(calc(1/var(--i-scaleY))); top:var(--idot-top); width:.20em; height:.20em; background:#ff8a3d; border-radius:50%}
+
+    /* ===== FOOTER – ORIGINAL ===== */
+    .cc-footer{background:#0a0a0a;color:#eaeaea;padding:28px 0 12px;border-top:1px solid rgba(255,255,255,.12)}
+    .cc-container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    .cc-top{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
+    .cc-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+    .cc-brand img{height:44px;object-fit:contain;display:block}
+    .cc-brand .brand-text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    .cc-locale{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(255,255,255,.25);border-radius:999px;text-decoration:none;color:#eaeaea}
+    .cc-locale svg{width:18px;height:18px;stroke:#eaeaea;fill:none}
+    .cc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:22px;padding:20px 0}
+    .cc-col h4{margin:0 0 12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#a7afbf}
+    .cc-col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+    .cc-col a{color:#eaeaea;text-decoration:none;font-weight:600}
+    .cc-col a:hover{text-decoration:underline}
+    .cc-social{display:flex;align-items:center;gap:14px;justify-self:end}
+    .cc-social a{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.5)}
+    .cc-social svg{width:18px;height:18px;fill:none;stroke:#eaeaea;stroke-width:2}
+    .cc-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:grid;grid-template-columns:1fr auto;gap:12px}
+    .cc-bottom small{color:#b8bfcc}
+
+    @media (max-width:1024px){ .mega-grid{grid-template-columns:1fr 1fr} }
+    @media (max-width:720px){
+      .nav-main{display:flex !important;flex-wrap:wrap;gap:10px;justify-content:flex-start}
+      .hero-intro .wrap{grid-template-columns:1fr}
+    }
+    @media (max-width:620px){
+      .slide{height:300px}
+      .cc-grid{grid-template-columns:1fr 1fr}
+      .cc-social{justify-self:start}
+      .cc-top{grid-template-columns:1fr;gap:10px}
+      .cc-bottom{grid-template-columns:1fr}
+    }
+
+    @media (max-width: 9999px){ .nav-main[style*="display:none"], .nav-main.hidden{display:flex !important} }
+
+    /* Curseur typing */
+    .type-on-view::after{content:"";display:inline-block;width:2px;height:.9em;background:currentColor;margin-left:3px;vertical-align:-.12em;opacity:0}
+    .type-on-view.caret::after{opacity:1;animation:awenBlink 1s steps(1) infinite}
+    @keyframes awenBlink{50%{opacity:0}}
   </style>
 </head>
 <body>
@@ -206,7 +243,6 @@
 
       <nav class="nav-main" aria-label="Navigation principale">
         <a href="#qui-sommes-nous">Qui sommes-nous ?</a>
-
         <div class="dropdown" id="servicesDropdown">
           <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
             Nos services
@@ -224,8 +260,7 @@
             </div>
           </div>
         </div>
-
-        <a href="#services">Pourquoi Awenoria</a>
+        <a href="#actualites">Actualité</a>
         <a href="#contact">Contact</a>
       </nav>
 
@@ -278,7 +313,7 @@
         <div class="subnote" style="margin-top:10px"><span class="badge">Excellent ★★★★★</span> <span>Recommandé par nos clients</span></div>
       </div>
 
-      <!-- Barre URL : A DROITE et alignée exactement sur la 2e puce -->
+      <!-- Barre URL à droite, alignée sur la 2e puce -->
       <aside class="hero-aside">
         <div class="url-box" id="scan-url">
           <input class="url-input" type="url" placeholder="https://votresite.fr" aria-label="Adresse du site à analyser">
@@ -288,7 +323,7 @@
     </div>
   </section>
 
-  <!-- CARROUSEL (inchangé) -->
+  <!-- CARROUSEL -->
   <section class="carousel-wrap" aria-roledescription="carrousel" aria-label="Mises en avant" aria-live="polite" id="hero">
     <div class="carousel" id="carousel">
       <div class="slides">
@@ -326,10 +361,9 @@
     </div>
   </section>
 
-  <!-- POURQUOI CHOISIR AWENORIA -->
+  <!-- POURQUOI CHOISIR -->
   <section id="services" class="section">
     <h2 class="why-title">Pourquoi choisir
-      <!-- AJOUT : mot Awenoria avec ton dégradé + point -->
       <span class="brandword" style="--idot-left:44%;">
         <span class="A">A</span><span class="rest">wenor<span class="i-body">ı</span>a</span>
       </span>
@@ -337,53 +371,24 @@
     <div class="why-underline" aria-hidden="true"></div>
 
     <div class="why-grid">
-      <article class="why-card">
-        <span class="why-badge">Automatisé</span>
-        <h3>Analyse locale</h3>
-        <p>Pas d’envoi de données sensibles : l’essentiel est évalué côté navigateur.</p>
-      </article>
-
-      <article class="why-card">
-        <span class="why-badge">Rapide</span>
-        <h3>Diagnostic immédiat</h3>
-        <p>Scores thématiques, priorisation et actions concrètes. Export PDF à venir.</p>
-      </article>
-
-      <article class="why-card">
-        <span class="why-badge">Évolutif</span>
-        <h3>Suivi &amp; modèles</h3>
-        <p>Guides, modèles juridiques et mises à jour réglementaires pour rester conforme.</p>
-      </article>
+      <article class="why-card"><span class="why-badge">Automatisé</span><h3>Analyse locale</h3><p>Pas d’envoi de données sensibles : l’essentiel est évalué côté navigateur.</p></article>
+      <article class="why-card"><span class="why-badge">Rapide</span><h3>Diagnostic immédiat</h3><p>Scores thématiques, priorisation et actions concrètes. Export PDF à venir.</p></article>
+      <article class="why-card"><span class="why-badge">Évolutif</span><h3>Suivi &amp; modèles</h3><p>Guides, modèles juridiques et mises à jour réglementaires pour rester conforme.</p></article>
     </div>
   </section>
 
-  <!-- AJOUT : UN CADRE EN ÉVOLUTION (encarts remis) -->
+  <!-- UN CADRE EN ÉVOLUTION -->
   <section id="cadre" class="section">
     <h2 class="why-title">Un cadre en évolution</h2>
     <div class="why-underline" aria-hidden="true"></div>
-
     <div class="why-grid">
-      <article class="why-card">
-        <span class="why-badge">RGPD</span>
-        <h3>Protection des données</h3>
-        <p>Information, base légale, droits, preuves de consentement — le socle de confiance.</p>
-      </article>
-
-      <article class="why-card">
-        <span class="why-badge">Accessibilité</span>
-        <h3>Directive &amp; RGAA/WCAG</h3>
-        <p>Déclaration, contrastes, clavier, sémantique — vers des services numériques accessibles à tous.</p>
-      </article>
-
-      <article class="why-card">
-        <span class="why-badge">Commerce</span>
-        <h3>Mentions &amp; CGV/CGU</h3>
-        <p>Éditeur, hébergeur, droits des consommateurs — des informations claires et à jour.</p>
-      </article>
+      <article class="why-card"><span class="why-badge">RGPD</span><h3>Protection des données</h3><p>Information, base légale, droits, preuves de consentement — le socle de confiance.</p></article>
+      <article class="why-card"><span class="why-badge">Accessibilité</span><h3>Directive &amp; RGAA/WCAG</h3><p>Déclaration, contrastes, clavier, sémantique — vers des services numériques accessibles à tous.</p></article>
+      <article class="why-card"><span class="why-badge">Commerce</span><h3>Mentions &amp; CGV/CGU</h3><p>Éditeur, hébergeur, droits des consommateurs — des informations claires et à jour.</p></article>
     </div>
   </section>
 
-  <!-- QUI SOMMES-NOUS (laisse ta section telle qu'avant) -->
+  <!-- QUI SOMMES-NOUS -->
   <section id="qui-sommes-nous" class="section">
     <h2>Qui sommes-nous ?</h2>
     <p class="muted">Trois blocs informatifs pour présenter Awenoria (mission, méthodes, garanties).</p>
@@ -394,7 +399,7 @@
     </div>
   </section>
 
-  <!-- FOOTER (inchangé) -->
+  <!-- FOOTER – ORIGINAL -->
   <footer class="cc-footer" role="contentinfo" id="contact">
     <div class="cc-container">
       <div class="cc-top">
@@ -511,7 +516,7 @@
       els.forEach(el=>io.observe(el));
     })();
 
-    /* AJOUT : aligne la barre d’URL sur la 2e puce ("Parcours formations...") */
+    /* Aligne la barre d’URL sur la 2e puce ("Parcours formations...") */
     (function(){
       const wrap  = document.querySelector('.hero-intro .wrap');
       const left  = wrap ? wrap.firstElementChild : null;
@@ -521,7 +526,6 @@
       function alignURLBar(){
         if(!wrap || !left || !li2 || !aside) return;
         if (window.innerWidth < 980){
-          /* mobile : flux naturel */
           aside.style.marginTop = '';
           aside.style.gridColumn = '';
           return;
