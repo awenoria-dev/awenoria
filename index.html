@@ -16,7 +16,7 @@
     }
 
     :root{
-      --bg:#0b0c10;
+      --bg:#141619;    /* ✅ noir aligné sur l'image */
       --panel:#0f1116;
       --muted:#8892a6;
       --text:#e8edf5;
@@ -32,7 +32,8 @@
     html,body{height:100%}
     body{
       margin:0;
-      background: radial-gradient(1200px 600px at 20% -10%, #151824 0%, var(--bg) 55%);
+      /* ✅ gradient qui termine sur le même noir que l'image */
+      background: radial-gradient(1200px 600px at 20% -10%, #171a1f 0%, var(--bg) 55%);
       color:var(--text);
       font-family:"AwenoriaUI", Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height:1.5;
@@ -131,7 +132,7 @@
 .hero-intro{
   position: relative;
   padding: 52px 0 36px;
-  background: #0b0c10; /* ✅ fond noir homogène */
+  background: var(--bg); /* ✅ fond noir homogène lié à la variable */
   border-bottom: 1px solid rgba(255,255,255,.06);
   color: var(--text);
   overflow: hidden;
@@ -429,11 +430,10 @@
 
       <!-- ✅ Image visible à droite (sans masque, fiable) -->
       <div class="hero-card">
-  <img class="hero-art"
-       src="/awenoria/images/hero-bg.png"
-       alt="Carte d'Europe avec lignes de code">
-</div>
-
+        <img class="hero-art"
+             src="/awenoria/images/hero-bg.png"
+             alt="Carte d'Europe avec lignes de code">
+      </div>
 
     </div>
   </section>
