@@ -144,40 +144,20 @@
     .hero-intro .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.22);box-shadow:none;}
     .hero-intro .btn.ghost:hover{background:rgba(255,255,255,.06);}
     .hero-card{background:transparent;border:none;box-shadow:none;padding:0;display:flex;align-items:center;justify-content:center;}
-    .hero-card img{display:block;width:100%;max-width:560px;height:auto;object-fit:contain;filter:none!important;opacity:1!important;mix-blend-mode:normal;}
-    .hero-intro .subnote{display:inline-flex;align-items:center;gap:8px;margin-top:12px;color:var(--muted);font-size:14px;}
-    .hero-intro .badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 10px;font-weight:700;font-size:12px;letter-spacing:.02em;}
-    @media(max-width:900px){.hero-intro .wrap{grid-template-columns:1fr;}.hero-card img{max-width:100%;max-height:none;}}
 
-    /* === HERO ART (carte Europe + code) — corrigé (luminance) === */
+    /* ✅ Image simple (affichage garanti) */
     .hero-art{
+      display:block;
       width:100%;
       max-width:560px;
-      aspect-ratio: 1 / 1;
-      background: rgba(180, 225, 230, 0.95); /* couleur visible des lignes */
-
-      /* masque basé sur la luminance du PNG (zones claires visibles) */
-      -webkit-mask-image: url('images/hero-bg.png');
-      mask-image: url('images/hero-bg.png');
-      -webkit-mask-mode: luminance;
-      mask-mode: luminance;
-      -webkit-mask-repeat: no-repeat;
-      mask-repeat: no-repeat;
-      -webkit-mask-position: center;
-      mask-position: center;
-      -webkit-mask-size: contain;
-      mask-size: contain;
-
-      mix-blend-mode: screen;
-      opacity: .9;
+      height:auto;
+      object-fit:contain;
+      opacity:.95;
     }
-    /* Fallback si le navigateur ne gère pas le masque */
-    @supports not (mask-image: url("")) and not (-webkit-mask-image: url("")){
-      .hero-art{
-        background: url('images/hero-bg.png') center/contain no-repeat;
-        opacity: .85;
-        mix-blend-mode: lighten;
-      }
+
+    @media(max-width:900px){
+      .hero-intro .wrap{grid-template-columns:1fr;}
+      .hero-card img{max-width:100%;max-height:none;}
     }
 
     /* ===== CAROUSEL ===== */
@@ -236,7 +216,6 @@
     @media (max-width:720px){
       .tiles{grid-template-columns:1fr 1fr}
       .info-grid{grid-template-columns:1fr 1fr}
-      /* on conserve le menu visible et wrap */
       .nav-main{display:flex !important; flex-wrap:wrap; gap:10px; justify-content:flex-start;}
       .hero-intro .wrap{ grid-template-columns:1fr; }
     }
@@ -333,10 +312,12 @@
         <div class="subnote"><span class="badge">Excellent ★★★★★</span><span>Recommandé par nos clients</span></div>
       </div>
 
-      <!-- ✅ Image remplacée par un motif en masque, parfaitement fondu -->
+      <!-- ✅ Image visible à droite (sans masque, fiable) -->
       <div class="hero-card">
-        <div class="hero-art" role="img"
-             aria-label="Carte d'Europe avec lignes de code"></div>
+        <!-- Si tu renommes le fichier en 'hero-bg.png', remplace l'URL ci-dessous -->
+        <img class="hero-art"
+             src="images/h%C3%A9ros-bg.png"
+             alt="Carte d'Europe avec lignes de code">
       </div>
 
     </div>
