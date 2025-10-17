@@ -369,8 +369,8 @@
   <section class="hero-intro" id="intro">
     <div class="wrap">
       <div>
+        <div class="kicker">Awenoria</div>
         <h1>Boostez votre conformité & vos performances digitales</h1>
-        <h1 class="type-on-view" data-text="Boostez votre conformité &amp; vos performances digitales"></h1>
         <p class="lead">Audits, conformité RGPD & IA, éco-conception, formations et accompagnement opérationnel. Nous alignons vos produits avec les meilleures pratiques — sans alourdir vos équipes.</p>
         <ul class="checks">
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Diagnostics concrets avec feuille de route actionnable.</li>
@@ -528,7 +528,6 @@
     })();
 
     /* Mega-menu Nos services */
-        /* Mega-menu Nos services */
     (function(){
       const dd=qs('#servicesDropdown'); if(!dd) return; const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega');
       const open=()=>{ panel.classList.add('open'); btn.setAttribute('aria-expanded','true'); };
@@ -538,81 +537,6 @@
       document.addEventListener('click',e=>{ if(!dd.contains(e.target)) close(); });
       btn.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'){ e.preventDefault(); open(); const first=panel.querySelector('[role="menuitem"]'); first && first.focus(); }});
       panel.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
-      const dd = qs('#servicesDropdown'); if(!dd) return;
-      const btn = dd.querySelector('.dropdown-toggle');
-      const panel = dd.querySelector('.mega');
-
-      const open  = () => { panel.classList.add('open');  btn.setAttribute('aria-expanded','true');  };
-      const close = () => { panel.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
-
-      btn.addEventListener('click', e => {
-        e.stopPropagation();
-        panel.classList.toggle('open');
-        btn.setAttribute('aria-expanded', panel.classList.contains('open'));
-      });
-
-      dd.addEventListener('mouseenter', open);
-      dd.addEventListener('mouseleave', close);
-
-      document.addEventListener('click', e => { if(!dd.contains(e.target)) close(); });
-
-      btn.addEventListener('keydown', e => {
-        if(e.key === 'ArrowDown'){
-          e.preventDefault();
-          open();
-          const first = panel.querySelector('[role="menuitem"]');
-          first && first.focus();
-        }
-      });
-
-      panel.querySelectorAll('[role="menuitem"]').forEach(a => a.setAttribute('tabindex','0'));
-    })();
-
-    /* Effet machine à écrire (rejoue à chaque retour en vue) */
-    (function(){
-      const SPEED = 22; // ms par caractère
-      const els = [...document.querySelectorAll('.type-on-view')];
-
-      // Préparation des éléments
-      els.forEach(el=>{
-        const full = (el.getAttribute('data-text') || el.textContent || '').trim();
-        el.dataset.fullText = full;
-        el.textContent = '';
-        el.__typingTimer = null;
-        el.__ready = true;
-        el.setAttribute('aria-live','polite');
-      });
-
-      function type(el){
-        clearTimeout(el.__typingTimer);
-        const full = el.dataset.fullText || '';
-        el.textContent = '';
-        let i = 0;
-        (function tick(){
-          el.textContent = full.slice(0, ++i);
-          if(i < full.length){
-            el.__typingTimer = setTimeout(tick, SPEED);
-          }else{
-            el.__typingTimer = null;
-            el.__ready = false; // ne rejoue pas tant qu'il ne sort pas du viewport
-          }
-        })();
-      }
-
-      const io = new IntersectionObserver(entries=>{
-        entries.forEach(entry=>{
-          const el = entry.target;
-          if(entry.isIntersecting){
-            if(el.__ready) type(el);
-          }else{
-            el.__ready = true;
-            clearTimeout(el.__typingTimer);
-            el.__typingTimer = null;
-          }
-        });
-      }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
-
-      els.forEach(el=>io.observe(el));
     })();
   </script>
 </body>
