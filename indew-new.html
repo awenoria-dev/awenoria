@@ -128,25 +128,25 @@
     .pill p{ margin:0; color:var(--muted); font-size:14px }
 
     .hero-intro{position:relative;padding:52px 0 36px;background:linear-gradient(135deg,#0e3b47 0%,#0b2833 100%);border-bottom:1px solid rgba(255,255,255,.06);color:var(--text);}
-.hero-intro::before{content:"";position:absolute;top:0;left:0;width:65%;height:100%;background:linear-gradient(to right,rgba(14,59,71,1),rgba(14,59,71,.6),transparent);pointer-events:none;z-index:1;}
-.hero-intro .wrap{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1.5fr 1fr;column-gap:40px;align-items:center;}
-.kicker{color:#7ec9db;font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:12px;margin-bottom:10px;}
-.hero-intro h1{margin:0 0 10px;font-size:clamp(28px,5vw,42px);line-height:1.15;}
-.hero-intro .lead{color:var(--muted);margin:0 0 16px;font-size:16px;}
-.checks{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:8px;}
-.checks li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start;color:var(--text);}
-.checks li svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:3;margin-top:2px;}
-.hero-intro .cta-row{display:flex;flex-wrap:wrap;gap:10px;}
-.hero-intro .btn{height:38px;line-height:38px;padding:0 16px;border-radius:10px;font-weight:800;letter-spacing:.01em;box-shadow:0 6px 16px rgba(27,136,255,.22);}
-.hero-intro .btn:hover{filter:brightness(1.06);transform:translateY(-1px);transition:.15s ease;}
-.hero-intro .btn:active{transform:translateY(0);}
-.hero-intro .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.22);box-shadow:none;}
-.hero-intro .btn.ghost:hover{background:rgba(255,255,255,.06);}
-.hero-card{background:transparent;border:none;box-shadow:none;padding:0;display:flex;align-items:center;justify-content:center;}
-.hero-card img{display:block;width:100%;max-width:560px;height:auto;object-fit:contain;filter:none!important;opacity:1!important;mix-blend-mode:normal;}
-.hero-intro .subnote{display:inline-flex;align-items:center;gap:8px;margin-top:12px;color:var(--muted);font-size:14px;}
-.hero-intro .badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 10px;font-weight:700;font-size:12px;letter-spacing:.02em;}
-@media(max-width:900px){.hero-intro .wrap{grid-template-columns:1fr;}.hero-card img{max-width:100%;max-height:none;}}
+    .hero-intro::before{content:"";position:absolute;top:0;left:0;width:65%;height:100%;background:linear-gradient(to right,rgba(14,59,71,1),rgba(14,59,71,.6),transparent);pointer-events:none;z-index:1;}
+    .hero-intro .wrap{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1.5fr 1fr;column-gap:40px;align-items:center;}
+    .kicker{color:#7ec9db;font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:12px;margin-bottom:10px;}
+    .hero-intro h1{margin:0 0 10px;font-size:clamp(28px,5vw,42px);line-height:1.15;}
+    .hero-intro .lead{color:var(--muted);margin:0 0 16px;font-size:16px;}
+    .checks{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:8px;}
+    .checks li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start;color:var(--text);}
+    .checks li svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:3;margin-top:2px;}
+    .hero-intro .cta-row{display:flex;flex-wrap:wrap;gap:10px;}
+    .hero-intro .btn{height:38px;line-height:38px;padding:0 16px;border-radius:10px;font-weight:800;letter-spacing:.01em;box-shadow:0 6px 16px rgba(27,136,255,.22);}
+    .hero-intro .btn:hover{filter:brightness(1.06);transform:translateY(-1px);transition:.15s ease;}
+    .hero-intro .btn:active{transform:translateY(0);}
+    .hero-intro .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.22);box-shadow:none;}
+    .hero-intro .btn.ghost:hover{background:rgba(255,255,255,.06);}
+    .hero-card{background:transparent;border:none;box-shadow:none;padding:0;display:flex;align-items:center;justify-content:center;}
+    .hero-card img{display:block;width:100%;max-width:560px;height:auto;object-fit:contain;filter:none!important;opacity:1!important;mix-blend-mode:normal;}
+    .hero-intro .subnote{display:inline-flex;align-items:center;gap:8px;margin-top:12px;color:var(--muted);font-size:14px;}
+    .hero-intro .badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 10px;font-weight:700;font-size:12px;letter-spacing:.02em;}
+    @media(max-width:900px){.hero-intro .wrap{grid-template-columns:1fr;}.hero-card img{max-width:100%;max-height:none;}}
 
     /* ===== CAROUSEL ===== */
     .carousel-wrap{position:relative; overflow:hidden}
@@ -220,6 +220,25 @@
     /* === HOTFIX : si d'anciennes règles cachent la nav, on l'impose visible === */
     @media (max-width: 9999px){
       .nav-main[style*="display:none"], .nav-main.hidden { display:flex !important; }
+    }
+
+    /* === HERO ART (carte Europe + code) — AJOUT === */
+    .hero-art{
+      width:100%;
+      max-width:560px;
+      aspect-ratio: 1 / 1; /* ajuste si besoin (ex. 4/3, 16/9) */
+      background: rgba(180, 225, 230, .92); /* couleur visible des lignes */
+      -webkit-mask: url('images/hero-bg.png?v=5') center / contain no-repeat;
+              mask: url('images/hero-bg.png?v=5') center / contain no-repeat;
+      mix-blend-mode: screen; /* fondu parfait avec le fond */
+    }
+    /* Fallback si le navigateur ne gère pas mask-image */
+    @supports not (mask-image: url("")) and not (-webkit-mask-image: url("")){
+      .hero-art{
+        background: url('images/hero-bg.png?v=5') center/contain no-repeat;
+        opacity: .85;
+        mix-blend-mode: lighten;
+      }
     }
   </style>
 </head>
@@ -300,42 +319,12 @@
         </div>
         <div class="subnote"><span class="badge">Excellent ★★★★★</span><span>Recommandé par nos clients</span></div>
       </div>
-     <div class="hero-card">
-  <img id="heroImage"
-       src=""
-       alt="Awenoria – expertise et accompagnement">
-</div>
 
-<script>
-  // 
-  (function () {
-    var img = document.getElementById('heroImage');
-
-    // 
-    var candidats = [
-      'images/hero-bg.png?v=5',
-      'images/hero-bg.jpg?v=5',
-      'hero-bg.png?v=5',
-      'hero-bg.jpg?v=5'
-    ];
-
-    var i = 0;
-    function essayerSuivant() {
-      if (i >= candidats.length) {
-        // Fallback si rien ne marche
-        img.src = 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop';
-        return;
-      }
-      var url = candidats[i++];
-      var test = new Image();
-      test.onload = function(){ img.src = url; };
-      test.onerror = essayerSuivant;
-      test.src = url;
-    }
-
-    essayerSuivant();
-  })();
-</script>
+      <!-- ✅ Image remplacée par un motif en masque, parfaitement fondu -->
+      <div class="hero-card">
+        <div class="hero-art" role="img"
+             aria-label="Carte d'Europe avec lignes de code"></div>
+      </div>
 
     </div>
   </section>
