@@ -49,6 +49,7 @@
     header.navbar{position:sticky;top:0;z-index:1100;background:rgba(15,17,22,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
     .nav-wrap{max-width:var(--maxw);margin:0 auto;padding:6px 14px;display:flex;align-items:center;gap:14px}
     .brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text)}
+    .brand-img{height:92px;width:auto;object-fit:contain;display:block} /* logos + grands */
     .brand-img{height:65px;width:auto;object-fit:contain;display:block}
     .nav-main{display:flex;align-items:center;gap:18px;flex:1;justify-content:center;margin-left:8px}
     .nav-main a,.nav-main button{appearance:none;background:none;border:none;cursor:pointer;color:var(--text);text-decoration:none;font-weight:700;height:var(--nav-h);line-height:var(--nav-h);padding:0 10px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
@@ -58,7 +59,8 @@
     .btn{background:var(--brand);color:#fff;border:none;font-weight:700;text-decoration:none;padding:0 12px;height:32px;line-height:32px;border-radius:8px}
     .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.18)}
 
-    /* Account + mega menu (original) */
+    /* Account + mega menu (inchangé)… */
+    /* Account + mega menu */
     .account{position:relative}
     .account-btn{width:32px;height:32px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.06);color:var(--text);display:inline-flex;align-items:center;justify-content:center}
     .account-btn:hover{background:rgba(255,255,255,.12)}
@@ -103,19 +105,24 @@
     .hero-intro .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.22);box-shadow:none}
     .hero-intro .btn.ghost:hover{background:rgba(255,255,255,.06)}
 
-    /* === Barre URL : colonne de droite, largeur un peu réduite === */
+    /* BARRE URL : largeur légèrement réduite. La hauteur ne bouge pas ici. */
+    aside.hero-aside{margin-top:0}
+    /* === Barre URL : styles d'origine === */
     aside.hero-aside{margin-top:clamp(12px,5vh,40px)}
     @media (min-width:980px){
       aside.hero-aside{
-        grid-column: 2;
-        justify-self: start;
-        width: min(640px, 44vw);
-        margin-top: 0; /* piloté par JS pour l’alignement */
+        grid-column: 1 / -1;
+        align-self:start;
+        width: min(760px, 88vw); /* un soupçon moins large */
+        justify-self: center;
+        width: min(860px, 92vw);
       }
     }
+
     .url-box{
       width:100%;
       border-radius:16px;
+      padding:.45rem;
       padding:.35rem;
       background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
       border:1px solid var(--glass-brd);
@@ -124,6 +131,7 @@
       display:flex;gap:.6rem;align-items:center;
       box-shadow:var(--shadow);
     }
+    .url-input{flex:1;padding:1.1rem 1.15rem;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(16,22,27,.55);color:var(--txt-primary);outline:none;font-size:15px;box-shadow:inset 0 2px 6px rgba(0,0,0,.35)}
     .url-input{
       flex:1;padding:1rem 1.1rem;border-radius:12px;border:1px solid rgba(255,255,255,.15);
       background:rgba(16,22,27,.55);color:var(--txt-primary);outline:none;font-size:15px;
@@ -131,7 +139,9 @@
     }
     .url-input::placeholder{color:var(--txt-muted);opacity:.9}
     .url-input:focus{border-color:rgba(0,164,201,.45);box-shadow:0 0 0 4px rgba(0,164,201,.18), inset 0 2px 6px rgba(0,0,0,.35)}
+
     .btn-analyser{
+      padding:1.05rem 1.2rem;border-radius:14px;border:1px solid var(--glass-brd);
       padding:.9rem 1.2rem;border-radius:14px;border:1px solid var(--glass-brd);
       background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.04)) padding-box,
                  linear-gradient(180deg,rgba(255,255,255,.25),rgba(255,255,255,0)) border-box;
@@ -143,6 +153,7 @@
     .btn-analyser:hover{transform:translateY(-1px);box-shadow:0 12px 38px rgba(0,164,201,.25), inset 0 0 0 999px var(--glass-tint)}
     .btn-analyser:active{transform:translateY(0)}
 
+    /* SECTION Why Awenoria (dégradé et point cuivre déjà faits précédemment) */
     /* CAROUSEL */
     .carousel-wrap{position:relative;overflow:hidden}
     .carousel{position:relative;width:100%}
@@ -161,15 +172,29 @@
     .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.45);border:none}
     .dot[aria-current="true"]{background:#fff}
 
-    /* Sections & cartes */
+    /* SECTION Why Awenoria */
     .section{max-width:var(--maxw);margin:40px auto;padding:0 20px}
     .why-title{margin:10px 0 18px;text-align:center;font-size:clamp(26px,4vw,40px);font-weight:900}
+    .why-title .brandmark{
+      background: linear-gradient(90deg,#00A3FF,#00D4BE);
+      background: linear-gradient(90deg,#88c6ff,#7df3b2);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      position: relative;
+    }
+    .why-title .brandmark .i-dot{position:relative; display:inline-block;}
+    .why-title .brandmark .i-dot::after{content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:1.15em; width:.46em; height:.46em; border-radius:50%; background:#ff8a3d;}
+    .why-title .brandmark::after{
+      content:""; display:inline-block; width:.45em; height:.45em; border-radius:50%;
+      background:#ff8a3d; margin-left:.15em; transform:translateY(-.2em);
+    }
     .why-underline{width:80px;height:4px;border-radius:999px;background:#ff8a3d;margin:10px auto 26px;opacity:.85}
 
     .why-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
     @media (max-width:1024px){ .why-grid{grid-template-columns:1fr 1fr} }
     @media (max-width:620px){ .why-grid{grid-template-columns:1fr} }
 
+    .why-card{position:relative;border-radius:22px;padding:22px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.16);box-shadow:0 18px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter: blur(10px) saturate(140%); -webkit-backdrop-filter: blur(10px) saturate(140%);display:flex;flex-direction:column;gap:10px;min-height:160px;}
+    .why-badge{align-self:flex-start;border-radius:999px;padding:6px 14px;font-weight:900;background:rgba(0,164,201,.18);border:1px solid rgba(255,255,255,.22);color:#d9f1ff;letter-spacing:.02em;font-size:13px}
     .why-card{
       position:relative;border-radius:22px;padding:22px;
       background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
@@ -185,18 +210,12 @@
     .why-card h3{margin:2px 0 4px;font-size:20px}
     .why-card p{margin:0;color:var(--muted)}
 
-    /* Mot Awenoria (dégradé + point cuivré) */
-    .brandword{--i-scaleX:1;--i-scaleY:.86;--idot-top:.09em;--idot-left:50%;display:inline-flex;gap:.02em;align-items:baseline;line-height:1;white-space:nowrap;font-kerning:none;font-feature-settings:"kern" 0;}
-    .brandword .A{color:#0aa3ff;font-weight:900}
-    .brandword .rest{background:linear-gradient(90deg,#0aa3ff 0%, #00d4be 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900;position:relative}
-    .brandword .i-body{position:relative;display:inline-block;font-style:normal;font-size:1em;line-height:1;background:inherit;-webkit-background-clip:text;background-clip:text;color:transparent;transform:scale(var(--i-scaleX),var(--i-scaleY));transform-origin:bottom center;filter:brightness(1.06) saturate(.95)}
-    .brandword .i-body::after{content:"";position:absolute;left:var(--idot-left);transform:translateX(-50%) scaleY(calc(1/var(--i-scaleY))); top:var(--idot-top); width:.20em; height:.20em; background:#ff8a3d; border-radius:50%}
-
-    /* ===== FOOTER – ORIGINAL ===== */
+    /* FOOTER */
     .cc-footer{background:#0a0a0a;color:#eaeaea;padding:28px 0 12px;border-top:1px solid rgba(255,255,255,.12)}
     .cc-container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
     .cc-top{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
     .cc-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+    .cc-brand img{height:70px;object-fit:contain;display:block}
     .cc-brand img{height:44px;object-fit:contain;display:block}
     .cc-brand .brand-text{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
     .cc-locale{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(255,255,255,.25);border-radius:999px;text-decoration:none;color:#eaeaea}
@@ -212,18 +231,14 @@
     .cc-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:grid;grid-template-columns:1fr auto;gap:12px}
     .cc-bottom small{color:#b8bfcc}
 
+    /* Responsive tweaks préexistants */
     @media (max-width:1024px){ .mega-grid{grid-template-columns:1fr 1fr} }
     @media (max-width:720px){
       .nav-main{display:flex !important;flex-wrap:wrap;gap:10px;justify-content:flex-start}
       .hero-intro .wrap{grid-template-columns:1fr}
+      aside.hero-aside{margin-top:0} /* sur mobile, on laisse la position naturelle */
     }
-    @media (max-width:620px){
-      .slide{height:300px}
-      .cc-grid{grid-template-columns:1fr 1fr}
-      .cc-social{justify-self:start}
-      .cc-top{grid-template-columns:1fr;gap:10px}
-      .cc-bottom{grid-template-columns:1fr}
-    }
+    @media (max-width:620px){ .slide{height:300px} .cc-grid{grid-template-columns:1fr 1fr} .cc-social{justify-self:start} .cc-top{grid-template-columns:1fr;gap:10px} .cc-bottom{grid-template-columns:1fr} }
 
     @media (max-width: 9999px){ .nav-main[style*="display:none"], .nav-main.hidden{display:flex !important} }
 
@@ -242,7 +257,9 @@
       </a>
 
       <nav class="nav-main" aria-label="Navigation principale">
+        <!-- remis -->
         <a href="#qui-sommes-nous">Qui sommes-nous ?</a>
+
         <div class="dropdown" id="servicesDropdown">
           <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
             Nos services
@@ -260,7 +277,9 @@
             </div>
           </div>
         </div>
+
         <a href="#actualites">Actualité</a>
+        <a href="#services">Pourquoi Awenoria</a>
         <a href="#contact">Contact</a>
       </nav>
 
@@ -302,6 +321,7 @@
         <ul class="checks">
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Diagnostics concrets avec feuille de route actionnable.</li>
           <li id="anchor-li"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Parcours formations adaptés (produit, dev, design, DPO).</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Parcours formations adaptés (produit, dev, design, DPO).</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Accompagnement « du cadrage à la mise en prod ».</li>
         </ul>
 
@@ -313,7 +333,8 @@
         <div class="subnote" style="margin-top:10px"><span class="badge">Excellent ★★★★★</span> <span>Recommandé par nos clients</span></div>
       </div>
 
-      <!-- Barre URL à droite, alignée sur la 2e puce -->
+      <!-- Barre URL : alignée pile sur la 2e puce -->
+      <!-- Barre URL centrée -->
       <aside class="hero-aside">
         <div class="url-box" id="scan-url">
           <input class="url-input" type="url" placeholder="https://votresite.fr" aria-label="Adresse du site à analyser">
@@ -324,6 +345,7 @@
   </section>
 
   <!-- CARROUSEL -->
+  <!-- (inchangé) … -->
   <section class="carousel-wrap" aria-roledescription="carrousel" aria-label="Mises en avant" aria-live="polite" id="hero">
     <div class="carousel" id="carousel">
       <div class="slides">
@@ -361,30 +383,30 @@
     </div>
   </section>
 
-  <!-- POURQUOI CHOISIR -->
+  <!-- SECTIONS suivantes (inchangées) … -->
+  <!-- POURQUOI CHOISIR AWENORIA -->
   <section id="services" class="section">
-    <h2 class="why-title">Pourquoi choisir
-      <span class="brandword" style="--idot-left:44%;">
-        <span class="A">A</span><span class="rest">wenor<span class="i-body">ı</span>a</span>
-      </span>
-    </h2>
+    <h2 class="why-title">Pourquoi choisir <span class="brandmark">Awenoria</span></h2>
     <div class="why-underline" aria-hidden="true"></div>
 
     <div class="why-grid">
-      <article class="why-card"><span class="why-badge">Automatisé</span><h3>Analyse locale</h3><p>Pas d’envoi de données sensibles : l’essentiel est évalué côté navigateur.</p></article>
-      <article class="why-card"><span class="why-badge">Rapide</span><h3>Diagnostic immédiat</h3><p>Scores thématiques, priorisation et actions concrètes. Export PDF à venir.</p></article>
-      <article class="why-card"><span class="why-badge">Évolutif</span><h3>Suivi &amp; modèles</h3><p>Guides, modèles juridiques et mises à jour réglementaires pour rester conforme.</p></article>
-    </div>
-  </section>
+      <article class="why-card">
+        <span class="why-badge">Automatisé</span>
+        <h3>Analyse locale</h3>
+        <p>Pas d’envoi de données sensibles : l’essentiel est évalué côté navigateur.</p>
+      </article>
 
-  <!-- UN CADRE EN ÉVOLUTION -->
-  <section id="cadre" class="section">
-    <h2 class="why-title">Un cadre en évolution</h2>
-    <div class="why-underline" aria-hidden="true"></div>
-    <div class="why-grid">
-      <article class="why-card"><span class="why-badge">RGPD</span><h3>Protection des données</h3><p>Information, base légale, droits, preuves de consentement — le socle de confiance.</p></article>
-      <article class="why-card"><span class="why-badge">Accessibilité</span><h3>Directive &amp; RGAA/WCAG</h3><p>Déclaration, contrastes, clavier, sémantique — vers des services numériques accessibles à tous.</p></article>
-      <article class="why-card"><span class="why-badge">Commerce</span><h3>Mentions &amp; CGV/CGU</h3><p>Éditeur, hébergeur, droits des consommateurs — des informations claires et à jour.</p></article>
+      <article class="why-card">
+        <span class="why-badge">Rapide</span>
+        <h3>Diagnostic immédiat</h3>
+        <p>Scores thématiques, priorisation et actions concrètes. Export PDF à venir.</p>
+      </article>
+
+      <article class="why-card">
+        <span class="why-badge">Évolutif</span>
+        <h3>Suivi &amp; modèles</h3>
+        <p>Guides, modèles juridiques et mises à jour réglementaires pour rester conforme.</p>
+      </article>
     </div>
   </section>
 
@@ -399,8 +421,9 @@
     </div>
   </section>
 
-  <!-- FOOTER – ORIGINAL -->
+  <!-- FOOTER -->
   <footer class="cc-footer" role="contentinfo" id="contact">
+    <!-- (inchangé) … -->
     <div class="cc-container">
       <div class="cc-top">
         <a class="cc-brand" href="#" aria-label="Awenoria">
@@ -453,6 +476,9 @@
   <script>
     const qs=(s,el=document)=>el.querySelector(s); const qsa=(s,el=document)=>[...el.querySelectorAll(s)];
 
+    /* Carousel (inchangé) … (garde ton script existant) */
+
+    /* Account dropdown (inchangé) … */
     /* Carousel */
     (function initCarousel(id){
       const root=qs('#'+id); if(!root) return;
@@ -481,6 +507,7 @@
       menu.addEventListener('keydown',e=>{ if(e.key==='Escape'){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.focus(); }});
     })();
 
+    /* Mega-menu (inchangé) … */
     /* Mega-menu */
     (function(){
       const dd=qs('#servicesDropdown'); if(!dd) return; const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega');
@@ -493,6 +520,7 @@
       panel.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
     })();
 
+    /* Typing effect (inchangé) … */
     /* Typing effect */
     (function(){
       const SPEED = 45; 
@@ -516,8 +544,13 @@
       els.forEach(el=>io.observe(el));
     })();
 
-    /* Aligne la barre d’URL sur la 2e puce ("Parcours formations...") */
+    /* ===== ALIGNEMENT PRÉCIS DE LA BARRE D’URL SUR LA 2e PUCE ===== */
+    /* ===== Correctif : aligne la barre d'analyse sur la 2e puce ===== */
     (function(){
+      const wrap = qs('.hero-intro .wrap');
+      const left = wrap ? wrap.firstElementChild : null;
+      const li2 = left ? left.querySelector('.checks li:nth-child(2)') : null;
+      const aside = wrap ? qs('aside.hero-aside', wrap) : null;
       const wrap  = document.querySelector('.hero-intro .wrap');
       const left  = wrap ? wrap.firstElementChild : null;
       const li2   = left ? left.querySelector('.checks li:nth-child(2)') : null;
@@ -525,17 +558,25 @@
 
       function alignURLBar(){
         if(!wrap || !left || !li2 || !aside) return;
+        if (window.innerWidth < 980){ aside.style.marginTop = ''; return; } // sur mobile : flow naturel
+        const liTop = li2.getBoundingClientRect().top;
+        const leftTop = left.getBoundingClientRect().top;
+        const delta = Math.round(liTop - leftTop);
+        aside.style.marginTop = delta + 'px';
+        // Sur mobile : on garde le flux naturel
         if (window.innerWidth < 980){
           aside.style.marginTop = '';
-          aside.style.gridColumn = '';
+          aside.style.width = '';
           return;
         }
         const liBox   = li2.getBoundingClientRect();
         const leftBox = left.getBoundingClientRect();
         const offset  = Math.round(liBox.top - leftBox.top); // haut de la phrase
         aside.style.marginTop = offset + 'px';
+        // largeur d'origine conservée
       }
 
+      window.addEventListener('load', alignURLBar);
       window.addEventListener('load',   alignURLBar);
       window.addEventListener('resize', alignURLBar);
     })();
