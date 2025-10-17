@@ -39,24 +39,6 @@
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
-    /* Curseur (clignote une fois la phrase écrite) */
-.type-on-view::after{
-  content:"";
-  display:inline-block;
-  width:2px;
-  height:0.9em;
-  background: currentColor;
-  margin-left:3px;
-  vertical-align:-0.1em;
-  opacity:0; /* caché pendant la frappe */
-}
-.type-on-view.caret::after{
-  opacity:1;
-  animation: awenBlink 1s steps(1) infinite;
-}
-@keyframes awenBlink { 50% { opacity: 0; } }
-
-
     /* ===== NAVBAR ===== */
     header.navbar{
       position: sticky; top: 0;
@@ -387,6 +369,7 @@
   <section class="hero-intro" id="intro">
     <div class="wrap">
       <div>
+        <h1>Boostez votre conformité & vos performances digitales</h1>
         <h1 class="type-on-view" data-text="Boostez votre conformité &amp; vos performances digitales"></h1>
         <p class="lead">Audits, conformité RGPD & IA, éco-conception, formations et accompagnement opérationnel. Nous alignons vos produits avec les meilleures pratiques — sans alourdir vos équipes.</p>
         <ul class="checks">
@@ -544,8 +527,17 @@
       menu.addEventListener('keydown',e=>{ if(e.key==='Escape'){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.focus(); }});
     })();
 
+    /* Mega-menu Nos services */
         /* Mega-menu Nos services */
     (function(){
+      const dd=qs('#servicesDropdown'); if(!dd) return; const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega');
+      const open=()=>{ panel.classList.add('open'); btn.setAttribute('aria-expanded','true'); };
+      const close=()=>{ panel.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
+      btn.addEventListener('click',e=>{ e.stopPropagation(); panel.classList.toggle('open'); btn.setAttribute('aria-expanded', panel.classList.contains('open')); });
+      dd.addEventListener('mouseenter',open); dd.addEventListener('mouseleave',close);
+      document.addEventListener('click',e=>{ if(!dd.contains(e.target)) close(); });
+      btn.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'){ e.preventDefault(); open(); const first=panel.querySelector('[role="menuitem"]'); first && first.focus(); }});
+      panel.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
       const dd = qs('#servicesDropdown'); if(!dd) return;
       const btn = dd.querySelector('.dropdown-toggle');
       const panel = dd.querySelector('.mega');
@@ -576,60 +568,52 @@
       panel.querySelectorAll('[role="menuitem"]').forEach(a => a.setAttribute('tabindex','0'));
     })();
 
-    /* Effet machine à écrire (lent + curseur qui clignote à la fin) */
-(function(){
-  const SPEED = 55; // un peu plus lent
-  const els = Array.from(document.querySelectorAll('.type-on-view'));
+    /* Effet machine à écrire (rejoue à chaque retour en vue) */
+    (function(){
+      const SPEED = 22; // ms par caractère
+      const els = [...document.querySelectorAll('.type-on-view')];
 
-  // prépare chaque élément
-  els.forEach(el=>{
-    const full = (el.getAttribute('data-text') || el.textContent || '').trim();
-    el.dataset.fullText = full;
-    el.textContent = '';
-    el.__typingTimer = null;
-    el.__ready = true;
-    el.setAttribute('aria-live','polite');
-    el.classList.remove('caret'); // pas de curseur pendant la frappe
-  });
-
-  function type(el){
-    clearTimeout(el.__typingTimer);
-    const full = el.dataset.fullText || '';
-    el.textContent = '';
-    el.classList.remove('caret');
-    let i = 0;
-    (function tick(){
-      el.textContent = full.slice(0, ++i);
-      if(i < full.length){
-        el.__typingTimer = setTimeout(tick, SPEED);
-      }else{
+      // Préparation des éléments
+      els.forEach(el=>{
+        const full = (el.getAttribute('data-text') || el.textContent || '').trim();
+        el.dataset.fullText = full;
+        el.textContent = '';
         el.__typingTimer = null;
-        el.__ready = false;
-        el.classList.add('caret'); // curseur qui clignote une fois fini
-      }
-    })();
-  }
-
-  // 1) Démarrage immédiat si l’élément est déjà visible au chargement
-  requestAnimationFrame(()=>{
-    els.forEach(type);
-  });
-
-  // 2) Et on garde l’observer pour rejouer si on sort/entre dans le viewport
-  if('IntersectionObserver' in window){
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        const el = entry.target;
-        if(entry.isIntersecting){
-          if(el.__ready) type(el);
-        }else{
-          el.__ready = true;              // autorise à rejouer
-          el.classList.remove('caret');   // cache le curseur jusqu’à la prochaine fin
-          clearTimeout(el.__typingTimer);
-          el.__typingTimer = null;
-        }
+        el.__ready = true;
+        el.setAttribute('aria-live','polite');
       });
-    }, { threshold: 0.01 });
-    els.forEach(el=>io.observe(el));
-  }
-})();
+
+      function type(el){
+        clearTimeout(el.__typingTimer);
+        const full = el.dataset.fullText || '';
+        el.textContent = '';
+        let i = 0;
+        (function tick(){
+          el.textContent = full.slice(0, ++i);
+          if(i < full.length){
+            el.__typingTimer = setTimeout(tick, SPEED);
+          }else{
+            el.__typingTimer = null;
+            el.__ready = false; // ne rejoue pas tant qu'il ne sort pas du viewport
+          }
+        })();
+      }
+
+      const io = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          const el = entry.target;
+          if(entry.isIntersecting){
+            if(el.__ready) type(el);
+          }else{
+            el.__ready = true;
+            clearTimeout(el.__typingTimer);
+            el.__typingTimer = null;
+          }
+        });
+      }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
+
+      els.forEach(el=>io.observe(el));
+    })();
+  </script>
+</body>
+</html>
