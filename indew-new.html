@@ -109,7 +109,6 @@
 
     @keyframes fadeIn{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:translateY(0)}}
 
-    /* ===== Mega-menu ===== */
     .dropdown{position:relative}
     .mega{
       position:absolute; left:50%; transform:translateX(-50%); top:calc(100% + 8px);
@@ -128,45 +127,26 @@
     .pill h5{ margin:2px 0 0; font-size:16px }
     .pill p{ margin:0; color:var(--muted); font-size:14px }
 
-    .hero-intro { position: relative; padding: 52px 0 36px; background: linear-gradient(135deg, #0e3b47 0%, #0b2833 100%); border-bottom: 1px solid rgba(255, 255, 255, .06); color: var(--text);}
-    .hero-card img { filter: brightness(0.9) contrast(1.05); opacity: 0.95;}
-    .hero-intro .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 20px; display:grid; grid-template-columns:1.2fr .8fr; gap:28px; align-items:center; }
-    .kicker{ color:#7ec9db; font-weight:800; letter-spacing:.06em; text-transform:uppercase; font-size:12px; margin-bottom:10px; }
-    .hero-intro h1{ margin:0 0 10px; font-size:clamp(28px,5vw,42px); line-height:1.15; }
-    .hero-intro::before { content: ""; position: absolute; top: 0; left: 0; width: 65%; height: 100%; background: linear-gradient(to right, rgba(14, 59, 71, 0.95), rgba(14, 59, 71, 0.2), transparent); pointer-events: none; z-index: 1;}
-    .hero-intro .wrap{position:relative;z-index:2;max-width:1280px;grid-template-columns:1.5fr 1fr;column-gap:40px;align-items:center;}
-    .hero-card img{display:block;width:100%;max-width:560px;max-height:clamp(260px,38vw,420px);height:auto;object-fit:contain;filter:none!important;opacity:1!important;mix-blend-mode:normal;}@media(max-width:900px){.hero-intro .wrap{grid-template-columns:1fr;}.hero-card img{max-width:100%;max-height:none;}}
-    .hero-card { background: transparent; border: none; box-shadow: none; position: relative; isolation: isolate;}
-
-.hero-card img {
-  mix-blend-mode: lighten;
-  opacity: .82;
-  filter: contrast(1.08) brightness(1.02);
-}
-
-/* Option : léger fondu des bords droits pour disparaître dans le fond */
-.hero-card img {
-  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,.0) 0%, rgba(0,0,0,1) 14%, rgba(0,0,0,1) 86%, rgba(0,0,0,0) 100%);
-  mask-image: linear-gradient(to right, rgba(0,0,0,.0) 0%, rgba(0,0,0,1) 14%, rgba(0,0,0,1) 86%, rgba(0,0,0,0) 100%);
-}
-
-    .hero-intro .lead{ color:var(--muted); margin:0 0 16px; font-size:16px; }
-    .checks{ list-style:none; padding:0; margin:0 0 18px; display:grid; gap:8px; }
-    .checks li{ display:grid; grid-template-columns:20px 1fr; gap:10px; align-items:start; color:var(--text); }
-    .checks li svg{ width:18px; height:18px; stroke:var(--accent); fill:none; stroke-width:3; margin-top:2px; }
-    .hero-intro .cta-row{ display:flex; flex-wrap:wrap; gap:10px; }
-    .hero-intro .btn{ height:38px; line-height:38px; padding:0 16px; border-radius:10px; font-weight:800; letter-spacing:.01em; box-shadow:0 6px 16px rgba(27,136,255,.22); }
-    .hero-intro .btn:hover{ filter:brightness(1.06); transform:translateY(-1px); transition:.15s ease; }
-    .hero-intro .btn:active{ transform:translateY(0); }
-    .hero-intro .btn.ghost{ background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.22); box-shadow:none; }
-    .hero-intro .btn.ghost:hover{ background:rgba(255,255,255,.06); }
-    
-.hero-card{background:transparent;border:none;box-shadow:none;overflow:visible;padding:0;width:fit-content;height:fit-content;display:flex;align-items:center;justify-content:center;}
-.hero-card img{display:block;width:100%;max-width:620px;height:auto;object-fit:contain;filter:none!important;opacity:1!important;mix-blend-mode:normal;}
-.hero-intro .wrap{grid-template-columns:1fr max-content;}
-
-    .hero-intro .subnote{ display:inline-flex; align-items:center; gap:8px; margin-top:12px; color:var(--muted); font-size:14px; }
-    .hero-intro .badge{ display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:999px; padding:6px 10px; font-weight:700; font-size:12px; letter-spacing:.02em; }
+    .hero-intro{position:relative;padding:52px 0 36px;background:linear-gradient(135deg,#0e3b47 0%,#0b2833 100%);border-bottom:1px solid rgba(255,255,255,.06);color:var(--text);}
+.hero-intro::before{content:"";position:absolute;top:0;left:0;width:65%;height:100%;background:linear-gradient(to right,rgba(14,59,71,1),rgba(14,59,71,.6),transparent);pointer-events:none;z-index:1;}
+.hero-intro .wrap{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1.5fr 1fr;column-gap:40px;align-items:center;}
+.kicker{color:#7ec9db;font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:12px;margin-bottom:10px;}
+.hero-intro h1{margin:0 0 10px;font-size:clamp(28px,5vw,42px);line-height:1.15;}
+.hero-intro .lead{color:var(--muted);margin:0 0 16px;font-size:16px;}
+.checks{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:8px;}
+.checks li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start;color:var(--text);}
+.checks li svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:3;margin-top:2px;}
+.hero-intro .cta-row{display:flex;flex-wrap:wrap;gap:10px;}
+.hero-intro .btn{height:38px;line-height:38px;padding:0 16px;border-radius:10px;font-weight:800;letter-spacing:.01em;box-shadow:0 6px 16px rgba(27,136,255,.22);}
+.hero-intro .btn:hover{filter:brightness(1.06);transform:translateY(-1px);transition:.15s ease;}
+.hero-intro .btn:active{transform:translateY(0);}
+.hero-intro .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.22);box-shadow:none;}
+.hero-intro .btn.ghost:hover{background:rgba(255,255,255,.06);}
+.hero-card{background:transparent;border:none;box-shadow:none;padding:0;display:flex;align-items:center;justify-content:center;}
+.hero-card img{display:block;width:100%;max-width:560px;height:auto;object-fit:contain;filter:none!important;opacity:1!important;mix-blend-mode:normal;}
+.hero-intro .subnote{display:inline-flex;align-items:center;gap:8px;margin-top:12px;color:var(--muted);font-size:14px;}
+.hero-intro .badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 10px;font-weight:700;font-size:12px;letter-spacing:.02em;}
+@media(max-width:900px){.hero-intro .wrap{grid-template-columns:1fr;}.hero-card img{max-width:100%;max-height:none;}}
 
     /* ===== CAROUSEL ===== */
     .carousel-wrap{position:relative; overflow:hidden}
