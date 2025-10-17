@@ -576,56 +576,60 @@
       panel.querySelectorAll('[role="menuitem"]').forEach(a => a.setAttribute('tabindex','0'));
     })();
 
-    /* Effet machine à écrire (lent + curseur qui clignote une fois fini) */
+    /* Effet machine à écrire (lent + curseur qui clignote à la fin) */
 (function(){
-  const SPEED = 45; // ← plus lent (ms par caractère)
-  const els = [...document.querySelectorAll('.type-on-view')];
+  const SPEED = 55; // un peu plus lent
+  const els = Array.from(document.querySelectorAll('.type-on-view'));
 
-  // Prépare chaque élément
+  // prépare chaque élément
   els.forEach(el=>{
     const full = (el.getAttribute('data-text') || el.textContent || '').trim();
     el.dataset.fullText = full;
     el.textContent = '';
     el.__typingTimer = null;
-    el.__ready = true;                // autorise la lecture quand il entre dans le viewport
+    el.__ready = true;
     el.setAttribute('aria-live','polite');
-    el.classList.remove('caret');     // pas de curseur tant que ce n'est pas fini
+    el.classList.remove('caret'); // pas de curseur pendant la frappe
   });
 
   function type(el){
     clearTimeout(el.__typingTimer);
     const full = el.dataset.fullText || '';
     el.textContent = '';
-    el.classList.remove('caret');     // cache le curseur pendant la frappe
+    el.classList.remove('caret');
     let i = 0;
-
     (function tick(){
       el.textContent = full.slice(0, ++i);
       if(i < full.length){
         el.__typingTimer = setTimeout(tick, SPEED);
       }else{
         el.__typingTimer = null;
-        el.__ready = false;           // ne rejoue pas tant qu'il ne sort pas du viewport
-        el.classList.add('caret');    // 👉 affiche le curseur qui clignote à la fin
+        el.__ready = false;
+        el.classList.add('caret'); // curseur qui clignote une fois fini
       }
     })();
   }
 
-  // Observe l’entrée/sortie du viewport pour rejouer si on remonte puis redescend
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      const el = entry.target;
-      if(entry.isIntersecting){
-        if(el.__ready) type(el);
-      }else{
-        // quand l’élément sort de l’écran, on autorise à rejouer
-        el.__ready = true;
-        el.classList.remove('caret'); // retire le curseur jusqu’à la prochaine fin d’animation
-        clearTimeout(el.__typingTimer);
-        el.__typingTimer = null;
-      }
-    });
-  }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
+  // 1) Démarrage immédiat si l’élément est déjà visible au chargement
+  requestAnimationFrame(()=>{
+    els.forEach(type);
+  });
 
-  els.forEach(el=>io.observe(el));
+  // 2) Et on garde l’observer pour rejouer si on sort/entre dans le viewport
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        const el = entry.target;
+        if(entry.isIntersecting){
+          if(el.__ready) type(el);
+        }else{
+          el.__ready = true;              // autorise à rejouer
+          el.classList.remove('caret');   // cache le curseur jusqu’à la prochaine fin
+          clearTimeout(el.__typingTimer);
+          el.__typingTimer = null;
+        }
+      });
+    }, { threshold: 0.01 });
+    els.forEach(el=>io.observe(el));
+  }
 })();
