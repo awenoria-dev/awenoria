@@ -56,7 +56,12 @@
     }
 
     .brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text);min-width:0}
-    .brand-img{width:30px;height:30px;object-fit:contain;display:block}
+    .brand-img{
+  height: var(--nav-h); /* 34px actuellement */
+  width: auto;
+  object-fit: contain;
+  display:block;
+}
     .brand-title{font-weight:800;white-space:nowrap}
 
     .nav-main{
