@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Accueil – Awenoria</title>
-  <meta name="description" content="Awenoria – conformité RGPD & IA rendue simple, humaine et accessible. Audits automatisés, accompagnement expert, formations. Scan URL gratuit." />
+  <meta name="description" content="Awenoria – conformité RGPD & IA rendue simple, humaine et accessible Audits automatisés, accompagnement expert, formations. Scan URL gratuit." />
   <!-- Favicon / PWA -->
   <!-- Remplacez le chemin ci-dessous par votre logo PJ3 -->
   <link rel="icon" type="image/png" href="images/logo-pj3.png" sizes="32x32">
@@ -56,7 +56,11 @@
     .nav-main a:hover,.nav-main button:hover{background:rgba(27,136,255,.10)}
 
     .nav-actions{display:flex;align-items:center;gap:8px;margin-left:6px}
-    .btn{background:var(--brand);color:#fff;border:none;font-weight:800;text-decoration:none;padding:0 14px;height:38px;line-height:38px;border-radius:10px;box-shadow:0 6px 16px rgba(27,136,255,.22)}
+    .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;font-weight:800;border-radius:9999px;padding:12px 20px;font-size:16px;letter-spacing:.3px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:all .25s ease;overflow:hidden;text-decoration:none;border:1px solid transparent}
+    .btn.primary{background:rgba(27,136,255,.80);color:#fff;border-color:rgba(255,255,255,.25);box-shadow:inset 0 0 12px rgba(255,255,255,.15),0 4px 18px rgba(27,136,255,.30)}
+    .btn.primary:hover{background:rgba(27,136,255,.95);box-shadow:inset 0 0 20px rgba(255,255,255,.25),0 6px 24px rgba(27,136,255,.5);transform:translateY(-1px)}
+    .btn.secondary{background:rgba(255,255,255,.22);color:var(--text);border-color:rgba(255,255,255,.35);box-shadow:inset 0 0 10px rgba(255,255,255,.1)}
+    .btn.secondary:hover{background:rgba(255,255,255,.36);transform:translateY(-1px)}
     .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(15,23,32,.12);box-shadow:none}
 
     /* ================== HERO ================== */
@@ -84,7 +88,10 @@
     .url-bar{display:flex; align-items:center; gap:10px; height:46px; padding:6px 6px 6px 10px; background: #f2f6fb; border: 1.5px solid rgba(15,23,32,.12); border-radius: 999px; box-shadow: inset 0 1px 0 rgba(255,255,255,.65)}
     .url-bar input{appearance:none; border:none; outline:none; background:transparent; color:var(--text); height:30px; padding:0 8px; width:min(420px,48vw); font-weight:700; letter-spacing:.01em}
     .url-bar input::placeholder{ color:#7f8b98 }
-    .url-bar button{height:34px; padding:0 18px; border-radius:999px; border:1px solid rgba(27,136,255,.30); background: var(--brand); color:#fff; font-weight:900; cursor:pointer}
+    .url-bar button{height:34px; padding:0 18px; border-radius:999px; border:1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.22); color:#fff; font-weight:900; cursor:pointer; box-shadow: inset 0 0 10px rgba(255,255,255,.1); transition: transform .08s ease, background-color .15s ease, box-shadow .15s ease}
+    .url-bar button:hover{ background: rgba(255,255,255,.36) }
+    .url-bar button:active{ transform: translateY(1px); box-shadow: 0 4px 10px rgba(0,0,0,.15) }
+    .url-bar button:focus-visible{ outline: 2px solid rgba(255,255,255,.45); outline-offset: 2px; box-shadow: 0 0 0 4px rgba(27,136,255,.25);}
 
     /* ================== SECTIONS ================== */
     .section{max-width:var(--maxw);margin:42px auto;padding:0 20px}
@@ -288,8 +295,8 @@
       </nav>
 
       <div class="nav-actions">
-        <a class="btn" href="#audit-gratuit">Lancer un audit gratuit</a>
-        <a class="btn ghost" href="#contact">Parler à un expert</a>
+        <a class="btn primary" href="#audit-gratuit">Lancer un audit gratuit</a>
+        <a class="btn secondary" href="#contact">Parler à un expert</a>
         <div class="account">
           <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
             <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
@@ -315,7 +322,7 @@
   <section class="hero-intro" id="intro">
     <div class="wrap">
       <div>
-        <h1 class="type-on-view" aria-live="polite" data-text="La conformité RGPD &amp; IA rendue simple, humaine et accessible."></h1>
+        <h1 class="type-on-view" aria-live="polite" data-text="La conformité RGPD &amp; IA rendue simple, humaine et accessible"></h1>
         <p class="lead">Awenoria vous accompagne vers la conformité numérique grâce à des outils d’audit automatisés et un accompagnement humain personnalisé.</p>
 
         <ul class="checks checks-inline">
@@ -325,8 +332,8 @@
         </ul>
 
         <div class="cta-row">
-          <a class="btn" href="#audit-gratuit">Lancer un audit gratuit</a>
-          <a class="btn ghost" href="#contact">Parler à un expert</a>
+          <a class="btn primary" href="#audit-gratuit">Lancer un audit gratuit</a>
+          <a class="btn secondary" href="#contact">Parler à un expert</a>
         </div>
       </div>
 
@@ -353,19 +360,19 @@
         <span class="badge">Audit &amp; Analyse</span>
         <h3>Audit &amp; Analyse automatisée</h3>
         <p>Scannez votre site, vos documents ou vos applications pour identifier les points de non‑conformité en quelques minutes.</p>
-        <a class="btn cta-mini" href="#audit-gratuit">Tester gratuitement</a>
+        <a class="btn primary cta-mini" href="#audit-gratuit">Tester gratuitement</a>
       </article>
       <article class="card expertise" id="conformite">
         <span class="badge">Accompagnement</span>
         <h3>Accompagnement &amp; Conformité</h3>
         <p>Un expert vous guide pour structurer vos documents, corriger vos pratiques et maintenir la conformité dans la durée.</p>
-        <a class="btn ghost cta-mini" href="#offres">Découvrir nos packs</a>
+        <a class="btn secondary cta-mini" href="#offres">Découvrir nos packs</a>
       </article>
       <article class="card expertise" id="formations">
         <span class="badge">Formation</span>
         <h3>Formation &amp; Sensibilisation</h3>
         <p>Des modules concrets pour former vos équipes et comprendre les enjeux RGPD, IA Act et cybersécurité.</p>
-        <a class="btn ghost cta-mini" href="#contact">Explorer les formations</a>
+        <a class="btn secondary cta-mini" href="#contact">Explorer les formations</a>
       </article>
     </div>
   </section>
@@ -408,8 +415,8 @@
       </article>
     </div>
     <p class="subtitle-center" style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-      <a class="btn ghost" href="#services">Voir le détail des packs</a>
-      <a class="btn" href="#contact">Obtenir un devis rapide</a>
+      <a class="btn secondary" href="#services">Voir le détail des packs</a>
+      <a class="btn primary" href="#contact">Obtenir un devis rapide</a>
     </p>
   </section>
 
@@ -432,7 +439,7 @@
           <div class="bad"><svg viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg> Mentions légales non détectées</div>
         </div>
         <div class="cta-row" style="margin-top:12px">
-          <a class="btn ghost" href="#">Télécharger le rapport complet (PDF) – 79 €</a>
+          <a class="btn secondary" href="#">Télécharger le rapport complet (PDF) – 79 €</a>
         </div>
       </article>
       <article class="card">
@@ -506,7 +513,7 @@
         </div>
       </article>
     </div>
-    <p class="subtitle-center" style="margin-top:12px"><a class="btn ghost" href="#">Voir tous les articles</a></p>
+    <p class="subtitle-center" style="margin-top:12px"><a class="btn secondary" href="#">Voir tous les articles</a></p>
   </section>
 
   <!-- ============== CONTACT / DEVIS ============== -->
@@ -612,7 +619,7 @@
 
             <div class="actions">
               <div id="turnstileMount" class="cf-turnstile" data-sitekey="0x4AAAAAAB6sOpFo1gDVnkX1" data-appearance="interaction-only" data-callback="awenTurnstileOK"></div>
-              <button id="sendBtn" class="btn" type="submit"><span class="spinner" aria-hidden="true"></span><span>Envoyer</span></button>
+              <button id="sendBtn" class="btn primary" type="submit"><span class="spinner" aria-hidden="true"></span><span>Envoyer</span></button>
             </div>
 
             <div class="status-wrap" aria-live="polite">
