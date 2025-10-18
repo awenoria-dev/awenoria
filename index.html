@@ -169,27 +169,14 @@
 .dot[aria-current="true"]{background:#fff}
 
 /* === Ajustement largeur et style du carrousel === */
-.carousel-wrap{
-  max-width: var(--maxw);
-  margin: 24px auto;
-  padding: 0 20px;
-}
+.carousel-wrap { max-width: var(--maxw); margin: 24px auto; padding: 0 20px; }
+.carousel { position: relative; width: 100%; border-radius: 18px; overflow: hidden; box-shadow: var(--shadow); }
+.slide { min-width: 100%; height: clamp(260px, 44vw, 520px); }
+.ctrl { top: 50%; }
+.dots { bottom: 12px; }
 
-.carousel{
-  position: relative;
-  width: 100%;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-
-.slide{
-  min-width: 100%;
-  height: clamp(260px, 44vw, 520px);
-}
-
-.ctrl{ top: 50%; }
-.dots{ bottom: 12px; }
+/* Slide 1 : afficher l'image entière (pas de rognage) */
+.slide[aria-label="Slide 1"] img { object-fit: contain; background: #0f1116; }
 
     /* SECTIONS */
     .section{max-width:var(--maxw);margin:40px auto;padding:0 20px}
