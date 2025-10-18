@@ -16,9 +16,9 @@ body::before{
   background:
     radial-gradient(1000px 600px at 20% -10%, rgba(23,26,31,0.8) 0%, rgba(20,22,25,0.95) 60%),
     url("images/planete-fond.png") center/cover no-repeat;
-  z-index:-1;
-  opacity:0.35; /* ajuste la transparence globale du fond */
-  pointer-events:none; /* empêche toute interaction avec le fond */
+  z-index:0;                 /* <- avant c’était -1 */
+  opacity:0.35;
+  pointer-events:none;
   filter:brightness(1.1) contrast(1.05);
 }
     
@@ -40,9 +40,10 @@ body::before{
       margin:0; color:var(--text);
       font-family:"AwenoriaUI", Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background: radial-gradient(1200px 600px at 20% -10%, #171a1f 0%, var(--bg) 55%);
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-    }
+      position: relative; 
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+}
 
     /* ================== NAVBAR ================== */
     header.navbar{position:sticky;top:0;z-index:1100;background:rgba(15,17,22,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
