@@ -522,7 +522,7 @@
       function start(){ stop(); timer=setInterval(nextFn,AUTOPLAY); } function stop(){ if(timer) clearInterval(timer); }
       root.addEventListener('mouseenter',stop); root.addEventListener('mouseleave',start); document.addEventListener('visibilitychange',()=>document.hidden?stop():start());
       update(); start();
-    })();
+    })('carousel');
 
     /* Account dropdown (inchangé) */
     (function(){
