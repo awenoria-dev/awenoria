@@ -300,49 +300,82 @@
   </section>
 
   <!-- ============== CAROUSEL ============== -->
-  <section class="carousel-wrap" aria-roledescription="carrousel" aria-label="Mises en avant" aria-live="polite" id="hero">
-    <div class="carousel" id="carousel">
-      <div class="slides">
-        <figure class="slide" aria-label="Slide 1">
-          <img src="images/accueil-carrousel-1.png" alt="Awenoria accompagne associations, collectivités et créateurs de contenu pour la conformité RGPD, l’accessibilité et les mentions légales" />
-          <div class="overlay" aria-hidden="true"></div>
-          <figcaption class="caption">
-            <h2>Protégez vos données & rendez vos services inclusifs</h2>
+<section class="carousel-wrap" aria-roledescription="carrousel" aria-label="Mises en avant" aria-live="polite" id="hero">
+  <div class="carousel" id="carousel">
+    <div class="slides">
+
+      <!-- Slide 1 -->
+      <figure class="slide split" aria-label="Slide 1">
+        <div class="slide-grid">
+          <div class="slide-text theme-lines">
+            <h2>Protégez vos données<br>et rendez vos services inclusifs</h2>
             <p class="muted">RGPD, accessibilité, mentions légales : on s’occupe de tout.</p>
             <a class="btn" href="#actualites">Voir l'actualité</a>
-          </figcaption>
-        </figure>
+          </div>
+          <div class="slide-visual">
+            <img src="images/accueil-carrousel-1.png"
+                 alt="Awenoria accompagne associations, collectivités et créateurs de contenu pour la conformité RGPD, l’accessibilité et les mentions légales">
+          </div>
+        </div>
+      </figure>
 
-        <figure class="slide" aria-label="Slide 2">
-          <img src="images/accueil-carrousel-2.png" alt="Awenoria simplifie les audits RGPD, l’accessibilité et la conformité en ligne grâce à des outils automatisés et des recommandations personnalisées." />
-          <div class="overlay" aria-hidden="true"></div>
-          <figcaption class="caption">
-            <h2>Analyse claire, rapide et sans données sensibles</h2>
+      <!-- Slide 2 -->
+      <figure class="slide split" aria-label="Slide 2">
+        <div class="slide-grid">
+          <div class="slide-text theme-lines">
+            <h2>Analyse claire, rapide<br>et sans données sensibles</h2>
             <p class="muted">Audits automatiques, recommandations par thème et accompagnement sur mesure.</p>
             <a class="btn" href="#services">Découvrir nos solutions</a>
-          </figcaption>
-        </figure>
+          </div>
+          <div class="slide-visual">
+            <img src="images/accueil-carrousel-2.png"
+                 alt="Awenoria simplifie les audits RGPD, l’accessibilité et la conformité en ligne grâce à des outils automatisés et des recommandations personnalisées.">
+          </div>
+        </div>
+      </figure>
 
-        <figure class="slide" aria-label="Slide 3">
-          <img src="images/accueil-carrousel-3.png" alt="Awenoria — preuve et crédibilité avec résultats concrets" />
-          <div class="overlay" aria-hidden="true"></div>
-          <figcaption class="caption">
-            <h2>Mise en avant #3</h2>
-            <p class="muted">Renforce la crédibilité d'Awenoria avec une preuve.</p>
+      <!-- Slide 3 -->
+      <figure class="slide split" aria-label="Slide 3">
+        <div class="slide-grid">
+          <div class="slide-text theme-lines">
+            <h2>Preuves & résultats concrets</h2>
+            <p class="muted">Cas clients, indicateurs et retours mesurables.</p>
             <a class="btn" href="#expert">Parler à un expert</a>
-          </figcaption>
-        </figure>
+          </div>
+          <div class="slide-visual">
+            <img src="images/accueil-carrousel-3.png"
+                 alt="Awenoria — preuve et crédibilité avec résultats concrets">
+          </div>
+        </div>
+      </figure>
 
-        <figure class="slide" aria-label="Slide 4">
-          <img src="images/accueil-carrousel-4.png" alt="Awenoria — accompagnement opérationnel, ateliers et conformité continue" />
-          <div class="overlay" aria-hidden="true"></div>
-          <figcaption class="caption">
+      <!-- Slide 4 -->
+      <figure class="slide split" aria-label="Slide 4">
+        <div class="slide-grid">
+          <div class="slide-text theme-lines">
             <h2>Accompagnement opérationnel & continu</h2>
             <p class="muted">Ateliers, code review et feuille de route pour tenir la conformité dans la durée.</p>
             <a class="btn" href="#accompagnement">Voir l’accompagnement</a>
-          </figcaption>
-        </figure>
-      </div>
+          </div>
+          <div class="slide-visual">
+            <img src="images/accueil-carrousel-4.png"
+                 alt="Awenoria — accompagnement opérationnel, ateliers et conformité continue">
+          </div>
+        </div>
+      </figure>
+
+    </div>
+
+    <!-- Contrôles + points (inchangés) -->
+    <button class="ctrl prev" aria-label="Diapo précédente">
+      <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="ctrl next" aria-label="Diapo suivante">
+      <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+    <div class="dots" role="tablist" aria-label="Sélecteurs de diapo"></div>
+  </div>
+</section>
 
       <button class="ctrl prev" aria-label="Diapo précédente"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
       <button class="ctrl next" aria-label="Diapo suivante"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
