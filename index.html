@@ -7,6 +7,21 @@
   <meta name="description" content="Awenoria – accueil avec intro, carrousel, services en mega-menu, comptes client/partenaire et footer complet." />
 
   <style>
+
+/* ===== FOND GLOBAL AVEC IMAGE PLANÈTE ===== */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(1000px 600px at 20% -10%, rgba(23,26,31,0.8) 0%, rgba(20,22,25,0.95) 60%),
+    url("images/planete-fond.png") center/cover no-repeat;
+  z-index:-1;
+  opacity:0.35; /* ajuste la transparence globale du fond */
+  pointer-events:none; /* empêche toute interaction avec le fond */
+  filter:brightness(1.1) contrast(1.05);
+}
+    
     /* ================== BASE ================== */
     @font-face{
       font-family: "AwenoriaUI";
