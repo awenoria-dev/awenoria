@@ -522,8 +522,7 @@
       prev.addEventListener('click',prevFn); next.addEventListener('click',nextFn);
       root.addEventListener('keydown',e=>{ if(e.key==='ArrowLeft') prevFn(); if(e.key==='ArrowRight') nextFn(); }); root.tabIndex=0;
       function start(){ stop(); timer=setInterval(nextFn,AUTOPLAY); } function stop(){ if(timer) clearInterval(timer); }
-      root.addEventListener('mouseenter',stop); root.addEventListener('mouseleave',start); document.addEventListener('visibilitychange',()=>document.hidden?stop():start());
-      update(); start();
+      update();start();
     })('carousel');
 
     /* Account dropdown (inchangé) */
