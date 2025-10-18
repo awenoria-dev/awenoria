@@ -79,14 +79,39 @@
     .hero-intro::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.25),rgba(0,0,0,.45));pointer-events:none;z-index:1}
     .hero-intro .wrap{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
     @media (min-width:980px){ .hero-intro .wrap{grid-template-columns:1fr minmax(420px,520px);gap:48px} }
-    .hero-intro h1{margin:0 0 12px;font-size:clamp(30px,5vw,44px);line-height:1.1}
-    .hero-intro .lead{color:var(--muted);margin:0 0 18px;font-size:17px}
+
+    /* NO-WRAP utilities for one-line requirements */
+    .nowrap{white-space:nowrap;text-wrap:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    .hero-intro h1{margin:0 0 12px;font-size:clamp(20px,4.6vw,44px);line-height:1.1}
+    .hero-intro .lead{color:var(--muted);margin:0 0 18px;font-size:16px}
+
+    /* Checks on a single line */
     .checks{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:12px}
-    .checks li{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start}
-    .checks li svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:3;margin-top:2px}
-    .hero-intro .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
+    .checks-inline{display:flex;align-items:center;gap:22px}
+    .checks li{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:center}
+    .checks li svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:3;margin-top:0}
+
+    .hero-intro .cta-row{display:flex;flex-wrap:nowrap;gap:12px;margin-top:4px;align-items:center}
+
     .hero-intro .btn{height:42px;line-height:42px;padding:0 18px;border-radius:10px;font-weight:800;letter-spacing:.01em;box-shadow:0 6px 16px rgba(27,136,255,.22)}
     .hero-intro .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.22);box-shadow:none}
+
+    /* ====== URL search pill (PJ1/PJ2 style) ====== */
+    .url-bar{display:flex;align-items:center;gap:10px;padding:6px; height:42px;
+      background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,255,255,.9));
+      border:2px solid rgba(255,255,255,.9); border-radius:999px;
+      box-shadow:0 8px 20px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.6)}
+    .url-bar input{
+      appearance:none; border:none; outline:none; background:transparent; color:#1b2b3a;
+      padding:0 10px; height:28px; width:min(340px,34vw); font-weight:600
+    }
+    .url-bar input::placeholder{color:#7b8a9a}
+    .url-bar button{
+      height:30px; padding:0 16px; border:none; border-radius:999px; cursor:pointer; font-weight:900;
+      background:#0b5f96; color:#fff; box-shadow:0 6px 14px rgba(11,95,150,.35)
+    }
+    .url-bar button:focus-visible{outline:2px solid #0b5f96; outline-offset:2px}
 
     /* ================== CAROUSEL ================== */
     .carousel-wrap{max-width:var(--maxw);margin:24px auto;padding:0 20px}
@@ -137,7 +162,11 @@
     .cc-bottom small{color:#b8bfcc}
 
     @media (max-width:1024px){ .mega-grid{grid-template-columns:1fr 1fr} }
-    @media (max-width:720px){ .nav-main{display:flex !important;flex-wrap:wrap;gap:10px;justify-content:flex-start} .hero-intro .wrap{grid-template-columns:1fr} }
+    @media (max-width:720px){
+      .nav-main{display:flex !important;flex-wrap:wrap;gap:10px;justify-content:flex-start}
+      .hero-intro .wrap{grid-template-columns:1fr}
+      .url-bar input{width:56vw}
+    }
   </style>
 </head>
 <body>
@@ -200,19 +229,36 @@
   <section class="hero-intro" id="intro">
     <div class="wrap">
       <div>
-        <h1 class="type-on-view" aria-live="polite" data-text="Boostez votre conformité &amp; vos performances digitales"></h1>
-        <p class="lead">Audits, conformité RGPD &amp; IA, éco-conception, formations et accompagnement opérationnel. Nous alignons vos produits avec les meilleures pratiques — sans alourdir vos équipes.</p>
-        <ul class="checks">
+        <!-- H1 sur une seule ligne -->
+        <h1 class="type-on-view nowrap" aria-live="polite"
+            data-text="Boostez votre conformité &amp; vos performances digitales"></h1>
+
+        <!-- Sous-titre sur une seule ligne (texte ajusté) -->
+        <p class="lead nowrap">
+          Audits, conformité RGPD &amp; IA, éco-conception, formations et accompagnement opérationnel.
+          Nous alignons vos produits avec les meilleures pratiques.
+        </p>
+
+        <!-- Trois points clés sur une seule ligne -->
+        <ul class="checks checks-inline nowrap">
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Diagnostics concrets avec feuille de route actionnable.</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Parcours formations adaptés (produit, dev, design, DPO).</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Accompagnement « du cadrage à la mise en prod ».</li>
         </ul>
+
+        <!-- Boutons sur une ligne + barre d'URL à droite -->
         <div class="cta-row">
           <a class="btn" href="#services">Découvrir nos services</a>
           <a class="btn ghost" href="#expert">Prendre rendez-vous</a>
+
+          <!-- Barre d'URL style PJ1/PJ2 -->
+          <form class="url-bar" action="#analyse" method="get" onsubmit="event.preventDefault(); /* hook analyse */">
+            <input type="url" name="site" placeholder="https://votresite.fr" aria-label="Saisir l’adresse du site à analyser" required>
+            <button type="submit">Analyser</button>
+          </form>
         </div>
       </div>
-      <!-- (barre URL masquée ici pour alléger l’exemple) -->
+      <!-- (barre URL originale masquée dans ta version) -->
     </div>
   </section>
 
