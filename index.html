@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Accueil – Awenoria</title>
-  <meta name="description" content="Awenoria – accueil avec intro, carrousel, services en mega-menu, comptes client/partenaire et footer complet." />
+  <meta name="description" content="Awenoria – accueil avec intro, services en mega-menu, comptes client/partenaire et footer complet. (Carrousel supprimé)" />
 
   <style>
     /* ================== BASE ================== */
@@ -28,8 +28,8 @@
       color:var(--text);
       font-family:"AwenoriaUI", Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
-  radial-gradient(1200px 600px at 20% -10%, rgba(23,26,31,.55) 0%, rgba(20,22,25,.35) 55%),
-  url("images/planete-fond.png") center/cover no-repeat;
+        radial-gradient(1200px 600px at 20% -10%, rgba(23,26,31,.55) 0%, rgba(20,22,25,.35) 55%),
+        url("images/planete-fond.png") center/cover no-repeat;
 
       background-attachment: fixed;    /* effet léger de parallaxe */
       position: relative;
@@ -98,16 +98,14 @@
       background:linear-gradient(135deg,rgba(0,0,0,.18),rgba(0,0,0,.35));
       pointer-events:none; z-index:1;
     }
-    /* centrage + grille du contenu (restaure la mise en page d'avant) */
+    /* centrage + grille du contenu */
     .hero-intro .wrap{
       position:relative; z-index:2;
       max-width:1280px; margin:0 auto; padding:0 20px;
       display:grid; grid-template-columns:1fr; gap:28px; align-items:center;
     }
     @media (min-width:980px){
-      .hero-intro .wrap{
-        grid-template-columns:1fr minmax(420px,520px); gap:48px;
-      }
+      .hero-intro .wrap{ grid-template-columns:1fr minmax(420px,520px); gap:48px; }
     }
 
     /* NO-WRAP utilities */
@@ -156,26 +154,6 @@
     @media (prefers-reduced-motion: reduce){ .url-bar button{ transition:none } }
     @media (max-width:720px){ .url-bar input{ width:56vw } }
 
-    /* ================== CAROUSEL ================== */
-    .carousel-wrap{max-width:var(--maxw);margin:24px auto;padding:0 20px}
-    .carousel{position:relative;width:100%;height:clamp(320px,48vw,900px);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
-    .slides{display:flex;width:100%;height:100%;transition:transform .8s ease-in-out}
-    .slide{flex:0 0 100%;height:100%;position:relative}
-    .slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;background:#000}
-    .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.55));z-index:1}
-    .caption{position:absolute;left:max(20px,calc((100% - var(--maxw))/2 + 20px));bottom:24px;max-width:560px;z-index:2}
-    .caption h2{margin:0 0 6px;font-size:clamp(22px,4vw,42px)}
-    .caption p{margin:0 0 12px;opacity:.9}
-    .ctrl{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(0,0,0,.35);display:grid;place-items:center;cursor:pointer;z-index:3}
-    .ctrl:hover{background:rgba(0,0,0,.5)}
-    .ctrl.prev{left:12px}.ctrl.next{right:12px}
-    .ctrl svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2}
-    .dots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:8px;z-index:3}
-    .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.45);border:none}
-    .dot[aria-current="true"]{background:#fff}
-    @media (max-width:768px){ .carousel{height:60vh} .caption{left:20px;max-width:80%} }
-    @media (max-width:480px){ .carousel{height:50vh} .caption h2{font-size:1.2rem} .caption p{font-size:.95rem} }
-
     /* ================== SECTIONS & FOOTER ================== */
     .section{max-width:var(--maxw);margin:40px auto;padding:0 20px}
     .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
@@ -210,6 +188,17 @@
       .hero-intro .wrap{grid-template-columns:1fr}
       .url-bar input{width:56vw}
     }
+
+    /* ====== BLOC DE REMPLACEMENT DU CARROUSEL (optionnel) ====== */
+    .feature-banner{max-width:var(--maxw);margin:28px auto 0;padding:0 20px}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .feature{position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.16)}
+    .feature img{width:100%;height:260px;object-fit:cover;display:block;filter:saturate(1.05)}
+    .feature .content{position:absolute;inset:auto 0 0 0;padding:16px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.6))}
+    .feature h3{margin:0 0 6px}
+    .feature p{margin:0;color:var(--muted)}
+    @media (max-width:900px){ .feature-grid{grid-template-columns:1fr 1fr} }
+    @media (max-width:600px){ .feature-grid{grid-template-columns:1fr} .feature img{height:200px} }
   </style>
 </head>
 <body>
@@ -299,87 +288,30 @@
     </div>
   </section>
 
-  <!-- ============== CAROUSEL ============== -->
-<section class="carousel-wrap" aria-roledescription="carrousel" aria-label="Mises en avant" aria-live="polite" id="hero">
-  <div class="carousel" id="carousel">
-    <div class="slides">
-
-      <!-- Slide 1 -->
-      <figure class="slide split" aria-label="Slide 1">
-        <div class="slide-grid">
-          <div class="slide-text theme-lines">
-            <h2>Protégez vos données<br>et rendez vos services inclusifs</h2>
-            <p class="muted">RGPD, accessibilité, mentions légales : on s’occupe de tout.</p>
-            <a class="btn" href="#actualites">Voir l'actualité</a>
-          </div>
-          <div class="slide-visual">
-            <img src="images/accueil-carrousel-1.png"
-                 alt="Awenoria accompagne associations, collectivités et créateurs de contenu pour la conformité RGPD, l’accessibilité et les mentions légales">
-          </div>
+  <!-- ====== Feature banner à la place du carrousel ====== -->
+  <section class="feature-banner" aria-label="Mises en avant">
+    <div class="feature-grid">
+      <article class="feature">
+        <img src="images/accueil-carrousel-1.png" alt="Conformité RGPD, accessibilité et mentions légales">
+        <div class="content">
+          <h3>Protégez vos données</h3>
+          <p>RGPD, accessibilité, mentions légales : on s’occupe de tout.</p>
         </div>
-      </figure>
-
-      <!-- Slide 2 -->
-      <figure class="slide split" aria-label="Slide 2">
-        <div class="slide-grid">
-          <div class="slide-text theme-lines">
-            <h2>Analyse claire, rapide<br>et sans données sensibles</h2>
-            <p class="muted">Audits automatiques, recommandations par thème et accompagnement sur mesure.</p>
-            <a class="btn" href="#services">Découvrir nos solutions</a>
-          </div>
-          <div class="slide-visual">
-            <img src="images/accueil-carrousel-2.png"
-                 alt="Awenoria simplifie les audits RGPD, l’accessibilité et la conformité en ligne grâce à des outils automatisés et des recommandations personnalisées.">
-          </div>
+      </article>
+      <article class="feature">
+        <img src="images/accueil-carrousel-2.png" alt="Audits automatiques et recommandations par thème">
+        <div class="content">
+          <h3>Analyse claire & rapide</h3>
+          <p>Audits automatiques, recommandations et accompagnement.</p>
         </div>
-      </figure>
-
-      <!-- Slide 3 -->
-      <figure class="slide split" aria-label="Slide 3">
-        <div class="slide-grid">
-          <div class="slide-text theme-lines">
-            <h2>Preuves & résultats concrets</h2>
-            <p class="muted">Cas clients, indicateurs et retours mesurables.</p>
-            <a class="btn" href="#expert">Parler à un expert</a>
-          </div>
-          <div class="slide-visual">
-            <img src="images/accueil-carrousel-3.png"
-                 alt="Awenoria — preuve et crédibilité avec résultats concrets">
-          </div>
+      </article>
+      <article class="feature">
+        <img src="images/accueil-carrousel-3.png" alt="Preuves et résultats concrets">
+        <div class="content">
+          <h3>Résultats concrets</h3>
+          <p>Cas clients, indicateurs et retours mesurables.</p>
         </div>
-      </figure>
-
-      <!-- Slide 4 -->
-      <figure class="slide split" aria-label="Slide 4">
-        <div class="slide-grid">
-          <div class="slide-text theme-lines">
-            <h2>Accompagnement opérationnel & continu</h2>
-            <p class="muted">Ateliers, code review et feuille de route pour tenir la conformité dans la durée.</p>
-            <a class="btn" href="#accompagnement">Voir l’accompagnement</a>
-          </div>
-          <div class="slide-visual">
-            <img src="images/accueil-carrousel-4.png"
-                 alt="Awenoria — accompagnement opérationnel, ateliers et conformité continue">
-          </div>
-        </div>
-      </figure>
-
-    </div>
-
-    <!-- Contrôles + points (inchangés) -->
-    <button class="ctrl prev" aria-label="Diapo précédente">
-      <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-    </button>
-    <button class="ctrl next" aria-label="Diapo suivante">
-      <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
-    </button>
-    <div class="dots" role="tablist" aria-label="Sélecteurs de diapo"></div>
-  </div>
-</section>
-
-      <button class="ctrl prev" aria-label="Diapo précédente"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
-      <button class="ctrl next" aria-label="Diapo suivante"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
-      <div class="dots" role="tablist" aria-label="Sélecteurs de diapo"></div>
+      </article>
     </div>
   </section>
 
@@ -466,41 +398,6 @@
   <script>
     const qs=(s,el=document)=>el.querySelector(s);
     const qsa=(s,el=document)=>[...el.querySelectorAll(s)];
-
-    /* Carousel */
-    (function initCarousel(id){
-      const root=qs('#'+id); if(!root) return;
-      const slides=qs('.slides',root); const items=qsa('.slide',root);
-      const prev=qs('.prev',root); const next=qs('.next',root); const dotsWrap=qs('.dots',root);
-      let index=0, timer=null; const AUTOPLAY=4500;
-
-      items.forEach((_,i)=>{
-        const b=document.createElement('button');
-        b.className='dot'; b.setAttribute('role','tab');
-        b.setAttribute('aria-label','Aller à la diapo '+(i+1));
-        b.addEventListener('click',()=>go(i));
-        dotsWrap.appendChild(b);
-      });
-
-      function update(){
-        slides.style.transform=`translateX(${-index*100}%)`;
-        qsa('.dot',dotsWrap).forEach((d,i)=>d.setAttribute('aria-current',i===index?'true':'false'));
-        items.forEach((s,i)=>s.setAttribute('aria-hidden',i===index?'false':'true'));
-      }
-      function go(i){ index=(i+items.length)%items.length; update(); }
-      function nextFn(){ go(index+1); } function prevFn(){ go(index-1); }
-      prev.addEventListener('click',prevFn);
-      next.addEventListener('click',nextFn);
-      root.addEventListener('keydown',e=>{ if(e.key==='ArrowLeft') prevFn(); if(e.key==='ArrowRight') nextFn(); });
-      root.tabIndex=0;
-
-      function start(){ stop(); timer=setInterval(nextFn,AUTOPLAY); }
-      function stop(){ if(timer) clearInterval(timer); }
-      root.addEventListener('mouseenter',stop);
-      root.addEventListener('mouseleave',start);
-
-      update(); start();
-    })('carousel');
 
     /* Account dropdown */
     (function(){
