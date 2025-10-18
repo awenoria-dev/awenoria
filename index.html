@@ -7,7 +7,6 @@
   <meta name="description" content="Awenoria – accueil avec intro, carrousel, services en mega-menu, comptes client/partenaire et footer complet." />
 
   <style>
-
     /* ================== BASE ================== */
     @font-face{
       font-family: "AwenoriaUI";
@@ -20,25 +19,22 @@
       --brand:#1b88ff; --accent:#7df3b2; --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.28);
       --maxw:1200px; --nav-h:34px;
     }
-   *{box-sizing:border-box}
-html,body{height:100%}
+    *{box-sizing:border-box}
+    html,body{height:100%}
 
-body{
-  margin:0; 
-  color:var(--text);
-  font-family:"AwenoriaUI", Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-
-  /* ✅ Fond = dégradé + image planète */
-  background:
-    radial-gradient(1200px 600px at 20% -10%, #171a1f 0%, var(--bg) 55%),
-    url("images/planete-fond.png") center/cover no-repeat;
-  background-attachment: fixed;   /* optionnel (effet léger) */
-  position: relative;
-
-  -webkit-font-smoothing:antialiased; 
-  -moz-osx-font-smoothing:grayscale;
-  line-height:1.5;
-}
+    /* ===== FOND GLOBAL (dégradé + image planète) ===== */
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:"AwenoriaUI", Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 20% -10%, #171a1f 0%, var(--bg) 55%),
+        url("images/planete-fond.png") center/cover no-repeat;
+      background-attachment: fixed;    /* effet léger de parallaxe */
+      position: relative;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
 
     /* ================== NAVBAR ================== */
     header.navbar{position:sticky;top:0;z-index:1100;background:rgba(15,17,22,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
@@ -87,15 +83,33 @@ body{
 
     /* ================== HERO ================== */
     .hero-intro{
-  position:relative;
-  padding:72px 0;
-  background: rgba(20,22,25,.72); /* translucide au lieu d’opaque */
-  border-bottom:1px solid rgba(255,255,255,.06);
-  overflow:hidden;
-  isolation:isolate;
-}
+      position:relative;
+      padding:72px 0;
+      background: rgba(20,22,25,.72); /* translucide pour voir la planète */
+      border-bottom:1px solid rgba(255,255,255,.06);
+      overflow:hidden;
+      isolation:isolate;
+    }
+    /* overlay (comme avant, un peu plus léger) */
+    .hero-intro::before{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(135deg,rgba(0,0,0,.18),rgba(0,0,0,.35));
+      pointer-events:none; z-index:1;
+    }
+    /* centrage + grille du contenu (restaure la mise en page d'avant) */
+    .hero-intro .wrap{
+      position:relative; z-index:2;
+      max-width:1280px; margin:0 auto; padding:0 20px;
+      display:grid; grid-template-columns:1fr; gap:28px; align-items:center;
+    }
+    @media (min-width:980px){
+      .hero-intro .wrap{
+        grid-template-columns:1fr minmax(420px,520px); gap:48px;
+      }
+    }
 
-    /* NO-WRAP utilities for one-line requirements */
+    /* NO-WRAP utilities */
     .nowrap{white-space:nowrap;text-wrap:nowrap;overflow:hidden;text-overflow:ellipsis}
 
     .hero-intro h1{margin:0 0 12px;font-size:clamp(20px,4.6vw,44px);line-height:1.1}
@@ -108,57 +122,38 @@ body{
     .checks li svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:3;margin-top:0}
 
     .hero-intro .cta-row{display:flex;flex-wrap:nowrap;gap:12px;margin-top:4px;align-items:center}
-
     .hero-intro .btn{height:42px;line-height:42px;padding:0 18px;border-radius:10px;font-weight:800;letter-spacing:.01em;box-shadow:0 6px 16px rgba(27,136,255,.22)}
     .hero-intro .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.22);box-shadow:none}
 
-    /* ===== URL search pill — style verre/futuriste ===== */
-.url-bar{
-  display:flex; align-items:center; gap:10px; height:42px; padding:6px 6px 6px 10px;
-  /* fond transparent (très léger) */
-  background: rgba(255,255,255,.04);
-  border: 1.5px solid rgba(255,255,255,.22);
-  border-radius: 999px;
-  /* effet glass */
-  backdrop-filter: blur(14px) saturate(160%);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
-  /* léger glow & relief */
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.10),
-    0 8px 24px rgba(0,0,0,.35);
-}
-
-.url-bar input{
-  appearance:none; border:none; outline:none; background:transparent;
-  color:#fff; height:28px; padding:0 8px; width:min(340px,34vw);
-  font-weight:600; letter-spacing:.01em;
-}
-.url-bar input::placeholder{ color:rgba(255,255,255,.65) }
-
-/* bouton transparent mais un peu plus dense que la barre */
-.url-bar button{
-  height:30px; padding:0 16px; border-radius:999px; border:1px solid rgba(255,255,255,.28);
-  background: rgba(255,255,255,.12);
-  color:#fff; font-weight:900; cursor:pointer;
-  box-shadow: 0 6px 16px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
-  transition: transform .08s ease, background-color .15s ease, box-shadow .15s ease;
-}
-.url-bar button:hover{ background: rgba(255,255,255,.18) }
-.url-bar button:active{ transform: translateY(1px); box-shadow: 0 4px 10px rgba(0,0,0,.35) }
-.url-bar button:focus-visible{
-  outline: 2px solid rgba(255,255,255,.45);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(27,136,255,.25);
-}
-
-/* option accessibilité : pas d’anim si réduit */
-@media (prefers-reduced-motion: reduce){
-  .url-bar button{ transition: none }
-}
-
-/* mobile : largeur confortable */
-@media (max-width:720px){ .url-bar input{ width:56vw } }
-
+    /* ===== URL search pill ===== */
+    .url-bar{
+      display:flex; align-items:center; gap:10px; height:42px; padding:6px 6px 6px 10px;
+      background: rgba(255,255,255,.04);
+      border: 1.5px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      backdrop-filter: blur(14px) saturate(160%); -webkit-backdrop-filter: blur(14px) saturate(160%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 8px 24px rgba(0,0,0,.35);
+    }
+    .url-bar input{
+      appearance:none; border:none; outline:none; background:transparent;
+      color:#fff; height:28px; padding:0 8px; width:min(340px,34vw);
+      font-weight:600; letter-spacing:.01em;
+    }
+    .url-bar input::placeholder{ color:rgba(255,255,255,.65) }
+    .url-bar button{
+      height:30px; padding:0 16px; border-radius:999px; border:1px solid rgba(255,255,255,.28);
+      background: rgba(255,255,255,.12); color:#fff; font-weight:900; cursor:pointer;
+      box-shadow: 0 6px 16px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
+      transition: transform .08s ease, background-color .15s ease, box-shadow .15s ease;
+    }
+    .url-bar button:hover{ background: rgba(255,255,255,.18) }
+    .url-bar button:active{ transform: translateY(1px); box-shadow: 0 4px 10px rgba(0,0,0,.35) }
+    .url-bar button:focus-visible{
+      outline: 2px solid rgba(255,255,255,.45); outline-offset: 2px;
+      box-shadow: 0 0 0 4px rgba(27,136,255,.25);
+    }
+    @media (prefers-reduced-motion: reduce){ .url-bar button{ transition:none } }
+    @media (max-width:720px){ .url-bar input{ width:56vw } }
 
     /* ================== CAROUSEL ================== */
     .carousel-wrap{max-width:var(--maxw);margin:24px auto;padding:0 20px}
@@ -276,36 +271,30 @@ body{
   <section class="hero-intro" id="intro">
     <div class="wrap">
       <div>
-        <!-- H1 sur une seule ligne -->
         <h1 class="type-on-view nowrap" aria-live="polite"
             data-text="Boostez votre conformité &amp; vos performances digitales"></h1>
 
-        <!-- Sous-titre sur une seule ligne (texte ajusté) -->
         <p class="lead nowrap">
           Audits, conformité RGPD &amp; IA, éco-conception, formations et accompagnement opérationnel.
           Nous alignons vos produits avec les meilleures pratiques.
         </p>
 
-        <!-- Trois points clés sur une seule ligne -->
         <ul class="checks checks-inline nowrap">
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Diagnostics concrets avec feuille de route actionnable.</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Parcours formations adaptés (produit, dev, design, DPO).</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Accompagnement « du cadrage à la mise en prod ».</li>
         </ul>
 
-        <!-- Boutons sur une ligne + barre d'URL à droite -->
         <div class="cta-row">
           <a class="btn" href="#services">Découvrir nos services</a>
           <a class="btn ghost" href="#expert">Prendre rendez-vous</a>
 
-          <!-- Barre d'URL style PJ1/PJ2 -->
-          <form class="url-bar" action="#analyse" method="get" onsubmit="event.preventDefault(); /* hook analyse */">
+          <form class="url-bar" action="#analyse" method="get" onsubmit="event.preventDefault();">
             <input type="url" name="site" placeholder="https://votresite.fr" aria-label="Saisir l’adresse du site à analyser" required>
             <button type="submit">Analyser</button>
           </form>
         </div>
       </div>
-      <!-- (barre URL originale masquée dans ta version) -->
     </div>
   </section>
 
@@ -466,7 +455,7 @@ body{
       }
       function go(i){ index=(i+items.length)%items.length; update(); }
       function nextFn(){ go(index+1); } function prevFn(){ go(index-1); }
-      prev.addEventListener('click',nextFn);
+      prev.addEventListener('click',prevFn);
       next.addEventListener('click',nextFn);
       root.addEventListener('keydown',e=>{ if(e.key==='ArrowLeft') prevFn(); if(e.key==='ArrowRight') nextFn(); });
       root.tabIndex=0;
@@ -505,7 +494,7 @@ body{
 
     /* Typing-on-view (titre) */
     (function(){
-      const SPEED = 45; 
+      const SPEED = 45;
       const els = [...document.querySelectorAll('.type-on-view')];
       els.forEach(el=>{
         const full = (el.getAttribute('data-text') || el.textContent || '').trim();
