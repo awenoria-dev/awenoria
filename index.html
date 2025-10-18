@@ -150,7 +150,7 @@
     .btn-analyser:hover{transform:translateY(-1px);box-shadow:0 12px 38px rgba(0,164,201,.25), inset 0 0 0 999px var(--glass-tint)}
     .btn-analyser:active{transform:translateY(0)}
 
-   /* CAROUSEL */
+/* CAROUSEL */
 .carousel-wrap{position:relative;overflow:hidden}
 .carousel{position:relative;width:100%}
 .slides{display:flex;transition:transform .5s ease;will-change:transform}
@@ -175,8 +175,7 @@
 .ctrl { top: 50%; }
 .dots { bottom: 12px; }
 
-/* === Cadre photo pro + affichage entier pour les slides 1, 2, 3 === */
-/* === Cadre harmonisé et fin pour les slides 1, 2 et 3 === */
+/* === Cadre photo pro + affichage entier pour les slides 1, 2, 3, 4 === */
 :root {
   --frame-h: clamp(4px, 0.5vw, 6px);  /* bande horizontale (haut/bas) */
   --frame-v: clamp(2px, 0.4vw, 4px);  /* bande verticale (gauche/droite) plus fine */
@@ -184,27 +183,19 @@
 
 .slide[aria-label="Slide 1"],
 .slide[aria-label="Slide 2"],
-.slide[aria-label="Slide 3"] {
+.slide[aria-label="Slide 3"],
+.slide[aria-label="Slide 4"] {
   padding: var(--frame-h) var(--frame-v); /* équilibre du cadre */
   background: #0f1116;
 }
 
 .slide[aria-label="Slide 1"] img,
 .slide[aria-label="Slide 2"] img,
-.slide[aria-label="Slide 3"] img {
+.slide[aria-label="Slide 3"] img,
+.slide[aria-label="Slide 4"] img {
   object-fit: contain;      /* pas de rognage */
   object-position: center;  /* centré */
 }
-
-
-.slide[aria-label="Slide 1"] img,
-.slide[aria-label="Slide 2"] img,
-.slide[aria-label="Slide 3"] img {
-  object-fit: contain;         /* image entière, pas rognée */
-  object-position: center;     /* centrage parfait */
-}
-
-
 
     /* SECTIONS */
     .section{max-width:var(--maxw);margin:40px auto;padding:0 20px}
