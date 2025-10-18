@@ -175,9 +175,25 @@
 .ctrl { top: 50%; }
 .dots { bottom: 12px; }
 
-/* Slide 1 : afficher l'image entière (pas de rognage) */
-.slide[aria-label="Slide 1"] img { object-fit: contain; background: #0f1116; }
-/* Slide 2 : afficher l'image entière (même rendu que la 1) */.slide[aria-label="Slide 2"] img { object-fit: contain; background: #0f1116;}
+/* === Cadre photo pro + affichage entier pour les slides 1, 2, 3 === */
+:root {
+  --frame: clamp(8px, 1.2vw, 16px); /* épaisseur du cadre */
+}
+
+.slide[aria-label="Slide 1"],
+.slide[aria-label="Slide 2"],
+.slide[aria-label="Slide 3"] {
+  padding: var(--frame);       /* bandes noires fines et égales */
+  background: #0f1116;         /* couleur du cadre/bandes */
+}
+
+.slide[aria-label="Slide 1"] img,
+.slide[aria-label="Slide 2"] img,
+.slide[aria-label="Slide 3"] img {
+  object-fit: contain;         /* image entière, pas rognée */
+  object-position: center;     /* centrage parfait */
+}
+
 
 
     /* SECTIONS */
