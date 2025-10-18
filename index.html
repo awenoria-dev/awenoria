@@ -45,7 +45,7 @@
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
-    /* NAV */
+    /* NAV (inchangé) */
     header.navbar{position:sticky;top:0;z-index:1100;background:rgba(15,17,22,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
     .nav-wrap{max-width:var(--maxw);margin:0 auto;padding:6px 14px;display:flex;align-items:center;gap:14px}
     .brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text)}
@@ -58,7 +58,7 @@
     .btn{background:var(--brand);color:#fff;border:none;font-weight:700;text-decoration:none;padding:0 12px;height:32px;line-height:32px;border-radius:8px}
     .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.18)}
 
-    /* Account + mega menu */
+    /* Account + mega menu (inchangé) */
     .account{position:relative}
     .account-btn{width:32px;height:32px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.06);color:var(--text);display:inline-flex;align-items:center;justify-content:center}
     .account-btn:hover{background:rgba(255,255,255,.12)}
@@ -103,12 +103,12 @@
     .hero-intro .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.22);box-shadow:none}
     .hero-intro .btn.ghost:hover{background:rgba(255,255,255,.06)}
 
-    /* Barre URL : placée comme la fenêtre WordPad (PJ5) */
+    /* === Barre URL abaissée (repère WordPad) === */
     aside.hero-aside{
       position:absolute;
       right:clamp(20px, (100vw - 1280px)/2 + 40px, 160px);
-      top:calc(50% - 60px);      /* centre vertical approché, légèrement au-dessus */
-      transform:translateY(-10%);/* petit décalage comme sur la capture */
+      top:calc(68%);            /* ↓ plus bas qu’avant pour correspondre au repère */
+      transform:translateY(-8%);
       width:min(640px, 46vw);
       z-index:3;
     }
@@ -194,7 +194,7 @@
     .title-center{margin:10px 0 18px;text-align:center;font-size:clamp(26px,4vw,40px);font-weight:900}
     .underline{width:80px;height:4px;border-radius:999px;background:#ff8a3d;margin:10px auto 26px;opacity:.85}
 
-    /* FOOTER */
+    /* FOOTER (inchangé) */
     .cc-footer{background:#0a0a0a;color:#eaeaea;padding:28px 0 12px;border-top:1px solid rgba(255,255,255,.12)}
     .cc-container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
     .cc-top{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
@@ -225,7 +225,7 @@
   </style>
 </head>
 <body>
-  <!-- NAV -->
+  <!-- NAV (inchangé) -->
   <header class="navbar" role="banner">
     <div class="nav-wrap">
       <a class="brand" href="#" aria-label="Aller à l'accueil">
@@ -253,7 +253,6 @@
           </div>
         </div>
 
-        <!-- Remplacement du lien -->
         <a href="#actualites">Actualité</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -307,7 +306,7 @@
         <div class="subnote" style="margin-top:10px"><span class="badge">Excellent ★★★★★</span> <span>Recommandé par nos clients</span></div>
       </div>
 
-      <!-- Barre URL flottante (placement PJ5) -->
+      <!-- Barre URL abaissée -->
       <aside class="hero-aside">
         <div class="url-box" id="scan-url">
           <input class="url-input" type="url" placeholder="https://votresite.fr" aria-label="Adresse du site à analyser">
@@ -323,7 +322,7 @@
       <div class="slides">
         <figure class="slide" aria-label="Slide 1">
           <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1600&auto=format&fit=crop" alt="Visuel mise en avant 1" />
-          <div class="overlay" aria-hidden="true"></div>
+        <div class="overlay" aria-hidden="true"></div>
           <figcaption class="caption">
             <h2>Mise en avant #1</h2>
             <p class="muted">Texte court pour une promo, un cas client, une actu.</p>
@@ -355,9 +354,33 @@
     </div>
   </section>
 
-  <!-- (Section "Pourquoi choisir Awenoria" SUPPRIMÉE conformément à la PJ2) -->
+  <!-- 🔹 AJOUT : Pourquoi choisir Awenoria (au-dessus du cadre en évolution) -->
+  <section id="pourquoi" class="section">
+    <h2 class="title-center">Pourquoi choisir Awenoria</h2>
+    <div class="underline" aria-hidden="true"></div>
 
-  <!-- Un cadre en évolution (conservé) -->
+    <div class="grid-3">
+      <article class="card">
+        <span class="badge">Couverture</span>
+        <h3>Multi-normes</h3>
+        <p>Un seul outil pour vérifier l’essentiel : RGPD, accessibilité, mentions légales et cookies.</p>
+      </article>
+
+      <article class="card">
+        <span class="badge">Impact</span>
+        <h3>Diagnostic priorisé</h3>
+        <p>Score global + recommandations classées par impact, avec exemples concrets.</p>
+      </article>
+
+      <article class="card">
+        <span class="badge">Données</span>
+        <h3>Respect de la vie privée</h3>
+        <p>Analyse locale par défaut, sans stockage. Rapport PDF et suivi en option.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Un cadre en évolution (inchangé, maintenant sous la section précédente) -->
   <section id="cadre" class="section">
     <h2 class="title-center">Un cadre en évolution</h2>
     <div class="underline" aria-hidden="true"></div>
@@ -383,7 +406,7 @@
     </div>
   </section>
 
-  <!-- NOTRE MISSION & VALEURS (remplace « Qui sommes-nous ? ») -->
+  <!-- NOTRE MISSION & VALEURS (la section suivante reste telle qu’elle était) -->
   <section id="qui-sommes-nous" class="section">
     <h2 class="title-center">Notre mission &amp; nos valeurs</h2>
     <div class="underline" aria-hidden="true"></div>
@@ -409,7 +432,7 @@
     </div>
   </section>
 
-  <!-- ACTUALITÉS (ancre pour le menu) -->
+  <!-- ACTUALITÉS (inchangé) -->
   <section id="actualites" class="section">
     <h2 class="title-center">Actualité</h2>
     <div class="underline" aria-hidden="true"></div>
@@ -418,7 +441,7 @@
     </p>
   </section>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (inchangé) -->
   <footer class="cc-footer" role="contentinfo" id="contact">
     <div class="cc-container">
       <div class="cc-top">
@@ -472,7 +495,7 @@
   <script>
     const qs=(s,el=document)=>el.querySelector(s); const qsa=(s,el=document)=>[...el.querySelectorAll(s)];
 
-    /* Carousel */
+    /* Carousel (inchangé) */
     (function initCarousel(id){
       const root=qs('#'+id); if(!root) return;
       const slides=qs('.slides',root); const items=qsa('.slide',root);
@@ -487,9 +510,9 @@
       function start(){ stop(); timer=setInterval(nextFn,AUTOPLAY); } function stop(){ if(timer) clearInterval(timer); }
       root.addEventListener('mouseenter',stop); root.addEventListener('mouseleave',start); document.addEventListener('visibilitychange',()=>document.hidden?stop():start());
       update(); start();
-    })('carousel');
+    })();
 
-    /* Account dropdown */
+    /* Account dropdown (inchangé) */
     (function(){
       const btn=qs('#accountBtn'), menu=qs('#accountMenu'); if(!btn||!menu) return;
       const toggle=()=>{ const open=!menu.classList.contains('open'); menu.classList.toggle('open'); btn.setAttribute('aria-expanded',open); };
@@ -500,7 +523,7 @@
       menu.addEventListener('keydown',e=>{ if(e.key==='Escape'){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.focus(); }});
     })();
 
-    /* Mega-menu */
+    /* Mega-menu (inchangé) */
     (function(){
       const dd=qs('#servicesDropdown'); if(!dd) return; const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega');
       const open=()=>{ panel.classList.add('open'); btn.setAttribute('aria-expanded','true'); };
@@ -512,7 +535,7 @@
       panel.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
     })();
 
-    /* Typing effect */
+    /* Typing effect (inchangé) */
     (function(){
       const SPEED = 45; 
       const els = [...document.querySelectorAll('.type-on-view')];
