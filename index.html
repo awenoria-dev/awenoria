@@ -176,16 +176,26 @@
 .dots { bottom: 12px; }
 
 /* === Cadre photo pro + affichage entier pour les slides 1, 2, 3 === */
+/* === Cadre harmonisé et fin pour les slides 1, 2 et 3 === */
 :root {
-  --frame: clamp(2px, 1.2vw, 16px); /* épaisseur du cadre */
+  --frame-h: clamp(4px, 0.5vw, 6px);  /* bande horizontale (haut/bas) */
+  --frame-v: clamp(2px, 0.4vw, 4px);  /* bande verticale (gauche/droite) plus fine */
 }
 
 .slide[aria-label="Slide 1"],
 .slide[aria-label="Slide 2"],
 .slide[aria-label="Slide 3"] {
-  padding: var(--frame);       /* bandes noires fines et égales */
-  background: #0f1116;         /* couleur du cadre/bandes */
+  padding: var(--frame-h) var(--frame-v); /* équilibre du cadre */
+  background: #0f1116;
 }
+
+.slide[aria-label="Slide 1"] img,
+.slide[aria-label="Slide 2"] img,
+.slide[aria-label="Slide 3"] img {
+  object-fit: contain;      /* pas de rognage */
+  object-position: center;  /* centré */
+}
+
 
 .slide[aria-label="Slide 1"] img,
 .slide[aria-label="Slide 2"] img,
