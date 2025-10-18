@@ -8,20 +8,6 @@
 
   <style>
 
-/* ===== FOND GLOBAL AVEC IMAGE PLANÈTE ===== */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(1000px 600px at 20% -10%, rgba(23,26,31,0.8) 0%, rgba(20,22,25,0.95) 60%),
-    url("images/planete-fond.png") center/cover no-repeat;
-  z-index:0;                 /* <- avant c’était -1 */
-  opacity:0.35;
-  pointer-events:none;
-  filter:brightness(1.1) contrast(1.05);
-}
-    
     /* ================== BASE ================== */
     @font-face{
       font-family: "AwenoriaUI";
@@ -34,14 +20,23 @@ body::before{
       --brand:#1b88ff; --accent:#7df3b2; --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.28);
       --maxw:1200px; --nav-h:34px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; color:var(--text);
-      font-family:"AwenoriaUI", Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 20% -10%, #171a1f 0%, var(--bg) 55%);
-      position: relative; 
-  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+   *{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+  margin:0; 
+  color:var(--text);
+  font-family:"AwenoriaUI", Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* ✅ Fond = dégradé + image planète */
+  background:
+    radial-gradient(1200px 600px at 20% -10%, #171a1f 0%, var(--bg) 55%),
+    url("images/planete-fond.png") center/cover no-repeat;
+  background-attachment: fixed;   /* optionnel (effet léger) */
+  position: relative;
+
+  -webkit-font-smoothing:antialiased; 
+  -moz-osx-font-smoothing:grayscale;
   line-height:1.5;
 }
 
@@ -91,10 +86,14 @@ body::before{
     @keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 
     /* ================== HERO ================== */
-    .hero-intro{position:relative;padding:72px 0;background:var(--bg);border-bottom:1px solid rgba(255,255,255,.06);overflow:hidden;isolation:isolate}
-    .hero-intro::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.25),rgba(0,0,0,.45));pointer-events:none;z-index:1}
-    .hero-intro .wrap{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
-    @media (min-width:980px){ .hero-intro .wrap{grid-template-columns:1fr minmax(420px,520px);gap:48px} }
+    .hero-intro{
+  position:relative;
+  padding:72px 0;
+  background: rgba(20,22,25,.72); /* translucide au lieu d’opaque */
+  border-bottom:1px solid rgba(255,255,255,.06);
+  overflow:hidden;
+  isolation:isolate;
+}
 
     /* NO-WRAP utilities for one-line requirements */
     .nowrap{white-space:nowrap;text-wrap:nowrap;overflow:hidden;text-overflow:ellipsis}
