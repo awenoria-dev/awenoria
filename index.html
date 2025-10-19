@@ -146,6 +146,11 @@
     .post img{width:100%;height:180px;object-fit:cover;display:block}
     .post .content{padding:16px}
 
+    /* Barre d'écriture (caret) */
+    .type-on-view{position:relative;display:inline-block}
+    .type-on-view::after{content:"";display:inline-block;width:2px;height:1em;background:currentColor;margin-left:2px;animation:caret-blink var(--caret) steps(1,end) infinite;vertical-align:-0.12em}
+    @keyframes caret-blink{50%{opacity:0}}
+
     /* Contact */
     .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
     @media (max-width:980px){.contact-grid{grid-template-columns:1fr}}
@@ -727,16 +732,44 @@
       alert(`Aperçu généré pour: ${url}\n\n• Cookies: OK\n• Politique: À compléter\n• HTTPS: OK\n• Mentions: Manquantes`);
     }
 
-    // Dropdown logic
+    // Dropdown logic – version clic uniquement + a11y
     (function(){
-      const dd=document.getElementById('servicesDropdown'); if(!dd) return;
-      const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega');
-      const open=()=>{ panel.classList.add('open'); btn.setAttribute('aria-expanded','true'); };
-      const close=()=>{ panel.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
-      btn.addEventListener('click',e=>{ e.stopPropagation(); panel.classList.toggle('open'); btn.setAttribute('aria-expanded', panel.classList.contains('open')); });
-      dd.addEventListener('mouseenter',open); dd.addEventListener('mouseleave',close);
-      document.addEventListener('click',e=>{ if(!dd.contains(e.target)) close(); });
-      panel.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
+      const dd = document.getElementById('servicesDropdown'); if(!dd) return;
+      const btn = dd.querySelector('.dropdown-toggle');
+      const panel = dd.querySelector('.mega');
+      const items = [...panel.querySelectorAll('[role="menuitem"]')];
+
+      function open(){ panel.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+      function close(){ panel.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+      function toggle(){ panel.classList.contains('open') ? close() : open(); }
+
+      btn.addEventListener('click', e=>{ e.stopPropagation(); toggle(); });
+      document.addEventListener('click', e=>{ if(panel.classList.contains('open') && !dd.contains(e.target)) close(); });
+
+      // clavier bouton
+      btn.addEventListener('keydown', e=>{
+        if(['ArrowDown','Enter',' '].includes(e.key)){
+          e.preventDefault(); open(); items[0]?.focus();
+        }
+      });
+      // clavier dans le menu
+      panel.addEventListener('keydown', e=>{
+        if(e.key==='Escape'){ e.preventDefault(); close(); btn.focus(); }
+        if(e.key==='ArrowDown'){
+          e.preventDefault(); const i = items.indexOf(document.activeElement); items[(i+1)%items.length]?.focus();
+        }
+        if(e.key==='ArrowUp'){
+          e.preventDefault(); const i = items.indexOf(document.activeElement); items[(i-1+items.length)%items.length]?.focus();
+        }
+        if(e.key==='Tab' && panel.classList.contains('open')){
+          const first = items[0], last = items[items.length-1];
+          if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+          else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+        }
+      });
+
+      btn.setAttribute('aria-expanded','false');
+      items.forEach(a=>a.setAttribute('tabindex','0'));
     })();
 
     // Typing-on-view (titre)
