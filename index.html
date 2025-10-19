@@ -176,7 +176,15 @@
       /* Dropdown / Mega menu */
     .dropdown{position:relative}
     .dropdown-toggle svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
-    .mega{position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + 8px);width:min(760px,94vw);background:#ffffff;border:1px solid rgba(15,23,32,.12);border-radius:18px;padding:16px;display:none;box-shadow:0 20px 40px rgba(0,0,0,.12);z-index:1200}
+    .mega{position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + 8px);width:min(780px,94vw);background:#ffffff;border:1px solid rgba(15,23,32,.12);border-radius:18px;padding:18px 20px;display:none;box-shadow:0 20px 40px rgba(0,0,0,.12);z-index:1200}
+    .mega.open{display:block;animation:fadeIn .16s ease}
+    .mega-grid{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:14px;align-items:stretch}
+    @media (max-width:720px){.mega-grid{grid-template-columns:1fr}}
+    .pill{display:flex;flex-direction:column;justify-content:flex-start;gap:6px;padding:14px 16px;border-radius:16px;text-decoration:none;text-align:left;background:#f6f9fc;border:1px solid rgba(15,23,32,.10);min-height:132px}
+    .pill:hover{background:#eef6ff}
+    .pill .tag{display:inline-block;align-self:flex-start;margin-bottom:4px;background:rgba(27,136,255,.12);color:#0f3a6e;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:800;letter-spacing:.04em}
+    .pill h5{margin:0;font-size:16px;font-weight:800;color:var(--text)}
+    .pill p{margin:0;color:var(--muted);font-size:14px;font-weight:600;line-height:1.4}
     .mega.open{display:block;animation:fadeIn .16s ease}
     .mega-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
     .pill{background:#f6f9fc;border:1px solid rgba(15,23,32,.10);border-radius:14px;padding:14px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:6px;min-height:110px}
@@ -291,11 +299,28 @@
           </button>
           <div class="mega" role="menu" aria-label="Nos services">
             <div class="mega-grid">
-              <a class="pill" href="#audit" role="menuitem"><span class="tag">Audit</span><h5>Audit &amp; Analyse</h5><p>Scanner et scoring rapide.</p></a>
-              <a class="pill" href="#conformite" role="menuitem"><span class="tag">Conformité</span><h5>Accompagnement</h5><p>Documents, corrections, suivi.</p></a>
-              <a class="pill" href="#ia-act" role="menuitem"><span class="tag">IA Act</span><h5>Conformité IA (UE)</h5><p>Risques &amp; documentation.</p></a>
-              <a class="pill" href="#formations" role="menuitem"><span class="tag">Formations</span><h5>Former vos équipes</h5><p>Modules concrets &amp; ateliers.</p></a>
+              <a class="pill" href="#audit" role="menuitem">
+                <span class="tag">Audit</span>
+                <h5>Audit &amp; Analyse</h5>
+                <p>Scanner et scoring rapide.</p>
+              </a>
+              <a class="pill" href="#conformite" role="menuitem">
+                <span class="tag">Conformité</span>
+                <h5>Accompagnement</h5>
+                <p>Documents, corrections, suivi.</p>
+              </a>
+              <a class="pill" href="#ia-act" role="menuitem">
+                <span class="tag">IA Act</span>
+                <h5>Conformité IA (UE)</h5>
+                <p>Risques &amp; documentation.</p>
+              </a>
+              <a class="pill" href="#formations" role="menuitem">
+                <span class="tag">Formations</span>
+                <h5>Former vos équipes</h5>
+                <p>Modules concrets &amp; ateliers.</p>
+              </a>
             </div>
+          </div>
           </div>
         </div>
         <a href="#blog">Blog</a>
@@ -747,16 +772,43 @@
       els.forEach(el=>io.observe(el));
     })();
 
-    // Dropdown services (clic uniquement)
+    // Dropdown services (clic uniquement + reste ouvert tant que la souris est dans la zone)
     (function(){
       const dd=document.getElementById('servicesDropdown'); if(!dd) return;
-      const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega');
+      const btn=dd.querySelector('.dropdown-toggle');
+      const panel=dd.querySelector('.mega');
       const open=()=>{ panel.classList.add('open'); btn.setAttribute('aria-expanded','true'); };
       const close=()=>{ panel.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
-      btn.addEventListener('click',e=>{ e.stopPropagation(); panel.classList.toggle('open'); btn.setAttribute('aria-expanded', panel.classList.contains('open')); });
-      document.addEventListener('click',e=>{ if(!dd.contains(e.target)) close(); });
-      btn.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '||e.key==='Spacebar'||e.key==='ArrowDown'){ e.preventDefault(); open(); const first=panel.querySelector('[role="menuitem"]'); first && first.focus(); }});
+      const isOpen=()=> panel.classList.contains('open');
+
+      // Toggle au clic sur le bouton
+      btn.addEventListener('click',e=>{
+        e.stopPropagation();
+        isOpen() ? close() : open();
+      });
+
+      // Fermer si clic en dehors de la zone (ni bouton, ni panel)
+      document.addEventListener('click',e=>{
+        if(!dd.contains(e.target)) close();
+      });
+
+      // Rester ouvert tant que la souris est dans la zone dd (bouton + panel)
+      // Se ferme quand la souris sort de toute la zone
+      dd.addEventListener('mouseleave',e=>{
+        const to = e.relatedTarget;
+        if(!dd.contains(to)) close();
+      });
+
+      // Accessibilité clavier
+      btn.addEventListener('keydown',e=>{
+        if(e.key==='Enter'||e.key===' '||e.key==='Spacebar'||e.key==='ArrowDown'){
+          e.preventDefault(); open();
+          const first=panel.querySelector('[role="menuitem"]'); first && first.focus();
+        }
+        if(e.key==='Escape'){ close(); }
+      });
       panel.addEventListener('keydown',e=>{ if(e.key==='Escape'){ close(); btn.focus(); }});
+
       panel.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
     })();
 
