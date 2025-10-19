@@ -19,7 +19,6 @@
 
   <style>
     /* ================== BASE ================== */
-    /* (facultatif, si tu l'utilises ailleurs) */
     @font-face{
       font-family: "AwenoriaUI";
       src: url("fonts/awenoria-ui.woff2") format("woff2");
@@ -36,7 +35,7 @@
       --text:#0f5f9a;
       --brand:#0f5f9a;
       --accent:#16a34a;
-      --copper:#ff8a3d;
+      --copper:#ff8a3d;          /* cuivre (PJ1) */
       --copper-rgb:255,138,61;
       --danger:#dc2626;
       --radius:16px;
@@ -47,16 +46,13 @@
     *{box-sizing:border-box}
     html,body{height:100%}
 
-    /* >>> Police Manrope appliquée partout depuis html */
     html{
       font-family: var(--font-ui);
       font-weight: 400;
       font-optical-sizing: auto;
-      /* éviter la synthèse de gras/italique quand l’axe variable est dispo */
       font-synthesis-weight: none;
       font-synthesis-style: none;
     }
-    /* Héritage fiable pour contrôles (Safari/iOS inclus) */
     body, button, input, select, textarea { font-family: inherit; }
 
     body{
@@ -66,62 +62,48 @@
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; line-height:1.5;
     }
 
-    /* Titres plus “brand” en 800 par défaut */
     h1,h2,h3,h4{ font-weight:800; }
 
-    /* Utils verre */
     .glass{background:rgba(255,255,255,.86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border:1px solid rgba(15,23,32,.08); box-shadow: var(--shadow)}
     .glass-soft{background:rgba(255,255,255,.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border:1px solid rgba(15,23,32,.09)}
 
     /* ================== CORRECTION DES INPUTS ================== */
+    input:not([type="checkbox"]):not([type="radio"]),
+    select,
+    textarea{
+      appearance:none;
+      -webkit-appearance:none;
+      border:1px solid rgba(15,23,32,.18);
+      border-radius:12px;
+      padding:10px 12px;
+      font:inherit;
+    }
 
-/* 1) Exclut les checkbox et radio du reset */
-input:not([type="checkbox"]):not([type="radio"]),
-select,
-textarea{
-  appearance:none;
-  -webkit-appearance:none;
-  border:1px solid rgba(15,23,32,.18);
-  border-radius:12px;
-  padding:10px 12px;
-  font:inherit;
-}
+    #contact .check input[type="checkbox"]{
+      appearance:auto;
+      -webkit-appearance:checkbox;
+      width:18px;
+      height:18px;
+      margin:0;
+      accent-color:var(--brand);
+      border:none;
+      cursor:pointer;
+    }
+    #contact .check{ display:flex; align-items:center; gap:10px; line-height:1.35; cursor:pointer; }
+    #contact .check input[type="checkbox"]:focus-visible{
+      outline:2px solid rgba(15,95,154,.35);
+      outline-offset:2px;
+    }
 
-/* 2) Force l’apparence native des checkbox */
-#contact .check input[type="checkbox"]{
-  appearance:auto;
-  -webkit-appearance:checkbox;
-  width:18px;
-  height:18px;
-  margin:0;
-  accent-color:var(--brand);
-  border:none;
-  cursor:pointer;
-}
-
-/* 3) Label cliquable + focus visible */
-#contact .check{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  line-height:1.35;
-  cursor:pointer;
-}
-#contact .check input[type="checkbox"]:focus-visible{
-  outline:2px solid rgba(15,95,154,.35);
-  outline-offset:2px;
-}
-
-/* ================== TITRES ET INTRO ================== */
-h1, h2, h3, h4,
-.title-center,
-.section h2,
-.hero-intro h1 {
-  font-family: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  font-weight: 800;
-  letter-spacing: 0.01em;
-}
-
+    /* ================== TITRES ET INTRO ================== */
+    h1, h2, h3, h4,
+    .title-center,
+    .section h2,
+    .hero-intro h1 {
+      font-family: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
 
     /* ================== NAVBAR ================== */
     header.navbar{position:sticky;top:0;z-index:1100;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(15,23,32,.08)}
@@ -138,7 +120,15 @@ h1, h2, h3, h4,
     .nav-actions{display:flex;align-items:center;gap:8px;margin-left:6px}
     .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;font-family:inherit;font-weight:800;border-radius:9999px;padding:12px 20px;font-size:16px;letter-spacing:.3px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:all .25s ease;overflow:hidden;text-decoration:none;border:1px solid transparent}
     .btn.primary{background:rgba(27,136,255,.80);color:#fff;border-color:rgba(255,255,255,.25);box-shadow:inset 0 0 12px rgba(255,255,255,.15),0 4px 18px rgba(27,136,255,.30)}
-    .btn.secondary{background:rgba(255,255,255,.22);color:var(--text);border-color:rgba(255,255,255,.35);box-shadow:inset 0 0 10px rgba(255,255,255,.1)}
+    /* >>> Contour de bulle renforcé pour les boutons secondaires (PJ2) */
+    .btn.secondary{
+      background:rgba(255,255,255,.22);
+      color:var(--text);
+      border:2px solid rgba(15,23,32,.28);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.65), 0 8px 18px rgba(15,23,32,.08);
+    }
+    .btn.secondary:hover{background:rgba(255,255,255,.35); border-color:rgba(15,23,32,.38)}
+
     .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(15,23,32,.12);box-shadow:none}
 
     /* ================== HERO ================== */
@@ -161,9 +151,13 @@ h1, h2, h3, h4,
     .hero-visual{position:relative;border-radius:22px;overflow:hidden;background:var(--panel);border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow);min-height:280px}
     .hero-visual img{width:100%;height:100%;object-fit:cover;display:block;mix-blend:normal}
 
-    /* ===== URL search pill (outil gratuit) – nouvelle version ===== */
-    .url-bar{display:flex;align-items:center;gap:10px;height:56px;padding:8px 8px 8px 14px;background:linear-gradient(180deg,#eef5ff,#edf2f8);border:1.5px solid #d3deea;border-radius:999px;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 8px 20px rgba(15,23,32,.08)}
-    .url-bar input{appearance:none;border:none;outline:none;background:transparent;color:var(--text);height:100%;padding:0 10px;font-weight:800;letter-spacing:.01em;flex:1;width:auto}
+    /* ===== URL search pill ===== */
+    .url-bar{display:flex;align-items:center;gap:10px;height:56px;padding:8px 8px 8px 14px;background:linear-gradient(180deg,#eef5ff,#edf2f8);border:1.8px solid #b9c8d9;border-radius:999px;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 8px 20px rgba(15,23,32,.08)}
+    .url-bar input{
+      appearance:none;border:none;outline:none;background:transparent;color:var(--text);height:100%;padding:0 10px;
+      font-weight:800;letter-spacing:.01em;flex:1;width:auto;
+      caret-color: currentColor; /* barre d’écriture visible */
+    }
     .url-bar input::placeholder{color:#7aa9c7;font-weight:800;opacity:1}
     .url-bar button{margin-left:auto;height:40px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:linear-gradient(90deg,var(--copper),#ff9a56);color:#fff;font-weight:800;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 8px 22px rgba(var(--copper-rgb),.35);transition:transform .08s ease,box-shadow .15s ease,filter .15s ease}
     .url-bar button:hover{filter:saturate(1.05) brightness(1.03)}
@@ -174,7 +168,7 @@ h1, h2, h3, h4,
     .section{max-width:var(--maxw);margin:42px auto;padding:0 20px}
     .title-center{margin:6px 0 16px;text-align:center;font-size:clamp(26px,4vw,40px);font-weight:800}
     .subtitle-center{max-width:860px;margin:0 auto 18px;text-align:center;color:var(--muted)}
-    .underline{width:80px;height:4px;border-radius:999px;background:var(--copper);margin:10px auto 26px;opacity:.90;} /* cuivre */
+    .underline{width:80px;height:4px;border-radius:999px;background:var(--copper);margin:10px auto 26px;opacity:.90;}
 
     .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
     @media (max-width:1024px){ .grid-3{grid-template-columns:1fr 1fr} }
@@ -184,16 +178,22 @@ h1, h2, h3, h4,
     .card{border:1px solid rgba(15,23,32,.08)}
     .badge{align-self:flex-start;border-radius:999px;padding:6px 14px;font-weight:800;background:rgba(27,136,255,.10);border:1px solid rgba(27,136,255,.26);color:#0f3a6e;letter-spacing:.02em;font-size:12px}
 
-    /* Offres/Pricing (mise en page corrigée) */
+    /* Offres/Pricing */
     .pricing{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
     @media (max-width:980px){.pricing{grid-template-columns:1fr 1fr}}
     @media (max-width:620px){.pricing{grid-template-columns:1fr}}
     .offer{border-radius:22px;border:1px solid rgba(15,23,32,.10);padding:20px;display:grid;gap:12px;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:var(--shadow)}
     .offer h3{margin:0}
     .offer .for{color:var(--muted)}
-    .offer .price{font-size:28px;font-weight:800}
+    /* >>> PRIX EN ORANGE CUIVRÉ (PJ1) */
+    .offer .price{
+      font-size:28px;
+      font-weight:800;
+      color:var(--copper);
+      text-shadow:0 1px 0 rgba(255,255,255,.6);
+    }
 
-    /* Outil gratuit (section dédiée) */
+    /* Outil gratuit */
     .auditsamples{display:grid;gap:8px;margin-top:12px}
     .auditsamples .ok,.auditsamples .warn,.auditsamples .bad{display:flex;align-items:center;gap:10px}
     .auditsamples svg{width:18px;height:18px;stroke-width:2;fill:none}
@@ -215,12 +215,12 @@ h1, h2, h3, h4,
     .post img{width:100%;height:180px;object-fit:cover;display:block}
     .post .content{padding:16px}
 
-    /* Barre d'écriture (caret) */
+    /* Barre d'écriture (caret) pour textes tapés à l'écran */
     .type-on-view{position:relative;display:inline-block}
     .type-on-view::after{content:"";display:inline-block;width:2px;height:1em;background:currentColor;margin-left:2px;animation:caret-blink var(--caret) steps(1,end) infinite;vertical-align:-0.12em}
     @keyframes caret-blink{50%{opacity:0}}
 
-    /* Contact (mise en forme) */
+    /* Contact */
     .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
     @media (max-width:980px){.contact-grid{grid-template-columns:1fr}}
     form.contact{display:grid;gap:12px}
@@ -269,7 +269,6 @@ h1, h2, h3, h4,
     @media (max-width:980px){ .mega-grid--3{grid-template-columns:1fr 1fr} }
     @media (max-width:640px){ .mega-grid--3{grid-template-columns:1fr} }
 
-    /* Groupes homogènes + anti-débordements */
     .mega .group{
       background:rgba(255,255,255,.78);
       border:1px solid rgba(15,23,32,.08);
@@ -319,7 +318,6 @@ h1, h2, h3, h4,
       color:var(--text);
       font-weight:750;
       line-height:1.25;
-      word-break:normal;
       overflow-wrap:anywhere;
     }
     .mega-list a:hover{background:rgba(27,136,255,.10)}
@@ -342,7 +340,7 @@ h1, h2, h3, h4,
     }
     @media (prefers-reduced-motion: reduce){ .mega.open{animation:none} }
 
-    /* Compte (menu connexion) */
+    /* Compte */
     .account{position:relative}
     .account-btn{width:36px;height:36px;border-radius:999px;border:1px solid rgba(15,23,32,.15);background:#f2f6fb;color:var(--text);display:inline-flex;align-items:center;justify-content:center}
     .account-btn:hover{background:#eaf2fb}
@@ -394,18 +392,29 @@ h1, h2, h3, h4,
 
     /* ======== BOUTON ENVOYER ======== */
     #contact .btn{appearance:none;border:none;cursor:pointer;font-weight:800;font-size:16px;line-height:1;padding:16px 22px;border-radius:9999px;display:inline-flex;align-items:center;gap:10px}
-    #contact .btn.primary{color:#0e3c6f;background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.72)); border:1px solid rgba(15,23,32,.16); box-shadow: 0 8px 24px rgba(27,136,255,.12), inset 0 1px 0 rgba(255,255,255,.9)}
-    #contact .btn.primary:hover{background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.78)); transform:translateY(-1px); box-shadow: 0 10px 28px rgba(27,136,255,.16), inset 0 1px 0 rgba(255,255,255,1)}
+    #contact .btn.primary{
+      color:#0e3c6f;
+      background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.72));
+      border:1px solid rgba(15,23,32,.16);
+      box-shadow: 0 8px 24px rgba(27,136,255,.12), inset 0 1px 0 rgba(255,255,255,.9)
+    }
+    /* >>> HOVER ORANGE + TEXTE CLAIR (PJ4) */
+    #contact .btn.primary:hover{
+      background:linear-gradient(90deg,var(--copper),#ff9a56);
+      color:#fff;
+      border-color:rgba(255,255,255,.55);
+      transform:translateY(-1px);
+      box-shadow:0 10px 28px rgba(var(--copper-rgb),.25), inset 0 1px 0 rgba(255,255,255,1)
+    }
     #contact .btn.primary:focus-visible{outline:2px solid rgba(27,136,255,.25); outline-offset:3px}
     #contact .btn .spinner{display:none;width:16px;height:16px;border:2px solid rgba(15,23,32,.25);border-top-color:#0f5f9a;border-radius:50%;animation:spin .8s linear infinite}
     #contact .btn.loading .spinner{display:inline-block}
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* Effet "verre" pour blocs à fond blanc */
     .card, .offer, .post, .contact-card, .pill, .hero-visual{background:rgba(255,255,255,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
     .post, .offer, .card{box-shadow: var(--shadow)}
 
-    /* --- Messages de statut (cachés par défaut) — CORRECTIF --- */
+    /* --- Messages de statut --- */
     #contact .status-wrap{ margin-top:12px }
     #contact .status{
       display:none;
@@ -423,7 +432,7 @@ h1, h2, h3, h4,
       border-color:#f4cbc3;
     }
 
-    /* --- Cases à cocher : une par ligne, bien alignées — CORRECTIF --- */
+    /* --- Cases à cocher --- */
     #contact .checks-legal{ display:grid; gap:8px; margin-top:10px }
     #contact .check{ display:flex; align-items:center; gap:10px; line-height:1.35 }
     #contact .check input{ width:18px; height:18px; margin:0; accent-color:var(--brand); }
@@ -431,7 +440,7 @@ h1, h2, h3, h4,
   </style>
 </head>
 <body>
- <!-- ============== NAVBAR ============== -->
+<!-- NAVBAR -->
 <header class="navbar" role="banner">
   <div class="nav-wrap">
     <a class="brand" href="#" aria-label="Aller à l'accueil">
@@ -441,7 +450,7 @@ h1, h2, h3, h4,
     <nav class="nav-main" aria-label="Navigation principale">
       <a href="#qui-sommes-nous">Qui sommes-nous ?</a>
 
-      <!-- ▼ NOS SERVICES (même présentation que Formations) -->
+      <!-- ▼ NOS SERVICES -->
       <div class="dropdown" id="servicesDropdown">
         <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
           Nos services
@@ -450,8 +459,6 @@ h1, h2, h3, h4,
 
         <div class="mega glass mega--services" role="menu" aria-label="Nos services">
           <div class="mega-grid--3">
-
-            <!-- Col. 1 : Conseil & conformité -->
             <div class="group">
               <h6>Conseil &amp; conformité</h6>
               <ul class="mega-list">
@@ -460,8 +467,6 @@ h1, h2, h3, h4,
                 <li><a role="menuitem" href="#ia-act">Conformité IA (UE)</a></li>
               </ul>
             </div>
-
-            <!-- Col. 2 : Web & légal -->
             <div class="group">
               <h6>Web &amp; légal</h6>
               <ul class="mega-list">
@@ -470,8 +475,6 @@ h1, h2, h3, h4,
                 <li><a role="menuitem" href="#f-access">Accessibilité (RGAA / EN 301 549)</a></li>
               </ul>
             </div>
-
-            <!-- Col. 3 : Formats + CTA -->
             <div class="group">
               <h6>Formats &amp; modalités</h6>
               <div class="format-badges">
@@ -483,7 +486,6 @@ h1, h2, h3, h4,
               <p class="mega-note">Livrables clairs, priorisation par impact, suivi possible.</p>
               <a class="btn ghost" href="#contact" role="menuitem">Demander un devis</a>
             </div>
-
           </div>
         </div>
       </div>
@@ -498,8 +500,6 @@ h1, h2, h3, h4,
 
         <div class="mega glass mega--formations" role="menu" aria-label="Nos formations">
           <div class="mega-grid--3">
-
-            <!-- Col. 1 : Thématiques -->
             <div class="group">
               <h6>Par thématique</h6>
               <ul class="mega-list">
@@ -511,8 +511,6 @@ h1, h2, h3, h4,
                 <li><a role="menuitem" href="#f-cyber">Cybersécurité de base</a></li>
               </ul>
             </div>
-
-            <!-- Col. 2 : Publics -->
             <div class="group">
               <h6>Par public</h6>
               <ul class="mega-list">
@@ -522,8 +520,6 @@ h1, h2, h3, h4,
                 <li><a role="menuitem" href="#f-dev">Dev, Produit &amp; Data</a></li>
               </ul>
             </div>
-
-            <!-- Col. 3 : Formats + CTA -->
             <div class="group">
               <h6>Formats &amp; modalités</h6>
               <div class="format-badges">
@@ -536,7 +532,6 @@ h1, h2, h3, h4,
               <p class="mega-note">Supports fournis, quiz &amp; attestation inclus.</p>
               <a class="btn ghost" href="#contact" role="menuitem">Demander un programme</a>
             </div>
-
           </div>
         </div>
       </div>
@@ -583,7 +578,8 @@ h1, h2, h3, h4,
 
         <div class="cta-row">
           <a class="btn primary" href="#audit-gratuit">Lancer un audit gratuit</a>
-          <a class="btn secondary" href="#contact">Parler à un expert</a>
+          <!-- Ce bouton bénéficie du contour renforcé -->
+          <a class="btn secondary" href="#contact">Voir le détail des packs</a>
         </div>
       </div>
 
@@ -676,7 +672,8 @@ h1, h2, h3, h4,
     <div class="underline" aria-hidden="true"></div>
     <p class="subtitle-center">Entrez simplement l’adresse de votre site pour obtenir un aperçu immédiat de votre conformité RGPD.</p>
     <form class="url-bar" action="#analyse" method="get" onsubmit="event.preventDefault();demoAudit();">
-      <input type="url" name="site" id="auditUrl" placeholder="https://votresite.fr" aria-label="Adresse du site à analyser" required>
+      <!-- Effet d’écriture en continu + gras + caret -->
+      <input type="url" name="site" id="auditUrl" placeholder="https://votresite.fr" aria-label="Adresse du site à analyser" required autocomplete="off">
       <button type="submit">Analyser votre site</button>
     </form>
     <div class="grid-3" style="margin-top:18px">
@@ -859,7 +856,6 @@ h1, h2, h3, h4,
               </div>
             </div>
 
-            <!-- ✅ CORRECTIF : cases à cocher regroupées et alignées -->
             <div class="checks-legal">
               <label class="check"><input type="checkbox" name="no_marketing" value="1"><span>Je ne souhaite pas recevoir de communication commerciale.</span></label>
               <label class="check"><input type="checkbox" name="optin_news" value="1"><span>Je souhaite recevoir ponctuellement les actualités d’Awenoria (désinscription possible à tout moment).</span></label>
@@ -881,7 +877,7 @@ h1, h2, h3, h4,
                 Merci, votre message a bien été envoyé. Nous revenons vers vous sous 24–48 h ouvrées.
               </div>
               <div id="msgKo" class="status ko" role="alert">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.29 3.86l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.71-3.14l-8-14a2 2 0 0 0-3.42 0Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.29 3.86l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.71-3.14l-8-14a 2 2 0 0 0-3.42 0Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 L’envoi a échoué. Réessayez ou écrivez-nous : contact@awenoria.fr.
               </div>
             </div>
@@ -954,7 +950,7 @@ h1, h2, h3, h4,
 
 <!-- ============== SCRIPTS ============== -->
 
-<!-- Menus déroulants : survol + clic, fermeture intuitive et bascule -->
+<!-- Menus déroulants -->
 <script>
 (function(){
   const dropdowns = [...document.querySelectorAll('.dropdown')];
@@ -1039,18 +1035,17 @@ h1, h2, h3, h4,
 })();
 </script>
 
-<!-- Démo d’audit (placeholder) + effet “machine à écrire” + menu compte + contact -->
+<!-- Démo d’audit + effet “machine à écrire” (titres) + menu compte + contact -->
 <script>
   const qs=(s,el=document)=>el.querySelector(s);
 
-  // Démo d'audit (placeholder)
   function demoAudit(){
     const url = qs('#auditUrl').value || '';
     if(!url) return;
     alert(`Aperçu généré pour: ${url}\n\n• Cookies: OK\n• Politique: À compléter\n• HTTPS: OK\n• Mentions: Manquantes`);
   }
 
-  // Typing-on-view (titre)
+  // Typing-on-view (titres avec caret)
   (function(){
     const SPEED = 85;
     const els = [...document.querySelectorAll('.type-on-view')];
@@ -1062,7 +1057,7 @@ h1, h2, h3, h4,
     function type(el){
       clearTimeout(el.__typingTimer);
       const full = el.dataset.fullText || ''; el.textContent=''; let i=0;
-      (function tick(){ el.textContent = full.slice(0, ++i); if(i<full.length){ el.__typingTimer=setTimeout(tick,SPEED);} else { el.__typingTimer=null; el.__ready=false; } })();
+      (function tick(){ el.textContent = full.slice(0, ++i); if(i<full.length){ el.__typingTimer=setTimeout(tick, SPEED);} else { el.__typingTimer=null; el.__ready=false; } })();
     }
     const io = new IntersectionObserver(entries=>{
       entries.forEach(entry=>{
@@ -1105,7 +1100,7 @@ h1, h2, h3, h4,
     select.addEventListener('change', update); update();
   })();
 
-  // Lazy-load Turnstile dès interaction
+  // Lazy-load Turnstile
   (function(){
     const form = document.getElementById('contactForm'); if(!form) return;
     let loaded=false; function load(){ if(loaded) return; loaded=true; const s=document.createElement('script'); s.src='https://challenges.cloudflare.com/turnstile/v0/api.js'; s.async=true; s.defer=true; document.head.appendChild(s);} 
@@ -1138,27 +1133,54 @@ h1, h2, h3, h4,
   })();
 </script>
 
-<!-- Effet d'écriture automatique dans le champ URL -->
+<!-- Effet d'écriture automatique et CONTINU dans le champ URL (PJ3) -->
 <script>
 (function(){
   const input = document.getElementById('auditUrl'); if(!input) return;
-  const demo = 'https://votresite.fr'; let i = 0, typing = true, t;
-  function tick(){ if(!typing) return; input.value = demo.slice(0, ++i); if(i < demo.length) t = setTimeout(tick, 70); else typing = false; }
-  t = setTimeout(tick, 300);
-  const stop = () => { typing = false; clearTimeout(t); };
-  input.addEventListener('focus', stop, { once:true });
-  input.addEventListener('input', stop);
+  const demo = 'https://votresite.fr';
+  const TYPE_DELAY = 70;
+  const RESTART_DELAY = 2000; // 2 secondes
+  let i = 0, stop = false, timer;
+
+  function focusWithCaret(){
+    input.focus({preventScroll:true});
+    // place le caret en fin de texte pour qu’il clignote
+    try{ input.setSelectionRange(input.value.length, input.value.length); }catch(e){}
+  }
+
+  function typeLoop(){
+    if(stop) return;
+    input.value = '';
+    i = 0;
+    focusWithCaret();
+    (function tick(){
+      if(stop) return;
+      input.value = demo.slice(0, ++i);
+      focusWithCaret();
+      if(i < demo.length){
+        timer = setTimeout(tick, TYPE_DELAY);
+      }else{
+        // Attends 2 s puis recommence depuis zéro
+        timer = setTimeout(()=>{ if(!stop){ input.value=''; typeLoop(); } }, RESTART_DELAY);
+      }
+    })();
+  }
+
+  // Lancer après un petit délai initial
+  timer = setTimeout(typeLoop, 300);
+
+  // Dès interaction utilisateur, on stoppe la démo
+  const halt = () => { stop = true; clearTimeout(timer); };
+  ['focus','input','keydown','pointerdown','touchstart'].forEach(ev=>{
+    input.addEventListener(ev, halt, { once:true, passive:true });
+  });
 })();
 </script>
 
-<!-- (Optionnel) test console pour confirmer le chargement de Manrope -->
+<!-- (Optionnel) test console pour Manrope -->
 <script>
 (async () => {
   try { await document.fonts.load('400 1em Manrope'); } catch(e){}
-  const fam = getComputedStyle(document.documentElement).fontFamily;
-  if (!/Manrope/i.test(fam)) {
-    console.warn('Manrope n’est pas actif : vérifie le lien Google Fonts, le réseau, ou ta CSP (style-src/font-src).');
-  }
 })();
 </script>
 </body>
