@@ -542,26 +542,38 @@
     </nav>
 
     <div class="nav-actions">
-      <div class="account">
-        <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
+  <div class="account">
+    <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
+      <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
+    </button>
+
+    <div class="account-menu glass" id="accountMenu" role="menu" aria-label="Connexion">
+      <a class="acc-item" href="#login-client" role="menuitem">
+        <div class="acc-ico">
           <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
-        </button>
-        <div class="account-menu glass" id="accountMenu" role="menu" aria-label="Connexion">
-          <a class="acc-item" href="#login-client" role="menuitem">
-            <div class="acc-ico"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg></div>
-            <div><p class="acc-title">Connexion Client</p><p class="acc-sub">Je suis un particulier</p></div>
-            <div class="acc-arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
-          </a>
-          <a class="acc-item" href="#login-partenaire" role="menuitem">
-            <div class="acc-ico"><svg viewBox="0 0 24 24"><path d="M16 11a4 4 0 10-8 0 4 0 008 0zm-9 6c-2 1-3 2-3 3v1h16v-1c0-1-1-2-3-3-1 .6-2 1-5 1s-4-.4-5-1z"/></svg></div>
-            <div><p class="acc-title">Connexion Partenaire</p><p class="acc-sub">Je suis un professionnel</p></div>
-            <div class="acc-arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
-          </a>
         </div>
-      </div>
+        <div>
+          <p class="acc-title">Connexion Client</p>
+        </div>
+        <div class="acc-arrow">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+
+      <a class="acc-item" href="#login-partenaire" role="menuitem">
+        <div class="acc-ico">
+          <svg viewBox="0 0 24 24"><path d="M16 11a4 4 0 10-8 0 4 0 008 0zm-9 6c-2 1-3 2-3 3v1h16v-1c0-1-1-2-3-3-1 .6-2 1-5 1s-4-.4-5-1z"/></svg>
+        </div>
+        <div>
+          <p class="acc-title">Connexion Partenaire</p>
+        </div>
+        <div class="acc-arrow">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </div>
+      </a>
     </div>
   </div>
-</header>
+</div>
 
   <!-- ============== HERO ============== -->
   <section class="hero-intro" id="intro">
