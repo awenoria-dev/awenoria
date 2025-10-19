@@ -29,6 +29,7 @@
       --brand:#0f5f9a;
       --accent:#16a34a;
       --copper:#ff8a3d;
+      --copper-rgb:255,138,61; /* ajouté pour les rgba() */
       --danger:#dc2626;
       --radius:16px;
       --shadow:0 12px 28px rgba(0,0,0,.08);
@@ -86,83 +87,20 @@
     .hero-visual{position:relative;border-radius:22px;overflow:hidden;background:var(--panel);border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow);min-height:280px}
     .hero-visual img{width:100%;height:100%;object-fit:cover;display:block;mix-blend:normal}
 
-   <!-- ===== URL search pill (outil gratuit) ===== -->
-<style>
-:root{ --copper:#ff8a3d; --copper-rgb:255,138,61; }
-
-/* Conteneur principal */
-.url-bar{
-  display:flex; align-items:center; gap:10px;
-  height:56px; padding:8px 8px 8px 14px;
-  background:linear-gradient(180deg,#eef5ff,#edf2f8);
-  border:1.5px solid #d3deea; border-radius:999px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.85), 0 8px 20px rgba(15,23,32,.08);
-}
-
-/* Champ de saisie */
-.url-bar input{
-  appearance:none; border:none; outline:none; background:transparent;
-  color:var(--text); height:100%; padding:0 10px;
-  font-weight:800; letter-spacing:.01em;
-  flex:1; width:auto;
-}
-
-/* Texte de placeholder bleu clair */
-.url-bar input::placeholder{
-  color:#7aa9c7; font-weight:900; opacity:1;
-}
-
-/* Bouton futuriste à droite */
-.url-bar button{
-  margin-left:auto;
-  height:40px; padding:0 22px;
-  border-radius:999px; border:1px solid rgba(255,255,255,.55);
-  background:linear-gradient(90deg,var(--copper),#ff9a56);
-  color:#fff; font-weight:900; cursor:pointer;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.75), 0 8px 22px rgba(var(--copper-rgb),.35);
-  transition:transform .08s ease, box-shadow .15s ease, filter .15s ease;
-}
-.url-bar button:hover{ filter:saturate(1.05) brightness(1.03); }
-.url-bar button:active{ transform:translateY(1px); }
-.url-bar button:focus-visible{ outline:0; box-shadow:0 0 0 4px rgba(var(--copper-rgb),.25), inset 0 1px 0 rgba(255,255,255,.9); }
-</style>
-
-<!-- HTML de la barre de recherche -->
-<div class="url-bar">
-  <input id="auditUrl" type="text" placeholder="https://votresite.fr">
-  <button type="submit">Analyser votre site</button>
-</div>
-
-<!-- Script d'écriture automatique -->
-<script>
-(function(){
-  const input = document.getElementById('auditUrl');
-  if(!input) return;
-  const demo = 'https://votresite.fr';
-  let i = 0, typing = true, t;
-
-  function tick(){
-    if(!typing) return;
-    input.value = demo.slice(0, ++i);
-    if(i < demo.length) t = setTimeout(tick, 70);
-    else typing = false;
-  }
-
-  // Lancement de l'effet
-  t = setTimeout(tick, 300);
-
-  // Stop si l'utilisateur clique ou tape
-  const stop = () => { typing = false; clearTimeout(t); };
-  input.addEventListener('focus', stop, { once:true });
-  input.addEventListener('input', stop);
-})();
-</script>
+    /* ===== URL search pill (outil gratuit) – nouvelle version ===== */
+    .url-bar{display:flex;align-items:center;gap:10px;height:56px;padding:8px 8px 8px 14px;background:linear-gradient(180deg,#eef5ff,#edf2f8);border:1.5px solid #d3deea;border-radius:999px;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 8px 20px rgba(15,23,32,.08)}
+    .url-bar input{appearance:none;border:none;outline:none;background:transparent;color:var(--text);height:100%;padding:0 10px;font-weight:800;letter-spacing:.01em;flex:1;width:auto}
+    .url-bar input::placeholder{color:#7aa9c7;font-weight:900;opacity:1}
+    .url-bar button{margin-left:auto;height:40px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:linear-gradient(90deg,var(--copper),#ff9a56);color:#fff;font-weight:900;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 8px 22px rgba(var(--copper-rgb),.35);transition:transform .08s ease,box-shadow .15s ease,filter .15s ease}
+    .url-bar button:hover{filter:saturate(1.05) brightness(1.03)}
+    .url-bar button:active{transform:translateY(1px)}
+    .url-bar button:focus-visible{outline:0;box-shadow:0 0 0 4px rgba(var(--copper-rgb),.25),inset 0 1px 0 rgba(255,255,255,.9)}
 
     /* ================== SECTIONS ================== */
     .section{max-width:var(--maxw);margin:42px auto;padding:0 20px}
     .title-center{margin:6px 0 16px;text-align:center;font-size:clamp(26px,4vw,40px);font-weight:900}
     .subtitle-center{max-width:860px;margin:0 auto 18px;text-align:center;color:var(--muted)}
-    .underline{width:80px;height:4px;border-radius:999px;background:var(--copper);margin:10px auto 26px;opacity:.90;}
+    .underline{width:80px;height:4px;border-radius:999px;background:var(--copper);margin:10px auto 26px;opacity:.90;} /* cuivre */
 
     .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
     @media (max-width:1024px){ .grid-3{grid-template-columns:1fr 1fr} }
@@ -263,7 +201,7 @@
       border:1px solid rgba(15,23,32,.08);
       border-radius:14px;
       padding:14px;
-      overflow:hidden;               /* évite tout dépassement visuel */
+      overflow:hidden;
       display:flex; flex-direction:column; height:100%;
     }
     .mega h6{
@@ -308,7 +246,7 @@
       font-weight:750;
       line-height:1.25;
       word-break:normal;
-      overflow-wrap:anywhere;       /* coupe proprement les très longs libellés */
+      overflow-wrap:anywhere;
     }
     .mega-list a:hover{background:rgba(27,136,255,.10)}
 
@@ -511,7 +449,6 @@
     </nav>
 
     <div class="nav-actions">
-      <!-- Boutons “audit/experts” retirés comme demandé, on garde le compte -->
       <div class="account">
         <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
           <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
@@ -642,7 +579,7 @@
     <p class="subtitle-center">Entrez simplement l’adresse de votre site pour obtenir un aperçu immédiat de votre conformité RGPD.</p>
     <form class="url-bar" action="#analyse" method="get" onsubmit="event.preventDefault();demoAudit();">
       <input type="url" name="site" id="auditUrl" placeholder="https://votresite.fr" aria-label="Adresse du site à analyser" required>
-      <button type="submit">Analyser maintenant</button>
+      <button type="submit">Analyser votre site</button>
     </form>
     <div class="grid-3" style="margin-top:18px">
       <article class="card glass">
@@ -923,7 +860,6 @@
   let closeTimers = new WeakMap();
 
   function openDd(dd){
-    // Fermer les autres
     dropdowns.forEach(d=>{ if(d!==dd) closeDd(d); });
     const btn = dd.querySelector('.dropdown-toggle');
     const panel = dd.querySelector('.mega');
@@ -955,29 +891,24 @@
     btn.setAttribute('aria-expanded','false');
     items.forEach(a=>a.setAttribute('tabindex','0'));
 
-    // Clic pour ouvrir/fermer
     btn.addEventListener('click', e=>{
       e.stopPropagation();
       panel.classList.contains('open') ? closeDd(dd) : openDd(dd);
     });
 
-    // Survol pour ouvrir
     dd.addEventListener('mouseenter', ()=>{
       cancelClose(dd);
       openDd(dd);
     });
 
-    // Fermeture quand la souris quitte le cadre
     dd.addEventListener('mouseleave', ()=>{
       scheduleClose(dd);
     });
 
-    // Fermer si clic ailleurs
     document.addEventListener('click', e=>{
       if(!dd.contains(e.target)) closeDd(dd);
     });
 
-    // Accessibilité clavier
     btn.addEventListener('keydown', e=>{
       if(['ArrowDown','Enter',' '].includes(e.key)){
         e.preventDefault(); openDd(dd); items[0]?.focus();
@@ -1104,6 +1035,19 @@
       }
     });
   })();
+</script>
+
+<!-- Effet d'écriture automatique dans le champ URL -->
+<script>
+(function(){
+  const input = document.getElementById('auditUrl'); if(!input) return;
+  const demo = 'https://votresite.fr'; let i = 0, typing = true, t;
+  function tick(){ if(!typing) return; input.value = demo.slice(0, ++i); if(i < demo.length) t = setTimeout(tick, 70); else typing = false; }
+  t = setTimeout(tick, 300);
+  const stop = () => { typing = false; clearTimeout(t); };
+  input.addEventListener('focus', stop, { once:true });
+  input.addEventListener('input', stop);
+})();
 </script>
 </body>
 </html>
