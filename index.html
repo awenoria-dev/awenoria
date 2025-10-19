@@ -589,7 +589,43 @@
     </div>
   </section>
 
-  <!-- ============== NOTRE MISSION ============== -->
+  <!-- ============== OUTIL GRATUIT D’AUDIT (PJ1) — DÉPLACÉ ICI ============== -->
+  <section id="audit-gratuit" class="section">
+    <h2 class="title-center">Scannez votre site gratuitement</h2>
+    <div class="underline" aria-hidden="true"></div>
+    <p class="subtitle-center">Entrez simplement l’adresse de votre site pour obtenir un aperçu immédiat de votre conformité RGPD.</p>
+    <form class="url-bar" action="#analyse" method="get" onsubmit="event.preventDefault();demoAudit();">
+      <!-- Effet d’écriture en continu + gras + caret -->
+      <input type="url" name="site" id="auditUrl" placeholder="https://votresite.fr" aria-label="Adresse du site à analyser" required autocomplete="off">
+      <button type="submit">Analyser votre site</button>
+    </form>
+    <div class="grid-3" style="margin-top:18px">
+      <article class="card glass">
+        <h3>Résultats rapides (exemple)</h3>
+        <div class="auditsamples">
+          <div class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Cookies bloqués avant consentement</div>
+          <div class="warn"><svg viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M12 3a9 9 0 100 18 9 9 0 000-18z"/></svg> Politique de confidentialité absente</div>
+          <div class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> HTTPS sécurisé</div>
+          <div class="bad"><svg viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg> Mentions légales non détectées</div>
+        </div>
+        <div class="cta-row" style="margin-top:12px">
+          <a class="btn secondary" href="#">Télécharger le rapport complet (PDF) – 79 €</a>
+        </div>
+      </article>
+      <article class="card glass">
+        <span class="badge">Couverture</span>
+        <h3>Multi-normes</h3>
+        <p>Un seul outil pour vérifier l’essentiel : RGPD, accessibilité, mentions légales et cookies.</p>
+      </article>
+      <article class="card glass">
+        <span class="badge">Impact</span>
+        <h3>Diagnostic priorisé</h3>
+        <p>Score global + recommandations classées par impact, avec exemples concrets.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============== NOTRE MISSION (PJ2) — DÉSORMAIS APRÈS PJ1 ============== -->
   <section id="qui-sommes-nous" class="section">
     <h2 class="title-center">Chez Awenoria, la transparence et la confiance sont au cœur de nos engagements.</h2>
     <div class="underline" aria-hidden="true"></div>
@@ -664,42 +700,6 @@
       <a class="btn secondary" href="#services">Voir le détail des packs</a>
       <a class="btn primary" href="#contact">Obtenir un devis rapide</a>
     </p>
-  </section>
-
-  <!-- ============== OUTIL GRATUIT D’AUDIT ============== -->
-  <section id="audit-gratuit" class="section">
-    <h2 class="title-center">Scannez votre site gratuitement</h2>
-    <div class="underline" aria-hidden="true"></div>
-    <p class="subtitle-center">Entrez simplement l’adresse de votre site pour obtenir un aperçu immédiat de votre conformité RGPD.</p>
-    <form class="url-bar" action="#analyse" method="get" onsubmit="event.preventDefault();demoAudit();">
-      <!-- Effet d’écriture en continu + gras + caret -->
-      <input type="url" name="site" id="auditUrl" placeholder="https://votresite.fr" aria-label="Adresse du site à analyser" required autocomplete="off">
-      <button type="submit">Analyser votre site</button>
-    </form>
-    <div class="grid-3" style="margin-top:18px">
-      <article class="card glass">
-        <h3>Résultats rapides (exemple)</h3>
-        <div class="auditsamples">
-          <div class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Cookies bloqués avant consentement</div>
-          <div class="warn"><svg viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M12 3a9 9 0 100 18 9 9 0 000-18z"/></svg> Politique de confidentialité absente</div>
-          <div class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> HTTPS sécurisé</div>
-          <div class="bad"><svg viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg> Mentions légales non détectées</div>
-        </div>
-        <div class="cta-row" style="margin-top:12px">
-          <a class="btn secondary" href="#">Télécharger le rapport complet (PDF) – 79 €</a>
-        </div>
-      </article>
-      <article class="card glass">
-        <span class="badge">Couverture</span>
-        <h3>Multi-normes</h3>
-        <p>Un seul outil pour vérifier l’essentiel : RGPD, accessibilité, mentions légales et cookies.</p>
-      </article>
-      <article class="card glass">
-        <span class="badge">Impact</span>
-        <h3>Diagnostic priorisé</h3>
-        <p>Score global + recommandations classées par impact, avec exemples concrets.</p>
-      </article>
-    </div>
   </section>
 
   <!-- ============== POURQUOI NOUS CHOISIR ============== -->
@@ -907,9 +907,10 @@
         <h4>Plan du site</h4>
         <ul>
           <li><a href="#intro">Accueil</a></li>
+          <li><a href="#audit-gratuit">Audit gratuit</a></li>
+          <li><a href="#qui-sommes-nous">Qui sommes-nous ?</a></li>
           <li><a href="#expertises">Nos expertises</a></li>
           <li><a href="#offres">Offres</a></li>
-          <li><a href="#audit-gratuit">Audit gratuit</a></li>
         </ul>
       </div>
       <div class="cc-col">
