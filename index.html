@@ -19,13 +19,16 @@
 
   <style>
     /* ================== BASE ================== */
+    /* (facultatif, si tu l'utilises ailleurs) */
     @font-face{
       font-family: "AwenoriaUI";
       src: url("fonts/awenoria-ui.woff2") format("woff2");
       font-weight: 100 900;
       font-display: swap;
     }
+
     :root{
+      --font-ui: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       /* Palette bleu (logo) + cuivre */
       --bg:#f6f9fc;
       --panel:#ffffff;
@@ -34,22 +37,37 @@
       --brand:#0f5f9a;
       --accent:#16a34a;
       --copper:#ff8a3d;
-      --copper-rgb:255,138,61; /* ajouté pour les rgba() */
+      --copper-rgb:255,138,61;
       --danger:#dc2626;
       --radius:16px;
       --shadow:0 12px 28px rgba(0,0,0,.08);
       --maxw:1200px; --nav-h:40px; --caret:.6s;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
+
+    /* >>> Police Manrope appliquée partout depuis html */
+    html{
+      font-family: var(--font-ui);
+      font-weight: 400;
+      font-optical-sizing: auto;
+      /* éviter la synthèse de gras/italique quand l’axe variable est dispo */
+      font-synthesis-weight: none;
+      font-synthesis-style: none;
+    }
+    /* Héritage fiable pour contrôles (Safari/iOS inclus) */
+    body, button, input, select, textarea { font-family: inherit; }
+
     body{
       margin:0; color:var(--text);
-      font-family:"Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; /* Manrope par défaut */
-      font-optical-sizing:auto;
       background: radial-gradient(1400px 700px at 10% -20%, #eef6ff 0%, rgba(238,246,255,0.6) 45%, transparent 60%),
                   linear-gradient(180deg,#ffffff 0%, #f6f9fc 100%);
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; line-height:1.5;
     }
+
+    /* Titres plus “brand” en 800 par défaut */
+    h1,h2,h3,h4{ font-weight:800; }
 
     /* Utils verre */
     .glass{background:rgba(255,255,255,.86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border:1px solid rgba(15,23,32,.08); box-shadow: var(--shadow)}
@@ -158,7 +176,7 @@
     form.contact{display:grid;gap:12px}
     .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     @media (max-width:620px){.row{grid-template-columns:1fr}}
-    input,select,textarea{appearance:none;border:1px solid rgba(15,23,32,.18);border-radius:12px;padding:10px 12px;font:inherit}
+    input,select,textarea{appearance:none;border:1px solid rgba(15,23,32,.18);border-radius:12px;padding:10px 12px}
     textarea{min-height:120px}
 
     /* ================== FOOTER ================== */
@@ -315,7 +333,7 @@
     @media(max-width:680px){#contact .form-grid{grid-template-columns:1fr}}
     #contact label{font-weight:800;font-size:14px}
     #contact .req::after{content:" *";color:#b3261e}
-    #contact .input, #contact textarea, #contact select{width:100%;padding:12px 14px;border:1px solid #dbe5ee;border-radius:12px;background:#fff;outline:none;transition:.2s;font:inherit}
+    #contact .input, #contact textarea, #contact select{width:100%;padding:12px 14px;border:1px solid #dbe5ee;border-radius:12px;background:#fff;outline:none;transition:.2s}
     #contact .input:focus, #contact textarea:focus, #contact select:focus{border-color:#8ec5e9; box-shadow:0 0 0 3px rgba(0,115,182,.12); outline:0}
     #contact select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(45deg,transparent 50%,#7aa9c7 50%),linear-gradient(135deg,#7aa9c7 50%,transparent 50%),linear-gradient(to right,#dbe5ee,#dbe5ee);background-position:calc(100% - 18px) calc(1em - 2px),calc(100% - 13px) calc(1em - 2px),calc(100% - 2.5em) .5em;background-size:5px 5px,5px 5px,1px 1.8em;background-repeat:no-repeat}
     #contact .help{font-size:12px;color:var(--muted);margin-top:4px}
@@ -340,7 +358,7 @@
     /* --- Messages de statut (cachés par défaut) — CORRECTIF --- */
     #contact .status-wrap{ margin-top:12px }
     #contact .status{
-      display:none;                      /* caché par défaut */
+      display:none;
       align-items:center; gap:8px;
       padding:10px 12px; border-radius:10px;
       font-weight:700;
@@ -1080,6 +1098,17 @@
   const stop = () => { typing = false; clearTimeout(t); };
   input.addEventListener('focus', stop, { once:true });
   input.addEventListener('input', stop);
+})();
+</script>
+
+<!-- (Optionnel) test console pour confirmer le chargement de Manrope -->
+<script>
+(async () => {
+  try { await document.fonts.load('400 1em Manrope'); } catch(e){}
+  const fam = getComputedStyle(document.documentElement).fontFamily;
+  if (!/Manrope/i.test(fam)) {
+    console.warn('Manrope n’est pas actif : vérifie le lien Google Fonts, le réseau, ou ta CSP (style-src/font-src).');
+  }
 })();
 </script>
 </body>
