@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Accueil – Awenoria</title>
-  <meta name="description" content="Awenoria – conformité RGPD & IA rendue simple, humaine et accessible. Audits automatisés, accompagnement expert, formations. Scan URL gratuit." />
+  <meta name="description" content="Awenoria – conformité RGPD &amp; IA rendue simple, humaine et accessible. Audits automatisés, accompagnement expert, formations. Scan URL gratuit." />
 
   <!-- Favicon / PWA -->
   <link rel="icon" type="image/png" href="images/logo-pj3.png" sizes="32x32">
@@ -330,6 +330,30 @@
     /* Effet "verre" pour blocs à fond blanc */
     .card, .offer, .post, .contact-card, .pill, .hero-visual{background:rgba(255,255,255,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
     .post, .offer, .card{box-shadow: var(--shadow)}
+
+    /* --- Messages de statut (cachés par défaut) — CORRECTIF --- */
+    #contact .status-wrap{ margin-top:12px }
+    #contact .status{
+      display:none;                      /* caché par défaut */
+      align-items:center; gap:8px;
+      padding:10px 12px; border-radius:10px;
+      font-weight:700;
+      color:#0f5f9a;
+      background:linear-gradient(180deg,#f3f8ff,#eef5ff);
+      border:1px solid #d3deea;
+    }
+    #contact .status svg{ flex:0 0 auto }
+    #contact .status.ko{
+      color:#8b2a1a;
+      background:linear-gradient(180deg,#fff6f5,#ffeceb);
+      border-color:#f4cbc3;
+    }
+
+    /* --- Cases à cocher : une par ligne, bien alignées — CORRECTIF --- */
+    #contact .checks-legal{ display:grid; gap:8px; margin-top:10px }
+    #contact .check{ display:flex; align-items:center; gap:10px; line-height:1.35 }
+    #contact .check input{ width:18px; height:18px; margin:0; accent-color:var(--brand); }
+    #contact .check span{ font-weight:800; color:var(--text) }
   </style>
 </head>
 <body>
@@ -355,9 +379,9 @@
 
             <!-- Col. 1 : Conseil & conformité -->
             <div class="group">
-              <h6>Conseil & conformité</h6>
+              <h6>Conseil &amp; conformité</h6>
               <ul class="mega-list">
-                <li><a role="menuitem" href="#audit">Audit & Analyse</a></li>
+                <li><a role="menuitem" href="#audit">Audit &amp; Analyse</a></li>
                 <li><a role="menuitem" href="#conformite">Accompagnement RGPD</a></li>
                 <li><a role="menuitem" href="#ia-act">Conformité IA (UE)</a></li>
               </ul>
@@ -365,9 +389,9 @@
 
             <!-- Col. 2 : Web & légal -->
             <div class="group">
-              <h6>Web & légal</h6>
+              <h6>Web &amp; légal</h6>
               <ul class="mega-list">
-                <li><a role="menuitem" href="#f-cookies">Cookies & CMP</a></li>
+                <li><a role="menuitem" href="#f-cookies">Cookies &amp; CMP</a></li>
                 <li><a role="menuitem" href="#f-legales">Mentions légales</a></li>
                 <li><a role="menuitem" href="#f-access">Accessibilité (RGAA / EN 301 549)</a></li>
               </ul>
@@ -375,7 +399,7 @@
 
             <!-- Col. 3 : Formats + CTA -->
             <div class="group">
-              <h6>Formats & modalités</h6>
+              <h6>Formats &amp; modalités</h6>
               <div class="format-badges">
                 <span class="badge pill-badge">Audit flash</span>
                 <span class="badge pill-badge">Mission</span>
@@ -406,9 +430,9 @@
               <h6>Par thématique</h6>
               <ul class="mega-list">
                 <li><a role="menuitem" href="#f-rgpd">RGPD – essentiels, registre, AIPD</a></li>
-                <li><a role="menuitem" href="#f-iaact">IA Act – obligations & documentation</a></li>
-                <li><a role="menuitem" href="#f-cookies">Cookies & CMP</a></li>
-                <li><a role="menuitem" href="#f-legales">Mentions légales & conformité web</a></li>
+                <li><a role="menuitem" href="#f-iaact">IA Act – obligations &amp; documentation</a></li>
+                <li><a role="menuitem" href="#f-cookies">Cookies &amp; CMP</a></li>
+                <li><a role="menuitem" href="#f-legales">Mentions légales &amp; conformité web</a></li>
                 <li><a role="menuitem" href="#f-access">Accessibilité (RGAA / EN 301 549)</a></li>
                 <li><a role="menuitem" href="#f-cyber">Cybersécurité de base</a></li>
               </ul>
@@ -418,16 +442,16 @@
             <div class="group">
               <h6>Par public</h6>
               <ul class="mega-list">
-                <li><a role="menuitem" href="#f-dirigeants">Dirigeants & responsables</a></li>
+                <li><a role="menuitem" href="#f-dirigeants">Dirigeants &amp; responsables</a></li>
                 <li><a role="menuitem" href="#f-equipes">Équipes opérationnelles</a></li>
                 <li><a role="menuitem" href="#f-dpo">Référents / DPO</a></li>
-                <li><a role="menuitem" href="#f-dev">Dev, Produit & Data</a></li>
+                <li><a role="menuitem" href="#f-dev">Dev, Produit &amp; Data</a></li>
               </ul>
             </div>
 
             <!-- Col. 3 : Formats + CTA -->
             <div class="group">
-              <h6>Formats & modalités</h6>
+              <h6>Formats &amp; modalités</h6>
               <div class="format-badges">
                 <span class="badge pill-badge">Atelier 2h</span>
                 <span class="badge pill-badge">1/2 journée</span>
@@ -435,7 +459,7 @@
                 <span class="badge pill-badge">Parcours</span>
                 <span class="badge pill-badge">Présentiel / Distanciel</span>
               </div>
-              <p class="mega-note">Supports fournis, quiz & attestation inclus.</p>
+              <p class="mega-note">Supports fournis, quiz &amp; attestation inclus.</p>
               <a class="btn ghost" href="#contact" role="menuitem">Demander un programme</a>
             </div>
 
@@ -479,8 +503,8 @@
 
         <ul class="checks checks-inline">
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Analyse locale par défaut, sans stockage.</li>
-          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Score global & recommandations priorisées.</li>
-          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>RGPD, accessibilité, mentions légales & cookies.</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Score global &amp; recommandations priorisées.</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>RGPD, accessibilité, mentions légales &amp; cookies.</li>
         </ul>
 
         <div class="cta-row">
@@ -658,7 +682,7 @@
         </div>
       </article>
       <article class="post glass">
-        <img src="images/blog-audit-score.jpg" alt="Audit web : comprendre votre score">
+        <img src="images/blog-audit-score.jpg" alt="Audit web : comprendre votre score de conformité ?">
         <div class="content">
           <h3>Audit web : comment lire votre score de conformité ?</h3>
           <p>Découvrez nos critères et nos pondérations.</p>
@@ -761,8 +785,11 @@
               </div>
             </div>
 
-            <label class="check"><input type="checkbox" name="no_marketing" value="1"><span>Je ne souhaite pas recevoir de communication commerciale.</span></label>
-            <label class="check"><input type="checkbox" name="optin_news" value="1"><span>Je souhaite recevoir ponctuellement les actualités d’Awenoria (désinscription possible à tout moment).</span></label>
+            <!-- ✅ CORRECTIF : cases à cocher regroupées et alignées -->
+            <div class="checks-legal">
+              <label class="check"><input type="checkbox" name="no_marketing" value="1"><span>Je ne souhaite pas recevoir de communication commerciale.</span></label>
+              <label class="check"><input type="checkbox" name="optin_news" value="1"><span>Je souhaite recevoir ponctuellement les actualités d’Awenoria (désinscription possible à tout moment).</span></label>
+            </div>
 
             <p class="note">Les données collectées sont indispensables au traitement de votre demande. Pour en savoir plus, consultez notre <a href="confidentialite.html">Politique de confidentialité</a>.</p>
 
@@ -1018,16 +1045,16 @@
     const btn=document.getElementById('sendBtn');
     const okBox=document.getElementById('msgOk');
     const koBox=document.getElementById('msgKo');
-    function show(el){ el.classList.add('fade'); el.style.display='flex'; }
-    function hide(el){ el.style.display='none'; el.classList.remove('fade'); }
+    function show(el){ el.style.display='flex'; }
+    function hide(el){ el.style.display='none'; }
     form.addEventListener('submit', async (e)=>{
       e.preventDefault(); if(!form.reportValidity()) return; hide(okBox); hide(koBox);
       btn.classList.add('loading'); btn.disabled=true;
       try{
         const r=await fetch(form.action,{method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}});
         const j=await r.json().catch(()=>({}));
-        if(r.ok && j.ok){ show(okBox); form.reset(); setTimeout(()=>hide(okBox),7000);}
-        else { show(koBox); setTimeout(()=>hide(koBox),9000);}
+        if(r.ok && j.ok){ show(okBox); form.reset(); setTimeout(()=>hide(okBox),7000);} 
+        else { show(koBox); setTimeout(()=>hide(koBox),9000);} 
       }catch(err){
         show(koBox); setTimeout(()=>hide(koBox),9000);
       }finally{
