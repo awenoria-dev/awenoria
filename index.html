@@ -35,8 +35,9 @@
       --text:#0f5f9a;
       --brand:#0f5f9a;
       --accent:#16a34a;
-      --copper:#ff8a3d;          /* cuivre (PJ1) */
+      --copper:#ff8a3d;          /* cuivre */
       --copper-rgb:255,138,61;
+      --light-blue:#7bb8ff;      /* bleu clair pour “Client” */
       --danger:#dc2626;
       --radius:16px;
       --shadow:0 12px 28px rgba(0,0,0,.08);
@@ -120,7 +121,6 @@
     .nav-actions{display:flex;align-items:center;gap:8px;margin-left:6px}
     .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;font-family:inherit;font-weight:800;border-radius:9999px;padding:12px 20px;font-size:16px;letter-spacing:.3px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:all .25s ease;overflow:hidden;text-decoration:none;border:1px solid transparent}
     .btn.primary{background:rgba(27,136,255,.80);color:#fff;border-color:rgba(255,255,255,.25);box-shadow:inset 0 0 12px rgba(255,255,255,.15),0 4px 18px rgba(27,136,255,.30)}
-    /* >>> Contour de bulle renforcé pour les boutons secondaires (PJ2) */
     .btn.secondary{
       background:rgba(255,255,255,.22);
       color:var(--text);
@@ -128,7 +128,6 @@
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.65), 0 8px 18px rgba(15,23,32,.08);
     }
     .btn.secondary:hover{background:rgba(255,255,255,.35); border-color:rgba(15,23,32,.38)}
-
     .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(15,23,32,.12);box-shadow:none}
 
     /* ================== HERO ================== */
@@ -156,7 +155,7 @@
     .url-bar input{
       appearance:none;border:none;outline:none;background:transparent;color:var(--text);height:100%;padding:0 10px;
       font-weight:800;letter-spacing:.01em;flex:1;width:auto;
-      caret-color: currentColor; /* barre d’écriture visible */
+      caret-color: currentColor;
     }
     .url-bar input::placeholder{color:#7aa9c7;font-weight:800;opacity:1}
     .url-bar button{margin-left:auto;height:40px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:linear-gradient(90deg,var(--copper),#ff9a56);color:#fff;font-weight:800;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 8px 22px rgba(var(--copper-rgb),.35);transition:transform .08s ease,box-shadow .15s ease,filter .15s ease}
@@ -185,7 +184,6 @@
     .offer{border-radius:22px;border:1px solid rgba(15,23,32,.10);padding:20px;display:grid;gap:12px;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:var(--shadow)}
     .offer h3{margin:0}
     .offer .for{color:var(--muted)}
-    /* >>> PRIX EN ORANGE CUIVRÉ (PJ1) */
     .offer .price{
       font-size:28px;
       font-weight:800;
@@ -264,7 +262,6 @@
       z-index:1200;
     }
     .mega.open{display:block;animation:fadeIn .16s ease}
-
     .mega-grid--3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
     @media (max-width:980px){ .mega-grid--3{grid-template-columns:1fr 1fr} }
     @media (max-width:640px){ .mega-grid--3{grid-template-columns:1fr} }
@@ -284,28 +281,8 @@
       text-transform:uppercase;
       color:#456;
     }
-
-    .pill{
-      border-radius:14px;
-      padding:14px;
-      text-decoration:none;
-      color:var(--text);
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      min-height:96px;
-    }
-    .pill .tag{
-      display:inline-block;
-      align-self:flex-start;
-      background:rgba(27,136,255,.12);
-      color:#0f3a6e;
-      border-radius:999px;
-      padding:4px 10px;
-      font-size:12px;
-      font-weight:800;
-      letter-spacing:.04em;
-    }
+    .pill{ border-radius:14px; padding:14px; text-decoration:none; color:var(--text); display:flex; flex-direction:column; gap:6px; min-height:96px; }
+    .pill .tag{ display:inline-block; align-self:flex-start; background:rgba(27,136,255,.12); color:#0f3a6e; border-radius:999px; padding:4px 10px; font-size:12px; font-weight:800; letter-spacing:.04em; }
     .pill h5{margin:2px 0 0;font-size:16px}
     .pill p{margin:0;color:var(--muted);font-size:14px}
 
@@ -323,15 +300,7 @@
     .mega-list a:hover{background:rgba(27,136,255,.10)}
 
     .format-badges{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 10px}
-    .pill-badge{
-      background:rgba(27,136,255,.10);
-      border:1px solid rgba(27,136,255,.26);
-      color:#0f3a6e;
-      border-radius:999px;
-      padding:6px 12px;
-      font-weight:800;
-      font-size:12px;
-    }
+    .pill-badge{ background:rgba(27,136,255,.10); border:1px solid rgba(27,136,255,.26); color:#0f3a6e; border-radius:999px; padding:6px 12px; font-weight:800; font-size:12px; }
     .mega-note{margin:0 0 10px;color:var(--muted);font-size:14px}
 
     @keyframes fadeIn{
@@ -354,6 +323,13 @@
     .acc-title{margin:0;font-weight:800}
     .acc-sub{margin:2px 0 0;color:var(--muted);font-size:14px}
     .acc-arrow svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+
+    /* >>> Teintes spécifiques Client & Partenaire (icône + titre) */
+    .acc-item.client .acc-ico,
+    .acc-item.client .acc-title{ color:var(--light-blue); }
+
+    .acc-item.partner .acc-ico,
+    .acc-item.partner .acc-title{ color:var(--copper); }
 
     /* ===== CONTACT (scopé à la section #contact) ===== */
     #contact .contact-form-wrap{position:relative;z-index:3;margin-top:18px}
@@ -398,7 +374,6 @@
       border:1px solid rgba(15,23,32,.16);
       box-shadow: 0 8px 24px rgba(27,136,255,.12), inset 0 1px 0 rgba(255,255,255,.9)
     }
-    /* >>> HOVER ORANGE + TEXTE CLAIR (PJ4) */
     #contact .btn.primary:hover{
       background:linear-gradient(90deg,var(--copper),#ff9a56);
       color:#fff;
@@ -541,43 +516,50 @@
       <a href="#contact">Contact</a>
     </nav>
 
-   <div class="nav-actions">
-  <div class="account">
-    <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
-      <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
-    </button>
+    <!-- ===== Compte (icônes + titres teintés) ===== -->
+    <div class="nav-actions">
+      <div class="account">
+        <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
+        </button>
 
-    <div class="account-menu glass" id="accountMenu" role="menu" aria-label="Connexion">
-      <a class="acc-item" href="#login-client" role="menuitem">
-        <div class="acc-ico">
-          <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
-        </div>
-        <div>
-          <p class="acc-title">Connexion Client</p>
-        </div>
-        <div class="acc-arrow">
-          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
-        </div>
-      </a>
+        <div class="account-menu glass" id="accountMenu" role="menu" aria-label="Connexion">
+          <!-- Connexion Client (bleu clair) -->
+          <a class="acc-item client" href="#login-client" role="menuitem">
+            <div class="acc-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="acc-title">Connexion Client</p>
+            </div>
+            <div class="acc-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+            </div>
+          </a>
 
-      <a class="acc-item" href="#login-partenaire" role="menuitem">
-        <div class="acc-ico">
-          <svg viewBox="0 0 24 24"><path d="M16 11a4 4 0 10-8 0 4 0 008 0zm-9 6c-2 1-3 2-3 3v1h16v-1c0-1-1-2-3-3-1 .6-2 1-5 1s-4-.4-5-1z"/></svg>
-        </div>
-        <div>
-          <p class="acc-title">Connexion Partenaire</p>
-        </div>
-        <div class="acc-arrow">
-          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
-        </div>
-      </a>
-    </div> <!-- /.account-menu -->
-  </div> <!-- /.account -->
-</div> <!-- /.nav-actions -->
+          <!-- Connexion Partenaire (cuivré) — SVG corrigé, icône complète -->
+          <a class="acc-item partner" href="#login-partenaire" role="menuitem">
+            <div class="acc-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 18c0-3.3 3.6-6 8-6s8 2.7 8 6v1H4v-1z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="acc-title">Connexion Partenaire</p>
+            </div>
+            <div class="acc-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+            </div>
+          </a>
+        </div> <!-- /.account-menu -->
+      </div> <!-- /.account -->
+    </div> <!-- /.nav-actions -->
 
-</div> <!-- /.nav-wrap -->
+  </div> <!-- /.nav-wrap -->
 </header>
-
 
   <!-- ============== HERO ============== -->
   <section class="hero-intro" id="intro">
@@ -594,7 +576,6 @@
 
         <div class="cta-row">
           <a class="btn primary" href="#audit-gratuit">Lancer un audit gratuit</a>
-          <!-- Ce bouton bénéficie du contour renforcé -->
           <a class="btn secondary" href="#contact">Voir le détail des packs</a>
         </div>
       </div>
@@ -605,14 +586,12 @@
     </div>
   </section>
 
-  <!-- ============== NOTRE MISSION ============== -->
-  <!-- ============== OUTIL GRATUIT D’AUDIT (PJ1) — DÉPLACÉ ICI ============== -->
+  <!-- ============== OUTIL GRATUIT D’AUDIT (déplacé ici) ============== -->
   <section id="audit-gratuit" class="section">
     <h2 class="title-center">Scannez votre site gratuitement</h2>
     <div class="underline" aria-hidden="true"></div>
     <p class="subtitle-center">Entrez simplement l’adresse de votre site pour obtenir un aperçu immédiat de votre conformité RGPD.</p>
     <form class="url-bar" action="#analyse" method="get" onsubmit="event.preventDefault();demoAudit();">
-      <!-- Effet d’écriture en continu + gras + caret -->
       <input type="url" name="site" id="auditUrl" placeholder="https://votresite.fr" aria-label="Adresse du site à analyser" required autocomplete="off">
       <button type="submit">Analyser votre site</button>
     </form>
@@ -642,19 +621,19 @@
     </div>
   </section>
 
-  <!-- ============== NOTRE MISSION (PJ2) — DÉSORMAIS APRÈS PJ1 ============== -->
-<section id="qui-sommes-nous" class="section">
-  <h2 class="title-center">Chez Awenoria, la transparence et la confiance sont au cœur de nos engagements.</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">
-    Cet espace est dédié à une conformité claire et pragmatique. 
-    Nous vous aidons à comprendre, sécuriser et valoriser vos données 
-    tout en garantissant la conformité de vos activités numériques.
-  </p>
-  <p class="subtitle-center">
-    <a class="btn secondary" href="#approche">Découvrir notre approche</a>
-  </p>
-</section>
+  <!-- ============== NOTRE MISSION (après PJ1) ============== -->
+  <section id="qui-sommes-nous" class="section">
+    <h2 class="title-center">Chez Awenoria, la transparence et la confiance sont au cœur de nos engagements.</h2>
+    <div class="underline" aria-hidden="true"></div>
+    <p class="subtitle-center">
+      Cet espace est dédié à une conformité claire et pragmatique. 
+      Nous vous aidons à comprendre, sécuriser et valoriser vos données 
+      tout en garantissant la conformité de vos activités numériques.
+    </p>
+    <p class="subtitle-center">
+      <a class="btn secondary" href="#approche">Découvrir notre approche</a>
+    </p>
+  </section>
 
   <!-- ============== EXPERTISES ============== -->
   <section id="expertises" class="section">
@@ -725,41 +704,7 @@
     </p>
   </section>
 
-  <!-- ============== OUTIL GRATUIT D’AUDIT ============== -->
-  <section id="audit-gratuit" class="section">
-    <h2 class="title-center">Scannez votre site gratuitement</h2>
-    <div class="underline" aria-hidden="true"></div>
-    <p class="subtitle-center">Entrez simplement l’adresse de votre site pour obtenir un aperçu immédiat de votre conformité RGPD.</p>
-    <form class="url-bar" action="#analyse" method="get" onsubmit="event.preventDefault();demoAudit();">
-      <!-- Effet d’écriture en continu + gras + caret -->
-      <input type="url" name="site" id="auditUrl" placeholder="https://votresite.fr" aria-label="Adresse du site à analyser" required autocomplete="off">
-      <button type="submit">Analyser votre site</button>
-    </form>
-    <div class="grid-3" style="margin-top:18px">
-      <article class="card glass">
-        <h3>Résultats rapides (exemple)</h3>
-        <div class="auditsamples">
-          <div class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Cookies bloqués avant consentement</div>
-          <div class="warn"><svg viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M12 3a9 9 0 100 18 9 9 0 000-18z"/></svg> Politique de confidentialité absente</div>
-          <div class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> HTTPS sécurisé</div>
-          <div class="bad"><svg viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg> Mentions légales non détectées</div>
-        </div>
-        <div class="cta-row" style="margin-top:12px">
-          <a class="btn secondary" href="#">Télécharger le rapport complet (PDF) – 79 €</a>
-        </div>
-      </article>
-      <article class="card glass">
-        <span class="badge">Couverture</span>
-        <h3>Multi-normes</h3>
-        <p>Un seul outil pour vérifier l’essentiel : RGPD, accessibilité, mentions légales et cookies.</p>
-      </article>
-      <article class="card glass">
-        <span class="badge">Impact</span>
-        <h3>Diagnostic priorisé</h3>
-        <p>Score global + recommandations classées par impact, avec exemples concrets.</p>
-      </article>
-    </div>
-  </section>
+  <!-- ============== OUTIL GRATUIT D’AUDIT (duplicat manquant supprimé) ============== -->
 
   <!-- ============== POURQUOI NOUS CHOISIR ============== -->
   <section id="pourquoi" class="section">
@@ -947,299 +892,298 @@
     </div>
   </section>
 
- <!-- ============== FOOTER ============== -->
-<footer class="cc-footer" role="contentinfo">
-  <div class="cc-container">
-    <div class="cc-top">
-      <a class="cc-brand" href="#" aria-label="Awenoria">
-        <img src="images/logo.png" alt="Awenoria">
-        <strong class="brand-text" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Awenoria</strong>
-      </a>
-      <a class="cc-locale" href="#" aria-label="Changer de pays">
-        <svg viewBox="0 0 24 24"><path d="M12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9zm0 0c2.5-2.8 4-5.8 4-9 0-3.2-1.5-6.2-4-9m0 18C9.5 18.2 8 15.2 8 12c0-3.2 1.5-6.2 4-9"/></svg>
-        <span>France</span>
-      </a>
-    </div>
+  <!-- ============== FOOTER ============== -->
+  <footer class="cc-footer" role="contentinfo">
+    <div class="cc-container">
+      <div class="cc-top">
+        <a class="cc-brand" href="#" aria-label="Awenoria">
+          <img src="images/logo.png" alt="Awenoria">
+          <strong class="brand-text" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Awenoria</strong>
+        </a>
+        <a class="cc-locale" href="#" aria-label="Changer de pays">
+          <svg viewBox="0 0 24 24"><path d="M12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9zm0 0c2.5-2.8 4-5.8 4-9 0-3.2-1.5-6.2-4-9m0 18C9.5 18.2 8 15.2 8 12c0-3.2 1.5-6.2 4-9"/></svg>
+          <span>France</span>
+        </a>
+      </div>
 
-    <div class="cc-grid">
-      <div class="cc-col">
-        <h4>Plan du site</h4>
-        <ul>
-          <li><a href="#intro">Accueil</a></li>
-          <li><a href="#audit-gratuit">Audit gratuit</a></li>
-          <li><a href="#qui-sommes-nous">Qui sommes-nous ?</a></li>
-          <li><a href="#expertises">Nos expertises</a></li>
-          <li><a href="#offres">Offres</a></li>
-          <li><a href="#audit-gratuit">Audit gratuit</a></li>
-        </ul>
-      </div>
-      <div class="cc-col">
-        <h4>Légal</h4>
-        <ul>
-          <li><a href="#mentions">Mentions légales</a></li>
-          <li><a href="#confidentialite">Politique de confidentialité</a></li>
-          <li><a href="#accessibilite">Accessibilité</a></li>
-          <li><a href="#cookies">Gestion des cookies</a></li>
-        </ul>
-      </div>
-      <div class="cc-col">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#approche">Notre méthode</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </div>
-      <div class="cc-col">
-        <h4>Réseaux sociaux</h4>
-        <div class="cc-social" aria-label="Réseaux sociaux">
-          <a href="#" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24">
-              <path d="M6.94 7.5A1.94 1.94 0 116.93 3a1.94 1.94 0 01.01 4.5zM4.5 9h5v11h-5V9zm7 0h4.7v1.7h.1c.7-1.3 2.3-2.1 3.7-2.1 3.9 0 4.6 2.6 4.6 6v5.4h-5V15c0-1.3 0-3-1.8-3s-2.2 1.4-2.2 2.9V20h-5V9z"/>
-            </svg>
-          </a>
+      <div class="cc-grid">
+        <div class="cc-col">
+          <h4>Plan du site</h4>
+          <ul>
+            <li><a href="#intro">Accueil</a></li>
+            <li><a href="#audit-gratuit">Audit gratuit</a></li>
+            <li><a href="#qui-sommes-nous">Qui sommes-nous ?</a></li>
+            <li><a href="#expertises">Nos expertises</a></li>
+            <li><a href="#offres">Offres</a></li>
+            <li><a href="#audit-gratuit">Audit gratuit</a></li>
+          </ul>
+        </div>
+        <div class="cc-col">
+          <h4>Légal</h4>
+          <ul>
+            <li><a href="#mentions">Mentions légales</a></li>
+            <li><a href="#confidentialite">Politique de confidentialité</a></li>
+            <li><a href="#accessibilite">Accessibilité</a></li>
+            <li><a href="#cookies">Gestion des cookies</a></li>
+          </ul>
+        </div>
+        <div class="cc-col">
+          <h4>Ressources</h4>
+          <ul>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#approche">Notre méthode</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="cc-col">
+          <h4>Réseaux sociaux</h4>
+          <div class="cc-social" aria-label="Réseaux sociaux">
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24">
+                <path d="M6.94 7.5A1.94 1.94 0 116.93 3a1.94 1.94 0 01.01 4.5zM4.5 9h5v11h-5V9zm7 0h4.7v1.7h.1c.7-1.3 2.3-2.1 3.7-2.1 3.9 0 4.6 2.6 4.6 6v5.4h-5V15c0-1.3 0-3-1.8-3s-2.2 1.4-2.2 2.9V20h-5V9z"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
+
+      <div class="cc-bottom">
+        <small>© 2025 Awenoria. Tous droits réservés.</small>
+        <small>Conformité, accessibilité, RGPD &amp; IA – France.</small>
+      </div>
     </div>
+  </footer>
 
-    <div class="cc-bottom">
-      <small>© 2025 Awenoria. Tous droits réservés.</small>
-      <small>Conformité, accessibilité, RGPD &amp; IA – France.</small>
-    </div>
-  </div>
-</footer>
+  <!-- ============== SCRIPTS ============== -->
 
-<!-- ============== SCRIPTS ============== -->
-
-<!-- Menus déroulants -->
-<script>
-(function(){
-  const dropdowns = [...document.querySelectorAll('.dropdown')];
-  let closeTimers = new WeakMap();
-
-  function openDd(dd){
-    dropdowns.forEach(d=>{ if(d!==dd) closeDd(d); });
-    const btn = dd.querySelector('.dropdown-toggle');
-    const panel = dd.querySelector('.mega');
-    if(!btn || !panel) return;
-    dd.classList.add('opening');
-    panel.classList.add('open');
-    btn.setAttribute('aria-expanded','true');
-  }
-  function closeDd(dd){
-    const btn = dd.querySelector('.dropdown-toggle');
-    const panel = dd.querySelector('.mega');
-    if(!btn || !panel) return;
-    panel.classList.remove('open');
-    btn.setAttribute('aria-expanded','false');
-    dd.classList.remove('opening');
-  }
-  function scheduleClose(dd, delay=120){
-    clearTimeout(closeTimers.get(dd));
-    const t = setTimeout(()=>closeDd(dd), delay);
-    closeTimers.set(dd, t);
-  }
-  function cancelClose(dd){ clearTimeout(closeTimers.get(dd)); }
-
-  function setup(dd){
-    const btn = dd.querySelector('.dropdown-toggle');
-    const panel = dd.querySelector('.mega');
-    if(!btn || !panel) return;
-    const items = [...panel.querySelectorAll('[role="menuitem"]')];
-    btn.setAttribute('aria-expanded','false');
-    items.forEach(a=>a.setAttribute('tabindex','0'));
-
-    btn.addEventListener('click', e=>{
-      e.stopPropagation();
-      panel.classList.contains('open') ? closeDd(dd) : openDd(dd);
-    });
-
-    dd.addEventListener('mouseenter', ()=>{
-      cancelClose(dd);
-      openDd(dd);
-    });
-
-    dd.addEventListener('mouseleave', ()=>{
-      scheduleClose(dd);
-    });
-
-    document.addEventListener('click', e=>{
-      if(!dd.contains(e.target)) closeDd(dd);
-    });
-
-    btn.addEventListener('keydown', e=>{
-      if(['ArrowDown','Enter',' '].includes(e.key)){
-        e.preventDefault(); openDd(dd); items[0]?.focus();
-      }
-    });
-    panel.addEventListener('keydown', e=>{
-      if(e.key==='Escape'){ e.preventDefault(); closeDd(dd); btn.focus(); }
-      if(e.key==='ArrowDown'){
-        e.preventDefault();
-        const i = items.indexOf(document.activeElement);
-        items[(i+1)%items.length]?.focus();
-      }
-      if(e.key==='ArrowUp'){
-        e.preventDefault();
-        const i = items.indexOf(document.activeElement);
-        items[(i-1+items.length)%items.length]?.focus();
-      }
-      if(e.key==='Tab' && panel.classList.contains('open')){
-        const first = items[0], last = items[items.length-1];
-        if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
-        else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
-      }
-    });
-  }
-
-  dropdowns.forEach(setup);
-})();
-</script>
-
-<!-- Démo d’audit + effet “machine à écrire” (titres) + menu compte + contact -->
-<script>
-  const qs=(s,el=document)=>el.querySelector(s);
-
-  function demoAudit(){
-    const url = qs('#auditUrl').value || '';
-    if(!url) return;
-    alert(`Aperçu généré pour: ${url}\n\n• Cookies: OK\n• Politique: À compléter\n• HTTPS: OK\n• Mentions: Manquantes`);
-  }
-
-  // Typing-on-view (titres avec caret)
+  <!-- Menus déroulants -->
+  <script>
   (function(){
-    const SPEED = 85;
-    const els = [...document.querySelectorAll('.type-on-view')];
-    els.forEach(el=>{
-      const full = (el.getAttribute('data-text') || el.textContent || '').trim();
-      el.dataset.fullText = full; el.textContent=''; el.__typingTimer=null; el.__ready=true;
-      el.setAttribute('aria-live','polite');
-    });
-    function type(el){
-      clearTimeout(el.__typingTimer);
-      const full = el.dataset.fullText || ''; el.textContent=''; let i=0;
-      (function tick(){ el.textContent = full.slice(0, ++i); if(i<full.length){ el.__typingTimer=setTimeout(tick, SPEED);} else { el.__typingTimer=null; el.__ready=false; } })();
+    const dropdowns = [...document.querySelectorAll('.dropdown')];
+    let closeTimers = new WeakMap();
+
+    function openDd(dd){
+      dropdowns.forEach(d=>{ if(d!==dd) closeDd(d); });
+      const btn = dd.querySelector('.dropdown-toggle');
+      const panel = dd.querySelector('.mega');
+      if(!btn || !panel) return;
+      dd.classList.add('opening');
+      panel.classList.add('open');
+      btn.setAttribute('aria-expanded','true');
     }
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        const el = entry.target;
-        if(entry.isIntersecting){ if(el.__ready) type(el); }
-        else{ el.__ready=true; clearTimeout(el.__typingTimer); el.__typingTimer=null; }
+    function closeDd(dd){
+      const btn = dd.querySelector('.dropdown-toggle');
+      const panel = dd.querySelector('.mega');
+      if(!btn || !panel) return;
+      panel.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      dd.classList.remove('opening');
+    }
+    function scheduleClose(dd, delay=120){
+      clearTimeout(closeTimers.get(dd));
+      const t = setTimeout(()=>closeDd(dd), delay);
+      closeTimers.set(dd, t);
+    }
+    function cancelClose(dd){ clearTimeout(closeTimers.get(dd)); }
+
+    function setup(dd){
+      const btn = dd.querySelector('.dropdown-toggle');
+      const panel = dd.querySelector('.mega');
+      if(!btn || !panel) return;
+      const items = [...panel.querySelectorAll('[role="menuitem"]')];
+      btn.setAttribute('aria-expanded','false');
+      items.forEach(a=>a.setAttribute('tabindex','0'));
+
+      btn.addEventListener('click', e=>{
+        e.stopPropagation();
+        panel.classList.contains('open') ? closeDd(dd) : openDd(dd);
       });
-    }, { threshold: .4, rootMargin: '0px 0px -10% 0px' });
-    els.forEach(el=>io.observe(el));
-  })();
 
-  // Account dropdown
-  (function(){
-    const btn=document.getElementById('accountBtn'), menu=document.getElementById('accountMenu'); if(!btn||!menu) return;
-    const toggle=()=>{ const open=!menu.classList.contains('open'); menu.classList.toggle('open'); btn.setAttribute('aria-expanded',open); };
-    btn.addEventListener('click',e=>{ e.stopPropagation(); toggle(); });
-    document.addEventListener('click',e=>{ if(menu.classList.contains('open') && !menu.contains(e.target) && e.target!==btn){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); } });
-    btn.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'){ e.preventDefault(); menu.classList.add('open'); btn.setAttribute('aria-expanded','true'); const first=menu.querySelector('[role="menuitem"]'); first && first.focus(); }});
-    menu.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
-    menu.addEventListener('keydown',e=>{ if(e.key==='Escape'){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.focus(); }});
-  })();
+      dd.addEventListener('mouseenter', ()=>{
+        cancelClose(dd);
+        openDd(dd);
+      });
 
-  // ===== CONTACT: champs conditionnels & Turnstile (lazy-load) & envoi =====
-  (function(){
-    const select = document.getElementById('demande');
-    if(!select) return;
-    const societeWrap = document.getElementById('societeWrap');
-    const precisionWrap = document.getElementById('precisionWrap');
-    function update(){
-      const v = select.value;
-      if(societeWrap){
-        societeWrap.style.display   = (v === 'partenariat' || v === 'devis') ? 'block' : 'none';
-        const i1 = societeWrap.querySelector('input'); if(i1) i1.required = (v==='partenariat'||v==='devis');
-      }
-      if(precisionWrap){
-        precisionWrap.style.display = (v === 'autre') ? 'block' : 'none';
-        const i2 = precisionWrap.querySelector('input'); if(i2) i2.required = (v==='autre');
-      }
+      dd.addEventListener('mouseleave', ()=>{
+        scheduleClose(dd);
+      });
+
+      document.addEventListener('click', e=>{
+        if(!dd.contains(e.target)) closeDd(dd);
+      });
+
+      btn.addEventListener('keydown', e=>{
+        if(['ArrowDown','Enter',' '].includes(e.key)){
+          e.preventDefault(); openDd(dd); items[0]?.focus();
+        }
+      });
+      panel.addEventListener('keydown', e=>{
+        if(e.key==='Escape'){ e.preventDefault(); closeDd(dd); btn.focus(); }
+        if(e.key==='ArrowDown'){
+          e.preventDefault();
+          const i = items.indexOf(document.activeElement);
+          items[(i+1)%items.length]?.focus();
+        }
+        if(e.key==='ArrowUp'){
+          e.preventDefault();
+          const i = items.indexOf(document.activeElement);
+          items[(i-1+items.length)%items.length]?.focus();
+        }
+        if(e.key==='Tab' && panel.classList.contains('open')){
+          const first = items[0], last = items[items.length-1];
+          if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+          else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+        }
+      });
     }
-    select.addEventListener('change', update); update();
-  })();
 
-  // Lazy-load Turnstile
-  (function(){
-    const form = document.getElementById('contactForm'); if(!form) return;
-    let loaded=false; function load(){ if(loaded) return; loaded=true; const s=document.createElement('script'); s.src='https://challenges.cloudflare.com/turnstile/v0/api.js'; s.async=true; s.defer=true; document.head.appendChild(s);} 
-    ['focusin','pointerdown','touchstart'].forEach(ev=>{ form.addEventListener(ev, load, { once:true, passive:true }); });
-    window.awenTurnstileOK = function(){};
+    dropdowns.forEach(setup);
   })();
+  </script>
 
-  // Envoi du formulaire
-  (function(){
-    const form=document.getElementById('contactForm'); if(!form) return;
-    const btn=document.getElementById('sendBtn');
-    const okBox=document.getElementById('msgOk');
-    const koBox=document.getElementById('msgKo');
-    function show(el){ el.style.display='flex'; }
-    function hide(el){ el.style.display='none'; }
-    form.addEventListener('submit', async (e)=>{
-      e.preventDefault(); if(!form.reportValidity()) return; hide(okBox); hide(koBox);
-      btn.classList.add('loading'); btn.disabled=true;
-      try{
-        const r=await fetch(form.action,{method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}});
-        const j=await r.json().catch(()=>({}));
-        if(r.ok && j.ok){ show(okBox); form.reset(); setTimeout(()=>hide(okBox),7000);} 
-        else { show(koBox); setTimeout(()=>hide(koBox),9000);} 
-      }catch(err){
-        show(koBox); setTimeout(()=>hide(koBox),9000);
-      }finally{
-        btn.classList.remove('loading'); btn.disabled=false;
+  <!-- Démo d’audit + effet “machine à écrire” (titres) + menu compte + contact -->
+  <script>
+    const qs=(s,el=document)=>el.querySelector(s);
+
+    function demoAudit(){
+      const url = qs('#auditUrl').value || '';
+      if(!url) return;
+      alert(`Aperçu généré pour: ${url}\n\n• Cookies: OK\n• Politique: À compléter\n• HTTPS: OK\n• Mentions: Manquantes`);
+    }
+
+    // Typing-on-view (titres avec caret)
+    (function(){
+      const SPEED = 85;
+      const els = [...document.querySelectorAll('.type-on-view')];
+      els.forEach(el=>{
+        const full = (el.getAttribute('data-text') || el.textContent || '').trim();
+        el.dataset.fullText = full; el.textContent=''; el.__typingTimer=null; el.__ready=true;
+        el.setAttribute('aria-live','polite');
+      });
+      function type(el){
+        clearTimeout(el.__typingTimer);
+        const full = el.dataset.fullText || ''; el.textContent=''; let i=0;
+        (function tick(){ el.textContent = full.slice(0, ++i); if(i<full.length){ el.__typingTimer=setTimeout(tick, SPEED);} else { el.__typingTimer=null; el.__ready=false; } })();
       }
+      const io = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          const el = entry.target;
+          if(entry.isIntersecting){ if(el.__ready) type(el); }
+          else{ el.__ready=true; clearTimeout(el.__typingTimer); el.__typingTimer=null; }
+        });
+      }, { threshold: .4, rootMargin: '0px 0px -10% 0px' });
+      els.forEach(el=>io.observe(el));
+    })();
+
+    // Account dropdown
+    (function(){
+      const btn=document.getElementById('accountBtn'), menu=document.getElementById('accountMenu'); if(!btn||!menu) return;
+      const toggle=()=>{ const open=!menu.classList.contains('open'); menu.classList.toggle('open'); btn.setAttribute('aria-expanded',open); };
+      btn.addEventListener('click',e=>{ e.stopPropagation(); toggle(); });
+      document.addEventListener('click',e=>{ if(menu.classList.contains('open') && !menu.contains(e.target) && e.target!==btn){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); } });
+      btn.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'){ e.preventDefault(); menu.classList.add('open'); btn.setAttribute('aria-expanded','true'); const first=menu.querySelector('[role="menuitem"]'); first && first.focus(); }});
+      menu.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
+      menu.addEventListener('keydown',e=>{ if(e.key==='Escape'){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.focus(); }});
+    })();
+
+    // CONTACT: champs conditionnels
+    (function(){
+      const select = document.getElementById('demande');
+      if(!select) return;
+      const societeWrap = document.getElementById('societeWrap');
+      const precisionWrap = document.getElementById('precisionWrap');
+      function update(){
+        const v = select.value;
+        if(societeWrap){
+          societeWrap.style.display   = (v === 'partenariat' || v === 'devis') ? 'block' : 'none';
+          const i1 = societeWrap.querySelector('input'); if(i1) i1.required = (v==='partenariat'||v==='devis');
+        }
+        if(precisionWrap){
+          precisionWrap.style.display = (v === 'autre') ? 'block' : 'none';
+          const i2 = precisionWrap.querySelector('input'); if(i2) i2.required = (v==='autre');
+        }
+      }
+      select.addEventListener('change', update); update();
+    })();
+
+    // Lazy-load Turnstile
+    (function(){
+      const form = document.getElementById('contactForm'); if(!form) return;
+      let loaded=false; function load(){ if(loaded) return; loaded=true; const s=document.createElement('script'); s.src='https://challenges.cloudflare.com/turnstile/v0/api.js'; s.async=true; s.defer=true; document.head.appendChild(s);} 
+      ['focusin','pointerdown','touchstart'].forEach(ev=>{ form.addEventListener(ev, load, { once:true, passive:true }); });
+      window.awenTurnstileOK = function(){};
+    })();
+
+    // Envoi du formulaire
+    (function(){
+      const form=document.getElementById('contactForm'); if(!form) return;
+      const btn=document.getElementById('sendBtn');
+      const okBox=document.getElementById('msgOk');
+      const koBox=document.getElementById('msgKo');
+      function show(el){ el.style.display='flex'; }
+      function hide(el){ el.style.display='none'; }
+      form.addEventListener('submit', async (e)=>{
+        e.preventDefault(); if(!form.reportValidity()) return; hide(okBox); hide(koBox);
+        btn.classList.add('loading'); btn.disabled=true;
+        try{
+          const r=await fetch(form.action,{method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}});
+          const j=await r.json().catch(()=>({}));
+          if(r.ok && j.ok){ show(okBox); form.reset(); setTimeout(()=>hide(okBox),7000);} 
+          else { show(koBox); setTimeout(()=>hide(koBox),9000);} 
+        }catch(err){
+          show(koBox); setTimeout(()=>hide(koBox),9000);
+        }finally{
+          btn.classList.remove('loading'); btn.disabled=false;
+        }
+      });
+    })();
+  </script>
+
+  <!-- Effet d'écriture automatique et CONTINU dans le champ URL -->
+  <script>
+  (function(){
+    const input = document.getElementById('auditUrl'); if(!input) return;
+    const demo = 'https://votresite.fr';
+    const TYPE_DELAY = 70;         // vitesse de frappe
+    const RESTART_DELAY = 2000;    // pause de 2s avant réécriture
+    let i = 0, stopped = false, timer;
+
+    function placeCaret(){
+      if (document.activeElement !== input) input.focus({preventScroll:true});
+      try { input.setSelectionRange(input.value.length, input.value.length); } catch(e){}
+    }
+
+    function loop(){
+      if (stopped) return;
+      i = 0; input.value = ''; placeCaret();
+      (function tick(){
+        if (stopped) return;
+        input.value = demo.slice(0, ++i);
+        placeCaret();
+        if (i < demo.length) {
+          timer = setTimeout(tick, TYPE_DELAY);
+        } else {
+          timer = setTimeout(loop, RESTART_DELAY);
+        }
+      })();
+    }
+
+    // démarrage
+    timer = setTimeout(loop, 300);
+
+    // STOP sur interaction utilisateur
+    const halt = () => { stopped = true; clearTimeout(timer); };
+    ['pointerdown','keydown','input','touchstart'].forEach(ev => {
+      input.addEventListener(ev, halt, { once:true });
     });
   })();
-</script>
+  </script>
 
-<!-- Effet d'écriture automatique et CONTINU dans le champ URL -->
-<script>
-(function(){
-  const input = document.getElementById('auditUrl'); if(!input) return;
-  const demo = 'https://votresite.fr';
-  const TYPE_DELAY = 70;         // vitesse de frappe
-  const RESTART_DELAY = 2000;    // pause de 2s avant réécriture
-  let i = 0, stopped = false, timer;
-
-  function placeCaret(){
-    // focus programmatique (ne déclenche plus l'arrêt)
-    if (document.activeElement !== input) input.focus({preventScroll:true});
-    try { input.setSelectionRange(input.value.length, input.value.length); } catch(e){}
-  }
-
-  function loop(){
-    if (stopped) return;
-    i = 0; input.value = ''; placeCaret();
-    (function tick(){
-      if (stopped) return;
-      input.value = demo.slice(0, ++i);
-      placeCaret();
-      if (i < demo.length) {
-        timer = setTimeout(tick, TYPE_DELAY);
-      } else {
-        timer = setTimeout(loop, RESTART_DELAY); // réécrit après 2s
-      }
-    })();
-  }
-
-  // démarrage
-  timer = setTimeout(loop, 300);
-
-  // STOP uniquement sur interaction réelle de l’utilisateur
-  const halt = () => { stopped = true; clearTimeout(timer); };
-  ['pointerdown','keydown','input','touchstart'].forEach(ev => {
-    input.addEventListener(ev, halt, { once:true });
-  });
-})();
-</script>
-
-<!-- (Optionnel) test console pour Manrope -->
-<script>
-(async () => {
-  try { await document.fonts.load('400 1em Manrope'); } catch(e){}
-})();
-</script>
+  <!-- (Optionnel) test console pour Manrope -->
+  <script>
+  (async () => {
+    try { await document.fonts.load('400 1em Manrope'); } catch(e){}
+  })();
+  </script>
 </body>
 </html>
