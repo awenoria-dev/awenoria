@@ -86,14 +86,77 @@
     .hero-visual{position:relative;border-radius:22px;overflow:hidden;background:var(--panel);border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow);min-height:280px}
     .hero-visual img{width:100%;height:100%;object-fit:cover;display:block;mix-blend:normal}
 
-    /* ===== URL search pill (outil gratuit) ===== */
-    .url-bar{display:flex; align-items:center; gap:10px; height:46px; padding:6px 6px 6px 10px; background:#f2f6fb; border:1.5px solid rgba(15,23,32,.12); border-radius:999px; box-shadow: inset 0 1px 0 rgba(255,255,255,.65)}
-    .url-bar input{appearance:none; border:none; outline:none; background:transparent; color:var(--text); height:30px; padding:0 8px; width:min(420px,48vw); font-weight:700; letter-spacing:.01em}
-    .url-bar input::placeholder{ color:#7f8b98 }
-    .url-bar button{height:34px; padding:0 18px; border-radius:999px; border:1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.22); color:#fff; font-weight:900; cursor:pointer; box-shadow: inset 0 0 10px rgba(255,255,255,.1); transition: transform .08s ease, background-color .15s ease, box-shadow .15s ease}
-    .url-bar button:hover{ background: rgba(255,255,255,.36) }
-    .url-bar button:active{ transform: translateY(1px); box-shadow: 0 4px 10px rgba(0,0,0,.15) }
-    .url-bar button:focus-visible{ outline: 2px solid rgba(255,255,255,.45); outline-offset: 2px; box-shadow: 0 0 0 4px rgba(27,136,255,.25)}
+   <!-- ===== URL search pill (outil gratuit) ===== -->
+<style>
+:root{ --copper:#ff8a3d; --copper-rgb:255,138,61; }
+
+/* Conteneur principal */
+.url-bar{
+  display:flex; align-items:center; gap:10px;
+  height:56px; padding:8px 8px 8px 14px;
+  background:linear-gradient(180deg,#eef5ff,#edf2f8);
+  border:1.5px solid #d3deea; border-radius:999px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.85), 0 8px 20px rgba(15,23,32,.08);
+}
+
+/* Champ de saisie */
+.url-bar input{
+  appearance:none; border:none; outline:none; background:transparent;
+  color:var(--text); height:100%; padding:0 10px;
+  font-weight:800; letter-spacing:.01em;
+  flex:1; width:auto;
+}
+
+/* Texte de placeholder bleu clair */
+.url-bar input::placeholder{
+  color:#7aa9c7; font-weight:900; opacity:1;
+}
+
+/* Bouton futuriste à droite */
+.url-bar button{
+  margin-left:auto;
+  height:40px; padding:0 22px;
+  border-radius:999px; border:1px solid rgba(255,255,255,.55);
+  background:linear-gradient(90deg,var(--copper),#ff9a56);
+  color:#fff; font-weight:900; cursor:pointer;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.75), 0 8px 22px rgba(var(--copper-rgb),.35);
+  transition:transform .08s ease, box-shadow .15s ease, filter .15s ease;
+}
+.url-bar button:hover{ filter:saturate(1.05) brightness(1.03); }
+.url-bar button:active{ transform:translateY(1px); }
+.url-bar button:focus-visible{ outline:0; box-shadow:0 0 0 4px rgba(var(--copper-rgb),.25), inset 0 1px 0 rgba(255,255,255,.9); }
+</style>
+
+<!-- HTML de la barre de recherche -->
+<div class="url-bar">
+  <input id="auditUrl" type="text" placeholder="https://votresite.fr">
+  <button type="submit">Analyser votre site</button>
+</div>
+
+<!-- Script d'écriture automatique -->
+<script>
+(function(){
+  const input = document.getElementById('auditUrl');
+  if(!input) return;
+  const demo = 'https://votresite.fr';
+  let i = 0, typing = true, t;
+
+  function tick(){
+    if(!typing) return;
+    input.value = demo.slice(0, ++i);
+    if(i < demo.length) t = setTimeout(tick, 70);
+    else typing = false;
+  }
+
+  // Lancement de l'effet
+  t = setTimeout(tick, 300);
+
+  // Stop si l'utilisateur clique ou tape
+  const stop = () => { typing = false; clearTimeout(t); };
+  input.addEventListener('focus', stop, { once:true });
+  input.addEventListener('input', stop);
+})();
+</script>
 
     /* ================== SECTIONS ================== */
     .section{max-width:var(--maxw);margin:42px auto;padding:0 20px}
