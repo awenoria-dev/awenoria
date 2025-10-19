@@ -73,6 +73,56 @@
     .glass{background:rgba(255,255,255,.86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border:1px solid rgba(15,23,32,.08); box-shadow: var(--shadow)}
     .glass-soft{background:rgba(255,255,255,.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border:1px solid rgba(15,23,32,.09)}
 
+    /* ================== CORRECTION DES INPUTS ================== */
+
+/* 1) Exclut les checkbox et radio du reset */
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea{
+  appearance:none;
+  -webkit-appearance:none;
+  border:1px solid rgba(15,23,32,.18);
+  border-radius:12px;
+  padding:10px 12px;
+  font:inherit;
+}
+
+/* 2) Force l’apparence native des checkbox */
+#contact .check input[type="checkbox"]{
+  appearance:auto;
+  -webkit-appearance:checkbox;
+  width:18px;
+  height:18px;
+  margin:0;
+  accent-color:var(--brand);
+  border:none;
+  cursor:pointer;
+}
+
+/* 3) Label cliquable + focus visible */
+#contact .check{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  line-height:1.35;
+  cursor:pointer;
+}
+#contact .check input[type="checkbox"]:focus-visible{
+  outline:2px solid rgba(15,95,154,.35);
+  outline-offset:2px;
+}
+
+/* ================== TITRES ET INTRO ================== */
+h1, h2, h3, h4,
+.title-center,
+.section h2,
+.hero-intro h1 {
+  font-family: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+
     /* ================== NAVBAR ================== */
     header.navbar{position:sticky;top:0;z-index:1100;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(15,23,32,.08)}
     .nav-wrap{max-width:var(--maxw);margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:14px}
