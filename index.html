@@ -12,6 +12,11 @@
   <link rel="apple-touch-icon" href="images/logo-pj3.png">
   <meta name="theme-color" content="#0f5f9a">
 
+  <!-- Google Fonts: Manrope (300–800) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+
   <style>
     /* ================== BASE ================== */
     @font-face{
@@ -39,7 +44,8 @@
     html,body{height:100%}
     body{
       margin:0; color:var(--text);
-      font-family:"AwenoriaUI", Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family:"Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; /* Manrope par défaut */
+      font-optical-sizing:auto;
       background: radial-gradient(1400px 700px at 10% -20%, #eef6ff 0%, rgba(238,246,255,0.6) 45%, transparent 60%),
                   linear-gradient(180deg,#ffffff 0%, #f6f9fc 100%);
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; line-height:1.5;
@@ -62,7 +68,7 @@
     .dropdown-toggle svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;margin-left:6px}
 
     .nav-actions{display:flex;align-items:center;gap:8px;margin-left:6px}
-    .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;font-family:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;font-weight:800;border-radius:9999px;padding:12px 20px;font-size:16px;letter-spacing:.3px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:all .25s ease;overflow:hidden;text-decoration:none;border:1px solid transparent}
+    .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;font-family:inherit;font-weight:800;border-radius:9999px;padding:12px 20px;font-size:16px;letter-spacing:.3px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:all .25s ease;overflow:hidden;text-decoration:none;border:1px solid transparent}
     .btn.primary{background:rgba(27,136,255,.80);color:#fff;border-color:rgba(255,255,255,.25);box-shadow:inset 0 0 12px rgba(255,255,255,.15),0 4px 18px rgba(27,136,255,.30)}
     .btn.secondary{background:rgba(255,255,255,.22);color:var(--text);border-color:rgba(255,255,255,.35);box-shadow:inset 0 0 10px rgba(255,255,255,.1)}
     .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(15,23,32,.12);box-shadow:none}
@@ -90,15 +96,15 @@
     /* ===== URL search pill (outil gratuit) – nouvelle version ===== */
     .url-bar{display:flex;align-items:center;gap:10px;height:56px;padding:8px 8px 8px 14px;background:linear-gradient(180deg,#eef5ff,#edf2f8);border:1.5px solid #d3deea;border-radius:999px;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 8px 20px rgba(15,23,32,.08)}
     .url-bar input{appearance:none;border:none;outline:none;background:transparent;color:var(--text);height:100%;padding:0 10px;font-weight:800;letter-spacing:.01em;flex:1;width:auto}
-    .url-bar input::placeholder{color:#7aa9c7;font-weight:900;opacity:1}
-    .url-bar button{margin-left:auto;height:40px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:linear-gradient(90deg,var(--copper),#ff9a56);color:#fff;font-weight:900;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 8px 22px rgba(var(--copper-rgb),.35);transition:transform .08s ease,box-shadow .15s ease,filter .15s ease}
+    .url-bar input::placeholder{color:#7aa9c7;font-weight:800;opacity:1}
+    .url-bar button{margin-left:auto;height:40px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:linear-gradient(90deg,var(--copper),#ff9a56);color:#fff;font-weight:800;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 8px 22px rgba(var(--copper-rgb),.35);transition:transform .08s ease,box-shadow .15s ease,filter .15s ease}
     .url-bar button:hover{filter:saturate(1.05) brightness(1.03)}
     .url-bar button:active{transform:translateY(1px)}
     .url-bar button:focus-visible{outline:0;box-shadow:0 0 0 4px rgba(var(--copper-rgb),.25),inset 0 1px 0 rgba(255,255,255,.9)}
 
     /* ================== SECTIONS ================== */
     .section{max-width:var(--maxw);margin:42px auto;padding:0 20px}
-    .title-center{margin:6px 0 16px;text-align:center;font-size:clamp(26px,4vw,40px);font-weight:900}
+    .title-center{margin:6px 0 16px;text-align:center;font-size:clamp(26px,4vw,40px);font-weight:800}
     .subtitle-center{max-width:860px;margin:0 auto 18px;text-align:center;color:var(--muted)}
     .underline{width:80px;height:4px;border-radius:999px;background:var(--copper);margin:10px auto 26px;opacity:.90;} /* cuivre */
 
@@ -108,7 +114,7 @@
 
     .card{position:relative;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:10px;min-height:160px}
     .card{border:1px solid rgba(15,23,32,.08)}
-    .badge{align-self:flex-start;border-radius:999px;padding:6px 14px;font-weight:900;background:rgba(27,136,255,.10);border:1px solid rgba(27,136,255,.26);color:#0f3a6e;letter-spacing:.02em;font-size:12px}
+    .badge{align-self:flex-start;border-radius:999px;padding:6px 14px;font-weight:800;background:rgba(27,136,255,.10);border:1px solid rgba(27,136,255,.26);color:#0f3a6e;letter-spacing:.02em;font-size:12px}
 
     /* Offres/Pricing (mise en page corrigée) */
     .pricing{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
@@ -117,7 +123,7 @@
     .offer{border-radius:22px;border:1px solid rgba(15,23,32,.10);padding:20px;display:grid;gap:12px;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:var(--shadow)}
     .offer h3{margin:0}
     .offer .for{color:var(--muted)}
-    .offer .price{font-size:28px;font-weight:900}
+    .offer .price{font-size:28px;font-weight:800}
 
     /* Outil gratuit (section dédiée) */
     .auditsamples{display:grid;gap:8px;margin-top:12px}
@@ -289,7 +295,7 @@
     @media(max-width:1080px){#contact .contact-grid-2{grid-template-columns:1fr}}
     #contact .contact-card{border-radius:20px;padding:18px 20px}
     #contact .contact-info{display:flex;flex-direction:column;gap:8px}
-    #contact .badge{align-self:flex-start;display:inline-flex;align-items:center;gap:0;padding:10px 14px;border-radius:16px;font-weight:900;letter-spacing:.2px;color:var(--text);background:linear-gradient(180deg,#ffffff,#f7fafc);border:1px solid rgba(15,23,32,.08);box-shadow:0 2px 6px rgba(16,32,48,.06), inset 0 1px 0 rgba(255,255,255,.8)}
+    #contact .badge{align-self:flex-start;display:inline-flex;align-items:center;gap:0;padding:10px 14px;border-radius:16px;font-weight:800;letter-spacing:.2px;color:var(--text);background:linear-gradient(180deg,#ffffff,#f7fafc);border:1px solid rgba(15,23,32,.08);box-shadow:0 2px 6px rgba(16,32,48,.06), inset 0 1px 0 rgba(255,255,255,.8)}
     #contact .list{margin:6px 0 0;padding:0;list-style:none}
     #contact .list li{display:flex;gap:10px;align-items:flex-start;margin:8px 0;color:var(--muted)}
     #contact .list svg{flex:0 0 auto;width:18px;height:18px;color:#3b516a;opacity:.92}
@@ -319,7 +325,7 @@
     @media(max-width:680px){#contact .actions{flex-direction:column;align-items:stretch}}
 
     /* ======== BOUTON ENVOYER ======== */
-    #contact .btn{appearance:none;border:none;cursor:pointer;font-weight:900;font-size:16px;line-height:1;padding:16px 22px;border-radius:9999px;display:inline-flex;align-items:center;gap:10px}
+    #contact .btn{appearance:none;border:none;cursor:pointer;font-weight:800;font-size:16px;line-height:1;padding:16px 22px;border-radius:9999px;display:inline-flex;align-items:center;gap:10px}
     #contact .btn.primary{color:#0e3c6f;background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.72)); border:1px solid rgba(15,23,32,.16); box-shadow: 0 8px 24px rgba(27,136,255,.12), inset 0 1px 0 rgba(255,255,255,.9)}
     #contact .btn.primary:hover{background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.78)); transform:translateY(-1px); box-shadow: 0 10px 28px rgba(27,136,255,.16), inset 0 1px 0 rgba(255,255,255,1)}
     #contact .btn.primary:focus-visible{outline:2px solid rgba(27,136,255,.25); outline-offset:3px}
