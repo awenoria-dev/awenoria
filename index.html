@@ -1099,15 +1099,49 @@
     })();
 
     // Account dropdown
-    (function(){
-      const btn=document.getElementById('accountBtn'), menu=document.getElementById('accountMenu'); if(!btn||!menu) return;
-      const toggle=()=>{ const open=!menu.classList.contains('open'); menu.classList.toggle('open'); btn.setAttribute('aria-expanded',open); };
-      btn.addEventListener('click',e=>{ e.stopPropagation(); toggle(); });
-      document.addEventListener('click',e=>{ if(menu.classList.contains('open') && !menu.contains(e.target) && e.target!==btn){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); } });
-      btn.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'){ e.preventDefault(); menu.classList.add('open'); btn.setAttribute('aria-expanded','true'); const first=menu.querySelector('[role="menuitem"]'); first && first.focus(); }});
-      menu.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
-      menu.addEventListener('keydown',e=>{ if(e.key==='Escape'){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.focus(); }});
-    })();
+   <script>
+(function(){
+  const account = document.querySelector('.account');
+  if(!account) return;
+
+  const btn  = account.querySelector('#accountBtn');
+  const menu = account.querySelector('#accountMenu');
+  let closeTimer;
+
+  function open(){
+    menu.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
+  }
+  function close(){
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+  }
+  function toggle(){ menu.classList.contains('open') ? close() : open(); }
+
+  // --- Clic sur le bouton : toggle
+  btn.addEventListener('click', (e)=>{ e.stopPropagation(); toggle(); });
+
+  // --- Survol : ouvrir, et fermer quand on sort du cadre (bouton + menu)
+  account.addEventListener('mouseenter', ()=>{ clearTimeout(closeTimer); open(); });
+  account.addEventListener('mouseleave', ()=>{ clearTimeout(closeTimer); closeTimer = setTimeout(close, 120); });
+
+  // --- Clic en dehors : fermer
+  document.addEventListener('click', (e)=>{ if(!account.contains(e.target)) close(); });
+
+  // --- Clavier : accessibilité
+  btn.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault(); open();
+      const first = menu.querySelector('[role="menuitem"]'); first?.focus();
+    }
+    if(e.key === 'Escape'){ close(); }
+  });
+  menu.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){ e.preventDefault(); close(); btn.focus(); }
+  });
+})();
+</script>
+
 
     // CONTACT: champs conditionnels
     (function(){
