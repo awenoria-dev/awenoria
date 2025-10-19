@@ -101,7 +101,7 @@
     .section{max-width:var(--maxw);margin:42px auto;padding:0 20px}
     .title-center{margin:6px 0 16px;text-align:center;font-size:clamp(26px,4vw,40px);font-weight:900}
     .subtitle-center{max-width:860px;margin:0 auto 18px;text-align:center;color:var(--muted)}
-    .underline{width:80px;height:4px;border-radius:999px;background:#1b88ff;margin:10px auto 26px;opacity:.85}
+    .underline{width:80px;height:4px;border-radius:999px;background:#1b88ff;margin:10px auto 26px;opacity:.85} /* bleu par défaut */
 
     .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
     @media (max-width:1024px){ .grid-3{grid-template-columns:1fr 1fr} }
@@ -161,8 +161,6 @@
     textarea{min-height:120px}
 
     /* ================== FOOTER ================== */
-    .underline{width:80px;height:4px;border-radius:999px;background:var(--copper);margin:10px auto 26px;opacity:.95}
-
     .cc-footer{background:#0a0a0a;color:#eaeaea;padding:28px 0 12px;border-top:1px solid rgba(255,255,255,.12)}
     .cc-container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
     .cc-top{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
@@ -181,20 +179,119 @@
     .cc-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:grid;grid-template-columns:1fr auto;gap:12px}
     .cc-bottom small{color:#b8bfcc}
 
-    /* Dropdown / Mega menu */
+    /* Variante cuivre utilisable dans le footer si besoin */
+    .cc-footer .underline--copper{width:80px;height:4px;border-radius:999px;background:var(--copper);margin:10px auto 26px;opacity:.95}
+
+    /* ================== Dropdown / Mega menu ================== */
     .dropdown{position:relative}
     .dropdown-toggle svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
-    .mega{position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + 8px);width:min(760px,94vw);border-radius:18px;padding:16px;display:none;z-index:1200}
+
+    /* Panneau mega-menu (centré, verre dépoli déjà géré par .glass) */
+    .mega{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      top:calc(100% + 8px);
+      width:min(760px,94vw);
+      border-radius:18px;
+      padding:16px;
+      display:none;
+      z-index:1200;
+    }
     .mega.open{display:block;animation:fadeIn .16s ease}
+
     .mega-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
     .mega .group{padding:10px;border-radius:14px}
     .mega h6{margin:0 0 8px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#567}
-    .pill{border-radius:14px;padding:14px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:6px;min-height:96px}
-    .pill .tag{display:inline-block;align-self:flex-start;background:rgba(27,136,255,.12);color:#0f3a6e;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:800;letter-spacing:.04em}
+
+    .pill{
+      border-radius:14px;
+      padding:14px;
+      text-decoration:none;
+      color:var(--text);
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-height:96px;
+    }
+    .pill .tag{
+      display:inline-block;
+      align-self:flex-start;
+      background:rgba(27,136,255,.12);
+      color:#0f3a6e;
+      border-radius:999px;
+      padding:4px 10px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.04em;
+    }
     .pill h5{margin:2px 0 0;font-size:16px}
     .pill p{margin:0;color:var(--muted);font-size:14px}
 
-    @keyframes fadeIn{from{opacity:0;transform:translate(-50%, -2px)}to{opacity:1;transform:translate(-50%,0)}}
+    /* Animation d’apparition du panneau */
+    @keyframes fadeIn{
+      from{opacity:0;transform:translate(-50%,-2px)}
+      to{opacity:1;transform:translate(-50%,0)}
+    }
+
+    /* ===== Mega menu FORMATIONS (lisible & responsive) ===== */
+    .mega-grid--3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    @media (max-width:980px){ .mega-grid--3{grid-template-columns:1fr 1fr} }
+    @media (max-width:640px){ .mega-grid--3{grid-template-columns:1fr} }
+
+    .mega--formations .group{
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(15,23,32,.08);
+      border-radius:14px;
+      padding:14px;
+    }
+    .mega--formations h6{
+      margin:0 0 10px;
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:#456;
+    }
+
+    .mega-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+    .mega-list a{
+      display:block;
+      padding:10px 12px;
+      border-radius:10px;
+      text-decoration:none;
+      color:var(--text);
+      font-weight:750;
+    }
+    .mega-list a:hover{background:rgba(27,136,255,.10)}
+
+    .format-badges{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 10px}
+    .pill-badge{
+      background:rgba(27,136,255,.10);
+      border:1px solid rgba(27,136,255,.26);
+      color:#0f3a6e;
+      border-radius:999px;
+      padding:6px 12px;
+      font-weight:800;
+      font-size:12px;
+    }
+    .mega-note{margin:0 0 10px;color:var(--muted);font-size:14px}
+
+    /* Focus visible (accessibilité clavier) */
+    .mega-list a:focus-visible,
+    .dropdown-toggle:focus-visible{
+      outline:2px solid rgba(27,136,255,.4);
+      outline-offset:2px;
+    }
+
+    /* Un peu plus large pour accueillir 3 colonnes confortablement */
+    @media (min-width:981px){
+      .mega{ width:min(920px,96vw); }
+    }
+
+    /* Réduit le mouvement pour les utilisateurs qui préfèrent moins d’animations */
+    @media (prefers-reduced-motion: reduce){
+      .mega.open{animation:none}
+    }
 
     /* Compte (menu connexion) */
     .account{position:relative}
@@ -247,7 +344,7 @@
     #contact .actions{display:flex;gap:12px;justify-content:flex-end;align-items:center;margin-top:14px}
     @media(max-width:680px){#contact .actions{flex-direction:column;align-items:stretch}}
 
-    /* ======== BOUTON ENVOYER – plus clair & transparent ======== */
+    /* ======== BOUTON ENVOYER ======== */
     #contact .btn{appearance:none;border:none;cursor:pointer;font-weight:900;font-size:16px;line-height:1;padding:16px 22px;border-radius:9999px;display:inline-flex;align-items:center;gap:10px}
     #contact .btn.primary{color:#0e3c6f;background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.72)); border:1px solid rgba(15,23,32,.16); box-shadow: 0 8px 24px rgba(27,136,255,.12), inset 0 1px 0 rgba(255,255,255,.9)}
     #contact .btn.primary:hover{background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.78)); transform:translateY(-1px); box-shadow: 0 10px 28px rgba(27,136,255,.16), inset 0 1px 0 rgba(255,255,255,1)}
@@ -268,86 +365,139 @@
     #contact .status-wrap{margin-top:10px}
     #contact .fade{animation:fadeIn .25s ease}
 
-    /* ===== Appliquer l'effet "verre" aux blocs à fond blanc ===== */
+    /* Effet "verre" pour blocs à fond blanc */
     .card, .offer, .post, .contact-card, .pill, .hero-visual{background:rgba(255,255,255,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
     .post, .offer, .card{box-shadow: var(--shadow)}
   </style>
 </head>
 <body>
-  <!-- ============== NAVBAR ============== -->
-  <header class="navbar" role="banner">
-    <div class="nav-wrap">
-      <a class="brand" href="#" aria-label="Aller à l'accueil">
-        <img class="brand-img" src="images/logo.png" alt="Logo Awenoria">
-      </a>
+ <!-- ============== NAVBAR ============== -->
+<header class="navbar" role="banner">
+  <div class="nav-wrap">
+    <a class="brand" href="#" aria-label="Aller à l'accueil">
+      <img class="brand-img" src="images/logo.png" alt="Logo Awenoria">
+    </a>
 
-      <nav class="nav-main" aria-label="Navigation principale">
-        <a href="#qui-sommes-nous">Qui sommes-nous ?</a>
-        <div class="dropdown" id="servicesDropdown">
-          <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-            Nos services
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <!-- ===== MEGA MENU: items uniques + thématiques de formation ===== -->
-          <div class="mega glass" role="menu" aria-label="Nos services">
-            <div class="mega-grid">
-              <div class="group">
-                <h6>Conseil & Conformité</h6>
-                <a class="pill glass-soft" href="#audit" role="menuitem"><span class="tag">Audit</span><h5>Audit &amp; Analyse</h5><p>Scanner et scoring rapide.</p></a>
-                <a class="pill glass-soft" href="#conformite" role="menuitem"><span class="tag">Conformité</span><h5>Accompagnement</h5><p>Documents, corrections, suivi.</p></a>
-                <a class="pill glass-soft" href="#ia-act" role="menuitem"><span class="tag">IA Act</span><h5>Conformité IA (UE)</h5><p>Risques &amp; documentation.</p></a>
-              </div>
-              <div class="group">
-                <h6>Formations</h6>
-                <a class="pill glass-soft" href="#formations" role="menuitem"><span class="tag">Formations</span><h5>Former vos équipes</h5><p>Ateliers concrets &amp; modules.</p></a>
-                <div class="pill glass-soft" role="presentation" style="min-height:auto">
-                  <h5 style="margin:0 0 6px">Thématiques proposées</h5>
-                  <ul style="margin:0;padding-left:18px;color:var(--muted);display:grid;gap:4px;font-size:14px">
-                    <li>RGPD : essentiels, registre, AIPD</li>
-                    <li>IA Act : obligations, documentation</li>
-                    <li>Cookies & CMP</li>
-                    <li>Mentions légales & conformité web</li>
-                    <li>Accessibilité numérique (RGAA/EN 301 549)</li>
-                    <li>Cybersécurité de base (sensibilisation)</li>
-                  </ul>
-                </div>
-              </div>
+    <nav class="nav-main" aria-label="Navigation principale">
+      <a href="#qui-sommes-nous">Qui sommes-nous ?</a>
+
+      <!-- ▼ NOS SERVICES -->
+      <div class="dropdown" id="servicesDropdown">
+        <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+          Nos services
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="mega glass" role="menu" aria-label="Nos services">
+          <div class="mega-grid">
+            <div class="group">
+              <h6>Conseil & Conformité</h6>
+              <a class="pill glass-soft" href="#audit" role="menuitem">
+                <span class="tag">Audit</span>
+                <h5>Audit &amp; Analyse</h5>
+                <p>Scanner et scoring rapide.</p>
+              </a>
+              <a class="pill glass-soft" href="#conformite" role="menuitem">
+                <span class="tag">Conformité</span>
+                <h5>Accompagnement</h5>
+                <p>Documents, corrections, suivi.</p>
+              </a>
+              <a class="pill glass-soft" href="#ia-act" role="menuitem">
+                <span class="tag">IA Act</span>
+                <h5>Conformité IA (UE)</h5>
+                <p>Risques &amp; documentation.</p>
+              </a>
             </div>
           </div>
         </div>
-        <a href="#blog">Blog</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      </div>
+      <!-- ▲ FIN : NOS SERVICES -->
 
-      <div class="nav-actions">
-        <a class="btn primary" href="#audit-gratuit">Lancer un audit gratuit</a>
-        <a class="btn secondary" href="#contact">Parler à un expert</a>
-        <div class="account">
-          <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
-            <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
-          </button>
-          <div class="account-menu glass" id="accountMenu" role="menu" aria-label="Connexion">
-            <a class="acc-item" href="#login-client" role="menuitem">
-              <div class="acc-ico"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg></div>
-              <div><p class="acc-title">Connexion Client</p><p class="acc-sub">Je suis un particulier</p></div>
-              <div class="acc-arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
-            </a>
-            <a class="acc-item" href="#login-partenaire" role="menuitem">
-              <div class="acc-ico"><svg viewBox="0 0 24 24"><path d="M16 11a4 4 0 10-8 0 4 4 0 008 0zm-9 6c-2 1-3 2-3 3v1h16v-1c0-1-1-2-3-3-1 .6-2 1-5 1s-4-.4-5-1z"/></svg></div>
-              <div><p class="acc-title">Connexion Partenaire</p><p class="acc-sub">Je suis un professionnel</p></div>
-              <div class="acc-arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
-            </a>
+      <!-- ▼ NOUVEAU : NOS FORMATIONS -->
+      <div class="dropdown" id="formationsDropdown">
+        <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+          Nos formations
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+
+        <div class="mega glass mega--formations" role="menu" aria-label="Nos formations">
+          <div class="mega-grid mega-grid--3">
+
+            <!-- Col. 1 : Thématiques -->
+            <div class="group">
+              <h6>Par thématique</h6>
+              <ul class="mega-list">
+                <li><a role="menuitem" href="#f-rgpd">RGPD – essentiels, registre, AIPD</a></li>
+                <li><a role="menuitem" href="#f-iaact">IA Act – obligations & documentation</a></li>
+                <li><a role="menuitem" href="#f-cookies">Cookies & CMP</a></li>
+                <li><a role="menuitem" href="#f-legales">Mentions légales & conformité web</a></li>
+                <li><a role="menuitem" href="#f-access">Accessibilité (RGAA / EN 301 549)</a></li>
+                <li><a role="menuitem" href="#f-cyber">Cybersécurité de base</a></li>
+              </ul>
+            </div>
+
+            <!-- Col. 2 : Publics -->
+            <div class="group">
+              <h6>Par public</h6>
+              <ul class="mega-list">
+                <li><a role="menuitem" href="#f-dirigeants">Dirigeants & responsables</a></li>
+                <li><a role="menuitem" href="#f-equipes">Équipes opérationnelles</a></li>
+                <li><a role="menuitem" href="#f-dpo">Référents / DPO</a></li>
+                <li><a role="menuitem" href="#f-dev">Dev, Produit & Data</a></li>
+              </ul>
+            </div>
+
+            <!-- Col. 3 : Formats + CTA -->
+            <div class="group">
+              <h6>Formats & modalités</h6>
+              <div class="format-badges">
+                <span class="badge pill-badge">Atelier 2h</span>
+                <span class="badge pill-badge">1/2 journée</span>
+                <span class="badge pill-badge">1 journée</span>
+                <span class="badge pill-badge">Parcours</span>
+                <span class="badge pill-badge">Présentiel / Distanciel</span>
+              </div>
+              <p class="mega-note">Supports fournis, quiz & attestation inclus.</p>
+              <a class="btn primary" href="#contact" role="menuitem">Demander un programme</a>
+            </div>
+
           </div>
         </div>
       </div>
+      <!-- ▲ FIN : NOS FORMATIONS -->
+
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn primary" href="#audit-gratuit">Lancer un audit gratuit</a>
+      <a class="btn secondary" href="#contact">Parler à un expert</a>
+      <div class="account">
+        <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
+          <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
+        </button>
+        <div class="account-menu glass" id="accountMenu" role="menu" aria-label="Connexion">
+          <a class="acc-item" href="#login-client" role="menuitem">
+            <div class="acc-ico"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg></div>
+            <div><p class="acc-title">Connexion Client</p><p class="acc-sub">Je suis un particulier</p></div>
+            <div class="acc-arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
+          </a>
+          <a class="acc-item" href="#login-partenaire" role="menuitem">
+            <div class="acc-ico"><svg viewBox="0 0 24 24"><path d="M16 11a4 4 0 10-8 0 4 4 0 008 0zm-9 6c-2 1-3 2-3 3v1h16v-1c0-1-1-2-3-3-1 .6-2 1-5 1s-4-.4-5-1z"/></svg></div>
+            <div><p class="acc-title">Connexion Partenaire</p><p class="acc-sub">Je suis un professionnel</p></div>
+            <div class="acc-arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
+          </a>
+        </div>
+      </div>
     </div>
-  </header>
+  </div>
+</header>
+
 
   <!-- ============== HERO ============== -->
   <section class="hero-intro" id="intro">
     <div class="wrap">
       <div>
-        <!-- BUG PJ4 corrigé : un seul H1 (avec point final) -->
         <h1 class="type-on-view" aria-live="polite" data-text="La conformité RGPD &amp; IA rendue simple, humaine et accessible."></h1>
         <p class="lead">Awenoria vous accompagne vers la conformité numérique grâce à des outils d’audit automatisés et un accompagnement humain personnalisé.</p>
 
@@ -385,7 +535,7 @@
       <article class="card expertise glass" id="audit">
         <span class="badge">Audit &amp; Analyse</span>
         <h3>Audit &amp; Analyse automatisée</h3>
-        <p>Scannez votre site, vos documents ou vos applications pour identifier les points de non‑conformité en quelques minutes.</p>
+        <p>Scannez votre site, vos documents ou vos applications pour identifier les points de non-conformité en quelques minutes.</p>
         <a class="btn primary cta-mini" href="#audit-gratuit">Tester gratuitement</a>
       </article>
       <article class="card expertise glass" id="conformite">
@@ -427,7 +577,7 @@
           <li>PIA / AIPD</li>
           <li>Suivi 6 mois</li>
         </ul>
-        <p class="price">1 290 €</p>
+        <p class="price">1 290 €</p>
       </article>
       <article class="offer glass" id="ia-act">
         <h3>IA Act Starter</h3>
@@ -470,7 +620,7 @@
       </article>
       <article class="card glass">
         <span class="badge">Couverture</span>
-        <h3>Multi‑normes</h3>
+        <h3>Multi-normes</h3>
         <p>Un seul outil pour vérifier l’essentiel : RGPD, accessibilité, mentions légales et cookies.</p>
       </article>
       <article class="card glass">
@@ -577,7 +727,6 @@
           </ul>
 
           <div class="cta-col">
-            <!-- PJ3 : enlever le soulignage par CSS (déjà fait via text-decoration:none) -->
             <a class="cta faq" href="faq.html">FAQ complète</a>
             <a class="cta whatsapp" href="https://wa.me/33600000000" target="_blank" rel="noopener">WhatsApp Business</a>
             <a class="cta calendly" href="https://calendly.com/" target="_blank" rel="noopener">Programmer un appel</a>
@@ -666,190 +815,225 @@
     </div>
   </section>
 
-  <!-- ============== FOOTER ============== -->
-  <footer class="cc-footer" role="contentinfo">
-    <div class="cc-container">
-      <div class="cc-top">
-        <a class="cc-brand" href="#" aria-label="Awenoria">
-          <img src="images/logo.png" alt="Awenoria"><strong class="brand-text" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Awenoria</strong>
-        </a>
-        <a class="cc-locale" href="#" aria-label="Changer de pays">
-          <svg viewBox="0 0 24 24"><path d="M12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9zm0 0c2.5-2.8 4-5.8 4-9 0-3.2-1.5-6.2-4-9m0 18C9.5 18.2 8 15.2 8 12c0-3.2 1.5-6.2 4-9"/></svg>
-          <span>France</span>
-        </a>
-      </div>
+ <!-- ============== FOOTER ============== -->
+<footer class="cc-footer" role="contentinfo">
+  <div class="cc-container">
+    <div class="cc-top">
+      <a class="cc-brand" href="#" aria-label="Awenoria">
+        <img src="images/logo.png" alt="Awenoria">
+        <strong class="brand-text" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Awenoria</strong>
+      </a>
+      <a class="cc-locale" href="#" aria-label="Changer de pays">
+        <svg viewBox="0 0 24 24"><path d="M12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9zm0 0c2.5-2.8 4-5.8 4-9 0-3.2-1.5-6.2-4-9m0 18C9.5 18.2 8 15.2 8 12c0-3.2 1.5-6.2 4-9"/></svg>
+        <span>France</span>
+      </a>
+    </div>
 
-      <div class="cc-grid">
-        <div class="cc-col">
-          <h4>Plan du site</h4>
-          <ul>
-            <li><a href="#intro">Accueil</a></li>
-            <li><a href="#expertises">Nos expertises</a></li>
-            <li><a href="#offres">Offres</a></li>
-            <li><a href="#audit-gratuit">Audit gratuit</a></li>
-          </ul>
-        </div>
-        <div class="cc-col">
-          <h4>Légal</h4>
-          <ul>
-            <li><a href="#mentions">Mentions légales</a></li>
-            <li><a href="#confidentialite">Politique de confidentialité</a></li>
-            <li><a href="#accessibilite">Accessibilité</a></li>
-            <li><a href="#cookies">Gestion des cookies</a></li>
-          </ul>
-        </div>
-        <div class="cc-col">
-          <h4>Ressources</h4>
-          <ul>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#approche">Notre méthode</a></li>
-            <li><a href="#faq">FAQ</a></li>
-          </ul>
-        </div>
-        <div class="cc-col">
-          <h4>Réseaux sociaux</h4>
-          <div class="cc-social" aria-label="Réseaux sociaux">
-            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M6.94 7.5A1.94 1.94 0 116.93 3a1.94 1.94 0 01.01 4.5zM4.5 9h5v11h-5V9zm7 0h4.7v1.7h.1c.7-1.3 2.3-2.1 3.7-2.1 3.9 0 4.6 2.6 4.6 6v5.4h-5V15c0-1.3 0-3-1.8-3s-2.2 1.4-2.2 2.9V20h-5V9z"/></svg></a>
-          </div>
-        </div>
+    <div class="cc-grid">
+      <div class="cc-col">
+        <h4>Plan du site</h4>
+        <ul>
+          <li><a href="#intro">Accueil</a></li>
+          <li><a href="#expertises">Nos expertises</a></li>
+          <li><a href="#offres">Offres</a></li>
+          <li><a href="#audit-gratuit">Audit gratuit</a></li>
+        </ul>
       </div>
-
-      <div class="cc-bottom">
-        <small>© 2025 Awenoria. Tous droits réservés.</small>
-        <small>Conformité, accessibilité, RGPD &amp; IA – France.</small>
+      <div class="cc-col">
+        <h4>Légal</h4>
+        <ul>
+          <li><a href="#mentions">Mentions légales</a></li>
+          <li><a href="#confidentialite">Politique de confidentialité</a></li>
+          <li><a href="#accessibilite">Accessibilité</a></li>
+          <li><a href="#cookies">Gestion des cookies</a></li>
+        </ul>
+      </div>
+      <div class="cc-col">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#approche">Notre méthode</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="cc-col">
+        <h4>Réseaux sociaux</h4>
+        <div class="cc-social" aria-label="Réseaux sociaux">
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24">
+              <path d="M6.94 7.5A1.94 1.94 0 116.93 3a1.94 1.94 0 01.01 4.5zM4.5 9h5v11h-5V9zm7 0h4.7v1.7h.1c.7-1.3 2.3-2.1 3.7-2.1 3.9 0 4.6 2.6 4.6 6v5.4h-5V15c0-1.3 0-3-1.8-3s-2.2 1.4-2.2 2.9V20h-5V9z"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
-  </footer>
 
-  <!-- ============== SCRIPTS ============== -->
-  <script>
-    const qs=(s,el=document)=>el.querySelector(s);
+    <div class="cc-bottom">
+      <small>© 2025 Awenoria. Tous droits réservés.</small>
+      <small>Conformité, accessibilité, RGPD &amp; IA – France.</small>
+    </div>
+  </div>
+</footer>
 
-    // Démo d'audit (placeholder)
-    function demoAudit(){
-      const url = qs('#auditUrl').value || '';
-      if(!url) return;
-      alert(`Aperçu généré pour: ${url}\n\n• Cookies: OK\n• Politique: À compléter\n• HTTPS: OK\n• Mentions: Manquantes`);
+<!-- ============== SCRIPTS ============== -->
+<script>
+/* ===== Dropdowns génériques (clic + clavier + a11y) =====
+   Gère tous les .dropdown (ex. “Nos services”, “Nos formations”).
+   À placer après le HTML, juste avant </body>. */
+(function(){
+  const dropdowns = [...document.querySelectorAll('.dropdown')];
+
+  function setup(dd){
+    const btn   = dd.querySelector('.dropdown-toggle');
+    const panel = dd.querySelector('.mega');
+    if(!btn || !panel) return;
+
+    const items = [...panel.querySelectorAll('[role="menuitem"]')];
+
+    const open  = ()=>{ panel.classList.add('open'); btn.setAttribute('aria-expanded','true'); };
+    const close = ()=>{ panel.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
+    const toggle= ()=> panel.classList.contains('open') ? close() : open();
+
+    // Clic en-tête
+    btn.addEventListener('click', e=>{ e.stopPropagation(); toggle(); });
+
+    // Clic global pour refermer
+    document.addEventListener('click', e=>{
+      if(panel.classList.contains('open') && !dd.contains(e.target)) close();
+    });
+
+    // Navigation clavier depuis le bouton
+    btn.addEventListener('keydown', e=>{
+      if(['ArrowDown','Enter',' '].includes(e.key)){
+        e.preventDefault(); open(); items[0]?.focus();
+      }
+    });
+
+    // Navigation clavier à l’intérieur du panneau
+    panel.addEventListener('keydown', e=>{
+      if(e.key==='Escape'){ e.preventDefault(); close(); btn.focus(); }
+      if(e.key==='ArrowDown'){
+        e.preventDefault();
+        const i = items.indexOf(document.activeElement);
+        items[(i+1)%items.length]?.focus();
+      }
+      if(e.key==='ArrowUp'){
+        e.preventDefault();
+        const i = items.indexOf(document.activeElement);
+        items[(i-1+items.length)%items.length]?.focus();
+      }
+      if(e.key==='Tab' && panel.classList.contains('open')){
+        const first = items[0], last = items[items.length-1];
+        if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+        else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+      }
+    });
+
+    // A11y par défaut
+    btn.setAttribute('aria-expanded','false');
+    items.forEach(a=>a.setAttribute('tabindex','0'));
+  }
+
+  dropdowns.forEach(setup);
+})();
+</script>
+
+<script>
+  const qs=(s,el=document)=>el.querySelector(s);
+
+  // Démo d'audit (placeholder)
+  function demoAudit(){
+    const url = qs('#auditUrl').value || '';
+    if(!url) return;
+    alert(`Aperçu généré pour: ${url}\n\n• Cookies: OK\n• Politique: À compléter\n• HTTPS: OK\n• Mentions: Manquantes`);
+  }
+
+  // Typing-on-view (titre)
+  (function(){
+    const SPEED = 85;
+    const els = [...document.querySelectorAll('.type-on-view')];
+    els.forEach(el=>{
+      const full = (el.getAttribute('data-text') || el.textContent || '').trim();
+      el.dataset.fullText = full; el.textContent=''; el.__typingTimer=null; el.__ready=true;
+      el.setAttribute('aria-live','polite');
+    });
+    function type(el){
+      clearTimeout(el.__typingTimer);
+      const full = el.dataset.fullText || ''; el.textContent=''; let i=0;
+      (function tick(){ el.textContent = full.slice(0, ++i); if(i<full.length){ el.__typingTimer=setTimeout(tick,SPEED);} else { el.__typingTimer=null; el.__ready=false; } })();
     }
-
-    // Dropdown logic – version clic uniquement + a11y
-    (function(){
-      const dd = document.getElementById('servicesDropdown'); if(!dd) return;
-      const btn = dd.querySelector('.dropdown-toggle');
-      const panel = dd.querySelector('.mega');
-      const items = [...panel.querySelectorAll('[role="menuitem"]')];
-
-      function open(){ panel.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
-      function close(){ panel.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
-      function toggle(){ panel.classList.contains('open') ? close() : open(); }
-
-      btn.addEventListener('click', e=>{ e.stopPropagation(); toggle(); });
-      document.addEventListener('click', e=>{ if(panel.classList.contains('open') && !dd.contains(e.target)) close(); });
-
-      // clavier bouton
-      btn.addEventListener('keydown', e=>{
-        if(['ArrowDown','Enter',' '].includes(e.key)){
-          e.preventDefault(); open(); items[0]?.focus();
-        }
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        const el = entry.target;
+        if(entry.isIntersecting){ if(el.__ready) type(el); }
+        else{ el.__ready=true; clearTimeout(el.__typingTimer); el.__typingTimer=null; }
       });
-      // clavier dans le menu
-      panel.addEventListener('keydown', e=>{
-        if(e.key==='Escape'){ e.preventDefault(); close(); btn.focus(); }
-        if(e.key==='ArrowDown'){
-          e.preventDefault(); const i = items.indexOf(document.activeElement); items[(i+1)%items.length]?.focus();
-        }
-        if(e.key==='ArrowUp'){
-          e.preventDefault(); const i = items.indexOf(document.activeElement); items[(i-1+items.length)%items.length]?.focus();
-        }
-        if(e.key==='Tab' && panel.classList.contains('open')){
-          const first = items[0], last = items[items.length-1];
-          if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
-          else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
-        }
-      });
+    }, { threshold: .4, rootMargin: '0px 0px -10% 0px' });
+    els.forEach(el=>io.observe(el));
+  })();
 
-      btn.setAttribute('aria-expanded','false');
-      items.forEach(a=>a.setAttribute('tabindex','0'));
-    })();
+  // Account dropdown
+  (function(){
+    const btn=document.getElementById('accountBtn'), menu=document.getElementById('accountMenu'); if(!btn||!menu) return;
+    const toggle=()=>{ const open=!menu.classList.contains('open'); menu.classList.toggle('open'); btn.setAttribute('aria-expanded',open); };
+    btn.addEventListener('click',e=>{ e.stopPropagation(); toggle(); });
+    document.addEventListener('click',e=>{ if(menu.classList.contains('open') && !menu.contains(e.target) && e.target!==btn){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); } });
+    btn.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'){ e.preventDefault(); menu.classList.add('open'); btn.setAttribute('aria-expanded','true'); const first=menu.querySelector('[role="menuitem"]'); first && first.focus(); }});
+    menu.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
+    menu.addEventListener('keydown',e=>{ if(e.key==='Escape'){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.focus(); }});
+  })();
 
-    // Typing-on-view (titre)
-    (function(){
-      const SPEED = 85;
-      const els = [...document.querySelectorAll('.type-on-view')];
-      els.forEach(el=>{
-        const full = (el.getAttribute('data-text') || el.textContent || '').trim();
-        el.dataset.fullText = full; el.textContent=''; el.__typingTimer=null; el.__ready=true;
-        el.setAttribute('aria-live','polite');
-      });
-      function type(el){
-        clearTimeout(el.__typingTimer);
-        const full = el.dataset.fullText || ''; el.textContent=''; let i=0;
-        (function tick(){ el.textContent = full.slice(0, ++i); if(i<full.length){ el.__typingTimer=setTimeout(tick,SPEED);} else { el.__typingTimer=null; el.__ready=false; } })();
+  // ===== CONTACT: champs conditionnels & Turnstile =====
+  (function(){
+    const select = document.getElementById('demande');
+    if(!select) return;
+    const societeWrap = document.getElementById('societeWrap');
+    const precisionWrap = document.getElementById('precisionWrap');
+    function update(){
+      const v = select.value;
+      if(societeWrap){
+        societeWrap.style.display   = (v === 'partenariat' || v === 'devis') ? 'block' : 'none';
+        const i1 = societeWrap.querySelector('input'); if(i1) i1.required = (v==='partenariat'||v==='devis');
       }
-      const io = new IntersectionObserver(entries=>{
-        entries.forEach(entry=>{
-          const el = entry.target;
-          if(entry.isIntersecting){ if(el.__ready) type(el); }
-          else{ el.__ready=true; clearTimeout(el.__typingTimer); el.__typingTimer=null; }
-        });
-      }, { threshold: .4, rootMargin: '0px 0px -10% 0px' });
-      els.forEach(el=>io.observe(el));
-    })();
-
-    // Account dropdown
-    (function(){
-      const btn=document.getElementById('accountBtn'), menu=document.getElementById('accountMenu'); if(!btn||!menu) return;
-      const toggle=()=>{ const open=!menu.classList.contains('open'); menu.classList.toggle('open'); btn.setAttribute('aria-expanded',open); };
-      btn.addEventListener('click',e=>{ e.stopPropagation(); toggle(); });
-      document.addEventListener('click',e=>{ if(menu.classList.contains('open') && !menu.contains(e.target) && e.target!==btn){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); } });
-      btn.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'){ e.preventDefault(); menu.classList.add('open'); btn.setAttribute('aria-expanded','true'); const first=menu.querySelector('[role="menuitem"]'); first && first.focus(); }});
-      menu.querySelectorAll('[role="menuitem"]').forEach(a=>a.setAttribute('tabindex','0'));
-      menu.addEventListener('keydown',e=>{ if(e.key==='Escape'){ menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); btn.focus(); }});
-    })();
-
-    // ===== CONTACT: champs conditionnels & Turnstile =====
-    (function(){
-      const select = document.getElementById('demande');
-      if(!select) return;
-      const societeWrap = document.getElementById('societeWrap');
-      const precisionWrap = document.getElementById('precisionWrap');
-      function update(){
-        const v = select.value;
-        if(societeWrap){
-          societeWrap.style.display   = (v === 'partenariat' || v === 'devis') ? 'block' : 'none';
-          const i1 = societeWrap.querySelector('input'); if(i1) i1.required = (v==='partenariat'||v==='devis');
-        }
-        if(precisionWrap){
-          precisionWrap.style.display = (v === 'autre') ? 'block' : 'none';
-          const i2 = precisionWrap.querySelector('input'); if(i2) i2.required = (v==='autre');
-        }
+      if(precisionWrap){
+        precisionWrap.style.display = (v === 'autre') ? 'block' : 'none';
+        const i2 = precisionWrap.querySelector('input'); if(i2) i2.required = (v==='autre');
       }
-      select.addEventListener('change', update); update();
-    })();
+    }
+    select.addEventListener('change', update); update();
+  })();
 
-    // Lazy-load Turnstile dès interaction
-    (function(){
-      const form = document.getElementById('contactForm'); if(!form) return;
-      let loaded=false; function load(){ if(loaded) return; loaded=true; const s=document.createElement('script'); s.src='https://challenges.cloudflare.com/turnstile/v0/api.js'; s.async=true; s.defer=true; document.head.appendChild(s);} 
-      ['focusin','pointerdown','touchstart'].forEach(ev=>{ form.addEventListener(ev, load, { once:true, passive:true }); });
-      window.awenTurnstileOK = function(){};
-    })();
+  // Lazy-load Turnstile dès interaction
+  (function(){
+    const form = document.getElementById('contactForm'); if(!form) return;
+    let loaded=false; function load(){ if(loaded) return; loaded=true; const s=document.createElement('script'); s.src='https://challenges.cloudflare.com/turnstile/v0/api.js'; s.async=true; s.defer=true; document.head.appendChild(s);} 
+    ['focusin','pointerdown','touchstart'].forEach(ev=>{ form.addEventListener(ev, load, { once:true, passive:true }); });
+    window.awenTurnstileOK = function(){};
+  })();
 
-    // Envoi du formulaire
-    (function(){
-      const form=document.getElementById('contactForm'); if(!form) return;
-      const btn=document.getElementById('sendBtn');
-      const okBox=document.getElementById('msgOk');
-      const koBox=document.getElementById('msgKo');
-      function show(el){ el.classList.add('fade'); el.style.display='flex'; }
-      function hide(el){ el.style.display='none'; el.classList.remove('fade'); }
-      form.addEventListener('submit', async (e)=>{
-        e.preventDefault(); if(!form.reportValidity()) return; hide(okBox); hide(koBox);
-        btn.classList.add('loading'); btn.disabled=true;
-        try{ const r=await fetch(form.action,{method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}}); const j=await r.json().catch(()=>({})); if(r.ok && j.ok){ show(okBox); form.reset(); setTimeout(()=>hide(okBox),7000);} else { show(koBox); setTimeout(()=>hide(koBox),9000);} }
-        catch(err){ show(koBox); setTimeout(()=>hide(koBox),9000);} finally{ btn.classList.remove('loading'); btn.disabled=false; }
-      });
-    })();
-  </script>
+  // Envoi du formulaire
+  (function(){
+    const form=document.getElementById('contactForm'); if(!form) return;
+    const btn=document.getElementById('sendBtn');
+    const okBox=document.getElementById('msgOk');
+    const koBox=document.getElementById('msgKo');
+    function show(el){ el.classList.add('fade'); el.style.display='flex'; }
+    function hide(el){ el.style.display='none'; el.classList.remove('fade'); }
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault(); if(!form.reportValidity()) return; hide(okBox); hide(koBox);
+      btn.classList.add('loading'); btn.disabled=true;
+      try{
+        const r=await fetch(form.action,{method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}});
+        const j=await r.json().catch(()=>({}));
+        if(r.ok && j.ok){ show(okBox); form.reset(); setTimeout(()=>hide(okBox),7000);}
+        else { show(koBox); setTimeout(()=>hide(koBox),9000);}
+      }catch(err){
+        show(koBox); setTimeout(()=>hide(koBox),9000);
+      }finally{
+        btn.classList.remove('loading'); btn.disabled=false;
+      }
+    });
+  })();
+</script>
 </body>
 </html>
