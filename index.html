@@ -35,12 +35,15 @@
       --text:#0f5f9a;
       --brand:#0f5f9a;
       --accent:#16a34a;
-      --copper:#ff8a3d;          /* cuivre (PJ1) */
+      --copper:#ff8a3d;
       --copper-rgb:255,138,61;
       --danger:#dc2626;
       --radius:16px;
       --shadow:0 12px 28px rgba(0,0,0,.08);
       --maxw:1200px; --nav-h:40px; --caret:.6s;
+
+      /* NEW: espace injecté quand un méga-menu est ouvert (inutile sinon) */
+      --mega-push: 0px;
     }
 
     *{box-sizing:border-box}
@@ -109,7 +112,8 @@
     header.navbar{position:sticky;top:0;z-index:1100;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(15,23,32,.08)}
     .nav-wrap{max-width:var(--maxw);margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:14px}
     .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
-    .brand-img{height:50px;object-fit:contain;display:block}
+    .brand-img{height:50px;object-fit:contain;display:block; /* NEW: réserve l'espace, pas de décalage */
+      aspect-ratio:140/50;}
 
     .nav-main{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;margin-left:8px;flex-wrap:wrap}
     .nav-main a,.nav-main button{appearance:none;background:none;border:none;cursor:pointer;color:var(--text);text-decoration:none;font-weight:800;font-size:16px;height:var(--nav-h);line-height:var(--nav-h);padding:0 12px;border-radius:10px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
@@ -117,10 +121,9 @@
     .nav-main .dropdown-toggle{height:var(--nav-h);line-height:var(--nav-h);padding:0 12px;display:inline-flex;align-items:center}
     .dropdown-toggle svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;margin-left:6px}
 
-    .nav-actions{display:flex;align-items:center;gap:8px;margin-left:6px}
+    .nav-actions{display:flex;align-items:center;gap:8px;margin-left:6px; /* NEW: évite micro-décalage au chargement */ min-width:120px;}
     .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;font-family:inherit;font-weight:800;border-radius:9999px;padding:12px 20px;font-size:16px;letter-spacing:.3px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:all .25s ease;overflow:hidden;text-decoration:none;border:1px solid transparent}
     .btn.primary{background:rgba(27,136,255,.80);color:#fff;border-color:rgba(255,255,255,.25);box-shadow:inset 0 0 12px rgba(255,255,255,.15),0 4px 18px rgba(27,136,255,.30)}
-    /* >>> Contour de bulle renforcé pour les boutons secondaires (PJ2) */
     .btn.secondary{
       background:rgba(255,255,255,.22);
       color:var(--text);
@@ -128,7 +131,6 @@
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.65), 0 8px 18px rgba(15,23,32,.08);
     }
     .btn.secondary:hover{background:rgba(255,255,255,.35); border-color:rgba(15,23,32,.38)}
-
     .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(15,23,32,.12);box-shadow:none}
 
     /* ================== HERO ================== */
@@ -156,7 +158,7 @@
     .url-bar input{
       appearance:none;border:none;outline:none;background:transparent;color:var(--text);height:100%;padding:0 10px;
       font-weight:800;letter-spacing:.01em;flex:1;width:auto;
-      caret-color: currentColor; /* barre d’écriture visible */
+      caret-color: currentColor;
     }
     .url-bar input::placeholder{color:#7aa9c7;font-weight:800;opacity:1}
     .url-bar button{margin-left:auto;height:40px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:linear-gradient(90deg,var(--copper),#ff9a56);color:#fff;font-weight:800;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 8px 22px rgba(var(--copper-rgb),.35);transition:transform .08s ease,box-shadow .15s ease,filter .15s ease}
@@ -185,13 +187,7 @@
     .offer{border-radius:22px;border:1px solid rgba(15,23,32,.10);padding:20px;display:grid;gap:12px;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:var(--shadow)}
     .offer h3{margin:0}
     .offer .for{color:var(--muted)}
-    /* >>> PRIX EN ORANGE CUIVRÉ (PJ1) */
-    .offer .price{
-      font-size:28px;
-      font-weight:800;
-      color:var(--copper);
-      text-shadow:0 1px 0 rgba(255,255,255,.6);
-    }
+    .offer .price{font-size:28px;font-weight:800;color:var(--copper);text-shadow:0 1px 0 rgba(255,255,255,.6)}
 
     /* Outil gratuit */
     .auditsamples{display:grid;gap:8px;margin-top:12px}
@@ -215,7 +211,7 @@
     .post img{width:100%;height:180px;object-fit:cover;display:block}
     .post .content{padding:16px}
 
-    /* Barre d'écriture (caret) pour textes tapés à l'écran */
+    /* Barre d'écriture (caret) */
     .type-on-view{position:relative;display:inline-block}
     .type-on-view::after{content:"";display:inline-block;width:2px;height:1em;background:currentColor;margin-left:2px;animation:caret-blink var(--caret) steps(1,end) infinite;vertical-align:-0.12em}
     @keyframes caret-blink{50%{opacity:0}}
@@ -338,15 +334,15 @@
       from{opacity:0;transform:translate(-50%,-2px)}
       to{opacity:1;transform:translate(-50%,0)}
     }
-    @media (prefers-reduced-motion: reduce){ .mega.open{animation:none} }
 
-    /* Compte */
+    /* ===== Compte ===== */
     .account{position:relative}
     .account-btn{width:36px;height:36px;border-radius:999px;border:1px solid rgba(15,23,32,.15);background:#f2f6fb;color:var(--text);display:inline-flex;align-items:center;justify-content:center}
     .account-btn:hover{background:#eaf2fb}
     .account-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
     .account-menu{position:absolute;right:0;top:calc(var(--nav-h) + 18px);width:min(86vw,340px);border-radius:18px;border:1px solid rgba(15,23,32,.12);padding:12px;display:none;z-index:1300}
-    .account-menu.open{display:block;animation:fadeIn .16s ease}
+    .account-menu.open{display:block;animation:fadeIn .16s ease} /* sera écrasé juste après par fadeInY */
+
     .acc-item{display:grid;grid-template-columns:40px 1fr 24px;gap:10px;align-items:center;padding:12px;border-radius:14px;text-decoration:none;color:var(--text)}
     .acc-item:hover{background:#f6f9fc}
     .acc-ico{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;border:1px solid rgba(15,23,32,.12);background:#fff}
@@ -398,7 +394,6 @@
       border:1px solid rgba(15,23,32,.16);
       box-shadow: 0 8px 24px rgba(27,136,255,.12), inset 0 1px 0 rgba(255,255,255,.9)
     }
-    /* >>> HOVER ORANGE + TEXTE CLAIR (PJ4) */
     #contact .btn.primary:hover{
       background:linear-gradient(90deg,var(--copper),#ff9a56);
       color:#fff;
@@ -437,6 +432,18 @@
     #contact .check{ display:flex; align-items:center; gap:10px; line-height:1.35 }
     #contact .check input{ width:18px; height:18px; margin:0; accent-color:var(--brand); }
     #contact .check span{ font-weight:800; color:var(--text) }
+
+    /* NEW: quand un méga-menu est ouvert, on pousse uniquement le premier élément après la navbar */
+    body.has-mega-open .navbar + *{ margin-top: var(--mega-push); }
+    /* NEW: backdrop pour couper les clics sur le contenu derrière (pendant l’ouverture) */
+    body.has-mega-open::after{
+      content:""; position:fixed; inset:0; z-index:1190;
+      background:rgba(15,23,32,.08); backdrop-filter:blur(1px);
+    }
+
+    /* NEW: animation dédiée verticale pour le menu Compte (pas de translateX) */
+    @keyframes fadeInY{ from{opacity:0;transform:translateY(-2px)} to{opacity:1;transform:translateY(0)} }
+    .account-menu.open{ animation:fadeInY .12s ease; } /* surcharge l'animation générique */
   </style>
 </head>
 <body>
@@ -578,7 +585,6 @@
 
         <div class="cta-row">
           <a class="btn primary" href="#audit-gratuit">Lancer un audit gratuit</a>
-          <!-- Ce bouton bénéficie du contour renforcé -->
           <a class="btn secondary" href="#contact">Voir le détail des packs</a>
         </div>
       </div>
@@ -589,13 +595,12 @@
     </div>
   </section>
 
-  <!-- ============== OUTIL GRATUIT D’AUDIT (PJ1) — DÉPLACÉ ICI ============== -->
+  <!-- ============== OUTIL GRATUIT D’AUDIT ============== -->
   <section id="audit-gratuit" class="section">
     <h2 class="title-center">Scannez votre site gratuitement</h2>
     <div class="underline" aria-hidden="true"></div>
     <p class="subtitle-center">Entrez simplement l’adresse de votre site pour obtenir un aperçu immédiat de votre conformité RGPD.</p>
     <form class="url-bar" action="#analyse" method="get" onsubmit="event.preventDefault();demoAudit();">
-      <!-- Effet d’écriture en continu + gras + caret -->
       <input type="url" name="site" id="auditUrl" placeholder="https://votresite.fr" aria-label="Adresse du site à analyser" required autocomplete="off">
       <button type="submit">Analyser votre site</button>
     </form>
@@ -625,12 +630,13 @@
     </div>
   </section>
 
-  <!-- ============== NOTRE MISSION (PJ2) — DÉSORMAIS APRÈS PJ1 ============== -->
+  <!-- ============== NOTRE MISSION ============== -->
   <section id="qui-sommes-nous" class="section">
     <h2 class="title-center">Chez Awenoria, la transparence et la confiance sont au cœur de nos engagements.</h2>
     <div class="underline" aria-hidden="true"></div>
     <p class="subtitle-center">Cet espace est dédié à une conformité claire et pragmatique. Nous vous aidons à comprendre, sécuriser et valoriser vos données tout en garantissant la conformité de vos activités numériques.</p>
-    <p class="subtitle-center"><a class="btn ghost" href="#approche">Découvrir notre approche</a></p>
+    <!-- CHANGEMENT DEMANDÉ : même style que "packs" -->
+    <p class="subtitle-center"><a class="btn secondary" href="#approche">Découvrir notre approche</a></p>
   </section>
 
   <!-- ============== EXPERTISES ============== -->
@@ -753,7 +759,7 @@
         </div>
       </article>
       <article class="post glass">
-        <img src="images/blog-audit-score.jpg" alt="Audit web : comprendre votre score de conformité ?">
+        <img src="images/blog-audit-score.jpg" alt="Audit web : comment lire votre score de conformité ?">
         <div class="content">
           <h3>Audit web : comment lire votre score de conformité ?</h3>
           <p>Découvrez nos critères et nos pondérations.</p>
@@ -962,9 +968,15 @@
     const btn = dd.querySelector('.dropdown-toggle');
     const panel = dd.querySelector('.mega');
     if(!btn || !panel) return;
-    dd.classList.add('opening');
     panel.classList.add('open');
     btn.setAttribute('aria-expanded','true');
+
+    /* NEW: calcule la hauteur et pousse la page sans rien masquer */
+    const header = document.querySelector('header.navbar');
+    const headerH = header?.offsetHeight || 0;
+    const maxH = Math.min(panel.scrollHeight, window.innerHeight - headerH - 12);
+    document.documentElement.style.setProperty('--mega-push', (maxH + 16) + 'px');
+    document.body.classList.add('has-mega-open');
   }
   function closeDd(dd){
     const btn = dd.querySelector('.dropdown-toggle');
@@ -972,7 +984,13 @@
     if(!btn || !panel) return;
     panel.classList.remove('open');
     btn.setAttribute('aria-expanded','false');
-    dd.classList.remove('opening');
+
+    /* NEW: retire le push quand plus aucun méga n'est ouvert */
+    const anyOpen = document.querySelector('.mega.open');
+    if(!anyOpen){
+      document.body.classList.remove('has-mega-open');
+      document.documentElement.style.setProperty('--mega-push', '0px');
+    }
   }
   function scheduleClose(dd, delay=120){
     clearTimeout(closeTimers.get(dd));
@@ -1070,7 +1088,7 @@
     els.forEach(el=>io.observe(el));
   })();
 
-  // Account dropdown
+  // Account dropdown (anim corrigée par CSS)
   (function(){
     const btn=document.getElementById('accountBtn'), menu=document.getElementById('accountMenu'); if(!btn||!menu) return;
     const toggle=()=>{ const open=!menu.classList.contains('open'); menu.classList.toggle('open'); btn.setAttribute('aria-expanded',open); };
@@ -1132,54 +1150,19 @@
       }
     });
   })();
-</script>
 
-<!-- Effet d'écriture automatique et CONTINU dans le champ URL -->
-<script>
-(function(){
-  const input = document.getElementById('auditUrl'); if(!input) return;
-  const demo = 'https://votresite.fr';
-  const TYPE_DELAY = 70;         // vitesse de frappe
-  const RESTART_DELAY = 2000;    // pause de 2s avant réécriture
-  let i = 0, stopped = false, timer;
+  // Effet d'écriture automatique et CONTINU dans le champ URL
+  (function(){
+    const input = document.getElementById('auditUrl'); if(!input) return;
+    const demo = 'https://votresite.fr';
+    const TYPE_DELAY = 70;
+    const RESTART_DELAY = 2000;
+    let i = 0, stopped = false, timer;
 
-  function placeCaret(){
-    // focus programmatique (ne déclenche plus l'arrêt)
-    if (document.activeElement !== input) input.focus({preventScroll:true});
-    try { input.setSelectionRange(input.value.length, input.value.length); } catch(e){}
-  }
+    function placeCaret(){
+      if (document.activeElement !== input) input.focus({preventScroll:true});
+      try { input.setSelectionRange(input.value.length, input.value.length); } catch(e){}
+    }
 
-  function loop(){
-    if (stopped) return;
-    i = 0; input.value = ''; placeCaret();
-    (function tick(){
-      if (stopped) return;
-      input.value = demo.slice(0, ++i);
-      placeCaret();
-      if (i < demo.length) {
-        timer = setTimeout(tick, TYPE_DELAY);
-      } else {
-        timer = setTimeout(loop, RESTART_DELAY); // réécrit après 2s
-      }
-    })();
-  }
-
-  // démarrage
-  timer = setTimeout(loop, 300);
-
-  // STOP uniquement sur interaction réelle de l’utilisateur
-  const halt = () => { stopped = true; clearTimeout(timer); };
-  ['pointerdown','keydown','input','touchstart'].forEach(ev => {
-    input.addEventListener(ev, halt, { once:true });
-  });
-})();
-</script>
-
-<!-- (Optionnel) test console pour Manrope -->
-<script>
-(async () => {
-  try { await document.fonts.load('400 1em Manrope'); } catch(e){}
-})();
-</script>
-</body>
-</html>
+    function loop(){
+      if
