@@ -1133,46 +1133,43 @@
   })();
 </script>
 
-<!-- Effet d'écriture automatique et CONTINU dans le champ URL (PJ3) -->
+<!-- Effet d'écriture automatique et CONTINU dans le champ URL -->
 <script>
 (function(){
   const input = document.getElementById('auditUrl'); if(!input) return;
   const demo = 'https://votresite.fr';
-  const TYPE_DELAY = 70;
-  const RESTART_DELAY = 2000; // 2 secondes
-  let i = 0, stop = false, timer;
+  const TYPE_DELAY = 70;         // vitesse de frappe
+  const RESTART_DELAY = 2000;    // pause de 2s avant réécriture
+  let i = 0, stopped = false, timer;
 
-  function focusWithCaret(){
-    input.focus({preventScroll:true});
-    // place le caret en fin de texte pour qu’il clignote
-    try{ input.setSelectionRange(input.value.length, input.value.length); }catch(e){}
+  function placeCaret(){
+    // focus programmatique (ne déclenche plus l'arrêt)
+    if (document.activeElement !== input) input.focus({preventScroll:true});
+    try { input.setSelectionRange(input.value.length, input.value.length); } catch(e){}
   }
 
-  function typeLoop(){
-    if(stop) return;
-    input.value = '';
-    i = 0;
-    focusWithCaret();
+  function loop(){
+    if (stopped) return;
+    i = 0; input.value = ''; placeCaret();
     (function tick(){
-      if(stop) return;
+      if (stopped) return;
       input.value = demo.slice(0, ++i);
-      focusWithCaret();
-      if(i < demo.length){
+      placeCaret();
+      if (i < demo.length) {
         timer = setTimeout(tick, TYPE_DELAY);
-      }else{
-        // Attends 2 s puis recommence depuis zéro
-        timer = setTimeout(()=>{ if(!stop){ input.value=''; typeLoop(); } }, RESTART_DELAY);
+      } else {
+        timer = setTimeout(loop, RESTART_DELAY); // réécrit après 2s
       }
     })();
   }
 
-  // Lancer après un petit délai initial
-  timer = setTimeout(typeLoop, 300);
+  // démarrage
+  timer = setTimeout(loop, 300);
 
-  // Dès interaction utilisateur, on stoppe la démo
-  const halt = () => { stop = true; clearTimeout(timer); };
-  ['focus','input','keydown','pointerdown','touchstart'].forEach(ev=>{
-    input.addEventListener(ev, halt, { once:true, passive:true });
+  // STOP uniquement sur interaction réelle de l’utilisateur
+  const halt = () => { stopped = true; clearTimeout(timer); };
+  ['pointerdown','keydown','input','touchstart'].forEach(ev => {
+    input.addEventListener(ev, halt, { once:true });
   });
 })();
 </script>
