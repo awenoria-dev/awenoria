@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fiche formation – Awenoria</title>
+  <meta name="description" content="Détail de la formation : objectifs, programme, durée, modalités. Présentiel / distanciel, supports et attestation inclus." />
+
+  <!-- Favicon / PWA -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/icône-apple-touch.png">
+  <meta name="theme-color" content="#0f5f9a">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{ --font-ui:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; --bg:#f6f9fc; --panel:#fff; --muted:#4a6176; --text:#0f5f9a; --brand:#0f5f9a; --accent:#16a34a; --copper:#ff8a3d; --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.08); --maxw:1100px; --nav-h:40px }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;color:var(--text);background:radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),linear-gradient(180deg,#fff 0%,#f6f9fc 100%);-webkit-font-smoothing:antialiased}
+    body,button,input,select,textarea{font-family:var(--font-ui)}
+    h1,h2,h3,h4{font-weight:800}
+    a{color:inherit;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .glass{background:rgba(255,255,255,.86);backdrop-filter:blur(10px);border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow)}
+
+    /* NAV */
+    header.navbar{position:sticky;top:0;z-index:1100;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(15,23,32,.08)}
+    .nav-wrap{max-width:var(--maxw);margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:14px}
+    .brand-img{height: clamp(56px,8vw,96px);object-fit:contain;display:block}
+    .nav-main{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;margin-left:8px;flex-wrap:wrap}
+    .nav-main a{color:var(--text);text-decoration:none;font-weight:800;font-size:16px;height:var(--nav-h);line-height:var(--nav-h);padding:0 12px;border-radius:10px}
+    .nav-main a:hover{background:rgba(27,136,255,.10)}
+
+    /* Page */
+    .wrap{max-width:var(--maxw);margin:28px auto;padding:0 20px}
+    .crumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:#456;font-weight:700;margin-bottom:14px}
+    .crumbs a{color:#456}
+    .title{font-size:clamp(24px,4.4vw,42px);margin:4px 0}
+    .lead{color:var(--muted);margin-top:4px}
+    .meta{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
+    .tag{border:1px solid rgba(15,23,32,.12);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;background:rgba(27,136,255,.06)}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+    @media (max-width:980px){.grid{grid-template-columns:1fr}}
+    .card{border-radius:18px;padding:18px;border:1px solid rgba(15,23,32,.08);background:rgba(255,255,255,.86)}
+    .card h2{margin:0 0 10px}
+    .program ul{margin:.25rem 0 .25rem;padding-left:18px}
+    .program li{margin:.18rem 0}
+    .cta-col{display:grid;gap:12px;height:fit-content;align-content:start}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:12px 20px;font-size:16px;text-decoration:none;border:1px solid transparent}
+    .btn.primary{background:rgba(27,136,255,.80);color:#fff;border-color:rgba(255,255,255,.25);box-shadow:inset 0 0 12px rgba(255,255,255,.15),0 4px 18px rgba(27,136,255,.30)}
+    .btn.secondary{background:#fff;color:var(--text);border:1px solid rgba(15,23,32,.18)}
+    .note{color:var(--muted);font-size:14px}
+    .back{display:inline-flex;align-items:center;gap:6px}
+  </style>
+</head>
+<body>
+<header class="navbar" role="banner">
+  <div class="nav-wrap">
+    <a class="brand" href="/index.html" aria-label="Aller à l'accueil"><img class="brand-img" src="/images/logo.png" alt="Awenoria"></a>
+    <nav class="nav-main" aria-label="Navigation principale">
+      <a href="/index.html#qui-sommes-nous">Qui sommes-nous ?</a>
+      <a href="/Nos-services.html">Nos services</a>
+      <a href="/nos-formations.html">Nos formations</a>
+      <a href="/index.html#blog">Blog</a>
+      <a href="/nos-formations.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="content">
+  <nav class="crumbs" aria-label="Fil d'Ariane">
+    <a href="/nos-formations.html">Formations</a>
+    <span aria-hidden="true">›</span>
+    <a id="crumb-mid" href="/formations-liste.html">Catalogue</a>
+    <span aria-hidden="true">›</span>
+    <span id="crumb-leaf">Fiche</span>
+  </nav>
+
+  <header>
+    <h1 id="course-title" class="title">Titre formation</h1>
+    <p id="course-pitch" class="lead">Résumé personnalisé selon l’origine (thématique / public).</p>
+    <div id="course-meta" class="meta"></div>
+  </header>
+
+  <section class="grid" aria-label="Contenu et actions">
+    <article class="card glass">
+      <h2>Programme</h2>
+      <div id="course-program" class="program"></div>
+      <h2 style="margin-top:16px">Objectifs</h2>
+      <ul id="course-objectives"></ul>
+    </article>
+
+    <aside class="cta-col">
+      <a id="back-link" class="back" href="javascript:history.back()"
+         aria-label="Revenir à la liste précédente">← Revenir</a>
+
+      <div class="card glass">
+        <h2 style="margin:0 0 8px">Obtenir le programme détaillé</h2>
+        <p class="note">Précisez vos dates, le format (présentiel/distanciel) et le public cible.</p>
+        <p><a class="btn primary" href="/index.html#contact">Demander un devis</a></p>
+        <p class="note" style="margin-top:8px">Supports & modèles fournis • Quiz & attestation inclus</p>
+      </div>
+
+      <div class="card">
+        <h2 style="margin:0 0 8px">Infos pratiques</h2>
+        <ul class="note" id="practical-list" style="padding-left:18px;margin:8px 0 0">
+          <li>Formats : atelier 2h, 1/2 journée, 1 journée</li>
+          <li>Modalités : présentiel ou distanciel</li>
+          <li>Financement : selon OPCO/plan interne</li>
+        </ul>
+      </div>
+    </aside>
+  </section>
+</main>
+
+<script type="module">
+  import { COURSES } from "/js/courses-data.js";
+
+  // utilitaires libellés
+  const THEME_LABELS = {
+    "rgpd-essentiels":"RGPD – essentiels, registre, AIPD",
+    "ia-act":"IA Act – obligations & documentation",
+    "cookies":"Cookies & CMP",
+    "web-legal":"Mentions légales & conformité web",
+    "access":"Accessibilité (RGAA / EN 301 549)",
+    "cyber":"Cybersécurité de base"
+  };
+  const AUDIENCE_LABELS = {
+    dirigeants:"Dirigeants & responsables",
+    equipes:"Équipes opérationnelles",
+    dpo:"Référents / DPO",
+    dev:"Dev, Produit & Data"
+  };
+
+  // Récup slug depuis le nom du fichier (/formation/{slug}.html)
+  const slug = location.pathname.split('/').pop().replace('.html','');
+
+  // Params d’origine
+  const params = new URLSearchParams(location.search);
+  const from = params.get('from');        // 'theme' | 'public' | 'catalogue'
+  const theme = params.get('theme');      // ex: 'rgpd-essentiels'
+  const audience = params.get('public');  // ex: 'dirigeants'
+
+  // Cibles
+  const titleEl = document.getElementById('course-title');
+  const pitchEl = document.getElementById('course-pitch');
+  const metaEl = document.getElementById('course-meta');
+  const progEl = document.getElementById('course-program');
+  const objEl  = document.getElementById('course-objectives');
+  const crumbMid = document.getElementById('crumb-mid');
+  const crumbLeaf = document.getElementById('crumb-leaf');
+  const backLink = document.getElementById('back-link');
+
+  // Cherche la formation
+  const course = COURSES.find(c => c.slug === slug);
+
+  function setHead(metaTitle, metaDesc){
+    document.title = metaTitle;
+    const m = document.querySelector('meta[name="description"]');
+    if(m) m.setAttribute('content', metaDesc);
+  }
+
+  function pickPitch(){
+    if(from === 'public' && audience && course.pitchByAudience?.[audience]){
+      return course.pitchByAudience[audience];
+    }
+    if(from === 'theme' && theme && course.pitchByTheme?.[theme]){
+      return course.pitchByTheme[theme];
+    }
+    return course.summary || '';
+  }
+
+  function renderCrumbs(){
+    if(from === 'theme' && theme){
+      crumbMid.textContent = THEME_LABELS[theme] || 'Thématique';
+      crumbMid.href = `/formations-liste.html?theme=${encodeURIComponent(theme)}`;
+    } else if(from === 'public' && audience){
+      crumbMid.textContent = AUDIENCE_LABELS[audience] || 'Public';
+      crumbMid.href = `/formations-liste.html?public=${encodeURIComponent(audience)}`;
+    } else {
+      crumbMid.textContent = 'Catalogue';
+      crumbMid.href = '/formations-liste.html';
+    }
+    crumbLeaf.textContent = course ? course.title : 'Fiche';
+  }
+
+  function renderNotFound(){
+    document.getElementById('content').innerHTML = `
+      <div class="wrap">
+        <h1>Formation introuvable</h1>
+        <p>La fiche demandée n'existe pas. Retour au <a href="/formations-liste.html">catalogue</a>.</p>
+      </div>
+    `;
+  }
+
+  if(!course){ renderNotFound(); throw new Error('Course not found'); }
+
+  // Titre & pitch
+  titleEl.textContent = course.title;
+  pitchEl.textContent = pickPitch();
+
+  // Head meta
+  const originLabel = from === 'public' ? (AUDIENCE_LABELS[audience] || '')
+                    : from === 'theme'  ? (THEME_LABELS[theme] || '')
+                    : 'Catalogue';
+  setHead(`${course.title} – Awenoria`, `${course.summary || ''} ${originLabel ? ' • Contexte : ' + originLabel : ''}`);
+
+  // Meta tags (durée, niveau, modalités)
+  const dur = course.duration ? `<span class="tag" aria-label="Durée">${course.duration}</span>` : '';
+  const lvl = course.level ? `<span class="tag" aria-label="Niveau">${course.level}</span>` : '';
+  const mods = (course.modalities || []).map(m=>`<span class="tag">${m}</span>`).join('');
+  metaEl.innerHTML = dur + lvl + mods;
+
+  // Programme
+  const items = (course.program || []).map(li=>`<li>${li}</li>`).join('');
+  progEl.innerHTML = items ? `<ul>${items}</ul>` : `<p class="note">Le programme détaillé sera fourni sur demande.</p>`;
+
+  // Objectifs : si rien dans tes données, on génère une base standard
+  const defaultObjectives = [
+    'Comprendre les obligations et le périmètre',
+    'Savoir appliquer dans votre contexte',
+    'Produire les premiers livrables utiles',
+    'Établir une feuille de route opérationnelle'
+  ];
+  objEl.innerHTML = defaultObjectives.map(o=>`<li>${o}</li>`).join('');
+
+  // Fil d’Ariane + retour
+  renderCrumbs();
+  if(from === 'public' && audience){
+    backLink.href = `/formations-liste.html?public=${encodeURIComponent(audience)}`;
+  } else if(from === 'theme' && theme){
+    backLink.href = `/formations-liste.html?theme=${encodeURIComponent(theme)}`;
+  } else {
+    backLink.href = `/formations-liste.html`;
+  }
+</script>
+</body>
+</html>
