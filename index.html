@@ -420,10 +420,9 @@
     .account{position:relative}
     .account-btn{width:36px;height:36px;border-radius:999px;border:1px solid rgba(15,23,32,.15);background:#f2f6fb;color:var(--text);display:inline-flex;align-items:center;justify-content:center}
     .account-btn:hover{background:#eaf2fb}
-    /* Icônes du bouton compte */
-    .account-btn svg{width:18px;height:18px}
-    /* Laisser le remplissage pour le yin-yang */
-    .account-btn svg.icon-yy *{fill:initial; stroke:none}
+    /* Icônes du bouton compte — corrigé */
+    .account-btn svg { width:20px; height:20px; fill:none; }
+    .account-btn svg.icon-yy * { fill:initial; stroke:none; }
     .account-menu{position:absolute;right:0;top:calc(var(--nav-h) + 18px);width:min(86vw,340px);border-radius:18px;border:1px solid rgba(15,23,32,.12);padding:12px;display:none;z-index:1300}
     .account-menu.open{display:block;animation:none}
     .acc-item{display:grid;grid-template-columns:40px 1fr 24px;gap:10px;align-items:center;padding:12px;border-radius:14px;text-decoration:none;color:var(--text)}
