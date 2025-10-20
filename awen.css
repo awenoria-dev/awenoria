@@ -97,4 +97,20 @@ header.navbar{position:sticky;top:0;z-index:1100;background:rgba(255,255,255,.85
 .cc-top{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
 .cc-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
 .cc-brand img{height: clamp(56px, 7vw, 90px);object-fit:contain;display:block}
-.cc-locale{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(255,255,255,.25);border-radius:999px;text-decoration:none;color
+.cc-locale{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(255,255,255,.25);border-radius:999px;text-decoration:none;color:#eaeaea}
+.cc-locale svg{width:18px;height:18px;stroke:#eaeaea;fill:none}
+.cc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;padding:20px 0}
+.cc-col h4{margin:0 0 12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#a7afbf}
+.cc-col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.cc-col a{color:#eaeaea;text-decoration:none;font-weight:600}
+.cc-col a:hover{text-decoration:underline}
+.cc-social{display:flex;align-items:center;gap:14px;justify-self:end}
+.cc-social a{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.5)}
+.cc-social svg{width:18px;height:18px;fill:none;stroke:#eaeaea;stroke-width:2}
+.cc-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:grid;grid-template-columns:1fr auto;gap:12px}
+.cc-bottom small{color:#b8bfcc}
+
+/* ============ typewriter effect ============ */
+.type-on-view{position:relative;display:inline-block}
+.type-on-view::after{content:"";display:inline-block;width:2px;height:1em;background:currentColor;margin-left:2px;animation:caret-blink var(--caret) steps(1,end) infinite;vertical-align:-0.12em}
+@keyframes caret-blink{50%{opacity:0}}
