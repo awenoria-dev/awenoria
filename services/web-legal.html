@@ -4,48 +4,65 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Web & légal – Awenoria</title>
-  <meta name="description" content="Nos services web et légaux : création de sites conformes, mentions légales, CGV, RGPD, et accompagnement digital sécurisé." />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Cookies & CMP, Mentions légales, Accessibilité (RGAA / EN 301 549). Ouvrez le service correspondant." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
   <style>
-    :root {--font:"Manrope",sans-serif;--text:#0f5f9a;--muted:#4a6176;--accent:#ff8a3d;--shadow:0 12px 28px rgba(0,0,0,.08);--maxw:1100px;}
-    *{box-sizing:border-box;}
-    body{margin:0;font-family:var(--font);color:var(--text);background:linear-gradient(180deg,#f7faff 0%,#ffffff 100%);}
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:32px 20px;}
-    h1{font-weight:800;font-size:clamp(26px,4vw,42px);}
-    .lead{color:var(--muted);margin-bottom:12px;}
-    .underline{width:84px;height:4px;border-radius:999px;background:var(--accent);margin:16px 0 24px;}
-    .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));}
-    .card{background:white;border-radius:20px;padding:20px;border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow);}
-    .btn{display:inline-block;margin-top:10px;padding:10px 16px;background:var(--accent);color:white;text-decoration:none;border-radius:999px;font-weight:700;}
+    :root{--font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--text:#0f5f9a;--muted:#4a6176;--copper:#ff8a3d;--shadow:0 12px 28px rgba(0,0,0,.08);--maxw:1100px}
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;color:var(--text);font-family:var(--font);background:radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),linear-gradient(180deg,#fff 0%,#f6f9fc 100%)}
+    .wrap{max-width:var(--maxw);margin:28px auto;padding:0 20px}
+    h1{font-weight:800;font-size:clamp(24px,4.4vw,42px);margin:6px 0}
+    .lead{color:var(--muted)} .underline{width:84px;height:4px;border-radius:999px;background:var(--copper);margin:12px 0 22px;opacity:.95}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+    .card{background:rgba(255,255,255,.86);border:1px solid rgba(15,23,32,.08);border-radius:22px;padding:18px;box-shadow:var(--shadow)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1px solid transparent;background:rgba(27,136,255,.80);color:#fff;text-decoration:none}
+    .note{color:var(--muted);font-size:14px}
+    header a{color:inherit;text-decoration:none}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <a href="/services.html" style="text-decoration:none;">← Retour “Nos services”</a>
-    <h1>Web & légal</h1>
-    <p class="lead">Des solutions digitales conformes et sécurisées, adaptées à votre activité.</p>
-    <div class="underline"></div>
+<header class="wrap">
+  <a href="/index.html#services">← Retour “Nos services”</a>
+  <h1>Web & légal</h1>
+  <p class="lead">Conformité des sites et parcours utilisateurs.</p>
+  <div class="underline"></div>
+</header>
 
-    <div class="grid">
-      <article class="card">
-        <h3>Création de sites web conformes</h3>
-        <p>Développement de sites vitrines ou e-commerce conformes RGPD et accessibilité.</p>
-      </article>
+<main class="wrap">
+  <section class="grid" id="weblegal"></section>
+</main>
 
-      <article class="card">
-        <h3>Mentions légales & CGV</h3>
-        <p>Rédaction personnalisée et intégration automatique des documents légaux obligatoires.</p>
-      </article>
+<script type="module">
+  const WEBLEGAL = {
+    "cookies": {
+      title: "Cookies & CMP",
+      desc: "Bandeau, exemptions, paramétrage CMP, mesure d’audience.",
+      href: "/services/liste.html?service=cookies"
+    },
+    "legales": {
+      title: "Mentions légales",
+      desc: "Pages légales, CGU/CGV, politique de confidentialité.",
+      href: "/services/liste.html?service=mentions-legales"
+    },
+    "access": {
+      title: "Accessibilité (RGAA / EN 301 549)",
+      desc: "Audit rapide, priorisation et obligations de mise en accessibilité.",
+      href: "/services/liste.html?service=accessibilite"
+    }
+  };
 
-      <article class="card">
-        <h3>Protection et propriété intellectuelle</h3>
-        <p>Accompagnement sur le dépôt de marque, copyright, et gestion de contenu web.</p>
-      </article>
-    </div>
-
-    <p style="margin-top:28px;">
-      <a href="/contact.html" class="btn">Demander un devis</a>
-    </p>
-  </div>
+  const root = document.getElementById("weblegal");
+  root.innerHTML = Object.entries(WEBLEGAL).map(([k,v]) => `
+    <article class="card">
+      <h3 style="margin:0 0 6px">${v.title}</h3>
+      <p class="note">${v.desc}</p>
+      <p style="margin-top:10px">
+        <a class="btn" href="${v.href}" aria-label="Voir ${v.title}">Voir le détail</a>
+      </p>
+    </article>
+  `).join("");
+</script>
 </body>
 </html>
