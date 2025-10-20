@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title id="head-title">Catalogue des formations – Awenoria</title>
-  <meta name="description" content="Catalogue filtrable par thématique ou par public. Fiches détaillées, formats flexibles, supports & attestation inclus." />
+  <title>Catalogue des formations – Awenoria</title>
+  <meta name="description" content="Catalogue filtrable des formations Awenoria : par thématique ou par public." />
+  <meta name="theme-color" content="#0f5f9a" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
@@ -15,21 +16,22 @@
     a{color:inherit;text-decoration:none} a:hover{text-decoration:underline}
     header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(15,23,32,.08)}
     .nav{max-width:var(--maxw);margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:16px}
-    .nav img{height: clamp(56px,8vw,96px);display:block}
+    .nav img{height:clamp(56px,8vw,96px)}
     .wrap{max-width:var(--maxw);margin:28px auto;padding:0 20px}
-    h1{font-weight:800;font-size:clamp(24px,4.4vw,42px);margin:6px 0}
-    .lead{color:var(--muted);margin:0 0 10px}
-    .filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}
-    .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(15,23,32,.16);border-radius:999px;padding:8px 12px;background:#fff;font-weight:800;cursor:pointer}
-    .pill[aria-pressed="true"]{background:rgba(27,136,255,.10);border-color:rgba(27,136,255,.35)}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+    h1{font-weight:800;font-size:clamp(26px,4vw,44px);text-align:center;margin:6px 0}
+    .sub{color:var(--muted);text-align:center;margin:0 0 10px}
+    .underline{width:84px;height:4px;border-radius:999px;background:var(--copper);margin:12px auto 24px;opacity:.95}
+    .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:14px}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;border:1px solid rgba(15,23,32,.15);background:#fff;font-weight:800}
+    .pill.active{background:rgba(27,136,255,.10);border-color:rgba(27,136,255,.35)}
+    .pill .x{border:0;background:none;cursor:pointer}
+    #cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
     .card{background:rgba(255,255,255,.86);border:1px solid rgba(15,23,32,.08);border-radius:22px;padding:20px;box-shadow:var(--shadow)}
     .card h3{margin:0 0 8px;font-weight:800}
     .meta{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
     .tag{border:1px solid rgba(15,23,32,.12);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;background:rgba(27,136,255,.06)}
     .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:12px 20px;border:1px solid transparent;background:rgba(27,136,255,.80);color:#fff;text-decoration:none}
-    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-    .crumbs{color:#456;font-weight:700}
+    .cta-row{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
   </style>
 </head>
 <body>
@@ -40,127 +42,20 @@
 </header>
 
 <main class="wrap">
-  <div class="toolbar">
-    <nav class="crumbs" aria-label="Fil d'Ariane">
-      <a href="/formation/index.html">Nos formations</a> › <span id="crumb">Catalogue</span>
-    </nav>
+  <h1 id="title">Catalogue</h1>
+  <p id="subtitle" class="sub">Filtrez par thématique ou par public, puis ouvrez la fiche détaillée.</p>
+  <div class="underline"></div>
+
+  <div class="filters" id="activeFilters" aria-live="polite"></div>
+
+  <div id="cards" aria-live="polite"></div>
+
+  <div class="cta-row">
+    <a class="btn" href="/formation/themes/">Par thématique</a>
+    <a class="btn" href="/formation/publics/">Par public</a>
+    <a class="btn" href="/index.html#contact">Demander un programme</a>
   </div>
-
-  <h1 id="page-title">Catalogue</h1>
-  <p id="page-sub" class="lead">Filtrez par thématique ou par public.</p>
-
-  <!-- Filtres rapides -->
-  <div class="filters" id="quick-filters" aria-label="Filtres rapides"></div>
-
-  <!-- Cartes -->
-  <section id="cards" class="grid" aria-live="polite"></section>
 </main>
 
-<noscript><div class="wrap"><p>Activez JavaScript pour voir le catalogue.</p></div></noscript>
-
 <script type="module">
-  import { COURSES } from "../js/courses-data.js";
-
-  const THEME_LABELS = {
-    "rgpd-essentiels":"RGPD – essentiels, registre, AIPD",
-    "ia-act":"IA Act – obligations & documentation",
-    "cookies":"Cookies & CMP",
-    "web-legal":"Mentions légales & conformité web",
-    "access":"Accessibilité (RGAA / EN 301 549)",
-    "cyber":"Cybersécurité de base"
-  };
-  const AUDIENCE_LABELS = {
-    dirigeants:"Dirigeants & responsables",
-    equipes:"Équipes opérationnelles",
-    dpo:"Référents / DPO",
-    dev:"Dev, Produit & Data"
-  };
-
-  const params = new URLSearchParams(location.search);
-  let theme = params.get("theme");
-  let audience = params.get("public");
-
-  // MEP titres/fil d’ariane
-  const title = document.getElementById("page-title");
-  const sub = document.getElementById("page-sub");
-  const crumb = document.getElementById("crumb");
-  function updateHead(){
-    if (theme){
-      title.textContent = THEME_LABELS[theme] || "Thématique";
-      sub.textContent = "Formations liées à cette thématique.";
-      crumb.textContent = title.textContent;
-      document.title = `${title.textContent} – Catalogue – Awenoria`;
-    } else if (audience){
-      title.textContent = AUDIENCE_LABELS[audience] || "Public";
-      sub.textContent = "Formations recommandées pour ce public.";
-      crumb.textContent = title.textContent;
-      document.title = `${title.textContent} – Catalogue – Awenoria`;
-    } else {
-      title.textContent = "Catalogue";
-      sub.textContent = "Filtrez par thématique ou par public.";
-      crumb.textContent = "Catalogue";
-      document.title = "Catalogue des formations – Awenoria";
-    }
-  }
-  updateHead();
-
-  // Filtres rapides (puces)
-  const quick = document.getElementById("quick-filters");
-  function pill(label, href, pressed=false){
-    const a = document.createElement("a");
-    a.className="pill"; a.setAttribute("aria-pressed", pressed?"true":"false");
-    a.textContent = label; a.href = href; return a;
-  }
-  function buildQuickFilters(){
-    quick.innerHTML = "";
-    // Thématiques
-    Object.entries(THEME_LABELS).forEach(([k,v]) => {
-      quick.appendChild(pill(v, `./liste.html?theme=${encodeURIComponent(k)}`, theme===k));
-    });
-    // Séparateur visuel
-    const sep = document.createElement("span"); sep.style.margin="0 4px"; sep.textContent="•"; quick.appendChild(sep);
-    // Publics
-    Object.entries(AUDIENCE_LABELS).forEach(([k,v]) => {
-      quick.appendChild(pill(v, `./liste.html?public=${encodeURIComponent(k)}`, audience===k));
-    });
-    // Bouton “Tout”
-    const sep2 = document.createElement("span"); sep2.style.margin="0 4px"; sep2.textContent="•"; quick.appendChild(sep2);
-    quick.appendChild(pill("Tout le catalogue", "./liste.html", (!theme && !audience)));
-  }
-  buildQuickFilters();
-
-  // Filtrage
-  let list = COURSES.slice();
-  if (theme) list = list.filter(c => (c.themes||[]).includes(theme));
-  if (audience) list = list.filter(c => (c.audiences||[]).includes(audience));
-
-  // Rendu
-  const cards = document.getElementById("cards");
-  const tag = (t) => `<span class="tag">${t}</span>`;
-  function render(){
-    if (!list.length){
-      cards.innerHTML = `<p>Aucune formation trouvée.</p>`;
-      return;
-    }
-    const ctx = theme ? `from=theme&theme=${encodeURIComponent(theme)}` :
-                audience ? `from=public&public=${encodeURIComponent(audience)}` :
-                `from=catalogue`;
-    cards.innerHTML = list.map(c => `
-      <article class="card">
-        <h3>${c.title}</h3>
-        <div class="meta">
-          ${c.duration ? tag(c.duration):""}
-          ${c.level ? tag(c.level):""}
-          ${(c.modalities||[]).map(tag).join("")}
-        </div>
-        <p>${c.summary||""}</p>
-        <p style="margin-top:8px">
-          <a class="btn" href="/formation/fiches/${c.slug}.html?${ctx}" aria-label="Voir ${c.title}">Voir la fiche</a>
-        </p>
-      </article>
-    `).join("");
-  }
-  render();
-</script>
-</body>
-</html>
+  import { COURSES } from "../js/courses-data.j
