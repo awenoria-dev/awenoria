@@ -1,8 +1,25 @@
 // /js/courses-data.js
-// IDs possibles (thèmes) : rgpd-essentiels, ia-act, cookies, web-legal, access, cyber
-// IDs possibles (publics) : dirigeants, equipes, dpo, dev
+// Thèmes possibles : rgpd-essentiels, ia-act, cookies, web-legal, access, cyber
+// Publics possibles : dirigeants, equipes, dpo, dev
 
-export const COURSES = [
+/** @typedef {{
+ *   id: string,
+ *   slug: string,
+ *   title: string,
+ *   duration?: string,
+ *   level?: string,
+ *   modalities?: string[],
+ *   themes?: string[],
+ *   audiences?: string[],
+ *   summary?: string,
+ *   pitchByTheme?: Record<string,string>,
+ *   pitchByAudience?: Record<string,string>,
+ *   program?: string[]
+ * }} Course
+ */
+
+/** @type {Course[]} */
+const COURSES = [
   {
     id: "rgpd-bases",
     slug: "rgpd-bases",
@@ -12,14 +29,19 @@ export const COURSES = [
     modalities: ["Présentiel", "Distanciel"],
     themes: ["rgpd-essentiels"],
     audiences: ["dirigeants", "equipes", "dpo"],
-    summary: "Comprendre les obligations clés (base légale, registre, information, droits) et savoir quoi faire demain matin.",
+    summary:
+      "Comprendre les obligations clés (base légale, registre, information, droits) et savoir quoi faire demain matin.",
     pitchByTheme: {
-      "rgpd-essentiels": "Vue d'ensemble pragmatique du RGPD avec focus registre, AIPD et preuves de conformité."
+      "rgpd-essentiels":
+        "Vue d'ensemble pragmatique du RGPD avec focus registre, AIPD et preuves de conformité."
     },
     pitchByAudience: {
-      dirigeants: "Décider vite : risques, priorités, feuille de route 90 jours, budget & arbitrages.",
-      equipes: "Passer à l’action : modèles concrets (registre, mentions, demandes d’accès), checklists métier.",
-      dpo: "Structurer la gouvernance : cartographie, DPIA, preuves et suivi des écarts."
+      dirigeants:
+        "Décider vite : risques, priorités, feuille de route 90 jours, budget & arbitrages.",
+      equipes:
+        "Passer à l’action : modèles concrets (registre, mentions, demandes d’accès), checklists métier.",
+      dpo:
+        "Structurer la gouvernance : cartographie, DPIA, preuves et suivi des écarts."
     },
     program: [
       "Bases légales & minimisation",
@@ -37,16 +59,23 @@ export const COURSES = [
     modalities: ["Distanciel", "Présentiel"],
     themes: ["cookies", "web-legal"],
     audiences: ["dirigeants", "equipes", "dpo", "dev"],
-    summary: "Mettre en place une CMP propre, auditer les tags, documenter le consentement et limiter l'impact business.",
+    summary:
+      "Mettre en place une CMP propre, auditer les tags, documenter le consentement et limiter l'impact business.",
     pitchByTheme: {
-      cookies: "De l’audit aux correctifs : catégories, preuve du consentement, exemptions, plans de taggage.",
-      "web-legal": "Aligner mentions, politique cookies et CMP pour un parcours utilisateur cohérent."
+      cookies:
+        "De l’audit aux correctifs : catégories, preuve du consentement, exemptions, plans de taggage.",
+      "web-legal":
+        "Aligner mentions, politique cookies et CMP pour un parcours utilisateur cohérent."
     },
     pitchByAudience: {
-      dirigeants: "Réduire le risque sans casser l’acquisition : options, KPIs, compromis.",
-      equipes: "Paramétrages CMP, bannières, tagging plan, recettes de tests.",
-      dpo: "Doctrine interne, exemptions, preuves de consentement & journalisation.",
-      dev: "Implémentation technique : events, priorités de chargement, bandeau, refus dur."
+      dirigeants:
+        "Réduire le risque sans casser l’acquisition : options, KPIs, compromis.",
+      equipes:
+        "Paramétrages CMP, bannières, tagging plan, recettes de tests.",
+      dpo:
+        "Doctrine interne, exemptions, preuves de consentement & journalisation.",
+      dev:
+        "Implémentation technique : events, priorités de chargement, bandeau, refus dur."
     },
     program: [
       "Cadre CNIL/UE et exemptions",
@@ -64,15 +93,21 @@ export const COURSES = [
     modalities: ["Distanciel", "Présentiel"],
     themes: ["ia-act"],
     audiences: ["dirigeants", "equipes", "dpo", "dev"],
-    summary: "Qualifier les systèmes, comprendre les obligations par niveau de risque, préparer la doc et la gouvernance.",
+    summary:
+      "Qualifier les systèmes, comprendre les obligations par niveau de risque, préparer la doc et la gouvernance.",
     pitchByTheme: {
-      "ia-act": "Passage en revue des catégories de risque, obligations et trame documentaire prête à l’emploi."
+      "ia-act":
+        "Passage en revue des catégories de risque, obligations et trame documentaire prête à l’emploi."
     },
     pitchByAudience: {
-      dirigeants: "Décider : périmètre, risques, responsabilités, budget et comitologie.",
-      equipes: "Procédures et modèles pour opérer la conformité au quotidien.",
-      dpo: "Articuler RGPD/IA Act : registres, analyses, contrôles, preuves.",
-      dev: "Impacts produit/data : dataset, logs, évaluation, robustesse, transparence."
+      dirigeants:
+        "Décider : périmètre, risques, responsabilités, budget et comitologie.",
+      equipes:
+        "Procédures et modèles pour opérer la conformité au quotidien.",
+      dpo:
+        "Articuler RGPD/IA Act : registres, analyses, contrôles, preuves.",
+      dev:
+        "Impacts produit/data : dataset, logs, évaluation, robustesse, transparence."
     },
     program: [
       "Cartographier les cas d’usage",
@@ -90,14 +125,19 @@ export const COURSES = [
     modalities: ["Distanciel", "Présentiel"],
     themes: ["access"],
     audiences: ["equipes", "dev", "dirigeants"],
-    summary: "Intégrer l’accessibilité dans vos produits numériques : obligations, quick wins, outils de test.",
+    summary:
+      "Intégrer l’accessibilité dans vos produits numériques : obligations, quick wins, outils de test.",
     pitchByTheme: {
-      access: "RGAA/EN 301 549 : exigences, méthodes de test et mise en œuvre pragmatique."
+      access:
+        "RGAA/EN 301 549 : exigences, méthodes de test et mise en œuvre pragmatique."
     },
     pitchByAudience: {
-      dirigeants: "Conformité, image et risques : feuille de route réaliste.",
-      equipes: "Design, contenu et QA : checklists prêtes à l’emploi.",
-      dev: "Implémentation : sémantique, contrastes, focus, ARIA, tests."
+      dirigeants:
+        "Conformité, image et risques : feuille de route réaliste.",
+      equipes:
+        "Design, contenu et QA : checklists prêtes à l’emploi.",
+      dev:
+        "Implémentation : sémantique, contrastes, focus, ARIA, tests."
     },
     program: [
       "Cadre légal et normes",
@@ -108,5 +148,12 @@ export const COURSES = [
   }
 ];
 
-// 👉 AJOUTE CETTE LIGNE À LA FIN :
-if (typeof window !== 'undefined') window.COURSES = COURSES;
+// ➜ Expose au navigateur (utile même en module)
+if (typeof window !== "undefined") {
+  // On n’utilise pas Object.freeze ici pour te laisser éditer à chaud si besoin
+  window.COURSES = COURSES;
+}
+
+// ➜ Export ESM
+export { COURSES };
+export default COURSES;
