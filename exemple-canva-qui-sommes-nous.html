@@ -7,14 +7,14 @@
   <meta name="description" content="Awenoria démocratise la conformité pour les TPE/PME, associations et start-ups : pré-diagnostic local, accompagnement humain, prix démocratisé.">
 
   <!-- Canonical + Open Graph / Twitter -->
-  <link rel="canonical" href="https://www.awenoria.fr/Qui-sommes-nous.html" />
+  <link rel="canonical" href="https://www.awenoria.fr/qui-sommes-nous.html" />
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Awenoria">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:title" content="Qui sommes-nous ? – Awenoria">
   <meta property="og:description" content="Rendre la conformité accessible, humaine et transparente. Pré-diagnostic local, sans collecte, et accompagnement humain à prix démocratisé.">
   <meta property="og:image" content="https://www.awenoria.fr/images/og-awenoria.jpg">
-  <meta property="og:url" content="https://www.awenoria.fr/Qui-sommes-nous.html">
+  <meta property="og:url" content="https://www.awenoria.fr/qui-sommes-nous.html">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Qui sommes-nous ? – Awenoria">
   <meta name="twitter:description" content="Conformité simple, pédagogique et respectueuse des données pour TPE/PME, assos et start-ups.">
@@ -34,121 +34,162 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
 
-  <!-- 👇👇👇 CSS IDENTIQUE À L’ACCUEIL (+ quelques mini-règles spécifiques) -->
   <style>
-    /* ================== BASE (copie accueil) ================== */
-    @font-face{font-family:"AwenoriaUI";src:url("fonts/awenoria-ui.woff2") format("woff2");font-weight:100 900;font-display:swap}
+    /* ================== BASE ================== */
     :root{
       --font-ui:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-      --bg:#f6f9fc; --panel:#fff; --muted:#4a6176; --text:#0f5f9a; --brand:#0f5f9a; --accent:#16a34a;
-      --copper:#ff8a3d; --copper-rgb:255,138,61; --danger:#dc2626;
-      --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.08); --maxw:1200px; --nav-h:40px; --caret:.6s;
+      --bg:#f6f9fc; --panel:#fff; --muted:#4a6176; --text:#0f5f9a; --brand:#0f5f9a;
+      --copper:#ff8a3d; --danger:#dc2626;
+      --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.08); --maxw:1200px; --nav-h:40px;
+      /* Charte encarts */
+      --aw-blue:#0f5f9a; --aw-blue-soft:#eaf2fb; --aw-copper:#ff8a3d; --aw-copper-100:#ffcf99;
     }
-    *{box-sizing:border-box} html,body{height:100%}
-    html{font-family:var(--font-ui);font-weight:400;font-optical-sizing:auto;font-synthesis-weight:none;font-synthesis-style:none}
-    body,button,input,select,textarea{font-family:inherit}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html{font-family:var(--font-ui)}
     body{margin:0;color:var(--text);
       background:radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),
-                 linear-gradient(180deg,#fff 0%,#f6f9fc 100%);
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; line-height:1.5}
+                 linear-gradient(180deg,#fff 0%,#f6f9fc 100%); line-height:1.5}
     h1,h2,h3,h4{font-weight:800}
-
-    .glass{background:rgba(255,255,255,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow)}
-    .glass-soft{background:rgba(255,255,255,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(15,23,32,.09)}
+    .glass{background:rgba(255,255,255,.86);backdrop-filter:blur(10px);border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow)}
 
     /* NAVBAR */
     header.navbar{position:sticky;top:0;z-index:1100;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(15,23,32,.08)}
     .nav-wrap{max-width:var(--maxw);margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:14px}
-    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
     .brand-img{height:clamp(56px,8vw,96px);object-fit:contain;display:block}
     .nav-main{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;margin-left:8px;flex-wrap:wrap}
-    .nav-main a,.nav-main button{appearance:none;background:none;border:none;cursor:pointer;color:var(--text);text-decoration:none;font-weight:800;font-size:16px;height:var(--nav-h);line-height:var(--nav-h);padding:0 12px;border-radius:10px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+    .nav-main a,.nav-main button{appearance:none;background:none;border:none;cursor:pointer;color:inherit;text-decoration:none;font-weight:800;font-size:16px;height:var(--nav-h);line-height:var(--nav-h);padding:0 12px;border-radius:10px;display:inline-flex;align-items:center}
     .nav-main a:hover,.nav-main button:hover{background:rgba(27,136,255,.10)}
     .dropdown{position:relative}
-    .dropdown-toggle{height:var(--nav-h);line-height:var(--nav-h);padding:0 12px;display:inline-flex;align-items:center}
     .dropdown-toggle svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;margin-left:6px}
-    .nav-actions{display:flex;align-items:center;gap:8px;margin-left:6px}
-    .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:12px 20px;font-size:16px;letter-spacing:.3px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:all .25s ease;overflow:hidden;text-decoration:none;border:1px solid transparent}
-    .btn.primary{background:rgba(27,136,255,.80);color:#fff;border-color:rgba(255,255,255,.25);box-shadow:inset 0 0 12px rgba(255,255,255,.15),0 4px 18px rgba(27,136,255,.30)}
-    .btn.secondary{background:rgba(255,255,255,.22);color:var(--text);border:2px solid rgba(15,23,32,.28);box-shadow:inset 0 0 0 1px rgba(255,255,255,.65),0 8px 18px rgba(15,23,32,.08)}
-    .btn.secondary:hover{background:rgba(255,255,255,.35);border-color:rgba(15,23,32,.38)}
-    .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(15,23,32,.12);box-shadow:none}
+    .nav-actions{display:flex;align-items:center;gap:8px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:12px 20px;font-size:16px;letter-spacing:.3px;transition:all .25s ease;text-decoration:none;border:1px solid transparent}
+    .btn.primary{background:rgba(27,136,255,.80);color:#fff;border-color:rgba(255,255,255,.25)}
+    .btn.secondary{background:rgba(255,255,255,.22);color:var(--text);border:2px solid rgba(15,23,32,.28)}
+    .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(15,23,32,.12)}
 
-    /* Mega */
-    .mega{position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + 8px);width:min(920px,96vw);border-radius:18px;padding:16px;display:none;z-index:1200}
-    .mega.open{display:block;animation:fadeIn .16s ease}
-    .mega-grid--3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-    @media (max-width:980px){.mega-grid--3{grid-template-columns:1fr 1fr}}
-    @media (max-width:640px){.mega-grid--3{grid-template-columns:1fr}}
-    .mega .group{background:rgba(255,255,255,.78);border:1px solid rgba(15,23,32,.08);border-radius:14px;padding:14px;overflow:visible;display:flex;flex-direction:column;height:100%}
-    .mega h6{margin:0 0 10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#456;white-space:normal;overflow-wrap:anywhere}
-    .mega-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-    .mega-list a{display:block;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--text);font-weight:750;line-height:1.25;white-space:normal;overflow-wrap:anywhere}
-    .mega-list a:hover{background:rgba(27,136,255,.10)}
-    .format-badges{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 10px}
-    .pill-badge{background:rgba(27,136,255,.10);border:1px solid rgba(27,136,255,.26);color:#0f3a6e;border-radius:999px;padding:6px 12px;font-weight:800;font-size:12px}
-
-    /* Account menu */
+    /* Compte */
     .account{position:relative}
     .account-btn{width:36px;height:36px;border-radius:999px;border:1px solid rgba(15,23,32,.15);background:#f2f6fb;color:var(--text);display:inline-flex;align-items:center;justify-content:center}
-    .account-btn:hover{background:#eaf2fb}
-    .account-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
     .account-menu{position:absolute;right:0;top:calc(var(--nav-h) + 18px);width:min(86vw,340px);border-radius:18px;border:1px solid rgba(15,23,32,.12);padding:12px;display:none;z-index:1300;background:linear-gradient(180deg,#f3f8ff,#eef5ff)}
     .account-menu.open{display:block}
-    .acc-item{display:grid;grid-template-columns:40px 1fr 24px;gap:10px;align-items:center;padding:12px;border-radius:14px;text-decoration:none;color:var(--text)}
-    .acc-item:hover{background:#f6f9fc}
-    .acc-ico{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;border:1px solid rgba(15,23,32,.12);background:#fff}
-    .acc-ico svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
-    .acc-title{margin:0;font-weight:800}
-    .acc-arrow svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 
-    /* Layout commun */
-    .section{max-width:var(--maxw);margin:42px auto;padding:0 20px}
-    .title-center{margin:6px 0 16px;text-align:center;font-size:clamp(26px,4vw,40px);font-weight:800}
-    .subtitle-center{max-width:860px;margin:0 auto 18px;text-align:center;color:var(--muted)}
-    .underline{width:80px;height:4px;border-radius:999px;background:var(--copper);margin:10px auto 26px;opacity:.90}
-    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-    @media (max-width:1024px){.grid-3{grid-template-columns:1fr 1fr}}
-    @media (max-width:620px){.grid-3{grid-template-columns:1fr}}
-    .card{position:relative;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:10px;min-height:160px;border:1px solid rgba(15,23,32,.08)}
-    .badge{align-self:flex-start;border-radius:999px;padding:6px 14px;font-weight:800;background:rgba(27,136,255,.10);border:1px solid rgba(27,136,255,.26);color:#0f3a6e;letter-spacing:.02em;font-size:12px}
+    /* Hero “À propos” */
+    .hero-apropos{
+      position:relative; isolation:isolate; padding:56px 0 22px;  /* espace réduit */
+      border-bottom:1px solid rgba(15,23,32,.08);
+      background:linear-gradient(180deg, rgba(27,136,255,.06), transparent 55%);
+      text-align:center;
+    }
+    .hero-apropos .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+    .hero-apropos h1{margin:0 0 10px;font-size:clamp(28px,4.8vw,46px);line-height:1.1}
+    .lead{margin:0 0 16px;color:var(--muted);font-size:clamp(16px,1.6vw,18px)}
+
+    /* =============== ENCARts – Awenoria =============== */
+    .encarts{max-width:1200px;margin:20px auto 44px;padding:0 20px;display:grid;gap:18px}
+    .encart{border:1px solid rgba(15,23,32,.08);border-radius:22px;overflow:hidden;background:rgba(255,255,255,.86);backdrop-filter:blur(10px)}
+    .encart.white{background:#fff}
+    .encart.blue{background:linear-gradient(180deg,#0f5f9a,#0c4e80);color:#fff}
+    .encart .pad{padding:22px}
+    .encart .col{display:flex;flex-direction:column;gap:10px}
+    .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7aa9c7;font-weight:800}
+    .aw-title{margin:4px 0 6px;font-weight:800;letter-spacing:.01em;font-size:clamp(22px,3.2vw,32px)}
+    .aw-title.copper{color:var(--aw-copper)}
+    .blue .lead{color:#dbe8f7}
+    .aw-underline{width:86px;height:4px;border-radius:999px;background:var(--aw-copper);opacity:.92;margin-top:2px}
+
+    /* Split 2 colonnes */
+    .encart.split{display:grid;grid-template-columns:1.1fr .9fr}
+    .encart.split .center{display:grid;place-items:center;min-height:220px}
+    @media(max-width:980px){.encart.split{grid-template-columns:1fr}}
+
+    /* Sommaire “parties” */
+    .sommaire{display:grid;grid-template-columns:220px 1fr}
+    .sommaire .parts{background:#0f5f9a;color:#fff;display:grid}
+    .sommaire .parts .item{padding:14px 16px;font-weight:800;border-bottom:1px solid rgba(255,255,255,.18)}
+    .sommaire .entries{background:#fff;display:grid}
+    .sommaire .entries .entry{padding:14px 18px;border-bottom:1px solid #e8eef6;color:#244a6d;font-weight:750}
+    @media(max-width:720px){.sommaire{grid-template-columns:1fr}}
+
+    /* Fondateur */
+    .encart.founder{display:grid;grid-template-columns:1fr 1.2fr}
+    .encart.founder .img{background:#f2f6fb;display:grid;place-items:center;padding:22px}
+    .encart.founder .txt{padding:22px}
+    @media(max-width:900px){.encart.founder{grid-template-columns:1fr}}
+
+    /* Frise chronologique (simple) */
+    .timeline{padding:6px 0 2px}
+    .timeline .row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+    .t-item{position:relative;text-align:center;padding-top:22px}
+    .t-item .pin{position:absolute;left:50%;transform:translateX(-50%);top:0;width:8px;height:36px;background:#0f5f9a;border-radius:6px}
+    .t-item .year{font-weight:800;color:#0f5f9a;margin-bottom:6px}
+    .t-item p{color:#4a6176;margin:0}
+    @media(max-width:1040px){.timeline .row{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:640px){.timeline .row{grid-template-columns:1fr}}
+
+    /* Valeurs */
+    .encart.values{display:grid;grid-template-columns:1fr 1.4fr}
+    .encart.values .left{padding:22px}
+    .encart.values .right{background:#0f5f9a;color:#fff;padding:22px;display:grid;gap:14px}
+    .encart.values .v{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start}
+    .encart.values h4{margin:0 0 2px}
+    @media(max-width:980px){.encart.values{grid-template-columns:1fr}}
+
+    /* Citation */
+    .encart.quote{display:grid;grid-template-columns:1.1fr .9fr}
+    .encart.quote .visu{
+      min-height:260px;
+      background:
+        linear-gradient(0deg,rgba(255,255,255,.28),rgba(255,255,255,.28)),
+        radial-gradient(900px 400px at 10% -10%, #eef6ff, transparent 60%),
+        linear-gradient(180deg,#cfe3f9,#b6d4f5);
+    }
+    .encart.quote blockquote{margin:0;padding:26px;font-size:clamp(18px,2.4vw,22px);color:#0f2746}
+    @media(max-width:980px){.encart.quote{grid-template-columns:1fr}}
+
+    /* Graphique */
+    .encart.chart{display:grid;grid-template-columns:1fr 1.2fr}
+    .encart.chart .explain{padding:22px}
+    .encart.chart .viz{padding:14px}
+    @media(max-width:980px){.encart.chart{grid-template-columns:1fr}}
+
+    /* Équipe / Étapes */
+    .team-3,.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:0 22px 22px}
+    .member{padding:18px;text-align:center}
+    .member .avatar{width:120px;height:120px;margin:0 auto 10px;border-radius:16px;background:radial-gradient(80px 50px at 50% 35%,#d9e6f5,#a9c6e8)}
+    .step{padding:18px;border:1px solid #e6eef7;border-radius:16px;background:#fff}
+    .badge-num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--aw-copper-100);font-weight:800;margin-bottom:6px}
+    @media(max-width:900px){.team-3,.steps{grid-template-columns:1fr}}
+
+    /* Présence */
+    .encart.presence{display:grid;grid-template-columns:1.1fr .9fr}
+    .encart.presence .map{display:grid;place-items:center;padding:10px}
+    @media(max-width:980px){.encart.presence{grid-template-columns:1fr}}
+
+    /* Galerie */
+    .gallery4{display:grid;grid-template-columns:repeat(4,1fr);min-height:220px}
+    .gallery4 .g{min-height:220px}
+    .gallery4 .g1{background:linear-gradient(180deg,#cfe3f9,#b6d4f5)}
+    .gallery4 .g2{background:linear-gradient(180deg,#d4f0e1,#b8e6cc)}
+    .gallery4 .g3{background:linear-gradient(180deg,#fce6cf,#ffd7b3)}
+    .gallery4 .g4{background:linear-gradient(180deg,#e8e8e8,#d6d6d6)}
+    @media(max-width:900px){.gallery4{grid-template-columns:1fr 1fr}}
+
+    /* CTA encart */
+    .cta{display:grid;place-items:center;padding:36px}
+    .cta h2{font-size:clamp(26px,3.8vw,42px);margin:0 0 8px}
+    .cta .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 
     /* Footer */
     .cc-footer{background:#0a0a0a;color:#eaeaea;padding:28px 0 12px;border-top:1px solid rgba(255,255,255,.12)}
     .cc-container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
     .cc-top{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
-    .cc-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
-    .cc-brand img{height:clamp(56px,7vw,90px);object-fit:contain;display:block}
-    .cc-locale{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(255,255,255,.25);border-radius:999px;text-decoration:none;color:#eaeaea}
-    .cc-locale svg{width:18px;height:18px;stroke:#eaeaea;fill:none}
+    .cc-brand img{height:clamp(56px,7vw,90px)}
     .cc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;padding:20px 0}
     .cc-col h4{margin:0 0 12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#a7afbf}
     .cc-col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-    .cc-col a{color:#eaeaea;text-decoration:none;font-weight:600}
-    .cc-col a:hover{text-decoration:underline}
-    .cc-social{display:flex;align-items:center;gap:14px;justify-self:end}
-    .cc-social a{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.5)}
-    .cc-social svg{width:18px;height:18px;fill:none;stroke:#eaeaea;stroke-width:2}
     .cc-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:grid;grid-template-columns:1fr auto;gap:12px}
-    .cc-bottom small{color:#b8bfcc}
-
-    /* Hero “à propos” (visuel cohérent avec accueil) */
-    .hero-apropos{
-      position:relative; isolation:isolate; padding:64px 0 34px; border-bottom:1px solid rgba(15,23,32,.08);
-      background:linear-gradient(180deg, rgba(27,136,255,.06), transparent 55%);
-      text-align:center;
-    }
-    .hero-apropos .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
-    .hero-apropos h1{margin:0 0 12px;font-size:clamp(28px,4.8vw,46px);line-height:1.1}
-    .lead{margin:0 0 16px;color:var(--muted);font-size:clamp(16px,1.6vw,18px)}
-
-    /* Timeline */
-    .roadmap{max-width:860px;margin:0 auto;list-style:none;padding:0}
-    .roadmap li{position:relative;padding:0 0 16px 34px;margin:0 0 14px;border-left:2px dashed #d7e6f2;color:var(--muted)}
-    .roadmap li::before{content:"";position:absolute;left:-6px;top:2px;width:14px;height:14px;border-radius:50%;background:#eaf5fd;border:2px solid #cbe3f3;box-shadow:0 0 0 3px #fff}
-    .roadmap b{color:#0f2746}
-
-    @keyframes fadeIn{from{opacity:0;transform:translate(-50%,-2px)} to{opacity:1;transform:translate(-50%,0)}}
   </style>
 
   <!-- Schema.org JSON-LD -->
@@ -161,13 +202,13 @@
      "sameAs":["https://www.linkedin.com/company/awenoria"]},
     {"@type":"BreadcrumbList","itemListElement":[
       {"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.awenoria.fr/"},
-      {"@type":"ListItem","position":2,"name":"Qui sommes-nous ?","item":"https://www.awenoria.fr/Qui-sommes-nous.html"}]}
+      {"@type":"ListItem","position":2,"name":"Qui sommes-nous ?","item":"https://www.awenoria.fr/qui-sommes-nous.html"}]}
   ]}
   </script>
 </head>
 <body>
 
-<!-- ===== NAVBAR (identique accueil) ===== -->
+<!-- ===== NAVBAR ===== -->
 <header class="navbar" role="banner">
   <div class="nav-wrap">
     <a class="brand" href="index.html" aria-label="Aller à l'accueil">
@@ -175,7 +216,7 @@
     </a>
 
     <nav class="nav-main" aria-label="Navigation principale">
-      <a href="Qui-sommes-nous.html" class="active">Qui sommes-nous ?</a>
+      <a href="qui-sommes-nous.html" class="active">Qui sommes-nous ?</a>
 
       <!-- ▼ NOS SERVICES -->
       <div class="dropdown" id="servicesDropdown">
@@ -185,7 +226,7 @@
         </button>
         <div class="mega glass mega--services" role="menu" aria-label="Nos services">
           <div class="mega-grid--3">
-            <div class="group" style="padding-bottom:.75rem">
+            <div class="group">
               <h6>Conseil &amp; conformité</h6>
               <ul class="mega-list">
                 <li><a role="menuitem" href="index.html#audit">Audit &amp; Analyse</a></li>
@@ -193,7 +234,7 @@
                 <li><a role="menuitem" href="index.html#ia-act">Conformité IA (UE)</a></li>
               </ul>
             </div>
-            <div class="group" style="padding-bottom:.75rem">
+            <div class="group">
               <h6>Web &amp; légal</h6>
               <ul class="mega-list">
                 <li><a role="menuitem" href="index.html#f-cookies">Cookies &amp; CMP</a></li>
@@ -201,7 +242,7 @@
                 <li><a role="menuitem" href="index.html#f-access">Accessibilité (RGAA / EN 301 549)</a></li>
               </ul>
             </div>
-            <div class="group" style="padding-bottom:.75rem">
+            <div class="group">
               <h6>Formats &amp; modalités</h6>
               <div class="format-badges">
                 <span class="badge pill-badge">Audit flash</span>
@@ -209,13 +250,7 @@
                 <span class="badge pill-badge">Abonnement</span>
                 <span class="badge pill-badge">À la carte</span>
               </div>
-              <p class="mega-note">Livrables clairs, priorisation par impact, suivi possible.</p>
               <a class="btn ghost" href="index.html#contact" role="menuitem">Demander un devis</a>
-            </div>
-            <div class="group" style="grid-column:1/-1; display:flex; justify-content:center;">
-              <a href="index.html#offres" class="btn copper-ghost" role="menuitem">
-                Tous nos services, packs &amp; modules à la carte
-              </a>
             </div>
           </div>
         </div>
@@ -237,7 +272,6 @@
                 <li><a role="menuitem" href="index.html#f-cookies">Cookies &amp; CMP</a></li>
                 <li><a role="menuitem" href="index.html#f-legales">Mentions légales &amp; conformité web</a></li>
                 <li><a role="menuitem" href="index.html#f-access">Accessibilité (RGAA / EN 301 549)</a></li>
-                <li><a role="menuitem" href="index.html#f-cyber">Cybersécurité de base</a></li>
               </ul>
             </div>
             <div class="group">
@@ -258,13 +292,7 @@
                 <span class="badge pill-badge">Parcours</span>
                 <span class="badge pill-badge">Présentiel / Distanciel</span>
               </div>
-              <p class="mega-note">Supports fournis, quiz &amp; attestation inclus.</p>
               <a class="btn ghost" href="index.html#contact" role="menuitem">Demander un programme</a>
-            </div>
-            <div class="group" style="grid-column:1/-1; display:flex; justify-content:center;">
-              <a href="index.html#formations" class="btn copper-ghost" role="menuitem">
-                Voir toutes nos formations
-              </a>
             </div>
           </div>
         </div>
@@ -274,7 +302,6 @@
       <a href="index.html#contact">Contact</a>
     </nav>
 
-    <!-- Compte -->
     <div class="nav-actions">
       <div class="account">
         <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
@@ -308,10 +335,11 @@
     <p class="lead">Rendre la conformité accessible, humaine et transparente.</p>
   </div>
 </section>
-  <!-- ================= ENCARts – Awenoria ================= -->
+
+<!-- ============== ENCARts – Awenoria ============== -->
 <div class="encarts">
 
-  <!-- 1) Couverture “corporate” -->
+  <!-- 1) Couverture -->
   <section class="encart split">
     <div class="pad col blue">
       <span class="kicker">AWENORIA</span>
@@ -322,18 +350,17 @@
     <div class="center" style="background:
         radial-gradient(800px 400px at 10% -10%, rgba(255,255,255,.22), transparent 60%),
         linear-gradient(180deg,#eef6ff,#dfeaf7);">
-      <!-- Logo en pseudo “watermark” -->
       <svg width="200" viewBox="0 0 200 120" aria-hidden="true">
         <g fill="none" stroke="#0f5f9a" stroke-width="8">
           <path d="M20 100 L70 10 L120 100 Z"/>
-          <path d="M80 100 h80" />
+          <path d="M80 100 h80"/>
         </g>
         <circle cx="70" cy="95" r="20" fill="#ff8a3d"/>
       </svg>
     </div>
   </section>
 
-  <!-- 2) Le groupe (bloc texte + bande bleu) -->
+  <!-- 2) Le groupe -->
   <section class="encart blue">
     <div class="pad">
       <h2 class="aw-title">Le groupe</h2>
@@ -341,16 +368,12 @@
     </div>
   </section>
 
-  <!-- 3) Sommaire façon “Parties” -->
+  <!-- 3) Sommaire -->
   <section class="encart white">
     <div class="pad sommaire">
       <div class="parts">
-        <div class="item">PARTIE 1</div>
-        <div class="item">PARTIE 2</div>
-        <div class="item">PARTIE 3</div>
-        <div class="item">PARTIE 4</div>
-        <div class="item">PARTIE 5</div>
-        <div class="item">PARTIE 6</div>
+        <div class="item">PARTIE 1</div><div class="item">PARTIE 2</div><div class="item">PARTIE 3</div>
+        <div class="item">PARTIE 4</div><div class="item">PARTIE 5</div><div class="item">PARTIE 6</div>
       </div>
       <div class="entries">
         <div class="entry">Introduction</div>
@@ -363,10 +386,9 @@
     </div>
   </section>
 
-  <!-- 4) Fondateur (split, image CSS sans photo réelle) -->
+  <!-- 4) Fondateur -->
   <section class="encart founder">
     <div class="img">
-      <!-- avatar vectoriel simple -->
       <svg width="200" height="200" viewBox="0 0 200 200" aria-hidden="true">
         <circle cx="100" cy="80" r="42" fill="#e9eef7" stroke="#b8cbe2" stroke-width="4"/>
         <rect x="40" y="120" width="120" height="60" rx="14" fill="#d9e6f5" stroke="#b8cbe2" stroke-width="4"/>
@@ -375,11 +397,11 @@
     <div class="txt">
       <h2 class="aw-title">Alexandre M.</h2>
       <div class="kicker" style="color:#0f5f9a">Fondateur — Produit &amp; conformité</div>
-      <p>10 ans d’expérience dans la simplification réglementaire et le développement produit. Objectif&nbsp;: <b>vous rendre autonome</b> grâce à un pré-diagnostic clair, local et actionnable, complété par un accompagnement humain si besoin.</p>
+      <p>10 ans d’expérience dans la simplification réglementaire et le développement produit. Objectif : <b>vous rendre autonome</b> grâce à un pré-diagnostic local et actionnable, complété par un accompagnement humain si besoin.</p>
     </div>
   </section>
 
-  <!-- 5) Frise chronologique -->
+  <!-- 5) Histoire -->
   <section class="encart white">
     <div class="pad">
       <h2 class="aw-title copper">Notre histoire</h2>
@@ -421,13 +443,13 @@
     </div>
   </section>
 
-  <!-- 7) Citation + visuel CSS -->
+  <!-- 7) Citation -->
   <section class="encart quote">
     <div class="visu"></div>
     <div class="q"><blockquote>«&nbsp;Awenoria rend la conformité plus lisible et plus juste : <b>moins de frictions, plus d’autonomie</b>.&nbsp;»</blockquote></div>
   </section>
 
-  <!-- 8) Graphique comparatif (SVG) -->
+  <!-- 8) Graphique -->
   <section class="encart chart">
     <div class="explain">
       <h2 class="aw-title">Impact mesurable</h2>
@@ -437,28 +459,14 @@
       <svg viewBox="0 0 520 260" width="100%" height="auto" role="img" aria-label="Barres croissance accompagnement vs produit">
         <defs>
           <style>
-            .barA{fill:#ffcf99}
-            .barB{fill:#0f5f9a}
-            .axis{stroke:#a9bed3; stroke-width:1}
-            .lbl{font:700 12px Manrope, sans-serif; fill:#355}
+            .barA{fill:#ffcf99}.barB{fill:#0f5f9a}.axis{stroke:#a9bed3;stroke-width:1}.lbl{font:700 12px Manrope, sans-serif; fill:#355}
           </style>
         </defs>
-        <!-- axes -->
         <line x1="40" y1="210" x2="490" y2="210" class="axis"/>
         <line x1="40" y1="40"  x2="40"  y2="210" class="axis"/>
-        <!-- 2022 -->
-        <rect x="80"  y="170" width="28" height="40" class="barA"/>
-        <rect x="116" y="150" width="28" height="60" class="barB"/>
-        <text x="92" y="228" class="lbl">2022</text>
-        <!-- 2023 -->
-        <rect x="210" y="120" width="28" height="90" class="barA"/>
-        <rect x="246" y="80"  width="28" height="130" class="barB"/>
-        <text x="222" y="228" class="lbl">2023</text>
-        <!-- 2024 -->
-        <rect x="340" y="90"  width="28" height="120" class="barA"/>
-        <rect x="376" y="60"  width="28" height="150" class="barB"/>
-        <text x="352" y="228" class="lbl">2024</text>
-        <!-- légende -->
+        <rect x="80"  y="170" width="28" height="40" class="barA"/><rect x="116" y="150" width="28" height="60" class="barB"/><text x="92" y="228" class="lbl">2022</text>
+        <rect x="210" y="120" width="28" height="90" class="barA"/><rect x="246" y="80"  width="28" height="130" class="barB"/><text x="222" y="228" class="lbl">2023</text>
+        <rect x="340" y="90"  width="28" height="120" class="barA"/><rect x="376" y="60"  width="28" height="150" class="barB"/><text x="352" y="228" class="lbl">2024</text>
         <rect x="60" y="16" width="16" height="12" class="barA"/><text x="80" y="26" class="lbl">Accompagnement</text>
         <rect x="220" y="16" width="16" height="12" class="barB"/><text x="240" y="26" class="lbl">Produit (pré-diag)</text>
       </svg>
@@ -477,7 +485,7 @@
     </div>
   </section>
 
-  <!-- 10) Étapes clés (3 blocs) -->
+  <!-- 10) Étapes clés -->
   <section class="encart white">
     <div class="pad"><h2 class="aw-title copper">Comment on travaille</h2></div>
     <div class="steps">
@@ -487,21 +495,16 @@
     </div>
   </section>
 
-  <!-- 11) Présence (carte FR simplifiée + pins) -->
+  <!-- 11) Présence -->
   <section class="encart presence">
     <div class="pad col">
       <h2 class="aw-title">Notre présence</h2>
       <p class="lead">Nous intervenons partout en France en distanciel, et en présentiel sur demande (IDF, Bretagne, AuRA).</p>
     </div>
     <div class="map">
-      <!-- carte FR schématique -->
       <svg viewBox="0 0 400 260" width="100%" height="auto" aria-label="Carte simplifiée de la France">
-        <defs>
-          <style>.fr{fill:#fff;stroke:#0f5f9a;stroke-width:3} .pin{fill:#ffcf99;stroke:#b86122;stroke-width:2}</style>
-        </defs>
-        <!-- silhouette simple (hexagone stylisé) -->
-        <path class="fr" d="M200 20 330 70 330 170 200 220 70 170 70 70z" />
-        <!-- pins -->
+        <defs><style>.fr{fill:#fff;stroke:#0f5f9a;stroke-width:3}.pin{fill:#ffcf99;stroke:#b86122;stroke-width:2}</style></defs>
+        <path class="fr" d="M200 20 330 70 330 170 200 220 70 170 70 70z"/>
         <g>
           <circle class="pin" cx="200" cy="80" r="8"/><circle class="pin" cx="260" cy="110" r="8"/>
           <circle class="pin" cx="230" cy="160" r="8"/><circle class="pin" cx="160" cy="140" r="8"/>
@@ -511,7 +514,7 @@
     </div>
   </section>
 
-  <!-- 12) Galerie 4 colonnes “photo” sans images -->
+  <!-- 12) Galerie visuelle -->
   <section class="encart gallery4">
     <div class="g g1"></div><div class="g g2"></div><div class="g g3"></div><div class="g g4"></div>
   </section>
@@ -522,12 +525,12 @@
       <h2 class="aw-title">Des questions&nbsp;?</h2>
       <div class="row">
         <a class="btn secondary" href="faq.html">Consulter la FAQ</a>
-        <a class="btn aw" href="index.html#contact">Nous contacter</a>
+        <a class="btn" style="background:linear-gradient(90deg,var(--aw-copper),#ff9a56);color:#fff;border:1px solid rgba(255,255,255,.55)" href="index.html#contact">Nous contacter</a>
       </div>
     </div>
   </section>
 
-  <!-- 14) Merci / fin -->
+  <!-- 14) Merci -->
   <section class="encart blue cta">
     <div>
       <h2 class="aw-title" style="font-size:clamp(34px,6vw,60px)">MERCI</h2>
@@ -535,197 +538,7 @@
     </div>
   </section>
 </div>
-<!-- =============== /ENCARTS =============== -->
-
-
-<!-- ===== INTRO ===== -->
-<section class="section" style="text-align:center;max-width:900px;margin:0 auto;">
-  <p>Chez <b>Awenoria</b>, nous avons une conviction simple&nbsp;: la conformité ne doit pas être un fardeau.
-  Nous aidons les TPE, PME et start-ups à maîtriser leurs obligations numériques en toute autonomie — <b>sans jargon, sans dépendance et à un prix démocratisé</b>.</p>
-  <p>Notre mission&nbsp;: rendre la conformité <b>simple, pédagogique et durable</b>, au service de la confiance et de la transparence.</p>
-</section>
-
-<!-- ===== MISSION & VALEURS ===== -->
-<section id="mission" class="section">
-  <h2 class="title-center">Notre mission &amp; nos valeurs</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">Nous démocratisons la conformité pour que chaque structure puisse agir avec clarté, responsabilité et sérénité.</p>
-
-  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
-    <div class="grid-3">
-      <article class="card glass"><span class="badge">Mission</span><h3>Démocratiser la conformité</h3><p>Les exigences légales se multiplient, mais les moyens des petites structures restent limités. Nous automatisons l’essentiel pour vous permettre d’avancer en toute autonomie, sans expertise juridique.</p></article>
-      <article class="card glass"><span class="badge">Valeur</span><h3>Clarté &amp; accompagnement humain</h3><p>Nous transformons les textes réglementaires en actions concrètes et compréhensibles, avec un accompagnement humain à chaque étape.</p></article>
-      <article class="card glass"><span class="badge">Éthique</span><h3>Respect de la vie privée</h3><p>Analyse locale par défaut, sans transfert ni stockage. Votre conformité reste votre propriété.</p></article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CONTEXTE ===== -->
-<section class="section">
-  <h2 class="title-center">Un cadre en évolution</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">Nous accompagnons la transition vers une économie <b>plus transparente, plus accessible et plus responsable</b>.</p>
-
-  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
-    <div class="grid-3">
-      <article class="card glass"><span class="badge">Données</span><h3>Protection des données (RGPD)</h3><p>Information, base légale, droits et consentements&nbsp;: le socle de confiance pour vos clients et partenaires.</p></article>
-      <article class="card glass"><span class="badge">Accessibilité</span><h3>RGAA / WCAG</h3><p>Vers des services numériques accessibles à tous, pour une société plus inclusive.</p></article>
-      <article class="card glass"><span class="badge">Commerce</span><h3>Mentions légales &amp; CGV/CGU</h3><p>Des informations claires et à jour pour des relations commerciales plus justes.</p></article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== POURQUOI ===== -->
-<section class="section">
-  <h2 class="title-center">Pourquoi choisir Awenoria&nbsp;?</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
-    <div class="grid-3">
-      <article class="card glass"><span class="badge">Automatisé</span><h3>Analyse locale</h3><p>Votre pré-diagnostic s’exécute côté navigateur&nbsp;: aucune donnée sensible n’est transmise.</p></article>
-      <article class="card glass"><span class="badge">Rapide</span><h3>Diagnostic immédiat</h3><p>Scores thématiques, priorisation et actions concrètes en quelques secondes.</p></article>
-      <article class="card glass"><span class="badge">Évolutif</span><h3>Suivi et modèles</h3><p>Guides, modèles et mises à jour réglementaires pour rester conforme en toute simplicité.</p></article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== COMPARATIF – Version A ===== -->
-<section class="section">
-  <h2 class="title-center">Awenoria &amp; accompagnement humain&nbsp;: deux leviers complémentaires</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">Démarrez vite et au juste niveau d’effort, puis renforcez votre accompagnement quand cela devient nécessaire.</p>
-
-  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
-    <div class="grid-3" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px">
-      <article class="card glass">
-        <span class="badge">Solution digitale</span>
-        <h3>Awenoria — auto-diagnostic guidé</h3>
-        <p>Résultat immédiat, analyse locale (aucune collecte), priorisation d’actions, mises à jour continues et un <b>prix démocratisé</b>.</p>
-        <ul style="margin:10px 0 0 18px">
-          <li>Pré-diagnostic automatisé, clair et structuré</li>
-          <li>Scores thématiques &amp; plans d’action</li>
-          <li>Aucune donnée transmise&nbsp;: tout reste local</li>
-          <li>Suivi et guides évolutifs</li>
-        </ul>
-      </article>
-
-      <article class="card glass">
-        <span class="badge">Accompagnement humain</span>
-        <h3>Audit &amp; conseil personnalisé</h3>
-        <p>Entretiens, analyse approfondie, recommandations contextualisées, conduite du changement et formations sur mesure.</p>
-        <ul style="margin:10px 0 0 18px">
-          <li>Approche sur-mesure selon votre périmètre</li>
-          <li>Accompagnement par des juristes et experts</li>
-          <li>Préparation à la conformité RGPD, Accessibilité, IA Act</li>
-          <li>Formation des équipes et suivi opérationnel</li>
-        </ul>
-      </article>
-    </div>
-
-    <p class="subtitle-center" style="margin-top:24px">
-      <b>Ordres de grandeur indicatifs&nbsp;:</b> Awenoria dès <b>9,90 € / mois</b> ; audits humains à partir de <b>500 €</b> selon le périmètre et la complexité.<br>
-      <b>Notre recommandation&nbsp;:</b> commencez par un pré-diagnostic Awenoria, puis complétez par un accompagnement ciblé si besoin.
-    </p>
-
-    <p class="subtitle-center" style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-      <a class="btn primary" href="index.html#audit-gratuit">Lancer un audit gratuit</a>
-      <a class="btn secondary" href="index.html#contact">Parler à un expert</a>
-    </p>
-
-    <p class="subtitle-center" style="margin-top:12px;color:var(--muted)">
-      Déjà adopté par des TPE, PME, associations et start-ups pour <b>gagner du temps</b> et <b>clarifier leurs priorités</b>.
-    </p>
-  </div>
-</section>
-
-<!-- ===== ÉQUIPE ===== -->
-<section class="section" id="equipe">
-  <h2 class="title-center">L'équipe</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">Une équipe pluridisciplinaire (juridique, accessibilité, produit) partageant la même conviction&nbsp;: <b>la conformité peut être un atout, pas une contrainte.</b></p>
-
-  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
-    <div class="grid-3">
-      <article class="card glass member">
-        <div style="width:88px;height:88px;border-radius:50%;margin:0 auto 10px;background:url('./images/team-1.jpg') center/cover"></div>
-        <h3 style="margin:8px 0 2px">Alexandre M.</h3>
-        <p class="muted" style="margin:0">Fondateur · Produit &amp; conformité</p>
-        <p>10 ans d’expérience dans la simplification réglementaire et le développement produit.</p>
-      </article>
-      <article class="card glass member">
-        <div style="width:88px;height:88px;border-radius:50%;margin:0 auto 10px;background:url('./images/team-2.jpg') center/cover"></div>
-        <h3 style="margin:8px 0 2px">Camille R.</h3>
-        <p class="muted" style="margin:0">Juriste RGPD / DPO</p>
-        <p>Spécialiste du cadre européen, elle accompagne les structures dans la mise en œuvre concrète du RGPD.</p>
-      </article>
-      <article class="card glass member">
-        <div style="width:88px;height:88px;border-radius:50%;margin:0 auto 10px;background:url('./images/team-3.jpg') center/cover"></div>
-        <h3 style="margin:8px 0 2px">Yann G.</h3>
-        <p class="muted" style="margin:0">Expert accessibilité numérique</p>
-        <p>Passionné par le design inclusif, il contribue à rendre les services numériques utilisables par tous.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== HISTOIRE ===== -->
-<section class="section" id="histoire">
-  <h2 class="title-center">Notre histoire</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <div class="section" style="padding-top:4px;max-width:var(--maxw);margin:0 auto">
-    <ul class="roadmap">
-      <li><b>2023</b> — Naissance du projet Awenoria : simplifier la conformité pour tous.</li>
-      <li><b>2024</b> — Prototype d’audit local et ajout des volets Mentions légales &amp; Accessibilité.</li>
-      <li><b>2025</b> — Lancement public, abonnements démocratisés et accompagnement humain.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ===== ENGAGEMENTS ===== -->
-<section class="section" id="engagements">
-  <h2 class="title-center">Nos engagements</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
-    <div class="grid-3">
-      <article class="card glass"><span class="badge">Confidentialité</span><h3>Privacy by design</h3><p>L’analyse s’effectue localement&nbsp;: vous gardez le contrôle total sur vos données.</p></article>
-      <article class="card glass"><span class="badge">Accessibilité</span><h3>Design inclusif</h3><p>Nos interfaces respectent les standards RGAA/WCAG pour une accessibilité universelle.</p></article>
-      <article class="card glass"><span class="badge">Transparence</span><h3>Clarté et équité</h3><p>Méthodologie documentée, livrables clairs, communication honnête et prix équitable.</p></article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CHIFFRES ===== -->
-<section class="section">
-  <h2 class="title-center">Nos chiffres-clés</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">Quelques repères sur notre impact et notre engagement.</p>
-  <ul style="max-width:700px;margin:20px auto;list-style:none;padding:0;text-align:center;line-height:1.8">
-    <li>💼 +200 diagnostics réalisés en 2024</li>
-    <li>🔐 0 collecte de données personnelles</li>
-    <li>📊 100 % des rapports générés côté navigateur</li>
-    <li>😊 95 % de satisfaction utilisateurs</li>
-  </ul>
-</section>
-
-<!-- ===== PRESSE / CTA ===== -->
-<section class="section" id="presse">
-  <h2 class="title-center">Presse &amp; ressources</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">Dossier de presse, logos et éléments de langage disponibles sur demande.</p>
-  <p class="subtitle-center" style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-    <a class="btn secondary" href="index.html#contact">Demander le kit presse</a>
-    <a class="btn primary" href="modeles.html">Découvrir nos modèles</a>
-  </p>
-</section>
-
-<!-- ===== CTA FINAL ===== -->
-<section class="section" style="text-align:center;">
-  <h2>Prêt à simplifier votre conformité&nbsp;?</h2>
-  <p>Essayez gratuitement notre diagnostic en ligne ou échangez avec un membre de notre équipe.</p>
-  <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-    <a class="btn primary" href="index.html#audit-gratuit">🚀 Lancer un audit gratuit</a>
-    <a class="btn secondary" href="index.html#contact">🤝 Nous contacter</a>
-  </div>
-</section>
+<!-- ============ /ENCARTS ============ -->
 
 <!-- ===== FOOTER ===== -->
 <footer class="cc-footer" role="contentinfo">
@@ -747,7 +560,7 @@
         <ul>
           <li><a href="index.html#intro">Accueil</a></li>
           <li><a href="index.html#audit-gratuit">Audit gratuit</a></li>
-          <li><a href="Qui-sommes-nous.html">Qui sommes-nous ?</a></li>
+          <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
           <li><a href="index.html#expertises">Nos expertises</a></li>
           <li><a href="index.html#offres">Offres</a></li>
           <li><a href="index.html#blog">Blog</a></li>
@@ -788,7 +601,7 @@
   </div>
 </footer>
 
-<!-- ===== SCRIPTS (identiques accueil : dropdowns + compte) ===== -->
+<!-- ===== SCRIPTS ===== -->
 <script>
 (function(){
   const dropdowns=[...document.querySelectorAll('.dropdown')];
