@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>À propos – Awenoria</title>
+  <title>Qui sommes-nous ? – Awenoria</title>
   <meta name="description" content="Notre mission, nos valeurs et notre vision : une conformité simple, pédagogique et respectueuse de la vie privée. Découvrez qui nous sommes." />
 
-  <!-- Favicons / PWA (mêmes fichiers que l'index) -->
+  <!-- Favicons / PWA identiques à l’index -->
   <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png?v=2">
   <link rel="icon" type="image/svg+xml" href="./images/favicon.svg?v=2">
   <link rel="shortcut icon" href="./favicon.ico?v=2">
@@ -15,81 +15,63 @@
   <link rel="manifest" href="./site.webmanifest?v=2">
   <meta name="theme-color" content="#0f5f9a">
 
-  <!-- Font identique à l'accueil -->
+  <!-- Google Fonts identique -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
 
   <style>
-  /* =========================================================
-     === STYLES GLOBAUX IMPORTÉS DE index.html (COLLER ICI) ===
-     - Colle intégralement le bloc <style> de l'index
-     - Rien à modifier dedans
-     ========================================================= */
+    /* =========================================================
+       === STYLES GLOBAUX DE L’INDEX ICI =======================
+       Colle ici TOUT le contenu du <style> de index.html
+       (variables, grilles, boutons, nav, footer, etc.)
+       ========================================================= */
   </style>
 
   <style>
-  /* =========================================================
-     Compléments "À propos" (styles légers compatibles)
-     ========================================================= */
+    /* =========================================================
+       Compléments légers pour le hero et quelques blocs
+       ========================================================= */
+    .hero-apropos{
+      position:relative; isolation:isolate;
+      padding:96px 0 86px; text-align:center; color:#fff;
+      border-bottom:1px solid rgba(15,23,32,.08);
+      background:
+        radial-gradient(1400px 700px at 10% -20%, rgba(255,255,255,.16), transparent 60%),
+        linear-gradient(180deg, rgba(27,136,255,.42), rgba(27,136,255,.42)),
+        linear-gradient(180deg, #a8cbe0 0%, #95c1dc 40%, #88bad3 100%);
+    }
+    .hero-apropos .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+    .hero-apropos h1{margin:0;font-size:clamp(30px,5vw,52px);line-height:1.06;color:#fff}
+    .hero-apropos .lead{color:#eaf3fa;max-width:980px;margin:10px auto 0;font-weight:700}
 
-  /* Hero visuel pour la page À propos */
-  .hero-apropos{
-    position:relative; isolation:isolate;
-    padding:96px 0 86px;
-    color:#fff;
-    text-align:center;
-    border-bottom:1px solid rgba(15,23,32,.08);
-    background:
-      radial-gradient(1400px 700px at 10% -20%, rgba(255,255,255,.16), transparent 60%),
-      linear-gradient(180deg, rgba(27,136,255,.42), rgba(27,136,255,.42)),
-      linear-gradient(180deg, #a8cbe0 0%, #95c1dc 40%, #88bad3 100%);
-  }
-  .hero-apropos .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
-  .hero-apropos h1{margin:0;font-size:clamp(30px,5vw,52px);line-height:1.06;color:#fff}
-  .hero-apropos .lead{color:#eaf3fa;max-width:980px;margin:10px auto 0;font-weight:700}
+    .badge.chip{
+      display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 14px;
+      border-radius:999px; font-size:13px; font-weight:900; letter-spacing:.2px;
+      background:rgba(27,136,255,.12); border:1px solid rgba(27,136,255,.26); color:#0f3a6e;
+    }
+    .team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    @media(max-width:1024px){.team{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.team{grid-template-columns:1fr}}
+    .member .avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 10px;background:#f3f8fc;border:1px solid rgba(15,23,32,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
 
-  /* Cartes "tile" arrondies façon à-propos */
-  .tile{
-    position:relative;border-radius:22px;padding:22px;
-    background:rgba(255,255,255,.86); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-    border:1px solid rgba(15,23,32,.10); box-shadow: var(--shadow);
-    transition:.18s;
-  }
-  .tile:hover{ transform:translateY(-3px); box-shadow:0 24px 48px rgba(16,32,48,.10) }
+    .table{ width:100%; border-collapse:separate; border-spacing:0; background:#fff;
+            border:1px solid rgba(15,23,32,.10); border-radius:16px; overflow:hidden;
+            box-shadow: var(--shadow); }
+    .table th,.table td{ padding:14px 16px; text-align:left; border-bottom:1px solid rgba(15,23,32,.08) }
+    .table th{ background:linear-gradient(90deg,#0b4f78,#2f86b8); color:#fff; font-weight:800 }
+    .table tr:last-child td{border-bottom:none}
+    .good{font-weight:800;color:#0b4f78}
 
-  .badge.chip{
-    display:inline-flex; align-items:center; justify-content:center; height:32px; padding:0 14px;
-    border-radius:999px; font-size:13px; font-weight:900; letter-spacing:.2px;
-    background:rgba(27,136,255,.12); border:1px solid rgba(27,136,255,.26); color:#0f3a6e;
-  }
-
-  /* Tableau comparatif */
-  .table{ width:100%; border-collapse:separate; border-spacing:0; background:#fff;
-          border:1px solid rgba(15,23,32,.10); border-radius:16px; overflow:hidden;
-          box-shadow: var(--shadow); }
-  .table th,.table td{ padding:14px 16px; text-align:left; border-bottom:1px solid rgba(15,23,32,.08) }
-  .table th{ background:linear-gradient(90deg,#0b4f78,#2f86b8); color:#fff; font-weight:800 }
-  .table tr:last-child td{border-bottom:none}
-  .good{font-weight:800; color:#0b4f78}
-
-  /* Équipe */
-  .team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-  @media(max-width:1024px){.team{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:640px){.team{grid-template-columns:1fr}}
-  .member{ text-align:center }
-  .member .avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 10px;background:#f3f8fc;border:1px solid rgba(15,23,32,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
-
-  /* Timeline */
-  .roadmap{max-width:860px;margin:0 auto;padding:0;list-style:none}
-  .roadmap li{position:relative;padding:0 0 16px 34px;margin:0 0 14px;border-left:2px dashed #d7e6f2;color:var(--muted)}
-  .roadmap li::before{content:"";position:absolute;left:-6px;top:2px;width:14px;height:14px;border-radius:50%;background:linear-gradient(180deg,#eaf5fd,#d8ecfa);border:2px solid #cbe3f3;box-shadow:0 0 0 3px #fff}
-  .roadmap b{color:#0f2746}
+    .roadmap{max-width:860px;margin:0 auto;padding:0;list-style:none}
+    .roadmap li{position:relative;padding:0 0 16px 34px;margin:0 0 14px;border-left:2px dashed #d7e6f2;color:var(--muted)}
+    .roadmap li::before{content:"";position:absolute;left:-6px;top:2px;width:14px;height:14px;border-radius:50%;background:linear-gradient(180deg,#eaf5fd,#d8ecfa);border:2px solid #cbe3f3;box-shadow:0 0 0 3px #fff}
+    .roadmap b{color:#0f2746}
   </style>
 </head>
 <body>
 
-<!-- ===== NAVBAR (identique à index.html) ===== -->
+<!-- ===== NAVBAR (copiée de index.html, liens adaptés) ===== -->
 <header class="navbar" role="banner">
   <div class="nav-wrap">
     <a class="brand" href="index.html" aria-label="Aller à l'accueil">
@@ -97,9 +79,9 @@
     </a>
 
     <nav class="nav-main" aria-label="Navigation principale">
-      <a href="a-propos.html" class="active">Qui sommes-nous ?</a>
+      <a href="Qui-sommes-nous.html" class="active">Qui sommes-nous ?</a>
 
-      <!-- ▼ NOS SERVICES -->
+      <!-- ▼ Nos services (mêmes contenus, ancres renvoyant vers l’index) -->
       <div class="dropdown" id="servicesDropdown">
         <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
           Nos services
@@ -107,7 +89,7 @@
         </button>
         <div class="mega glass mega--services" role="menu" aria-label="Nos services">
           <div class="mega-grid--3">
-            <div class="group" style="padding-bottom:0.75rem">
+            <div class="group" style="padding-bottom:.75rem">
               <h6>Conseil &amp; conformité</h6>
               <ul class="mega-list">
                 <li><a role="menuitem" href="index.html#audit">Audit &amp; Analyse</a></li>
@@ -115,7 +97,7 @@
                 <li><a role="menuitem" href="index.html#ia-act">Conformité IA (UE)</a></li>
               </ul>
             </div>
-            <div class="group" style="padding-bottom:0.75rem">
+            <div class="group" style="padding-bottom:.75rem">
               <h6>Web &amp; légal</h6>
               <ul class="mega-list">
                 <li><a role="menuitem" href="index.html#f-cookies">Cookies &amp; CMP</a></li>
@@ -123,7 +105,7 @@
                 <li><a role="menuitem" href="index.html#f-access">Accessibilité (RGAA / EN 301 549)</a></li>
               </ul>
             </div>
-            <div class="group" style="padding-bottom:0.75rem">
+            <div class="group" style="padding-bottom:.75rem">
               <h6>Formats &amp; modalités</h6>
               <div class="format-badges">
                 <span class="badge pill-badge">Audit flash</span>
@@ -134,7 +116,7 @@
               <p class="mega-note">Livrables clairs, priorisation par impact, suivi possible.</p>
               <a class="btn ghost" href="index.html#contact" role="menuitem">Demander un devis</a>
             </div>
-            <div class="group" style="grid-column:1/-1; display:flex; justify-content:center;">
+            <div class="group" style="grid-column:1/-1;display:flex;justify-content:center;">
               <a href="index.html#offres" class="btn copper-ghost" role="menuitem">
                 Tous nos services, packs &amp; modules à la carte
               </a>
@@ -143,7 +125,7 @@
         </div>
       </div>
 
-      <!-- ▼ NOS FORMATIONS -->
+      <!-- ▼ Formations -->
       <div class="dropdown" id="formationsDropdown">
         <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
           Nos formations
@@ -183,7 +165,7 @@
               <p class="mega-note">Supports fournis, quiz &amp; attestation inclus.</p>
               <a class="btn ghost" href="index.html#contact" role="menuitem">Demander un programme</a>
             </div>
-            <div class="group" style="grid-column:1/-1; display:flex; justify-content:center;">
+            <div class="group" style="grid-column:1/-1;display:flex;justify-content:center;">
               <a href="index.html#formations" class="btn copper-ghost" role="menuitem">
                 Voir toutes nos formations
               </a>
@@ -196,7 +178,7 @@
       <a href="index.html#contact">Contact</a>
     </nav>
 
-    <!-- Compte (identique à l'index) -->
+    <!-- Compte identique -->
     <div class="nav-actions">
       <div class="account">
         <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
@@ -222,7 +204,7 @@
 <!-- ===== HERO ===== -->
 <section class="hero-apropos">
   <div class="wrap">
-    <h1>À propos d’Awenoria</h1>
+    <h1>Qui sommes-nous&nbsp;?</h1>
     <p class="lead type-on-view" data-text="Rendre la conformité simple, pédagogique et premium — sans compromis sur la confidentialité."></p>
   </div>
 </section>
@@ -233,38 +215,26 @@
   <div class="underline" aria-hidden="true"></div>
   <p class="subtitle-center">Nous démocratisons la conformité pour les TPE/PME, associations et indépendants avec un pré-diagnostic <b>automatique</b>, <b>clair</b> et <b>respectueux des données</b>.</p>
 
-  <div class="section" style="padding-top:16px; max-width:var(--maxw); margin:0 auto;">
+  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
     <div class="grid-3">
-      <article class="tile glass">
-        <span class="badge chip">Mission</span>
-        <h3>Démocratiser la conformité</h3>
-        <p>Les obligations se multiplient ; les moyens restent limités. Awenoria automatise l’essentiel pour vous rendre autonome, sans expertise juridique.</p>
-      </article>
-      <article class="tile glass">
-        <span class="badge chip">Valeurs</span>
-        <h3>Clarté & pédagogie</h3>
-        <p>Des résultats compréhensibles, des priorités d’action et des exemples concrets pour passer du diagnostic à la correction.</p>
-      </article>
-      <article class="tile glass">
-        <span class="badge chip">Privacy</span>
-        <h3>Respect de la vie privée</h3>
-        <p>Analyse locale par défaut, sans stockage. Rapport PDF et suivi disponibles en option, à votre main.</p>
-      </article>
+      <article class="card glass"><span class="badge chip">Mission</span><h3>Démocratiser la conformité</h3><p>Les obligations se multiplient ; les moyens restent limités. Awenoria automatise l’essentiel pour vous rendre autonome, sans expertise juridique.</p></article>
+      <article class="card glass"><span class="badge chip">Valeurs</span><h3>Clarté & pédagogie</h3><p>Des résultats compréhensibles, des priorités d’action et des exemples concrets pour passer du diagnostic à la correction.</p></article>
+      <article class="card glass"><span class="badge chip">Privacy</span><h3>Respect de la vie privée</h3><p>Analyse locale par défaut, sans stockage. Rapport PDF et suivi disponibles en option, à votre main.</p></article>
     </div>
   </div>
 </section>
 
-<!-- ===== CONTEXTE RÉGLEMENTAIRE ===== -->
+<!-- ===== CONTEXTE ===== -->
 <section class="section">
   <h2 class="title-center">Un cadre en évolution</h2>
   <div class="underline" aria-hidden="true"></div>
   <p class="subtitle-center">Nous accompagnons la transition vers une économie <b>plus transparente</b> et <b>inclusive</b>.</p>
 
-  <div class="section" style="padding-top:16px; max-width:var(--maxw); margin:0 auto;">
+  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
     <div class="grid-3">
-      <article class="tile glass"><span class="badge chip">RGPD</span><h3>Protection des données</h3><p>Information, base légale, droits, preuves de consentement — le socle de confiance.</p></article>
-      <article class="tile glass"><span class="badge chip">Accessibilité</span><h3>Directive & RGAA/WCAG</h3><p>Déclaration, contrastes, clavier, sémantique — vers des services numériques accessibles à tous.</p></article>
-      <article class="tile glass"><span class="badge chip">Commerce</span><h3>Mentions & CGV/CGU</h3><p>Éditeur, hébergeur, droits des consommateurs — des informations claires et à jour.</p></article>
+      <article class="card glass"><span class="badge chip">RGPD</span><h3>Protection des données</h3><p>Information, base légale, droits, preuves de consentement — le socle de confiance.</p></article>
+      <article class="card glass"><span class="badge chip">Accessibilité</span><h3>Directive & RGAA/WCAG</h3><p>Déclaration, contrastes, clavier, sémantique — vers des services numériques accessibles à tous.</p></article>
+      <article class="card glass"><span class="badge chip">Commerce</span><h3>Mentions & CGV/CGU</h3><p>Éditeur, hébergeur, droits des consommateurs — des informations claires et à jour.</p></article>
     </div>
   </div>
 </section>
@@ -274,11 +244,11 @@
   <h2 class="title-center">Pourquoi choisir Awenoria</h2>
   <div class="underline" aria-hidden="true"></div>
 
-  <div class="section" style="padding-top:16px; max-width:var(--maxw); margin:0 auto;">
+  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
     <div class="grid-3">
-      <article class="tile glass"><span class="badge chip">Automatisé</span><h3>Analyse locale</h3><p>Pas d’envoi de données sensibles : l’essentiel est évalué côté navigateur.</p></article>
-      <article class="tile glass"><span class="badge chip">Rapide</span><h3>Diagnostic immédiat</h3><p>Scores thématiques, priorisation et actions concrètes. Export PDF à venir.</p></article>
-      <article class="tile glass"><span class="badge chip">Évolutif</span><h3>Suivi & modèles</h3><p>Guides, modèles juridiques et mises à jour réglementaires pour rester conforme.</p></article>
+      <article class="card glass"><span class="badge chip">Automatisé</span><h3>Analyse locale</h3><p>Pas d’envoi de données sensibles : l’essentiel est évalué côté navigateur.</p></article>
+      <article class="card glass"><span class="badge chip">Rapide</span><h3>Diagnostic immédiat</h3><p>Scores thématiques, priorisation et actions concrètes. Export PDF à venir.</p></article>
+      <article class="card glass"><span class="badge chip">Évolutif</span><h3>Suivi & modèles</h3><p>Guides, modèles juridiques et mises à jour réglementaires pour rester conforme.</p></article>
     </div>
   </div>
 </section>
@@ -289,7 +259,7 @@
   <div class="underline" aria-hidden="true"></div>
   <p class="subtitle-center">Deux approches complémentaires — choisissez la bonne combinaison selon votre périmètre.</p>
 
-  <div class="section" style="padding-top:16px; max-width:var(--maxw); margin:0 auto;">
+  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
     <div class="card glass" style="padding:0">
       <div style="padding:16px">
         <table class="table">
@@ -304,22 +274,10 @@
             <tr><td>Support</td><td>Guides, modèles, FAQ</td><td>Sur rendez-vous</td></tr>
           </tbody>
         </table>
-        <p class="subtitle-center" style="margin-top:10px">Ces fourchettes sont <b>indicatives</b> et varient selon le contexte. Nous proposons aussi des <b>audits humains</b> et un <b>accompagnement</b> quand nécessaire.</p>
+        <p class="subtitle-center" style="margin-top:10px">Fourchettes <b>indicatives</b> selon contexte. Nous proposons aussi des <b>audits humains</b> et de <b>l’accompagnement</b> si nécessaire.</p>
       </div>
     </div>
   </div>
-</section>
-
-<!-- ===== VISION + CTA ===== -->
-<section class="section">
-  <h2 class="title-center">Notre vision</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">Créer un standard européen de vérification numérique — <b>transparent</b>, <b>simple</b> et <b>souverain</b> — au service des organisations et des citoyens.</p>
-
-  <p class="subtitle-center" style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-    <a class="btn secondary" href="index.html#audit-gratuit">Tester un site</a>
-    <a class="btn primary" href="index.html#contact">Parler à un expert</a>
-  </p>
 </section>
 
 <!-- ===== ÉQUIPE ===== -->
@@ -328,7 +286,7 @@
   <div class="underline" aria-hidden="true"></div>
   <p class="subtitle-center">Une équipe pluridisciplinaire (juridique, accessibilité, produit) au service d’une conformité utile et actionnable.</p>
 
-  <div class="section" style="padding-top:16px; max-width:var(--maxw); margin:0 auto;">
+  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
     <div class="team">
       <article class="card glass member">
         <div class="avatar" style="background:url('./images/team-1.jpg') center/cover"></div>
@@ -349,12 +307,11 @@
   </div>
 </section>
 
-<!-- ===== TIMELINE ===== -->
+<!-- ===== HISTOIRE ===== -->
 <section class="section" id="histoire">
   <h2 class="title-center">Notre histoire en bref</h2>
   <div class="underline" aria-hidden="true"></div>
-
-  <div class="section" style="padding-top:4px; max-width:var(--maxw); margin:0 auto;">
+  <div class="section" style="padding-top:4px;max-width:var(--maxw);margin:0 auto">
     <ul class="roadmap">
       <li><b>2023</b> — Premier prototype d'audit local côté navigateur.</li>
       <li><b>2024</b> — Ajout des volets Mentions & Accessibilité, génération d'exemples d'actions.</li>
@@ -367,17 +324,16 @@
 <section class="section" id="engagements">
   <h2 class="title-center">Nos engagements</h2>
   <div class="underline" aria-hidden="true"></div>
-
-  <div class="section" style="padding-top:16px; max-width:var(--maxw); margin:0 auto;">
+  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
     <div class="grid-3">
-      <article class="tile glass"><span class="badge chip">Confidentialité</span><h3>Privacy by design</h3><p>Analyse locale par défaut ; options d'export et de suivi maîtrisées par l'utilisateur.</p></article>
-      <article class="tile glass"><span class="badge chip">Accessibilité</span><h3>Design inclusif</h3><p>Cohérence RGAA/WCAG et amélioration continue des composants UI.</p></article>
-      <article class="tile glass"><span class="badge chip">Transparence</span><h3>Clarté des livrables</h3><p>Méthodologie documentée, exemples d'actions et limites explicites du pré-diagnostic.</p></article>
+      <article class="card glass"><span class="badge chip">Confidentialité</span><h3>Privacy by design</h3><p>Analyse locale par défaut ; options d'export et de suivi maîtrisées par l'utilisateur.</p></article>
+      <article class="card glass"><span class="badge chip">Accessibilité</span><h3>Design inclusif</h3><p>Cohérence RGAA/WCAG et amélioration continue des composants UI.</p></article>
+      <article class="card glass"><span class="badge chip">Transparence</span><h3>Clarté des livrables</h3><p>Méthodologie documentée, exemples d'actions et limites explicites du pré-diagnostic.</p></article>
     </div>
   </div>
 </section>
 
-<!-- ===== PRESSE & RESSOURCES ===== -->
+<!-- ===== PRESSE / RESSOURCES ===== -->
 <section class="section" id="presse">
   <h2 class="title-center">Presse & ressources</h2>
   <div class="underline" aria-hidden="true"></div>
@@ -388,7 +344,7 @@
   </p>
 </section>
 
-<!-- ===== FOOTER (identique à l'index) ===== -->
+<!-- ===== FOOTER (identique à l’index ; liens mis à jour) ===== -->
 <footer class="cc-footer" role="contentinfo">
   <div class="cc-container">
     <div class="cc-top">
@@ -408,10 +364,9 @@
         <ul>
           <li><a href="index.html#intro">Accueil</a></li>
           <li><a href="index.html#audit-gratuit">Audit gratuit</a></li>
-          <li><a href="a-propos.html">Qui sommes-nous ?</a></li>
+          <li><a href="Qui-sommes-nous.html">Qui sommes-nous ?</a></li>
           <li><a href="index.html#expertises">Nos expertises</a></li>
           <li><a href="index.html#offres">Offres</a></li>
-          <li><a href="index.html#audit-gratuit">Audit gratuit</a></li>
         </ul>
       </div>
       <div class="cc-col">
@@ -450,12 +405,14 @@
   </div>
 </footer>
 
-<!-- ===== SCRIPTS (réutilisation des scripts de l'index) ===== -->
+<!-- ===== SCRIPTS ===== -->
+<!-- Reprends les mêmes <script> de l’index (dropdowns, typing, account, etc.) -->
 <script>
-/* Menus déroulants, typing, compte, contact… => Reprends tels quels
-   les <script> de l'index (dropdowns + typing-on-view + account etc.)
-   Tu peux coller les mêmes blocs ici sans modification. */
+  /* Copie ici les scripts de l’index :
+     - menus déroulants .dropdown
+     - typing-on-view
+     - account menu
+     (aucun changement nécessaire) */
 </script>
-
 </body>
 </html>
