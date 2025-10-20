@@ -420,11 +420,13 @@
     .account{position:relative}
     .account-btn{width:36px;height:36px;border-radius:999px;border:1px solid rgba(15,23,32,.15);background:#f2f6fb;color:var(--text);display:inline-flex;align-items:center;justify-content:center}
     .account-btn:hover{background:#eaf2fb}
-    .account-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
     /* Icônes du bouton compte */
     .account-btn svg{width:18px;height:18px}
     /* Laisser le remplissage pour le yin-yang */
     .account-btn svg.icon-yy *{fill:initial; stroke:none}
+    /* Icônes du bouton compte — corrigé */
+    .account-btn svg { width:20px; height:20px; fill:none; }
+    .account-btn svg.icon-yy * { fill:initial; stroke:none; }
     .account-menu{position:absolute;right:0;top:calc(var(--nav-h) + 18px);width:min(86vw,340px);border-radius:18px;border:1px solid rgba(15,23,32,.12);padding:12px;display:none;z-index:1300}
     .account-menu.open{display:block;animation:none}
     .acc-item{display:grid;grid-template-columns:40px 1fr 24px;gap:10px;align-items:center;padding:12px;border-radius:14px;text-decoration:none;color:var(--text)}
@@ -534,35 +536,8 @@
     </a>
 
     <nav class="nav-main" aria-label="Navigation principale">
-  <a href="#qui-sommes-nous">Qui sommes-nous ?</a>
-
-  <!-- ▼ NOS SERVICES -->
-  <div class="dropdown" id="servicesDropdown">
-    <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-      Nos services
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-    </button>
-
-    <div class="mega glass mega--services" role="menu" aria-label="Nos services">
-      <div class="mega-grid--3">
-        <div class="group" style="padding-bottom:0.75rem">
-          <h6>Conseil &amp; conformité</h6>
-          <ul class="mega-list">
-            <li><a role="menuitem" href="#audit">Audit &amp; Analyse</a></li>
-            <li><a role="menuitem" href="#conformite">Accompagnement RGPD</a></li>
-            <li><a role="menuitem" href="#ia-act">Conformité IA (UE)</a></li>
-          </ul>
-        </div>
       <a href="#qui-sommes-nous">Qui sommes-nous ?</a>
 
-        <div class="group" style="padding-bottom:0.75rem">
-          <h6>Web &amp; légal</h6>
-          <ul class="mega-list">
-            <li><a role="menuitem" href="#f-cookies">Cookies &amp; CMP</a></li>
-            <li><a role="menuitem" href="#f-legales">Mentions légales</a></li>
-            <li><a role="menuitem" href="#f-access">Accessibilité (RGAA / EN 301 549)</a></li>
-          </ul>
-        </div>
       <!-- ▼ NOS SERVICES -->
       <div class="dropdown" id="servicesDropdown">
         <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
@@ -570,17 +545,6 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </button>
 
-        <div class="group" style="padding-bottom:0.75rem">
-          <h6>Formats &amp; modalités</h6>
-          <div class="format-badges">
-            <span class="badge pill-badge">Audit flash</span>
-            <span class="badge pill-badge">Mission</span>
-            <span class="badge pill-badge">Abonnement</span>
-            <span class="badge pill-badge">À la carte</span>
-          </div>
-          <p class="mega-note">Livrables clairs, priorisation par impact, suivi possible.</p>
-          <a class="btn ghost" href="#contact" role="menuitem">Demander un devis</a>
-        </div>
         <div class="mega glass mega--services" role="menu" aria-label="Nos services">
           <div class="mega-grid--3">
             <div class="group" style="padding-bottom:0.75rem">
@@ -592,54 +556,6 @@
               </ul>
             </div>
 
-        <!-- Lien catalogue (cuivré) -->
-        <div class="group" style="grid-column:1/-1; display:flex; justify-content:center;">
-          <a href="#offres" class="btn copper-ghost" role="menuitem">
-            Tous nos services, packs &amp; modules à la carte
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ▲ FIN : NOS SERVICES -->
-
-  <!-- ▼ NOS FORMATIONS (UN SEUL BLOC, en SŒUR de “Nos services”) -->
-  <div class="dropdown" id="formationsDropdown">
-    <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-      Nos formations
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-    </button>
-
-    <div class="mega glass mega--formations" role="menu" aria-label="Nos formations">
-      <div class="mega-grid--3">
-        <div class="group">
-          <h6>Par thématique</h6>
-          <ul class="mega-list">
-            <li><a role="menuitem" href="#f-rgpd">RGPD – essentiels, registre, AIPD</a></li>
-            <li><a role="menuitem" href="#f-iaact">IA Act – obligations &amp; documentation</a></li>
-            <li><a role="menuitem" href="#f-cookies">Cookies &amp; CMP</a></li>
-            <li><a role="menuitem" href="#f-legales">Mentions légales &amp; conformité web</a></li>
-            <li><a role="menuitem" href="#f-access">Accessibilité (RGAA / EN 301 549)</a></li>
-            <li><a role="menuitem" href="#f-cyber">Cybersécurité de base</a></li>
-          </ul>
-        </div>
-        <div class="group">
-          <h6>Par public</h6>
-          <ul class="mega-list">
-            <li><a role="menuitem" href="#f-dirigeants">Dirigeants &amp; responsables</a></li>
-            <li><a role="menuitem" href="#f-equipes">Équipes opérationnelles</a></li>
-            <li><a role="menuitem" href="#f-dpo">Référents / DPO</a></li>
-            <li><a role="menuitem" href="#f-dev">Dev, Produit &amp; Data</a></li>
-          </ul>
-        </div>
-        <div class="group">
-          <h6>Formats &amp; modalités</h6>
-          <div class="format-badges">
-            <span class="badge pill-badge">Atelier 2h</span>
-            <span class="badge pill-badge">1/2 journée</span>
-            <span class="badge pill-badge">1 journée</span>
-            <span class="badge pill-badge">Parcours</span>
-            <span class="badge pill-badge">Présentiel / Distanciel</span>
             <div class="group" style="padding-bottom:0.75rem">
               <h6>Web &amp; légal</h6>
               <ul class="mega-list">
@@ -668,17 +584,10 @@
               </a>
             </div>
           </div>
-          <p class="mega-note">Supports fournis, quiz &amp; attestation inclus.</p>
-          <a class="btn ghost" href="#contact" role="menuitem">Demander un programme</a>
         </div>
       </div>
       <!-- ▲ FIN : NOS SERVICES -->
 
-        <!-- Lien catalogue formations -->
-        <div class="group" style="grid-column:1/-1; display:flex; justify-content:center;">
-          <a href="#formations" class="btn copper-ghost" role="menuitem">
-            Voir toutes nos formations
-          </a>
       <!-- ▼ NOS FORMATIONS -->
       <div class="dropdown" id="formationsDropdown">
         <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
@@ -730,14 +639,8 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <!-- ▲ FIN : NOS FORMATIONS -->
       <!-- ▲ FIN : NOS FORMATIONS -->
 
-  <a href="#blog">Blog</a>
-  <a href="#contact">Contact</a>
-</nav>
       <a href="#blog">Blog</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -746,7 +649,6 @@
     <div class="nav-actions">
       <div class="account">
         <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
           <!-- Icône Yin-Yang bleu clair / orange -->
           <svg class="icon-yy" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
             <!-- Moitié gauche bleu clair -->
@@ -774,16 +676,12 @@
                 <path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/>
               </svg>
             </div>
-            <div>
-              <p class="acc-title">Connexion Client</p>
-            </div>
             <div><p class="acc-title">Connexion Client</p></div>
             <div class="acc-arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
             </div>
           </a>
 
-          <!-- Connexion Partenaire (cuivré) — SVG corrigé, icône complète -->
           <!-- Connexion Partenaire (cuivré) -->
           <a class="acc-item partner" href="#login-partenaire" role="menuitem">
             <div class="acc-ico" aria-hidden="true">
@@ -792,22 +690,15 @@
                 <path d="M4 18c0-3.3 3.6-6 8-6s8 2.7 8 6v1H4v-1z"/>
               </svg>
             </div>
-            <div>
-              <p class="acc-title">Connexion Partenaire</p>
-            </div>
             <div><p class="acc-title">Connexion Partenaire</p></div>
             <div class="acc-arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
             </div>
           </a>
-        </div> <!-- /.account-menu -->
-      </div> <!-- /.account -->
-    </div> <!-- /.nav-actions -->
         </div><!-- /.account-menu -->
       </div><!-- /.account -->
     </div><!-- /.nav-actions -->
 
-  </div> <!-- /.nav-wrap -->
   </div><!-- /.nav-wrap -->
 </header>
 
