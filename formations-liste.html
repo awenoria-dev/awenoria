@@ -5,10 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Formations – Awenoria</title>
   <meta name="description" content="Parcourez nos formations par thématique ou par public. Présentiel / distanciel, supports et attestation inclus." />
+
+  <!-- Favicon / PWA -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/icône-apple-touch.png">
   <meta name="theme-color" content="#0f5f9a">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
@@ -20,14 +24,16 @@
     body,button,input,select,textarea{font-family:var(--font-ui)}
     h1,h2,h3,h4{font-weight:800}
     .glass{background:rgba(255,255,255,.86);backdrop-filter:blur(10px);border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow)}
+
+    /* NAV */
     header.navbar{position:sticky;top:0;z-index:1100;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(15,23,32,.08)}
     .nav-wrap{max-width:var(--maxw);margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:14px}
     .brand-img{height: clamp(56px,8vw,96px);object-fit:contain;display:block}
     .nav-main{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;margin-left:8px;flex-wrap:wrap}
     .nav-main a{color:var(--text);text-decoration:none;font-weight:800;font-size:16px;height:var(--nav-h);line-height:var(--nav-h);padding:0 12px;border-radius:10px}
     .nav-main a:hover{background:rgba(27,136,255,.10)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:12px 20px;font-size:16px;text-decoration:none;border:1px solid transparent}
-    .btn.primary{background:rgba(27,136,255,.80);color:#fff;border-color:rgba(255,255,255,.25);box-shadow:inset 0 0 12px rgba(255,255,255,.15),0 4px 18px rgba(27,136,255,.30)}
+
+    /* Layout */
     .section{max-width:var(--maxw);margin:32px auto;padding:0 20px}
     .title-center{text-align:center;font-size:clamp(26px,4vw,40px);margin:10px 0 6px}
     .subtitle-center{max-width:900px;margin:0 auto 14px;text-align:center;color:var(--muted)}
@@ -41,6 +47,8 @@
     .tag{border:1px solid rgba(15,23,32,.12);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;background:rgba(27,136,255,.06)}
     .program ul{margin:.25rem 0 .25rem;padding-left:18px}
     .program li{margin:.18rem 0}
+
+    /* Breadcrumb */
     .crumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:#456;font-weight:700;margin-bottom:10px}
     .crumbs a{color:#456;text-decoration:none}
     .crumbs a:hover{text-decoration:underline}
@@ -124,7 +132,6 @@
     const dur = course.duration ? `<span class="tag" aria-label="Durée">${course.duration}</span>` : "";
     const lvl = course.level ? `<span class="tag" aria-label="Niveau">${course.level}</span>` : "";
     const mods = (course.modalities || []).map(m=>`<span class="tag">${m}</span>`).join("");
-
     const items = (course.program || []).map(li=>`<li>${li}</li>`).join("");
 
     const url = `/formation/${course.slug}.html?from=${audience ? "public" : (theme ? "theme" : "catalogue")}${audience ? `&public=${audience}` : (theme ? `&theme=${theme}`:"")}`;
