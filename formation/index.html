@@ -1,199 +1,147 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Liste des fiches de formation – Awenoria</title>
-<meta name="description" content="Accédez aux fiches détaillées de toutes nos formations Awenoria. Catalogue automatisé." />
-<title>Fiches formation – Awenoria</title>
-<meta name="description" content="Liste complète des fiches de formation Awenoria. Accédez rapidement aux contenus détaillés, durées, modalités et programmes." />
-<!-- Favicon / PWA -->
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="shortcut icon" href="/favicon.ico">
-<link rel="apple-touch-icon" href="/icône-apple-touch.png">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link rel="shortcut icon" href="../favicon.ico">
-<link rel="apple-touch-icon" href="../icône-apple-touch.png">
-<meta name="theme-color" content="#0f5f9a">
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
-<style>
-:root {
-  --font-ui: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --bg: #f6f9fc;
-  --panel: #fff;
-  --muted: #4a6176;
-  --text: #0f5f9a;
-  --brand: #0f5f9a;
-  --accent: #16a34a;
-  --copper: #ff8a3d;
-  --radius: 16px;
-  --shadow: 0 12px 28px rgba(0,0,0,.08);
-  --maxw: 1100px;
-  --nav-h: 40px;
-}
-* { box-sizing: border-box }
-html, body { height: 100% }
-body {
-  margin: 0;
-  color: var(--text);
-  background: radial-gradient(1400px 700px at 10% -20%, #eef6ff 0%, rgba(238,246,255,.6) 45%, transparent 60%), linear-gradient(180deg,#fff 0%,#f6f9fc 100%);
-  -webkit-font-smoothing: antialiased;
-  font-family: var(--font-ui);
-}
-h1, h2, h3, h4 { font-weight: 800; }
-:root{
-  --font-ui:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-  --bg:#f6f9fc;
-  --panel:#fff;
-  --muted:#4a6176;
-  --text:#0f5f9a;
-  --brand:#0f5f9a;
-  --accent:#16a34a;
-  --copper:#ff8a3d;
-  --radius:16px;
-  --shadow:0 12px 28px rgba(0,0,0,.08);
-  --maxw:1200px;
-  --nav-h:40px
-}
-*{box-sizing:border-box}
-html,body{height:100%}
-body{margin:0;color:var(--text);background:radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),linear-gradient(180deg,#fff 0%,#f6f9fc 100%);-webkit-font-smoothing:antialiased}
-body,button,input,select,textarea{font-family:var(--font-ui)}
-h1,h2,h3,h4{font-weight:800}
-a{color:inherit;text-decoration:none}
-a:hover{text-decoration:underline}
-/* NAV */
-header.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1100;
-  background: rgba(255,255,255,.85);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(15,23,32,.08);
-}
-.nav-wrap {
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 8px 14px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.brand-img { height: clamp(56px,8vw,96px); object-fit: contain; display: block; }
-.nav-main { display: flex; align-items: center; gap: 4px; flex: 1; justify-content: center; margin-left: 8px; flex-wrap: wrap; }
-.nav-main a { color: var(--text); text-decoration: none; font-weight: 800; font-size: 16px; height: var(--nav-h); line-height: var(--nav-h); padding: 0 12px; border-radius: 10px; }
-.nav-main a:hover { background: rgba(27,136,255,.10); }
-/* PAGE */
-.section { max-width: var(--maxw); margin: 32px auto; padding: 0 20px; }
-.title-center { text-align: center; font-size: clamp(26px,4vw,40px); margin: 10px 0 6px; }
-.subtitle-center { max-width: 900px; margin: 0 auto 14px; text-align: center; color: var(--muted); }
-.underline { width: 80px; height: 4px; border-radius: 999px; background: var(--copper); margin: 10px auto 22px; opacity: .9; }
-/* GRID */
-.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-@media (max-width:1024px) { .grid-3 { grid-template-columns:1fr 1fr; } }
-@media (max-width:620px) { .grid-3 { grid-template-columns:1fr; } }
-.grid-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-/* CARD */
-.card { border-radius: 22px; padding: 20px; border: 1px solid rgba(15,23,32,.08); background: rgba(255,255,255,.86); box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .3s ease; }
-.card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,.12); }
-.card h3 { margin: 0 0 6px; }
-.meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0; }
-.tag { border: 1px solid rgba(15,23,32,.12); border-radius: 999px; padding: 6px 10px; font-size: 12px; font-weight: 800; background: rgba(27,136,255,.06); }
-/* BTN */
-.btn { display: inline-flex; align-items: center; justify-content: center; font-weight: 800; border-radius: 9999px; padding: 12px 20px; font-size: 16px; text-decoration: none; border: 1px solid transparent; }
-.btn.primary { background: rgba(27,136,255,.80); color: #fff; border-color: rgba(255,255,255,.25); box-shadow: inset 0 0 12px rgba(255,255,255,.15), 0 4px 18px rgba(27,136,255,.30); }
-/* Animation apparition cartes */
-@media (prefers-reduced-motion: no-preference) {
-.card {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity .5s ease, transform .5s ease;
-  will-change: opacity, transform;
-}
-.card.reveal {
-  opacity: 1;
-  transform: translateY(0);
-}
-}
-/* FOOTER */
-footer{text-align:center;margin:32px 0 40px;color:var(--muted);font-size:15px}
-footer a{color:var(--brand);font-weight:800;text-decoration:none}
-footer a:hover{text-decoration:underline}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Liste des fiches de formation – Awenoria</title>
+  <meta name="description" content="Page interne listant toutes les fiches de formation générées automatiquement depuis js/courses-data.js." />
+  <meta name="theme-color" content="#0f5f9a" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      --bg:#f6f9fc; --panel:#fff; --muted:#4a6176; --text:#0f5f9a;
+      --brand:#0f5f9a; --copper:#ff8a3d; --shadow:0 12px 28px rgba(0,0,0,.08);
+      --maxw:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--text); font-family:var(--font);
+      background:
+        radial-gradient(1400px 700px at 10% -20%, #eef6ff 0%, rgba(238,246,255,.6) 45%, transparent 60%),
+        linear-gradient(180deg,#fff 0%,#f6f9fc 100%);
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit; text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Header simple */
+    header{position:sticky; top:0; z-index:10; background:rgba(255,255,255,.85);
+      backdrop-filter:blur(10px); border-bottom:1px solid rgba(15,23,32,.08)}
+    .nav{max-width:var(--maxw); margin:0 auto; padding:10px 16px; display:flex; align-items:center; gap:16px}
+    .nav img{height: clamp(56px,8vw,96px); display:block}
+
+    /* Section titre */
+    .wrap{max-width:var(--maxw); margin:28px auto; padding:0 20px}
+    h1{font-weight:800; font-size:clamp(26px,4vw,44px); text-align:center; margin:6px 0}
+    .sub{color:var(--muted); text-align:center; margin:0 0 8px}
+    .underline{width:84px; height:4px; border-radius:999px; background:var(--copper); margin:12px auto 24px; opacity:.95}
+
+    /* Grille + cartes */
+    #cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px}
+    .card{background:rgba(255,255,255,.86); border:1px solid rgba(15,23,32,.08);
+      border-radius:22px; padding:20px; box-shadow:var(--shadow);
+      transition:transform .2s ease, box-shadow .3s ease}
+    .card:hover{transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,.12)}
+    .card h3{margin:0 0 8px; font-weight:800}
+    .meta{display:flex; flex-wrap:wrap; gap:8px; margin:8px 0}
+    .tag{border:1px solid rgba(15,23,32,.12); border-radius:999px; padding:6px 10px;
+      font-size:12px; font-weight:800; background:rgba(27,136,255,.06)}
+    .btn{display:inline-flex; align-items:center; justify-content:center; font-weight:800;
+      border-radius:9999px; padding:12px 20px; border:1px solid transparent;
+      background:rgba(27,136,255,.80); color:#fff; text-decoration:none}
+    .btn:hover{background:rgba(27,136,255,.9)}
+
+    footer{text-align:center; color:var(--muted); margin:28px 0}
+    footer a{color:var(--brand); font-weight:800}
+
+    /* Apparition douce des cartes */
+    @media (prefers-reduced-motion: no-preference){
+      .card{opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s ease}
+      .card.reveal{opacity:1; transform:translateY(0)}
+    }
+  </style>
 </head>
 <body>
-<header class="navbar" role="banner">
-  <div class="nav-wrap">
-    <a class="brand" href="/index.html" aria-label="Aller à l'accueil"><img class="brand-img" src="/images/logo.png" alt="Awenoria"></a>
-    <a class="brand" href="../index.html" aria-label="Aller à l'accueil"><img class="brand-img" src="../images/logo.png" alt="Awenoria"></a>
-    <nav class="nav-main" aria-label="Navigation principale">
-      <a href="/index.html#qui-sommes-nous">Qui sommes-nous ?</a>
-      <a href="/Nos-services.html">Nos services</a>
-      <a href="/nos-formations.html">Nos formations</a>
-      <a href="/index.html#blog">Blog</a>
-      <a href="/nos-formations.html#contact">Contact</a>
-      <a href="../index.html#qui-sommes-nous">Qui sommes-nous ?</a>
-      <a href="../Nos-services.html">Nos services</a>
-      <a href="../nos-formations.html">Nos formations</a>
-      <a href="../index.html#blog">Blog</a>
-      <a href="../nos-formations.html#contact">Contact</a>
-    </nav>
+
+<header>
+  <div class="nav">
+    <a href="../index.html" aria-label="Aller à l’accueil">
+      <img src="../images/logo.png" alt="Awenoria">
+    </a>
   </div>
 </header>
-<section class="section">
-  <h1 class="title-center">Liste des fiches de formation</h1>
-  <p class="subtitle-center">Page interne de test — génération automatique depuis <code>js/courses-data.js</code>.</p>
-  <h1 class="title-center">Fiches de formation</h1>
-  <p class="subtitle-center">Liste interne de toutes les fiches disponibles. Cliquez sur une formation pour consulter sa fiche détaillée.</p>
+
+<main class="wrap">
+  <h1>Liste des fiches de formation</h1>
+  <p class="sub">Page interne de test — génération automatique depuis <code>js/courses-data.js</code>.</p>
   <div class="underline"></div>
-  <div id="cards" class="grid-3" aria-live="polite"></div>
-  <p class="subtitle-center" style="margin-top:14px">
-    <a class="btn primary" href="/nos-formations.html#contact">Demander un programme détaillé</a>
+
+  <div id="cards" aria-live="polite"></div>
+
+  <p class="sub" style="margin-top:16px">
+    <a class="btn" href="../nos-formations.html#contact">Demander un programme détaillé</a>
   </p>
-  <div id="cards" class="grid-list" aria-live="polite"></div>
-</section>
+</main>
+
 <footer>
-  <p>← <a href="../formations-liste.html">Retour au catalogue principal</a></p>
+  ← <a href="../formations-liste.html">Retour au catalogue principal</a>
 </footer>
-<!-- SCRIPT: génération + animation -->
+
+<noscript>
+  <div class="wrap"><p>Activez JavaScript pour voir la liste des fiches.</p></div>
+</noscript>
+
+<!-- Génération des cartes -->
 <script type="module">
-import { COURSES } from "../js/courses-data.js";
-const root = document.getElementById("cards");
-if (!COURSES?.length) {
-  root.innerHTML = "<p>Aucune formation trouvée.</p>";
-} else {
-  root.innerHTML = COURSES.map(course => `
-  <article class="card">
-    <h3>${course.title}</h3>
-    <div class="meta">
-      ${course.duration ? `<span class="tag">${course.duration}</span>` : ""}
-      ${course.level ? `<span class="tag">${course.level}</span>` : ""}
-      ${(course.modalities || []).map(m => `<span class="tag">${m}</span>`).join("")}
-    </div>
-    <p>${course.summary || ""}</p>
-    <p><a class="btn primary" href="./${course.slug}.html?from=catalogue" aria-label="Voir la fiche détaillée de ${course.title}">Voir la fiche</a></p>
-  </article>
-  `).join("");
-}
-// Animation douce à l’apparition
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (!prefersReduced) {
-  const cards = document.querySelectorAll('#cards .card');
-  const io = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const index = [...entry.target.parentElement.children].indexOf(entry.target);
-        entry.target.style.transitionDelay = `${Math.min(index * 80, 400)}ms`;
-        entry.target.classList.add('reveal');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  cards.forEach(card => io.observe(card));
-}
+  import { COURSES } from "../js/courses-data.js";
+
+  const root = document.getElementById("cards");
+
+  function tag(txt){ return `<span class="tag">${txt}</span>`; }
+
+  if (!Array.isArray(COURSES) || COURSES.length === 0){
+    root.innerHTML = "<p>Aucune formation trouvée.</p>";
+  } else {
+    root.innerHTML = COURSES.map(c => `
+      <article class="card">
+        <h3>${c.title}</h3>
+        <div class="meta">
+          ${c.duration ? tag(c.duration) : ""}
+          ${c.level ? tag(c.level) : ""}
+          ${(c.modalities||[]).map(tag).join("")}
+        </div>
+        <p>${c.summary || ""}</p>
+        <p style="margin-top:8px">
+          <a class="btn" href="./${c.slug}.html?from=catalogue" aria-label="Voir la fiche détaillée de ${c.title}">Voir la fiche</a>
+        </p>
+      </article>
+    `).join("");
+  }
+
+  // Animation d'apparition (progressive)
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window){
+    const cards = document.querySelectorAll('#cards .card');
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const i = [...entry.target.parentElement.children].indexOf(entry.target);
+          entry.target.style.transitionDelay = `${Math.min(i*80, 400)}ms`;
+          entry.target.classList.add('reveal');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.12});
+    cards.forEach(c => io.observe(c));
+  } else {
+    document.querySelectorAll('#cards .card').forEach(c => c.classList.add('reveal'));
+  }
 </script>
 </body>
 </html>
