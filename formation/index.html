@@ -157,6 +157,7 @@
     } catch (e) {
       // Fallback non-module : injection d'un <script> qui expose window.COURSES
       const s = document.createElement('script');
+      s.type = 'module';
       s.src = '../js/courses-data.js';
       s.onload = () => render(window.COURSES);
       s.onerror = () => {
