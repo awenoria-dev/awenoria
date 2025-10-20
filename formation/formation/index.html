@@ -3,67 +3,104 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Index des fiches – Awenoria</title>
-  <meta name="description" content="Liste des fiches de formation disponibles pour test et navigation interne." />
+  <title>Fiches formation – Awenoria</title>
+  <meta name="description" content="Liste des fiches de formation disponibles. Accédez à chaque fiche détaillée de formation proposée par Awenoria." />
 
-  <link rel="icon" href="../favicon.ico">
+  <!-- Favicon / PWA -->
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="shortcut icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" href="../icône-apple-touch.png">
+  <meta name="theme-color" content="#0f5f9a">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      font-family: "Manrope", system-ui;
-      margin: 40px auto;
-      max-width: 700px;
-      background: #f6f9fc;
-      color: #0f5f9a;
-    }
-    h1 {
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-    p {
-      color: #4a6176;
-      margin-bottom: 20px;
-    }
-    a {
-      display: block;
-      padding: 10px 14px;
-      border-radius: 10px;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,.05);
-      margin: 6px 0;
-      text-decoration: none;
-      color: #0f5f9a;
-      font-weight: 700;
-      transition: background 0.2s, transform 0.1s;
-    }
-    a:hover {
-      background: #e8f1ff;
-      transform: translateY(-1px);
-    }
+    :root{ --font-ui:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; --bg:#f6f9fc; --panel:#fff; --muted:#4a6176; --text:#0f5f9a; --brand:#0f5f9a; --accent:#16a34a; --copper:#ff8a3d; --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.08); --maxw:1200px; --nav-h:40px }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;color:var(--text);background:radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),linear-gradient(180deg,#fff 0%,#f6f9fc 100%);-webkit-font-smoothing:antialiased}
+    body,button,input,select,textarea{font-family:var(--font-ui)}
+    h1,h2,h3,h4{font-weight:800}
+    a{color:inherit;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .glass{background:rgba(255,255,255,.86);backdrop-filter:blur(10px);border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow)}
+
+    /* NAV */
+    header.navbar{position:sticky;top:0;z-index:1100;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(15,23,32,.08)}
+    .nav-wrap{max-width:var(--maxw);margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:14px}
+    .brand-img{height: clamp(56px,8vw,96px);object-fit:contain;display:block}
+    .nav-main{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;margin-left:8px;flex-wrap:wrap}
+    .nav-main a{color:var(--text);text-decoration:none;font-weight:800;font-size:16px;height:var(--nav-h);line-height:var(--nav-h);padding:0 12px;border-radius:10px}
+    .nav-main a:hover{background:rgba(27,136,255,.10)}
+
+    /* SECTION */
+    .section{max-width:var(--maxw);margin:32px auto;padding:0 20px}
+    .title-center{text-align:center;font-size:clamp(26px,4vw,40px);margin:10px 0 6px}
+    .subtitle-center{max-width:900px;margin:0 auto 14px;text-align:center;color:var(--muted)}
+    .underline{width:80px;height:4px;border-radius:999px;background:var(--copper);margin:10px auto 22px;opacity:.9}
+
+    /* GRID */
+    .grid-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+    .card{border-radius:22px;padding:20px;border:1px solid rgba(15,23,32,.08);background:rgba(255,255,255,.86);transition:all .2s}
+    .card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(15,23,32,.1)}
+    .card h3{margin:0 0 8px}
+    .meta{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+    .tag{border:1px solid rgba(15,23,32,.12);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;background:rgba(27,136,255,.06)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;font-size:15px;text-decoration:none;border:1px solid transparent}
+    .btn.primary{background:rgba(27,136,255,.80);color:#fff;border-color:rgba(255,255,255,.25);box-shadow:inset 0 0 12px rgba(255,255,255,.15),0 4px 18px rgba(27,136,255,.30)}
+    .btn.primary:hover{background:rgba(27,136,255,.9)}
   </style>
 </head>
+
 <body>
-  <h1>Liste des fiches de formation</h1>
-  <p>Page interne pour accéder directement aux fiches (lecture automatique depuis <code>js/courses-data.js</code>).</p>
+<header class="navbar" role="banner">
+  <div class="nav-wrap">
+    <a class="brand" href="../index.html" aria-label="Aller à l'accueil"><img class="brand-img" src="../images/logo.png" alt="Awenoria"></a>
+    <nav class="nav-main" aria-label="Navigation principale">
+      <a href="../index.html#qui-sommes-nous">Qui sommes-nous ?</a>
+      <a href="../Nos-services.html">Nos services</a>
+      <a href="../nos-formations.html">Nos formations</a>
+      <a href="../index.html#blog">Blog</a>
+      <a href="../nos-formations.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-  <div id="list"></div>
+<section class="section">
+  <h1 class="title-center">Fiches de formation</h1>
+  <p class="subtitle-center">Page interne listant toutes les fiches disponibles.</p>
+  <div class="underline"></div>
 
-  <script type="module">
-    import { COURSES } from "../js/courses-data.js";
+  <div id="cards" class="grid-list"></div>
+</section>
 
-    const root = document.getElementById("list");
+<script type="module">
+  import { COURSES } from "../js/courses-data.js";
 
-    if (!COURSES?.length) {
-      root.innerHTML = "<p>Aucune donnée de formation trouvée.</p>";
-    } else {
-      root.innerHTML = COURSES.map(c => `
-        <a href="./${c.slug}.html?from=catalogue">${c.title}</a>
-      `).join("");
-    }
-  </script>
+  const root = document.getElementById("cards");
+
+  if (!COURSES?.length) {
+    root.innerHTML = "<p>Aucune formation disponible.</p>";
+  } else {
+    root.innerHTML = COURSES.map(c => `
+      <article class="card glass">
+        <h3>${c.title}</h3>
+        <div class="meta">
+          ${c.duration ? `<span class="tag">${c.duration}</span>` : ""}
+          ${c.level ? `<span class="tag">${c.level}</span>` : ""}
+          ${(c.modalities || []).map(m => `<span class="tag">${m}</span>`).join("")}
+        </div>
+        <p>${c.summary}</p>
+        <p style="margin-top:8px">
+          <a class="btn primary" href="./${c.slug}.html?from=catalogue">Voir la fiche</a>
+        </p>
+      </article>
+    `).join("");
+  }
+</script>
+
+<script src="../js/site.js" defer></script>
 </body>
 </html>
