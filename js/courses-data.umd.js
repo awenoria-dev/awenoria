@@ -1,101 +1,84 @@
-// /js/courses-data.umd.js
-// Version non-module (compatible file://) : AUCUN export, juste window.COURSES
+// js/courses-data.umd.js
+// Version UMD compatible file:// et localhost
+// --------------------------------------------------------
+
 window.COURSES = [
   {
-    id: "rgpd-bases",
     slug: "rgpd-bases",
-    title: "RGPD : les essentiels opérationnels",
-    duration: "1/2 journée",
-    level: "Débutant à intermédiaire",
+    title: "RGPD : les bases essentielles",
+    summary: "Comprendre le cadre légal et les principes fondamentaux du RGPD pour une mise en conformité efficace.",
+    duration: "1 jour",
+    level: "Initiation",
     modalities: ["Présentiel", "Distanciel"],
-    themes: ["rgpd-essentiels"],
-    audiences: ["dirigeants", "equipes", "dpo"],
-    summary: "Comprendre les obligations clés (base légale, registre, information, droits) et savoir quoi faire demain matin.",
-    pitchByTheme: { "rgpd-essentiels": "Vue d'ensemble pragmatique du RGPD avec focus registre, AIPD et preuves de conformité." },
-    pitchByAudience: {
-      dirigeants: "Décider vite : risques, priorités, feuille de route 90 jours, budget & arbitrages.",
-      equipes: "Passer à l’action : modèles concrets (registre, mentions, demandes d’accès), checklists métier.",
-      dpo: "Structurer la gouvernance : cartographie, DPIA, preuves et suivi des écarts."
-    },
     program: [
-      "Bases légales & minimisation",
-      "Registre : quoi, comment, preuves",
-      "Droits des personnes : process & SLA",
-      "Plan d’action 90 jours"
+      "Introduction au RGPD et à ses enjeux",
+      "Les principes clés de la protection des données",
+      "Les droits des personnes concernées",
+      "Le rôle et les obligations du responsable de traitement",
+      "Mise en conformité et registres obligatoires"
     ]
   },
   {
-    id: "cookies-cmp",
-    slug: "cookies-cmp",
-    title: "Cookies, traceurs & CMP conformes",
-    duration: "2h à 1/2 journée",
-    level: "Intermédiaire",
-    modalities: ["Distanciel", "Présentiel"],
-    themes: ["cookies", "web-legal"],
-    audiences: ["dirigeants", "equipes", "dpo", "dev"],
-    summary: "Mettre en place une CMP propre, auditer les tags, documenter le consentement et limiter l'impact business.",
-    pitchByTheme: {
-      cookies: "De l’audit aux correctifs : catégories, preuve du consentement, exemptions, plans de taggage.",
-      "web-legal": "Aligner mentions, politique cookies et CMP pour un parcours utilisateur cohérent."
-    },
-    pitchByAudience: {
-      dirigeants: "Réduire le risque sans casser l’acquisition : options, KPIs, compromis.",
-      equipes: "Paramétrages CMP, bannières, tagging plan, recettes de tests.",
-      dpo: "Doctrine interne, exemptions, preuves de consentement & journalisation.",
-      dev: "Implémentation technique : events, priorités de chargement, bandeau, refus dur."
-    },
-    program: [
-      "Cadre CNIL/UE et exemptions",
-      "Choisir et paramétrer une CMP",
-      "Audit des tags & politique cookies",
-      "Mesure d’impact et A/B si besoin"
-    ]
-  },
-  {
-    id: "ia-act-intro",
-    slug: "ia-act-intro",
-    title: "IA Act (UE) : obligations & documentation",
-    duration: "1/2 journée à 1 journée",
-    level: "Intermédiaire",
-    modalities: ["Distanciel", "Présentiel"],
-    themes: ["ia-act"],
-    audiences: ["dirigeants", "équipes", "dpo", "dev"],
-    summary: "Qualifier les systèmes, comprendre les obligations par niveau de risque, préparer la doc et la gouvernance.",
-    pitchByTheme: { "ia-act": "Passage en revue des catégories de risque, obligations et trame documentaire prête à l’emploi." },
-    pitchByAudience: {
-      dirigeants: "Décider : périmètre, risques, responsabilités, budget et comitologie.",
-      equipes: "Procédures et modèles pour opérer la conformité au quotidien.",
-      dpo: "Articuler RGPD/IA Act : registres, analyses, contrôles, preuves.",
-      dev: "Impacts produit/data : dataset, logs, évaluation, robustesse, transparence."
-    },
-    program: [
-      "Cartographier les cas d’usage",
-      "Qualification du risque & obligations",
-      "Dossier technique & transparence",
-      "Plan de mise en conformité"
-    ]
-  },
-  {
-    id: "rgaa-access",
     slug: "rgaa-access",
-    title: "Accessibilité (RGAA / EN 301 549)",
-    duration: "1/2 journée",
+    title: "Accessibilité numérique (RGAA)",
+    summary: "Apprenez à rendre vos sites et applications accessibles selon le référentiel RGAA et les standards internationaux.",
+    duration: "2 jours",
     level: "Intermédiaire",
-    modalities: ["Distanciel", "Présentiel"],
-    themes: ["access"],
-    audiences: ["equipes", "dev", "dirigeants"],
-    summary: "Intégrer l’accessibilité dans vos produits numériques : obligations, quick wins, outils de test.",
-    pitchByTheme: { access: "RGAA/EN 301 549 : exigences, méthodes de test et mise en œuvre pragmatique." },
-    pitchByAudience: {
-      dirigeants: "Conformité, image et risques : feuille de route réaliste.",
-      equipes: "Design, contenu et QA : checklists prêtes à l’emploi.",
-      dev: "Implémentation : sémantique, contrastes, focus, ARIA, tests."
-    },
+    modalities: ["Présentiel", "Distanciel"],
     program: [
-      "Cadre légal et normes",
-      "Audit rapide & priorisation",
-      "Design/éditorial accessibles",
-      "Outillage & contrôle continu"
+      "Introduction à l’accessibilité et au RGAA",
+      "Critères de conformité et bonnes pratiques",
+      "Audit d’accessibilité : méthode et outils",
+      "Correction des erreurs fréquentes",
+      "Rédaction de la déclaration d’accessibilité"
+    ]
+  },
+  {
+    slug: "cookies-cmp",
+    title: "Cookies & CMP : mise en conformité",
+    summary: "Maîtrisez la réglementation sur les cookies et la mise en place d'une Consent Management Platform conforme CNIL.",
+    duration: "1/2 journée",
+    level: "Tous niveaux",
+    modalities: ["Distanciel"],
+    program: [
+      "Rappel du cadre légal (ePrivacy, RGPD, CNIL)",
+      "Typologie des traceurs et règles applicables",
+      "Consentement : critères et durée de validité",
+      "Mise en œuvre pratique d'une CMP",
+      "Audit et paramétrage technique"
+    ]
+  },
+  {
+    slug: "ia-act-intro",
+    title: "IA Act : introduction et obligations",
+    summary: "Découvrir le futur cadre européen de régulation de l’IA et anticiper ses impacts sur vos projets.",
+    duration: "1 journée",
+    level: "Avancé",
+    modalities: ["Présentiel", "Distanciel"],
+    program: [
+      "Contexte et objectifs de l’IA Act",
+      "Classification des systèmes à risque",
+      "Obligations des fournisseurs et utilisateurs",
+      "Documentation technique et évaluation de conformité",
+      "Anticiper la mise en œuvre dans son organisation"
+    ]
+  },
+  {
+    slug: "cyber-initiation",
+    title: "Cybersécurité : initiation pour tous",
+    summary: "Apprenez les bons réflexes pour sécuriser vos données et vos outils numériques au quotidien.",
+    duration: "1 jour",
+    level: "Débutant",
+    modalities: ["Présentiel"],
+    program: [
+      "Panorama des menaces numériques",
+      "Les attaques les plus fréquentes (phishing, ransomwares, etc.)",
+      "Protection des postes et des comptes utilisateurs",
+      "Sécurisation des échanges et des mots de passe",
+      "Plan de sensibilisation interne"
     ]
   }
 ];
+
+// Petit message de confirmation
+console.log(`[courses-data.umd.js] ${window.COURSES.length} fiches chargées`);
