@@ -98,31 +98,72 @@
 </noscript>
 
 <!-- Génération des cartes -->
-<script type="module">
-  import { COURSES } from "../js/courses-data.js";
+<script>
+(function(){
+  const root = document.getElementById('cards');
+  if (!root) return;
 
-  const root = document.getElementById("cards");
+  function tag(t){ return `<span class="tag">${t}</span>`; }
 
-  function tag(txt){ return `<span class="tag">${txt}</span>`; }
-
-  if (!Array.isArray(COURSES) || COURSES.length === 0){
-    root.innerHTML = "<p>Aucune formation trouvée.</p>";
-  } else {
-    root.innerHTML = COURSES.map(c => `
+  function render(list){
+    if (!Array.isArray(list) || list.length === 0){
+      root.innerHTML = '<p>Aucune formation trouvée.</p>';
+      return;
+    }
+    root.innerHTML = list.map(c => `
       <article class="card">
         <h3>${c.title}</h3>
         <div class="meta">
-          ${c.duration ? tag(c.duration) : ""}
-          ${c.level ? tag(c.level) : ""}
-          ${(c.modalities||[]).map(tag).join("")}
+          ${c.duration ? tag(c.duration) : ''}
+          ${c.level ? tag(c.level) : ''}
+          ${(c.modalities||[]).map(tag).join('')}
         </div>
-        <p>${c.summary || ""}</p>
+        <p>${c.summary || ''}</p>
         <p style="margin-top:8px">
-          <a class="btn" href="./${c.slug}.html?from=catalogue" aria-label="Voir la fiche détaillée de ${c.title}">Voir la fiche</a>
+          <a class="btn primary" href="./${c.slug}.html?from=catalogue"
+             aria-label="Voir la fiche détaillée de ${c.title}">Voir la fiche</a>
         </p>
       </article>
-    `).join("");
+    `).join('');
+
+    // Apparition douce
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce && 'IntersectionObserver' in window){
+      const cards = root.querySelectorAll('.card');
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting){
+            const i = [...entry.target.parentElement.children].indexOf(entry.target);
+            entry.target.style.transitionDelay = `${Math.min(i*80, 400)}ms`;
+            entry.target.classList.add('reveal');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      cards.forEach(c => io.observe(c));
+    } else {
+      root.querySelectorAll('.card').forEach(c => c.classList.add('reveal'));
+    }
   }
+
+  // 1) Essaye l'import ESM
+  (async () => {
+    try {
+      const mod = await import('../js/courses-data.js');
+      render(mod.COURSES);
+    } catch (e) {
+      // 2) Fallback non-module (global window.COURSES)
+      const s = document.createElement('script');
+      s.src = '../js/courses-data.js';
+      s.onload = () => render(window.COURSES);
+      s.onerror = () => root.innerHTML = `
+        <p style="color:#b00"><strong>Erreur de chargement des données.</strong></p>
+        <p>Vérifie le chemin <code>../js/courses-data.js</code> depuis <code>/formation/</code>.</p>`;
+      document.head.appendChild(s);
+    }
+  })();
+})();
+</script>
 
   // Animation d'apparition (progressive)
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
