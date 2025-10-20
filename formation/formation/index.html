@@ -17,12 +17,16 @@
   <h1>Fiches formation</h1>
   <div id="list"></div>
 
-  <script type="module">
-    import { COURSES } from "/js/courses-data.js";
+   <script type="module">
+    import { COURSES } from "./js/courses-data.js";  <!-- chemin relatif -->
     const root = document.getElementById('list');
     root.innerHTML = COURSES.map(c => 
-      `<a href="./${c.slug}.html?from=catalogue">${c.title}</a>`
+      `<a href="./formation/${c.slug}.html?from=catalogue">${c.title}</a>`  <!-- bon dossier -->
     ).join("");
   </script>
+
+  <!-- Script global du site -->
+  <script src="./js/site.js" defer></script>
 </body>
 </html>
+
