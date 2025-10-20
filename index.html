@@ -455,16 +455,8 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </button>
 
-       <div class="mega glass mega--services" role="menu" aria-label="Nos services">
+     <div class="mega glass mega--services" role="menu" aria-label="Nos services">
   <div class="mega-grid--3">
-    <!-- Bannière catalogue sur toute la largeur -->
-    <a class="pill glass-soft" href="#offres" role="menuitem"
-       style="grid-column:1/-1;margin-bottom:6px">
-      <span class="tag">Catalogue</span>
-      <h5>Tous nos services, packs et modules à la carte.</h5>
-      <p>Parcourez le détail complet et nos formules.</p>
-    </a>
-
     <div class="group">
       <h6>Conseil &amp; conformité</h6>
       <ul class="mega-list">
@@ -479,13 +471,21 @@
       <ul class="mega-list">
         <li><a role="menuitem" href="#f-cookies">Cookies &amp; CMP</a></li>
         <li><a role="menuitem" href="#f-legales">Mentions légales</a></li>
-        <!-- doublon supprimé -->
+        <!-- Doublon supprimé : on garde UNE seule entrée Accessibilité -->
         <li><a role="menuitem" href="#f-access">Accessibilité (RGAA / EN 301 549)</a></li>
       </ul>
     </div>
 
     <div class="group">
       <h6>Formats &amp; modalités</h6>
+
+      <!-- ✅ Ajout discret, visible et cohérent -->
+      <ul class="mega-list" style="margin-bottom:6px">
+        <li>
+          <a role="menuitem" href="#offres">Tous nos services, packs &amp; modules à la carte</a>
+        </li>
+      </ul>
+
       <div class="format-badges">
         <span class="badge pill-badge">Audit flash</span>
         <span class="badge pill-badge">Mission</span>
