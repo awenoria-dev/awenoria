@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Liste des fiches de formation – Awenoria</title>
-  <meta name="description" content="Page interne listant toutes les fiches de formation générées automatiquement depuis js/courses-data.js." />
+  <meta name="description" content="Page interne listant toutes les fiches de formation générées automatiquement depuis js/courses-data.umd.js." />
   <meta name="theme-color" content="#0f5f9a" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -75,7 +75,7 @@
 
 <main class="wrap">
   <h1>Liste des fiches de formation</h1>
-  <p class="sub">Page interne de test — génération automatique depuis <code>js/courses-data.js</code>.</p>
+  <p class="sub">Page interne de test — génération automatique depuis <code>js/courses-data.umd.js</code>.</p>
   <div class="underline"></div>
 
   <div id="cards" aria-live="polite"></div>
@@ -93,11 +93,10 @@
   <div class="wrap"><p>Activez JavaScript pour voir la liste des fiches.</p></div>
 </noscript>
 
+<!-- Charge UNIQUEMENT la version UMD pour être compatible file:// et http:// -->
 <script>
 (() => {
   const root = document.getElementById('cards');
-  if (!root) { console.warn('No #cards element found'); return; }
-
   const tag = (t) => `<span class="tag">${t}</span>`;
 
   function render(list = []){
@@ -141,30 +140,16 @@
     }
   }
 
-  (async () => {
-    const isHttp = /^https?:$/i.test(location.protocol);
-
-    if (isHttp) {
-      try {
-        const mod = await import('/js/courses-data.js'); // version ESM
-        render(mod?.COURSES || window.COURSES);
-        return;
-      } catch (e) {
-        console.warn('ESM import failed, falling back to UMD...', e);
-      }
-    }
-
-    // file:// ou fallback : chemin absolu
-    const s = document.createElement('script');
-    s.src = '/js/courses-data.umd.js';
-    s.onload = () => render(window.COURSES);
-    s.onerror = () => {
-      root.innerHTML = `
-        <p style="color:#b00"><strong>Erreur de chargement des données.</strong></p>
-        <p>Vérifie le chemin <code>/js/courses-data.umd.js</code>.</p>`;
-    };
-    document.head.appendChild(s);
-  })();
+  // Chemin RELATIF depuis /formation/index.html → ../js/courses-data.umd.js
+  const s = document.createElement('script');
+  s.src = '../js/courses-data.umd.js';
+  s.onload = () => render(window.COURSES);
+  s.onerror = () => {
+    root.innerHTML = `
+      <p style="color:#b00"><strong>Erreur de chargement des données.</strong></p>
+      <p>Vérifie le chemin <code>../js/courses-data.umd.js</code> par rapport à <code>/formation/index.html</code>.</p>`;
+  };
+  document.head.appendChild(s);
 })();
 </script>
 
