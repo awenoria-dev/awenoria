@@ -7,7 +7,6 @@
   <meta name="description" content="Page interne listant toutes les fiches de formation générées automatiquement depuis js/courses-data.js." />
   <meta name="theme-color" content="#0f5f9a" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
@@ -31,19 +30,16 @@
     a{color:inherit; text-decoration:none}
     a:hover{text-decoration:underline}
 
-    /* Header */
     header{position:sticky; top:0; z-index:10; background:rgba(255,255,255,.85);
       backdrop-filter:blur(10px); border-bottom:1px solid rgba(15,23,32,.08)}
     .nav{max-width:var(--maxw); margin:0 auto; padding:10px 16px; display:flex; align-items:center; gap:16px}
     .nav img{height: clamp(56px,8vw,96px); display:block}
 
-    /* Main */
     .wrap{max-width:var(--maxw); margin:28px auto; padding:0 20px}
     h1{font-weight:800; font-size:clamp(26px,4vw,44px); text-align:center; margin:6px 0}
     .sub{color:var(--muted); text-align:center; margin:0 0 8px}
     .underline{width:84px; height:4px; border-radius:999px; background:var(--copper); margin:12px auto 24px; opacity:.95}
 
-    /* Cards */
     #cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px}
     .card{background:rgba(255,255,255,.86); border:1px solid rgba(15,23,32,.08);
       border-radius:22px; padding:20px; box-shadow:var(--shadow);
@@ -61,7 +57,6 @@
     footer{text-align:center; color:var(--muted); margin:28px 0}
     footer a{color:var(--brand); font-weight:800}
 
-    /* Reveal animation (opt-in for users without reduced-motion) */
     @media (prefers-reduced-motion: no-preference){
       .card{opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s ease}
       .card.reveal{opacity:1; transform:translateY(0)}
@@ -98,7 +93,6 @@
   <div class="wrap"><p>Activez JavaScript pour voir la liste des fiches.</p></div>
 </noscript>
 
-<!-- Génération des cartes -->
 <script>
 (() => {
   const root = document.getElementById('cards');
@@ -128,7 +122,6 @@
       </article>
     `).join('');
 
-    // Animation d'apparition (après rendu)
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduce && 'IntersectionObserver' in window){
       const cards = root.querySelectorAll('.card');
@@ -148,25 +141,28 @@
     }
   }
 
-  // Chargement des données : tentative ESM, puis fallback global
   (async () => {
-    try {
-      // Essai import ESM (fonctionne si le serveur sert en type=module ou si le navigateur supporte import relatif)
-      const mod = await import('../js/courses-data.js');
-      render(mod?.COURSES || window.COURSES);
-    } catch (e) {
-      // Fallback non-module : injection d'un <script> qui expose window.COURSES
-      const s = document.createElement('script');
-      s.type = 'module';
-      s.src = '../js/courses-data.js';
-      s.onload = () => render(window.COURSES);
-      s.onerror = () => {
-        root.innerHTML = `
-          <p style="color:#b00"><strong>Erreur de chargement des données.</strong></p>
-          <p>Vérifie le chemin <code>../js/courses-data.js</code>.</p>`;
-      };
-      document.head.appendChild(s);
+    const isHttp = /^https?:$/i.test(location.protocol);
+
+    if (isHttp) {
+      try {
+        const mod = await import('../js/courses-data.js'); // version ESM
+        render(mod?.COURSES || window.COURSES);
+        return;
+      } catch (e) {
+        console.warn('ESM import failed, falling back to UMD...', e);
+      }
     }
+
+    const s = document.createElement('script');
+    s.src = '../js/courses-data.umd.js';
+    s.onload = () => render(window.COURSES);
+    s.onerror = () => {
+      root.innerHTML = `
+        <p style="color:#b00"><strong>Erreur de chargement des données.</strong></p>
+        <p>Vérifie le chemin <code>../js/courses-data.umd.js</code>.</p>`;
+    };
+    document.head.appendChild(s);
   })();
 })();
 </script>
