@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formats & modalités – Awenoria</title>
+  <meta name="description" content="Choisissez un format (atelier 2h, 1/2 journée, 1 journée, parcours) ou une modalité (présentiel, distanciel) et ouvrez le catalogue filtré." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+  <style>
+    :root{--font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--text:#0f5f9a;--muted:#4a6176;--copper:#ff8a3d;--shadow:0 12px 28px rgba(0,0,0,.08);--maxw:1100px}
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;color:var(--text);font-family:var(--font);background:radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),linear-gradient(180deg,#fff 0%,#f6f9fc 100%)}
+    .wrap{max-width:var(--maxw);margin:28px auto;padding:0 20px}
+    h1{font-weight:800;font-size:clamp(24px,4.4vw,42px);margin:6px 0}
+    h2{font-weight:800;font-size:clamp(18px,2.8vw,26px);margin:6px 0 12px}
+    .lead{color:var(--muted)}
+    .underline{width:84px;height:4px;border-radius:999px;background:var(--copper);margin:12px 0 22px;opacity:.95}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+    .card{background:rgba(255,255,255,.86);border:1px solid rgba(15,23,32,.08);border-radius:22px;padding:18px;box-shadow:var(--shadow)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1px solid transparent;background:rgba(27,136,255,.80);color:#fff;text-decoration:none}
+    .note{color:var(--muted);font-size:14px}
+    header a{color:inherit;text-decoration:none}
+    .section{margin-top:18px}
+  </style>
+</head>
+<body>
+<header class="wrap">
+  <a href="/formation/index.html">← Retour “Nos formations”</a>
+  <h1>Formats & modalités</h1>
+  <p class="lead">Choisissez un format ou une modalité pour afficher le catalogue filtré.</p>
+  <div class="underline"></div>
+</header>
+
+<main class="wrap">
+  <!-- Formats -->
+  <section class="section">
+    <h2>Formats</h2>
+    <div class="grid" id="formats"></div>
+  </section>
+
+  <!-- Modalités -->
+  <section class="section">
+    <h2>Modalités</h2>
+    <div class="grid" id="modalites"></div>
+  </section>
+</main>
+
+<script type="module">
+  // === Formats (mêmes libellés que ton méga-menu) ===
+  const FORMATS = {
+    "atelier-2h": {
+      title: "Atelier 2h",
+      desc: "Focus rapide et opérationnel sur un sujet clé avec exercices."
+    },
+    "demi-journee": {
+      title: "1/2 journée",
+      desc: "Module condensé pour lancer ou approfondir un thème prioritaire."
+    },
+    "journee": {
+      title: "1 journée",
+      desc: "Formation complète avec mise en pratique et livrables."
+    },
+    "parcours": {
+      title: "Parcours",
+      desc: "Programme modulaire sur plusieurs séances avec suivi."
+    }
+  };
+
+  // === Modalités ===
+  const MODALITES = {
+    "presentiel": {
+      title: "Présentiel",
+      desc: "Animation sur site, interaction forte, ateliers en salle."
+    },
+    "distanciel": {
+      title: "Distanciel",
+      desc: "Classes virtuelles en visioconférence, supports partagés."
+    }
+  };
+
+  // Rendu Formats
+  const formatsRoot = document.getElementById("formats");
+  formatsRoot.innerHTML = Object.entries(FORMATS).map(([k,v]) => `
+    <article class="card">
+      <h3 style="margin:0 0 6px">${v.title}</h3>
+      <p class="note">${v.desc}</p>
+      <p style="margin-top:10px">
+        <a class="btn" href="/formation/liste.html?format=${encodeURIComponent(k)}"
+           aria-label="Voir les formations format ${v.title}">Voir les formations</a>
+      </p>
+    </article>
+  `).join("");
+
+  // Rendu Modalités
+  const modesRoot = document.getElementById("modalites");
+  modesRoot.innerHTML = Object.entries(MODALITES).map(([k,v]) => `
+    <article class="card">
+      <h3 style="margin:0 0 6px">${v.title}</h3>
+      <p class="note">${v.desc}</p>
+      <p style="margin-top:10px">
+        <a class="btn" href="/formation/liste.html?modalite=${encodeURIComponent(k)}"
+           aria-label="Voir les formations en ${v.title}">Voir les formations</a>
+      </p>
+    </article>
+  `).join("");
+</script>
+</body>
+</html>
