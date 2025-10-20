@@ -1,165 +1,40 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fiches formation – Awenoria</title>
-  <meta name="description" content="Liste complète des fiches de formation Awenoria. Accédez rapidement aux contenus détaillés, durées, modalités et programmes." />
+<script src="../js/courses-data.js"></script>
+<script>
+  const root = document.getElementById("cards");
+  if (!window.COURSES?.length) {
+    root.innerHTML = "<p>Aucune formation disponible.</p>";
+  } else {
+    root.innerHTML = COURSES.map(c => `
+      <article class="card">
+        <h3>${c.title}</h3>
+        <div class="meta">
+          ${c.duration ? `<span class="tag">${c.duration}</span>` : ""}
+          ${c.level ? `<span class="tag">${c.level}</span>` : ""}
+          ${(c.modalities || []).map(m => `<span class="tag">${m}</span>`).join("")}
+        </div>
+        <p>${c.summary || ""}</p>
+        <p style="margin-top:8px">
+          <a class="btn primary" href="./${c.slug}.html?from=catalogue"
+             aria-label="Voir la fiche détaillée de ${c.title}">Voir la fiche</a>
+        </p>
+      </article>
+    `).join("");
 
-  <!-- Favicon / PWA -->
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-  <link rel="shortcut icon" href="../favicon.ico">
-  <link rel="apple-touch-icon" href="../icône-apple-touch.png">
-  <meta name="theme-color" content="#0f5f9a">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
-
-  <style>
-    :root{ --font-ui:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; --bg:#f6f9fc; --panel:#fff; --muted:#4a6176; --text:#0f5f9a; --brand:#0f5f9a; --accent:#16a34a; --copper:#ff8a3d; --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.08); --maxw:1200px; --nav-h:40px }
-    *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;color:var(--text);background:radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),linear-gradient(180deg,#fff 0%,#f6f9fc 100%);-webkit-font-smoothing:antialiased}
-    body,button,input,select,textarea{font-family:var(--font-ui)}
-    h1,h2,h3,h4{font-weight:800}
-    a{color:inherit;text-decoration:none}
-    a:hover{text-decoration:underline}
-
-    /* NAV */
-    header.navbar{position:sticky;top:0;z-index:1100;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(15,23,32,.08)}
-    .nav-wrap{max-width:var(--maxw);margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:14px}
-    .brand-img{height: clamp(56px,8vw,96px);object-fit:contain;display:block}
-    .nav-main{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;margin-left:8px;flex-wrap:wrap}
-    .nav-main a{color:var(--text);text-decoration:none;font-weight:800;font-size:16px;height:var(--nav-h);line-height:var(--nav-h);padding:0 12px;border-radius:10px}
-    .nav-main a:hover{background:rgba(27,136,255,.10)}
-
-    /* SECTION */
-    .section{max-width:var(--maxw);margin:32px auto;padding:0 20px}
-    .title-center{text-align:center;font-size:clamp(26px,4vw,40px);margin:10px 0 6px}
-    .subtitle-center{max-width:900px;margin:0 auto 14px;text-align:center;color:var(--muted)}
-    .underline{width:80px;height:4px;border-radius:999px;background:var(--copper);margin:10px auto 22px;opacity:.9}
-
-    /* GRID */
-    .grid-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-
-    /* CARD */
-    .card{border-radius:22px;padding:20px;border:1px solid rgba(15,23,32,.08);background:rgba(255,255,255,.86);box-shadow:var(--shadow);transition:transform .2s ease, box-shadow .3s ease}
-    .card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(15,23,32,.12)}
-    .card h3{margin:0 0 8px}
-    .meta{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
-    .tag{border:1px solid rgba(15,23,32,.12);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;background:rgba(27,136,255,.06)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;font-size:15px;text-decoration:none;border:1px solid transparent}
-    .btn.primary{background:rgba(27,136,255,.80);color:#fff;border-color:rgba(255,255,255,.25);box-shadow:inset 0 0 12px rgba(255,255,255,.15),0 4px 18px rgba(27,136,255,.30)}
-    .btn.primary:hover{background:rgba(27,136,255,.9)}
-
-    /* Animation apparition cartes (ta question) */
-    @media (prefers-reduced-motion: no-preference) {
-      .card{
-        opacity:0;
-        transform:translateY(12px);
-        transition:opacity .5s ease, transform .5s ease;
-        will-change:opacity, transform;
-      }
-      .card.reveal{
-        opacity:1;
-        transform:translateY(0);
-      }
+    // animation d’apparition (préférence utilisateur respectée)
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) {
+      const cards = document.querySelectorAll('#cards .card');
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = [...entry.target.parentElement.children].indexOf(entry.target);
+            entry.target.style.transitionDelay = `${Math.min(index * 80, 400)}ms`;
+            entry.target.classList.add('reveal');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      cards.forEach(card => io.observe(card));
     }
-
-    /* FOOTER */
-    footer{text-align:center;margin:32px 0 40px;color:var(--muted);font-size:15px}
-    footer a{color:var(--brand);font-weight:800;text-decoration:none}
-    footer a:hover{text-decoration:underline}
-  </style>
-</head>
-
-<body>
-<header class="navbar" role="banner">
-  <div class="nav-wrap">
-    <a class="brand" href="../index.html" aria-label="Aller à l'accueil"><img class="brand-img" src="../images/logo.png" alt="Awenoria"></a>
-    <nav class="nav-main" aria-label="Navigation principale">
-      <a href="../index.html#qui-sommes-nous">Qui sommes-nous ?</a>
-      <a href="../Nos-services.html">Nos services</a>
-      <a href="../nos-formations.html">Nos formations</a>
-      <a href="../index.html#blog">Blog</a>
-      <a href="../nos-formations.html#contact">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<section class="section">
-  <h1 class="title-center">Fiches de formation</h1>
-  <p class="subtitle-center">Liste interne de toutes les fiches disponibles. Cliquez sur une formation pour consulter sa fiche détaillée.</p>
-  <div class="underline"></div>
-
-  <div id="cards" class="grid-list" aria-live="polite"></div>
-</section>
-
-<footer>
-  <p>← <a href="../formations-liste.html">Retour au catalogue principal</a></p>
-</footer>
-
-<!-- SCRIPT: génération + animation -->
-<script type="module">
-  (async () => {
-    const root = document.getElementById("cards");
-
-    try {
-      // chemin relatif depuis /formation/ vers /js/
-      const { COURSES } = await import("../js/courses-data.js");
-
-      if (!Array.isArray(COURSES) || !COURSES.length) {
-        root.innerHTML = "<p>Aucune formation disponible (COURSES est vide).</p>";
-        return;
-      }
-
-      // rendu des cartes
-      root.innerHTML = COURSES.map(c => `
-        <article class="card">
-          <h3>${c.title}</h3>
-          <div class="meta">
-            ${c.duration ? `<span class="tag">${c.duration}</span>` : ""}
-            ${c.level ? `<span class="tag">${c.level}</span>` : ""}
-            ${(c.modalities || []).map(m => `<span class="tag">${m}</span>`).join("")}
-          </div>
-          <p>${c.summary || ""}</p>
-          <p style="margin-top:8px">
-            <a class="btn primary" href="./${c.slug}.html?from=catalogue"
-               aria-label="Voir la fiche détaillée de ${c.title}">Voir la fiche</a>
-          </p>
-        </article>
-      `).join("");
-
-      // animation d’apparition (respecte prefers-reduced-motion)
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!prefersReduced) {
-        const cards = document.querySelectorAll('#cards .card');
-        if ('IntersectionObserver' in window) {
-          const io = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                const index = [...entry.target.parentElement.children].indexOf(entry.target);
-                entry.target.style.transitionDelay = `${Math.min(index * 80, 400)}ms`;
-                entry.target.classList.add('reveal');
-                obs.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.12 });
-          cards.forEach(card => io.observe(card));
-        } else {
-          // fallback
-          cards.forEach(c => c.classList.add('reveal'));
-        }
-      }
-    } catch (err) {
-      console.error("Import ../js/courses-data.js échoué :", err);
-      root.innerHTML = `
-        <p style="color:#b00"><strong>Erreur de chargement des données.</strong></p>
-        <p>Vérifie que <code>/js/courses-data.js</code> existe et que le chemin est bien <code>../js/courses-data.js</code> depuis /formation/.</p>
-      `;
-    }
-  })();
+  }
 </script>
-</body>
-</html>
