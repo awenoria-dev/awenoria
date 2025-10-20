@@ -107,3 +107,6 @@ export const COURSES = [
     ]
   }
 ];
+
+// 👉 AJOUTE CETTE LIGNE À LA FIN :
+if (typeof window !== 'undefined') window.COURSES = COURSES;
