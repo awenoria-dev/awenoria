@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Catalogue – Services & Formations | Awenoria</title>
-  <meta name="description" content="Parcourez nos services et formations : thématiques, publics, formats & modalités. Présentiel / distanciel, supports et attestation inclus." />
+  <title>Catalogue | Awenoria</title>
+  <meta name="description" content="Parcourez nos services et nos formations : thématiques, publics, formats & modalités. Présentiel / distanciel, supports et attestation inclus." />
 
   <!-- Favicon / PWA -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -109,8 +109,8 @@
     <span>Catalogue</span>
   </nav>
 
-  <h1 class="title-center">Catalogue – Services & Formations</h1>
-  <p class="subtitle-center">Trouvez rapidement ce dont vous avez besoin : accompagnements, packs, et programmes de formation par thématique, public ou format.</p>
+  <!-- PJ1 : Titre principal uniquement "Catalogue" -->
+  <h1 class="title-center">Catalogue</h1>
   <div class="underline"></div>
 
   <!-- SPLIT PANELS -->
@@ -118,7 +118,8 @@
     <!-- SERVICES -->
     <section class="panel glass" aria-labelledby="services-title">
       <header>
-        <h2 id="services-title">Services</h2>
+        <!-- PJ2 : "Catalogue des services" -->
+        <h2 id="services-title">Catalogue des services</h2>
         <p class="lead">Conseils & conformité, web & légal, formats & modalités. Explorez aussi tous nos services, packs et modules à la carte.</p>
         <div class="underline"></div>
       </header>
@@ -186,8 +187,9 @@
     <!-- FORMATIONS -->
     <section class="panel glass" aria-labelledby="formations-title">
       <header>
-        <h2 id="formations-title">Formations</h2>
-        <p class="lead">Par thématiques, par public, ou par formats & modalités. Cliquez pour filtrer le catalogue ci-dessous.</p>
+        <!-- PJ3 : "Catalogue des formations" -->
+        <h2 id="formations-title">Catalogue des formations</h2>
+        <p class="lead">Par thématiques, par public, ou par formats & modalités. Cliquez pour filtrer le catalogue.</p>
         <div class="underline"></div>
       </header>
 
@@ -224,16 +226,15 @@
 </section>
 
 <!-- CATALOGUE (résultats) -->
-<section id="catalogue" class="section">
+<section id="catalogue" class="section" aria-label="Catalogue filtré">
   <nav class="crumbs" aria-label="Filtre courant">
     <a href="/nos-formations.html">Formations</a>
     <span aria-hidden="true">›</span>
     <span id="crumb-leaf">Catalogue</span>
   </nav>
 
-  <h2 id="page-title" class="title-center">Catalogue des formations</h2>
-  <p id="page-subtitle" class="subtitle-center">Parcourez l’ensemble de nos programmes.</p>
-  <div class="underline"></div>
+  <!-- PJ4 : on SUPPRIME le bloc titre/sous-titre/underline du bas -->
+  <!-- (on garde seulement la grille de cartes + CTA) -->
 
   <div id="cards" class="grid-3" aria-live="polite"></div>
 
@@ -245,7 +246,7 @@
 <script type="module">
   import { COURSES } from "/js/courses-data.js";
 
-  // ====== Constantes (libellés) ======
+  // ====== Libellés ======
   const THEME_LABELS = {
     "rgpd-essentiels":"RGPD – essentiels, registre, AIPD",
     "ia-act":"IA Act – obligations & documentation",
@@ -274,8 +275,6 @@
   // ====== Helpers DOM ======
   const params = new URLSearchParams(location.search);
   const root = document.getElementById("cards");
-  const titleEl = document.getElementById("page-title");
-  const subEl = document.getElementById("page-subtitle");
   const crumbLeaf = document.getElementById("crumb-leaf");
 
   const theme = params.get("theme");
@@ -302,7 +301,6 @@
     const mods = (course.modalities || []).map(m=>`<span class="tag">${m}</span>`).join("");
     const items = (course.program || []).map(li=>`<li>${li}</li>`).join("");
 
-    // on propage les filtres d'origine pour back/UX
     const src = audience ? "public" : (theme ? "theme" : (formatKey ? "format" : (modalite ? "modalite" : "catalogue")));
     const url = `/formation/${course.slug}.html?from=${src}`
       + (audience ? `&public=${encodeURIComponent(audience)}` : "")
@@ -329,11 +327,7 @@
     // Filtres
     if (theme) list = list.filter(c => (c.themes || []).includes(theme));
     if (audience) list = list.filter(c => (c.audiences || []).includes(audience));
-
-    // format (optionnel : si vos données exposent c.formats ou c.formatKeys)
     if (formatKey) list = list.filter(c => (c.formats || c.formatKeys || []).includes(formatKey));
-
-    // modalité : mappe sur les libellés présents dans COURSES.modalities (ex: "Présentiel", "Distanciel")
     if (modalite){
       const key = normalize(modalite);
       list = list.filter(c => (c.modalities || []).some(m => {
@@ -343,44 +337,30 @@
       }));
     }
 
-    // Titres & meta dynamiques
+    // Metas / breadcrumb seulement (on n'affiche plus de titre bas de page)
     if (theme){
       const label = THEME_LABELS[theme] || "Thématique";
-      titleEl.textContent = `Formations – ${label}`;
-      subEl.textContent = "Sélection par thématique : contenus centrés sur vos besoins.";
       crumbLeaf.textContent = label;
-      setHead(`Formations ${label} – Awenoria`, `Toutes nos formations pour la thématique ${label}. Présentiel ou distanciel, supports & attestation inclus.`);
+      setHead(`Catalogue – ${label} | Awenoria`, `Catalogue filtré par thématique : ${label}.`);
     } else if (audience){
       const label = AUDIENCE_LABELS[audience] || "Public";
-      titleEl.textContent = `Formations pour ${label}`;
-      subEl.textContent = "Parcours et ateliers adaptés à votre rôle.";
       crumbLeaf.textContent = label;
-      setHead(`Formations pour ${label} – Awenoria`, `Sélection de formations pour ${label}. Approche, exemples et livrables personnalisés.`);
+      setHead(`Catalogue – ${label} | Awenoria`, `Catalogue filtré par public : ${label}.`);
     } else if (formatKey){
       const f = FORMATS[formatKey]?.title || "Format";
-      titleEl.textContent = `Formations – ${f}`;
-      subEl.textContent = "Sélection par format : choisissez le rythme qui vous convient.";
       crumbLeaf.textContent = f;
-      setHead(`Formations – ${f} – Awenoria`, `Catalogue filtré par format ${f}.`);
+      setHead(`Catalogue – ${f} | Awenoria`, `Catalogue filtré par format : ${f}.`);
     } else if (modalite){
       const m = MODALITES[modalite]?.title || "Modalité";
-      titleEl.textContent = `Formations – ${m}`;
-      subEl.textContent = "Sélection par modalité d’animation.";
       crumbLeaf.textContent = m;
-      setHead(`Formations – ${m} – Awenoria`, `Catalogue filtré par modalité ${m}.`);
+      setHead(`Catalogue – ${m} | Awenoria`, `Catalogue filtré par modalité : ${m}.`);
     } else {
-      titleEl.textContent = "Catalogue des formations";
-      subEl.textContent = "Parcourez l’ensemble de nos programmes.";
       crumbLeaf.textContent = "Catalogue";
-      setHead(`Catalogue – Awenoria`, `Parcourez nos formations par thématique, public, formats & modalités. Présentiel / distanciel, supports et attestation.`);
+      setHead(`Catalogue | Awenoria`, `Parcourez nos services et nos formations : thématiques, publics, formats & modalités.`);
     }
 
     // Rendu
-    if (!list.length){
-      root.innerHTML = `<p>Aucune formation trouvée pour ce filtre.</p>`;
-      return;
-    }
-    root.innerHTML = list.map(courseCard).join("");
+    root.innerHTML = list.length ? list.map(courseCard).join("") : `<p>Aucune formation trouvée pour ce filtre.</p>`;
   }
 
   // ====== Rendu tuiles (thèmes / publics / formats / modalités) ======
@@ -389,7 +369,6 @@
   const formatsRoot = document.getElementById("formats");
   const modesRoot = document.getElementById("modalites");
 
-  // Thématiques
   const THEMES = {
     "rgpd-essentiels": { title: "RGPD – essentiels, registre, AIPD", desc: "Mettre en place la conformité : bases, registre de traitements, rôles, AIPD." },
     "ia-act": { title: "IA Act – obligations & documentation", desc: "Comprendre le cadre européen, classer les risques, préparer la documentation." },
@@ -397,6 +376,13 @@
     "web-legal": { title: "Mentions légales & conformité web", desc: "Pages légales, politiques, parcours utilisateur, e-commerce." },
     "access": { title: "Accessibilité (RGAA / EN 301 549)", desc: "Audit rapide, priorisation, obligations de mise en accessibilité." },
     "cyber": { title: "Cybersécurité de base", desc: "Bonnes pratiques, sensibilisation équipes, premiers contrôles." }
+  };
+
+  const AUDIENCES = {
+    "dirigeants": { title: "Dirigeants & responsables", desc: "Vision risques/opportunités, feuilles de route, décisions à prendre." },
+    "equipes": { title: "Équipes opérationnelles", desc: "Ateliers concrets orientés mise en pratique et appropriation rapide." },
+    "dpo": { title: "Référents / DPO", desc: "Approfondissements, registre, AIPD, pilotage de conformité." },
+    "dev": { title: "Dev, Produit & Data", desc: "Intégration privacy by design, sécurité, documentation technique." }
   };
 
   themesRoot.innerHTML = Object.entries(THEMES).map(([k,v]) => `
@@ -409,14 +395,6 @@
     </article>
   `).join("");
 
-  // Audiences
-  const AUDIENCES = {
-    "dirigeants": { title: "Dirigeants & responsables", desc: "Vision risques/opportunités, feuilles de route, décisions à prendre." },
-    "equipes": { title: "Équipes opérationnelles", desc: "Ateliers concrets orientés mise en pratique et appropriation rapide." },
-    "dpo": { title: "Référents / DPO", desc: "Approfondissements, registre, AIPD, pilotage de conformité." },
-    "dev": { title: "Dev, Produit & Data", desc: "Intégration privacy by design, sécurité, documentation technique." }
-  };
-
   audiencesRoot.innerHTML = Object.entries(AUDIENCES).map(([k,v]) => `
     <article class="card">
       <h3 style="margin:0 0 6px">${v.title}</h3>
@@ -427,8 +405,12 @@
     </article>
   `).join("");
 
-  // Formats
-  formatsRoot.innerHTML = Object.entries(FORMATS).map(([k,v]) => `
+  const FORMATS_LIST = ${"`"}${"${''}"}${"`"}; // no-op to keep template literal highlighting happy
+
+  const FORMATS_ENTRIES = Object.entries(FORMATS);
+  const MODALITES_ENTRIES = Object.entries(MODALITES);
+
+  document.getElementById("formats").innerHTML = FORMATS_ENTRIES.map(([k,v]) => `
     <article class="card">
       <h3 style="margin:0 0 6px">${v.title}</h3>
       <p class="subtle">${v.desc}</p>
@@ -438,8 +420,7 @@
     </article>
   `).join("");
 
-  // Modalités
-  modesRoot.innerHTML = Object.entries(MODALITES).map(([k,v]) => `
+  document.getElementById("modalites").innerHTML = MODALITES_ENTRIES.map(([k,v]) => `
     <article class="card">
       <h3 style="margin:0 0 6px">${v.title}</h3>
       <p class="subtle">${v.desc}</p>
@@ -453,7 +434,6 @@
   function withParams(obj){
     const p = new URLSearchParams(location.search);
     Object.entries(obj).forEach(([k,v]) => {
-      // reset autres filtres si on en choisit un nouveau de même famille
       if (k==="theme") p.delete("public"), p.delete("format"), p.delete("modalite");
       if (k==="public") p.delete("theme"), p.delete("format"), p.delete("modalite");
       if (k==="format") p.delete("theme"), p.delete("public"), p.delete("modalite");
@@ -461,7 +441,6 @@
       p.set(k, v);
     });
     return `${location.pathname}?${p.toString()}#catalogue`;
-    // (Si tu préfères garder /formation/liste.html, remplace location.pathname par "/formation/liste.html")
   }
 
   // ====== Onglets Formations ======
