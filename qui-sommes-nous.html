@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Qui sommes-nous ? – Awenoria</title>
-  <meta name="description" content="Notre mission, nos valeurs et notre vision : une conformité simple, pédagogique et respectueuse de la vie privée. Découvrez qui nous sommes." />
+  <meta name="description" content="Notre mission, nos valeurs, notre vision et notre équipe. Conformité simple et respectueuse des données.">
 
-  <!-- Favicons / PWA identiques à l’index -->
+  <!-- Favicons / PWA -->
   <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png?v=2">
   <link rel="icon" type="image/svg+xml" href="./images/favicon.svg?v=2">
   <link rel="shortcut icon" href="./favicon.ico?v=2">
@@ -15,26 +15,18 @@
   <link rel="manifest" href="./site.webmanifest?v=2">
   <meta name="theme-color" content="#0f5f9a">
 
-  <!-- Google Fonts identique -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
 
-  <style>
-    /* =========================================================
-       === STYLES GLOBAUX DE L’INDEX ICI =======================
-       Colle ici TOUT le contenu du <style> de index.html
-       (variables, grilles, boutons, nav, footer, etc.)
-       ========================================================= */
-  </style>
+  <!-- CSS global -->
+  <link rel="stylesheet" href="awen.css?v=1">
 
+  <!-- Styles spécifiques à la page -->
   <style>
-    /* =========================================================
-       Compléments légers pour le hero et quelques blocs
-       ========================================================= */
     .hero-apropos{
-      position:relative; isolation:isolate;
-      padding:96px 0 86px; text-align:center; color:#fff;
+      position:relative; isolation:isolate; padding:96px 0 86px; text-align:center; color:#fff;
       border-bottom:1px solid rgba(15,23,32,.08);
       background:
         radial-gradient(1400px 700px at 10% -20%, rgba(255,255,255,.16), transparent 60%),
@@ -48,18 +40,16 @@
     .badge.chip{
       display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 14px;
       border-radius:999px; font-size:13px; font-weight:900; letter-spacing:.2px;
-      background:rgba(27,136,255,.12); border:1px solid rgba(27,136,255,.26); color:#0f3a6e;
+      background:rgba(27,136,255,.10); border:1px solid rgba(27,136,255,.26); color:#0f3a6e;
     }
     .team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
     @media(max-width:1024px){.team{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:640px){.team{grid-template-columns:1fr}}
     .member .avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 10px;background:#f3f8fc;border:1px solid rgba(15,23,32,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
 
-    .table{ width:100%; border-collapse:separate; border-spacing:0; background:#fff;
-            border:1px solid rgba(15,23,32,.10); border-radius:16px; overflow:hidden;
-            box-shadow: var(--shadow); }
-    .table th,.table td{ padding:14px 16px; text-align:left; border-bottom:1px solid rgba(15,23,32,.08) }
-    .table th{ background:linear-gradient(90deg,#0b4f78,#2f86b8); color:#fff; font-weight:800 }
+    .table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid rgba(15,23,32,.10);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+    .table th,.table td{padding:14px 16px;text-align:left;border-bottom:1px solid rgba(15,23,32,.08)}
+    .table th{background:linear-gradient(90deg,#0b4f78,#2f86b8);color:#fff;font-weight:800}
     .table tr:last-child td{border-bottom:none}
     .good{font-weight:800;color:#0b4f78}
 
@@ -71,7 +61,7 @@
 </head>
 <body>
 
-<!-- ===== NAVBAR (copiée de index.html, liens adaptés) ===== -->
+<!-- ===== NAVBAR (identique à l’accueil) ===== -->
 <header class="navbar" role="banner">
   <div class="nav-wrap">
     <a class="brand" href="index.html" aria-label="Aller à l'accueil">
@@ -81,7 +71,7 @@
     <nav class="nav-main" aria-label="Navigation principale">
       <a href="Qui-sommes-nous.html" class="active">Qui sommes-nous ?</a>
 
-      <!-- ▼ Nos services (mêmes contenus, ancres renvoyant vers l’index) -->
+      <!-- ▼ NOS SERVICES -->
       <div class="dropdown" id="servicesDropdown">
         <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
           Nos services
@@ -116,7 +106,7 @@
               <p class="mega-note">Livrables clairs, priorisation par impact, suivi possible.</p>
               <a class="btn ghost" href="index.html#contact" role="menuitem">Demander un devis</a>
             </div>
-            <div class="group" style="grid-column:1/-1;display:flex;justify-content:center;">
+            <div class="group" style="grid-column:1/-1; display:flex; justify-content:center;">
               <a href="index.html#offres" class="btn copper-ghost" role="menuitem">
                 Tous nos services, packs &amp; modules à la carte
               </a>
@@ -125,7 +115,7 @@
         </div>
       </div>
 
-      <!-- ▼ Formations -->
+      <!-- ▼ NOS FORMATIONS -->
       <div class="dropdown" id="formationsDropdown">
         <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
           Nos formations
@@ -165,7 +155,7 @@
               <p class="mega-note">Supports fournis, quiz &amp; attestation inclus.</p>
               <a class="btn ghost" href="index.html#contact" role="menuitem">Demander un programme</a>
             </div>
-            <div class="group" style="grid-column:1/-1;display:flex;justify-content:center;">
+            <div class="group" style="grid-column:1/-1; display:flex; justify-content:center;">
               <a href="index.html#formations" class="btn copper-ghost" role="menuitem">
                 Voir toutes nos formations
               </a>
@@ -178,7 +168,7 @@
       <a href="index.html#contact">Contact</a>
     </nav>
 
-    <!-- Compte identique -->
+    <!-- Compte -->
     <div class="nav-actions">
       <div class="account">
         <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
@@ -186,12 +176,16 @@
         </button>
         <div class="account-menu glass" id="accountMenu" role="menu" aria-label="Connexion">
           <a class="acc-item client" href="#login-client" role="menuitem">
-            <div class="acc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg></div>
+            <div class="acc-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
+            </div>
             <div><p class="acc-title">Connexion Client</p></div>
             <div class="acc-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
           </a>
           <a class="acc-item partner" href="#login-partenaire" role="menuitem">
-            <div class="acc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 18c0-3.3 3.6-6 8-6s8 2.7 8 6v1H4v-1z"/></svg></div>
+            <div class="acc-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 18c0-3.3 3.6-6 8-6s8 2.7 8 6v1H4v-1z"/></svg>
+            </div>
             <div><p class="acc-title">Connexion Partenaire</p></div>
             <div class="acc-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
           </a>
@@ -233,22 +227,21 @@
   <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
     <div class="grid-3">
       <article class="card glass"><span class="badge chip">RGPD</span><h3>Protection des données</h3><p>Information, base légale, droits, preuves de consentement — le socle de confiance.</p></article>
-      <article class="card glass"><span class="badge chip">Accessibilité</span><h3>Directive & RGAA/WCAG</h3><p>Déclaration, contrastes, clavier, sémantique — vers des services numériques accessibles à tous.</p></article>
-      <article class="card glass"><span class="badge chip">Commerce</span><h3>Mentions & CGV/CGU</h3><p>Éditeur, hébergeur, droits des consommateurs — des informations claires et à jour.</p></article>
+      <article class="card glass"><span class="badge chip">Accessibilité</span><h3>Directive &amp; RGAA/WCAG</h3><p>Déclaration, contrastes, clavier, sémantique — vers des services numériques accessibles à tous.</p></article>
+      <article class="card glass"><span class="badge chip">Commerce</span><h3>Mentions &amp; CGV/CGU</h3><p>Éditeur, hébergeur, droits des consommateurs — des informations claires et à jour.</p></article>
     </div>
   </div>
 </section>
 
-<!-- ===== POURQUOI CHOISIR ===== -->
+<!-- ===== POURQUOI ===== -->
 <section class="section">
   <h2 class="title-center">Pourquoi choisir Awenoria</h2>
   <div class="underline" aria-hidden="true"></div>
-
   <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
     <div class="grid-3">
       <article class="card glass"><span class="badge chip">Automatisé</span><h3>Analyse locale</h3><p>Pas d’envoi de données sensibles : l’essentiel est évalué côté navigateur.</p></article>
       <article class="card glass"><span class="badge chip">Rapide</span><h3>Diagnostic immédiat</h3><p>Scores thématiques, priorisation et actions concrètes. Export PDF à venir.</p></article>
-      <article class="card glass"><span class="badge chip">Évolutif</span><h3>Suivi & modèles</h3><p>Guides, modèles juridiques et mises à jour réglementaires pour rester conforme.</p></article>
+      <article class="card glass"><span class="badge chip">Évolutif</span><h3>Suivi &amp; modèles</h3><p>Guides, modèles juridiques et mises à jour réglementaires pour rester conforme.</p></article>
     </div>
   </div>
 </section>
@@ -266,15 +259,15 @@
           <thead>
             <tr><th>Critère</th><th>Awenoria</th><th>Cabinet / Avocat</th></tr>
           </thead>
-          <tbody>
-            <tr><td>Coût moyen</td><td><span class="good">9,90 € / mois</span> ou 85 € / an</td><td>De 500 € à 2 000 € / audit</td></tr>
-            <tr><td>Délai de résultat</td><td>Immédiat</td><td>1 à 3 semaines</td></tr>
-            <tr><td>Collecte de données</td><td>Analyse locale (aucune collecte)</td><td>Données envoyées au prestataire</td></tr>
-            <tr><td>Mises à jour légales</td><td>Automatiques</td><td>Facturées à part</td></tr>
-            <tr><td>Support</td><td>Guides, modèles, FAQ</td><td>Sur rendez-vous</td></tr>
-          </tbody>
+        <tbody>
+          <tr><td>Coût moyen</td><td><span class="good">9,90 € / mois</span> ou 85 € / an</td><td>De 500 € à 2 000 € / audit</td></tr>
+          <tr><td>Délai de résultat</td><td>Immédiat</td><td>1 à 3 semaines</td></tr>
+          <tr><td>Collecte de données</td><td>Analyse locale (aucune collecte)</td><td>Données envoyées au prestataire</td></tr>
+          <tr><td>Mises à jour légales</td><td>Automatiques</td><td>Facturées à part</td></tr>
+          <tr><td>Support</td><td>Guides, modèles, FAQ</td><td>Sur rendez-vous</td></tr>
+        </tbody>
         </table>
-        <p class="subtitle-center" style="margin-top:10px">Fourchettes <b>indicatives</b> selon contexte. Nous proposons aussi des <b>audits humains</b> et de <b>l’accompagnement</b> si nécessaire.</p>
+        <p class="subtitle-center" style="margin-top:10px">Fourchettes <b>indicatives</b> selon le contexte. Audits humains et accompagnement disponibles.</p>
       </div>
     </div>
   </div>
@@ -333,7 +326,7 @@
   </div>
 </section>
 
-<!-- ===== PRESSE / RESSOURCES ===== -->
+<!-- ===== PRESSE / CTA ===== -->
 <section class="section" id="presse">
   <h2 class="title-center">Presse & ressources</h2>
   <div class="underline" aria-hidden="true"></div>
@@ -344,7 +337,7 @@
   </p>
 </section>
 
-<!-- ===== FOOTER (identique à l’index ; liens mis à jour) ===== -->
+<!-- ===== FOOTER ===== -->
 <footer class="cc-footer" role="contentinfo">
   <div class="cc-container">
     <div class="cc-top">
@@ -367,6 +360,7 @@
           <li><a href="Qui-sommes-nous.html">Qui sommes-nous ?</a></li>
           <li><a href="index.html#expertises">Nos expertises</a></li>
           <li><a href="index.html#offres">Offres</a></li>
+          <li><a href="index.html#blog">Blog</a></li>
         </ul>
       </div>
       <div class="cc-col">
@@ -381,7 +375,6 @@
       <div class="cc-col">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="index.html#blog">Blog</a></li>
           <li><a href="index.html#approche">Notre méthode</a></li>
           <li><a href="faq.html">FAQ</a></li>
         </ul>
@@ -405,14 +398,53 @@
   </div>
 </footer>
 
-<!-- ===== SCRIPTS ===== -->
-<!-- Reprends les mêmes <script> de l’index (dropdowns, typing, account, etc.) -->
+<!-- ===== SCRIPTS (mêmes comportements que l’accueil) ===== -->
+
+<!-- Menus déroulants -->
 <script>
-  /* Copie ici les scripts de l’index :
-     - menus déroulants .dropdown
-     - typing-on-view
-     - account menu
-     (aucun changement nécessaire) */
+(function(){
+  const dropdowns=[...document.querySelectorAll('.dropdown')];
+  let closeTimers=new WeakMap();
+  function openDd(dd){ dropdowns.forEach(d=>{if(d!==dd) closeDd(d)}); const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega'); if(!btn||!panel) return; panel.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+  function closeDd(dd){ const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega'); if(!btn||!panel) return; panel.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+  function scheduleClose(dd,delay=120){ clearTimeout(closeTimers.get(dd)); const t=setTimeout(()=>closeDd(dd),delay); closeTimers.set(dd,t); }
+  function cancelClose(dd){ clearTimeout(closeTimers.get(dd)); }
+  dropdowns.forEach(dd=>{
+    const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega'); if(!btn||!panel) return;
+    const items=[...panel.querySelectorAll('[role="menuitem"]')]; items.forEach(a=>a.setAttribute('tabindex','0'));
+    btn.addEventListener('click',e=>{e.stopPropagation(); panel.classList.contains('open')?closeDd(dd):openDd(dd);});
+    dd.addEventListener('mouseenter',()=>{cancelClose(dd); openDd(dd);});
+    dd.addEventListener('mouseleave',()=>{scheduleClose(dd);});
+    document.addEventListener('click',e=>{if(!dd.contains(e.target)) closeDd(dd);});
+  });
+})();
+</script>
+
+<!-- Effet “machine à écrire” pour la baseline -->
+<script>
+(function(){
+  const SPEED=85, els=[...document.querySelectorAll('.type-on-view')];
+  els.forEach(el=>{const full=(el.getAttribute('data-text')||el.textContent||'').trim(); el.dataset.fullText=full; el.textContent=''; el.__typingTimer=null; el.__ready=true; el.setAttribute('aria-live','polite');});
+  function type(el){clearTimeout(el.__typingTimer); const full=el.dataset.fullText||''; el.textContent=''; let i=0; (function tick(){ el.textContent=full.slice(0,++i); if(i<full.length){ el.__typingTimer=setTimeout(tick,SPEED);} else {el.__typingTimer=null; el.__ready=false;} })();}
+  const io=new IntersectionObserver(entries=>{entries.forEach(entry=>{const el=entry.target; if(entry.isIntersecting){ if(el.__ready) type(el);} else { el.__ready=true; clearTimeout(el.__typingTimer); el.__typingTimer=null; }})},{threshold:.4, rootMargin:'0px 0px -10% 0px'});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
+
+<!-- Menu Compte -->
+<script>
+(function(){
+  const account=document.querySelector('.account'); if(!account) return;
+  const btn=account.querySelector('#accountBtn'); const menu=account.querySelector('#accountMenu'); const items=Array.from(menu.querySelectorAll('[role="menuitem"]')); items.forEach(a=>a.tabIndex=0);
+  let hoverTimer=null; const isOpen=()=>menu.classList.contains('open');
+  function open(){ if(isOpen()) return; menu.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+  function close(){ if(!isOpen()) return; menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+  function toggle(){ isOpen()?close():open(); }
+  account.addEventListener('mouseenter',()=>{clearTimeout(hoverTimer); open();});
+  account.addEventListener('mouseleave',()=>{clearTimeout(hoverTimer); hoverTimer=setTimeout(close,140);});
+  btn.addEventListener('click',e=>{e.stopPropagation(); toggle();});
+  document.addEventListener('pointerdown',e=>{ if(isOpen() && !account.contains(e.target)) close(); });
+})();
 </script>
 </body>
 </html>
