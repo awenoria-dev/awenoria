@@ -492,21 +492,25 @@
       </div>
 
       <!-- 💡 Nouvelle bulle orangée -->
-      <div class="group" style="grid-column: 1 / -1; text-align:center;">
-        <a href="#offres"
-           class="pill"
-           style="
-             display:inline-block;
-             background:#ffb347;
-             color:#222;
-             font-weight:600;
-             padding:0.8rem 1.5rem;
-             border-radius:2rem;
-             box-shadow:0 1px 3px rgba(0,0,0,0.15);
-             transition:transform .2s ease, box-shadow .2s ease;">
-          Tous nos services, packs &amp; modules à la carte
-        </a>
-      </div>
+<div class="group" style="grid-column: 1 / -1; text-align:center;">
+  <a href="#offres"
+     class="pill glass-soft"
+     style="
+       display:inline-block;
+       background:rgba(255, 179, 71, 0.25); /* orange doux semi-transparent */
+       backdrop-filter:blur(8px) saturate(180%);
+       -webkit-backdrop-filter:blur(8px) saturate(180%);
+       color:#fff;
+       font-weight:600;
+       padding:0.8rem 1.5rem;
+       border-radius:2rem;
+       box-shadow:0 2px 5px rgba(0,0,0,0.15);
+       width:fit-content;
+       min-width:220px; /* largeur similaire au bouton “Demander un devis” */
+       transition:all 0.25s ease;">
+    Tous nos services, packs &amp; modules à la carte
+  </a>
+</div>
 
     </div>
   </div>
