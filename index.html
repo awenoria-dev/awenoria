@@ -448,7 +448,7 @@
     <nav class="nav-main" aria-label="Navigation principale">
       <a href="#qui-sommes-nous">Qui sommes-nous ?</a>
 
-     <!-- ▼ NOS SERVICES -->
+<!-- ▼ NOS SERVICES -->
 <div class="dropdown" id="servicesDropdown">
   <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
     Nos services
@@ -457,7 +457,9 @@
 
   <div class="mega glass mega--services" role="menu" aria-label="Nos services">
     <div class="mega-grid--3">
-      <div class="group">
+
+      <!-- Colonne 1 -->
+      <div class="group" style="padding-bottom:0.75rem">
         <h6>Conseil &amp; conformité</h6>
         <ul class="mega-list">
           <li><a role="menuitem" href="#audit">Audit &amp; Analyse</a></li>
@@ -466,26 +468,19 @@
         </ul>
       </div>
 
-      <div class="group">
+      <!-- Colonne 2 -->
+      <div class="group" style="padding-bottom:0.75rem">
         <h6>Web &amp; légal</h6>
         <ul class="mega-list">
           <li><a role="menuitem" href="#f-cookies">Cookies &amp; CMP</a></li>
           <li><a role="menuitem" href="#f-legales">Mentions légales</a></li>
-          <!-- Doublon supprimé : une seule entrée Accessibilité -->
           <li><a role="menuitem" href="#f-access">Accessibilité (RGAA / EN 301 549)</a></li>
         </ul>
       </div>
 
-      <div class="group">
+      <!-- Colonne 3 -->
+      <div class="group" style="padding-bottom:0.75rem">
         <h6>Formats &amp; modalités</h6>
-
-        <!-- ✅ Ajout discret, visible et cohérent -->
-        <ul class="mega-list" style="margin-bottom:6px">
-          <li>
-            <a role="menuitem" href="#offres">Tous nos services, packs &amp; modules à la carte</a>
-          </li>
-        </ul>
-
         <div class="format-badges">
           <span class="badge pill-badge">Audit flash</span>
           <span class="badge pill-badge">Mission</span>
@@ -495,10 +490,28 @@
         <p class="mega-note">Livrables clairs, priorisation par impact, suivi possible.</p>
         <a class="btn ghost" href="#contact" role="menuitem">Demander un devis</a>
       </div>
+
+      <!-- 💡 Nouvelle bulle orangée -->
+      <div class="group" style="grid-column: 1 / -1; text-align:center;">
+        <a href="#offres"
+           class="pill"
+           style="
+             display:inline-block;
+             background:#ffb347;
+             color:#222;
+             font-weight:600;
+             padding:0.8rem 1.5rem;
+             border-radius:2rem;
+             box-shadow:0 1px 3px rgba(0,0,0,0.15);
+             transition:transform .2s ease, box-shadow .2s ease;">
+          Tous nos services, packs &amp; modules à la carte
+        </a>
+      </div>
+
     </div>
   </div>
 </div> <!-- ▲ FIN : NOS SERVICES -->
-
+      
 <!-- ▼ NOS FORMATIONS -->
 <div class="dropdown" id="formationsDropdown">
   <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
