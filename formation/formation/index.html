@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fiches formation – Awenoria</title>
-  <meta name="description" content="Liste des fiches de formation disponibles. Accédez à chaque fiche détaillée de formation proposée par Awenoria." />
+  <meta name="description" content="Liste complète des fiches de formation Awenoria. Accédez rapidement aux contenus détaillés, durées, modalités et programmes." />
 
   <!-- Favicon / PWA -->
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -51,6 +51,11 @@
     .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;font-size:15px;text-decoration:none;border:1px solid transparent}
     .btn.primary{background:rgba(27,136,255,.80);color:#fff;border-color:rgba(255,255,255,.25);box-shadow:inset 0 0 12px rgba(255,255,255,.15),0 4px 18px rgba(27,136,255,.30)}
     .btn.primary:hover{background:rgba(27,136,255,.9)}
+
+    /* FOOTER */
+    footer{text-align:center;margin-top:40px;color:var(--muted);font-size:15px}
+    footer a{color:var(--brand);font-weight:800;text-decoration:none}
+    footer a:hover{text-decoration:underline}
   </style>
 </head>
 
@@ -70,11 +75,15 @@
 
 <section class="section">
   <h1 class="title-center">Fiches de formation</h1>
-  <p class="subtitle-center">Page interne listant toutes les fiches disponibles.</p>
+  <p class="subtitle-center">Liste interne de toutes les fiches disponibles. Cliquez sur une formation pour consulter sa fiche détaillée.</p>
   <div class="underline"></div>
 
   <div id="cards" class="grid-list"></div>
 </section>
+
+<footer>
+  <p>← <a href="../formations-liste.html">Retour au catalogue principal</a></p>
+</footer>
 
 <script type="module">
   import { COURSES } from "../js/courses-data.js";
