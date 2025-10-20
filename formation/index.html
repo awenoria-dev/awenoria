@@ -146,7 +146,7 @@
 
     if (isHttp) {
       try {
-        const mod = await import('../js/courses-data.js'); // version ESM
+        const mod = await import('/js/courses-data.js'); // version ESM
         render(mod?.COURSES || window.COURSES);
         return;
       } catch (e) {
@@ -154,38 +154,16 @@
       }
     }
 
-    // file:// — on tente plusieurs chemins plausibles vers le fichier UMD
-    const candidates = [
-      '../js/courses-data.umd.js',          // attendu si index.html est dans /formation/
-      './js/courses-data.umd.js',           // au cas où la page serait à la racine
-      '/js/courses-data.umd.js'             // chemin absolu depuis la racine du site
-    ];
-
-    const loadScriptSequential = (urls, done, fail) => {
-      if (!urls.length) { fail?.(); return; }
-      const url = urls.shift();
-      const s = document.createElement('script');
-      s.src = url;
-      s.onload = () => done(url);
-      s.onerror = () => {
-        console.warn('Échec chargement :', url);
-        loadScriptSequential(urls, done, fail);
-      };
-      document.head.appendChild(s);
+    // file:// ou fallback : chemin absolu
+    const s = document.createElement('script');
+    s.src = '/js/courses-data.umd.js';
+    s.onload = () => render(window.COURSES);
+    s.onerror = () => {
+      root.innerHTML = `
+        <p style="color:#b00"><strong>Erreur de chargement des données.</strong></p>
+        <p>Vérifie le chemin <code>/js/courses-data.umd.js</code>.</p>`;
     };
-
-    loadScriptSequential([...candidates],
-      (okUrl) => {
-        console.info('Chargé via', okUrl);
-        try { render(window.COURSES); } catch (e) { console.error(e); }
-      },
-      () => {
-        const tried = candidates.join('<br>• ');
-        root.innerHTML = `
-          <p style="color:#b00"><strong>Erreur de chargement des données.</strong></p>
-          <p>Chemins testés :<br>• ${tried}</p>`;
-      }
-    );
+    document.head.appendChild(s);
   })();
 })();
 </script>
