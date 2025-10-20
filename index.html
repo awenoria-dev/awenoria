@@ -415,42 +415,94 @@
   }
 }
 
+/* Compte */
+.account {
+  position: relative;
+}
 
-    /* Compte */
-    .account{position:relative}
-    .account-btn{width:36px;height:36px;border-radius:999px;border:1px solid rgba(15,23,32,.15);background:#f2f6fb;color:var(--text);display:inline-flex;align-items:center;justify-content:center}
-    .account-btn:hover{background:#eaf2fb}
-    /* Icônes du bouton compte — corrigé */
-    .account-btn svg { width:20px; height:20px; fill:none; }
-    .account-btn svg.icon-yy * { fill:initial; stroke:none; }
-    .account-menu{position:absolute;right:0;top:calc(var(--nav-h) + 18px);width:min(86vw,340px);border-radius:18px;border:1px solid rgba(15,23,32,.12);padding:12px;display:none;z-index:1300}
-    .account-menu.open{display:block;animation:none}
-    .acc-item{display:grid;grid-template-columns:40px 1fr 24px;gap:10px;align-items:center;padding:12px;border-radius:14px;text-decoration:none;color:var(--text)}
-    .acc-item:hover{background:#f6f9fc}
-    .acc-ico{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;border:1px solid rgba(15,23,32,.12);background:#fff}
-    .acc-ico svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
-    .acc-title{margin:0;font-weight:800}
-    .acc-sub{margin:2px 0 0;color:var(--muted);font-size:14px}
-    .acc-arrow svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
-.account{position:relative}
-.account-btn{
-  width:36px;height:36px;border-radius:999px;
-  border:1px solid rgba(15,23,32,.15);
-  background:#f2f6fb;color:var(--text);
-  display:inline-flex;align-items:center;justify-content:center
+.account-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 32, 0.15);
+  background: #f2f6fb;
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
-.account-btn:hover{background:#eaf2fb}
+.account-btn:hover { background: #eaf2fb; }
 
-/* --- Correction finale du yin-yang (bouton compte) --- */
-.account-btn svg.icon-yy{
-  width:22px;height:22px;
-  fill:none !important;      /* on neutralise d’éventuels héritages */
-  stroke:none !important;
+/* Icône du bouton compte : contour (comme PJ1) */
+.account-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
 }
-.account-btn svg.icon-yy *{
-  fill:initial !important;   /* on réactive les fills de tes <path>/<circle> */
-  stroke:none !important;
+
+/* Menu compte */
+.account-menu {
+  position: absolute;
+  right: 0;
+  top: calc(var(--nav-h) + 18px);
+  width: min(86vw, 340px);
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 32, 0.12);
+  padding: 12px;
+  display: none;
+  z-index: 1300;
 }
+.account-menu.open { display: block; }
+
+/* Items du menu */
+.acc-item {
+  display: grid;
+  grid-template-columns: 40px 1fr 24px;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--text);
+}
+.acc-item:hover { background: #f6f9fc; }
+
+.acc-ico {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(15, 23, 32, 0.12);
+  background: #fff;
+}
+.acc-ico svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+.acc-title { margin: 0; font-weight: 800; }
+.acc-sub { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+.acc-arrow svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+/* (Optionnel) focus visible pour accessibilité */
+.account-btn:focus-visible,
+.acc-item:focus-visible {
+  outline: 2px solid rgba(27, 136, 255, 0.25);
+  outline-offset: 2px;
+}
+ 
 
 .account-menu{
   position:absolute;right:0;top:calc(var(--nav-h) + 18px);
@@ -678,42 +730,32 @@
       <a href="#contact">Contact</a>
     </nav>
 
-    <!-- ===== Compte (icônes + titres teintés) ===== -->
-    <div class="nav-actions">
-      <div class="account">
-        <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
-          <!-- Icône Yin-Yang bleu clair / orange -->
-          <svg class="icon-yy" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-            <!-- Moitié gauche bleu clair -->
-            <path d="M50,0
-                     a50,50 0 1,0 0,100
-                     a25,25 0 0,0 0,-50
-                     a25,25 0 0,1 0,-50z" fill="var(--light-blue)"/>
-            <!-- Moitié droite orange -->
-            <path d="M50,0
-                     a25,25 0 0,1 0,50
-                     a50,50 0 1,0 0,50
-                     a25,25 0 0,0 0,-50
-                     a25,25 0 0,1 0,-50z" fill="var(--copper)"/>
-            <!-- Points inversés -->
-            <circle cx="50" cy="25" r="6" fill="var(--copper)"/>
-            <circle cx="50" cy="75" r="6" fill="var(--light-blue)"/>
-          </svg>
-        </button>
+   <!-- ===== Compte (icônes + titres teintés) ===== -->
+<div class="nav-actions">
+  <div class="account">
+    <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
+      <!-- Icône "personne" en contour (style PJ1) -->
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/>
+      </svg>
+    </button>
 
-        <div class="account-menu glass" id="accountMenu" role="menu" aria-label="Connexion">
-          <!-- Connexion Client (bleu clair) -->
-          <a class="acc-item client" href="#login-client" role="menuitem">
-            <div class="acc-ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/>
-              </svg>
-            </div>
-            <div><p class="acc-title">Connexion Client</p></div>
-            <div class="acc-arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
-            </div>
-          </a>
+    <div class="account-menu glass" id="accountMenu" role="menu" aria-label="Connexion">
+      <!-- Connexion Client (bleu clair) -->
+      <a class="acc-item client" href="#login-client" role="menuitem">
+        <div class="acc-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/>
+          </svg>
+        </div>
+        <div><p class="acc-title">Connexion Client</p></div>
+        <div class="acc-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
 
           <!-- Connexion Partenaire (cuivré) -->
           <a class="acc-item partner" href="#login-partenaire" role="menuitem">
