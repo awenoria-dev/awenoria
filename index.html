@@ -433,68 +433,68 @@
 }
 .account-btn:hover { background: #eaf2fb; }
 
-/* Icône du bouton compte : contour (comme PJ1) */
-.account-btn svg {
-  width: 20px;
-  height: 20px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
+/* Bouton compte rond */
+.account { position: relative; }
+.account-btn{
+  width:36px;height:36px;border-radius:999px;
+  border:1px solid rgba(15,23,32,.15);
+  background:#f2f6fb;color:var(--text);
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.account-btn:hover{ background:#eaf2fb; }
+.account-btn svg{ width:20px;height:20px; stroke:currentColor; fill:none; stroke-width:2; }
+
+/* Panneau dropdown : doux, arrondi, ombre marquée */
+.account-menu{
+  position:absolute; right:0; top:calc(var(--nav-h) + 16px);
+  width:min(86vw, 360px);
+  border-radius:18px;
+  border:1px solid rgba(15,23,32,.10);
+  padding:10px;
+  display:none; z-index:1300;
+  background:linear-gradient(180deg,#f3f8ff,#eef5ff);
+  backdrop-filter: blur(10px);
+}
+.account-menu.open{ display:block; }
+.menu-elev{ box-shadow: 0 16px 36px rgba(15,23,32,.18); }
+
+/* Lignes du menu */
+.acc-item{
+  display:grid; grid-template-columns:40px 1fr 24px; gap:10px;
+  align-items:center; padding:14px 12px;
+  border-radius:14px; text-decoration:none; color:var(--text);
+}
+.acc-item + .acc-item{ margin-top:4px; }
+.acc-item:hover{ background:rgba(27,136,255,.08); }
+
+/* Pastille icône à gauche */
+.acc-ico{
+  width:40px;height:40px;border-radius:999px;
+  display:grid;place-items:center;
+  border:1px solid rgba(15,23,32,.12); background:#fff;
+}
+.acc-ico svg{ width:18px;height:18px; stroke:currentColor; fill:none; stroke-width:2; }
+
+/* Titres colorés (comme ta capture) */
+.acc-title{ margin:0; font-weight:800; }
+.acc-item.client .acc-title,
+.acc-item.client .acc-ico,
+.acc-item.client .acc-arrow { color: var(--light-blue); }
+
+.acc-item.partner .acc-title,
+.acc-item.partner .acc-ico,
+.acc-item.partner .acc-arrow { color: var(--copper); }
+
+/* Flèche à droite */
+.acc-arrow svg{ width:18px;height:18px; stroke:currentColor; fill:none; stroke-width:2; }
+
+/* Focus visible (accessibilité) */
+.account-btn:focus-visible,
+.acc-item:focus-visible{
+  outline:2px solid rgba(27,136,255,.25);
+  outline-offset:2px;
 }
 
-/* Menu compte */
-.account-menu {
-  position: absolute;
-  right: 0;
-  top: calc(var(--nav-h) + 18px);
-  width: min(86vw, 340px);
-  border-radius: 18px;
-  border: 1px solid rgba(15, 23, 32, 0.12);
-  padding: 12px;
-  display: none;
-  z-index: 1300;
-}
-.account-menu.open { display: block; }
-
-/* Items du menu */
-.acc-item {
-  display: grid;
-  grid-template-columns: 40px 1fr 24px;
-  gap: 10px;
-  align-items: center;
-  padding: 12px;
-  border-radius: 14px;
-  text-decoration: none;
-  color: var(--text);
-}
-.acc-item:hover { background: #f6f9fc; }
-
-.acc-ico {
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(15, 23, 32, 0.12);
-  background: #fff;
-}
-.acc-ico svg {
-  width: 18px;
-  height: 18px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
-}
-
-.acc-title { margin: 0; font-weight: 800; }
-.acc-sub { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
-.acc-arrow svg {
-  width: 18px;
-  height: 18px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
-}
 
 /* (Optionnel) focus visible pour accessibilité */
 .account-btn:focus-visible,
