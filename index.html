@@ -665,25 +665,19 @@
     <div class="nav-actions">
       <div class="account">
         <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
-          <!-- Icône Yin-Yang bleu clair / orange -->
-          <svg class="icon-yy" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-            <!-- Moitié gauche bleu clair -->
-            <path d="M50,0
-                     a50,50 0 1,0 0,100
-                     a25,25 0 0,0 0,-50
-                     a25,25 0 0,1 0,-50z" fill="var(--light-blue)"/>
-            <!-- Moitié droite orange -->
-            <path d="M50,0
-                     a25,25 0 0,1 0,50
-                     a50,50 0 1,0 0,50
-                     a25,25 0 0,0 0,-50
-                     a25,25 0 0,1 0,-50z" fill="var(--copper)"/>
-            <!-- Points inversés -->
-            <circle cx="50" cy="25" r="6" fill="var(--copper)"/>
-            <circle cx="50" cy="75" r="6" fill="var(--light-blue)"/>
-          </svg>
-        </button>
+  <!-- Fond : yin-yang -->
+  <svg class="yy" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+    <circle cx="50" cy="50" r="50" fill="var(--light-blue)"/>
+    <path d="M50 0a50 50 0 0 1 0 100c13.8 0 25-11.2 25-25S63.8 50 50 50 25 38.8 25 25 36.2 0 50 0z" fill="var(--copper)"/>
+    <circle cx="50" cy="25" r="6" fill="var(--copper)"/>
+    <circle cx="50" cy="75" r="6" fill="var(--light-blue)"/>
+  </svg>
 
+  <!-- Dessus : silhouette utilisateur -->
+  <svg class="user" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-4.4 0-8 2.4-8 5v1h16v-1c0-2.6-3.6-5-8-5z"/>
+  </svg>
+</button>
         <div class="account-menu glass" id="accountMenu" role="menu" aria-label="Connexion">
           <!-- Connexion Client (bleu clair) -->
           <a class="acc-item client" href="#login-client" role="menuitem">
