@@ -731,17 +731,18 @@
     </nav>
 
    <!-- ===== Compte (icônes + titres teintés) ===== -->
+<!-- ===== Compte (icônes + titres teintés) ===== -->
 <div class="nav-actions">
   <div class="account">
     <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
-      <!-- Icône "personne" en contour (style PJ1) -->
+      <!-- Icône "personne" en contour -->
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/>
       </svg>
     </button>
 
-    <div class="account-menu glass" id="accountMenu" role="menu" aria-label="Connexion">
-      <!-- Connexion Client (bleu clair) -->
+    <div class="account-menu glass menu-elev" id="accountMenu" role="menu" aria-label="Connexion">
+      <!-- Connexion Client -->
       <a class="acc-item client" href="#login-client" role="menuitem">
         <div class="acc-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24">
@@ -749,6 +750,20 @@
           </svg>
         </div>
         <div><p class="acc-title">Connexion Client</p></div>
+        <div class="acc-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+
+      <!-- Connexion Partenaire -->
+      <a class="acc-item partner" href="#login-partenaire" role="menuitem">
+        <div class="acc-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 18c0-3.3 3.6-6 8-6s8 2.7 8 6v1H4v-1z"/>
+          </svg>
+        </div>
+        <div><p class="acc-title">Connexion Partenaire</p></div>
         <div class="acc-arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
         </div>
