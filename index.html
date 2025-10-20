@@ -420,10 +420,6 @@
     .account{position:relative}
     .account-btn{width:36px;height:36px;border-radius:999px;border:1px solid rgba(15,23,32,.15);background:#f2f6fb;color:var(--text);display:inline-flex;align-items:center;justify-content:center}
     .account-btn:hover{background:#eaf2fb}
-    /* Icônes du bouton compte */
-    .account-btn svg{width:18px;height:18px}
-    /* Laisser le remplissage pour le yin-yang */
-    .account-btn svg.icon-yy *{fill:initial; stroke:none}
     /* Icônes du bouton compte — corrigé */
     .account-btn svg { width:20px; height:20px; fill:none; }
     .account-btn svg.icon-yy * { fill:initial; stroke:none; }
@@ -436,6 +432,43 @@
     .acc-title{margin:0;font-weight:800}
     .acc-sub{margin:2px 0 0;color:var(--muted);font-size:14px}
     .acc-arrow svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.account{position:relative}
+.account-btn{
+  width:36px;height:36px;border-radius:999px;
+  border:1px solid rgba(15,23,32,.15);
+  background:#f2f6fb;color:var(--text);
+  display:inline-flex;align-items:center;justify-content:center
+}
+.account-btn:hover{background:#eaf2fb}
+
+/* --- Correction finale du yin-yang (bouton compte) --- */
+.account-btn svg.icon-yy{
+  width:22px;height:22px;
+  fill:none !important;      /* on neutralise d’éventuels héritages */
+  stroke:none !important;
+}
+.account-btn svg.icon-yy *{
+  fill:initial !important;   /* on réactive les fills de tes <path>/<circle> */
+  stroke:none !important;
+}
+
+.account-menu{
+  position:absolute;right:0;top:calc(var(--nav-h) + 18px);
+  width:min(86vw,340px);border-radius:18px;border:1px solid rgba(15,23,32,.12);
+  padding:12px;display:none;z-index:1300
+}
+.account-menu.open{display:block;animation:none}
+.acc-item{
+  display:grid;grid-template-columns:40px 1fr 24px;gap:10px;
+  align-items:center;padding:12px;border-radius:14px;text-decoration:none;color:var(--text)
+}
+.acc-item:hover{background:#f6f9fc}
+.acc-ico{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;border:1px solid rgba(15,23,32,.12);background:#fff}
+.acc-ico svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.acc-title{margin:0;font-weight:800}
+.acc-sub{margin:2px 0 0;color:var(--muted);font-size:14px}
+.acc-arrow svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+
 
     /* >>> Teintes spécifiques Client & Partenaire (icône + titre) */
     .acc-item.client .acc-ico,
