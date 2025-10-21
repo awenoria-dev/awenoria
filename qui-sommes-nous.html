@@ -321,30 +321,56 @@
   gap:36px;
 }
 
-.valeur-item{
-  display:flex;
-  align-items:flex-start;
-  gap:18px;
+.valeur-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
 }
-.valeur-item .icon{
-  flex-shrink:0; width:48px; height:48px;
-  display:grid; place-items:center;
+
+/* Icône dans une sphère lumineuse */
+.valeur-item .icon {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.12), rgba(0,0,0,0.08));
+  border-radius: 50%; /* forme sphérique */
+  box-shadow:
+    0 0 12px rgba(0,0,0,0.25),
+    inset 0 2px 6px rgba(255,255,255,0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.valeur-item .icon img{
-  width:42px; height:42px; display:block;
-  filter:drop-shadow(0 2px 6px rgba(0,0,0,.25));
+
+/* Image à l'intérieur de la sphère */
+.valeur-item .icon img {
+  width: 44px;
+  height: 44px;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
 }
-.valeur-item h3{
-  margin:0 0 6px;
-  font:800 18px "Manrope",system-ui,sans-serif;
-  color:#ffb36e;
-  text-transform:uppercase;
+
+/* Effet hover doux */
+.valeur-item .icon:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 20px rgba(255,255,255,0.25),
+    inset 0 2px 8px rgba(255,255,255,0.2);
 }
-.valeur-item p{
-  margin:0;
-  font-weight:500;
-  line-height:1.5;
-  color:#e8f2fc;
+
+/* Titres et textes */
+.valeur-item h3 {
+  margin: 0 0 6px;
+  font: 800 18px "Manrope", system-ui, sans-serif;
+  color: #ffb36e;
+  text-transform: uppercase;
+}
+
+.valeur-item p {
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #e8f2fc;
 }
 
 /* Responsive */
