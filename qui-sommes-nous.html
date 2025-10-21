@@ -4,31 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Qui sommes-nous ? – Awenoria</title>
-  <meta name="description" content="Awenoria démocratise la conformité pour les TPE/PME, associations et start-ups : pré-diagnostic clair, respectueux des données, avec accompagnement humain et prix démocratisé.">
-  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="description" content="Awenoria démocratise la conformité pour les TPE/PME, associations et start-ups : pré-diagnostic local, accompagnement humain, prix démocratisé.">
 
-  <!-- Canonical -->
-  <!-- TODO: Remplace l’URL par l’URL finale de ta page -->
-  <link rel="canonical" href="https://www.awenoria.fr/Qui-sommes-nous.html" />
-
-  <!-- Open Graph / Facebook / LinkedIn -->
+  <link rel="canonical" href="https://www.awenoria.fr/qui-sommes-nous.html" />
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Awenoria">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:title" content="Qui sommes-nous ? – Awenoria">
   <meta property="og:description" content="Rendre la conformité accessible, humaine et transparente. Pré-diagnostic local, sans collecte, et accompagnement humain à prix démocratisé.">
-  <!-- TODO: Remplace par l’URL absolue d’une image 1200x630 hébergée chez toi -->
   <meta property="og:image" content="https://www.awenoria.fr/images/og-awenoria.jpg">
-  <meta property="og:url" content="https://www.awenoria.fr/Qui-sommes-nous.html">
-
-  <!-- Twitter Card -->
+  <meta property="og:url" content="https://www.awenoria.fr/qui-sommes-nous.html">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Qui sommes-nous ? – Awenoria">
-  <meta name="twitter:description" content="Rendre la conformité accessible, humaine et transparente pour TPE/PME, assos et start-ups.">
-  <!-- TODO: Remplace par la même image OG (URL absolue) -->
+  <meta name="twitter:description" content="Conformité simple, pédagogique et respectueuse des données pour TPE/PME, assos et start-ups.">
   <meta name="twitter:image" content="https://www.awenoria.fr/images/og-awenoria.jpg">
 
-  <!-- Favicons / PWA -->
   <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png?v=2">
   <link rel="icon" type="image/svg+xml" href="./images/favicon.svg?v=2">
   <link rel="shortcut icon" href="./favicon.ico?v=2">
@@ -37,336 +27,168 @@
   <link rel="manifest" href="./site.webmanifest?v=2">
   <meta name="theme-color" content="#0f5f9a">
 
-  <!-- Fonts -->
+  <!-- Fonts + CSS global Awenoria -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/awenoria.css">
 
-  <!-- CSS global -->
-  <link rel="stylesheet" href="awen.css?v=1">
-
-  <!-- Styles spécifiques -->
+  <!-- Style local (spécifique à cette page) -->
   <style>
-    .hero-apropos{
-      position:relative; isolation:isolate; padding:96px 0 86px; text-align:center; color:#fff;
-      background:
-        radial-gradient(1400px 700px at 10% -20%, rgba(255,255,255,.16), transparent 60%),
-        linear-gradient(180deg, rgba(27,136,255,.42), rgba(27,136,255,.42)),
-        linear-gradient(180deg, #a8cbe0 0%, #95c1dc 40%, #88bad3 100%);
-    }
-    .hero-apropos .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
-    .hero-apropos h1{margin:0;font-size:clamp(30px,5vw,52px);line-height:1.06;color:#fff}
-    .hero-apropos .lead{color:#eaf3fa;max-width:980px;margin:10px auto 0;font-weight:700}
-
-    .badge.chip{
-      display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 14px;
-      border-radius:999px; font-size:13px; font-weight:900; letter-spacing:.2px;
-      background:rgba(27,136,255,.10); border:1px solid rgba(27,136,255,.26); color:#0f3a6e;
-    }
-    .team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-    @media(max-width:1024px){.team{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:640px){.team{grid-template-columns:1fr}}
-    .member .avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 10px;background:#f3f8fc;border:1px solid rgba(15,23,32,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
-
-    .roadmap{max-width:860px;margin:0 auto;padding:0;list-style:none}
-    .roadmap li{position:relative;padding:0 0 16px 34px;margin:0 0 14px;border-left:2px dashed #d7e6f2;color:var(--muted)}
-    .roadmap li::before{content:"";position:absolute;left:-6px;top:2px;width:14px;height:14px;border-radius:50%;background:linear-gradient(180deg,#eaf5fd,#d8ecfa);border:2px solid #cbe3f3;box-shadow:0 0 0 3px #fff}
-    .roadmap b{color:#0f2746}
+    /* réduit l’espace sous le H1 du bandeau bleu clair */
+    .hero-apropos{ padding:56px 0 22px !important; }
   </style>
 
-  <!-- Schema.org JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "name": "Awenoria",
-        "url": "https://www.awenoria.fr", 
-        "inLanguage": "fr-FR",
-        "publisher": { "@id": "https://www.awenoria.fr#org" },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://www.awenoria.fr/recherche?q={query}",
-          "query-input": "required name=query"
-        }
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://www.awenoria.fr#org",
-        "name": "Awenoria",
-        "url": "https://www.awenoria.fr",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.awenoria.fr/images/logo.png",
-          "width": 512,
-          "height": 512
-        },
-        "description": "Conformité simple, pédagogique et respectueuse des données pour TPE/PME, associations et start-ups.",
-        "foundingDate": "2025",
-        "sameAs": [
-          "https://www.linkedin.com/company/awenoria"
-        ],
-        "contactPoint": [{
-          "@type": "ContactPoint",
-          "contactType": "commercial",
-          "availableLanguage": ["fr"],
-          "url": "https://www.awenoria.fr/index.html#contact"
-        }]
-      },
-      {
-        "@type": "Person",
-        "name": "Alexandre M.",
-        "jobTitle": "Fondateur – Produit & conformité",
-        "worksFor": { "@id": "https://www.awenoria.fr#org" }
-      },
-      {
-        "@type": "Person",
-        "name": "Camille R.",
-        "jobTitle": "Juriste RGPD / DPO",
-        "worksFor": { "@id": "https://www.awenoria.fr#org" }
-      },
-      {
-        "@type": "Person",
-        "name": "Yann G.",
-        "jobTitle": "Expert accessibilité numérique",
-        "worksFor": { "@id": "https://www.awenoria.fr#org" }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.awenoria.fr/"},
-          {"@type":"ListItem","position":2,"name":"Qui sommes-nous ?","item":"https://www.awenoria.fr/Qui-sommes-nous.html"}
-        ]
-      }
+  <!-- JSON-LD -->
+  <script type="application/ld+json">{
+    "@context":"https://schema.org",
+    "@graph":[
+      {"@type":"WebSite","name":"Awenoria","url":"https://www.awenoria.fr","inLanguage":"fr-FR","publisher":{"@id":"https://www.awenoria.fr#org"}},
+      {"@type":"Organization","@id":"https://www.awenoria.fr#org","name":"Awenoria","url":"https://www.awenoria.fr","logo":{"@type":"ImageObject","url":"https://www.awenoria.fr/images/logo.png","width":512,"height":512},"sameAs":["https://www.linkedin.com/company/awenoria"]},
+      {"@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.awenoria.fr/"},
+        {"@type":"ListItem","position":2,"name":"Qui sommes-nous ?","item":"https://www.awenoria.fr/qui-sommes-nous.html"}
+      ]}
     ]
-  }
-  </script>
+  }</script>
 </head>
 <body>
 
-<!-- ===== NAVBAR (simple) ===== -->
-<header class="navbar" role="banner">
-  <div class="nav-wrap">
-    <a class="brand" href="index.html" aria-label="Aller à l'accueil">
-      <img class="brand-img" src="images/logo.png" alt="Logo Awenoria">
-    </a>
-    <nav class="nav-main" aria-label="Navigation principale">
-      <a href="Qui-sommes-nous.html" class="active">Qui sommes-nous ?</a>
-      <a href="index.html#services">Nos services</a>
-      <a href="index.html#formations">Nos formations</a>
-      <a href="index.html#blog">Blog</a>
-      <a href="index.html#contact">Contact</a>
-    </nav>
-  </div>
-</header>
+  <!-- Header injecté (menu identique à l’accueil) -->
+  <div id="header" role="banner"></div>
 
-<!-- ===== HERO ===== -->
-<section class="hero-apropos">
-  <div class="wrap">
-    <h1>Qui sommes-nous&nbsp;?</h1>
-    <p class="lead">Rendre la conformité accessible, humaine et transparente.</p>
-  </div>
-</section>
-
-<!-- ===== INTRO ===== -->
-<section class="section" style="text-align:center;max-width:900px;margin:0 auto;">
-  <p>Chez <b>Awenoria</b>, nous avons une conviction simple&nbsp;: la conformité ne doit pas être un fardeau.
-  Nous aidons les TPE, PME et start-ups à maîtriser leurs obligations numériques en toute autonomie — <b>sans jargon, sans dépendance et à un prix démocratisé</b>.</p>
-  <p>Notre mission&nbsp;: rendre la conformité <b>simple, pédagogique et durable</b>, au service de la confiance et de la transparence.</p>
-</section>
-
-<!-- ===== MISSION & VALEURS ===== -->
-<section id="mission" class="section">
-  <h2 class="title-center">Notre mission &amp; nos valeurs</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">Nous démocratisons la conformité pour que chaque structure puisse agir avec clarté, responsabilité et sérénité.</p>
-
-  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
-    <div class="grid-3">
-      <article class="card glass"><span class="badge chip">Mission</span><h3>Démocratiser la conformité</h3><p>Les exigences légales se multiplient, mais les moyens des petites structures restent limités. Nous automatisons l’essentiel pour vous permettre d’avancer en toute autonomie, sans expertise juridique.</p></article>
-      <article class="card glass"><span class="badge chip">Valeur</span><h3>Clarté &amp; accompagnement humain</h3><p>Nous transformons les textes réglementaires en actions concrètes et compréhensibles, avec un accompagnement humain à chaque étape.</p></article>
-      <article class="card glass"><span class="badge chip">Éthique</span><h3>Respect de la vie privée</h3><p>Analyse locale par défaut, sans transfert ni stockage. Votre conformité reste votre propriété.</p></article>
+  <!-- ===== Contenu de la page (inchangé) ===== -->
+  <section class="hero-apropos">
+    <div class="wrap">
+      <h1>Qui sommes-nous&nbsp;?</h1>
     </div>
+  </section>
+
+  <div class="encarts">
+    <!-- Présentation -->
+    <section class="encart split">
+      <div class="pad col blue">
+        <h1 class="aw-title">Présentation</h1>
+        <p class="lead-typing">
+          <span id="typing-text" aria-label="Rendre la conformité accessible, humaine et transparente."></span>
+          <span class="caret" aria-hidden="true"></span>
+        </p>
+        <div class="aw-underline" aria-hidden="true"></div>
+      </div>
+
+      <div class="center">
+        <img class="logo-hero" src="images/logo.png" alt="Logo Awenoria" width="200" height="200" loading="lazy"/>
+      </div>
+    </section>
+
+    <!-- Groupe -->
+    <section class="encart blue">
+      <div class="pad">
+        <h2 class="aw-title">Le groupe</h2>
+        <p class="lead">Chez <b>Awenoria</b>, la conformité ne doit pas être un fardeau. Nous aidons les TPE, PME, associations et start-ups à maîtriser leurs obligations numériques — <b>sans jargon, sans dépendance et à un prix démocratisé</b>.</p>
+      </div>
+    </section>
+
+    <!-- Histoire -->
+    <section class="encart white timeline-wrap">
+      <h2 class="aw-title copper">Notre histoire</h2>
+      <div class="timeline">
+        <div class="row">
+          <div class="t-item"><div class="year">2019</div><p>Idée : conformité simple &amp; locale.</p></div>
+          <div class="t-item"><div class="year">2023</div><p>Prototype d’audit côté navigateur.</p></div>
+          <div class="t-item"><div class="year">2024</div><p>Volets Mentions légales &amp; Accessibilité.</p></div>
+          <div class="t-item"><div class="year">2025</div><p>Lancement public &amp; packs démocratisés.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Valeurs -->
+    <section class="encart values">
+      <div class="left white">
+        <h2 class="aw-title">Nos valeurs</h2>
+        <p class="lead">Transparence, pédagogie, confidentialité : notre boussole au quotidien.</p>
+      </div>
+      <div class="right">
+        <div class="v"><h4>Confiance</h4><p>Livrables clairs, méthodes publiées, engagements tenus.</p></div>
+        <div class="v"><h4>Qualité</h4><p>Diagnostic priorisé et actionnable, amélioration continue.</p></div>
+        <div class="v"><h4>Engagement</h4><p>Respect de la vie privée par design et par défaut.</p></div>
+      </div>
+    </section>
+
+    <!-- Citation 3/5 -->
+    <section class="encart quote">
+      <div class="visu"></div>
+      <div class="q">
+        <blockquote>«&nbsp;Awenoria simplifie la conformité pour renforcer l'autonomie de ceux qui la vivent.&nbsp;»</blockquote>
+      </div>
+    </section>
+
+    <!-- Graphique -->
+    <section class="encart chart">
+      <div class="explain">
+        <h2 class="aw-title">Impact mesurable</h2>
+        <p class="lead">Le temps d’obtention des premières actions diminue fortement grâce au <b>pré-diagnostic local</b>, complété par l’accompagnement humain lorsque nécessaire.</p>
+      </div>
+      <div class="viz">
+        <svg viewBox="0 0 520 260" width="100%" height="auto" role="img" aria-label="Barres croissance accompagnement vs produit">
+          <defs><style>.barA{fill:#ffcf99}.barB{fill:#0f5f9a}.axis{stroke:#a9bed3;stroke-width:1}.lbl{font:700 12px Manrope, sans-serif; fill:#355}</style></defs>
+          <line x1="40" y1="210" x2="490" y2="210" class="axis"/>
+          <line x1="40" y1="40"  x2="40"  y2="210" class="axis"/>
+          <rect x="80"  y="170" width="28" height="40" class="barA"/><rect x="116" y="150" width="28" height="60" class="barB"/><text x="92" y="228" class="lbl">2022</text>
+          <rect x="210" y="120" width="28" height="90" class="barA"/><rect x="246" y="80"  width="28" height="130" class="barB"/><text x="222" y="228" class="lbl">2023</text>
+          <rect x="340" y="90"  width="28" height="120" class="barA"/><rect x="376" y="60"  width="28" height="150" class="barB"/><text x="352" y="228" class="lbl">2024</text>
+          <rect x="60" y="16" width="16" height="12" class="barA"/><text x="80" y="26" class="lbl">Accompagnement</text>
+          <rect x="220" y="16" width="16" height="12" class="barB"/><text x="240" y="26" class="lbl">Produit (pré-diag)</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Équipe -->
+    <section class="encart white">
+      <div class="pad">
+        <h2 class="aw-title">L’équipe</h2>
+      </div>
+      <div class="team-3">
+        <div class="member"><div class="avatar"></div><h3>Alexandre M.</h3><p>Produit &amp; conformité</p></div>
+        <div class="member"><div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d9e6f5,#a9c6e8)"></div><h3>Camille R.</h3><p>Juriste RGPD / DPO</p></div>
+        <div class="member"><div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d8f0cf,#bde6b3)"></div><h3>Yann G.</h3><p>Accessibilité RGAA/WCAG</p></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="encart blue cta">
+      <div>
+        <h2 class="aw-title">Des questions&nbsp;?</h2>
+        <div class="row">
+          <a class="btn ghost" href="faq.html">Consulter la FAQ</a>
+          <a class="btn gradient" href="index.html#contact">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="encart blue cta">
+      <div>
+        <h2 class="aw-title" style="font-size:clamp(34px,6vw,60px)">MERCI</h2>
+        <p class="lead" style="color:#e9f2fb">pour votre confiance.</p>
+      </div>
+    </section>
   </div>
-</section>
+  <!-- ===== Fin contenu ===== -->
 
-<!-- ===== CONTEXTE ===== -->
-<section class="section">
-  <h2 class="title-center">Un cadre en évolution</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">Nous accompagnons la transition vers une économie <b>plus transparente, plus accessible et plus responsable</b>.</p>
+  <!-- Footer injecté (identique à l’accueil) -->
+  <div id="footer" role="contentinfo"></div>
 
-  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
-    <div class="grid-3">
-      <article class="card glass"><span class="badge chip">Données</span><h3>Protection des données (RGPD)</h3><p>Information, base légale, droits et consentements&nbsp;: le socle de confiance pour vos clients et partenaires.</p></article>
-      <article class="card glass"><span class="badge chip">Accessibilité</span><h3>RGAA / WCAG</h3><p>Vers des services numériques accessibles à tous, pour une société plus inclusive.</p></article>
-      <article class="card glass"><span class="badge chip">Commerce</span><h3>Mentions légales &amp; CGV/CGU</h3><p>Des informations claires et à jour pour des relations commerciales plus justes.</p></article>
-    </div>
-  </div>
-</section>
+  <!-- Injection des partials + nav.js (via include-awenoria.js), puis scripts globaux -->
+  <script src="assets/include-awenoria.js" defer></script>
+  <script src="assets/site.js" defer></script>
 
-<!-- ===== POURQUOI ===== -->
-<section class="section">
-  <h2 class="title-center">Pourquoi choisir Awenoria&nbsp;?</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
-    <div class="grid-3">
-      <article class="card glass"><span class="badge chip">Automatisé</span><h3>Analyse locale</h3><p>Votre pré-diagnostic s’exécute côté navigateur&nbsp;: aucune donnée sensible n’est transmise.</p></article>
-      <article class="card glass"><span class="badge chip">Rapide</span><h3>Diagnostic immédiat</h3><p>Scores thématiques, priorisation et actions concrètes en quelques secondes.</p></article>
-      <article class="card glass"><span class="badge chip">Évolutif</span><h3>Suivi et modèles</h3><p>Guides, modèles et mises à jour réglementaires pour rester conforme en toute simplicité.</p></article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== COMPARATIF (Version A – valeur & complémentarité) ===== -->
-<section class="section">
-  <h2 class="title-center">Awenoria &amp; accompagnement humain&nbsp;: deux leviers complémentaires</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">Démarrez vite et au juste niveau d’effort, puis renforcez votre accompagnement quand cela devient nécessaire.</p>
-
-  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
-    <div class="grid-2" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
-      <article class="card glass">
-        <span class="badge chip">Solution digitale</span>
-        <h3>Awenoria&nbsp;— auto-diagnostic guidé</h3>
-        <p>Résultat immédiat, analyse locale (aucune collecte), priorisation d’actions, mises à jour continues et un <b>prix démocratisé</b>.</p>
-        <ul style="margin:10px 0 0 18px;">
-          <li>Pré-diagnostic automatisé, clair et structuré</li>
-          <li>Scores thématiques &amp; plans d’action</li>
-          <li>Aucune donnée transmise&nbsp;: tout reste local</li>
-          <li>Suivi et guides évolutifs</li>
-        </ul>
-      </article>
-
-      <article class="card glass">
-        <span class="badge chip">Accompagnement humain</span>
-        <h3>Audit &amp; conseil personnalisé</h3>
-        <p>Entretiens, analyse approfondie, recommandations contextualisées, conduite du changement et formations sur mesure.</p>
-        <ul style="margin:10px 0 0 18px;">
-          <li>Approche sur-mesure selon votre périmètre</li>
-          <li>Accompagnement par des juristes et experts</li>
-          <li>Préparation à la conformité RGPD, Accessibilité, IA Act</li>
-          <li>Formation des équipes et suivi opérationnel</li>
-        </ul>
-      </article>
-    </div>
-
-    <p class="subtitle-center" style="margin-top:24px;">
-      <b>Ordres de grandeur indicatifs&nbsp;:</b> Awenoria dès <b>9,90 € / mois</b> ; audits humains à partir de <b>500 €</b> selon le périmètre et la complexité.<br>
-      <b>Notre recommandation&nbsp;:</b> commencez par un pré-diagnostic Awenoria, puis complétez par un accompagnement ciblé si besoin.
-    </p>
-
-    <p class="subtitle-center" style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-      <a class="btn primary" href="index.html#audit-gratuit">Lancer un audit gratuit</a>
-      <a class="btn secondary" href="index.html#contact">Parler à un expert</a>
-    </p>
-
-    <p class="subtitle-center" style="margin-top:12px;color:var(--muted);">
-      Déjà adopté par des TPE, PME, associations et start-ups pour <b>gagner du temps</b> et <b>clarifier leurs priorités</b>.
-    </p>
-  </div>
-</section>
-
-<!-- ===== ÉQUIPE ===== -->
-<section class="section" id="equipe">
-  <h2 class="title-center">L'équipe</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">Une équipe pluridisciplinaire (juridique, accessibilité, produit) partageant la même conviction&nbsp;: <b>la conformité peut être un atout, pas une contrainte.</b></p>
-
-  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
-    <div class="team">
-      <article class="card glass member">
-        <div class="avatar" style="background:url('./images/team-1.jpg') center/cover"></div>
-        <h3 style="margin:8px 0 2px">Alexandre M.</h3>
-        <p class="muted" style="margin:0">Fondateur · Produit &amp; conformité</p>
-        <p>10 ans d’expérience dans la simplification réglementaire et le développement produit.</p>
-      </article>
-      <article class="card glass member">
-        <div class="avatar" style="background:url('./images/team-2.jpg') center/cover"></div>
-        <h3 style="margin:8px 0 2px">Camille R.</h3>
-        <p class="muted" style="margin:0">Juriste RGPD / DPO</p>
-        <p>Spécialiste du cadre européen, elle accompagne les structures dans la mise en œuvre concrète du RGPD.</p>
-      </article>
-      <article class="card glass member">
-        <div class="avatar" style="background:url('./images/team-3.jpg') center/cover"></div>
-        <h3 style="margin:8px 0 2px">Yann G.</h3>
-        <p class="muted" style="margin:0">Expert accessibilité numérique</p>
-        <p>Passionné par le design inclusif, il contribue à rendre les services numériques utilisables par tous.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== HISTOIRE ===== -->
-<section class="section" id="histoire">
-  <h2 class="title-center">Notre histoire</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <div class="section" style="padding-top:4px;max-width:var(--maxw);margin:0 auto">
-    <ul class="roadmap">
-      <li><b>2023</b> — Naissance du projet Awenoria : simplifier la conformité pour tous.</li>
-      <li><b>2024</b> — Prototype d’audit local et ajout des volets Mentions légales &amp; Accessibilité.</li>
-      <li><b>2025</b> — Lancement public, abonnements démocratisés et accompagnement humain.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ===== ENGAGEMENTS ===== -->
-<section class="section" id="engagements">
-  <h2 class="title-center">Nos engagements</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <div class="section" style="padding-top:16px;max-width:var(--maxw);margin:0 auto">
-    <div class="grid-3">
-      <article class="card glass"><span class="badge chip">Confidentialité</span><h3>Privacy by design</h3><p>L’analyse s’effectue localement&nbsp;: vous gardez le contrôle total sur vos données.</p></article>
-      <article class="card glass"><span class="badge chip">Accessibilité</span><h3>Design inclusif</h3><p>Nos interfaces respectent les standards RGAA/WCAG pour une accessibilité universelle.</p></article>
-      <article class="card glass"><span class="badge chip">Transparence</span><h3>Clarté et équité</h3><p>Méthodologie documentée, livrables clairs, communication honnête et prix équitable.</p></article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CHIFFRES ===== -->
-<section class="section">
-  <h2 class="title-center">Nos chiffres-clés</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">Quelques repères sur notre impact et notre engagement.</p>
-  <ul style="max-width:700px;margin:20px auto;list-style:none;padding:0;text-align:center;line-height:1.8;">
-    <li>💼 +200 diagnostics réalisés en 2024</li>
-    <li>🔐 0 collecte de données personnelles</li>
-    <li>📊 100 % des rapports générés côté navigateur</li>
-    <li>😊 95 % de satisfaction utilisateurs</li>
-  </ul>
-</section>
-
-<!-- ===== PRESSE / CTA ===== -->
-<section class="section" id="presse">
-  <h2 class="title-center">Presse &amp; ressources</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">Dossier de presse, logos et éléments de langage disponibles sur demande.</p>
-  <p class="subtitle-center" style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-    <a class="btn secondary" href="index.html#contact">Demander le kit presse</a>
-    <a class="btn primary" href="modeles.html">Découvrir nos modèles</a>
-  </p>
-</section>
-
-<!-- ===== CTA FINAL ===== -->
-<section class="section" style="text-align:center;">
-  <h2>Prêt à simplifier votre conformité&nbsp;?</h2>
-  <p>Essayez gratuitement notre diagnostic en ligne ou échangez avec un membre de notre équipe.</p>
-  <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-    <a class="btn primary" href="index.html#audit-gratuit">🚀 Lancer un audit gratuit</a>
-    <a class="btn secondary" href="index.html#contact">🤝 Nous contacter</a>
-  </div>
-</section>
-
-<!-- ===== FOOTER (léger) ===== -->
-<footer class="cc-footer" role="contentinfo">
-  <div class="cc-container">
-    <div class="cc-bottom">
-      <small>© 2025 Awenoria. Tous droits réservés.</small>
-      <small>Conformité, accessibilité, RGPD &amp; IA – France.</small>
-    </div>
-  </div>
-</footer>
-
+  <!-- Mini dactylo local (facultatif si déjà dans site.js) -->
+  <script>
+    (function(){
+      const el=document.getElementById('typing-text'); if(!el) return;
+      const full="Rendre la conformité accessible, humaine et transparente.";
+      let i=0, speed=24; (function type(){ if(i<=full.length){ el.textContent=full.slice(0,i++); setTimeout(type,speed);} })();
+    })();
+  </script>
 </body>
 </html>
