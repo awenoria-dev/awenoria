@@ -1,0 +1,47 @@
+<!-- header.html -->
+<header class="navbar" role="banner">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html#intro" aria-label="Aller à l'accueil">
+      <img class="brand-img" src="images/logo.png" alt="Logo Awenoria">
+    </a>
+
+    <nav class="nav-main" aria-label="Navigation principale">
+      <a href="index.html#qui-sommes-nous">Qui sommes-nous ?</a>
+
+      <div class="dropdown" id="servicesDropdown">
+        <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+          Nos services
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="mega glass mega--services" role="menu" aria-label="Nos services">
+          <!-- … (reprends tout le contenu tel quel) … -->
+        </div>
+      </div>
+
+      <div class="dropdown" id="formationsDropdown">
+        <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+          Nos formations
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="mega glass mega--formations" role="menu" aria-label="Nos formations">
+          <!-- … -->
+        </div>
+      </div>
+
+      <a href="index.html#blog">Blog</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <div class="account">
+        <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
+        </button>
+
+        <div class="account-menu glass menu-elev" id="accountMenu" role="menu" aria-label="Connexion">
+          <!-- … client / partenaire … -->
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
