@@ -1,18 +1,23 @@
-(function(){
-  async function injectIncludes() {
-    const nodes = document.querySelectorAll('[data-include]');
-    for (const el of nodes) {
-      const file = el.getAttribute('data-include');
-      try {
-        const res = await fetch(file, { credentials: 'same-origin' });
-        if (!res.ok) throw new Error(res.statusText);
-        const html = await res.text();
-        el.outerHTML = html;
-      } catch (e) {
-        console.error('Include error:', file, e);
-      }
-    }
-  }
-  if (document.readyState !== 'loading') injectIncludes();
-  else document.addEventListener('DOMContentLoaded', injectIncludes);
-})();
+// ====== Include Awenoria (Header / Footer) ======
+document.addEventListener("DOMContentLoaded", () => {
+  // Charger le header
+  fetch("partials/header.html")
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById("header").innerHTML = html;
+      // Charger le JS de navigation après insertion du header
+      const navScript = document.createElement("script");
+      navScript.src = "assets/nav.js";
+      navScript.defer = true;
+      document.body.appendChild(navScript);
+    })
+    .catch(err => console.error("Erreur chargement header:", err));
+
+  // Charger le footer
+  fetch("partials/footer.html")
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById("footer").innerHTML = html;
+    })
+    .catch(err => console.error("Erreur chargement footer:", err));
+});
