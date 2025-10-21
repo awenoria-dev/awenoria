@@ -12,71 +12,140 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..900&display=swap" rel="stylesheet">
 
-  <!-- CSS globale -->
+  <!-- CSS globale du site -->
   <link rel="stylesheet" href="assets/awenoria.css">
 
+  <!-- Styles locaux -->
   <style>
+    /* ====== Variables Awenoria ====== */
     :root{
-      --aw-blue:#0084C6;
-      --aw-orange:#FF7F32;
+      --aw-blue:#0084C6;      /* bleu logo */
+      --aw-blue-deep:#0f5f9a; /* bleu site */
+      --aw-orange:#FF7F32;    /* orange logo */
       --aw-ink:#0d2a3a;
+      --aw-white:#ffffff;
     }
 
+    /* ---------------- Petites touches de la page ---------------- */
     .hero-apropos{ padding:56px 0 22px }
     .hero-apropos h1{ font-size:clamp(24px,4.2vw,40px); margin:0 }
 
-    /* ====================== FR I S E ====================== */
+    .encart.blue .btn.ghost:focus-visible{
+      outline:0;
+      box-shadow:0 0 0 4px rgba(255,255,255,.35), inset 0 1px 0 rgba(255,255,255,.9);
+    }
+
+    .copper-bubble{
+      display:inline-block; max-width:520px; padding:16px 18px; border-radius:999px;
+      line-height:1.35; font-weight:800; color:#0f2746;
+      background:radial-gradient(120% 120% at 20% 15%, #ffc996 0%, #ffb36e 40%, #ff8a3d 70%, #ff7a23 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 10px 26px rgba(255,138,61,.22);
+      border:1px solid rgba(255,255,255,.65);
+    }
+
+    /* ---------------- HERO bulle incurvée ---------------- */
+    .hero-bubble{
+      background: linear-gradient(90deg,#0c3e6b 0%, #0e4f80 45%, #115c95 100%);
+      color:#fff;
+      position:relative; overflow:hidden; border-radius:14px; padding:48px 32px;
+    }
+    .hero-bubble .hero-bubble-content{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:36px; max-width:1100px; margin:0 auto;
+    }
+    .hero-bubble .hero-bubble-text{ flex:1.2; z-index:2 }
+    .hero-bubble .hero-bubble-text .aw-title{
+      font-size:clamp(22px,3vw,28px); margin:0 0 12px; color:#fff;
+    }
+    .hero-bubble .hero-bubble-text p{ margin:0; line-height:1.5; font-size:clamp(15px,1.4vw,17px) }
+    .hero-bubble .hero-bubble-img{ flex:0.8; text-align:right; z-index:2 }
+    .hero-bubble .hero-bubble-img img{
+      max-width:200px; height:auto; display:inline-block;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.20));
+      border-radius:12px;
+    }
+    .hero-bubble::before{
+      content:""; position:absolute; top:0; right:25%;
+      width:200%; height:200%;
+      border-top:8px solid #fff; border-radius:60% 30% 60% 30% / 40% 60% 30% 60%;
+      transform:rotate(-10deg); opacity:.85;
+    }
+    @media (max-width:780px){
+      .hero-bubble .hero-bubble-content{ flex-direction:column; text-align:center }
+      .hero-bubble .hero-bubble-img{ text-align:center; margin-top:18px }
+      .hero-bubble::before{ right:0; width:240%; transform:rotate(-5deg) }
+    }
+
+    /* ===========================================================
+       NEO TIMELINE — version corrigée
+       - Fond image PJ1
+       - Pas de trait / flux
+       - Pas de ronds / dates / numéros
+       =========================================================== */
     .neo-timeline-wrap{
-      background-image: url("./images/repere-frise-chronologique.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      background-image:url("./images/repere-frise-chronologique.png");
+      background-size:cover; background-position:center; background-repeat:no-repeat;
       padding:80px 0 100px;
       border-radius:14px;
-      position:relative;
       overflow:hidden;
+      position:relative;
     }
     .neo-timeline-wrap::before{
-      content:"";
-      position:absolute; inset:0;
-      background:rgba(255,255,255,0.08);
-      backdrop-filter: blur(1px);
+      /* voile très léger pour lisibilité des cartes */
+      content:""; position:absolute; inset:0;
+      background:rgba(255,255,255,.08);
+      backdrop-filter:blur(1px);
       z-index:0;
     }
 
     .neo-title{
-      position:relative; z-index:2;
       max-width:1100px; margin:0 auto 32px; padding:0 16px;
       font:800 clamp(28px,4.6vw,48px)/1.1 "Manrope",system-ui,sans-serif;
       color:var(--aw-orange);
       text-shadow:0 1px 0 rgba(255,255,255,.45);
+      position:relative; z-index:2;
     }
 
+    /* on neutralise l’ancienne ligne + flux + ronds */
+    .neo-line, .neo-flow, .neo-dot{ display:none !important; }
+
     .neo-timeline{
-      list-style:none; /* supprime 1., 2., 3., 4. */
+      list-style:none;               /* enlève 1., 2., 3., 4. */
+      counter-reset:none;
       max-width:1100px; margin:0 auto; padding:0 16px;
       display:grid; grid-template-columns:repeat(3,minmax(240px,1fr)); gap:32px;
       position:relative; z-index:2;
     }
 
+    .neo-item{ position:relative; text-align:center }
     .neo-card{
-      background:rgba(255,255,255,0.95);
+      margin-top:0 !important;
+      background: rgba(255,255,255,.95);
+      border:1px solid rgba(255,255,255,.6);
       border-radius:18px;
-      border:1px solid rgba(255,255,255,0.6);
-      box-shadow:0 18px 40px rgba(0,132,198,.14);
       padding:22px 22px 24px;
+      box-shadow: 0 18px 40px rgba(0,132,198,.14);
+      backdrop-filter: blur(8px);
       transition:transform .25s ease, box-shadow .25s ease;
     }
-    .neo-card:hover{ transform:translateY(-6px); box-shadow:0 24px 60px rgba(0,132,198,.25) }
-    .neo-card h3{ margin:0 0 10px; font:800 clamp(18px,2.2vw,22px)/1.2 "Manrope",system-ui,sans-serif; color:var(--aw-blue) }
+    .neo-card:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0,132,198,.25);
+    }
+    .neo-card h3{
+      margin:0 0 10px;
+      font:800 clamp(18px,2.2vw,22px)/1.2 "Manrope",system-ui,sans-serif;
+      color:var(--aw-blue);
+    }
     .neo-item[data-accent="orange"] .neo-card h3{ color:var(--aw-orange) }
     .neo-card p{ margin:0; color:#00324e; font-weight:600; line-height:1.5 }
 
-    @media(max-width:1000px){ .neo-timeline{ grid-template-columns:repeat(2,minmax(240px,1fr)) } }
-    @media(max-width:640px){ .neo-timeline{ grid-template-columns:1fr } }
-
-    /* éléments de la version précédente à neutraliser */
-    .neo-line,.neo-flow,.neo-dot{ display:none !important; }
+    /* Responsive */
+    @media (max-width:1000px){ .neo-timeline{ grid-template-columns:repeat(2,minmax(240px,1fr)) } }
+    @media (max-width:640px){
+      .neo-timeline{ grid-template-columns:1fr }
+      .neo-item{ text-align:left }
+    }
   </style>
 </head>
 <body>
@@ -94,10 +163,38 @@
   <!-- Contenu principal -->
   <main class="encarts" id="contenu">
 
-    <!-- =================== HISTOIRE =================== -->
-    <section class="encart white neo-timeline-wrap" aria-labelledby="neo-histoire-title">
-      <h2 id="neo-histoire-title" class="neo-title">Notre histoire</h2>
+    <!-- Présentation / hero bulle incurvée -->
+    <section class="encart hero-bubble">
+      <div class="hero-bubble-content">
+        <div class="hero-bubble-text">
+          <h2 class="aw-title">Présentation</h2>
+          <p>
+            Chez <strong>Awenoria</strong>, la conformité ne doit pas être un fardeau.
+            Nous aidons les TPE, PME, associations et start-ups à maîtriser leurs obligations —
+            <strong>sans jargon, sans dépendance et à un prix démocratisé</strong>.
+          </p>
+        </div>
+        <div class="hero-bubble-img">
+          <img src="./images/logo.png" alt="Logo Awenoria">
+        </div>
+      </div>
+    </section>
 
+    <!-- Groupe -->
+    <section class="encart blue">
+      <div class="pad">
+        <h2 class="aw-title">Le groupe</h2>
+        <p>Nos outils d’audit <strong>locaux</strong> accélèrent l’obtention des premières actions, puis l’<strong>accompagnement humain</strong> prend le relais quand c’est nécessaire.</p>
+      </div>
+    </section>
+
+    <!-- =================== HISTOIRE (frise corrigée) =================== -->
+    <section class="encart white neo-timeline-wrap" aria-labelledby="neo-histoire-title">
+      <div class="pad">
+        <h2 id="neo-histoire-title" class="neo-title">Notre histoire</h2>
+      </div>
+
+      <!-- Étapes -->
       <ol class="neo-timeline" aria-label="Frise chronologique Awenoria">
         <li class="neo-item" data-accent="blue">
           <div class="neo-card">
@@ -128,8 +225,89 @@
         </li>
       </ol>
     </section>
-    <!-- ================= FIN histoire ================= -->
+    <!-- ================= FIN frise ================= -->
 
+    <!-- Valeurs -->
+    <section class="encart">
+      <div class="values">
+        <div class="left white">
+          <h2 class="aw-title">Nos valeurs</h2>
+          <span class="copper-bubble">Transparence, pédagogie, confidentialité&nbsp;: notre boussole au quotidien.</span>
+        </div>
+        <div class="right">
+          <div class="v"><h4>Confiance</h4><p>Livrables clairs, méthodes publiées, engagements tenus.</p></div>
+          <div class="v"><h4>Qualité</h4><p>Diagnostic priorisé et actionnable, amélioration continue.</p></div>
+          <div class="v"><h4>Engagement</h4><p>Respect de la vie privée par design et par défaut.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Citation -->
+    <section class="encart quote">
+      <div class="visu">
+        <img src="./images/qui-sommes-nous-p-7.png" alt="Conformité numérique" style="max-width:92%;height:auto;display:block;border-radius:14px;margin:auto">
+      </div>
+      <div class="q">
+        <blockquote>«&nbsp;Awenoria simplifie la conformité pour renforcer l’autonomie de ceux qui la vivent.&nbsp;»</blockquote>
+      </div>
+    </section>
+
+    <!-- Graphique statique -->
+    <section class="encart chart">
+      <div class="explain">
+        <h2 class="aw-title">Impact mesurable</h2>
+        <p>Le temps d’obtention des premières actions diminue fortement grâce au <strong>pré-diagnostic local</strong>, complété par l’accompagnement humain lorsque nécessaire.</p>
+      </div>
+      <div class="viz">
+        <svg viewBox="0 0 520 260" width="100%" height="auto" role="img" aria-label="Barres croissance accompagnement vs produit">
+          <defs><style>.barA{fill:#ffcf99}.barB{fill:#0f5f9a}.axis{stroke:#a9bed3;stroke-width:1}.lbl{font:700 12px Manrope, sans-serif; fill:#355}</style></defs>
+          <line x1="40" y1="210" x2="490" y2="210" class="axis"/>
+          <line x1="40" y1="40"  x2="40"  y2="210" class="axis"/>
+          <rect x="80"  y="170" width="28" height="40" class="barA"/><rect x="116" y="150" width="28" height="60" class="barB"/><text x="92" y="228" class="lbl">2022</text>
+          <rect x="210" y="120" width="28" height="90" class="barA"/><rect x="246" y="80"  width="28" height="130" class="barB"/><text x="222" y="228" class="lbl">2023</text>
+          <rect x="340" y="90"  width="28" height="120" class="barA"/><rect x="376" y="60"  width="28" height="150" class="barB"/><text x="352" y="228" class="lbl">2024</text>
+          <rect x="60" y="16" width="16" height="12" class="barA"/><text x="80" y="26" class="lbl">Accompagnement</text>
+          <rect x="220" y="16" width="16" height="12" class="barB"/><text x="240" y="26" class="lbl">Produit (pré-diag)</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Équipe -->
+    <section class="encart white">
+      <div class="pad"><h2 class="aw-title">L’équipe</h2></div>
+      <div class="team-3">
+        <div class="member">
+          <div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d9e6f5,#a9c6e8)"></div>
+          <h3>Alexandre M.</h3><p>Produit &amp; conformité</p>
+        </div>
+        <div class="member">
+          <div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d8f0cf,#bde6b3)"></div>
+          <h3>Camille R.</h3><p>Juriste RGPD / DPO</p>
+        </div>
+        <div class="member">
+          <div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#f9dcc2,#f4b381)"></div>
+          <h3>Yann G.</h3><p>Accessibilité RGAA/WCAG</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTAs -->
+    <section class="encart blue cta">
+      <div>
+        <h2 class="aw-title">Des questions&nbsp;?</h2>
+        <div class="row">
+          <a class="btn ghost" href="faq.html">Consulter la FAQ</a>
+          <a class="btn gradient" href="index.html#contact">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="encart blue cta" aria-label="Remerciements">
+      <div>
+        <h2 class="aw-title" style="font-size:clamp(34px,6vw,60px)">MERCI</h2>
+        <p style="color:#e9f2fb">pour votre confiance.</p>
+      </div>
+    </section>
   </main>
 
   <!-- Footer injecté -->
@@ -142,7 +320,6 @@
     const footMount = document.getElementById("footer");
     if (!headMount && !footMount) return;
 
-    // Détection GitHub Pages pour corriger les chemins racine
     const isGh = /github\.io$/.test(location.hostname);
     let base = "/";
     if (isGh) {
@@ -157,10 +334,7 @@
 
     async function fetchFirstOk(paths) {
       for (const u of paths) {
-        try {
-          const r = await fetch(u, { cache: "no-cache" });
-          if (r.ok) return r.text();
-        } catch(_) {}
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
       }
       throw new Error("Aucun chemin valide: " + paths.join(", "));
     }
@@ -170,7 +344,7 @@
         .forEach(el => {
           const attr = el.hasAttribute("href") ? "href" : "src";
           const val = el.getAttribute(attr);
-          if (/^\/\//.test(val)) return; // laisse les //cdn
+          if (/^\/\//.test(val)) return;
           el.setAttribute(attr, base + val.replace(/^\//, ""));
         });
     }
