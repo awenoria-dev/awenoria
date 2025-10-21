@@ -100,6 +100,22 @@
     .hero-apropos .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
     .hero-apropos h1{margin:0 0 10px;font-size:clamp(28px,4.8vw,46px);line-height:1.1}
     .lead{margin:0 0 16px;color:var(--muted);font-size:clamp(16px,1.6vw,18px)}
+    /* Lead + effet de saisie */
+.lead-typing{
+  font-size:clamp(18px,2.4vw,24px);
+  font-weight:800;
+  color:#0f2746;
+  text-shadow:0 2px 12px rgba(15,95,154,.15);
+  letter-spacing:.2px;
+  display:inline-flex; align-items:center; gap:4px;
+  white-space:nowrap; overflow:hidden;
+}
+.caret{
+  width:2px; height:1.2em; background:var(--copper);
+  animation:blink .9s steps(1) infinite;
+}
+@keyframes blink{ 50%{opacity:0} }
+
 
     /* ===== ENCAR(T)S ===== */
     .encarts{max-width:1200px;margin:20px auto 44px;padding:0 20px;display:grid;gap:18px}
@@ -126,6 +142,10 @@
     .sommaire .entry{padding:14px 16px;border-radius:16px;background:linear-gradient(180deg,#ffffff,#f7fbff);border:1px solid rgba(15,23,32,.06);color:#244a6d;font-weight:750;transition:all .18s ease;position:relative;overflow:hidden}
     .sommaire .entry:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(15,95,154,.12)}
     @media(max-width:720px){.sommaire{grid-template-columns:1fr}}
+    /* Couleur cuivre sur PARTIE X correspondante */
+.sommaire .parts .item{
+  transition:color .18s ease, background .18s ease;}
+.sommaire .parts .item.active{ color:var(--copper); background:rgba(255,138,61,.14);}
 
     /* Fondateur */
     .encart.founder{display:grid;grid-template-columns:1fr 1.2fr}
@@ -370,7 +390,10 @@
 <section class="hero-apropos">
   <div class="wrap">
     <h1>Qui sommes-nous&nbsp;?</h1>
-    <p class="lead">Rendre la conformité accessible, humaine et transparente.</p>
+<p class="lead lead-typing">
+  <span id="typing-text" aria-label="Rendre la conformité accessible, humaine et transparente."></span>
+  <span class="caret" aria-hidden="true"></span>
+</p>
   </div>
 </section>
 
@@ -647,18 +670,49 @@
 (function(){
   const dropdowns = [...document.querySelectorAll('.dropdown')];
   let closeTimers = new WeakMap();
-  function openDd(dd){ dropdowns.forEach(d=>{ if(d!==dd) closeDd(d); }); const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega'); if(!btn||!panel) return; panel.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
-  function closeDd(dd){ const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega'); if(!btn||!panel) return; panel.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
-  function scheduleClose(dd,delay=120){ clearTimeout(closeTimers.get(dd)); const t=setTimeout(()=>closeDd(dd),delay); closeTimers.set(dd,t); }
-  function cancelClose(dd){ clearTimeout(closeTimers.get(dd)); }
-  function setup(dd){
-    const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega'); if(!btn||!panel) return;
-    const items=[...panel.querySelectorAll('[role="menuitem"]')]; items.forEach(a=>a.setAttribute('tabindex','0'));
-    btn.addEventListener('click',e=>{e.stopPropagation(); panel.classList.contains('open')?closeDd(dd):openDd(dd);});
-    dd.addEventListener('mouseenter',()=>{cancelClose(dd); openDd(dd);});
-    dd.addEventListener('mouseleave',()=>{scheduleClose(dd);});
-    document.addEventListener('click',e=>{if(!dd.contains(e.target)) closeDd(dd);});
+
+  function openDd(dd){
+    dropdowns.forEach(d=>{ if(d!==dd) closeDd(d); });
+    const btn = dd.querySelector('.dropdown-toggle');
+    const panel = dd.querySelector('.mega');
+    if(!btn || !panel) return;
+    panel.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
   }
+
+  function closeDd(dd){
+    const btn = dd.querySelector('.dropdown-toggle');
+    const panel = dd.querySelector('.mega');
+    if(!btn || !panel) return;
+    panel.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+  }
+
+  function scheduleClose(dd, delay=120){
+    clearTimeout(closeTimers.get(dd));
+    const t = setTimeout(()=>closeDd(dd), delay);
+    closeTimers.set(dd, t);
+  }
+
+  function cancelClose(dd){ clearTimeout(closeTimers.get(dd)); }
+
+  function setup(dd){
+    const btn = dd.querySelector('.dropdown-toggle');
+    const panel = dd.querySelector('.mega');
+    if(!btn || !panel) return;
+
+    const items = [...panel.querySelectorAll('[role="menuitem"]')];
+    items.forEach(a => a.setAttribute('tabindex','0'));
+
+    btn.addEventListener('click', e=>{
+      e.stopPropagation();
+      panel.classList.contains('open') ? closeDd(dd) : openDd(dd);
+    });
+    dd.addEventListener('mouseenter', ()=>{ cancelClose(dd); openDd(dd); });
+    dd.addEventListener('mouseleave', ()=>{ scheduleClose(dd); });
+    document.addEventListener('click', e=>{ if(!dd.contains(e.target)) closeDd(dd); });
+  }
+
   dropdowns.forEach(setup);
 })();
 </script>
@@ -666,16 +720,77 @@
 <script>
 // Compte (identique à l'accueil)
 (function(){
-  const account=document.querySelector('.account'); if(!account) return;
-  const btn=account.querySelector('#accountBtn'); const menu=account.querySelector('#accountMenu'); const items=Array.from(menu.querySelectorAll('[role="menuitem"]')); items.forEach(a=>a.tabIndex=0);
-  let hoverTimer=null; const isOpen=()=>menu.classList.contains('open');
+  const account = document.querySelector('.account'); if(!account) return;
+  const btn = account.querySelector('#accountBtn');
+  const menu = account.querySelector('#accountMenu');
+  const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
+  items.forEach(a => a.tabIndex = 0);
+
+  let hoverTimer = null;
+  const isOpen = () => menu.classList.contains('open');
+
   function open(){ if(isOpen()) return; menu.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
   function close(){ if(!isOpen()) return; menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
-  function toggle(){ isOpen()?close():open(); }
-  account.addEventListener('mouseenter',()=>{clearTimeout(hoverTimer); open();});
-  account.addEventListener('mouseleave',()=>{clearTimeout(hoverTimer); hoverTimer=setTimeout(close,140);});
-  btn.addEventListener('click',e=>{e.stopPropagation(); toggle();});
-  document.addEventListener('pointerdown',e=>{ if(isOpen() && !account.contains(e.target)) close(); });
+  function toggle(){ isOpen() ? close() : open(); }
+
+  account.addEventListener('mouseenter', ()=>{ clearTimeout(hoverTimer); open(); });
+  account.addEventListener('mouseleave', ()=>{ clearTimeout(hoverTimer); hoverTimer = setTimeout(close, 140); });
+  btn.addEventListener('click', e=>{ e.stopPropagation(); toggle(); });
+  document.addEventListener('pointerdown', e=>{ if(isOpen() && !account.contains(e.target)) close(); });
+})();
+</script>
+
+
+<script>
+/* Effet dactylo + curseur qui reste à la fin */
+(function(){
+  const el = document.getElementById('typing-text');
+  if(!el) return;
+  const full = "Rendre la conformité accessible, humaine et transparente.";
+  let i = 0, speed = 28; // ms par caractère
+  function type(){
+    if(i <= full.length){
+      el.textContent = full.slice(0, i++);
+      setTimeout(type, speed);
+    }
+  }
+  type();
+})();
+</script>
+
+<script>
+/* Synchronisation PARTIE X <-> bulle droite */
+(function(){
+  const parts = Array.from(document.querySelectorAll('.sommaire .parts .item'));
+  const entries = Array.from(document.querySelectorAll('.sommaire .entries .entry'));
+  if(!parts.length || !entries.length) return;
+
+  // indexation + accessibilité clavier
+  parts.forEach((el, i)=> el.dataset.index = (i+1));
+  entries.forEach((el, i)=> {
+    el.dataset.index = (i+1);
+    el.tabIndex = 0; // <— pour que focus/blur fonctionnent au clavier
+  });
+
+  const setActive = (n) => {
+    parts.forEach(p => p.classList.toggle('active', +p.dataset.index === n));
+  };
+
+  // bulles (droite)
+  entries.forEach(el=>{
+    const n = +el.dataset.index;
+    el.addEventListener('mouseenter', ()=> setActive(n));
+    el.addEventListener('focus',      ()=> setActive(n));
+    el.addEventListener('mouseleave', ()=> setActive(0));
+    el.addEventListener('blur',       ()=> setActive(0));
+  });
+
+  // parties (gauche) — optionnel
+  parts.forEach(el=>{
+    const n = +el.dataset.index;
+    el.addEventListener('mouseenter', ()=> setActive(n));
+    el.addEventListener('mouseleave', ()=> setActive(0));
+  });
 })();
 </script>
 </body>
