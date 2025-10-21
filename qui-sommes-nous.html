@@ -4,191 +4,163 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Qui sommes-nous ? – Awenoria</title>
-  <meta name="description" content="Awenoria démocratise la conformité pour les TPE/PME, associations et start-ups : pré-diagnostic local, accompagnement humain, prix démocratisé.">
 
-  <link rel="canonical" href="https://www.awenoria.fr/qui-sommes-nous.html" />
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Awenoria">
-  <meta property="og:locale" content="fr_FR">
-  <meta property="og:title" content="Qui sommes-nous ? – Awenoria">
-  <meta property="og:description" content="Rendre la conformité accessible, humaine et transparente. Pré-diagnostic local, sans collecte, et accompagnement humain à prix démocratisé.">
-  <meta property="og:image" content="https://www.awenoria.fr/images/og-awenoria.jpg">
-  <meta property="og:url" content="https://www.awenoria.fr/qui-sommes-nous.html">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Qui sommes-nous ? – Awenoria">
-  <meta name="twitter:description" content="Conformité simple, pédagogique et respectueuse des données pour TPE/PME, assos et start-ups.">
-  <meta name="twitter:image" content="https://www.awenoria.fr/images/og-awenoria.jpg">
+  <!-- Police -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png?v=2">
-  <link rel="icon" type="image/svg+xml" href="./images/favicon.svg?v=2">
-  <link rel="shortcut icon" href="./favicon.ico?v=2">
-  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=2">
-  <meta name="apple-mobile-web-app-title" content="Awenoria" />
-  <link rel="manifest" href="./site.webmanifest?v=2">
-  <meta name="theme-color" content="#0f5f9a">
-
-  <!-- Fonts + CSS global Awenoria -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/awenoria.css">
-
-  <!-- Style local (spécifique à cette page) -->
   <style>
-    /* réduit l’espace sous le H1 du bandeau bleu clair */
-    .hero-apropos{ padding:56px 0 22px !important; }
-  </style>
+    /* --- STYLE GLOBAL (autonome) --- */
+    body {
+      margin: 0;
+      font-family: "Manrope", system-ui, sans-serif;
+      background: radial-gradient(1400px 700px at 10% -20%, #eef6ff 0%, rgba(238,246,255,0.6) 45%, transparent 60%),
+                  linear-gradient(180deg,#ffffff 0%, #f6f9fc 100%);
+      color: #0f5f9a;
+      line-height: 1.5;
+    }
 
-  <!-- JSON-LD -->
-  <script type="application/ld+json">{
-    "@context":"https://schema.org",
-    "@graph":[
-      {"@type":"WebSite","name":"Awenoria","url":"https://www.awenoria.fr","inLanguage":"fr-FR","publisher":{"@id":"https://www.awenoria.fr#org"}},
-      {"@type":"Organization","@id":"https://www.awenoria.fr#org","name":"Awenoria","url":"https://www.awenoria.fr","logo":{"@type":"ImageObject","url":"https://www.awenoria.fr/images/logo.png","width":512,"height":512},"sameAs":["https://www.linkedin.com/company/awenoria"]},
-      {"@type":"BreadcrumbList","itemListElement":[
-        {"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.awenoria.fr/"},
-        {"@type":"ListItem","position":2,"name":"Qui sommes-nous ?","item":"https://www.awenoria.fr/qui-sommes-nous.html"}
-      ]}
-    ]
-  }</script>
+    h1,h2,h3,h4 { font-weight: 800; margin: 0 0 10px; }
+
+    .section { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+    .encart {
+      border-radius: 18px;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 12px 28px rgba(0,0,0,.08);
+      border: 1px solid rgba(15,23,32,.1);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .encart .pad { padding: 22px; }
+    .blue { background: linear-gradient(180deg,#0e4576,#0f5f9a); color:#fff; }
+    .white { background:#fff; }
+    .split { display:grid; grid-template-columns:1.1fr .9fr; }
+    @media(max-width:900px){ .split{grid-template-columns:1fr;} }
+    .center { display:grid; place-items:center; }
+    .aw-title.copper { color:#ff8a3d; }
+    .underline { width:80px;height:4px;border-radius:999px;background:#ff8a3d;margin:10px 0 0; }
+
+    /* timeline */
+    .timeline { padding: 24px; position: relative; }
+    .timeline::after {
+      content: "";
+      position: absolute; left: 20px; right: 20px; top: 50%;
+      height: 4px; background: #0d4b7c; border-radius: 4px;
+    }
+    .timeline .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    @media(max-width:900px){ .timeline .row{ grid-template-columns: repeat(2,1fr);} }
+    .t-item { text-align:center; }
+    .t-item .year { font-weight:900; color:#c47b2e; font-size:22px; }
+    .t-item p { font-size:14px; color:#4a6176; }
+
+    /* valeurs */
+    .values { display:grid; grid-template-columns:280px 1fr; }
+    @media(max-width:900px){ .values{ grid-template-columns:1fr;} }
+    .values .left { padding:22px; }
+    .values .right {
+      background:#0d4b7c; color:#fff; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:22px;
+    }
+    @media(max-width:700px){ .values .right{ grid-template-columns:1fr;} }
+    .v { border:1px solid rgba(255,255,255,.25); border-radius:14px; padding:14px; }
+
+    /* citation */
+    .quote { display:grid; grid-template-columns:1fr 1fr; }
+    @media(max-width:900px){ .quote{grid-template-columns:1fr;} }
+    .quote .visu { background:linear-gradient(180deg,rgba(15,95,154,.06),rgba(15,95,154,.06)),
+                  repeating-linear-gradient(90deg,#cfe6fb 0 2px,#e6f0fb 2px 4px);
+                  min-height:240px; display:grid; place-items:center; }
+    .quote .q { background:#0d4b7c; color:#fff; display:grid; place-items:center; padding:28px; }
+    blockquote { max-width:560px; margin:0; font-size:18px; position:relative; line-height:1.6; }
+    blockquote::before { content:"“"; position:absolute; left:-20px; top:-6px; font-size:52px; color:#ffcf99; opacity:.8; }
+
+    /* footer simple */
+    footer {
+      background:#0a0a0a; color:#eaeaea;
+      text-align:center; padding:24px 10px; margin-top:40px;
+      font-size:14px;
+    }
+    footer a { color:#7bb8ff; text-decoration:none; }
+    footer a:hover { text-decoration:underline; }
+  </style>
 </head>
+
 <body>
 
-  <!-- Header injecté (menu identique à l’accueil) -->
-  <div id="header" role="banner"></div>
-
-  <!-- ===== Contenu de la page (inchangé) ===== -->
-  <section class="hero-apropos">
-    <div class="wrap">
-      <h1>Qui sommes-nous&nbsp;?</h1>
+  <header class="navbar">
+    <div class="nav-wrap" style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:#fff;border-bottom:1px solid rgba(0,0,0,.08)">
+      <img src="images/logo.png" alt="Logo Awenoria" style="height:48px;">
+      <nav>
+        <a href="index.html" style="font-weight:800;color:#0f5f9a;text-decoration:none;margin-right:16px;">Accueil</a>
+        <a href="qui-sommes-nous.html" style="font-weight:800;color:#ff8a3d;text-decoration:none;">Qui sommes-nous</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <div class="encarts">
-    <!-- Présentation -->
-    <section class="encart split">
-      <div class="pad col blue">
-        <h1 class="aw-title">Présentation</h1>
-        <p class="lead-typing">
-          <span id="typing-text" aria-label="Rendre la conformité accessible, humaine et transparente."></span>
-          <span class="caret" aria-hidden="true"></span>
-        </p>
-        <div class="aw-underline" aria-hidden="true"></div>
+  <main class="section">
+
+    <h1 style="text-align:center;">Qui sommes-nous ?</h1>
+
+    <div class="encart split blue">
+      <div class="pad">
+        <h2 class="aw-title">Présentation</h2>
+        <p>Rendre la conformité accessible, humaine et transparente.</p>
+        <div class="underline"></div>
       </div>
-
       <div class="center">
-        <img class="logo-hero" src="images/logo.png" alt="Logo Awenoria" width="200" height="200" loading="lazy"/>
+        <img src="images/logo.png" alt="Logo Awenoria" style="max-height:100px;">
       </div>
-    </section>
+    </div>
 
-    <!-- Groupe -->
-    <section class="encart blue">
+    <div class="encart blue">
       <div class="pad">
-        <h2 class="aw-title">Le groupe</h2>
-        <p class="lead">Chez <b>Awenoria</b>, la conformité ne doit pas être un fardeau. Nous aidons les TPE, PME, associations et start-ups à maîtriser leurs obligations numériques — <b>sans jargon, sans dépendance et à un prix démocratisé</b>.</p>
+        <h2>Le groupe</h2>
+        <p>Chez <strong>Awenoria</strong>, la conformité ne doit pas être un fardeau. Nous aidons les TPE, PME, associations et start-ups à maîtriser leurs obligations numériques — <strong>sans jargon, sans dépendance et à un prix démocratisé.</strong></p>
       </div>
-    </section>
+    </div>
 
-    <!-- Histoire -->
-    <section class="encart white timeline-wrap">
-      <h2 class="aw-title copper">Notre histoire</h2>
-      <div class="timeline">
-        <div class="row">
-          <div class="t-item"><div class="year">2019</div><p>Idée : conformité simple &amp; locale.</p></div>
-          <div class="t-item"><div class="year">2023</div><p>Prototype d’audit côté navigateur.</p></div>
-          <div class="t-item"><div class="year">2024</div><p>Volets Mentions légales &amp; Accessibilité.</p></div>
-          <div class="t-item"><div class="year">2025</div><p>Lancement public &amp; packs démocratisés.</p></div>
+    <div class="encart white">
+      <div class="pad">
+        <h2 class="aw-title copper">Notre histoire</h2>
+        <div class="timeline">
+          <div class="row">
+            <div class="t-item"><div class="year">2019</div><p>Idée : conformité simple & locale.</p></div>
+            <div class="t-item"><div class="year">2023</div><p>Prototype d’audit côté navigateur.</p></div>
+            <div class="t-item"><div class="year">2024</div><p>Volets Mentions légales & Accessibilité.</p></div>
+            <div class="t-item"><div class="year">2025</div><p>Lancement public & packs démocratisés.</p></div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Valeurs -->
-    <section class="encart values">
-      <div class="left white">
-        <h2 class="aw-title">Nos valeurs</h2>
-        <p class="lead">Transparence, pédagogie, confidentialité : notre boussole au quotidien.</p>
+    <div class="encart">
+      <div class="values">
+        <div class="left">
+          <h2>Nos valeurs</h2>
+          <p>Transparence, pédagogie, confidentialité : notre boussole au quotidien.</p>
+        </div>
+        <div class="right">
+          <div class="v"><h4>Confiance</h4><p>Livrables clairs, méthodes publiées, engagements tenus.</p></div>
+          <div class="v"><h4>Qualité</h4><p>Diagnostic priorisé et actionnable, amélioration continue.</p></div>
+          <div class="v"><h4>Engagement</h4><p>Respect de la vie privée par design et par défaut.</p></div>
+        </div>
       </div>
-      <div class="right">
-        <div class="v"><h4>Confiance</h4><p>Livrables clairs, méthodes publiées, engagements tenus.</p></div>
-        <div class="v"><h4>Qualité</h4><p>Diagnostic priorisé et actionnable, amélioration continue.</p></div>
-        <div class="v"><h4>Engagement</h4><p>Respect de la vie privée par design et par défaut.</p></div>
-      </div>
-    </section>
+    </div>
 
-    <!-- Citation 3/5 -->
-    <section class="encart quote">
-      <div class="visu"></div>
+    <div class="encart quote">
+      <div class="visu">
+        <img src="images/conformite.png" alt="Conformité numérique" style="max-width:80%;border-radius:8px;">
+      </div>
       <div class="q">
-        <blockquote>«&nbsp;Awenoria simplifie la conformité pour renforcer l'autonomie de ceux qui la vivent.&nbsp;»</blockquote>
+        <blockquote>« Awenoria simplifie la conformité pour renforcer l’autonomie de ceux qui la vivent. »</blockquote>
       </div>
-    </section>
+    </div>
 
-    <!-- Graphique -->
-    <section class="encart chart">
-      <div class="explain">
-        <h2 class="aw-title">Impact mesurable</h2>
-        <p class="lead">Le temps d’obtention des premières actions diminue fortement grâce au <b>pré-diagnostic local</b>, complété par l’accompagnement humain lorsque nécessaire.</p>
-      </div>
-      <div class="viz">
-        <svg viewBox="0 0 520 260" width="100%" height="auto" role="img" aria-label="Barres croissance accompagnement vs produit">
-          <defs><style>.barA{fill:#ffcf99}.barB{fill:#0f5f9a}.axis{stroke:#a9bed3;stroke-width:1}.lbl{font:700 12px Manrope, sans-serif; fill:#355}</style></defs>
-          <line x1="40" y1="210" x2="490" y2="210" class="axis"/>
-          <line x1="40" y1="40"  x2="40"  y2="210" class="axis"/>
-          <rect x="80"  y="170" width="28" height="40" class="barA"/><rect x="116" y="150" width="28" height="60" class="barB"/><text x="92" y="228" class="lbl">2022</text>
-          <rect x="210" y="120" width="28" height="90" class="barA"/><rect x="246" y="80"  width="28" height="130" class="barB"/><text x="222" y="228" class="lbl">2023</text>
-          <rect x="340" y="90"  width="28" height="120" class="barA"/><rect x="376" y="60"  width="28" height="150" class="barB"/><text x="352" y="228" class="lbl">2024</text>
-          <rect x="60" y="16" width="16" height="12" class="barA"/><text x="80" y="26" class="lbl">Accompagnement</text>
-          <rect x="220" y="16" width="16" height="12" class="barB"/><text x="240" y="26" class="lbl">Produit (pré-diag)</text>
-        </svg>
-      </div>
-    </section>
+  </main>
 
-    <!-- Équipe -->
-    <section class="encart white">
-      <div class="pad">
-        <h2 class="aw-title">L’équipe</h2>
-      </div>
-      <div class="team-3">
-        <div class="member"><div class="avatar"></div><h3>Alexandre M.</h3><p>Produit &amp; conformité</p></div>
-        <div class="member"><div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d9e6f5,#a9c6e8)"></div><h3>Camille R.</h3><p>Juriste RGPD / DPO</p></div>
-        <div class="member"><div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d8f0cf,#bde6b3)"></div><h3>Yann G.</h3><p>Accessibilité RGAA/WCAG</p></div>
-      </div>
-    </section>
+  <footer>
+    © 2025 Awenoria — Tous droits réservés<br>
+    <a href="mentions-legales.html">Mentions légales</a> ·
+    <a href="contact.html">Contact</a>
+  </footer>
 
-    <!-- CTA -->
-    <section class="encart blue cta">
-      <div>
-        <h2 class="aw-title">Des questions&nbsp;?</h2>
-        <div class="row">
-          <a class="btn ghost" href="faq.html">Consulter la FAQ</a>
-          <a class="btn gradient" href="index.html#contact">Nous contacter</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="encart blue cta">
-      <div>
-        <h2 class="aw-title" style="font-size:clamp(34px,6vw,60px)">MERCI</h2>
-        <p class="lead" style="color:#e9f2fb">pour votre confiance.</p>
-      </div>
-    </section>
-  </div>
-  <!-- ===== Fin contenu ===== -->
-
-  <!-- Footer injecté (identique à l’accueil) -->
-  <div id="footer" role="contentinfo"></div>
-
-  <!-- Injection des partials + nav.js (via include-awenoria.js), puis scripts globaux -->
-  <script src="assets/include-awenoria.js" defer></script>
-  <script src="assets/site.js" defer></script>
-
-  <!-- Mini dactylo local (facultatif si déjà dans site.js) -->
-  <script>
-    (function(){
-      const el=document.getElementById('typing-text'); if(!el) return;
-      const full="Rendre la conformité accessible, humaine et transparente.";
-      let i=0, speed=24; (function type(){ if(i<=full.length){ el.textContent=full.slice(0,i++); setTimeout(type,speed);} })();
-    })();
-  </script>
 </body>
 </html>
