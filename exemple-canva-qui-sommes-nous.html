@@ -205,6 +205,97 @@
     .cc-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:12px;display:grid;grid-template-columns:1fr auto;gap:12px}
   </style>
 
+  <!-- ✨ Layer "Élégance Canva" – AJOUTÉ ICI -->
+  <style>
+  :root{
+    --shine: linear-gradient(135deg, rgba(255,255,255,.75) 0%, rgba(255,255,255,.15) 35%, rgba(255,255,255,0) 60%);
+    --lux-grad: radial-gradient(1200px 600px at 10% -20%, #eef6ff 0%, rgba(238,246,255,.6) 45%, transparent 60%),
+                 conic-gradient(from 210deg at 60% -10%, rgba(15,95,154,.06), rgba(255,138,61,.05), rgba(15,95,154,.06));
+    --glass: rgba(255,255,255,.72);
+    --glass-stroke: 1px solid rgba(15,23,32,.10);
+    --glow-blue: 0 12px 24px rgba(15,95,154,.18);
+    --glow-copper: 0 10px 24px rgba(255,138,61,.22);
+  }
+  body{ background: var(--lux-grad); position:relative; overflow-x:hidden; }
+  body::after{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:-1;
+    background:
+      radial-gradient(1600px 900px at 100% -10%, rgba(255,255,255,.4), transparent 50%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'><defs><filter id='n'><feTurbulence baseFrequency='0.75' numOctaves='2' seed='7'/></filter></defs><rect width='100%' height='100%' filter='url(%23n)' opacity='.018'/></svg>") repeat;
+    background-size:auto,140px 140px;
+  }
+  .glass{ background:var(--glass); border:var(--glass-stroke); box-shadow:0 6px 16px rgba(16,24,40,.06), inset 0 1px 0 rgba(255,255,255,.35); }
+  .aw-title{
+    background:linear-gradient(180deg,#0f5f9a 0%, #0d4f83 60%, #0f5f9a 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:0 1px 0 rgba(255,255,255,.35);
+  }
+  .aw-title.copper{
+    background:linear-gradient(180deg,#ff9c58 0%, #ff8a3d 60%, #e9792f 100%);
+    -webkit-background-clip:text; background-clip:text;
+  }
+  .encart{ border-radius:24px; box-shadow:0 14px 40px rgba(15,23,32,.06); }
+  .encart.white{ background:linear-gradient(180deg,#ffffff 0%, #fbfdff 100%); }
+  .encart.blue{ box-shadow:var(--glow-blue); }
+  .encart .pad{ padding:26px; }
+  .sommaire{ gap:18px; }
+  .sommaire .parts{ background:linear-gradient(180deg,#0f5f9a,#0c4e80); padding:8px; border-radius:18px; box-shadow:inset 0 1px 0 rgba(255,255,255,.15); }
+  .sommaire .entry{
+    border-radius:18px;
+    background:linear-gradient(180deg,#ffffff,#f7fbff) padding-box,
+               linear-gradient(180deg, rgba(15,95,154,.18), rgba(255,138,61,.24)) border-box;
+    border:1px solid transparent; position:relative; isolation:isolate;
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .sommaire .entry::before{
+    content:""; position:absolute; inset:-1px; border-radius:inherit; z-index:-1;
+    background:var(--shine); transform:translateX(-120%) skewX(-15deg);
+    transition:transform .45s ease;
+    mask-image:linear-gradient(to right, transparent 0%, black 35%, transparent 70%);
+  }
+  .sommaire .entry:hover{ transform:translateY(-2px); box-shadow:0 14px 36px rgba(15,95,154,.14); border-color:rgba(15,95,154,.30); }
+  .sommaire .entry:hover::before{ transform:translateX(110%) skewX(-15deg); }
+  .t-item::before{
+    width:12px; height:12px; border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, #ffd7a8, #ff8a3d);
+    box-shadow:0 0 0 6px rgba(255,138,61,.14), 0 8px 16px rgba(255,138,61,.22);
+  }
+  .encart.values .right{ gap:12px; }
+  .encart.values .v{
+    background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+    border:1px solid rgba(255,255,255,.22);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.25);
+  }
+  .account-btn{
+    background:linear-gradient(180deg,#f6fbff,#edf5fc);
+    box-shadow:inset 0 1px 0 #fff, 0 4px 8px rgba(15,95,154,.12);
+    transition:box-shadow .15s ease, transform .15s ease;
+  }
+  .account-btn:hover{ transform:translateY(-1px); box-shadow:0 10px 20px rgba(15,95,154,.18); }
+  .mega{
+    background:linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.82));
+    border:1px solid rgba(15,23,32,.08);
+    box-shadow:0 24px 60px rgba(15,23,32,.18);
+    backdrop-filter:blur(12px);
+  }
+  .cta .btn{ will-change:transform; }
+  .cta .btn.gradient{ position:relative; overflow:hidden; }
+  .cta .btn.gradient::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.45) 25%, transparent 55%);
+    transform:translateX(-120%) rotate(8deg);
+    transition:transform .6s ease;
+  }
+  .cta .btn.gradient:hover::after{ transform:translateX(120%) rotate(8deg); }
+  .cta .btn.secondary{ background:linear-gradient(180deg,#ffffff,#f6fbff); }
+  .cta .btn.secondary:hover{ box-shadow:var(--glow-blue); }
+  .encart.split .center svg{ transition:transform .3s cubic-bezier(.2,.6,.2,1); transform-origin:center; }
+  .encart.split .center:hover svg{ transform:translateY(-2px) scale(1.02); }
+  @media (prefers-reduced-motion: reduce){
+    .sommaire .entry, .sommaire .entry::before, .cta .btn.gradient::after, .encart.split .center svg { transition:none !important; }
+  }
+  </style>
+
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[
@@ -218,434 +309,6 @@
   </script>
 </head>
 <body>
-
-<!-- ===== NAVBAR ===== -->
-<header class="navbar" role="banner">
-  <div class="nav-wrap">
-    <a class="brand" href="index.html" aria-label="Aller à l'accueil">
-      <!-- Logo PJ2 + fallback si le fichier n’existe pas -->
-      <img class="brand-img"
-           src="images/awenoria-logo.png"
-           srcset="images/awenoria-logo.png 1x, images/awenoria-logo.png 2x"
-           alt="Logo Awenoria"
-           onerror="this.onerror=null;this.src='images/logo.png';">
-    </a>
-
-    <nav class="nav-main" aria-label="Navigation principale">
-      <a href="qui-sommes-nous.html" class="active">Qui sommes-nous ?</a>
-
-      <!-- ▼ NOS SERVICES -->
-      <div class="dropdown" id="servicesDropdown">
-        <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-          Nos services
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="mega glass mega--services" role="menu" aria-label="Nos services">
-          <div class="mega-grid--3">
-            <div class="group">
-              <h6>Conseil &amp; conformité</h6>
-              <ul class="mega-list">
-                <li><a role="menuitem" href="index.html#audit">Audit &amp; Analyse</a></li>
-                <li><a role="menuitem" href="index.html#conformite">Accompagnement RGPD</a></li>
-                <li><a role="menuitem" href="index.html#ia-act">Conformité IA (UE)</a></li>
-              </ul>
-            </div>
-            <div class="group">
-              <h6>Web &amp; légal</h6>
-              <ul class="mega-list">
-                <li><a role="menuitem" href="index.html#f-cookies">Cookies &amp; CMP</a></li>
-                <li><a role="menuitem" href="index.html#f-legales">Mentions légales</a></li>
-                <li><a role="menuitem" href="index.html#f-access">Accessibilité (RGAA / EN 301 549)</a></li>
-              </ul>
-            </div>
-            <div class="group">
-              <h6>Formats &amp; modalités</h6>
-              <div class="format-badges">
-                <span class="badge pill-badge">Audit flash</span>
-                <span class="badge pill-badge">Mission</span>
-                <span class="badge pill-badge">Abonnement</span>
-                <span class="badge pill-badge">À la carte</span>
-              </div>
-              <a class="btn ghost" href="index.html#contact" role="menuitem">Demander un devis</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ▼ NOS FORMATIONS -->
-      <div class="dropdown" id="formationsDropdown">
-        <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-          Nos formations
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="mega glass mega--formations" role="menu" aria-label="Nos formations">
-          <div class="mega-grid--3">
-            <div class="group">
-              <h6>Par thématique</h6>
-              <ul class="mega-list">
-                <li><a role="menuitem" href="index.html#f-rgpd">RGPD – essentiels, registre, AIPD</a></li>
-                <li><a role="menuitem" href="index.html#f-iaact">IA Act – obligations &amp; documentation</a></li>
-                <li><a role="menuitem" href="index.html#f-cookies">Cookies &amp; CMP</a></li>
-                <li><a role="menuitem" href="index.html#f-legales">Mentions légales &amp; conformité web</a></li>
-                <li><a role="menuitem" href="index.html#f-access">Accessibilité (RGAA / EN 301 549)</a></li>
-              </ul>
-            </div>
-            <div class="group">
-              <h6>Par public</h6>
-              <ul class="mega-list">
-                <li><a role="menuitem" href="index.html#f-dirigeants">Dirigeants &amp; responsables</a></li>
-                <li><a role="menuitem" href="index.html#f-equipes">Équipes opérationnelles</a></li>
-                <li><a role="menuitem" href="index.html#f-dpo">Référents / DPO</a></li>
-                <li><a role="menuitem" href="index.html#f-dev">Dev, Produit &amp; Data</a></li>
-              </ul>
-            </div>
-            <div class="group">
-              <h6>Formats &amp; modalités</h6>
-              <div class="format-badges">
-                <span class="badge pill-badge">Atelier 2h</span>
-                <span class="badge pill-badge">1/2 journée</span>
-                <span class="badge pill-badge">1 journée</span>
-                <span class="badge pill-badge">Parcours</span>
-                <span class="badge pill-badge">Présentiel / Distanciel</span>
-              </div>
-              <a class="btn ghost" href="index.html#contact" role="menuitem">Demander un programme</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <a href="index.html#blog">Blog</a>
-      <a href="index.html#contact">Contact</a>
-    </nav>
-
-    <div class="nav-actions">
-      <div class="account">
-        <button class="account-btn" id="accountBtn" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" title="Se connecter">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
-        </button>
-        <div class="account-menu glass" id="accountMenu" role="menu" aria-label="Connexion">
-          <a class="acc-item client" href="#login-client" role="menuitem">
-            <div class="acc-ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"/></svg>
-            </div>
-            <div><p class="acc-title">Connexion Client</p></div>
-            <div class="acc-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
-          </a>
-          <a class="acc-item partner" href="#login-partenaire" role="menuitem">
-            <div class="acc-ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 18c0-3.3 3.6-6 8-6s8 2.7 8 6v1H4v-1z"/></svg>
-            </div>
-            <div><p class="acc-title">Connexion Partenaire</p></div>
-            <div class="acc-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- ===== HERO ===== -->
-<section class="hero-apropos">
-  <div class="wrap">
-    <h1>Qui sommes-nous&nbsp;?</h1>
-    <p class="lead">Rendre la conformité accessible, humaine et transparente.</p>
-  </div>
-</section>
-
-<!-- ============== ENCAR(T)S – Awenoria ============== -->
-<div class="encarts">
-
-  <!-- 1) Couverture -->
-  <section class="encart split">
-    <div class="pad col blue">
-      <!-- (kicker retiré) -->
-      <h1 class="aw-title">Présentation</h1>
-      <p class="lead">Rendre la conformité accessible, humaine et transparente.</p>
-      <div class="aw-underline" aria-hidden="true"></div>
-    </div>
-    <div class="center" style="background:
-        radial-gradient(800px 400px at 10% -10%, rgba(255,255,255,.22), transparent 60%),
-        linear-gradient(180deg,#eef6ff,#dfeaf7);">
-      <svg width="200" viewBox="0 0 200 120" aria-hidden="true">
-        <g fill="none" stroke="#0f5f9a" stroke-width="8">
-          <path d="M20 100 L70 10 L120 100 Z"/>
-          <path d="M80 100 h80"/>
-        </g>
-        <circle cx="70" cy="95" r="20" fill="#ff8a3d"/>
-      </svg>
-    </div>
-  </section>
-
-  <!-- 2) Le groupe -->
-  <section class="encart blue">
-    <div class="pad">
-      <h2 class="aw-title">Le groupe</h2>
-      <p class="lead">Chez <b>Awenoria</b>, la conformité ne doit pas être un fardeau. Nous aidons les TPE, PME, associations et start-ups à maîtriser leurs obligations numériques — <b>sans jargon, sans dépendance et à un prix démocratisé</b>.</p>
-    </div>
-  </section>
-
-  <!-- 3) Sommaire -->
-  <section class="encart white">
-    <div class="pad sommaire">
-      <div class="parts">
-        <div class="item">PARTIE 1</div><div class="item">PARTIE 2</div><div class="item">PARTIE 3</div>
-        <div class="item">PARTIE 4</div><div class="item">PARTIE 5</div><div class="item">PARTIE 6</div>
-      </div>
-      <div class="entries">
-        <div class="entry">Introduction</div>
-        <div class="entry">Mission &amp; valeurs</div>
-        <div class="entry">Contexte (RGPD / RGAA / IA)</div>
-        <div class="entry">Pourquoi Awenoria</div>
-        <div class="entry">Équipe &amp; histoire</div>
-        <div class="entry">Contact &amp; ressources</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4) Fondateur -->
-  <section class="encart founder">
-    <div class="img">
-      <svg width="200" height="200" viewBox="0 0 200 200" aria-hidden="true">
-        <circle cx="100" cy="80" r="42" fill="#e9eef7" stroke="#b8cbe2" stroke-width="4"/>
-        <rect x="40" y="120" width="120" height="60" rx="14" fill="#d9e6f5" stroke="#b8cbe2" stroke-width="4"/>
-      </svg>
-    </div>
-    <div class="txt">
-      <h2 class="aw-title">Alexandre M.</h2>
-      <div class="kicker" style="color:#0f5f9a">Fondateur — Produit &amp; conformité</div>
-      <p>10 ans d’expérience dans la simplification réglementaire et le développement produit. Objectif : <b>vous rendre autonome</b> grâce à un pré-diagnostic local et actionnable, complété par un accompagnement humain si besoin.</p>
-    </div>
-  </section>
-
-  <!-- 5) Histoire -->
-  <section class="encart white">
-    <div class="pad">
-      <h2 class="aw-title copper">Notre histoire</h2>
-      <div class="timeline">
-        <div class="row">
-          <div class="t-item"><div class="year">2019</div><p>Idée : conformité simple &amp; locale.</p></div>
-          <div class="t-item"><div class="year">2023</div><p>Prototype d’audit côté navigateur.</p></div>
-          <div class="t-item"><div class="year">2024</div><p>Volets Mentions légales &amp; Accessibilité.</p></div>
-          <div class="t-item"><div class="year">2025</div><p>Lancement public &amp; packs démocratisés.</p></div>
-          <div class="t-item"><div class="year">2026</div><p>Suivi &amp; modèles étendus (IA Act).</p></div>
-          <div class="t-item"><div class="year">…</div><p>Améliorations continues.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6) Valeurs (compact) -->
-  <section class="encart values">
-    <div class="left white">
-      <h2 class="aw-title">Nos valeurs</h2>
-      <p class="lead">Transparence, pédagogie, confidentialité : notre boussole au quotidien.</p>
-    </div>
-    <div class="right">
-      <div class="v">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 12l4 4 12-12" stroke="#ffcf99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h4>Confiance</h4><p>&nbsp;– Livrables clairs, méthodes publiées, engagements tenus.</p>
-      </div>
-      <div class="v">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#ffcf99" stroke-width="2"/><path d="M8 12l2 2 5-5" stroke="#ffcf99" stroke-width="2" stroke-linecap="round"/></svg>
-        <h4>Qualité</h4><p>&nbsp;– Diagnostic priorisé et actionnable, amélioration continue.</p>
-      </div>
-      <div class="v">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21c5-3 6-9 0-12-6 3-5 9 0 12Z" stroke="#ffcf99" stroke-width="2"/></svg>
-        <h4>Engagement</h4><p>&nbsp;– Respect de la vie privée par design et par défaut.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7) Citation -->
-  <section class="encart quote">
-    <div class="visu"></div>
-    <div class="q"><blockquote>«&nbsp;Awenoria rend la conformité plus lisible et plus juste : <b>moins de frictions, plus d’autonomie</b>.&nbsp;»</blockquote></div>
-  </section>
-
-  <!-- 8) Graphique -->
-  <section class="encart chart">
-    <div class="explain">
-      <h2 class="aw-title">Impact mesurable</h2>
-      <p class="lead">Le temps d’obtention des premières actions diminue fortement grâce au <b>pré-diagnostic local</b>, complété par l’accompagnement humain lorsque nécessaire.</p>
-    </div>
-    <div class="viz">
-      <svg viewBox="0 0 520 260" width="100%" height="auto" role="img" aria-label="Barres croissance accompagnement vs produit">
-        <defs>
-          <style>.barA{fill:#ffcf99}.barB{fill:#0f5f9a}.axis{stroke:#a9bed3;stroke-width:1}.lbl{font:700 12px Manrope, sans-serif; fill:#355}</style>
-        </defs>
-        <line x1="40" y1="210" x2="490" y2="210" class="axis"/>
-        <line x1="40" y1="40"  x2="40"  y2="210" class="axis"/>
-        <rect x="80"  y="170" width="28" height="40" class="barA"/><rect x="116" y="150" width="28" height="60" class="barB"/><text x="92" y="228" class="lbl">2022</text>
-        <rect x="210" y="120" width="28" height="90" class="barA"/><rect x="246" y="80"  width="28" height="130" class="barB"/><text x="222" y="228" class="lbl">2023</text>
-        <rect x="340" y="90"  width="28" height="120" class="barA"/><rect x="376" y="60"  width="28" height="150" class="barB"/><text x="352" y="228" class="lbl">2024</text>
-        <rect x="60" y="16" width="16" height="12" class="barA"/><text x="80" y="26" class="lbl">Accompagnement</text>
-        <rect x="220" y="16" width="16" height="12" class="barB"/><text x="240" y="26" class="lbl">Produit (pré-diag)</text>
-      </svg>
-    </div>
-  </section>
-
-  <!-- 9) Équipe -->
-  <section class="encart white">
-    <div class="pad">
-      <h2 class="aw-title">L’équipe</h2>
-    </div>
-    <div class="team-3">
-      <div class="member"><div class="avatar"></div><h3>Alexandre M.</h3><p>Produit &amp; conformité</p></div>
-      <div class="member"><div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d9e6f5,#a9c6e8)"></div><h3>Camille R.</h3><p>Juriste RGPD / DPO</p></div>
-      <div class="member"><div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d8f0cf,#bde6b3)"></div><h3>Yann G.</h3><p>Accessibilité RGAA/WCAG</p></div>
-    </div>
-  </section>
-
-  <!-- 10) Étapes clés -->
-  <section class="encart white">
-    <div class="pad"><h2 class="aw-title copper">Comment on travaille</h2></div>
-    <div class="steps">
-      <div class="step"><span class="badge-num">1</span><h3>Pré-diagnostic</h3><p>Analyse locale côté navigateur, sans collecte, avec scores et priorités.</p></div>
-      <div class="step"><span class="badge-num">2</span><h3>Plan d’action</h3><p>Guides, modèles et exemples concrets pour corriger efficacement.</p></div>
-      <div class="step"><span class="badge-num">3</span><h3>Accompagnement</h3><p>Audit humain &amp; formation selon votre périmètre (RGPD, RGAA, IA Act).</p></div>
-    </div>
-  </section>
-
-  <!-- 11) Présence (carte FR stylisée) -->
-  <section class="encart presence">
-    <div class="pad col">
-      <h2 class="aw-title">Notre présence</h2>
-      <p class="lead">Nous intervenons partout en France en distanciel, et en présentiel sur demande (IDF, Bretagne, AuRA).</p>
-    </div>
-    <div class="map">
-      <svg viewBox="0 0 420 280" width="100%" height="auto" aria-label="Carte stylisée de la France">
-        <defs><style>.fr{fill:#fff;stroke:#0f5f9a;stroke-width:4;stroke-linejoin:round}.pin{fill:#ffcf99;stroke:#b86122;stroke-width:2}</style></defs>
-        <!-- Silhouette stylisée (approximative) -->
-        <path class="fr" d="M210 20 255 40 310 60 350 100 350 140 330 170 320 210 270 230 220 260 170 240 120 230 90 200 70 170 70 130 90 100 130 70 165 45 Z"/>
-        <g>
-          <circle class="pin" cx="230" cy="80" r="8"/><circle class="pin" cx="280" cy="110" r="8"/>
-          <circle class="pin" cx="250" cy="170" r="8"/><circle class="pin" cx="170" cy="150" r="8"/>
-          <circle class="pin" cx="130" cy="110" r="8"/><circle class="pin" cx="320" cy="95" r="8"/>
-        </g>
-      </svg>
-    </div>
-  </section>
-
-  <!-- 12) Galerie visuelle -->
-  <section class="encart gallery4">
-    <div class="g g1"></div><div class="g g2"></div><div class="g g3"></div><div class="g g4"></div>
-  </section>
-
-  <!-- 13) Questions -->
-  <section class="encart blue cta">
-    <div>
-      <h2 class="aw-title">Des questions&nbsp;?</h2>
-      <div class="row">
-        <a class="btn secondary" href="faq.html">Consulter la FAQ</a>
-        <a class="btn gradient" href="index.html#contact">Nous contacter</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 14) Merci -->
-  <section class="encart blue cta">
-    <div>
-      <h2 class="aw-title" style="font-size:clamp(34px,6vw,60px)">MERCI</h2>
-      <p class="lead" style="color:#e9f2fb">pour votre confiance.</p>
-    </div>
-  </section>
-</div>
-<!-- ============ /ENCARTS ============ -->
-
-<!-- ===== FOOTER ===== -->
-<footer class="cc-footer" role="contentinfo">
-  <div class="cc-container">
-    <div class="cc-top">
-      <a class="cc-brand" href="index.html" aria-label="Awenoria">
-        <img src="images/awenoria-logo.png" alt="Awenoria" onerror="this.onerror=null;this.src='images/logo.png'">
-        <strong class="brand-text" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Awenoria</strong>
-      </a>
-      <a class="cc-locale" href="#" aria-label="Changer de pays">
-        <svg viewBox="0 0 24 24"><path d="M12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9zm0 0c2.5-2.8 4-5.8 4-9 0-3.2-1.5-6.2-4-9m0 18C9.5 18.2 8 15.2 8 12c0-3.2 1.5-6.2 4-9"/></svg>
-        <span>France</span>
-      </a>
-    </div>
-
-    <div class="cc-grid">
-      <div class="cc-col">
-        <h4>Plan du site</h4>
-        <ul>
-          <li><a href="index.html#intro">Accueil</a></li>
-          <li><a href="index.html#audit-gratuit">Audit gratuit</a></li>
-          <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
-          <li><a href="index.html#expertises">Nos expertises</a></li>
-          <li><a href="index.html#offres">Offres</a></li>
-          <li><a href="index.html#blog">Blog</a></li>
-        </ul>
-      </div>
-      <div class="cc-col">
-        <h4>Légal</h4>
-        <ul>
-          <li><a href="mentions.html">Mentions légales</a></li>
-          <li><a href="confidentialite.html">Politique de confidentialité</a></li>
-          <li><a href="index.html#accessibilite">Accessibilité</a></li>
-          <li><a href="index.html#cookies">Gestion des cookies</a></li>
-        </ul>
-      </div>
-      <div class="cc-col">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="index.html#approche">Notre méthode</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-        </ul>
-      </div>
-      <div class="cc-col">
-        <h4>Réseaux sociaux</h4>
-        <div class="cc-social" aria-label="Réseaux sociaux">
-          <a href="#" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24">
-              <path d="M6.94 7.5A1.94 1.94 0 116.93 3a1.94 1.94 0 01.01 4.5zM4.5 9h5v11h-5V9zm7 0h4.7v1.7h.1c.7-1.3 2.3-2.1 3.7-2.1 3.9 0 4.6 2.6 4.6 6v5.4h-5V15c0-1.3 0-3-1.8-3s-2.2 1.4-2.2 2.9V20h-5V9z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="cc-bottom">
-      <small>© 2025 Awenoria. Tous droits réservés.</small>
-      <small>Conformité, accessibilité, RGPD &amp; IA – France.</small>
-    </div>
-  </div>
-</footer>
-
-<!-- ===== SCRIPTS ===== -->
-<script>
-(function(){
-  const dropdowns=[...document.querySelectorAll('.dropdown')];
-  let closeTimers=new WeakMap();
-  function openDd(dd){ dropdowns.forEach(d=>{if(d!==dd) closeDd(d)}); const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega'); if(!btn||!panel) return; panel.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
-  function closeDd(dd){ const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega'); if(!btn||!panel) return; panel.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
-  function scheduleClose(dd,delay=120){ clearTimeout(closeTimers.get(dd)); const t=setTimeout(()=>closeDd(dd),delay); closeTimers.set(dd,t); }
-  function cancelClose(dd){ clearTimeout(closeTimers.get(dd)); }
-  dropdowns.forEach(dd=>{
-    const btn=dd.querySelector('.dropdown-toggle'); const panel=dd.querySelector('.mega'); if(!btn||!panel) return;
-    const items=[...panel.querySelectorAll('[role="menuitem"]')]; items.forEach(a=>a.setAttribute('tabindex','0'));
-    btn.addEventListener('click',e=>{e.stopPropagation(); panel.classList.contains('open')?closeDd(dd):openDd(dd);});
-    dd.addEventListener('mouseenter',()=>{cancelClose(dd); openDd(dd);});
-    dd.addEventListener('mouseleave',()=>{scheduleClose(dd);});
-    document.addEventListener('click',e=>{if(!dd.contains(e.target)) closeDd(dd);});
-  });
-})();
-</script>
-
-<script>
-(function(){
-  const account=document.querySelector('.account'); if(!account) return;
-  const btn=account.querySelector('#accountBtn'); const menu=account.querySelector('#accountMenu'); const items=Array.from(menu.querySelectorAll('[role="menuitem"]')); items.forEach(a=>a.tabIndex=0);
-  let hoverTimer=null; const isOpen=()=>menu.classList.contains('open');
-  function open(){ if(isOpen()) return; menu.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
-  function close(){ if(!isOpen()) return; menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
-  function toggle(){ isOpen()?close():open(); }
-  account.addEventListener('mouseenter',()=>{clearTimeout(hoverTimer); open();});
-  account.addEventListener('mouseleave',()=>{clearTimeout(hoverTimer); hoverTimer=setTimeout(close,140);});
-  btn.addEventListener('click',e=>{e.stopPropagation(); toggle();});
-  document.addEventListener('pointerdown',e=>{ if(isOpen() && !account.contains(e.target)) close(); });
-})();
-</script>
-</body>
-</html>
+  <!-- le reste de TA PAGE ne change pas (tout ton HTML ci-dessous) -->
+  <!-- ===== NAVBAR ===== -->
+  <!-- … (conserve exactement ton contenu existant à partir d’ici) … -->
