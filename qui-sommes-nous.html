@@ -4,163 +4,316 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Qui sommes-nous ? – Awenoria</title>
+  <meta name="theme-color" content="#0f5f9a">
 
-  <!-- Police -->
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Police Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;600;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* --- STYLE GLOBAL (autonome) --- */
-    body {
-      margin: 0;
-      font-family: "Manrope", system-ui, sans-serif;
-      background: radial-gradient(1400px 700px at 10% -20%, #eef6ff 0%, rgba(238,246,255,0.6) 45%, transparent 60%),
-                  linear-gradient(180deg,#ffffff 0%, #f6f9fc 100%);
-      color: #0f5f9a;
-      line-height: 1.5;
+    :root{
+      --font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      --bg:#f6f9fc; --panel:#fff; --muted:#4a6176; --text:#0f5f9a; --brand:#0f5f9a;
+      --copper:#ff8a3d; --copper-100:#ffcf99; --radius:18px;
+      --shadow:0 12px 28px rgba(0,0,0,.08); --maxw:1200px;
     }
-
-    h1,h2,h3,h4 { font-weight: 800; margin: 0 0 10px; }
-
-    .section { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-    .encart {
-      border-radius: 18px;
-      background: rgba(255,255,255,0.9);
-      box-shadow: 0 12px 28px rgba(0,0,0,.08);
-      border: 1px solid rgba(15,23,32,.1);
-      margin-bottom: 24px;
-      overflow: hidden;
+    *{box-sizing:border-box} html,body{height:100%}
+    body{
+      margin:0; font-family:var(--font); color:var(--text); line-height:1.5;
+      background:
+        radial-gradient(1400px 700px at 10% -20%, #eef6ff 0%, rgba(238,246,255,.6) 45%, transparent 60%),
+        linear-gradient(180deg,#ffffff 0%, #f6f9fc 100%);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
-    .encart .pad { padding: 22px; }
-    .blue { background: linear-gradient(180deg,#0e4576,#0f5f9a); color:#fff; }
-    .white { background:#fff; }
-    .split { display:grid; grid-template-columns:1.1fr .9fr; }
-    @media(max-width:900px){ .split{grid-template-columns:1fr;} }
-    .center { display:grid; place-items:center; }
-    .aw-title.copper { color:#ff8a3d; }
-    .underline { width:80px;height:4px;border-radius:999px;background:#ff8a3d;margin:10px 0 0; }
+    h1,h2,h3{font-weight:800; margin:0 0 10px}
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
 
-    /* timeline */
-    .timeline { padding: 24px; position: relative; }
-    .timeline::after {
-      content: "";
-      position: absolute; left: 20px; right: 20px; top: 50%;
-      height: 4px; background: #0d4b7c; border-radius: 4px;
+    /* ===== NAV (comme ta PJ) */
+    header{position:sticky;top:0;z-index:1000; backdrop-filter:blur(10px);
+      background:rgba(255,255,255,.9); border-bottom:1px solid rgba(15,23,32,.08)}
+    .nav{height:64px; display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .brand{display:flex; align-items:center; gap:10px}
+    .brand img{height:30px; display:block}
+    .nav-links{display:flex; gap:18px; align-items:center}
+    .nav-links a{font-weight:800; padding:8px 8px; border-radius:8px}
+    .nav-links a:hover{background:rgba(27,136,255,.10)}
+    .nav-links .active{color:var(--copper)}
+
+    /* ===== SECTION Titre */
+    .hero{padding:22px 0 8px; text-align:center}
+    .hero h1{font-size:clamp(24px,4vw,32px)}
+
+    /* ===== ENCARTS */
+    .encarts{max-width:var(--maxw); margin:12px auto 40px; padding:0 20px; display:grid; gap:16px}
+    .encart{border-radius:22px; background:rgba(255,255,255,.9); border:1px solid rgba(15,23,32,.08); box-shadow:var(--shadow); overflow:hidden}
+    .encart .pad{padding:20px}
+    .blue{background:linear-gradient(180deg,#0e4576,#0f5f9a); color:#fff}
+    .white{background:#fff}
+    .split{display:grid; grid-template-columns:1.1fr .9fr}
+    @media(max-width:980px){ .split{grid-template-columns:1fr}}
+    .center{display:grid; place-items:center}
+    .aw-title{font-weight:900; letter-spacing:.01em}
+    .aw-title.copper{color:var(--copper)}
+    .aw-underline{width:86px;height:4px;border-radius:999px;background:var(--copper);opacity:.92;margin-top:6px}
+
+    /* ===== HISTOIRE – cartes + pastille (PJ2) */
+    .history{padding:16px}
+    .history-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+    @media(max-width:980px){.history-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:560px){.history-grid{grid-template-columns:1fr}}
+    .h-card{
+      position:relative; background:linear-gradient(180deg,#fff,#f5f9ff);
+      border:1px solid #e6eef7; border-radius:14px; padding:14px 12px; text-align:center
     }
-    .timeline .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    @media(max-width:900px){ .timeline .row{ grid-template-columns: repeat(2,1fr);} }
-    .t-item { text-align:center; }
-    .t-item .year { font-weight:900; color:#c47b2e; font-size:22px; }
-    .t-item p { font-size:14px; color:#4a6176; }
-
-    /* valeurs */
-    .values { display:grid; grid-template-columns:280px 1fr; }
-    @media(max-width:900px){ .values{ grid-template-columns:1fr;} }
-    .values .left { padding:22px; }
-    .values .right {
-      background:#0d4b7c; color:#fff; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:22px;
+    .h-card::before{
+      content:""; position:absolute; left:50%; transform:translateX(-50%); top:-8px;
+      width:12px;height:12px;border-radius:999px;background:var(--copper);
+      box-shadow:0 0 0 6px rgba(255,138,61,.22)
     }
-    @media(max-width:700px){ .values .right{ grid-template-columns:1fr;} }
-    .v { border:1px solid rgba(255,255,255,.25); border-radius:14px; padding:14px; }
+    .h-year{font-weight:900; font-size:18px; color:#0f5f9a}
+    .h-txt{color:#274b6a; font-size:14px; margin-top:4px}
 
-    /* citation */
-    .quote { display:grid; grid-template-columns:1fr 1fr; }
-    @media(max-width:900px){ .quote{grid-template-columns:1fr;} }
-    .quote .visu { background:linear-gradient(180deg,rgba(15,95,154,.06),rgba(15,95,154,.06)),
-                  repeating-linear-gradient(90deg,#cfe6fb 0 2px,#e6f0fb 2px 4px);
-                  min-height:240px; display:grid; place-items:center; }
-    .quote .q { background:#0d4b7c; color:#fff; display:grid; place-items:center; padding:28px; }
-    blockquote { max-width:560px; margin:0; font-size:18px; position:relative; line-height:1.6; }
-    blockquote::before { content:"“"; position:absolute; left:-20px; top:-6px; font-size:52px; color:#ffcf99; opacity:.8; }
-
-    /* footer simple */
-    footer {
-      background:#0a0a0a; color:#eaeaea;
-      text-align:center; padding:24px 10px; margin-top:40px;
-      font-size:14px;
+    /* ===== VALEURS – 2 colonnes (PJ3) */
+    .values{display:grid; grid-template-columns:300px 1fr}
+    @media(max-width:980px){ .values{grid-template-columns:1fr}}
+    .values .left{padding:20px}
+    .values .right{
+      background:#0d4b7c; color:#fff; padding:16px;
+      display:grid; grid-template-columns:1fr; gap:10px
     }
-    footer a { color:#7bb8ff; text-decoration:none; }
-    footer a:hover { text-decoration:underline; }
+    .v{border:1px solid rgba(255,255,255,.25); border-radius:12px; padding:12px}
+    .v h4{margin:2px 0 4px}
+
+    /* ===== CITATION – image visible (PJ4) */
+    .quote{display:grid; grid-template-columns:1fr 1fr}
+    @media(max-width:980px){ .quote{grid-template-columns:1fr}}
+    .quote .visu{
+      min-height:260px; display:grid; place-items:center;
+      background:linear-gradient(180deg,rgba(15,95,154,.06),rgba(15,95,154,.06)),
+                 repeating-linear-gradient(90deg,#cfe6fb 0 2px, #e6f0fb 2px 4px)
+    }
+    .quote .visu img{max-width:92%; height:auto; display:block; border-radius:14px}
+    .quote .q{background:#0d4b7c; color:#fff; display:grid; place-items:center; padding:22px}
+    .quote blockquote{max-width:560px; font-size:18px; margin:0; line-height:1.5; position:relative}
+    .quote blockquote::before{content:"“"; position:absolute; left:-18px; top:-12px; font-size:52px; color:#ffcf99; opacity:.8}
+
+    /* ===== CHART (SVG) */
+    .chart{display:grid; grid-template-columns:320px 1fr}
+    @media(max-width:980px){ .chart{grid-template-columns:1fr}}
+    .chart .explain{padding:20px}
+    .chart .viz{padding:12px}
+
+    /* ===== ÉQUIPE */
+    .team-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; padding:0 18px 18px}
+    @media(max-width:980px){ .team-3{grid-template-columns:1fr}}
+    .member{border:1px solid #e6eef7; border-radius:16px; padding:14px; text-align:center; background:#fff}
+    .avatar{width:120px;height:120px;border-radius:14px;margin:8px auto;background:radial-gradient(80px 50px at 50% 35%,#d9e6f5,#a9c6e8)}
+
+    /* ===== CTA */
+    .cta{display:grid; place-items:center; padding:30px}
+    .cta h2{font-size:clamp(22px,3.6vw,34px); margin:0 0 8px}
+    .cta .row{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
+    .btn{display:inline-flex; align-items:center; justify-content:center; font-weight:800; border-radius:9999px; padding:10px 16px; border:1px solid rgba(255,255,255,.5)}
+    .btn.ghost{background:rgba(255,255,255,.1); color:#fff}
+    .btn.gradient{background:linear-gradient(90deg,#ff8a3d,#ff9a56); color:#fff; border-color:rgba(255,255,255,.55)}
+
+    /* ===== FOOTER simple et propre */
+    footer{background:#0a0a0a; color:#eaeaea; padding:28px 0 14px; margin-top:10px; border-top:1px solid rgba(255,255,255,.12)}
+    .fgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px}
+    @media(max-width:980px){ .fgrid{grid-template-columns:1fr 1fr}}
+    @media(max-width:560px){ .fgrid{grid-template-columns:1fr}}
+    footer a{color:#eaeaea}
+    footer a:hover{text-decoration:underline}
+    .fbot{border-top:1px solid rgba(255,255,255,.12); margin-top:12px; padding-top:12px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap}
   </style>
 </head>
-
 <body>
 
-  <header class="navbar">
-    <div class="nav-wrap" style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:#fff;border-bottom:1px solid rgba(0,0,0,.08)">
-      <img src="images/logo.png" alt="Logo Awenoria" style="height:48px;">
-      <nav>
-        <a href="index.html" style="font-weight:800;color:#0f5f9a;text-decoration:none;margin-right:16px;">Accueil</a>
-        <a href="qui-sommes-nous.html" style="font-weight:800;color:#ff8a3d;text-decoration:none;">Qui sommes-nous</a>
+  <!-- ===== NAV ===== -->
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html" aria-label="Awenoria">
+        <!-- remplace le logo si ton chemin diffère -->
+        <img src="images/logo.png" alt="Awenoria">
+      </a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="qui-sommes-nous.html" class="active">Qui sommes-nous</a>
       </nav>
     </div>
   </header>
 
-  <main class="section">
+  <!-- ===== TITRE ===== -->
+  <section class="hero wrap">
+    <h1>Qui sommes-nous&nbsp;?</h1>
+  </section>
 
-    <h1 style="text-align:center;">Qui sommes-nous ?</h1>
-
-    <div class="encart split blue">
+  <div class="encarts">
+    <!-- Présentation -->
+    <section class="encart split blue">
       <div class="pad">
         <h2 class="aw-title">Présentation</h2>
         <p>Rendre la conformité accessible, humaine et transparente.</p>
-        <div class="underline"></div>
+        <div class="aw-underline" aria-hidden="true"></div>
       </div>
       <div class="center">
-        <img src="images/logo.png" alt="Logo Awenoria" style="max-height:100px;">
+        <img src="images/logo.png" alt="Logo Awenoria" style="max-width:180px;height:auto">
       </div>
-    </div>
+    </section>
 
-    <div class="encart blue">
+    <!-- Groupe -->
+    <section class="encart blue">
       <div class="pad">
-        <h2>Le groupe</h2>
-        <p>Chez <strong>Awenoria</strong>, la conformité ne doit pas être un fardeau. Nous aidons les TPE, PME, associations et start-ups à maîtriser leurs obligations numériques — <strong>sans jargon, sans dépendance et à un prix démocratisé.</strong></p>
+        <h2 class="aw-title">Le groupe</h2>
+        <p class="lead">Chez <b>Awenoria</b>, la conformité ne doit pas être un fardeau. Nous aidons les TPE, PME, associations et start-ups à maîtriser leurs obligations numériques — <b>sans jargon, sans dépendance et à un prix démocratisé</b>.</p>
       </div>
-    </div>
+    </section>
 
-    <div class="encart white">
+    <!-- Notre histoire (cartes + pastille) -->
+    <section class="encart white">
       <div class="pad">
         <h2 class="aw-title copper">Notre histoire</h2>
-        <div class="timeline">
-          <div class="row">
-            <div class="t-item"><div class="year">2019</div><p>Idée : conformité simple & locale.</p></div>
-            <div class="t-item"><div class="year">2023</div><p>Prototype d’audit côté navigateur.</p></div>
-            <div class="t-item"><div class="year">2024</div><p>Volets Mentions légales & Accessibilité.</p></div>
-            <div class="t-item"><div class="year">2025</div><p>Lancement public & packs démocratisés.</p></div>
+      </div>
+      <div class="history">
+        <div class="history-grid">
+          <div class="h-card"><div class="h-year">2019</div><div class="h-txt">Idée : conformité simple & locale.</div></div>
+          <div class="h-card"><div class="h-year">2023</div><div class="h-txt">Prototype d’audit côté navigateur.</div></div>
+          <div class="h-card"><div class="h-year">2024</div><div class="h-txt">Volets Mentions légales & Accessibilité.</div></div>
+          <div class="h-card"><div class="h-year">2025</div><div class="h-txt">Lancement public & packs démocratisés.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Valeurs (2 colonnes avec panneau bleu à droite) -->
+    <section class="encart">
+      <div class="values">
+        <div class="left white">
+          <h2 class="aw-title">Nos valeurs</h2>
+          <p class="lead">Transparence, pédagogie, confidentialité : notre boussole au quotidien.</p>
+        </div>
+        <div class="right">
+          <div class="v">
+            <h4>Confiance</h4>
+            <p>Livrables clairs, méthodes publiées, engagements tenus.</p>
+          </div>
+          <div class="v">
+            <h4>Qualité</h4>
+            <p>Diagnostic priorisé et actionnable, amélioration continue.</p>
+          </div>
+          <div class="v">
+            <h4>Engagement</h4>
+            <p>Respect de la vie privée par design et par défaut.</p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="encart">
-      <div class="values">
-        <div class="left">
-          <h2>Nos valeurs</h2>
-          <p>Transparence, pédagogie, confidentialité : notre boussole au quotidien.</p>
-        </div>
-        <div class="right">
-          <div class="v"><h4>Confiance</h4><p>Livrables clairs, méthodes publiées, engagements tenus.</p></div>
-          <div class="v"><h4>Qualité</h4><p>Diagnostic priorisé et actionnable, amélioration continue.</p></div>
-          <div class="v"><h4>Engagement</h4><p>Respect de la vie privée par design et par défaut.</p></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="encart quote">
+    <!-- Citation (image visible) -->
+    <section class="encart quote">
       <div class="visu">
-        <img src="images/conformite.png" alt="Conformité numérique" style="max-width:80%;border-radius:8px;">
+        <!-- remplace le chemin si besoin -->
+        <img src="images/qui-sommes-nous-p-7.png" alt="Conformité numérique">
       </div>
       <div class="q">
-        <blockquote>« Awenoria simplifie la conformité pour renforcer l’autonomie de ceux qui la vivent. »</blockquote>
+        <blockquote>«&nbsp;Awenoria simplifie la conformité pour renforcer l'autonomie de ceux qui la vivent.&nbsp;»</blockquote>
+      </div>
+    </section>
+
+    <!-- Graphique -->
+    <section class="encart chart">
+      <div class="explain">
+        <h2 class="aw-title">Impact mesurable</h2>
+        <p class="lead">Le temps d’obtention des premières actions diminue fortement grâce au <b>pré-diagnostic local</b>, complété par l’accompagnement humain lorsque nécessaire.</p>
+      </div>
+      <div class="viz">
+        <svg viewBox="0 0 520 260" width="100%" height="auto" role="img" aria-label="Barres croissance accompagnement vs produit">
+          <defs><style>.barA{fill:#ffcf99}.barB{fill:#0f5f9a}.axis{stroke:#a9bed3;stroke-width:1}.lbl{font:700 12px Manrope, sans-serif; fill:#355}</style></defs>
+          <line x1="40" y1="210" x2="490" y2="210" class="axis"/>
+          <line x1="40" y1="40"  x2="40"  y2="210" class="axis"/>
+          <rect x="80"  y="170" width="28" height="40" class="barA"/><rect x="116" y="150" width="28" height="60" class="barB"/><text x="92" y="228" class="lbl">2022</text>
+          <rect x="210" y="120" width="28" height="90" class="barA"/><rect x="246" y="80"  width="28" height="130" class="barB"/><text x="222" y="228" class="lbl">2023</text>
+          <rect x="340" y="90"  width="28" height="120" class="barA"/><rect x="376" y="60"  width="28" height="150" class="barB"/><text x="352" y="228" class="lbl">2024</text>
+          <rect x="60" y="16" width="16" height="12" class="barA"/><text x="80" y="26" class="lbl">Accompagnement</text>
+          <rect x="220" y="16" width="16" height="12" class="barB"/><text x="240" y="26" class="lbl">Produit (pré-diag)</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Équipe -->
+    <section class="encart white">
+      <div class="pad">
+        <h2 class="aw-title">L’équipe</h2>
+      </div>
+      <div class="team-3">
+        <div class="member"><div class="avatar"></div><h3>Alexandre M.</h3><p>Produit &amp; conformité</p></div>
+        <div class="member"><div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d9e6f5,#a9c6e8)"></div><h3>Camille R.</h3><p>Juriste RGPD / DPO</p></div>
+        <div class="member"><div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d8f0cf,#bde6b3)"></div><h3>Yann G.</h3><p>Accessibilité RGAA/WCAG</p></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="encart blue cta">
+      <div>
+        <h2 class="aw-title">Des questions&nbsp;?</h2>
+        <div class="row">
+          <a class="btn ghost" href="faq.html">Consulter la FAQ</a>
+          <a class="btn gradient" href="index.html#contact">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Merci -->
+    <section class="encart blue cta">
+      <div>
+        <h2 class="aw-title" style="font-size:clamp(34px,6vw,60px)">MERCI</h2>
+        <p class="lead" style="color:#e9f2fb">pour votre confiance.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="wrap">
+      <div class="fgrid">
+        <div>
+          <a class="brand" href="index.html"><img src="images/logo.png" alt="Awenoria" style="height:44px"></a>
+          <p>Conformité RGPD & IA — claire, humaine et accessible.</p>
+        </div>
+        <div>
+          <h4>Plan du site</h4>
+          <ul style="list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px">
+            <li><a href="index.html#intro">Accueil</a></li>
+            <li><a href="index.html#audit-gratuit">Audit gratuit</a></li>
+            <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
+            <li><a href="index.html#offres">Offres</a></li>
+            <li><a href="index.html#blog">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Légal</h4>
+          <ul style="list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px">
+            <li><a href="mentions.html">Mentions légales</a></li>
+            <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+            <li><a href="accessibilite.html">Accessibilité</a></li>
+            <li><a href="cookies.html">Gestion des cookies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul style="list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px">
+            <li><a href="mailto:contact@awenoria.fr">contact@awenoria.fr</a></li>
+            <li><a href="https://wa.me/33600000000">WhatsApp</a></li>
+            <li><a href="https://calendly.com/">Prendre rendez-vous</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="fbot">
+        <small>© 2025 Awenoria — Tous droits réservés</small>
+        <small><a href="mentions.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a></small>
       </div>
     </div>
-
-  </main>
-
-  <footer>
-    © 2025 Awenoria — Tous droits réservés<br>
-    <a href="mentions-legales.html">Mentions légales</a> ·
-    <a href="contact.html">Contact</a>
   </footer>
-
 </body>
 </html>
