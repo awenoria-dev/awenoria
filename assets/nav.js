@@ -1,10 +1,8 @@
 /* ====== Navigation Awenoria (dropdowns + compte) ====== */
 (function () {
   const ddList = Array.from(document.querySelectorAll('.dropdown'));
-  const accountBtn = document.getElementById('accountBtn');
-  const accountMenu = document.getElementById('accountMenu');
 
-  // Helpers
+  // Helpers dropdowns
   const openDD = (dd) => {
     ddList.forEach(d => closeDD(d));
     const btn = dd.querySelector('.dropdown-toggle');
@@ -63,35 +61,57 @@
     if (!e.target.closest('.dropdown')) ddList.forEach(closeDD);
   });
 
-  // ===== Compte
-  function openAcc() {
-    accountMenu?.classList.add('open');
-    accountBtn?.setAttribute('aria-expanded', 'true');
-  }
-  function closeAcc() {
-    accountMenu?.classList.remove('open');
-    accountBtn?.setAttribute('aria-expanded', 'false');
-  }
-  function toggleAcc() {
-    accountMenu?.classList.contains('open') ? closeAcc() : openAcc();
-  }
+  // ===== Compte (survol + click + clavier)
+  (function () {
+    const account = document.querySelector('.account');
+    if (!account) return;
 
-  accountBtn?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleAcc();
-  });
+    const btn  = account.querySelector('#accountBtn');
+    const menu = account.querySelector('#accountMenu');
+    const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
+    items.forEach(a => a.tabIndex = 0);
 
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.account')) closeAcc();
-  });
+    let hoverTimer = null;
+    const isOpen  = () => menu.classList.contains('open');
+    const open    = () => { if (!isOpen()) { menu.classList.add('open'); btn.setAttribute('aria-expanded','true'); } };
+    const close   = () => { if (isOpen())   { menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); } };
+    const toggle  = () => (isOpen() ? close() : open());
 
-  accountBtn?.addEventListener('keydown', (e) => {
-    if (['Enter', ' '].includes(e.key)) { e.preventDefault(); toggleAcc(); }
-    if (e.key === 'Escape') { closeAcc(); accountBtn.focus(); }
-    if (e.key === 'ArrowDown') { e.preventDefault(); openAcc(); accountMenu?.querySelector('a')?.focus(); }
-  });
+    // Survol (comme sur l’accueil)
+    account.addEventListener('mouseenter', () => { clearTimeout(hoverTimer); open(); });
+    account.addEventListener('mouseleave', () => { clearTimeout(hoverTimer); hoverTimer = setTimeout(close, 140); });
 
-  accountMenu?.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') { e.preventDefault(); closeAcc(); accountBtn?.focus(); }
-  });
+    // Click + click dehors
+    btn.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
+    document.addEventListener('pointerdown', (e) => { if (isOpen() && !account.contains(e.target)) close(); });
+
+    // Clavier
+    btn.addEventListener('keydown', (e) => {
+      const { key } = e;
+      if (key === 'Escape') { close(); return; }
+      if (key === 'Enter' || key === ' ') {
+        e.preventDefault(); toggle(); if (isOpen()) items[0]?.focus();
+      }
+      if (key === 'ArrowDown') { e.preventDefault(); open(); items[0]?.focus(); }
+      if (key === 'ArrowUp')   { e.preventDefault(); open(); items[items.length - 1]?.focus(); }
+    });
+    menu.addEventListener('keydown', (e) => {
+      const { key, shiftKey } = e;
+      const i = items.indexOf(document.activeElement);
+      if (key === 'Escape')    { e.preventDefault(); close(); btn.focus(); }
+      if (key === 'ArrowDown') { e.preventDefault(); items[(i + 1) % items.length]?.focus(); }
+      if (key === 'ArrowUp')   { e.preventDefault(); items[(i - 1 + items.length) % items.length]?.focus(); }
+      if (key === 'Home')      { e.preventDefault(); items[0]?.focus(); }
+      if (key === 'End')       { e.preventDefault(); items[items.length - 1]?.focus(); }
+      if (key === 'Tab' && isOpen()) {
+        e.preventDefault();
+        shiftKey ? items[(i - 1 + items.length) % items.length]?.focus()
+                 : items[(i + 1) % items.length]?.focus();
+      }
+    });
+
+    // Fermer après clic sur un lien
+    items.forEach(a => a.addEventListener('click', () => close()));
+  })();
+
 })();
