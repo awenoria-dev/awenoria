@@ -227,20 +227,137 @@
     </section>
     <!-- ================= FIN frise ================= -->
 
-    <!-- Valeurs -->
-    <section class="encart">
-      <div class="values">
-        <div class="left white">
-          <h2 class="aw-title">Nos valeurs</h2>
-          <span class="copper-bubble">Transparence, pédagogie, confidentialité&nbsp;: notre boussole au quotidien.</span>
+    <!-- =================== VALEURS (nouvelle version) =================== -->
+<section class="encart valeurs-modern">
+  <div class="valeurs-wrapper">
+    
+    <!-- Colonne gauche -->
+    <div class="valeurs-left">
+      <h2 class="aw-title">Nos valeurs</h2>
+      <p class="intro">Transparence, pédagogie, confidentialité&nbsp;: notre boussole au quotidien.</p>
+    </div>
+
+    <!-- Colonne droite -->
+    <div class="valeurs-right">
+      <div class="valeur-item">
+        <div class="icon">
+          <!-- icône poignée de main -->
+          🤝
         </div>
-        <div class="right">
-          <div class="v"><h4>Confiance</h4><p>Livrables clairs, méthodes publiées, engagements tenus.</p></div>
-          <div class="v"><h4>Qualité</h4><p>Diagnostic priorisé et actionnable, amélioration continue.</p></div>
-          <div class="v"><h4>Engagement</h4><p>Respect de la vie privée par design et par défaut.</p></div>
+        <div class="text">
+          <h3>Confiance</h3>
+          <p>Livrables clairs, méthodes publiées, engagements tenus.</p>
         </div>
       </div>
-    </section>
+
+      <div class="valeur-item">
+        <div class="icon">
+          <!-- icône qualité -->
+          🏅
+        </div>
+        <div class="text">
+          <h3>Qualité</h3>
+          <p>Diagnostic priorisé et actionnable, amélioration continue.</p>
+        </div>
+      </div>
+
+      <div class="valeur-item">
+        <div class="icon">
+          <!-- icône feuille -->
+          🍃
+        </div>
+        <div class="text">
+          <h3>Engagement</h3>
+          <p>Respect de la vie privée par design et par défaut.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* ======= Section Nos valeurs modernisée ======= */
+.valeurs-modern{
+  padding:0;
+  background:#fefefe;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+  margin:60px auto;
+}
+
+.valeurs-wrapper{
+  display:grid;
+  grid-template-columns: 1fr 2fr;
+  min-height:380px;
+}
+
+.valeurs-left{
+  background:#fff;
+  padding:48px 42px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+}
+.valeurs-left .aw-title{
+  color:#0f5f9a;
+  font-size:clamp(24px,4vw,36px);
+  margin:0 0 20px;
+}
+.valeurs-left .intro{
+  font-size:17px;
+  font-weight:600;
+  color:#0d2a3a;
+  max-width:360px;
+  line-height:1.6;
+}
+
+.valeurs-right{
+  background:#0f5f9a;
+  color:#fff;
+  padding:48px 54px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:36px;
+}
+
+.valeur-item{
+  display:flex;
+  align-items:flex-start;
+  gap:18px;
+}
+.valeur-item .icon{
+  font-size:28px;
+  color:#ffb36e;
+  flex-shrink:0;
+  width:40px;
+  text-align:center;
+}
+.valeur-item h3{
+  margin:0 0 6px;
+  font:800 18px "Manrope",system-ui,sans-serif;
+  color:#ffb36e;
+  text-transform:uppercase;
+}
+.valeur-item p{
+  margin:0;
+  font-weight:500;
+  line-height:1.5;
+  color:#e8f2fc;
+}
+
+/* Responsive */
+@media(max-width:800px){
+  .valeurs-wrapper{ grid-template-columns:1fr; }
+  .valeurs-left, .valeurs-right{ padding:36px 28px; text-align:center; align-items:center; }
+  .valeur-item{ justify-content:center; text-align:left; }
+}
+</style>
+</section>
+
 
     <!-- Citation -->
     <section class="encart quote">
