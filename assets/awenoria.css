@@ -306,7 +306,5 @@ header.navbar{position:sticky;top:0;z-index:1100;background:rgba(255,255,255,.85
 .cta h2{font-size:clamp(26px,3.8vw,42px); margin:0 0 8px}
 .cta .row{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
 
-<style>
-  /* réduit l’espace sous le H1 du bandeau bleu clair */
-  .hero-apropos{ padding:56px 0 22px !important; }
-</style>
+/* Ajout local : réduit l’espace sous le H1 du bandeau bleu clair */
+.hero-apropos{ padding:56px 0 22px !important; }
