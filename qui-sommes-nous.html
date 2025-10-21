@@ -15,88 +15,42 @@
   <!-- CSS globale du site -->
   <link rel="stylesheet" href="assets/awenoria.css">
 
-  <!-- Styles locaux (légers) -->
-  <style>
-    /* Petites touches spécifiques à la page */
-    .hero-apropos{ padding:56px 0 22px }
-    .hero-apropos h1{ font-size:clamp(24px,4.2vw,40px); margin:0 }
-    .encart.split.blue.hero-bubble{
-      background:linear-gradient(90deg,#0c3e6b 0%, #0e4f80 45%, #115c95 100%);
-      color:#fff;
-    }
-    .copper-bubble{
-      display:inline-block; max-width:520px; padding:16px 18px; border-radius:999px;
-      line-height:1.35; font-weight:800; color:#0f2746;
-      background:radial-gradient(120% 120% at 20% 15%, #ffc996 0%, #ffb36e 40%, #ff8a3d 70%, #ff7a23 100%);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 10px 26px rgba(255,138,61,.22);
-      border:1px solid rgba(255,255,255,.65);
-    }
-    /* Accessibilité : focus clavier sur bouton fantôme sur fond bleu */
-    .encart.blue .btn.ghost:focus-visible{
-      outline:0;
-      box-shadow:0 0 0 4px rgba(255,255,255,.35), inset 0 1px 0 rgba(255,255,255,.9);
-    }
+<!-- Styles locaux (légers) -->
+<style>
+  /* Petites touches spécifiques à la page */
+  .hero-apropos{ padding:56px 0 22px }
+  .hero-apropos h1{ font-size:clamp(24px,4.2vw,40px); margin:0 }
+  .encart.split.blue.hero-bubble{
+    background:linear-gradient(90deg,#0c3e6b 0%, #0e4f80 45%, #115c95 100%);
+    color:#fff;
+  }
+  .copper-bubble{
+    display:inline-block; max-width:520px; padding:16px 18px; border-radius:999px;
+    line-height:1.35; font-weight:800; color:#0f2746;
+    background:radial-gradient(120% 120% at 20% 15%, #ffc996 0%, #ffb36e 40%, #ff8a3d 70%, #ff7a23 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 10px 26px rgba(255,138,61,.22);
+    border:1px solid rgba(255,255,255,.65);
+  }
 
-    /* --- Timeline PJ1 : cartes + point --- */
-    .timeline-cards{
-      --card-bg:#f7fbff;
-      --card-border:rgba(15,95,154,.10);
-      --card-shadow:0 8px 18px rgba(15,95,154,.08);
-      --year:#0f5f9a;
-      --text:#345;
-      --dot:#ff8a3d;
-      --dot-ring:#ffd2b2;
+  /* Accessibilité : focus clavier sur bouton fantôme sur fond bleu */
+  .encart.blue .btn.ghost:focus-visible{
+    outline:0;
+    box-shadow:0 0 0 4px rgba(255,255,255,.35), inset 0 1px 0 rgba(255,255,255,.9);
+  }
 
-      display:grid;
-      grid-template-columns:repeat(4, minmax(180px,1fr));
-      gap:22px;
-      align-items:stretch;
-      margin:8px 16px 0;
-    }
-    .tcard{
-      position:relative;
-      background:var(--card-bg);
-      border:1px solid var(--card-border);
-      border-radius:14px;
-      padding:22px 18px 20px;
-      text-align:center;
-      box-shadow:var(--card-shadow);
-    }
-    .tcard-year{
-      margin:6px 0 8px;
-      font:800 clamp(18px,2.2vw,22px) "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
-      color:var(--year);
-    }
-    .tcard p{
-      margin:0;
-      color:var(--text);
-      line-height:1.45;
-      font-weight:500;
-    }
-    /* pastille au-dessus de la carte */
-    .tcard-dot{
-      position:absolute;
-      top:-12px;
-      left:50%;
-      transform:translateX(-50%);
-      width:14px; height:14px;
-      border-radius:50%;
-      background:var(--dot);
-      box-shadow:
-        0 0 0 6px var(--dot-ring),
-        0 2px 6px rgba(0,0,0,.10),
-        inset 0 1px 0 rgba(255,255,255,.7);
-    }
-    /* Responsive */
-    @media (max-width:980px){
-      .timeline-cards{ grid-template-columns:repeat(2, minmax(180px,1fr)); }
-    }
-    @media (max-width:560px){
-      .timeline-cards{ grid-template-columns:1fr; }
-    }
-  </style>
-</head>
-<body>
+  /* === Frise chronologique Awenoria (ligne + jalons ronds) === */
+  .aw-tl{
+    --blue:#0f5f9a;       /* bleu logo */
+    --blue-30:#a9c6e8;    /* bleu clair */
+    --blue-10:#eaf3fb;    /* fond très clair */
+    --orange:#ff8a3d;     /* orange logo */
+    --orange-30:#ffd2b2;  /* halo orange */
+    --text:#334455;
+
+    position:relative;
+    list-style:none;
+    margin:36px 8px 8px;
+
 
   <!-- Header injecté -->
   <div id="header"></div>
@@ -131,36 +85,48 @@
       </div>
     </section>
 
-    <!-- Histoire (modèle PJ1 : cartes + point) -->
-    <section class="encart white">
-      <div class="pad"><h2 class="aw-title copper">Notre histoire</h2></div>
+    <!-- Histoire (frise chronologique style PJ1, palette Awenoria) -->
+<section class="encart white">
+  <div class="pad"><h2 class="aw-title copper">Notre histoire</h2></div>
 
-      <div class="timeline-cards" role="list">
-        <article class="tcard" role="listitem">
-          <span class="tcard-dot" aria-hidden="true"></span>
-          <h3 class="tcard-year">2019</h3>
-          <p>Idée : conformité simple & locale.</p>
-        </article>
-
-        <article class="tcard" role="listitem">
-          <span class="tcard-dot" aria-hidden="true"></span>
-          <h3 class="tcard-year">2023</h3>
-          <p>Prototype d’audit côté navigateur.</p>
-        </article>
-
-        <article class="tcard" role="listitem">
-          <span class="tcard-dot" aria-hidden="true"></span>
-          <h3 class="tcard-year">2024</h3>
-          <p>Volets Mentions légales &amp; Accessibilité.</p>
-        </article>
-
-        <article class="tcard" role="listitem">
-          <span class="tcard-dot" aria-hidden="true"></span>
-          <h3 class="tcard-year">2025</h3>
-          <p>Lancement public &amp; packs démocratisés.</p>
-        </article>
+  <ol class="aw-tl" aria-label="Frise chronologique Awenoria">
+    <li class="ms">
+      <div class="ms-top">
+        <span class="badge">2019</span>
+        <h3 class="ms-title">Investigation</h3>
       </div>
-    </section>
+      <div class="ms-dot" aria-hidden="true"></div>
+      <p class="ms-desc">Idée&nbsp;: conformité simple &amp; locale.</p>
+    </li>
+
+    <li class="ms">
+      <div class="ms-top">
+        <span class="badge">2023</span>
+        <h3 class="ms-title">Prototype</h3>
+      </div>
+      <div class="ms-dot" aria-hidden="true"></div>
+      <p class="ms-desc">Prototype d’audit côté navigateur.</p>
+    </li>
+
+    <li class="ms">
+      <div class="ms-top">
+        <span class="badge">2024</span>
+        <h3 class="ms-title">Développements</h3>
+      </div>
+      <div class="ms-dot" aria-hidden="true"></div>
+      <p class="ms-desc">Volets Mentions légales &amp; Accessibilité.</p>
+    </li>
+
+    <li class="ms">
+      <div class="ms-top">
+        <span class="badge">2025</span>
+        <h3 class="ms-title">Lancement</h3>
+      </div>
+      <div class="ms-dot" aria-hidden="true"></div>
+      <p class="ms-desc">Lancement public &amp; packs démocratisés.</p>
+    </li>
+  </ol>
+</section>
 
     <!-- Valeurs -->
     <section class="encart">
