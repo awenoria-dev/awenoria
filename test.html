@@ -101,21 +101,20 @@
     .hero-apropos h1{margin:0 0 10px;font-size:clamp(28px,4.8vw,46px);line-height:1.1}
     .lead{margin:0 0 16px;color:var(--muted);font-size:clamp(16px,1.6vw,18px)}
     /* Lead + effet de saisie */
-.lead-typing{
-  font-size:clamp(18px,2.4vw,24px);
-  font-weight:800;
-  color:#0f2746;
-  text-shadow:0 2px 12px rgba(15,95,154,.15);
-  letter-spacing:.2px;
-  display:inline-flex; align-items:center; gap:4px;
-  white-space:nowrap; overflow:hidden;
-}
-.caret{
-  width:2px; height:1.2em; background:var(--copper);
-  animation:blink .9s steps(1) infinite;
-}
-@keyframes blink{ 50%{opacity:0} }
-
+    .lead-typing{
+      font-size:clamp(18px,2.4vw,24px);
+      font-weight:800;
+      color:#0f2746;
+      text-shadow:0 2px 12px rgba(15,95,154,.15);
+      letter-spacing:.2px;
+      display:inline-flex; align-items:center; gap:4px;
+      white-space:nowrap; overflow:hidden;
+    }
+    .caret{
+      width:2px; height:1.2em; background:var(--copper);
+      animation:blink .9s steps(1) infinite;
+    }
+    @keyframes blink{ 50%{opacity:0} }
 
     /* ===== ENCAR(T)S ===== */
     .encarts{max-width:1200px;margin:20px auto 44px;padding:0 20px;display:grid;gap:18px}
@@ -142,10 +141,8 @@
     .sommaire .entry{padding:14px 16px;border-radius:16px;background:linear-gradient(180deg,#ffffff,#f7fbff);border:1px solid rgba(15,23,32,.06);color:#244a6d;font-weight:750;transition:all .18s ease;position:relative;overflow:hidden}
     .sommaire .entry:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(15,95,154,.12)}
     @media(max-width:720px){.sommaire{grid-template-columns:1fr}}
-    /* Couleur cuivre sur PARTIE X correspondante */
-.sommaire .parts .item{
-  transition:color .18s ease, background .18s ease;}
-.sommaire .parts .item.active{ color:var(--copper); background:rgba(255,138,61,.14);}
+    .sommaire .parts .item{transition:color .18s ease, background .18s ease;}
+    .sommaire .parts .item.active{ color:var(--copper); background:rgba(255,138,61,.14);}
 
     /* Fondateur */
     .encart.founder{display:grid;grid-template-columns:1fr 1.2fr}
@@ -233,7 +230,7 @@
     @keyframes fadeIn{from{opacity:0;transform:translate(-50%,-2px)}to{opacity:1;transform:translate(-50%,0)}}
   </style>
 
-  <!-- Schema.org JSON-LD (corrigé, sans doublons) -->
+  <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -266,7 +263,7 @@
 </head>
 <body>
 
-<!-- ===== NAVBAR (identique à l'accueil) ===== -->
+<!-- ===== NAVBAR ===== -->
 <header class="navbar" role="banner">
   <div class="nav-wrap">
     <a class="brand" href="index.html" aria-label="Aller à l'accueil">
@@ -390,10 +387,6 @@
 <section class="hero-apropos">
   <div class="wrap">
     <h1>Qui sommes-nous&nbsp;?</h1>
-<p class="lead lead-typing">
-  <span id="typing-text" aria-label="Rendre la conformité accessible, humaine et transparente."></span>
-  <span class="caret" aria-hidden="true"></span>
-</p>
   </div>
 </section>
 
@@ -402,28 +395,30 @@
 
   <!-- 1) Couverture -->
   <section class="encart split">
-  <div class="pad col blue">
-    <!-- <span class="kicker">AWENORIA</span>  ← supprimé -->
-    <h1 class="aw-title">Présentation</h1>
-    <p class="lead">Rendre la conformité accessible, humaine et transparente.</p>
-    <div class="aw-underline" aria-hidden="true"></div>
-  </div>
+    <div class="pad col blue">
+      <h1 class="aw-title">Présentation</h1>
+      <p class="lead lead-typing">
+        <span id="typing-text" aria-label="Rendre la conformité accessible, humaine et transparente."></span>
+        <span class="caret" aria-hidden="true"></span>
+      </p>
+      <div class="aw-underline" aria-hidden="true"></div>
+    </div>
 
-  <div class="center" style="background:
-      radial-gradient(800px 400px at 10% -10%, rgba(255,255,255,.22), transparent 60%),
-      linear-gradient(180deg,#eef6ff,#dfeaf7);">
-    <img
-      src="images/logo.png"
-      alt="Logo Awenoria"
-      width="200"
-      height="200"
-      loading="lazy"
-      style="max-width:200px;height:auto;display:block;filter:
-        drop-shadow(0 6px 22px rgba(15,95,154,.35))
-        drop-shadow(0 10px 26px rgba(255,138,61,.30));"
-    />
-  </div>
-</section>
+    <div class="center" style="background:
+        radial-gradient(800px 400px at 10% -10%, rgba(255,255,255,.22), transparent 60%),
+        linear-gradient(180deg,#eef6ff,#dfeaf7);">
+      <img
+        src="images/logo.png"
+        alt="Logo Awenoria"
+        width="200"
+        height="200"
+        loading="lazy"
+        style="max-width:200px;height:auto;display:block;filter:
+          drop-shadow(0 6px 22px rgba(15,95,154,.35))
+          drop-shadow(0 10px 26px rgba(255,138,61,.30));"
+      />
+    </div>
+  </section>
 
   <!-- 2) Le groupe -->
   <section class="encart blue">
@@ -603,7 +598,7 @@
 </div>
 <!-- ============ /ENCARTS ============ -->
 
-<!-- ===== FOOTER (identique à l'accueil) ===== -->
+<!-- ===== FOOTER ===== -->
 <footer class="cc-footer" role="contentinfo">
   <div class="cc-container">
     <div class="cc-top">
@@ -739,7 +734,6 @@
   document.addEventListener('pointerdown', e=>{ if(isOpen() && !account.contains(e.target)) close(); });
 })();
 </script>
-
 
 <script>
 /* Effet dactylo + curseur qui reste à la fin */
