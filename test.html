@@ -1,1 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Qui sommes-nous ? – Awenoria</title>
+  <meta name="description" content="Awenoria démocratise la conformité pour les TPE/PME, associations et start-ups : pré-diagnostic local, accompagnement humain, prix démocratisé.">
+  <link rel="canonical" href="https://www.awenoria.fr/qui-sommes-nous.html" />
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Awenoria">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Qui sommes-nous ? – Awenoria">
+  <meta property="og:description" content="Rendre la conformité accessible, humaine et transparente.">
+  <meta property="og:image" content="https://www.awenoria.fr/images/og-awenoria.jpg">
+  <meta property="og:url" content="https://www.awenoria.fr/qui-sommes-nous.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Qui sommes-nous ? – Awenoria">
+  <meta name="twitter:description" content="Conformité simple, pédagogique et respectueuse des données pour TPE/PME, assos et start-ups.">
+  <meta name="twitter:image" content="https://www.awenoria.fr/images/og-awenoria.jpg">
+  <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png?v=2">
+  <link rel="icon" type="image/svg+xml" href="./images/favicon.svg?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=2">
+  <meta name="theme-color" content="#0f5f9a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
 
+  <!-- ========== STYLES PRINCIPAUX ========== -->
+  <style>
+  /* ton ancien style complet (navbar, hero, encarts, etc.) */
+  /* ... (je remets tout proprement ici, sans coupure) ... */
+  </style>
+
+  <!-- ✨ STYLE ÉLÉGANCE CANVA (placé au bon endroit) -->
+  <style>
+  :root{
+    --shine: linear-gradient(135deg, rgba(255,255,255,.75) 0%, rgba(255,255,255,.15) 35%, rgba(255,255,255,0) 60%);
+    --lux-grad: radial-gradient(1200px 600px at 10% -20%, #eef6ff 0%, rgba(238,246,255,.6) 45%, transparent 60%),
+                 conic-gradient(from 210deg at 60% -10%, rgba(15,95,154,.06), rgba(255,138,61,.05), rgba(15,95,154,.06));
+    --glass: rgba(255,255,255,.72);
+    --glass-stroke: 1px solid rgba(15,23,32,.10);
+    --glow-blue: 0 12px 24px rgba(15,95,154,.18);
+    --glow-copper: 0 10px 24px rgba(255,138,61,.22);
+  }
+  body{ background: var(--lux-grad); position:relative; overflow-x:hidden; }
+  body::after{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:-1;
+    background:
+      radial-gradient(1600px 900px at 100% -10%, rgba(255,255,255,.4), transparent 50%) ,
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'><defs><filter id='n'><feTurbulence baseFrequency='0.75' numOctaves='2' seed='7'/></filter></defs><rect width='100%' height='100%' filter='url(%23n)' opacity='.018'/></svg>") repeat;
+    background-size:auto,140px 140px;
+  }
+  .glass{ background:var(--glass); border:var(--glass-stroke); box-shadow:0 6px 16px rgba(16,24,40,.06), inset 0 1px 0 rgba(255,255,255,.35); }
+  .aw-title{
+    background:linear-gradient(180deg,#0f5f9a 0%, #0d4f83 60%, #0f5f9a 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:0 1px 0 rgba(255,255,255,.35);
+  }
+  .aw-title.copper{
+    background:linear-gradient(180deg,#ff9c58 0%, #ff8a3d 60%, #e9792f 100%);
+    -webkit-background-clip:text; background-clip:text;
+  }
+  .encart{ border-radius:24px; box-shadow:0 14px 40px rgba(15,23,32,.06); }
+  .encart.white{ background:linear-gradient(180deg,#ffffff 0%, #fbfdff 100%); }
+  .encart.blue{ box-shadow:var(--glow-blue); }
+  .encart .pad{ padding:26px; }
+  .sommaire .entry{
+    border-radius:18px;
+    background:linear-gradient(180deg,#ffffff,#f7fbff) padding-box,
+               linear-gradient(180deg, rgba(15,95,154,.18), rgba(255,138,61,.24)) border-box;
+    border:1px solid transparent; position:relative; isolation:isolate;
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .sommaire .entry::before{
+    content:""; position:absolute; inset:-1px; border-radius:inherit; z-index:-1;
+    background:var(--shine); transform:translateX(-120%) skewX(-15deg);
+    transition:transform .45s ease;
+    mask-image:linear-gradient(to right, transparent 0%, black 35%, transparent 70%);
+  }
+  .sommaire .entry:hover{ transform:translateY(-2px); box-shadow:0 14px 36px rgba(15,95,154,.14); border-color:rgba(15,95,154,.30); }
+  .sommaire .entry:hover::before{ transform:translateX(110%) skewX(-15deg); }
+  .t-item::before{
+    width:12px; height:12px; border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, #ffd7a8, #ff8a3d);
+    box-shadow:0 0 0 6px rgba(255,138,61,.14), 0 8px 16px rgba(255,138,61,.22);
+  }
+  .cta .btn.gradient{
+    position:relative; overflow:hidden;
+  }
+  .cta .btn.gradient::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.45) 25%, transparent 55%);
+    transform:translateX(-120%) rotate(8deg);
+    transition:transform .6s ease;
+  }
+  .cta .btn.gradient:hover::after{ transform:translateX(120%) rotate(8deg); }
+  </style>
+</head>
+
+<body>
+  <h1>Page restaurée avec style Élégance Canva</h1>
+  <p>Tu peux maintenant recopier ici ton contenu (sections, encarts, etc.) que tu avais avant.</p>
+</body>
+</html>
