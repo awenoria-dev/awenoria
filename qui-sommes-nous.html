@@ -12,150 +12,93 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..900&display=swap" rel="stylesheet">
 
-  <!-- CSS globale du site -->
+  <!-- CSS globale -->
   <link rel="stylesheet" href="assets/awenoria.css">
 
-  <!-- Styles locaux -->
   <style>
-    /* ====== Variables Awenoria ====== */
     :root{
       --aw-blue:#0084C6;
-      --aw-blue-deep:#0f5f9a;
       --aw-orange:#FF7F32;
       --aw-ink:#0d2a3a;
-      --aw-white:#ffffff;
     }
 
     .hero-apropos{ padding:56px 0 22px }
     .hero-apropos h1{ font-size:clamp(24px,4.2vw,40px); margin:0 }
 
-    .copper-bubble{
-      display:inline-block; max-width:520px; padding:16px 18px; border-radius:999px;
-      line-height:1.35; font-weight:800; color:#0f2746;
-      background:radial-gradient(120% 120% at 20% 15%, #ffc996 0%, #ffb36e 40%, #ff8a3d 70%, #ff7a23 100%);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 10px 26px rgba(255,138,61,.22);
-      border:1px solid rgba(255,255,255,.65);
-    }
-
-    /* HERO bulle incurvée */
-    .hero-bubble{
-      background: linear-gradient(90deg,#0c3e6b 0%, #0e4f80 45%, #115c95 100%);
-      color:#fff; position:relative; overflow:hidden; border-radius:14px; padding:48px 32px;
-    }
-    .hero-bubble .hero-bubble-content{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:36px; max-width:1100px; margin:0 auto;
-    }
-    .hero-bubble .hero-bubble-text{ flex:1.2; z-index:2 }
-    .hero-bubble .hero-bubble-text .aw-title{
-      font-size:clamp(22px,3vw,28px); margin:0 0 12px; color:#fff;
-    }
-    .hero-bubble .hero-bubble-text p{ margin:0; line-height:1.5; font-size:clamp(15px,1.4vw,17px) }
-    .hero-bubble .hero-bubble-img img{
-      max-width:200px; height:auto; display:inline-block;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,.20));
-      border-radius:12px;
-    }
-
-    /* ===========================================================
-       NEO TIMELINE — version finale sans trait, sans ronds, sans numéros
-       =========================================================== */
+    /* ====================== FR I S E ====================== */
     .neo-timeline-wrap{
-      background: url("./images/repere-frise-chronologique.png") center/cover no-repeat !important;
-      padding:48px 0 56px;
+      background-image: url("./images/repere-frise-chronologique.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding:80px 0 100px;
       border-radius:14px;
-      overflow:hidden;
       position:relative;
+      overflow:hidden;
+    }
+    .neo-timeline-wrap::before{
+      content:"";
+      position:absolute; inset:0;
+      background:rgba(255,255,255,0.08);
+      backdrop-filter: blur(1px);
+      z-index:0;
     }
 
     .neo-title{
-      max-width:1100px; margin:0 auto 8px; padding:0 16px;
+      position:relative; z-index:2;
+      max-width:1100px; margin:0 auto 32px; padding:0 16px;
       font:800 clamp(28px,4.6vw,48px)/1.1 "Manrope",system-ui,sans-serif;
       color:var(--aw-orange);
       text-shadow:0 1px 0 rgba(255,255,255,.45);
-      display:flex; align-items:center;
     }
 
-    .neo-line, .neo-flow{ display:none !important; }
-    .neo-dot{ display:none !important; }
-
     .neo-timeline{
-      list-style:none; /* 🔥 enlève les numéros automatiques */
-      counter-reset:none;
+      list-style:none; /* supprime 1., 2., 3., 4. */
       max-width:1100px; margin:0 auto; padding:0 16px;
       display:grid; grid-template-columns:repeat(3,minmax(240px,1fr)); gap:32px;
+      position:relative; z-index:2;
     }
 
     .neo-card{
-      margin-top:0 !important;
-      background: rgba(255,255,255,.92);
-      border:1px solid rgba(255,255,255,.5);
+      background:rgba(255,255,255,0.95);
       border-radius:18px;
+      border:1px solid rgba(255,255,255,0.6);
+      box-shadow:0 18px 40px rgba(0,132,198,.14);
       padding:22px 22px 24px;
-      box-shadow: 0 18px 40px rgba(0,132,198,.14);
-      backdrop-filter: blur(8px);
       transition:transform .25s ease, box-shadow .25s ease;
     }
-    .neo-card:hover{
-      transform: translateY(-6px);
-      box-shadow: 0 24px 60px rgba(0,132,198,.22);
-    }
-    .neo-card h3{
-      margin:0 0 10px;
-      font:800 clamp(18px,2.2vw,22px)/1.2 "Manrope",system-ui,sans-serif;
-      color:var(--aw-blue);
-    }
+    .neo-card:hover{ transform:translateY(-6px); box-shadow:0 24px 60px rgba(0,132,198,.25) }
+    .neo-card h3{ margin:0 0 10px; font:800 clamp(18px,2.2vw,22px)/1.2 "Manrope",system-ui,sans-serif; color:var(--aw-blue) }
     .neo-item[data-accent="orange"] .neo-card h3{ color:var(--aw-orange) }
     .neo-card p{ margin:0; color:#00324e; font-weight:600; line-height:1.5 }
 
-    @media (max-width:1000px){ .neo-timeline{ grid-template-columns:repeat(2,minmax(240px,1fr)) } }
-    @media (max-width:640px){ .neo-timeline{ grid-template-columns:1fr } }
+    @media(max-width:1000px){ .neo-timeline{ grid-template-columns:repeat(2,minmax(240px,1fr)) } }
+    @media(max-width:640px){ .neo-timeline{ grid-template-columns:1fr } }
+
+    /* éléments de la version précédente à neutraliser */
+    .neo-line,.neo-flow,.neo-dot{ display:none !important; }
   </style>
 </head>
-
 <body>
+
+  <!-- Header injecté -->
   <div id="header"></div>
 
+  <!-- Bandeau H1 -->
   <section class="section hero-apropos">
     <h1 class="title-center">Qui sommes-nous&nbsp;?</h1>
     <p class="subtitle-center">Rendre la conformité accessible, humaine et transparente.</p>
     <div class="underline" aria-hidden="true"></div>
   </section>
 
+  <!-- Contenu principal -->
   <main class="encarts" id="contenu">
 
-    <!-- Présentation -->
-    <section class="encart hero-bubble">
-      <div class="hero-bubble-content">
-        <div class="hero-bubble-text">
-          <h2 class="aw-title">Présentation</h2>
-          <p>
-            Chez <strong>Awenoria</strong>, la conformité ne doit pas être un fardeau.
-            Nous aidons les TPE, PME, associations et start-ups à maîtriser leurs obligations — 
-            <strong>sans jargon, sans dépendance et à un prix démocratisé</strong>.
-          </p>
-        </div>
-        <div class="hero-bubble-img">
-          <img src="./images/logo.png" alt="Logo Awenoria">
-        </div>
-      </div>
-    </section>
-
-    <!-- Groupe -->
-    <section class="encart blue">
-      <div class="pad">
-        <h2 class="aw-title">Le groupe</h2>
-        <p>Nos outils d’audit <strong>locaux</strong> accélèrent l’obtention des premières actions, puis l’<strong>accompagnement humain</strong> prend le relais quand c’est nécessaire.</p>
-      </div>
-    </section>
-
-    <!-- HISTOIRE -->
+    <!-- =================== HISTOIRE =================== -->
     <section class="encart white neo-timeline-wrap" aria-labelledby="neo-histoire-title">
-      <div class="pad">
-        <h2 id="neo-histoire-title" class="neo-title">Notre histoire</h2>
-      </div>
+      <h2 id="neo-histoire-title" class="neo-title">Notre histoire</h2>
 
-      <ol class="neo-timeline">
+      <ol class="neo-timeline" aria-label="Frise chronologique Awenoria">
         <li class="neo-item" data-accent="blue">
           <div class="neo-card">
             <h3>Investigation</h3>
@@ -185,24 +128,82 @@
         </li>
       </ol>
     </section>
-
-    <!-- Valeurs -->
-    <section class="encart">
-      <div class="values">
-        <div class="left white">
-          <h2 class="aw-title">Nos valeurs</h2>
-          <span class="copper-bubble">Transparence, pédagogie, confidentialité&nbsp;: notre boussole au quotidien.</span>
-        </div>
-        <div class="right">
-          <div class="v"><h4>Confiance</h4><p>Livrables clairs, méthodes publiées, engagements tenus.</p></div>
-          <div class="v"><h4>Qualité</h4><p>Diagnostic priorisé et actionnable, amélioration continue.</p></div>
-          <div class="v"><h4>Engagement</h4><p>Respect de la vie privée par design et par défaut.</p></div>
-        </div>
-      </div>
-    </section>
+    <!-- ================= FIN histoire ================= -->
 
   </main>
 
+  <!-- Footer injecté -->
   <div id="footer"></div>
+
+  <!-- Loader header/footer + nav (compatible GitHub Pages) -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
+
+    // Détection GitHub Pages pour corriger les chemins racine
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
+    }
+
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean ];
+    };
+
+    async function fetchFirstOk(paths) {
+      for (const u of paths) {
+        try {
+          const r = await fetch(u, { cache: "no-cache" });
+          if (r.ok) return r.text();
+        } catch(_) {}
+      }
+      throw new Error("Aucun chemin valide: " + paths.join(", "));
+    }
+
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return; // laisse les //cdn
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
+    }
+
+    if (headMount) {
+      fetchFirstOk(candidates("partials/header.html"))
+        .then(html => {
+          headMount.innerHTML = html;
+          fixRootUrls(headMount);
+          return fetchFirstOk(candidates("assets/nav.js"));
+        })
+        .then(code => {
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+          console.log("[awenoria] header + nav chargés");
+        })
+        .catch(err => {
+          console.error("Header load error:", err);
+          headMount.innerHTML = "<!-- Header introuvable -->";
+        });
+    }
+
+    if (footMount) {
+      fetchFirstOk(candidates("partials/footer.html"))
+        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+        .catch(err => {
+          console.error("Footer load error:", err);
+          footMount.innerHTML = "<!-- Footer introuvable -->";
+        });
+    }
+  });
+  </script>
 </body>
 </html>
