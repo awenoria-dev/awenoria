@@ -4,115 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Qui sommes-nous ? – Awenoria</title>
+  <meta name="description" content="Awenoria — conformité RGPD & IA rendue simple, humaine et accessible. Découvrez notre histoire, nos valeurs et l’équipe." />
   <meta name="theme-color" content="#0f5f9a" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..900&display=swap" rel="stylesheet">
 
+  <!-- CSS globale du site -->
+  <link rel="stylesheet" href="assets/awenoria.css">
+
+  <!-- Styles locaux (légers) -->
   <style>
-    :root{
-      --font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-      --bg:#f6f9fc; --panel:#fff; --muted:#4a6176; --text:#0f5f9a; --brand:#0f5f9a; --copper:#ff8a3d;
-      --radius:22px; --shadow:0 12px 28px rgba(0,0,0,.08); --maxw:1200px; --nav-h:40px;
-    }
-    *{box-sizing:border-box} html,body{height:100%}
-    html{font-family:var(--font);font-weight:400}
-    body{
-      margin:0;color:var(--text);line-height:1.5;
-      background:
-        radial-gradient(1400px 700px at 10% -20%, #eef6ff 0%, rgba(238,246,255,.6) 45%, transparent 60%),
-        linear-gradient(180deg,#fff 0%,#f6f9fc 100%);
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    }
-    h1,h2,h3{font-weight:900;margin:0 0 10px}
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-
-    /* ===== SECTIONS / ENCARTS (contenu de la page) ===== */
-    .hero{padding:18px 0 8px;text-align:center}
-    .hero h1{font-size:clamp(24px,4vw,32px)}
-
-    .encarts{max-width:var(--maxw);margin:12px auto 40px;padding:0 20px;display:grid;gap:16px}
-    .encart{border-radius:var(--radius);background:rgba(255,255,255,.92);
-      border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow);overflow:hidden}
-    .encart .pad{padding:20px}
-    .blue{background:linear-gradient(180deg,#0e4576,#0f5f9a);color:#fff}
-    .white{background:#fff}
-    .split{display:grid;grid-template-columns:1.1fr .9fr}
-    @media(max-width:980px){.split{grid-template-columns:1fr}}
-    .center{display:grid;place-items:center}
-    .aw-title{font-weight:900;letter-spacing:.01em}
-    .aw-title.copper{color:var(--copper)}
-    .aw-underline{width:86px;height:4px;border-radius:999px;background:var(--copper);opacity:.92;margin-top:6px}
-
-    .history{padding:16px}
-    .history-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-    @media(max-width:980px){.history-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:560px){.history-grid{grid-template-columns:1fr}}
-    .h-card{position:relative;background:linear-gradient(180deg,#fff,#f5f9ff);
-      border:1px solid #e6eef7;border-radius:14px;padding:14px 12px;text-align:center}
-    .h-card::before{content:"";position:absolute;left:50%;transform:translateX(-50%);top:-8px;width:12px;height:12px;border-radius:999px;background:var(--copper);box-shadow:0 0 0 6px rgba(255,138,61,.22)}
-    .h-year{font-weight:900;font-size:18px;color:#0f5f9a}
-    .h-txt{color:#274b6a;font-size:14px;margin-top:4px}
-
-    .values{display:grid;grid-template-columns:300px 1fr}
-    @media(max-width:980px){.values{grid-template-columns:1fr}}
-    .values .left{padding:20px}
-    .values .right{background:#0d4b7c;color:#fff;padding:16px;display:grid;gap:10px}
-    .v{border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px}
-    .v h4{margin:2px 0 4px}
-
-    .quote{display:grid;grid-template-columns:1fr 1fr}
-    @media(max-width:980px){.quote{grid-template-columns:1fr}}
-    .quote .visu{min-height:260px;display:grid;place-items:center;background:
-      linear-gradient(180deg,rgba(15,95,154,.06),rgba(15,95,154,.06)),
-      repeating-linear-gradient(90deg,#cfe6fb 0 2px,#e6f0fb 2px 4px)}
-    .quote .visu img{max-width:92%;height:auto;display:block;border-radius:14px}
-    .quote .q{background:#0d4b7c;color:#fff;display:grid;place-items:center;padding:22px;border-radius:14px}
-    .quote blockquote{max-width:560px;font-size:18px;margin:0;line-height:1.5;position:relative}
-    .quote blockquote::before{content:"“";position:absolute;left:-18px;top:-12px;font-size:52px;color:#ffcf99;opacity:.8}
-
-    .chart{display:grid;grid-template-columns:320px 1fr}
-    @media(max-width:980px){.chart{grid-template-columns:1fr}}
-    .chart .explain{padding:20px}
-    .chart .viz{padding:12px}
-
-    .team-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:0 18px 18px}
-    @media(max-width:980px){.team-3{grid-template-columns:1fr}}
-    .member{border:1px solid #e6eef7;border-radius:16px;padding:14px;text-align:center;background:#fff}
-    .avatar{width:120px;height:120px;border-radius:14px;margin:8px auto;background:radial-gradient(80px 50px at 50% 35%,#d9e6f5,#a9c6e8)}
-
-    .cta{display:grid;place-items:center;padding:30px}
-    .cta h2{font-size:clamp(22px,3.6vw,34px);margin:0 0 8px}
-    .cta .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1.5px solid rgba(255,255,255,.5);
-      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
-    }
-    .btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.70)}
-    .encart.blue .btn.ghost:hover{background:rgba(255,255,255,.12);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
-    .btn.gradient{background:linear-gradient(90deg,#ff8a3d,#ff9a56);color:#fff;border:1.5px solid rgba(255,255,255,.55);box-shadow:0 8px 18px rgba(255,138,61,.28)}
-    .btn.gradient:hover{filter:saturate(1.06);transform:translateY(-1px);box-shadow:0 12px 28px rgba(255,138,61,.35)}
-
-    /* PATCHS */
+    /* Petites touches spécifiques à la page */
+    .hero-apropos{ padding:56px 0 22px }
+    .hero-apropos h1{ font-size:clamp(24px,4.2vw,40px); margin:0 }
     .encart.split.blue.hero-bubble{
       background:linear-gradient(90deg,#0c3e6b 0%, #0e4f80 45%, #115c95 100%);
       color:#fff;
     }
     .copper-bubble{
-      display:inline-block; max-width:420px; padding:18px 20px; border-radius:999px;
-      line-height:1.35; font-weight:700; color:#0f2746;
+      display:inline-block; max-width:520px; padding:16px 18px; border-radius:999px;
+      line-height:1.35; font-weight:800; color:#0f2746;
       background:radial-gradient(120% 120% at 20% 15%, #ffc996 0%, #ffb36e 40%, #ff8a3d 70%, #ff7a23 100%);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 10px 26px rgba(255,138,61,.25);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 10px 26px rgba(255,138,61,.22);
       border:1px solid rgba(255,255,255,.65);
     }
-    .encart.quote.bubble-transparent .q{ background:transparent; color:#0f2746; padding:22px; box-shadow:none; }
-    .encart.quote.bubble-transparent blockquote{ background:transparent; border:none; box-shadow:none; }
-    .encart.quote.bubble-transparent blockquote::before{ color:#ffb36e; opacity:.9; }
-
-    /* Footer local (au cas où le partiel ne fournit pas de CSS propre) */
-    footer{background:#0a0a0a;color:#eaeaea;padding:28px 0 14px;margin-top:10px;border-top:1px solid rgba(255,255,255,.12)}
+    /* Petite amélioration d’accessibilité au clavier pour boutons fantômes sur fond bleu */
+    .encart.blue .btn.ghost:focus-visible{
+      outline:0; box-shadow:0 0 0 4px rgba(255,255,255,.35), inset 0 1px 0 rgba(255,255,255,.9);
+    }
   </style>
 </head>
 <body>
@@ -120,39 +42,47 @@
   <!-- Header injecté -->
   <div id="header"></div>
 
-  <!-- H1 -->
-  <section class="hero wrap"><h1>Qui sommes-nous ?</h1></section>
+  <!-- Bandeau H1 -->
+  <section class="section hero-apropos">
+    <h1 class="title-center">Qui sommes-nous&nbsp;?</h1>
+    <p class="subtitle-center">Rendre la conformité accessible, humaine et transparente.</p>
+    <div class="underline" aria-hidden="true"></div>
+  </section>
 
-  <main class="encarts">
-    <!-- Présentation -->
+  <!-- Contenu principal -->
+  <main class="encarts" id="contenu">
+
+    <!-- Présentation / hero -->
     <section class="encart split blue hero-bubble">
       <div class="pad">
         <h2 class="aw-title">Présentation</h2>
-        <p>Rendre la conformité accessible, humaine et transparente.</p>
+        <p>Chez <strong>Awenoria</strong>, la conformité ne doit pas être un fardeau. Nous aidons les TPE, PME, associations et start-ups à maîtriser leurs obligations — <strong>sans jargon, sans dépendance et à un prix démocratisé</strong>.</p>
         <div class="aw-underline" aria-hidden="true"></div>
       </div>
       <div class="center">
-        <img src="images/logo.png" alt="Logo Awenoria" style="max-width:180px;height:auto" />
+        <img src="./images/logo.png" alt="Logo Awenoria" style="max-width:180px;height:auto;display:block">
       </div>
     </section>
 
-    <!-- Groupe -->
+    <!-- Groupe (accroche courte) -->
     <section class="encart blue">
       <div class="pad">
         <h2 class="aw-title">Le groupe</h2>
-        <p>Chez <b>Awenoria</b>, la conformité ne doit pas être un fardeau. Nous aidons les TPE, PME, associations et start-ups à maîtriser leurs obligations numériques — <b>sans jargon, sans dépendance et à un prix démocratisé</b>.</p>
+        <p>Nos outils d’audit <strong>locaux</strong> accélèrent l’obtention des premières actions, puis l’<strong>accompagnement humain</strong> prend le relais quand c’est nécessaire.</p>
       </div>
     </section>
 
-    <!-- Notre histoire -->
+    <!-- Histoire (frise simple) -->
     <section class="encart white">
       <div class="pad"><h2 class="aw-title copper">Notre histoire</h2></div>
-      <div class="history">
-        <div class="history-grid">
-          <div class="h-card"><div class="h-year">2019</div><div class="h-txt">Idée : conformité simple & locale.</div></div>
-          <div class="h-card"><div class="h-year">2023</div><div class="h-txt">Prototype d’audit côté navigateur.</div></div>
-          <div class="h-card"><div class="h-year">2024</div><div class="h-txt">Volets Mentions légales & Accessibilité.</div></div>
-          <div class="h-card"><div class="h-year">2025</div><div class="h-txt">Lancement public & packs démocratisés.</div></div>
+      <div class="timeline">
+        <div class="row">
+          <div class="t-item"><div class="year">2019</div><div class="pin"></div><p>Idée&nbsp;: conformité simple & locale.</p></div>
+          <div class="t-item"><div class="year">2023</div><div class="pin"></div><p>Prototype d’audit côté navigateur.</p></div>
+          <div class="t-item"><div class="year">2024</div><div class="pin"></div><p>Volets Mentions légales & Accessibilité.</p></div>
+          <div class="t-item"><div class="year">2025</div><div class="pin"></div><p>Lancement public & packs démocratisés.</p></div>
+          <div class="t-item"><div class="year">2026</div><div class="pin"></div><p>Cap sur la conformité IA Act.</p></div>
+          <div class="t-item"><div class="year">…</div><div class="pin"></div><p>Amélioration continue & partenariats.</p></div>
         </div>
       </div>
     </section>
@@ -162,7 +92,7 @@
       <div class="values">
         <div class="left white">
           <h2 class="aw-title">Nos valeurs</h2>
-          <span class="copper-bubble">Transparence, pédagogie, confidentialité : notre boussole au quotidien.</span>
+          <span class="copper-bubble">Transparence, pédagogie, confidentialité&nbsp;: notre boussole au quotidien.</span>
         </div>
         <div class="right">
           <div class="v"><h4>Confiance</h4><p>Livrables clairs, méthodes publiées, engagements tenus.</p></div>
@@ -173,20 +103,20 @@
     </section>
 
     <!-- Citation -->
-    <section class="encart quote bubble-transparent">
+    <section class="encart quote">
       <div class="visu">
-        <img src="images/qui-sommes-nous-p-7.png" alt="Conformité numérique" />
+        <img src="./images/qui-sommes-nous-p-7.png" alt="Conformité numérique" style="max-width:92%;height:auto;display:block;border-radius:14px;margin:auto">
       </div>
       <div class="q">
-        <blockquote>« Awenoria simplifie la conformité pour renforcer l'autonomie de ceux qui la vivent. »</blockquote>
+        <blockquote>«&nbsp;Awenoria simplifie la conformité pour renforcer l’autonomie de ceux qui la vivent.&nbsp;»</blockquote>
       </div>
     </section>
 
-    <!-- Graphique -->
+    <!-- Graphique statique -->
     <section class="encart chart">
       <div class="explain">
         <h2 class="aw-title">Impact mesurable</h2>
-        <p>Le temps d’obtention des premières actions diminue fortement grâce au <b>pré-diagnostic local</b>, complété par l’accompagnement humain lorsque nécessaire.</p>
+        <p>Le temps d’obtention des premières actions diminue fortement grâce au <strong>pré-diagnostic local</strong>, complété par l’accompagnement humain lorsque nécessaire.</p>
       </div>
       <div class="viz">
         <svg viewBox="0 0 520 260" width="100%" height="auto" role="img" aria-label="Barres croissance accompagnement vs produit">
@@ -206,16 +136,25 @@
     <section class="encart white">
       <div class="pad"><h2 class="aw-title">L’équipe</h2></div>
       <div class="team-3">
-        <div class="member"><div class="avatar"></div><h3>Alexandre M.</h3><p>Produit &amp; conformité</p></div>
-        <div class="member"><div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d9e6f5,#a9c6e8)"></div><h3>Camille R.</h3><p>Juriste RGPD / DPO</p></div>
-        <div class="member"><div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d8f0cf,#bde6b3)"></div><h3>Yann G.</h3><p>Accessibilité RGAA/WCAG</p></div>
+        <div class="member">
+          <div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d9e6f5,#a9c6e8)"></div>
+          <h3>Alexandre M.</h3><p>Produit &amp; conformité</p>
+        </div>
+        <div class="member">
+          <div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d8f0cf,#bde6b3)"></div>
+          <h3>Camille R.</h3><p>Juriste RGPD / DPO</p>
+        </div>
+        <div class="member">
+          <div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#f9dcc2,#f4b381)"></div>
+          <h3>Yann G.</h3><p>Accessibilité RGAA/WCAG</p>
+        </div>
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- Appels à l’action -->
     <section class="encart blue cta">
       <div>
-        <h2 class="aw-title">Des questions ?</h2>
+        <h2 class="aw-title">Des questions&nbsp;?</h2>
         <div class="row">
           <a class="btn ghost" href="faq.html">Consulter la FAQ</a>
           <a class="btn gradient" href="index.html#contact">Nous contacter</a>
@@ -223,8 +162,7 @@
       </div>
     </section>
 
-    <!-- Merci -->
-    <section class="encart blue cta">
+    <section class="encart blue cta" aria-label="Remerciements">
       <div>
         <h2 class="aw-title" style="font-size:clamp(34px,6vw,60px)">MERCI</h2>
         <p style="color:#e9f2fb">pour votre confiance.</p>
@@ -235,14 +173,14 @@
   <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- Loader robuste header/footer + nav -->
+  <!-- Loader robuste header/footer + nav (compatible GitHub Pages) -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
     const footMount = document.getElementById("footer");
     if (!headMount && !footMount) return;
 
-    // Détection GitHub Pages (user.github.io/repo/)
+    // Détection GitHub Pages (user.github.io/repo)
     const isGh = /github\.io$/.test(location.hostname);
     let base = "/";
     if (isGh) {
@@ -265,17 +203,28 @@
       throw new Error("Aucun chemin valide: " + paths.join(", "));
     }
 
-    // HEADER
+    // Réécrit les URLs absolues "/..." dans le HTML injecté (utile sur GH Pages)
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return; // ignore //cdn
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
+    }
+
+    // HEADER (depuis /assets/partials/)
     if (headMount) {
-      fetchFirstOk(candidates("partials/header.html"))
+      fetchFirstOk(candidates("assets/partials/header.html"))
         .then(html => {
           headMount.innerHTML = html;
-          // ⚠️ nav.js est dans /js/, pas /assets/
-          return fetchFirstOk(candidates("js/nav.js"));
+          fixRootUrls(headMount);
+          return fetchFirstOk(candidates("assets/nav.js"));
         })
         .then(code => {
           const s = document.createElement("script");
-          s.defer = true;
+          if (/\bimport\s+|\bexport\s+/.test(code)) s.type = "module"; // nav.js peut être ESM
           s.textContent = code;
           document.body.appendChild(s);
         })
@@ -285,10 +234,13 @@
         });
     }
 
-    // FOOTER
+    // FOOTER (depuis /assets/partials/)
     if (footMount) {
-      fetchFirstOk(candidates("partials/footer.html"))
-        .then(html => { footMount.innerHTML = html; })
+      fetchFirstOk(candidates("assets/partials/footer.html"))
+        .then(html => {
+          footMount.innerHTML = html;
+          fixRootUrls(footMount);
+        })
         .catch(err => {
           console.error("Footer load error:", err);
           footMount.innerHTML = "<!-- Footer introuvable -->";
