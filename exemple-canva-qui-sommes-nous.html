@@ -34,47 +34,53 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
 
+  <!-- ====== STYLES (UN SEUL BLOC) ====== -->
   <style>
-
     /* ===== FIX MENU DU HAUT + MEGA ===== */
-.brand-img{height:clamp(42px,5.2vw,64px) !important}
-.nav-wrap{gap:10px !important}
-.nav-main{flex:1; justify-content:center !important}
-.nav-main a,
-.nav-main button{height:44px !important; line-height:44px !important; padding:0 12px !important}
-.dropdown{position:relative}
-.mega{
-  position:absolute; left:0 !important; transform:none !important;
-  top:calc(100% + 10px) !important; width:max-content !important;
-  min-width:560px; max-width:min(940px,96vw) !important;
-  padding:16px !important; border-radius:18px !important; z-index:1200;
-  display:none; box-shadow:0 18px 38px rgba(15,23,32,.16);
-}
-.mega.open{display:block; animation:fadeIn .16s ease}
-.mega-grid--3{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
-@media (max-width:980px){.mega-grid--3{grid-template-columns:1fr 1fr}}
-@media (max-width:640px){.mega-grid--3{grid-template-columns:1fr}}
-.mega .group{border-radius:14px; padding:14px}
-.mega h6{margin:0 0 10px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#456}
-.mega-list{list-style:none; margin:0; padding:0; display:grid; gap:8px}
-.mega-list a{display:block; padding:10px 12px; border-radius:10px; text-decoration:none; color:var(--text); font-weight:750}
-.mega-list a:hover{background:rgba(27,136,255,.10)}
-</style>
+    .brand-img{height:clamp(42px,5.2vw,64px) !important}
+    .nav-wrap{gap:10px !important}
+    .nav-main{flex:1; justify-content:center !important}
+    .nav-main a,.nav-main button{height:44px !important; line-height:44px !important; padding:0 12px !important}
+    .dropdown{position:relative}
+    .mega{
+      position:absolute; left:0 !important; transform:none !important;
+      top:calc(100% + 10px) !important; width:max-content !important;
+      min-width:560px; max-width:min(940px,96vw) !important;
+      padding:16px !important; border-radius:18px !important; z-index:1200;
+      display:none; box-shadow:0 18px 38px rgba(15,23,32,.16); background:#fff;
+    }
+    .mega.open{display:block; animation:fadeIn .16s ease}
+    @keyframes fadeIn { from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:translateY(0)} }
+    .mega-grid--3{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+    @media (max-width:980px){.mega-grid--3{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.mega-grid--3{grid-template-columns:1fr}}
+    .mega .group{border-radius:14px; padding:14px}
+    .mega h6{margin:0 0 10px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#456}
+    .mega-list{list-style:none; margin:0; padding:0; display:grid; gap:8px}
+    .mega-list a{display:block; padding:10px 12px; border-radius:10px; text-decoration:none; color:var(--text); font-weight:750}
+    .mega-list a:hover{background:rgba(27,136,255,.10)}
+
+    /* Badges utilisés dans les mégas */
+    .format-badges{display:flex; gap:8px; flex-wrap:wrap}
+    .badge{display:inline-flex; align-items:center; padding:6px 10px; border-radius:9999px; font-weight:800; font-size:12px; background:rgba(15,95,154,.08); color:#0f5f9a}
+    .pill-badge{background:rgba(255,138,61,.12); color:#8a4b16}
+
     /* ================== BASE ================== */
     :root{
       --font-ui:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
       --bg:#f6f9fc; --panel:#fff; --muted:#4a6176; --text:#0f5f9a; --brand:#0f5f9a;
       --copper:#ff8a3d; --danger:#dc2626;
       --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.08); --maxw:1200px; --nav-h:40px;
-      /* Charte encarts */
       --aw-blue:#0f5f9a; --aw-blue-soft:#eaf2fb; --aw-copper:#ff8a3d; --aw-copper-100:#ffcf99;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     html{font-family:var(--font-ui)}
-    body{margin:0;color:var(--text);
+    body{
+      margin:0;color:var(--text);
       background:radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),
-                 linear-gradient(180deg,#fff 0%,#f6f9fc 100%); line-height:1.5}
+                 linear-gradient(180deg,#fff 0%,#f6f9fc 100%); line-height:1.5
+    }
     h1,h2,h3,h4{font-weight:800}
     .glass{background:rgba(255,255,255,.86);backdrop-filter:blur(10px);border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow)}
 
@@ -86,7 +92,6 @@
     .nav-main{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;margin-left:8px;flex-wrap:wrap}
     .nav-main a,.nav-main button{appearance:none;background:none;border:none;cursor:pointer;color:inherit;text-decoration:none;font-weight:800;font-size:16px;height:var(--nav-h);line-height:var(--nav-h);padding:0 12px;border-radius:10px;display:inline-flex;align-items:center}
     .nav-main a:hover,.nav-main button:hover{background:rgba(27,136,255,.10)}
-    .dropdown{position:relative}
     .dropdown-toggle svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;margin-left:6px}
     .nav-actions{display:flex;align-items:center;gap:8px}
     .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:12px 20px;font-size:16px;letter-spacing:.3px;transition:all .25s ease;text-decoration:none;border:1px solid transparent}
@@ -102,7 +107,7 @@
 
     /* Hero “À propos” */
     .hero-apropos{
-      position:relative; isolation:isolate; padding:56px 0 22px;  /* espace réduit */
+      position:relative; isolation:isolate; padding:56px 0 22px;
       border-bottom:1px solid rgba(15,23,32,.08);
       background:linear-gradient(180deg, rgba(27,136,255,.06), transparent 55%);
       text-align:center;
