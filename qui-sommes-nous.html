@@ -17,18 +17,23 @@
       --bg:#f6f9fc; --panel:#fff; --muted:#4a6176; --text:#0f5f9a; --brand:#0f5f9a; --copper:#ff8a3d;
       --radius:22px; --shadow:0 12px 28px rgba(0,0,0,.08); --maxw:1200px; --nav-h:40px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:var(--font);color:var(--text);line-height:1.5;
-      background:linear-gradient(180deg,#fff 0%,#f6f9fc 100%);
-      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    *{box-sizing:border-box} html,body{height:100%}
+    html{font-family:var(--font);font-weight:400}
+    body{
+      margin:0;color:var(--text);line-height:1.5;
+      background:
+        radial-gradient(1400px 700px at 10% -20%, #eef6ff 0%, rgba(238,246,255,.6) 45%, transparent 60%),
+        linear-gradient(180deg,#fff 0%,#f6f9fc 100%);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
     h1,h2,h3{font-weight:900;margin:0 0 10px}
     a{color:inherit;text-decoration:none}
     .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-    header,footer{display:block}
 
-    /* Styles généraux et structure */
+    /* ===== SECTIONS / ENCARTS (contenu de la page) ===== */
     .hero{padding:18px 0 8px;text-align:center}
     .hero h1{font-size:clamp(24px,4vw,32px)}
+
     .encarts{max-width:var(--maxw);margin:12px auto 40px;padding:0 20px;display:grid;gap:16px}
     .encart{border-radius:var(--radius);background:rgba(255,255,255,.92);
       border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow);overflow:hidden}
@@ -41,6 +46,7 @@
     .aw-title{font-weight:900;letter-spacing:.01em}
     .aw-title.copper{color:var(--copper)}
     .aw-underline{width:86px;height:4px;border-radius:999px;background:var(--copper);opacity:.92;margin-top:6px}
+
     .history{padding:16px}
     .history-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
     @media(max-width:980px){.history-grid{grid-template-columns:repeat(2,1fr)}}
@@ -50,12 +56,14 @@
     .h-card::before{content:"";position:absolute;left:50%;transform:translateX(-50%);top:-8px;width:12px;height:12px;border-radius:999px;background:var(--copper);box-shadow:0 0 0 6px rgba(255,138,61,.22)}
     .h-year{font-weight:900;font-size:18px;color:#0f5f9a}
     .h-txt{color:#274b6a;font-size:14px;margin-top:4px}
+
     .values{display:grid;grid-template-columns:300px 1fr}
     @media(max-width:980px){.values{grid-template-columns:1fr}}
     .values .left{padding:20px}
     .values .right{background:#0d4b7c;color:#fff;padding:16px;display:grid;gap:10px}
     .v{border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px}
     .v h4{margin:2px 0 4px}
+
     .quote{display:grid;grid-template-columns:1fr 1fr}
     @media(max-width:980px){.quote{grid-template-columns:1fr}}
     .quote .visu{min-height:260px;display:grid;place-items:center;background:
@@ -65,23 +73,46 @@
     .quote .q{background:#0d4b7c;color:#fff;display:grid;place-items:center;padding:22px;border-radius:14px}
     .quote blockquote{max-width:560px;font-size:18px;margin:0;line-height:1.5;position:relative}
     .quote blockquote::before{content:"“";position:absolute;left:-18px;top:-12px;font-size:52px;color:#ffcf99;opacity:.8}
+
     .chart{display:grid;grid-template-columns:320px 1fr}
     @media(max-width:980px){.chart{grid-template-columns:1fr}}
     .chart .explain{padding:20px}
     .chart .viz{padding:12px}
+
     .team-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:0 18px 18px}
     @media(max-width:980px){.team-3{grid-template-columns:1fr}}
     .member{border:1px solid #e6eef7;border-radius:16px;padding:14px;text-align:center;background:#fff}
     .avatar{width:120px;height:120px;border-radius:14px;margin:8px auto;background:radial-gradient(80px 50px at 50% 35%,#d9e6f5,#a9c6e8)}
+
     .cta{display:grid;place-items:center;padding:30px}
     .cta h2{font-size:clamp(22px,3.6vw,34px);margin:0 0 8px}
     .cta .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
     .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1.5px solid rgba(255,255,255,.5);
-      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease}
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+    }
     .btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.70)}
-    .btn.ghost:hover{background:rgba(255,255,255,.12);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+    .encart.blue .btn.ghost:hover{background:rgba(255,255,255,.12);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
     .btn.gradient{background:linear-gradient(90deg,#ff8a3d,#ff9a56);color:#fff;border:1.5px solid rgba(255,255,255,.55);box-shadow:0 8px 18px rgba(255,138,61,.28)}
     .btn.gradient:hover{filter:saturate(1.06);transform:translateY(-1px);box-shadow:0 12px 28px rgba(255,138,61,.35)}
+
+    /* PATCHS */
+    .encart.split.blue.hero-bubble{
+      background:linear-gradient(90deg,#0c3e6b 0%, #0e4f80 45%, #115c95 100%);
+      color:#fff;
+    }
+    .copper-bubble{
+      display:inline-block; max-width:420px; padding:18px 20px; border-radius:999px;
+      line-height:1.35; font-weight:700; color:#0f2746;
+      background:radial-gradient(120% 120% at 20% 15%, #ffc996 0%, #ffb36e 40%, #ff8a3d 70%, #ff7a23 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 10px 26px rgba(255,138,61,.25);
+      border:1px solid rgba(255,255,255,.65);
+    }
+    .encart.quote.bubble-transparent .q{ background:transparent; color:#0f2746; padding:22px; box-shadow:none; }
+    .encart.quote.bubble-transparent blockquote{ background:transparent; border:none; box-shadow:none; }
+    .encart.quote.bubble-transparent blockquote::before{ color:#ffb36e; opacity:.9; }
+
+    /* Footer local (au cas où le partiel ne fournit pas de CSS propre) */
+    footer{background:#0a0a0a;color:#eaeaea;padding:28px 0 14px;margin-top:10px;border-top:1px solid rgba(255,255,255,.12)}
   </style>
 </head>
 <body>
@@ -89,22 +120,23 @@
   <!-- Header injecté -->
   <div id="header"></div>
 
-  <section class="hero wrap">
-    <h1>Qui sommes-nous ?</h1>
-  </section>
+  <!-- H1 -->
+  <section class="hero wrap"><h1>Qui sommes-nous ?</h1></section>
 
-  <main class="encarts" id="main">
-    <section class="encart split blue">
+  <main class="encarts">
+    <!-- Présentation -->
+    <section class="encart split blue hero-bubble">
       <div class="pad">
         <h2 class="aw-title">Présentation</h2>
         <p>Rendre la conformité accessible, humaine et transparente.</p>
         <div class="aw-underline" aria-hidden="true"></div>
       </div>
       <div class="center">
-        <img src="images/logo.png" alt="Logo Awenoria" style="max-width:180px;height:auto" loading="lazy" />
+        <img src="images/logo.png" alt="Logo Awenoria" style="max-width:180px;height:auto" />
       </div>
     </section>
 
+    <!-- Groupe -->
     <section class="encart blue">
       <div class="pad">
         <h2 class="aw-title">Le groupe</h2>
@@ -112,6 +144,7 @@
       </div>
     </section>
 
+    <!-- Notre histoire -->
     <section class="encart white">
       <div class="pad"><h2 class="aw-title copper">Notre histoire</h2></div>
       <div class="history">
@@ -124,14 +157,12 @@
       </div>
     </section>
 
+    <!-- Valeurs -->
     <section class="encart">
       <div class="values">
         <div class="left white">
           <h2 class="aw-title">Nos valeurs</h2>
-          <span style="display:inline-block;background:radial-gradient(120% 120% at 20% 15%, #ffc996 0%, #ffb36e 40%, #ff8a3d 70%, #ff7a23 100%);
-                border-radius:999px;padding:18px 20px;color:#0f2746;font-weight:700;max-width:420px;line-height:1.35;">
-            Transparence, pédagogie, confidentialité : notre boussole au quotidien.
-          </span>
+          <span class="copper-bubble">Transparence, pédagogie, confidentialité : notre boussole au quotidien.</span>
         </div>
         <div class="right">
           <div class="v"><h4>Confiance</h4><p>Livrables clairs, méthodes publiées, engagements tenus.</p></div>
@@ -141,22 +172,24 @@
       </div>
     </section>
 
-    <section class="encart quote">
+    <!-- Citation -->
+    <section class="encart quote bubble-transparent">
       <div class="visu">
-        <img src="images/qui-sommes-nous-p-7.png" alt="Conformité numérique" loading="lazy" />
+        <img src="images/qui-sommes-nous-p-7.png" alt="Conformité numérique" />
       </div>
       <div class="q">
         <blockquote>« Awenoria simplifie la conformité pour renforcer l'autonomie de ceux qui la vivent. »</blockquote>
       </div>
     </section>
 
+    <!-- Graphique -->
     <section class="encart chart">
       <div class="explain">
         <h2 class="aw-title">Impact mesurable</h2>
         <p>Le temps d’obtention des premières actions diminue fortement grâce au <b>pré-diagnostic local</b>, complété par l’accompagnement humain lorsque nécessaire.</p>
       </div>
       <div class="viz">
-        <svg viewBox="0 0 520 260" width="100%" height="auto">
+        <svg viewBox="0 0 520 260" width="100%" height="auto" role="img" aria-label="Barres croissance accompagnement vs produit">
           <defs><style>.barA{fill:#ffcf99}.barB{fill:#0f5f9a}.axis{stroke:#a9bed3;stroke-width:1}.lbl{font:700 12px Manrope, sans-serif; fill:#355}</style></defs>
           <line x1="40" y1="210" x2="490" y2="210" class="axis"/>
           <line x1="40" y1="40"  x2="40"  y2="210" class="axis"/>
@@ -169,15 +202,17 @@
       </div>
     </section>
 
+    <!-- Équipe -->
     <section class="encart white">
       <div class="pad"><h2 class="aw-title">L’équipe</h2></div>
       <div class="team-3">
         <div class="member"><div class="avatar"></div><h3>Alexandre M.</h3><p>Produit &amp; conformité</p></div>
-        <div class="member"><div class="avatar"></div><h3>Camille R.</h3><p>Juriste RGPD / DPO</p></div>
-        <div class="member"><div class="avatar"></div><h3>Yann G.</h3><p>Accessibilité RGAA/WCAG</p></div>
+        <div class="member"><div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d9e6f5,#a9c6e8)"></div><h3>Camille R.</h3><p>Juriste RGPD / DPO</p></div>
+        <div class="member"><div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d8f0cf,#bde6b3)"></div><h3>Yann G.</h3><p>Accessibilité RGAA/WCAG</p></div>
       </div>
     </section>
 
+    <!-- CTA -->
     <section class="encart blue cta">
       <div>
         <h2 class="aw-title">Des questions ?</h2>
@@ -188,6 +223,7 @@
       </div>
     </section>
 
+    <!-- Merci -->
     <section class="encart blue cta">
       <div>
         <h2 class="aw-title" style="font-size:clamp(34px,6vw,60px)">MERCI</h2>
@@ -199,43 +235,64 @@
   <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- Script intelligent compatible GitHub Pages -->
+  <!-- Loader robuste header/footer + nav -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
     const footMount = document.getElementById("footer");
-
     if (!headMount && !footMount) return;
 
-    // Détection si le site tourne sur GitHub Pages
-    const isGitHub = /github\.io$/.test(location.hostname);
+    // Détection GitHub Pages (user.github.io/repo/)
+    const isGh = /github\.io$/.test(location.hostname);
     let base = "/";
-    if (isGitHub) {
+    if (isGh) {
       const parts = location.pathname.split("/").filter(Boolean);
       base = parts.length ? `/${parts[0]}/` : "/";
     }
-    const url = (p) => base + p.replace(/^\//, "");
 
-    // Charger le header
-    if (headMount) {
-      fetch(url("partials/header.html"))
-        .then(r => r.text())
-        .then(html => {
-          headMount.innerHTML = html;
-          const s = document.createElement("script");
-          s.src = url("assets/nav.js");
-          s.defer = true;
-          document.body.appendChild(s);
-        })
-        .catch(err => console.error("Erreur chargement header:", err));
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean ];
+    };
+
+    async function fetchFirstOk(paths) {
+      for (const u of paths) {
+        try {
+          const r = await fetch(u, { cache: "no-cache" });
+          if (r.ok) return r.text();
+        } catch(_) {}
+      }
+      throw new Error("Aucun chemin valide: " + paths.join(", "));
     }
 
-    // Charger le footer
+    // HEADER
+    if (headMount) {
+      fetchFirstOk(candidates("partials/header.html"))
+        .then(html => {
+          headMount.innerHTML = html;
+          // ⚠️ nav.js est dans /js/, pas /assets/
+          return fetchFirstOk(candidates("js/nav.js"));
+        })
+        .then(code => {
+          const s = document.createElement("script");
+          s.defer = true;
+          s.textContent = code;
+          document.body.appendChild(s);
+        })
+        .catch(err => {
+          console.error("Header load error:", err);
+          headMount.innerHTML = "<!-- Header introuvable -->";
+        });
+    }
+
+    // FOOTER
     if (footMount) {
-      fetch(url("partials/footer.html"))
-        .then(r => r.text())
+      fetchFirstOk(candidates("partials/footer.html"))
         .then(html => { footMount.innerHTML = html; })
-        .catch(err => console.error("Erreur chargement footer:", err));
+        .catch(err => {
+          console.error("Footer load error:", err);
+          footMount.innerHTML = "<!-- Footer introuvable -->";
+        });
     }
   });
   </script>
