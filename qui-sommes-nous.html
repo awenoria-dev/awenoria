@@ -237,41 +237,38 @@
       <p class="intro">Transparence, pédagogie, confidentialité&nbsp;: notre boussole au quotidien.</p>
     </div>
 
-    <!-- Colonne droite -->
-    <div class="valeurs-right">
-      <div class="valeur-item">
-        <div class="icon">
-          <!-- icône poignée de main -->
-          🤝
-        </div>
-        <div class="text">
-          <h3>Confiance</h3>
-          <p>Livrables clairs, méthodes publiées, engagements tenus.</p>
-        </div>
-      </div>
-
-      <div class="valeur-item">
-        <div class="icon">
-          <!-- icône qualité -->
-          🏅
-        </div>
-        <div class="text">
-          <h3>Qualité</h3>
-          <p>Diagnostic priorisé et actionnable, amélioration continue.</p>
-        </div>
-      </div>
-
-      <div class="valeur-item">
-        <div class="icon">
-          <!-- icône feuille -->
-          🍃
-        </div>
-        <div class="text">
-          <h3>Engagement</h3>
-          <p>Respect de la vie privée par design et par défaut.</p>
-        </div>
-      </div>
+<!-- Colonne droite -->
+<div class="valeurs-right">
+  <div class="valeur-item">
+    <div class="icon">
+      <img src="./images/icone-confiance-valeurs-128.png" alt="Icône Confiance" loading="lazy">
     </div>
+    <div class="text">
+      <h3>Confiance</h3>
+      <p>Livrables clairs, méthodes publiées, engagements tenus.</p>
+    </div>
+  </div>
+
+  <div class="valeur-item">
+    <div class="icon">
+      <img src="./images/icone-qualité-valeurs-128.png" alt="Icône Qualité" loading="lazy">
+    </div>
+    <div class="text">
+      <h3>Qualité</h3>
+      <p>Diagnostic priorisé et actionnable, amélioration continue.</p>
+    </div>
+  </div>
+
+  <div class="valeur-item">
+    <div class="icon">
+      <img src="./images/icone-engagement-valeurs-128.png" alt="Icône Engagement" loading="lazy">
+    </div>
+    <div class="text">
+      <h3>Engagement</h3>
+      <p>Respect de la vie privée par design et par défaut.</p>
+    </div>
+  </div>
+</div>
 
   </div>
 </section>
@@ -330,11 +327,12 @@
   gap:18px;
 }
 .valeur-item .icon{
-  font-size:28px;
-  color:#ffb36e;
-  flex-shrink:0;
-  width:40px;
-  text-align:center;
+  flex-shrink:0; width:48px; height:48px;
+  display:grid; place-items:center;
+}
+.valeur-item .icon img{
+  width:42px; height:42px; display:block;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.25));
 }
 .valeur-item h3{
   margin:0 0 6px;
