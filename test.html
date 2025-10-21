@@ -170,26 +170,36 @@
     @media(max-width:980px){.encart.values{grid-template-columns:1fr}}
 
 /* ===== Citation ===== */
-.encart.quote{display:grid;grid-template-columns:1.1fr .9fr}
+.encart.quote {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+}
 
 /* Bloc gauche : l'image couvre toute la zone */
-.encart.quote .visu{
-  min-height:260px;
-  background:url("images/qui-sommes-nous-p-7.png") center/cover no-repeat;
+.encart.quote .visu {
+  min-height: 260px;
+  background-image: url("./images/qui-sommes-nous-p-7.png?v=1");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 /* Texte de la citation à droite */
-.encart.quote blockquote{
-  margin:0;
-  padding:26px;
-  font-size:clamp(18px,2.4vw,22px);
-  color:#0f2746;
+.encart.quote blockquote {
+  margin: 0;
+  padding: 26px;
+  font-size: clamp(18px, 2.4vw, 22px);
+  color: #0f2746;
 }
 
-/* Responsive : la citation passe en une colonne, et on garde une belle hauteur d'image */
-@media (max-width:980px){
-  .encart.quote{grid-template-columns:1fr}
-  .encart.quote .visu{min-height:220px}
+/* Responsive : une seule colonne sur mobile */
+@media (max-width: 980px) {
+  .encart.quote {
+    grid-template-columns: 1fr;
+  }
+  .encart.quote .visu {
+    min-height: 220px;
+  }
 }
 
     /* Graphique */
