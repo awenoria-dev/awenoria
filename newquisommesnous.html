@@ -2,261 +2,570 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Qui sommes-nous – Awenoria</title>
-  <meta name="description" content="Awenoria simplifie la conformité pour renforcer l’autonomie de ceux qui la vivent.">
+  <meta name="description" content="La conformité enfin désirable : découvrez comment Awenoria transforme RGPD & accessibilité en atout business.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://awenoria.com/qui-sommes-nous.html">
-
-  <!-- Favicon + Police -->
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <base target="_blank">
 
-  <!-- Styles de la page (inchangés) -->
+  <!-- =================  CSS HAUTE-COUTURE  ================= -->
   <style>
-    :root{--blue:#0073b6;--blue-dark:#005a8e;--orange:#ff6600;--bg-top:#f7f9fc;--bg:#edf3f7;--surface:#fff;--stroke:#e9eef4;--text:#16233a;--muted:#5d6b7c;--radius:20px;--shadow-sm:0 6px 20px rgba(16,32,48,.06);--shadow-lg:0 24px 48px rgba(16,32,48,.10);--hero-overlay-rgb:0,90,142;--hero-overlay-alpha:.42;--hero-overlay-alpha-mobile:.52}
-    @media (prefers-color-scheme:dark){:root{--bg-top:#0b1e33;--bg:#081829;--surface:#0f2746;--stroke:#1d3a59;--text:#e8f1fc;--muted:#a9b8d0}}
-    *{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
-    body{font-family:Manrope,system-ui,-apple-system,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--text);line-height:1.65}
-    a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
-    .container{max-width:1160px;margin:0 auto;padding:24px 20px}
-    .section{padding:88px 0}.section.alt{background:var(--surface);position:relative}
-    .section-title{margin:0 0 12px;font-size:clamp(28px,4vw,32px);color:#0f2746;text-align:center}
-    .section-title::after{content:"";display:block;width:64px;height:4px;margin:10px auto 0;background:var(--orange);border-radius:3px;opacity:.85}
-    .lead{max-width:860px;margin:6px auto 0;text-align:center;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:18px}
-    @media(max-width:1024px){.grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:600px){.grid{grid-template-columns:1fr}}
-    .tile{position:relative;border-radius:var(--radius);background:var(--surface);border:1px solid var(--stroke);box-shadow:var(--shadow-sm);padding:22px;transition:transform .18s,box-shadow .18s;transform-style:preserve-3d}
-    .tile:hover{transform:translateY(-6px) rotateX(5deg);box-shadow:0 32px 64px rgba(16,32,48,0.12)}
-    .tile h3{margin:12px 0 6px;color:#0f2746}.muted{color:var(--muted);margin:0}
-
-    .hero--image{position:relative;padding:124px 0 110px;text-align:center;color:#fff;overflow:hidden;background:
-      radial-gradient(1100px 520px at 10% -10%,rgba(255,255,255,.16),rgba(255,255,255,0) 60%),
-      radial-gradient(1000px 600px at 120% 10%,rgba(255,255,255,.10),rgba(255,255,255,0) 60%),
-      linear-gradient(180deg,rgba(var(--hero-overlay-rgb),var(--hero-overlay-alpha)) 0%,rgba(var(--hero-overlay-rgb),var(--hero-overlay-alpha)) 100%),
-      linear-gradient(180deg,#a8cbe0 0%,#95c1dc 40%,#88bad3 100%)}
-    @media(max-width:980px){
-      .hero--image{background:
-        radial-gradient(900px 420px at 0% -10%,rgba(255,255,255,.18),rgba(255,255,255,0) 60%),
-        linear-gradient(180deg,rgba(var(--hero-overlay-rgb),var(--hero-overlay-alpha-mobile)) 0%,rgba(var(--hero-overlay-rgb),var(--hero-overlay-alpha-mobile)) 100%),
-        linear-gradient(180deg,#a8cbe0 0%,#95c1dc 40%,#88bad3 100%)}
+    /* ---------- Variables (clair & sombre) ---------- */
+    :root{
+      --aw-ink:#0a0a0a;
+      --aw-blue:#0066ff;
+      --aw-copper:#ff5c00;
+      --aw-muted:#6b7280;
+      --aw-panel:#ffffff;
+      --aw-bg:#f5f7ff;
+      --aw-radius:24px;
+      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+      --transition:.6s cubic-bezier(.22,1,.36,1);
     }
-    .hero--image::before,.hero--image::after{content:"";position:absolute;inset:-8% -8%;z-index:1;pointer-events:none;opacity:.65;mix-blend-mode:screen;animation:awen-waves 24s ease-in-out infinite;-webkit-mask:radial-gradient(ellipse at 50% 52%,transparent 0 28%,#000 32%);mask:radial-gradient(ellipse at 50% 52%,transparent 0 28%,#000 32%);filter:blur(22px) saturate(115%)}
-    .hero--image::before{background:radial-gradient(900px 420px at -12% 10%,#B86122 0%,rgba(184,97,34,0) 60%),radial-gradient(700px 380px at 18% -6%,#D67A2E 0%,rgba(214,122,46,0) 60%),radial-gradient(900px 520px at 8% 24%,#F2B56C 0%,rgba(242,181,108,0) 65%)}
-    .hero--image::after{background:radial-gradient(950px 540px at 112% 92%,#A9D3FF 0%,rgba(169,211,255,0) 65%),radial-gradient(760px 400px at 86% 104%,#7FB2CB 0%,rgba(127,178,203,0) 62%),radial-gradient(880px 420px at 96% 82%,#6FB3D8 0%,rgba(111,179,216,0) 62%);animation-delay:-6s}
-    @keyframes awen-waves{0%{transform:translate3d(0,0,0) scale(1)}25%{transform:translate3d(3%,-2%,0) scale(1.03)}50%{transform:translate3d(-2%,2%,0) scale(1.02)}75%{transform:translate3d(4%,1%,0) scale(1.035)}100%{transform:translate3d(0,0,0) scale(1)}}
-    .hero--image>.container{position:relative;z-index:2}
-    h1{margin:0;font-size:clamp(38px,5vw,50px);line-height:1.06;color:#fff}
-    .lead{color:#eaf3fa;max-width:980px;margin:8px auto 0;font-weight:600}
-    .gradient-text{background:linear-gradient(90deg,var(--orange),#ffb366);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 3s infinite linear}
-    @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
-    .btn.mega{font-size:18px;padding:16px 24px;border-radius:30px;box-shadow:0 0 0 0 rgba(255,102,0,0.7);animation:pulse 1.5s infinite}
-    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,102,0,0.7)}70%{box-shadow:0 0 0 12px rgba(255,102,0,0)}100%{box-shadow:0 0 0 0 rgba(255,102,0,0)}}
-    .testimonials{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin:24px 0}
-    .testimonials blockquote{max-width:280px;font-style:normal;text-align:center;background:rgba(255,255,255,.08);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius);padding:20px;color:#fff}
-    .testimonials span{color:var(--orange);font-size:20px}
-    .testimonials cite{display:block;margin-top:6px;font-size:14px;color:var(--muted)}
-    .stats{display:flex;justify-content:center;gap:48px;font-size:20px;font-weight:800;color:var(--blue-dark)}
-    .timeline{display:flex;justify-content:space-between;position:relative;margin-top:40px}
-    .timeline::before{content:"";position:absolute;top:20px;left:10%;right:10%;height:2px;background:var(--stroke)}
-    .step{flex:1;text-align:center;position:relative}
-    .step .dot{width:40px;height:40px;border-radius:50%;background:var(--stroke);margin:0 auto 12px;display:grid;place-items:center;transition:.3s}
-    .step.done .dot{background:var(--blue)}.step.active .dot{background:var(--orange);transform:scale(1.2)}
-    .team{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-    @media(max-width:1024px){.team{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:640px){.team{grid-template-columns:1fr}}
-    .member{position:relative;border:1px solid var(--stroke);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow-sm);padding:22px;text-align:center;transition:.18s}
-    .member:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:#d5e7f4}
-    .avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 10px;background:#f3f8fc;border:1px solid var(--stroke);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
-    .member h4{margin:8px 0 4px;color:#0f2746}.member .role{color:var(--muted);font-size:14px;margin:0}
-    .actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:28px}
-    .btn{appearance:none;border:none;cursor:pointer;font-weight:800;font-size:16px;padding:14px 18px;border-radius:12px;color:#fff;background:var(--blue-dark);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.35);transition:.18s;position:relative;overflow:hidden}
-    .btn:hover{background:var(--orange);filter:brightness(1.02)}.btn:active{transform:translateY(1px)}
-    .btn.ghost{background:transparent;color:var(--blue-dark);box-shadow:inset 0 0 0 2px var(--blue-dark)}
-    .btn.ghost:hover{background:var(--blue-dark);color:#fff}
-    .btn.mega{font-size:18px;padding:16px 24px;border-radius:30px}
-    .sticky-cta{position:fixed;bottom:20px;right:20px;z-index:70;display:none;font-size:15px;padding:12px 20px;border-radius:24px}
-    @media(max-width:768px){.sticky-cta{display:inline-block}}
-    footer.container{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
-    .reveal{opacity:0;transform:translateY(8px);transition:.34s}.reveal.is-visible{opacity:1;transform:none}
-    .menu-link:focus-visible,.btn:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+    @media (prefers-color-scheme:dark){
+      :root{
+        --aw-ink:#f5f7ff;
+        --aw-blue:#3d8bff;
+        --aw-copper:#ff8a3d;
+        --aw-muted:#a1a9c0;
+        --aw-panel:#0b0f1a;
+        --aw-bg:#0a0d14;
+        --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+      }
+    }
+
+    /* ---------- Reset & base ---------- */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;
+      line-height:1.7;
+      color:var(--aw-ink);
+      background:var(--aw-bg);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+
+    /* ---------- Hero immersif ---------- */
+    .hero{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#fff;
+      overflow:hidden;
+      background:
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+    }
+    .hero canvas{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      z-index:0;
+    }
+    .hero .content{
+      position:relative;
+      z-index:2;
+      max-width:800px;
+      padding:0 20px;
+      animation:fadeInUp 1s both;
+    }
+    .hero h1{
+      font-size:clamp(52px,7vw,72px);
+      font-weight:800;
+      line-height:1.05;
+      letter-spacing:-.02em;
+    }
+    .hero .lead{
+      font-size:1.4rem;
+      font-weight:500;
+      margin:24px auto 0;
+      color:#e8f0ff;
+    }
+    .hero .actions{
+      margin-top:48px;
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    /* ---------- Boutons ---------- */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      font-size:17px;
+      padding:16px 32px;
+      border-radius:999px;
+      text-decoration:none;
+      transition:all var(--transition);
+      border:1px solid transparent;
+      box-shadow:0 8px 24px rgba(0,0,0,.10);
+    }
+    .btn.primary{
+      background:var(--aw-copper);
+      color:#fff;
+      box-shadow:0 10px 30px rgba(255,138,61,.30);
+    }
+    .btn.primary:hover{
+      transform:translateY(-3px);
+      box-shadow:0 14px 40px rgba(255,138,61,.40);
+    }
+    .btn.ghost{
+      background:transparent;
+      color:#fff;
+      border:2px solid rgba(255,255,255,.45);
+    }
+    .btn.ghost:hover{
+      background:rgba(255,255,255,.15);
+    }
+
+    /* ---------- Sections ---------- */
+    .section{
+      max-width:1200px;
+      margin:0 auto;
+      padding:100px 20px;
+    }
+    .section.alt{background:var(--aw-bg);}
+    .section-title{
+      font-size:clamp(36px,5vw,48px);
+      font-weight:800;
+      text-align:center;
+      margin-bottom:16px;
+      color:var(--aw-ink);
+    }
+    .subtitle-center{
+      font-size:1.2rem;
+      color:var(--aw-muted);
+      max-width:680px;
+      margin:0 auto 56px;
+      text-align:center;
+    }
+
+    /* ---------- Grille équipe ---------- */
+    .team{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:40px;
+    }
+    @media(max-width:1024px){.team{grid-template-columns:1fr 1fr}}
+    @media(max-width:620px){.team{grid-template-columns:1fr}}
+    .member{
+      background:var(--aw-panel);
+      border:1px solid rgba(15,23,32,.08);
+      border-radius:var(--aw-radius);
+      padding:40px 32px;
+      text-align:center;
+      transition:all var(--transition);
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .member::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:radial-gradient(600px circle at 50% 0%,rgba(255,138,61,.15),transparent 70%);
+      opacity:0;
+      transition:opacity var(--transition);
+    }
+    .member:hover::before{opacity:1}
+    .member:hover{
+      transform:translateY(-8px);
+      box-shadow:0 28px 56px rgba(15,95,154,.15);
+      border-color:var(--aw-copper);
+    }
+    .avatar{
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      margin:0 auto 20px;
+      background-size:cover;
+      background-position:center;
+      border:3px solid rgba(15,23,32,.08);
+      transition:transform var(--transition),border-color var(--transition);
+    }
+    .member:hover .avatar{
+      transform:scale(1.08);
+      border-color:var(--aw-copper);
+    }
+    .member h4{margin:12px 0 4px;font-size:20px}
+    .member .role{font-size:15px;color:var(--aw-muted)}
+
+    /* ---------- Timeline immersive ---------- */
+    .timeline-wrapper{
+      position:relative;
+      max-width:900px;
+      margin:80px auto 0;
+      padding:0 20px;
+    }
+    .timeline-line{
+      position:absolute;
+      left:20px;
+      right:20px;
+      top:32px;
+      height:4px;
+      background:rgba(15,95,154,.15);
+      border-radius:4px;
+      overflow:hidden;
+    }
+    .timeline-line::after{
+      content:'';
+      position:absolute;
+      left:0;
+      top:0;
+      height:100%;
+      width:0;
+      background:var(--aw-copper);
+      animation:drawLine 2s ease-out forwards;
+      animation-timeline:scroll();
+    }
+    .timeline-steps{
+      display:flex;
+      justify-content:space-between;
+      position:relative;
+    }
+    .step{
+      flex:1;
+      text-align:center;
+      opacity:0;
+      transform:translateY(50px);
+      transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .step.reveal.is-visible{
+      opacity:1;
+      transform:none;
+    }
+    .step:nth-child(1){transition-delay:.1s}
+    .step:nth-child(2){transition-delay:.2s}
+    .step:nth-child(3){transition-delay:.3s}
+    .step:nth-child(4){transition-delay:.4s}
+    .step .dot{
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:var(--aw-panel);
+      border:4px solid rgba(15,95,154,.15);
+      margin:0 auto 20px;
+      display:grid;
+      place-items:center;
+      position:relative;
+      z-index:2;
+      transition:border-color .4s ease;
+    }
+    .step.active .dot{
+      border-color:var(--aw-copper);
+      background:var(--aw-copper);
+      color:#fff;
+      animation:pulse 2.5s infinite;
+    }
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(255,138,61,.45);}
+      70%{box-shadow:0 0 0 16px rgba(255,138,61,0);}
+      100%{box-shadow:0 0 0 0 rgba(255,138,61,0);}
+    }
+    .step .card{
+      background:var(--aw-panel);
+      border:1px solid rgba(15,23,32,.08);
+      border-radius:var(--aw-radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+      transition:transform .4s ease;
+    }
+    .step:hover .card{
+      transform:translateY(-6px);
+    }
+    .step .card h3{margin-bottom:6px;font-size:22px}
+    .step .card p{font-size:15px;color:var(--aw-muted)}
+
+    @keyframes drawLine{to{width:100%}}
+
+    /* ---------- Témoignages ---------- */
+    .testimonials{
+      display:flex;
+      gap:40px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin:48px 0;
+    }
+    .testimonials blockquote{
+      max-width:340px;
+      background:var(--aw-panel);
+      border:1px solid rgba(15,23,32,.08);
+      border-radius:var(--aw-radius);
+      padding:32px;
+      text-align:center;
+      font-style:normal;
+      box-shadow:var(--shadow);
+      transition:transform .4s ease;
+    }
+    .testimonials blockquote:hover{transform:translateY(-6px)}
+    .testimonials span{color:var(--aw-copper);font-size:24px}
+    .testimonials cite{display:block;margin-top:12px;font-size:14px;color:var(--aw-muted)}
+
+    /* ---------- Stats ---------- */
+    .stats{
+      display:flex;
+      justify-content:center;
+      gap:64px;
+      font-size:24px;
+      font-weight:800;
+      color:var(--aw-blue);
+      flex-wrap:wrap;
+    }
+
+    /* ---------- Animations ---------- */
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+    .reveal.is-visible{opacity:1;transform:none}
   </style>
 </head>
 
-<body>
-  <!-- Mounts pour injection -->
+<body class="page-apropos">
+  <!-- Header injecté -->
   <div id="header"></div>
 
-  <!-- Contenu principal -->
-  <section class="hero--image">
-    <div class="container">
-      <h1>On rend la conformité <span class="gradient-text">excitante</span></h1>
+  <!-- =================  HERO IMMERSIF  ================= -->
+  <section class="hero">
+    <canvas id="canvas"></canvas>
+    <div class="content">
+      <h1>On rend la conformité <span style="color:var(--aw-copper)">excitante</span></h1>
       <p class="lead">(Eh oui, c’est possible) — découvrez comment nous transformons RGPD & accessibilité en atout business pour 9,90 €/mois.</p>
-      <div class="actions hero-cta">
-        <a href="index.html#resultat" class="btn mega">Je teste gratuitement</a>
+      <div class="actions">
+        <a href="index.html#resultat" class="btn primary">Je teste gratuitement</a>
         <a href="#histoire" class="btn ghost">Voir notre histoire</a>
       </div>
     </div>
   </section>
 
-  <section class="section alt social-proof">
-    <div class="container">
-      <p class="lead">Ils nous font déjà confiance</p>
-      <div class="testimonials">
-        <blockquote><span>★★★★★</span>« En 5 min j’ai eu un plan d’action clair. »<cite>– Marie, créatrice d’e-commerce</cite></blockquote>
-        <blockquote><span>★★★★★</span>« 30 € d’économie vs un cabinet. »<cite>– Julien, auto-entrepreneur</cite></blockquote>
-        <blockquote><span>★★★★★</span>« Enfin une solution qui ne stresse pas ! »<cite>– Léa, association</cite></blockquote>
-      </div>
-      <div class="stats"><div><strong>+1 200</strong> sites audités</div><div><strong>98 %</strong> satisfaction</div><div><strong>4 min</strong> moyenne de test</div></div>
-    </div>
-  </section>
-
-  <section id="mission" class="section">
-    <div class="container">
-      <h2 class="section-title">Notre mission</h2>
-      <p class="lead">Nous démocratisons la conformité pour les TPE/PME, associations et indépendants avec un pré-diagnostic <b>automatique</b>, <b>clair</b> et <b>respectueux des données</b>.</p>
-      <div class="grid">
-        <article class="tile pill reveal"><div class="tile-head"><span class="badge">Automatisé</span></div><h3>Analyse locale</h3><p class="muted">Aucune donnée sensible ne quitte l’appareil : l’essentiel est évalué côté navigateur.</p></article>
-        <article class="tile pill reveal"><div class="tile-head"><span class="badge">Pédagogique</span></div><h3>Clarté & priorités</h3><p class="muted">Scores, actions concrètes et exemples pour passer du diagnostic à la correction.</p></article>
-        <article class="tile pill reveal"><div class="tile-head"><span class="badge">Abordable</span></div><h3>Prix démocratisé</h3><p class="muted">9,90 € / mois ou 85 € / an : la conformité devient accessible à tous les budgets.</p></article>
-      </div>
-    </div>
-  </section>
-
+  <!-- =================  PREUVE SOCIALE  ================= -->
   <section class="section alt">
-    <div class="container">
-      <h2 class="section-title">Nos valeurs</h2>
-      <div class="grid">
-        <article class="tile pill reveal"><div class="tile-head"><span class="badge">Transparence</span></div><h3>Méthode ouverte</h3><p class="muted">Algorithmes documentés, limites expliquées, rapports exploitables.</p></article>
-        <article class="tile pill reveal"><div class="tile-head"><span class="badge">Confidentialité</span></div><h3>Privacy by design</h3><p class="muted">Analyse locale par défaut, export et suivi maîtrisés par l’utilisateur.</p></article>
-        <article class="tile pill reveal"><div class="tile-head"><span class="badge">Inclusion</span></div><h3>Accessibilité & diversité</h3><p class="muted">Interfaces WCAG 2.2, tarifs adaptés, supports en français clair.</p></article>
+    <h2 class="section-title">Ils nous font déjà confiance</h2>
+    <div class="testimonials">
+      <blockquote>
+        <span>★★★★★</span>
+        « En 5 min j’ai eu un plan d’action clair. »
+        <cite>– Marie, créatrice d’e-commerce</cite>
+      </blockquote>
+      <blockquote>
+        <span>★★★★★</span>
+        « 30 € d’économie vs un cabinet. »
+        <cite>– Julien, auto-entrepreneur</cite>
+      </blockquote>
+      <blockquote>
+        <span>★★★★★</span>
+        « Enfin une solution qui ne stresse pas ! »
+        <cite>– Léa, association</cite>
+      </blockquote>
+    </div>
+    <div class="stats">
+      <div><strong>+1 200</strong> sites audités</div>
+      <div><strong>98 %</strong> satisfaction</div>
+      <div><strong>4 min</strong> moyenne de test</div>
+    </div>
+  </section>
+
+  <!-- =================  MISSION  ================= -->
+  <section class="section">
+    <h2 class="section-title">Notre mission</h2>
+    <p class="subtitle-center">Nous démocratisons la conformité pour les TPE/PME, associations et indépendants avec un pré-diagnostic <strong>automatique</strong>, <strong>clair</strong> et <strong>respectueux des données</strong>.</p>
+    <div class="team" style="grid-template-columns:repeat(3,1fr);gap:24px">
+      <div class="card" style="padding:24px">
+        <h4>Automatisé</h4>
+        <p>Aucune donnée sensible ne quitte l’appareil : l’essentiel est évalué côté navigateur.</p>
+      </div>
+      <div class="card" style="padding:24px">
+        <h4>Pédagogique</h4>
+        <p>Scores, actions concrètes et exemples pour passer du diagnostic à la correction.</p>
+      </div>
+      <div class="card" style="padding:24px">
+        <h4>Abordable</h4>
+        <p>9,90 € / mois ou 85 € / an : la conformité devient accessible à tous les budgets.</p>
       </div>
     </div>
   </section>
 
-  <section id="histoire" class="section">
-    <div class="container">
-      <h2 class="section-title">Notre histoire en 4 étapes</h2>
-      <div class="timeline">
-        <div class="step done"><div class="dot"></div><h3>2023</h3><p>Prototype local</p></div>
-        <div class="step done"><div class="dot"></div><h3>2024</h3><p>Mentions & accessibilité</p></div>
-        <div class="step active"><div class="dot"></div><h3>2025</h3><p>Lancement public</p></div>
-        <div class="step"><div class="dot"></div><h3>2026</h3><p>Standard européen</p></div>
+  <!-- =================  NOTRE HISTOIRE – IMMERSIVE  ================= -->
+  <section id="histoire" class="section alt">
+    <h2 class="section-title">Notre histoire en 4 étapes</h2>
+
+    <div class="timeline-wrapper">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-steps">
+        <div class="step reveal" data-idx="1">
+          <div class="dot"></div>
+          <div class="card">
+            <h3>2023</h3>
+            <p>Prototype local</p>
+          </div>
+        </div>
+
+        <div class="step reveal" data-idx="2">
+          <div class="dot"></div>
+          <div class="card">
+            <h3>2024</h3>
+            <p>Mentions & accessibilité</p>
+          </div>
+        </div>
+
+        <div class="step reveal active" data-idx="3">
+          <div class="dot"></div>
+          <div class="card">
+            <h3>2025</h3>
+            <p>Lancement public</p>
+          </div>
+        </div>
+
+        <div class="step reveal" data-idx="4">
+          <div class="dot"></div>
+          <div class="card">
+            <h3>2026</h3>
+            <p>Standard européen</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="equipe" class="section alt">
-    <div class="container">
-      <h2 class="section-title">L’équipe</h2>
-      <p class="lead">Une équipe pluridisciplinaire (juridique, accessibilité, produit) au service d’une conformité utile et actionnable.</p>
-      <div class="team">
-        <article class="member reveal"><div class="avatar" style="background:url('./images/team-1.webp') center/cover"></div><h4>Alexandre M.</h4><p class="role">Fondateur · Produit & conformité</p></article>
-        <article class="member reveal"><div class="avatar" style="background:url('./images/team-2.webp') center/cover"></div><h4>Camille R.</h4><p class="role">Juriste RGPD / DPO</p></article>
-        <article class="member reveal"><div class="avatar" style="background:url('./images/team-3.webp') center/cover"></div><h4>Yann G.</h4><p class="role">Expert accessibilité RGAA/WCAG</p></article>
+  <!-- =================  ÉQUIPE  ================= -->
+  <section id="equipe" class="section">
+    <h2 class="section-title">L’équipe</h2>
+    <p class="subtitle-center">Une équipe pluridisciplinaire (juridique, accessibilité, produit) au service d’une conformité utile et actionnable.</p>
+    <div class="team">
+      <div class="member reveal">
+        <div class="avatar" style="background:url('images/team-1.webp') center/cover"></div>
+        <h4>Alexandre M.</h4>
+        <p class="role">Fondateur & conformité</p>
+      </div>
+      <div class="member reveal">
+        <div class="avatar" style="background:url('images/team-2.webp') center/cover"></div>
+        <h4>Camille R.</h4>
+        <p class="role">Juriste RGPD / DPO</p>
+      </div>
+      <div class="member reveal">
+        <div class="avatar" style="background:url('images/team-3.webp') center/cover"></div>
+        <h4>Yann G.</h4>
+        <p class="role">Expert accessibilité RGAA/WCAG</p>
       </div>
     </div>
   </section>
 
-  <section class="section merci">
-    <div class="container text-center">
-      <img src="images/pj4-merci.png" alt="Merci">
-      <p class="muted">pour votre confiance.</p>
-      <a href="index.html#resultat" class="btn ghost">Lancer l’audit gratuit</a>
-    </div>
+  <!-- =================  MERCI  ================= -->
+  <section class="section alt" style="text-align:center">
+    <img src="images/pj4-merci.png" alt="Merci" style="max-height:120px;margin:0 auto 12px">
+    <p class="subtitle-center">pour votre confiance.</p>
+    <a href="index.html#resultat" class="btn primary">Lancer l’audit gratuit</a>
   </section>
 
-  <a href="index.html#resultat" class="btn sticky-cta">Audit gratuit</a>
-
-  <!-- Mount Footer -->
+  <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- Données structurées -->
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Organization","name":"Awenoria","url":"https://awenoria.com","logo":"https://awenoria.com/images/logo.png","description":"Awenoria simplifie la conformité pour renforcer l’autonomie de ceux qui la vivent.","sameAs":["https://twitter.com/awenoria","https://linkedin.com/company/awenoria"]}
+  <!-- =================  JS  ================= -->
+  <script>
+    // Animations d'apparition
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
+    }, { threshold: 0.2 });
+    reveals.forEach(el => io.observe(el));
+
+    // Particules hero
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = innerWidth;
+    let h = canvas.height = innerHeight;
+    const particles = [];
+    const opts = { count: 60, speed: .3, radius: 2, distance: 120, color: 'rgba(255,255,255,.25)' };
+    window.addEventListener('resize', () => { w = canvas.width = innerWidth; h = canvas.height = innerHeight; });
+    class Particle {
+      constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
+    }
+    function init(){ for(let i=0;i<opts.count;i++) particles.push(new Particle()); }
+    function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); }
+    init(); animate();
   </script>
 
-  <!-- Effet "reveal" -->
+  <!-- Loader header/footer + nav (priorité racine, fallback partials/) -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.reveal').forEach(el => {
-        const io = new IntersectionObserver(es => es.forEach(e => {
-          if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
-        }), { threshold:.12 });
-        io.observe(el);
-      });
-    });
-  </script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
 
-  <!-- Loader header/footer + nav (racine ou /partials, compatible GitHub Pages) -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const headMount = document.getElementById("header");
-      const footMount = document.getElementById("footer");
-      if (!headMount && !footMount) return;
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
+    }
 
-      const isGh = /github\.io$/.test(location.hostname);
-      let base = "/";
-      if (isGh) {
-        const parts = location.pathname.split("/").filter(Boolean);
-        base = parts.length ? `/${parts[0]}/` : "/";
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean ];
+    };
+
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
       }
+      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+    }
 
-      const candidates = (p) => {
-        const clean = p.replace(/^\//, "");
-        return [ base + clean, "./" + clean, "../" + clean ];
-      };
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return; // //cdn...
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
+    }
 
-      async function fetchAny(ofPaths) {
-        const queue = ofPaths.flatMap(candidates);
-        for (const u of queue) {
-          try {
-            const r = await fetch(u, { cache: "no-cache" });
-            if (r.ok) return r.text();
-          } catch(_) {}
-        }
-        throw new Error("Aucun chemin valide parmi: " + ofPaths.join(", "));
-      }
+    // HEADER : priorité racine, fallback partials/
+    if (headMount) {
+      fetchAny(["header.html", "partials/header.html"])
+        .then(html => {
+          headMount.innerHTML = html;
+          fixRootUrls(headMount);
+          return fetchAny(["assets/nav.js", "nav.js"]);
+        })
+        .then(code => {
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+          console.log("[awenoria] header + nav chargés");
+        })
+        .catch(err => {
+          console.error("Header load error:", err);
+          headMount.innerHTML = "<!-- Header introuvable -->";
+        });
+    }
 
-      function fixRootUrls(container) {
-        container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
-          .forEach(el => {
-            const attr = el.hasAttribute("href") ? "href" : "src";
-            const val = el.getAttribute(attr);
-            if (/^\/\//.test(val)) return; // évite //cdn…
-            el.setAttribute(attr, base + val.replace(/^\//, ""));
-          });
-      }
-
-      if (headMount) {
-        fetchAny(["partials/header.html", "header.html"])
-          .then(html => {
-            headMount.innerHTML = html;
-            fixRootUrls(headMount);
-            return fetchAny(["assets/nav.js", "nav.js"]);
-          })
-          .then(code => {
-            const s = document.createElement("script");
-            if (/\b(import|export)\b/.test(code)) s.type = "module";
-            s.textContent = code;
-            document.body.appendChild(s);
-            console.log("[awenoria] header + nav chargés");
-          })
-          .catch(err => {
-            console.error("Header load error:", err);
-            headMount.innerHTML = "<!-- Header introuvable -->";
-          });
-      }
-
-      if (footMount) {
-        fetchAny(["partials/footer.html", "footer.html"])
-          .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
-          .catch(err => {
-            console.error("Footer load error:", err);
-            footMount.innerHTML = "<!-- Footer introuvable -->";
-          });
-      }
-    });
+    // FOOTER : priorité racine, fallback partials/
+    if (footMount) {
+      fetchAny(["footer.html", "partials/footer.html"])
+        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+        .catch(err => {
+          console.error("Footer load error:", err);
+          footMount.innerHTML = "<!-- Footer introuvable -->";
+        });
+    }
+  });
   </script>
 </body>
 </html>
