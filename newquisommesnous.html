@@ -7,8 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://awenoria.com/qui-sommes-nous.html">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
+
+  <!-- Polices -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <base target="_blank">
+
+  <!-- CSS globale (styles header/footer + base site) -->
+  <link rel="stylesheet" href="assets/awenoria.css">
 
   <!-- =================  CSS HAUTE-COUTURE  ================= -->
   <style>
@@ -541,7 +545,7 @@
         .then(html => {
           headMount.innerHTML = html;
           fixRootUrls(headMount);
-          return fetchAny(["assets/nav.js", "nav.js"]);
+          return fetchAny(["assets/nav.js", "nav.js"]); // nav dans assets/ ou à la racine
         })
         .then(code => {
           const s = document.createElement("script");
