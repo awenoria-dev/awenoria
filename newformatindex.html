@@ -1,259 +1,37 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Awenoria – site complet & esthétique</title>
-  <meta name="description" content="Conformité RGPD & IA rendue simple, humaine et accessible."/>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet">
-  <style>
-    /* ===== DESIGN ORIGINAL (copié depuis ton index.html) ===== */
-    :root{
-      --font-ui:"Manrope",system-ui;
-      --text:#0f5f9a;
-      --copper:#ff8a3d;
-      --glass:rgba(255,255,255,.86);
-      --shadow:0 12px 28px rgba(0,0,0,.08);
-      --caret:.6s;
-    }
-    body{margin:0;font-family:var(--font-ui);background:radial-gradient(1400px 700px at 10% -20%, #eef6ff 0%, rgba(238,246,255,0.6) 45%, transparent 60%), linear-gradient(180deg,#ffffff 0%, #f6f9fc 100%);color:var(--text);-webkit-font-smoothing:antialiased;}
-    .glass{background:var(--glass);backdrop-filter:blur(10px);border:1px solid rgba(15,23,32,.08);border-radius:22px;padding:22px;box-shadow:var(--shadow);}
-    .btn-primary{background:linear-gradient(90deg,var(--copper),#ff9a56);color:#fff;border-radius:999px;padding:12px 20px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .18s ease;}
-    .btn-primary:hover{filter:saturate(1.05) brightness(1.03);transform:translateY(-1px);}
-    .section{max-width:1200px;margin:42px auto;padding:0 20px;}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-    @media(max-width:1024px){.grid-3{grid-template-columns:1fr 1fr;}}
-    @media(max-width:620px){.grid-3{grid-template-columns:1fr;}}
-    .title-center{margin:6px 0 16px;text-align:center;font-size:clamp(26px,4vw,40px);font-weight:800;}
-    .subtitle-center{max-width:860px;margin:0 auto 18px;text-align:center;color:#4a6176;}
-    .underline{width:80px;height:4px;border-radius:999px;background:var(--copper);margin:10px auto 26px;opacity:.90;}
-    .type-on-view{position:relative;display:inline-block;}
-    .type-on-view::after{content:"";display:inline-block;width:2px;height:1em;background:currentColor;margin-left:2px;animation:caret-blink var(--caret) steps(1,end) infinite;vertical-align:-0.12em;}
-    @keyframes caret-blink{50%{opacity:0}}
-    /* ===== MODULES ===== */
-    .module-section{display:none; animation:fadeIn .4s ease;}
-    .module-section.active{display:block;}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-  </style>
-</head>
-<body>
-
-<!-- NAVBAR (design original) -->
-<header class="navbar">
-  <div class="nav-wrap">
-    <a class="brand" href="#home">Awenoria</a>
-    <nav class="nav-main">
-      <a href="#home">Accueil</a>
-      <a href="#qui-sommes-nous">Qui sommes-nous ?</a>
-      <a href="#catalogue">Catalogue</a>
-      <a href="#scanner">Scanner</a>
-      <a href="#checklist">Checklist</a>
-      <a href="#recommandations">Recommandations</a>
-      <a href="#rapports">Rapports</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<!-- HOME (design original) -->
-<section id="home" class="section page-section active">
-  <div class="hero-intro">
-    <div class="wrap">
-      <div>
-        <h1 class="type-on-view" data-text="La conformité RGPD & IA rendue simple, humaine et accessible."></h1>
-        <p class="lead">Awenoria vous accompagne vers la conformité numérique grâce à des outils d’audit automatisés et un accompagnement humain personnalisé.</p>
-        <div class="grid-3" style="margin-top:18px">
-          <div class="glass card"><span class="badge">Audit gratuit</span><h3>Scanner RGPD</h3><p>Analyse instantanée de votre site.</p><a class="btn-primary" href="#scanner">Tester</a></div>
-          <div class="glass card"><span class="badge">Checklist</span><h3>Checklist RGPD</h3><p>Interactive & sauvegardée localement.</p><a class="btn-primary" href="#checklist">Ouvrir</a></div>
-          <div class="glass card"><span class="badge">Recommandations</span><h3>Actions priorisées</h3><p>Par niveau de risque.</p><a class="btn-primary" href="#recommandations">Voir</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- QUI SOMMES-NOUS (design original) -->
-<section id="qui-sommes-nous" class="section page-section">
-  <h2 class="title-center">Qui sommes-nous ?</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">
-    Rendre la conformité accessible, humaine et transparente. Chez <strong class="text-orange-500">Awenoria</strong>, la conformité ne doit pas être un fardeau. Nous aidons les TPE, PME, associations et start-ups à maîtriser leurs obligations — <span class="bg-orange-500 text-white px-2 rounded">sans jargon</span>, <span class="bg-blue-500 text-white px-2 rounded">sans dépendance</span> et <span class="bg-green-500 text-white px-2 rounded">à un prix démocratisé</span>.
-  </p>
-  <div class="grid-3" style="margin-top:18px">
-    <div class="glass card text-center"><div class="text-3xl font-bold text-orange-500">500+</div><p class="text-sm text-gray-600">Entreprises accompagnées</p></div>
-    <div class="glass card text-center"><div class="text-3xl font-bold text-green-500">95 %</div><p class="text-sm text-gray-600">Taux de satisfaction</p></div>
-    <div class="glass card text-center"><div class="text-3xl font-bold text-blue-500">24 h</div><p class="text-sm text-gray-600">Réponse sous 24h</p></div>
-  </div>
-
-  <!-- Historique -->
-  <h3 class="text-xl font-bold mt-12 mb-6 text-center">Notre histoire</h3>
-  <div class="grid-3">
-    <div class="glass card"><h4>2022</h4><p>Idée : conformité simple & locale.</p></div>
-    <div class="glass card"><h4>2023</h4><p>Prototype d’audit côté navigateur.</p></div>
-    <div class="glass card"><h4>2024</h4><p>Volets Mentions légales & Accessibilité.</p></div>
-    <div class="glass card"><h4>2025</h4><p>Lancement public & packs démocratisés.</p></div>
-  </div>
-
-  <!-- Valeurs -->
-  <h3 class="text-xl font-bold mt-12 mb-6 text-center">Nos valeurs</h3>
-  <div class="grid-3">
-    <div class="glass card"><h4>Confiance</h4><p>Livrables clairs, méthodes publiées, engagements tenus.</p></div>
-    <div class="glass card"><h4>Qualité</h4><p>Diagnostic priorisé et actionnable, amélioration continue.</p></div>
-    <div class="glass card"><h4>Engagement</h4><p>Respect de la vie privée par design et par défaut.</p></div>
-  </div>
-</section>
-
-<!-- CATALOGUE (design original) -->
-<section id="catalogue" class="section page-section">
-  <h2 class="title-center">Catalogue des services & formations</h2>
-  <div class="underline" aria-hidden="true"></div>
-  <p class="subtitle-center">Parcourez nos services et nos formations : thématiques, publics, formats & modalités. Présentiel / distanciel, supports et attestation inclus.</p>
-
-  <!-- Services -->
-  <h3 class="text-xl font-bold mt-12 mb-6">Services</h3>
-  <div class="grid-3">
-    <div class="glass card"><h4>Diagnostic & feuille de route</h4><p>État des lieux rapide, priorisation, plan d'action.</p><a class="btn-primary" href="#contact">Demander</a></div>
-    <div class="glass card"><h4>RGPD & conformité data</h4><p>Registre, AIPD, régularisation, accompagnement DPO.</p><a class="btn-primary" href="#contact">Demander</a></div>
-    <div class="glass card"><h4>Cybersécurité de base</h4><p>Sensibilisation, premiers contrôles, bonnes pratiques.</p><a class="btn-primary" href="#contact">Demander</a></div>
-    <div class="glass card"><h4>Mentions légales & politiques</h4><p>Pages légales, politique de confidentialité, e-commerce.</p><a class="btn-primary" href="#contact">Demander</a></div>
-    <div class="glass card"><h4>Cookies & CMP</h4><p>Bandeau conforme, paramétrage CMP, exemptions.</p><a class="btn-primary" href="#contact">Demander</a></div>
-    <div class="glass card"><h4>Accessibilité (RGAA / EN 301 549)</h4><p>Audit rapide, priorisation, obligations de mise en accessibilité.</p><a class="btn-primary" href="#contact">Demander</a></div>
-  </div>
-
-  <!-- Formations -->
-  <h3 class="text-xl font-bold mt-12 mb-6">Formations</h3>
-  <div class="grid-3">
-    <div class="glass card"><h4>RGPD – essentiels, registre, AIPD</h4><p>Mettre en place la conformité : bases, registre de traitements, rôles, AIPD.</p><a class="btn-primary" href="#contact">Demander le programme</a></div>
-    <div class="glass card"><h4>IA Act – obligations & documentation</h4><p>Comprendre le cadre européen, classer les risques, préparer la documentation.</p><a class="btn-primary" href="#contact">Demander le programme</a></div>
-    <div class="glass card"><h4>Cookies & CMP</h4><p>Conformité bandeau, paramétrage CMP, exemptions, mesure d'audience.</p><a class="btn-primary" href="#contact">Demander le programme</a></div>
-    <div class="glass card"><h4>Mentions légales & conformité web</h4><p>Pages légales, politiques, parcours utilisateur, e-commerce.</p><a class="btn-primary" href="#contact">Demander le programme</a></div>
-    <div class="glass card"><h4>Accessibilité (RGAA / EN 301 549)</h4><p>Audit rapide, priorisation, obligations de mise en accessibilité.</p><a class="btn-primary" href="#contact">Demander le programme</a></div>
-    <div class="glass card"><h4>Cybersécurité de base</h4><p>Bonnes pratiques, sensibilisation équipes, premiers contrôles.</p><a class="btn-primary" href="#contact">Demander le programme</a></div>
-  </div>
-
-  <div class="text-center mt-12">
-    <a class="btn-primary" href="#contact">Demander un programme détaillé</a>
-  </div>
-</section>
-
-<!-- SCANNER -->
-<section id="scanner" class="section page-section">
-  <h2 class="title-center">Scanner RGPD</h2>
-  <div id="scanner-module"></div>
-</section>
-
-<!-- CHECKLIST -->
-<section id="checklist" class="section page-section">
-  <h2 class="title-center">Checklist RGPD</h2>
-  <div id="checklist-module"></div>
-</section>
-
-<!-- RECOMMANDATIONS -->
-<section id="recommandations" class="section page-section">
-  <h2 class="title-center">Recommandations</h2>
-  <div id="recommandations-module"></div>
-</section>
-
-<!-- RAPPORTS -->
-<section id="rapports" class="section page-section">
-  <h2 class="title-center">Rapports & Analyses</h2>
-  <div id="rapports-module"></div>
-</section>
-
-<!-- CONTACT (design original) -->
-<section id="contact" class="section">
-  <h2 class="title-center">Parlons de votre conformité</h2>
-  <p class="subtitle-center type-on-view" data-text="Une question, un devis, un partenariat ? Votre message nous parvient via un envoi sécurisé."></p>
-  <div class="glass card">
-    <form action="https://awenoria.bmavcontact.workers.dev/contact" method="POST">
-      <input type="email" name="email" placeholder="votre@email.fr" required>
-      <textarea name="message" placeholder="Votre message..." required></textarea>
-      <button class="btn-primary" type="submit">Envoyer</button>
-    </form>
-  </div>
-</section>
-
-<!-- FOOTER (design original) -->
-<footer class="cc-footer">
-  <div class="cc-container">
-    <div class="cc-grid">
-      <div class="cc-col"><h4>Plan du site</h4><ul><li><a href="#home">Accueil</a></li><li><a href="#qui-sommes-nous">Qui sommes-nous ?</a></li><li><a href="#catalogue">Catalogue</a></li><li><a href="#scanner">Scanner</a></li><li><a href="#checklist">Checklist</a></li></ul></div>
-      <div class="cc-col"><h4>Légal</h4><ul><li><a href="#mentions">Mentions légales</a></li><li><a href="#confidentialite">Confidentialité</a></li></ul></div>
-    </div>
-    <div class="cc-bottom"><small>© 2025 Awenoria. Tous droits réservés.</small></div>
-  </div>
-</footer>
-
-<!-- ===== MODULES JS (injectés dans le design) ===== -->
-<script>
-  // Injection des modules
-  const modules = {
-    scanner: `
-      <div class="glass card">
-        <input type="url" id="url" placeholder="https://votresite.fr" class="w-full px-4 py-2 border rounded-lg mb-4">
-        <button onclick="runScan()" class="btn-primary w-full">Analyser</button>
-        <div id="scanres" class="mt-4 hidden"><div class="glass p-4 rounded-lg text-green-700">✅ Scan simulé : 78 % conforme</div></div>
-      </div>
-    `,
-    checklist: `
-      <div class="glass card">
-        <div class="space-y-3">
-          <label class="flex items-center gap-3"><input type="checkbox" onchange="saveCk()" class="mr-2"> Bannière de consentement visible</label>
-          <label class="flex items-center gap-3"><input type="checkbox" onchange="saveCk()" class="mr-2"> Boutons Accepter/Refuser visibles</label>
-          <label class="flex items-center gap-3"><input type="checkbox" onchange="saveCk()" class="mr-2"> Pas de cookies avant consentement</label>
-        </div>
-        <p class="text-sm text-gray-600 mt-4">Progression sauvegardée localement.</p>
-      </div>
-    `,
-    recommandations: `
-      <div class="glass card">
-        <div class="space-y-4">
-          <div class="border-l-4 border-red-500 glass p-4 rounded"><h4 class="font-semibold text-red-700">Bannière de consentement manquante</h4><p class="text-sm text-gray-600">Ajoutez une bannière claire et des boutons équivalents.</p></div>
-          <div class="border-l-4 border-amber-500 glass p-4 rounded"><h4 class="font-semibold text-amber-700">Politique de confidentialité incomplète</h4><p class="text-sm text-gray-600">Indiquez les finalités et durées de conservation.</p></div>
-        </div>
-      </div>
-    `,
-    rapports: `
-      <div class="glass card">
-        <div class="glass p-4 rounded-lg mb-4">Score moyen : <span class="font-bold text-green-600">78 %</span></div>
-        <button class="btn-primary w-full" onclick="alert('Export PDF simulé')">Exporter en PDF</button>
-      </div>
-    `
+/* ----- dropdown desktop ----- */
+document.querySelectorAll('.dropdown').forEach(dd=>{
+  const btn=dd.querySelector('.dropdown-toggle');
+  const panel=dd.querySelector('.mega');
+  const open=()=>{
+    document.querySelectorAll('.mega').forEach(p=>p.classList.remove('open'));
+    panel.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
   };
+  const close=()=>{
+    panel.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+  };
+  btn.addEventListener('click',e=>{e.stopPropagation();panel.classList.contains('open')?close():open()});
+  dd.addEventListener('mouseenter',open);
+  dd.addEventListener('mouseleave',close);
+});
+document.addEventListener('click',()=>document.querySelectorAll('.mega').forEach(p=>p.classList.remove('open')));
 
-  function loadModule(name) {
-    // Cache toutes les sections
-    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-    // Affiche la section demandée
-    const section = document.getElementById(name);
-    const container = section.querySelector('div');
-    container.innerHTML = modules[name];
-    section.classList.add('active');
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+/* ----- mobile menu ----- */
+const btn=document.getElementById('mobile-menu');
+const nav=document.getElementById('mobile-nav');
+const svg=document.getElementById('hamburger-icon');
+let open=false;
+btn.addEventListener('click',()=>{
+  open=!open;
+  nav.classList.toggle('hidden');
+  svg.setAttribute('d',open?'M6 18L18 6M6 6l12 12':'M4 6h16M4 12h16M4 18h16');
+});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.add('hidden')));
 
-  function runScan() {
-    const url = document.getElementById('url').value;
-    if (!url) return alert('Entrez une URL');
-    document.getElementById('scanres').classList.remove('hidden');
-  }
-
-  function saveCk() {
-    const checks = Array.from(document.querySelectorAll('#checklist-module input')).map(cb => ({ checked: cb.checked }));
-    localStorage.setItem('awenoria_ck', JSON.stringify(checks));
-  }
-
-  function loadCk() {
-    const saved = JSON.parse(localStorage.getItem('awenoria_ck') || '[]');
-    document.querySelectorAll('#checklist-module input').forEach((cb, i) => cb.checked = saved[i]?.checked || false);
-  }
-
-  // Auto-load checklist if accessed via anchor
-  window.addEventListener('hashchange', () => {
-    const hash = location.hash.slice(1);
-    if (modules[hash]) loadModule(hash);
-  });
-</script>
-
-</body>
-</html>
+/* ----- smooth scroll ----- */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+}));
