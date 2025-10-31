@@ -67,63 +67,23 @@
         radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
         linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
     }
-    .hero canvas{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      z-index:0;
-    }
+    .hero canvas{ position:absolute; inset:0; width:100%; height:100%; z-index:0; }
     .hero .content{
-      position:relative;
-      z-index:2; /* au-dessus du canvas + formes */
-      max-width:800px;
-      padding:0 20px;
-      animation:fadeInUp 1s both;
+      position:relative; z-index:2; max-width:800px; padding:0 20px; animation:fadeInUp 1s both;
     }
-    .hero h1{
-      font-size:clamp(52px,7vw,72px);
-      font-weight:800;
-      line-height:1.05;
-      letter-spacing:-.02em;
-    }
-    .hero .lead{
-      font-size:1.4rem;
-      font-weight:500;
-      margin:24px auto 0;
-      color:#e8f0ff;
-    }
-    .hero .actions{
-      margin-top:48px;
-      display:flex;
-      justify-content:center;
-      gap:20px;
-      flex-wrap:wrap;
-    }
+    .hero h1{ font-size:clamp(52px,7vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em; }
+    .hero .lead{ font-size:1.4rem; font-weight:500; margin:24px auto 0; color:#e8f0ff; }
+    .hero .actions{ margin-top:48px; display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
 
     /* ---------- Formes géométriques animées (overlay) ---------- */
-    .hero-geo{
-      position:absolute; inset:0; pointer-events:none; z-index:1; /* au-dessus du canvas, sous le texte */
-      overflow:hidden;
-    }
-    .hero-geo .g{
-      position:absolute;
-      width:64px; height:64px;
-      opacity:.18;
-      filter:blur(.2px);
-      animation:geoFloat var(--dur,18s) var(--easing,cubic-bezier(.22,1,.36,1)) infinite;
-      will-change: transform, opacity;
-    }
+    .hero-geo{ position:absolute; inset:0; pointer-events:none; z-index:1; overflow:hidden; }
+    .hero-geo .g{ position:absolute; width:64px; height:64px; opacity:.18; filter:blur(.2px);
+      animation:geoFloat var(--dur,18s) cubic-bezier(.22,1,.36,1) infinite; will-change:transform,opacity; }
     .hero-geo .circle{ border-radius:50%; border:3px solid rgba(255,255,255,.65); }
     .hero-geo .square{ border:3px solid rgba(255,255,255,.5); border-radius:14px; }
-    .hero-geo .triangle{
-      --s:64px; width:var(--s); height:var(--s);
-      clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
-      box-shadow:inset 0 0 0 3px rgba(255,255,255,.55);
-      border-radius:8px;
-      background:transparent;
-    }
-    .hero-geo .diamond{ border:3px solid rgba(255,255,255,.55); transform:rotate(45deg); }
+    .hero-geo .triangle{ --s:64px; width:var(--s); height:var(--s); clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
+      box-shadow:inset 0 0 0 3px rgba(255,255,255,.55); border-radius:8px; background:transparent; }
+    .hero-geo .diamond{ border:3px solid rgba(255,255,255,.55); transform:rotate(45deg); animation-name:geoFloatDiamond; }
 
     .hero-geo .g:nth-child(1){ left:6%;  top:12%;  --dur:22s; --scale:.9 }
     .hero-geo .g:nth-child(2){ left:78%; top:18%;  --dur:26s; --scale:1.1 }
@@ -135,43 +95,26 @@
     .hero-geo .g:nth-child(8){ left:70%; top:44%;  --dur:27s; --scale:.9 }
 
     @keyframes geoFloat{
-      0%   { transform: translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.12 }
-      25%  { transform: translate3d(20px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.22 }
-      50%  { transform: translate3d(-10px,-60px,0) scale(var(--scale,1)) rotate(12deg); opacity:.2 }
-      75%  { transform: translate3d(-30px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.24 }
-      100% { transform: translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.18 }
+      0%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.12}
+      25%{transform:translate3d(20px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.22}
+      50%{transform:translate3d(-10px,-60px,0) scale(var(--scale,1)) rotate(12deg); opacity:.2}
+      75%{transform:translate3d(-30px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.24}
+      100%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.18}
     }
-    .hero-geo .diamond{ animation-name: geoFloatDiamond; }
     @keyframes geoFloatDiamond{
-      0%   { transform: rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.14 }
-      25%  { transform: rotate(55deg) translate3d(18px,-30px,0) scale(var(--scale,1)); opacity:.22 }
-      50%  { transform: rotate(65deg) translate3d(-12px,-60px,0) scale(var(--scale,1)); opacity:.2 }
-      75%  { transform: rotate(55deg) translate3d(-28px,-30px,0) scale(var(--scale,1)); opacity:.24 }
-      100% { transform: rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.18 }
+      0%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.14}
+      25%{transform:rotate(55deg) translate3d(18px,-30px,0) scale(var(--scale,1)); opacity:.22}
+      50%{transform:rotate(65deg) translate3d(-12px,-60px,0) scale(var(--scale,1)); opacity:.2}
+      75%{transform:rotate(55deg) translate3d(-28px,-30px,0) scale(var(--scale,1)); opacity:.24}
+      100%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.18}
     }
-    @media (prefers-reduced-motion: reduce){
-      .hero-geo .g{ animation:none; opacity:.15 }
-    }
+    @media (prefers-reduced-motion: reduce){ .hero-geo .g{ animation:none; opacity:.15 } }
 
     /* ---------- Boutons ---------- */
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:800;
-      font-size:17px;
-      padding:16px 32px;
-      border-radius:999px;
-      text-decoration:none;
-      transition:all var(--transition);
-      border:1px solid transparent;
-      box-shadow:0 8px 24px rgba(0,0,0,.10);
-    }
-    .btn.primary{
-      background:var(--aw-copper);
-      color:#fff;
-      box-shadow:0 10px 30px rgba(255,138,61,.30);
-    }
+    .btn{ display:inline-flex; align-items:center; justify-content:center; font-weight:800; font-size:17px;
+      padding:16px 32px; border-radius:999px; text-decoration:none; transition:all var(--transition);
+      border:1px solid transparent; box-shadow:0 8px 24px rgba(0,0,0,.10); }
+    .btn.primary{ background:var(--aw-copper); color:#fff; box-shadow:0 10px 30px rgba(255,138,61,.30); }
     .btn.primary:hover{ transform:translateY(-3px); box-shadow:0 14px 40px rgba(255,138,61,.40); }
     .btn.ghost{ background:transparent; color:#fff; border:2px solid rgba(255,255,255,.45); }
     .btn.ghost:hover{ background:rgba(255,255,255,.15); }
@@ -187,33 +130,16 @@
     @media(max-width:1024px){ .team{ grid-template-columns:1fr 1fr } }
     @media(max-width:620px){ .team{ grid-template-columns:1fr } }
     .member{
-      background:var(--aw-panel);
-      border:1px solid rgba(15,23,32,.08);
-      border-radius:var(--aw-radius);
-      padding:40px 32px;
-      text-align:center;
-      transition:all var(--transition);
-      box-shadow:var(--shadow);
-      position:relative;
-      overflow:hidden;
+      background:var(--aw-panel); border:1px solid rgba(15,23,32,.08); border-radius:var(--aw-radius);
+      padding:40px 32px; text-align:center; transition:all var(--transition); box-shadow:var(--shadow); position:relative; overflow:hidden;
     }
-    .member::before{
-      content:'';
-      position:absolute; inset:0;
-      background:radial-gradient(600px circle at 50% 0%,rgba(255,138,61,.15),transparent 70%);
-      opacity:0; transition:opacity var(--transition);
-    }
+    .member::before{ content:''; position:absolute; inset:0; background:radial-gradient(600px circle at 50% 0%,rgba(255,138,61,.15),transparent 70%); opacity:0; transition:opacity var(--transition); }
     .member:hover::before{ opacity:1 }
     .member:hover{ transform:translateY(-8px); box-shadow:0 28px 56px rgba(15,95,154,.15); border-color:var(--aw-copper); }
-    .avatar{
-      width:120px; height:120px; border-radius:50%; margin:0 auto 20px;
-      background-size:cover; background-position:center;
-      border:3px solid rgba(15,23,32,.08);
-      transition:transform var(--transition),border-color var(--transition);
-    }
+    .avatar{ width:120px; height:120px; border-radius:50%; margin:0 auto 20px; background-size:cover; background-position:center;
+      border:3px solid rgba(15,23,32,.08); transition:transform var(--transition),border-color var(--transition); }
     .member:hover .avatar{ transform:scale(1.08); border-color:var(--aw-copper); }
-    .member h4{ margin:12px 0 4px; font-size:20px }
-    .member .role{ font-size:15px; color:var(--aw-muted) }
+    .member h4{ margin:12px 0 4px; font-size:20px } .member .role{ font-size:15px; color:var(--aw-muted) }
 
     /* ---------- Timeline ---------- */
     .timeline-wrapper{ position:relative; max-width:900px; margin:80px auto 0; padding:0 20px; }
@@ -223,22 +149,52 @@
     .step{ flex:1; text-align:center; opacity:0; transform:translateY(50px); transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
     .step.reveal.is-visible{ opacity:1; transform:none; }
     .step:nth-child(1){ transition-delay:.1s } .step:nth-child(2){ transition-delay:.2s } .step:nth-child(3){ transition-delay:.3s } .step:nth-child(4){ transition-delay:.4s }
-    .step .dot{
-      width:64px; height:64px; border-radius:50%; background:var(--aw-panel);
-      border:4px solid rgba(15,95,154,.15); margin:0 auto 20px; display:grid; place-items:center; position:relative; z-index:2; transition:border-color .4s ease;
-    }
+    .step .dot{ width:64px; height:64px; border-radius:50%; background:var(--aw-panel); border:4px solid rgba(15,95,154,.15);
+      margin:0 auto 20px; display:grid; place-items:center; position:relative; z-index:2; transition:border-color .4s ease; }
     .step.active .dot{ border-color:var(--aw-copper); background:var(--aw-copper); color:#fff; animation:pulse 2.5s infinite; }
     @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(255,138,61,.45);} 70%{box-shadow:0 0 0 16px rgba(255,138,61,0);} 100%{box-shadow:0 0 0 0 rgba(255,138,61,0);} }
     .step .card{ background:var(--aw-panel); border:1px solid rgba(15,23,32,.08); border-radius:var(--aw-radius); padding:24px; box-shadow:var(--shadow); transition:transform .4s ease; }
     .step:hover .card{ transform:translateY(-6px); }
-    .step .card h3{ margin-bottom:6px; font-size:22px }
-    .step .card p{ font-size:15px; color:var(--aw-muted) }
+    .step .card h3{ margin-bottom:6px; font-size:22px } .step .card p{ font-size:15px; color:var(--aw-muted) }
     @keyframes drawLine{ to{ width:100% } }
 
     /* ---------- Animations d’entrée ---------- */
     @keyframes fadeInUp{ from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none} }
     .reveal{ opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1) }
     .reveal.is-visible{ opacity:1; transform:none }
+
+    /* ===== Témoignages en cartes + Stats centrées ===== */
+    .section .testimonials.cards{
+      display:grid; grid-template-columns:repeat(3,minmax(260px,1fr));
+      gap:32px; align-items:stretch; margin:32px auto 0; max-width:1100px;
+    }
+    .section .testimonials.cards blockquote.tcard{
+      background:var(--aw-panel); border:1px solid rgba(15,23,32,.08); border-radius:24px; padding:32px;
+      box-shadow:var(--shadow); text-align:left;
+      transition:transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s;
+    }
+    .section .testimonials.cards blockquote.tcard:hover{
+      transform:translateY(-6px); box-shadow:0 24px 48px rgba(15,95,154,.15);
+    }
+    .section .testimonials.cards .stars{ color:var(--aw-copper); font-size:20px; letter-spacing:3px; line-height:1; margin-bottom:10px; }
+    .section .testimonials.cards p{ margin:0; }
+    .section .testimonials.cards cite{ display:block; margin-top:14px; font-size:14px; color:var(--aw-muted); font-style:italic; }
+
+    .stats-grid{
+      display:grid; grid-template-columns:repeat(3,minmax(160px,1fr));
+      gap:24px; max-width:900px; margin:36px auto 0; padding:0; list-style:none; text-align:center;
+    }
+    .stats-grid li{ font-weight:700; }
+    .stats-grid li strong{ display:block; font-size:28px; color:var(--aw-blue); margin-bottom:6px; }
+    .stats-grid li span{ display:block; color:var(--aw-ink); opacity:.8; font-weight:600; }
+
+    @media (max-width:1024px){
+      .section .testimonials.cards{ grid-template-columns:1fr 1fr }
+    }
+    @media (max-width:640px){
+      .section .testimonials.cards{ grid-template-columns:1fr }
+      .stats-grid{ grid-template-columns:1fr; }
+    }
   </style>
 </head>
 
@@ -275,28 +231,32 @@
   <!-- =================  PREUVE SOCIALE  ================= -->
   <section class="section alt">
     <h2 class="section-title">Ils nous font déjà confiance</h2>
-    <div class="testimonials">
-      <blockquote>
-        <span>★★★★★</span>
-        « En 5 min j’ai eu un plan d’action clair. »
+
+    <div class="testimonials cards">
+      <blockquote class="tcard">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <p>« En 5 min j’ai eu un plan d’action clair. »</p>
         <cite>– Marie, créatrice d’e-commerce</cite>
       </blockquote>
-      <blockquote>
-        <span>★★★★★</span>
-        « 30 € d’économie vs un cabinet. »
+
+      <blockquote class="tcard">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <p>« 30 € d’économie vs un cabinet. »</p>
         <cite>– Julien, auto-entrepreneur</cite>
       </blockquote>
-      <blockquote>
-        <span>★★★★★</span>
-        « Enfin une solution qui ne stresse pas ! »
+
+      <blockquote class="tcard">
+        <div class="stars" aria-hidden="true">★★★★★</div>
+        <p>« Enfin une solution qui ne stresse pas ! »</p>
         <cite>– Léa, association</cite>
       </blockquote>
     </div>
-    <div class="stats">
-      <div><strong>+1 200</strong> sites audités</div>
-      <div><strong>98 %</strong> satisfaction</div>
-      <div><strong>4 min</strong> moyenne de test</div>
-    </div>
+
+    <ul class="stats-grid" role="list">
+      <li><strong>+1 200</strong><span>sites audités</span></li>
+      <li><strong>98 %</strong><span>satisfaction</span></li>
+      <li><strong>4 min</strong><span>moyenne de test</span></li>
+    </ul>
   </section>
 
   <!-- =================  MISSION  ================= -->
