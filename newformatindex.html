@@ -1,31 +1,358 @@
-/* Ajouter à votre CSS existant */
-.scan-progress {
-    transition: width 0.3s ease;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Accueil – Awenoria</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Awenoria – conformité RGPD & IA rendue simple, humaine et accessible."/>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --font-ui:"Manrope",system-ui,sans-serif;
+      --ff-display:"Playfair Display",serif;
+      --bg:#f6f9fc;
+      --panel:#ffffff;
+      --muted:#4a6176;
+      --text:#0f5f9a;
+      --brand:#0f5f9a;
+      --accent:#16a34a;
+      --copper:linear-gradient(135deg,#ff8a3d,#ff9a56);
+      --copper-solid:#ff8a3d;
+      --radius:24px;
+      --shadow:0 20px 50px rgba(0,0,0,.08);
+      --maxw:1200px;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:var(--font-ui);color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+    h1,h2,h3,h4{font-weight:800;margin:0 0 .4em}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;padding:.9em 2.2em;border-radius:999px;font-weight:600;border:1px solid transparent;cursor:pointer;transition:.3s ease}
+    .btn-primary{background:var(--brand);color:#fff;box-shadow:0 6px 24px rgba(15,95,154,.35)}
+    .btn-primary:hover{filter:brightness(1.05);box-shadow:0 8px 32px rgba(15,95,154,.45)}
+    .btn-copper{background:var(--copper);color:#fff;box-shadow:0 6px 24px rgba(255,138,61,.35)}
+    .btn-copper:hover{filter:brightness(1.05);box-shadow:0 8px 32px rgba(255,138,61,.45)}
+    .btn-secondary{background:transparent;color:var(--brand);border:2px solid var(--brand)}
+    .btn-secondary:hover{background:var(--brand);color:#fff}
+    .glass{background:rgba(255,255,255,.86);backdrop-filter:blur(10px);border:1px solid rgba(15,23,32,.08);border-radius:var(--radius);box-shadow:var(--shadow)}
 
-.glass-effect {
-    background: rgba(255, 255, 255, 0.86);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(15, 23, 32, 0.08);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-}
+    header.navbar{position:sticky;top:0;z-index:1000;background:#ffffffaa;backdrop-filter:blur(12px);border-bottom:1px solid rgba(15,23,32,.08)}
+    .nav-wrap{max-width:var(--maxw);margin:auto;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem}
+    .brand{font-family:var(--ff-display);font-size:1.8rem;color:var(--brand);letter-spacing:-.5px}
+    .nav-main{display:flex;gap:1.5rem}
+    .nav-main a{padding:.6rem 1.2rem;border-radius:999px;font-weight:500;transition:.2s}
+    .nav-main a:hover{background:var(--brand);color:#fff}
+    .nav-actions .btn{margin-left:.5rem}
 
-.hidden {
-    display: none !important;
-}
+    .hero{display:flex;align-items:center;min-height:100vh;padding:6rem 2rem;background:radial-gradient(1400px 700px at 10% -20%,#eef5ff 0%,transparent 60%),linear-gradient(180deg,#f6f9fc 0%,#f6f9fc 100%)}
+    .hero-inner{max-width:var(--maxw);margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    @media (max-width:980px){.hero-inner{grid-template-columns:1fr;text-align:center}}
+    .hero-title{font-family:var(--ff-display);font-size:clamp(3rem,7vw,5rem);line-height:1.05;letter-spacing:-1px}
+    .hero-lead{font-size:1.3rem;color:var(--muted);margin:1.5rem 0 2.5rem}
+    .hero-checks{list-style:none;padding:0;margin:0 0 2.5rem;display:flex;flex-wrap:wrap;gap:1.2rem;font-size:1rem}
+    .hero-checks svg{width:20px;height:20px;stroke:var(--brand);stroke-width:3;fill:none;margin-right:.4em;vertical-align:-4px}
+    .url-bar{display:flex;align-items:center;gap:.6rem;height:64px;padding:.4rem .4rem .4rem 1.6rem;background:var(--panel);border:2px solid var(--brand);border-radius:999px;box-shadow:0 8px 32px rgba(15,95,154,.25)}
+    .url-bar input{flex:1;border:none;background:transparent;font-weight:500;font-size:1rem;caret-color:var(--brand)}
+    .url-bar input::placeholder{color:#7aa9c7}
+    .url-bar button{margin-left:auto;height:48px;padding:0 1.8rem;border-radius:999px;border:none;background:var(--copper);color:#fff;font-weight:600;box-shadow:0 6px 24px rgba(255,138,61,.35);transition:all .2s ease}
+    .url-bar button:hover{filter:brightness(1.05);box-shadow:0 8px 32px rgba(255,138,61,.45)}
+    .url-bar button:active{transform:translateY(1px)}
 
-/* Animation des particules (optionnel) */
-@keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
-    50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
-}
+    .section{padding:6rem 2rem}
+    .inner{max-width:var(--maxw);margin:auto}
+    .title-center{text-align:center;font-size:clamp(2.4rem,5vw,3.6rem);margin-bottom:.6rem}
+    .subtitle-center{text-align:center;font-size:1.1rem;color:var(--muted);max-width:680px;margin:0 auto 3rem}
+    .underline{width:80px;height:4px;border-radius:999px;background:var(--copper);margin:.6rem auto 3rem;opacity:.9}
 
-.particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(66, 153, 225, 0.6);
-    border-radius: 50%;
-    animation: float 6s ease-in-out infinite;
-}
+    /* ---------  OFFRES LUXE  --------- */
+    .offers-luxe{background:var(--panel);padding:6rem 0}
+    .offers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem}
+    @media (max-width:1024px){.offers-grid{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.offers-grid{grid-template-columns:1fr}}
+    .offer-luxe{
+      background:var(--panel);
+      border:1px solid rgba(15,95,154,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:2.4rem 2rem 2rem;
+      display:flex;flex-direction:column;gap:.8rem;
+      position:relative;
+      overflow:hidden;
+      transition:transform .3s ease,box-shadow .3s ease;
+    }
+    .offer-luxe:hover{transform:translateY(-8px);box-shadow:0 24px 56px rgba(0,0,0,.1)}
+    .offer-luxe.popular{border-color:var(--copper-solid)}
+    .offer-luxe::before{
+      content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+      background:radial-gradient(circle at center,rgba(255,138,61,.18) 0%,transparent 60%);
+      opacity:0;transition:opacity .4s ease;
+    }
+    .offer-luxe.popular::before{opacity:1}
+    .offer-header{margin-bottom:.6rem}
+    .offer-name{font-size:1.4rem;font-weight:700;color:var(--text)}
+    .offer-public{font-size:.95rem;color:var(--muted)}
+    .offer-features{list-style:none;padding:0;margin:0;display:grid;gap:.5rem;font-size:.95rem}
+    .offer-features li{display:flex;align-items:center;gap:.6rem}
+    .offer-features li::before{
+      content:"";width:18px;height:18px;
+      background:url('data:image/svg+xml;utf-8,<svg viewBox="0 0 24 24" fill="none" stroke="%2316a34a" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>') center/contain no-repeat;
+    }
+    .offer-footer{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .offer-price{font-size:2.4rem;font-weight:700;background:var(--copper);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.5px}
+    .offer-euro{font-size:1.1rem}
+    .offer-btn{background:var(--copper);color:#fff;font-weight:600;padding:.7em 1.6em;border-radius:999px;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(255,138,61,.35);transition:all .2s ease}
+    .offer-btn:hover{filter:brightness(1.05);box-shadow:0 6px 28px rgba(255,138,61,.45)}
+    .offer-btn:active{transform:translateY(1px)}
+
+    .blog{background:var(--bg)}
+    .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem}
+    @media (max-width:1024px){.posts{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.posts{grid-template-columns:1fr}}
+    .post{background:var(--panel);border:1px solid rgba(15,95,154,.08);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .3s ease}
+    .post:hover{transform:translateY(-4px)}
+    .post img{aspect-ratio:16/10;object-fit:cover}
+    .post-content{padding:1.6rem}
+    .post-title{font-size:1.1rem;font-weight:600;margin-bottom:.4rem}
+    .post-desc{font-size:.9rem;color:var(--muted)}
+
+    footer{background:var(--text);color:#b8c2d8;padding:4rem 0 2rem;font-size:.9rem}
+    footer a:hover{text-decoration:underline}
+    .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-bottom:2rem}
+    @media (max-width:1024px){.footer-grid{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.footer-grid{grid-template-columns:1fr}}
+    .footer-legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid #ffffff1a;padding-top:1.5rem;color:#8a9bc2}
+  </style>
+</head>
+
+<body>
+  <!-- ===============  NAV  =============== -->
+  <header class="navbar" role="banner">
+    <div class="nav-wrap">
+      <a class="brand" href="#" aria-label="Awenoria">Awenoria</a>
+      <nav class="nav-main" aria-label="Navigation principale">
+        <a href="#intro">Accueil</a>
+        <a href="#audit-gratuit">Audit gratuit</a>
+        <a href="#offres">Offres</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions"><a class="btn btn-ghost" href="#audit-gratuit">Audit gratuit</a></div>
+    </div>
+  </header>
+
+  <!-- ===============  HERO  =============== -->
+  <section class="hero" id="intro">
+    <div class="hero-inner">
+      <div>
+        <h1 class="type-on-view" data-text="La conformité RGPD & IA rendue simple, humaine et accessible."></h1>
+        <p class="lead">Awenoria vous accompagne vers la conformité numérique grâce à des outils d’audit automatisés et un accompagnement humain personnalisé.</p>
+        <ul class="hero-checks">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Analyse locale, zero stockage</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Score & actions priorisées</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>RGPD, accessibilité, cookies</li>
+        </ul>
+        <form class="url-bar" onsubmit="demoAudit(event)">
+          <input type="url" placeholder="https://votresite.fr" required />
+          <button type="submit">Analyser gratuitement</button>
+        </form>
+      </div>
+      <div class="glass" style="aspect-ratio:16/10;display:grid;place-items:center;font-weight:500;color:var(--muted)">Capture d’écran outil</div>
+    </div>
+  </section>
+
+  <!-- ===============  OFFRES LUXE  =============== -->
+  <section class="offers-luxe" id="offres">
+    <div class="inner">
+      <h2 class="title-center">Des solutions adaptées à chaque structure</h2>
+      <p class="subtitle-center">Des services flexibles, automatisés ou accompagnés, selon vos besoins et votre budget.</p>
+
+      <div class="offers-grid">
+        <!-- Start RGPD -->
+        <article class="offer-luxe">
+          <div class="offer-header">
+            <h3 class="offer-name">Start RGPD</h3>
+            <span class="offer-public">TPE & indépendants</span>
+          </div>
+          <ul class="offer-features">
+            <li>Audit de base</li>
+            <li>Politique automatique</li>
+            <li>Registre checker</li>
+          </ul>
+          <div class="offer-footer">
+            <span class="offer-price">490<span class="offer-euro">€</span></span>
+            <button class="offer-btn">Choisir cette offre</button>
+          </div>
+        </article>
+
+        <!-- Pro RGPD -->
+        <article class="offer-luxe popular">
+          <div class="offer-badge">Populaire</div>
+          <div class="offer-header">
+            <h3 class="offer-name">Pro RGPD</h3>
+            <span class="offer-public">PME / associations</span>
+          </div>
+          <ul class="offer-features">
+            <li>Audit complet</li>
+            <li>PIA / AIPD</li>
+            <li>Suivi 6 mois</li>
+          </ul>
+          <div class="offer-footer">
+            <span class="offer-price">1&nbsp;290<span class="offer-euro">€</span></span>
+            <button class="offer-btn">Choisir cette offre</button>
+          </div>
+        </article>
+
+        <!-- IA Act Starter -->
+        <article class="offer-luxe">
+          <div class="offer-header">
+            <h3 class="offer-name">IA Act Starter</h3>
+            <span class="offer-public">Startups IA</span>
+          </div>
+          <ul class="offer-features">
+            <li>Audit conformité IA</li>
+            <li>Documentation exigée</li>
+            <li>Feuille de route</li>
+          </ul>
+          <div class="offer-footer">
+            <span class="offer-price">990<span class="offer-euro">€</span></span>
+            <button class="offer-btn">Choisir cette offre</button>
+          </div>
+        </article>
+      </div>
+
+      <p class="subtitle-center" style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-secondary" href="#services">Voir le détail des packs</a>
+        <a class="btn btn-copper" href="#contact">Obtenir un devis rapide</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===============  BLOG  =============== -->
+  <section class="blog section">
+    <div class="inner">
+      <h2 class="title-center">Derniers articles du blog</h2>
+      <p class="subtitle-center">Restez informés des nouveautés réglementaires</p>
+      <div class="posts">
+        <article class="post glass">
+          <img src="images/blog-iaact-2025.jpg" alt="IA Act 2025" />
+          <div class="post-content">
+            <h3 class="post-title">IA Act : ce qui change en 2025</h3>
+            <p class="post-desc">Panorama des exigences clés et comment s’y préparer en pratique.</p>
+          </div>
+        </article>
+        <article class="post glass">
+          <img src="images/blog-rgpd-erreurs.jpg" alt="RGPD erreurs" />
+          <div class="post-content">
+            <h3 class="post-title">RGPD : les 10 erreurs les plus fréquentes</h3>
+            <p class="post-desc">Des pièges classiques aux solutions concrètes.</p>
+          </div>
+        </article>
+        <article class="post glass">
+          <img src="images/blog-audit-score.jpg" alt="Score conformité" />
+          <div class="post-content">
+            <h3 class="post-title">Audit web : comment lire votre score de conformité ?</h3>
+            <p class="post-desc">Découvrez nos critères et nos pondérations.</p>
+          </div>
+        </article>
+      </div>
+      <p class="subtitle-center" style="margin-top:1.2rem"><a class="btn btn-secondary" href="#">Voir tous les articles</a></p>
+    </div>
+  </section>
+
+  <!-- ===============  CONTACT  =============== -->
+  <section class="section" id="contact">
+    <div class="inner">
+      <h2 class="title-center">Parlons de votre conformité</h2>
+      <p class="subtitle-center type-on-view" data-text="Une question, un devis, un partenariat ? Votre message nous parvient via un envoi sécurisé."></p>
+      <form class="glass" style="max-width:640px;margin:3rem auto 0;padding:2rem;display:grid;gap:1rem" onsubmit="sendForm(event)">
+        <input type="email" placeholder="Votre e-mail *" required />
+        <input type="text" placeholder="Société" />
+        <select required><option value="">Sujet *</option><option>Devis</option><option>Partenariat</option><option>Autre</option></select>
+        <textarea placeholder="Votre message *" rows="5" required style="width:100%;border:1px solid rgba(15,23,32,.18);border-radius:12px;padding:.8rem"></textarea>
+        <label class="check" style="display:flex;align-items:center;gap:.6em;font-size:.9rem"><input type="checkbox" required /> J’accepte la politique de confidentialité.</label>
+        <button class="btn btn-copper" type="submit">Envoyer</button>
+        <p id="formMsg" style="display:none;margin-top:.6rem;font-weight:700"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===============  FOOTER  =============== -->
+  <footer class="cc-footer" role="contentinfo">
+    <div class="cc-container">
+      <div class="cc-top">
+        <a class="cc-brand" href="#" aria-label="Awenoria">
+          <img src="images/logo.png" alt="Awenoria">
+          <strong class="brand-text" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Awenoria</strong>
+        </a>
+        <a class="cc-locale" href="#" aria-label="Changer de pays">
+          <svg viewBox="0 0 24 24"><path d="M12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9zm0 0c2.5-2.8 4-5.8 4-9 0-3.2-1.5-6.2-4-9m0 18C9.5 18.2 8 15.2 8 12c0-3.2 1.5-6.2 4-9"/></svg>
+          <span>France</span>
+        </a>
+      </div>
+
+      <div class="cc-grid">
+        <div class="cc-col">
+          <h4>Plan du site</h4>
+          <ul>
+            <li><a href="#intro">Accueil</a></li>
+            <li><a href="#audit-gratuit">Audit gratuit</a></li>
+            <li><a href="#qui-sommes-nous">Qui sommes-nous ?</a></li>
+            <li><a href="#expertises">Nos expertises</a></li>
+            <li><a href="#offres">Offres</a></li>
+            <li><a href="#audit-gratuit">Audit gratuit</a></li>
+          </ul>
+        </div>
+        <div class="cc-col">
+          <h4>Légal</h4>
+          <ul>
+            <li><a href="#mentions">Mentions légales</a></li>
+            <li><a href="#confidentialite">Politique de confidentialité</a></li>
+            <li><a href="#accessibilite">Accessibilité</a></li>
+            <li><a href="#cookies">Gestion des cookies</a></li>
+          </ul>
+        </div>
+        <div class="cc-col">
+          <h4>Ressources</h4>
+          <ul>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#approche">Notre méthode</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="cc-col">
+          <h4>Réseaux sociaux</h4>
+          <div class="cc-social" aria-label="Réseaux sociaux">
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24">
+                <path d="M6.94 7.5A1.94 1.94 0 116.93 3a1.94 1.94 0 01.01 4.5zM4.5 9h5v11h-5V9zm7 0h4.7v1.7h.1c.7-1.3 2.3-2.1 3.7-2.1 3.9 0 4.6 2.6 4.6 6v5.4h-5V15c0-1.3 0-3-1.8-3s-2.2 1.4-2.2 2.9V20h-5V9z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc-bottom">
+        <small>© 2025 Awenoria. Tous droits réservés.</small>
+        <small>Conformité, accessibilité, RGPD & IA – France.</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===============  SCRIPTS  =============== -->
+  <script>
+    /* typing effect */
+    document.querySelectorAll('.type-on-view').forEach(el=>{
+      const txt=el.dataset.text||el.textContent; el.textContent=''; let i=0;
+      const io=new IntersectionObserver((e,ob)=>{if(e[0].isIntersecting){ob.disconnect();(function t(){if(i<txt.length){el.textContent+=txt[i++];setTimeout(t,85)}})()}},{threshold:.4}); io.observe(el);
+    });
+    /* demo audit */
+    function demoAudit(e){e.preventDefault();const u=e.target[0].value||'https://votresite.fr';alert(`Aperçu généré pour : ${u}\n\n• Cookies bloqués ✅\n• Politique absente ⚠️\n• Mentions manquantes ❌`);}
+    /* contact form */
+    function sendForm(e){e.preventDefault();const msg=document.getElementById('formMsg'); msg.style.display='block'; msg.textContent='Envoi…'; setTimeout(()=>{msg.textContent='Merci ! Nous revenons vers vous sous 24 h.';e.target.reset()},1000);}
+  </script>
+</body>
+</html>
