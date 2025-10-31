@@ -1,460 +1,435 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Qui sommes-nous ? – Awenoria</title>
-  <meta name="description" content="Awenoria — conformité RGPD & IA rendue simple, humaine et accessible. Découvrez notre histoire, nos valeurs et l’équipe." />
-  <meta name="theme-color" content="#0f5f9a" />
+  <meta charset="utf-8">
+  <title>Qui sommes-nous – Awenoria</title>
+  <meta name="description" content="La conformité enfin désirable : découvrez comment Awenoria transforme RGPD & accessibilité en atout business.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://awenoria.com/qui-sommes-nous.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..900&display=swap" rel="stylesheet">
+  <!-- Polices -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- CSS globale du site -->
+  <!-- CSS globale (styles header/footer + base site) -->
   <link rel="stylesheet" href="assets/awenoria.css">
 
-  <!-- Styles locaux -->
+  <!-- =================  CSS PAGE  ================= -->
   <style>
-    /* ====== Variables Awenoria ====== */
+    /* ---------- Variables (clair & sombre) ---------- */
     :root{
-      --aw-blue:#0084C6;      /* bleu logo */
-      --aw-blue-deep:#0f5f9a; /* bleu site */
-      --aw-orange:#FF7F32;    /* orange logo */
-      --aw-ink:#0d2a3a;
-      --aw-white:#ffffff;
+      --aw-ink:#0a0a0a;
+      --aw-blue:#0066ff;
+      --aw-copper:#ff5c00;
+      --aw-muted:#6b7280;
+      --aw-panel:#ffffff;
+      --aw-bg:#f5f7ff;
+      --aw-radius:24px;
+      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+      --transition:.6s cubic-bezier(.22,1,.36,1);
+    }
+    @media (prefers-color-scheme:dark){
+      :root{
+        --aw-ink:#f5f7ff;
+        --aw-blue:#3d8bff;
+        --aw-copper:#ff8a3d;
+        --aw-muted:#a1a9c0;
+        --aw-panel:#0b0f1a;
+        --aw-bg:#0a0d14;
+        --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+      }
     }
 
-    /* ---------------- Petites touches de la page ---------------- */
-    .hero-apropos{ padding:56px 0 22px }
-    .hero-apropos h1{ font-size:clamp(24px,4.2vw,40px); margin:0 }
-
-    .encart.blue .btn.ghost:focus-visible{
-      outline:0;
-      box-shadow:0 0 0 4px rgba(255,255,255,.35), inset 0 1px 0 rgba(255,255,255,.9);
+    /* ---------- Reset & base ---------- */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;
+      line-height:1.7;
+      color:var(--aw-ink);
+      background:var(--aw-bg);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
     }
 
-    .copper-bubble{
-      display:inline-block; max-width:520px; padding:16px 18px; border-radius:999px;
-      line-height:1.35; font-weight:800; color:#0f2746;
-      background:radial-gradient(120% 120% at 20% 15%, #ffc996 0%, #ffb36e 40%, #ff8a3d 70%, #ff7a23 100%);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 10px 26px rgba(255,138,61,.22);
-      border:1px solid rgba(255,255,255,.65);
-    }
-
-    /* ---------------- HERO bulle incurvée ---------------- */
-    .hero-bubble{
-      background: linear-gradient(90deg,#0c3e6b 0%, #0e4f80 45%, #115c95 100%);
-      color:#fff;
-      position:relative; overflow:hidden; border-radius:14px; padding:48px 32px;
-    }
-    .hero-bubble .hero-bubble-content{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:36px; max-width:1100px; margin:0 auto;
-    }
-    .hero-bubble .hero-bubble-text{ flex:1.2; z-index:2 }
-    .hero-bubble .hero-bubble-text .aw-title{
-      font-size:clamp(22px,3vw,28px); margin:0 0 12px; color:#fff;
-    }
-    .hero-bubble .hero-bubble-text p{ margin:0; line-height:1.5; font-size:clamp(15px,1.4vw,17px) }
-    .hero-bubble .hero-bubble-img{ flex:0.8; text-align:right; z-index:2 }
-    .hero-bubble .hero-bubble-img img{
-      max-width:200px; height:auto; display:inline-block;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,.20));
-      border-radius:12px;
-    }
-    .hero-bubble::before{
-      content:""; position:absolute; top:0; right:25%;
-      width:200%; height:200%;
-      border-top:8px solid #fff; border-radius:60% 30% 60% 30% / 40% 60% 30% 60%;
-      transform:rotate(-10deg); opacity:.85;
-    }
-    @media (max-width:780px){
-      .hero-bubble .hero-bubble-content{ flex-direction:column; text-align:center }
-      .hero-bubble .hero-bubble-img{ text-align:center; margin-top:18px }
-      .hero-bubble::before{ right:0; width:240%; transform:rotate(-5deg) }
-    }
-
-    /* ===========================================================
-       NEO TIMELINE — version corrigée
-       - Fond image PJ1
-       - Pas de trait / flux
-       - Pas de ronds / dates / numéros
-       =========================================================== */
-    .neo-timeline-wrap{
-      background-image:url("./images/repere-frise-chronologique.png");
-      background-size:cover; background-position:center; background-repeat:no-repeat;
-      padding:80px 0 100px;
-      border-radius:14px;
-      overflow:hidden;
+    /* ---------- Hero immersif ---------- */
+    .hero{
       position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#fff;
+      overflow:hidden;
+      background:
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
     }
-    .neo-timeline-wrap::before{
-      /* voile très léger pour lisibilité des cartes */
-      content:""; position:absolute; inset:0;
-      background:rgba(255,255,255,.08);
-      backdrop-filter:blur(1px);
+    .hero canvas{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
       z-index:0;
     }
-
-    .neo-title{
-      max-width:1100px; margin:0 auto 32px; padding:0 16px;
-      font:800 clamp(28px,4.6vw,48px)/1.1 "Manrope",system-ui,sans-serif;
-      color:var(--aw-orange);
-      text-shadow:0 1px 0 rgba(255,255,255,.45);
-      position:relative; z-index:2;
+    .hero .content{
+      position:relative;
+      z-index:2; /* au-dessus du canvas + formes */
+      max-width:800px;
+      padding:0 20px;
+      animation:fadeInUp 1s both;
+    }
+    .hero h1{
+      font-size:clamp(52px,7vw,72px);
+      font-weight:800;
+      line-height:1.05;
+      letter-spacing:-.02em;
+    }
+    .hero .lead{
+      font-size:1.4rem;
+      font-weight:500;
+      margin:24px auto 0;
+      color:#e8f0ff;
+    }
+    .hero .actions{
+      margin-top:48px;
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
     }
 
-    /* on neutralise l’ancienne ligne + flux + ronds */
-    .neo-line, .neo-flow, .neo-dot{ display:none !important; }
+    /* ---------- Formes géométriques animées (overlay) ---------- */
+    .hero-geo{
+      position:absolute; inset:0; pointer-events:none; z-index:1; /* au-dessus du canvas, sous le texte */
+      overflow:hidden;
+    }
+    .hero-geo .g{
+      position:absolute;
+      width:64px; height:64px;
+      opacity:.18;
+      filter:blur(.2px);
+      animation:geoFloat var(--dur,18s) var(--easing,cubic-bezier(.22,1,.36,1)) infinite;
+      will-change: transform, opacity;
+    }
+    .hero-geo .circle{ border-radius:50%; border:3px solid rgba(255,255,255,.65); }
+    .hero-geo .square{ border:3px solid rgba(255,255,255,.5); border-radius:14px; }
+    .hero-geo .triangle{
+      --s:64px; width:var(--s); height:var(--s);
+      clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
+      box-shadow:inset 0 0 0 3px rgba(255,255,255,.55);
+      border-radius:8px;
+      background:transparent;
+    }
+    .hero-geo .diamond{ border:3px solid rgba(255,255,255,.55); transform:rotate(45deg); }
 
-    .neo-timeline{
-      list-style:none;               /* enlève 1., 2., 3., 4. */
-      counter-reset:none;
-      max-width:1100px; margin:0 auto; padding:0 16px;
-      display:grid; grid-template-columns:repeat(3,minmax(240px,1fr)); gap:32px;
-      position:relative; z-index:2;
+    .hero-geo .g:nth-child(1){ left:6%;  top:12%;  --dur:22s; --scale:.9 }
+    .hero-geo .g:nth-child(2){ left:78%; top:18%;  --dur:26s; --scale:1.1 }
+    .hero-geo .g:nth-child(3){ left:16%; top:64%;  --dur:24s; --scale:.85 }
+    .hero-geo .g:nth-child(4){ left:88%; top:68%;  --dur:20s; --scale:.95 }
+    .hero-geo .g:nth-child(5){ left:44%; top:8%;   --dur:28s; --scale:.8 }
+    .hero-geo .g:nth-child(6){ left:54%; top:72%;  --dur:23s; --scale:1.0 }
+    .hero-geo .g:nth-child(7){ left:28%; top:36%;  --dur:25s; --scale:1.2 }
+    .hero-geo .g:nth-child(8){ left:70%; top:44%;  --dur:27s; --scale:.9 }
+
+    @keyframes geoFloat{
+      0%   { transform: translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.12 }
+      25%  { transform: translate3d(20px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.22 }
+      50%  { transform: translate3d(-10px,-60px,0) scale(var(--scale,1)) rotate(12deg); opacity:.2 }
+      75%  { transform: translate3d(-30px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.24 }
+      100% { transform: translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.18 }
+    }
+    .hero-geo .diamond{ animation-name: geoFloatDiamond; }
+    @keyframes geoFloatDiamond{
+      0%   { transform: rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.14 }
+      25%  { transform: rotate(55deg) translate3d(18px,-30px,0) scale(var(--scale,1)); opacity:.22 }
+      50%  { transform: rotate(65deg) translate3d(-12px,-60px,0) scale(var(--scale,1)); opacity:.2 }
+      75%  { transform: rotate(55deg) translate3d(-28px,-30px,0) scale(var(--scale,1)); opacity:.24 }
+      100% { transform: rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.18 }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .hero-geo .g{ animation:none; opacity:.15 }
     }
 
-    .neo-item{ position:relative; text-align:center }
-    .neo-card{
-      margin-top:0 !important;
-      background: rgba(255,255,255,.95);
-      border:1px solid rgba(255,255,255,.6);
-      border-radius:18px;
-      padding:22px 22px 24px;
-      box-shadow: 0 18px 40px rgba(0,132,198,.14);
-      backdrop-filter: blur(8px);
-      transition:transform .25s ease, box-shadow .25s ease;
+    /* ---------- Boutons ---------- */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      font-size:17px;
+      padding:16px 32px;
+      border-radius:999px;
+      text-decoration:none;
+      transition:all var(--transition);
+      border:1px solid transparent;
+      box-shadow:0 8px 24px rgba(0,0,0,.10);
     }
-    .neo-card:hover{
-      transform: translateY(-6px);
-      box-shadow: 0 24px 60px rgba(0,132,198,.25);
+    .btn.primary{
+      background:var(--aw-copper);
+      color:#fff;
+      box-shadow:0 10px 30px rgba(255,138,61,.30);
     }
-    .neo-card h3{
-      margin:0 0 10px;
-      font:800 clamp(18px,2.2vw,22px)/1.2 "Manrope",system-ui,sans-serif;
-      color:var(--aw-blue);
-    }
-    .neo-item[data-accent="orange"] .neo-card h3{ color:var(--aw-orange) }
-    .neo-card p{ margin:0; color:#00324e; font-weight:600; line-height:1.5 }
+    .btn.primary:hover{ transform:translateY(-3px); box-shadow:0 14px 40px rgba(255,138,61,.40); }
+    .btn.ghost{ background:transparent; color:#fff; border:2px solid rgba(255,255,255,.45); }
+    .btn.ghost:hover{ background:rgba(255,255,255,.15); }
 
-    /* Responsive */
-    @media (max-width:1000px){ .neo-timeline{ grid-template-columns:repeat(2,minmax(240px,1fr)) } }
-    @media (max-width:640px){
-      .neo-timeline{ grid-template-columns:1fr }
-      .neo-item{ text-align:left }
+    /* ---------- Sections ---------- */
+    .section{ max-width:1200px; margin:0 auto; padding:100px 20px; }
+    .section.alt{ background:var(--aw-bg); }
+    .section-title{ font-size:clamp(36px,5vw,48px); font-weight:800; text-align:center; margin-bottom:16px; color:var(--aw-ink); }
+    .subtitle-center{ font-size:1.2rem; color:var(--aw-muted); max-width:680px; margin:0 auto 56px; text-align:center; }
+
+    /* ---------- Grille équipe ---------- */
+    .team{ display:grid; grid-template-columns:repeat(3,1fr); gap:40px; }
+    @media(max-width:1024px){ .team{ grid-template-columns:1fr 1fr } }
+    @media(max-width:620px){ .team{ grid-template-columns:1fr } }
+    .member{
+      background:var(--aw-panel);
+      border:1px solid rgba(15,23,32,.08);
+      border-radius:var(--aw-radius);
+      padding:40px 32px;
+      text-align:center;
+      transition:all var(--transition);
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
     }
+    .member::before{
+      content:'';
+      position:absolute; inset:0;
+      background:radial-gradient(600px circle at 50% 0%,rgba(255,138,61,.15),transparent 70%);
+      opacity:0; transition:opacity var(--transition);
+    }
+    .member:hover::before{ opacity:1 }
+    .member:hover{ transform:translateY(-8px); box-shadow:0 28px 56px rgba(15,95,154,.15); border-color:var(--aw-copper); }
+    .avatar{
+      width:120px; height:120px; border-radius:50%; margin:0 auto 20px;
+      background-size:cover; background-position:center;
+      border:3px solid rgba(15,23,32,.08);
+      transition:transform var(--transition),border-color var(--transition);
+    }
+    .member:hover .avatar{ transform:scale(1.08); border-color:var(--aw-copper); }
+    .member h4{ margin:12px 0 4px; font-size:20px }
+    .member .role{ font-size:15px; color:var(--aw-muted) }
+
+    /* ---------- Timeline ---------- */
+    .timeline-wrapper{ position:relative; max-width:900px; margin:80px auto 0; padding:0 20px; }
+    .timeline-line{ position:absolute; left:20px; right:20px; top:32px; height:4px; background:rgba(15,95,154,.15); border-radius:4px; overflow:hidden; }
+    .timeline-line::after{ content:''; position:absolute; left:0; top:0; height:100%; width:0; background:var(--aw-copper); animation:drawLine 2s ease-out forwards; animation-timeline:scroll(); }
+    .timeline-steps{ display:flex; justify-content:space-between; position:relative; }
+    .step{ flex:1; text-align:center; opacity:0; transform:translateY(50px); transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
+    .step.reveal.is-visible{ opacity:1; transform:none; }
+    .step:nth-child(1){ transition-delay:.1s } .step:nth-child(2){ transition-delay:.2s } .step:nth-child(3){ transition-delay:.3s } .step:nth-child(4){ transition-delay:.4s }
+    .step .dot{
+      width:64px; height:64px; border-radius:50%; background:var(--aw-panel);
+      border:4px solid rgba(15,95,154,.15); margin:0 auto 20px; display:grid; place-items:center; position:relative; z-index:2; transition:border-color .4s ease;
+    }
+    .step.active .dot{ border-color:var(--aw-copper); background:var(--aw-copper); color:#fff; animation:pulse 2.5s infinite; }
+    @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(255,138,61,.45);} 70%{box-shadow:0 0 0 16px rgba(255,138,61,0);} 100%{box-shadow:0 0 0 0 rgba(255,138,61,0);} }
+    .step .card{ background:var(--aw-panel); border:1px solid rgba(15,23,32,.08); border-radius:var(--aw-radius); padding:24px; box-shadow:var(--shadow); transition:transform .4s ease; }
+    .step:hover .card{ transform:translateY(-6px); }
+    .step .card h3{ margin-bottom:6px; font-size:22px }
+    .step .card p{ font-size:15px; color:var(--aw-muted) }
+    @keyframes drawLine{ to{ width:100% } }
+
+    /* ---------- Animations d’entrée ---------- */
+    @keyframes fadeInUp{ from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none} }
+    .reveal{ opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1) }
+    .reveal.is-visible{ opacity:1; transform:none }
   </style>
 </head>
-<body>
 
+<body class="page-apropos">
   <!-- Header injecté -->
   <div id="header"></div>
 
-  <!-- Bandeau H1 -->
-  <section class="section hero-apropos">
-    <h1 class="title-center">Qui sommes-nous&nbsp;?</h1>
-    <p class="subtitle-center">Rendre la conformité accessible, humaine et transparente.</p>
-    <div class="underline" aria-hidden="true"></div>
+  <!-- =================  HERO IMMERSIF  ================= -->
+  <section class="hero">
+    <canvas id="canvas" aria-hidden="true"></canvas>
+
+    <!-- Formes géométriques flottantes -->
+    <div class="hero-geo" aria-hidden="true">
+      <span class="g circle"></span>
+      <span class="g square"></span>
+      <span class="g triangle"></span>
+      <span class="g diamond"></span>
+      <span class="g circle"></span>
+      <span class="g square"></span>
+      <span class="g triangle"></span>
+      <span class="g diamond"></span>
+    </div>
+
+    <div class="content">
+      <h1>On rend la conformité <span style="color:var(--aw-copper)">excitante</span></h1>
+      <p class="lead">(Eh oui, c’est possible) — découvrez comment nous transformons RGPD & accessibilité en atout business pour 9,90 €/mois.</p>
+      <div class="actions">
+        <a href="index.html#resultat" class="btn primary">Je teste gratuitement</a>
+        <a href="#histoire" class="btn ghost">Voir notre histoire</a>
+      </div>
+    </div>
   </section>
 
-  <!-- Contenu principal -->
-  <main class="encarts" id="contenu">
+  <!-- =================  PREUVE SOCIALE  ================= -->
+  <section class="section alt">
+    <h2 class="section-title">Ils nous font déjà confiance</h2>
+    <div class="testimonials">
+      <blockquote>
+        <span>★★★★★</span>
+        « En 5 min j’ai eu un plan d’action clair. »
+        <cite>– Marie, créatrice d’e-commerce</cite>
+      </blockquote>
+      <blockquote>
+        <span>★★★★★</span>
+        « 30 € d’économie vs un cabinet. »
+        <cite>– Julien, auto-entrepreneur</cite>
+      </blockquote>
+      <blockquote>
+        <span>★★★★★</span>
+        « Enfin une solution qui ne stresse pas ! »
+        <cite>– Léa, association</cite>
+      </blockquote>
+    </div>
+    <div class="stats">
+      <div><strong>+1 200</strong> sites audités</div>
+      <div><strong>98 %</strong> satisfaction</div>
+      <div><strong>4 min</strong> moyenne de test</div>
+    </div>
+  </section>
 
-    <!-- Présentation / hero bulle incurvée -->
-    <section class="encart hero-bubble">
-      <div class="hero-bubble-content">
-        <div class="hero-bubble-text">
-          <h2 class="aw-title">Présentation</h2>
-          <p>
-            Chez <strong>Awenoria</strong>, la conformité ne doit pas être un fardeau.
-            Nous aidons les TPE, PME, associations et start-ups à maîtriser leurs obligations —
-            <strong>sans jargon, sans dépendance et à un prix démocratisé</strong>.
-          </p>
-        </div>
-        <div class="hero-bubble-img">
-          <img src="./images/logo.png" alt="Logo Awenoria">
-        </div>
+  <!-- =================  MISSION  ================= -->
+  <section class="section">
+    <h2 class="section-title">Notre mission</h2>
+    <p class="subtitle-center">Nous démocratisons la conformité pour les TPE/PME, associations et indépendants avec un pré-diagnostic <strong>automatique</strong>, <strong>clair</strong> et <strong>respectueux des données</strong>.</p>
+    <div class="team" style="grid-template-columns:repeat(3,1fr);gap:24px">
+      <div class="card" style="padding:24px">
+        <h4>Automatisé</h4>
+        <p>Aucune donnée sensible ne quitte l’appareil : l’essentiel est évalué côté navigateur.</p>
       </div>
-    </section>
-
-    <!-- Groupe -->
-    <section class="encart blue">
-      <div class="pad">
-        <h2 class="aw-title">Le groupe</h2>
-        <p>Nos outils d’audit <strong>locaux</strong> accélèrent l’obtention des premières actions, puis l’<strong>accompagnement humain</strong> prend le relais quand c’est nécessaire.</p>
+      <div class="card" style="padding:24px">
+        <h4>Pédagogique</h4>
+        <p>Scores, actions concrètes et exemples pour passer du diagnostic à la correction.</p>
       </div>
-    </section>
-
-    <!-- =================== HISTOIRE (frise corrigée) =================== -->
-    <section class="encart white neo-timeline-wrap" aria-labelledby="neo-histoire-title">
-      <div class="pad">
-        <h2 id="neo-histoire-title" class="neo-title">Notre histoire</h2>
+      <div class="card" style="padding:24px">
+        <h4>Abordable</h4>
+        <p>9,90 € / mois ou 85 € / an : la conformité devient accessible à tous les budgets.</p>
       </div>
+    </div>
+  </section>
 
-      <!-- Étapes -->
-      <ol class="neo-timeline" aria-label="Frise chronologique Awenoria">
-        <li class="neo-item" data-accent="blue">
-          <div class="neo-card">
-            <h3>Investigation</h3>
-            <p>Idée&nbsp;: conformité simple &amp; locale.</p>
+  <!-- =================  NOTRE HISTOIRE – IMMERSIVE  ================= -->
+  <section id="histoire" class="section alt">
+    <h2 class="section-title">Notre histoire en 4 étapes</h2>
+
+    <div class="timeline-wrapper">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-steps">
+        <div class="step reveal" data-idx="1">
+          <div class="dot"></div>
+          <div class="card">
+            <h3>2023</h3>
+            <p>Prototype local</p>
           </div>
-        </li>
+        </div>
 
-        <li class="neo-item" data-accent="orange">
-          <div class="neo-card">
-            <h3>Prototype</h3>
-            <p>Prototype d’audit côté navigateur.</p>
+        <div class="step reveal" data-idx="2">
+          <div class="dot"></div>
+          <div class="card">
+            <h3>2024</h3>
+            <p>Mentions & accessibilité</p>
           </div>
-        </li>
+        </div>
 
-        <li class="neo-item" data-accent="blue">
-          <div class="neo-card">
-            <h3>Développements</h3>
-            <p>Volets Mentions légales &amp; Accessibilité.</p>
+        <div class="step reveal active" data-idx="3">
+          <div class="dot"></div>
+          <div class="card">
+            <h3>2025</h3>
+            <p>Lancement public</p>
           </div>
-        </li>
+        </div>
 
-        <li class="neo-item" data-accent="orange">
-          <div class="neo-card">
-            <h3>Lancement</h3>
-            <p>Lancement public &amp; packs démocratisés.</p>
+        <div class="step reveal" data-idx="4">
+          <div class="dot"></div>
+          <div class="card">
+            <h3>2026</h3>
+            <p>Standard européen</p>
           </div>
-        </li>
-      </ol>
-    </section>
-    <!-- ================= FIN frise ================= -->
-
-    <!-- =================== VALEURS (nouvelle version) =================== -->
-<section class="encart valeurs-modern">
-  <div class="valeurs-wrapper">
-    
-    <!-- Colonne gauche -->
-    <div class="valeurs-left">
-      <h2 class="aw-title">Nos valeurs</h2>
-      <p class="intro">Transparence, pédagogie, confidentialité&nbsp;: notre boussole au quotidien.</p>
-    </div>
-
-<!-- Colonne droite -->
-<div class="valeurs-right">
-  <div class="valeur-item">
-    <div class="icon">
-      <img src="./images/icone-confiance-valeurs-128.png" alt="Icône Confiance" loading="lazy">
-    </div>
-    <div class="text">
-      <h3>Confiance</h3>
-      <p>Livrables clairs, méthodes publiées, engagements tenus.</p>
-    </div>
-  </div>
-
-  <div class="valeur-item">
-    <div class="icon">
-      <img src="./images/icone-qualité-valeurs-128.png" alt="Icône Qualité" loading="lazy">
-    </div>
-    <div class="text">
-      <h3>Qualité</h3>
-      <p>Diagnostic priorisé et actionnable, amélioration continue.</p>
-    </div>
-  </div>
-
-  <div class="valeur-item">
-    <div class="icon">
-      <img src="./images/icone-engagement-valeurs-128.png" alt="Icône Engagement" loading="lazy">
-    </div>
-    <div class="text">
-      <h3>Engagement</h3>
-      <p>Respect de la vie privée par design et par défaut.</p>
-    </div>
-  </div>
-</div>
-
-  </div>
-</section>
-
-<style>
-/* ======= Section Nos valeurs modernisée ======= */
-.valeurs-modern{
-  padding:0;
-  background:#fefefe;
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:0 8px 24px rgba(0,0,0,.08);
-  margin:60px auto;
-}
-
-.valeurs-wrapper{
-  display:grid;
-  grid-template-columns: 1fr 2fr;
-  min-height:380px;
-}
-
-.valeurs-left{
-  background:#fff;
-  padding:48px 42px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:flex-start;
-}
-.valeurs-left .aw-title{
-  color:#0f5f9a;
-  font-size:clamp(24px,4vw,36px);
-  margin:0 0 20px;
-}
-.valeurs-left .intro{
-  font-size:17px;
-  font-weight:600;
-  color:#0d2a3a;
-  max-width:360px;
-  line-height:1.6;
-}
-
-.valeurs-right{
-  background:#0f5f9a;
-  color:#fff;
-  padding:48px 54px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:36px;
-}
-
-.valeur-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 18px;
-}
-
-/* Icône dans une sphère lumineuse */
-.valeur-item .icon {
-  flex-shrink: 0;
-  width: 72px;
-  height: 72px;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.12), rgba(0,0,0,0.08));
-  border-radius: 50%; /* forme sphérique */
-  box-shadow:
-    0 0 12px rgba(0,0,0,0.25),
-    inset 0 2px 6px rgba(255,255,255,0.15);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* Image à l'intérieur de la sphère */
-.valeur-item .icon img {
-  width: 44px;
-  height: 44px;
-  display: block;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
-}
-
-/* Effet hover doux */
-.valeur-item .icon:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 0 20px rgba(255,255,255,0.25),
-    inset 0 2px 8px rgba(255,255,255,0.2);
-}
-
-/* Titres et textes */
-.valeur-item h3 {
-  margin: 0 0 6px;
-  font: 800 18px "Manrope", system-ui, sans-serif;
-  color: #ffb36e;
-  text-transform: uppercase;
-}
-
-.valeur-item p {
-  margin: 0;
-  font-weight: 500;
-  line-height: 1.5;
-  color: #e8f2fc;
-}
-
-/* Responsive */
-@media(max-width:800px){
-  .valeurs-wrapper{ grid-template-columns:1fr; }
-  .valeurs-left, .valeurs-right{ padding:36px 28px; text-align:center; align-items:center; }
-  .valeur-item{ justify-content:center; text-align:left; }
-}
-</style>
-</section>
-
-
-    <!-- Citation -->
-    <section class="encart quote">
-      <div class="visu">
-        <img src="./images/qui-sommes-nous-p-7.png" alt="Conformité numérique" style="max-width:92%;height:auto;display:block;border-radius:14px;margin:auto">
-      </div>
-      <div class="q">
-        <blockquote>«&nbsp;Awenoria simplifie la conformité pour renforcer l’autonomie de ceux qui la vivent.&nbsp;»</blockquote>
-      </div>
-    </section>
-
-    <!-- Graphique statique -->
-    <section class="encart chart">
-      <div class="explain">
-        <h2 class="aw-title">Impact mesurable</h2>
-        <p>Le temps d’obtention des premières actions diminue fortement grâce au <strong>pré-diagnostic local</strong>, complété par l’accompagnement humain lorsque nécessaire.</p>
-      </div>
-      <div class="viz">
-        <svg viewBox="0 0 520 260" width="100%" height="auto" role="img" aria-label="Barres croissance accompagnement vs produit">
-          <defs><style>.barA{fill:#ffcf99}.barB{fill:#0f5f9a}.axis{stroke:#a9bed3;stroke-width:1}.lbl{font:700 12px Manrope, sans-serif; fill:#355}</style></defs>
-          <line x1="40" y1="210" x2="490" y2="210" class="axis"/>
-          <line x1="40" y1="40"  x2="40"  y2="210" class="axis"/>
-          <rect x="80"  y="170" width="28" height="40" class="barA"/><rect x="116" y="150" width="28" height="60" class="barB"/><text x="92" y="228" class="lbl">2022</text>
-          <rect x="210" y="120" width="28" height="90" class="barA"/><rect x="246" y="80"  width="28" height="130" class="barB"/><text x="222" y="228" class="lbl">2023</text>
-          <rect x="340" y="90"  width="28" height="120" class="barA"/><rect x="376" y="60"  width="28" height="150" class="barB"/><text x="352" y="228" class="lbl">2024</text>
-          <rect x="60" y="16" width="16" height="12" class="barA"/><text x="80" y="26" class="lbl">Accompagnement</text>
-          <rect x="220" y="16" width="16" height="12" class="barB"/><text x="240" y="26" class="lbl">Produit (pré-diag)</text>
-        </svg>
-      </div>
-    </section>
-
-    <!-- Équipe -->
-    <section class="encart white">
-      <div class="pad"><h2 class="aw-title">L’équipe</h2></div>
-      <div class="team-3">
-        <div class="member">
-          <div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d9e6f5,#a9c6e8)"></div>
-          <h3>Alexandre M.</h3><p>Produit &amp; conformité</p>
-        </div>
-        <div class="member">
-          <div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#d8f0cf,#bde6b3)"></div>
-          <h3>Camille R.</h3><p>Juriste RGPD / DPO</p>
-        </div>
-        <div class="member">
-          <div class="avatar" style="background:radial-gradient(80px 50px at 50% 35%,#f9dcc2,#f4b381)"></div>
-          <h3>Yann G.</h3><p>Accessibilité RGAA/WCAG</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CTAs -->
-    <section class="encart blue cta">
-      <div>
-        <h2 class="aw-title">Des questions&nbsp;?</h2>
-        <div class="row">
-          <a class="btn ghost" href="faq.html">Consulter la FAQ</a>
-          <a class="btn gradient" href="index.html#contact">Nous contacter</a>
-        </div>
+  <!-- =================  ÉQUIPE  ================= -->
+  <section id="equipe" class="section">
+    <h2 class="section-title">L’équipe</h2>
+    <p class="subtitle-center">Une équipe pluridisciplinaire (juridique, accessibilité, produit) au service d’une conformité utile et actionnable.</p>
+    <div class="team">
+      <div class="member reveal">
+        <div class="avatar" style="background:url('images/team-1.webp') center/cover"></div>
+        <h4>Alexandre M.</h4>
+        <p class="role">Fondateur & conformité</p>
       </div>
-    </section>
+      <div class="member reveal">
+        <div class="avatar" style="background:url('images/team-2.webp') center/cover"></div>
+        <h4>Camille R.</h4>
+        <p class="role">Juriste RGPD / DPO</p>
+      </div>
+      <div class="member reveal">
+        <div class="avatar" style="background:url('images/team-3.webp') center/cover"></div>
+        <h4>Yann G.</h4>
+        <p class="role">Expert accessibilité RGAA/WCAG</p>
+      </div>
+    </div>
+  </section>
 
-    <section class="encart blue cta" aria-label="Remerciements">
-      <div>
-        <h2 class="aw-title" style="font-size:clamp(34px,6vw,60px)">MERCI</h2>
-        <p style="color:#e9f2fb">pour votre confiance.</p>
-      </div>
-    </section>
-  </main>
+  <!-- =================  MERCI  ================= -->
+  <section class="section alt" style="text-align:center">
+    <img src="images/pj4-merci.png" alt="Merci" style="max-height:120px;margin:0 auto 12px">
+    <p class="subtitle-center">pour votre confiance.</p>
+    <a href="index.html#resultat" class="btn primary">Lancer l’audit gratuit</a>
+  </section>
 
   <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- Loader header/footer + nav (compatible GitHub Pages) -->
+  <!-- =================  JS  ================= -->
+  <script>
+    // Animations d'apparition
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
+    }, { threshold: 0.2 });
+    reveals.forEach(el => io.observe(el));
+
+    // Particules hero (canvas)
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = innerWidth;
+    let h = canvas.height = innerHeight;
+    const particles = [];
+    const opts = { count: 60, speed: .3, radius: 2, distance: 120, color: 'rgba(255,255,255,.25)' };
+
+    window.addEventListener('resize', () => {
+      w = canvas.width = innerWidth;
+      h = canvas.height = innerHeight;
+    });
+
+    class Particle {
+      constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
+    }
+
+    function init(){ for(let i=0;i<opts.count;i++) particles.push(new Particle()); }
+    function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); }
+    init(); animate();
+  </script>
+
+  <!-- Loader header/footer + nav (priorité racine, fallback partials/) -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
@@ -473,11 +448,12 @@
       return [ base + clean, "./" + clean, "../" + clean ];
     };
 
-    async function fetchFirstOk(paths) {
-      for (const u of paths) {
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
         try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
       }
-      throw new Error("Aucun chemin valide: " + paths.join(", "));
+      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
     }
 
     function fixRootUrls(container) {
@@ -485,17 +461,18 @@
         .forEach(el => {
           const attr = el.hasAttribute("href") ? "href" : "src";
           const val = el.getAttribute(attr);
-          if (/^\/\//.test(val)) return;
+          if (/^\/\//.test(val)) return; // //cdn...
           el.setAttribute(attr, base + val.replace(/^\//, ""));
         });
     }
 
+    // HEADER : priorité racine, fallback partials/
     if (headMount) {
-      fetchFirstOk(candidates("partials/header.html"))
+      fetchAny(["header.html", "partials/header.html"])
         .then(html => {
           headMount.innerHTML = html;
           fixRootUrls(headMount);
-          return fetchFirstOk(candidates("assets/nav.js"));
+          return fetchAny(["assets/nav.js", "nav.js"]); // nav dans assets/ ou à la racine
         })
         .then(code => {
           const s = document.createElement("script");
@@ -510,8 +487,9 @@
         });
     }
 
+    // FOOTER : priorité racine, fallback partials/
     if (footMount) {
-      fetchFirstOk(candidates("partials/footer.html"))
+      fetchAny(["footer.html", "partials/footer.html"])
         .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
         .catch(err => {
           console.error("Footer load error:", err);
