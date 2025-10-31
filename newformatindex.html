@@ -3,63 +3,91 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Awenoria – aperçu interactif</title>
+  <title>Awenoria – site complet</title>
+  <meta name="description" content="Conformité RGPD & IA rendue simple, humaine et accessible."/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <style>
-    body { font-family: 'Inter', sans-serif; background: #f6f9fc; }
-    .glass { background: rgba(255,255,255,.85); backdrop-filter: blur(8px); border: 1px solid rgba(0,0,0,.08); }
-    .btn-primary { background: linear-gradient(90deg,#ff8a3d,#ff9a56); color: #fff; border-radius: 999px; padding: .6rem 1.4rem; font-weight: 600; }
+    :root { --blue: #0f5f9a; --orange: #ff8a3d; --glass: rgba(255,255,255,.86); }
+    body { font-family: 'Inter', sans-serif; background: #f6f9fc; color: var(--blue); }
+    .glass { background: var(--glass); backdrop-filter: blur(8px); border: 1px solid rgba(0,0,0,.08); border-radius: 1rem; }
+    .btn-primary { background: linear-gradient(90deg,var(--orange),#ff9a56); color: #fff; border-radius: 999px; padding: .6rem 1.4rem; font-weight: 600; }
     .tool-card { cursor: pointer; transition: transform .2s; }
     .tool-card:hover { transform: translateY(-4px) scale(1.02); }
+    section { scroll-margin-top: 80px; }
   </style>
 </head>
-<body class="text-blue-900">
+<body>
 
+<!-- NAV -->
 <nav class="fixed top-0 left-0 right-0 glass z-50 flex items-center justify-between px-6 h-16 shadow-sm">
   <div class="flex items-center gap-3">
     <img src="https://i.imgur.com/8X9QvX1.png" alt="logo" class="w-10 h-10 rounded-lg">
     <span class="font-bold text-xl">Awenoria</span>
   </div>
   <div class="hidden md:flex gap-6 font-semibold">
+    <a href="#home" class="hover:text-orange-500">Accueil</a>
+    <a href="#qui" class="hover:text-orange-500">Qui sommes-nous ?</a>
+    <a href="#catalogue" class="hover:text-orange-500">Catalogue</a>
     <a href="#outils" class="hover:text-orange-500">Outils</a>
-    <a href="#services" class="hover:text-orange-500">Services</a>
     <a href="#contact" class="hover:text-orange-500">Contact</a>
   </div>
 </nav>
 
-<section class="pt-32 pb-16 px-6 text-center">
-  <h1 class="text-4xl md:text-5xl font-bold mb-4">La conformité RGPD & IA rendue simple</h1>
-  <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">Scannez, analysez, formez. Tout-en-un, sans stockage de données, 100 % local.</p>
-  <button onclick="showScanner()" class="btn-primary">Lancer un audit gratuit</button>
+<!-- HOME (awenoria.html) -->
+<section id="home" class="pt-32 pb-16 px-6 text-center">
+  <h1 class="text-4xl md:text-5xl font-bold mb-4">La conformité RGPD & IA rendue simple, humaine et accessible.</h1>
+  <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">Scannez votre site, analysez vos données, formez vos équipes. Tout-en-un, sans stockage de données, 100 % local.</p>
+  <div class="flex flex-col sm:flex-row gap-4 justify-center">
+    <button onclick="showScanner()" class="btn-primary">Lancer un audit gratuit</button>
+    <a href="#catalogue" class="btn-primary bg-blue-600">Voir le catalogue</a>
+  </div>
 </section>
 
-<section id="outils" class="px-6 pb-16">
-  <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    <div class="tool-card glass p-6 rounded-xl" onclick="showScanner()">
-      <div class="text-orange-500 text-2xl mb-2">🔍</div>
-      <h3 class="font-bold">Scanner RGPD</h3>
-      <p class="text-sm text-gray-600 mt-1">Analyse instantanée de votre site</p>
-    </div>
-    <div class="tool-card glass p-6 rounded-xl" onclick="showChecklist()">
-      <div class="text-blue-500 text-2xl mb-2">✅</div>
-      <h3 class="font-bold">Checklist RGPD</h3>
-      <p class="text-sm text-gray-600 mt-1">Interactive & sauvegardée localement</p>
-    </div>
-    <div class="tool-card glass p-6 rounded-xl" onclick="showRecom()">
-      <div class="text-green-500 text-2xl mb-2">💡</div>
-      <h3 class="font-bold">Recommandations</h3>
-      <p class="text-sm text-gray-600 mt-1">Actions priorisées par risque</p>
-    </div>
-    <div class="tool-card glass p-6 rounded-xl" onclick="showReports()">
-      <div class="text-purple-500 text-2xl mb-2">📊</div>
-      <h3 class="font-bold">Rapports</h3>
-      <p class="text-sm text-gray-600 mt-1">Export PDF / CSV</p>
+<!-- QUI SOMMES-NOUS (qui-sommes-nous.html) -->
+<section id="qui" class="px-6 py-16">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-4">Qui sommes-nous ?</h2>
+    <p class="text-lg text-gray-600 leading-relaxed mb-8">Rendre la conformité accessible, humaine et transparente. Chez <strong class="text-orange-500">Awenoria</strong>, la conformité ne doit pas être un fardeau. Nous aidons les TPE, PME, associations et start-ups à maîtriser leurs obligations — <span class="bg-orange-500 text-white px-2 rounded">sans jargon</span>, <span class="bg-blue-500 text-white px-2 rounded">sans dépendance</span> et <span class="bg-green-500 text-white px-2 rounded">à un prix démocratisé</span>.</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+      <div class="glass p-6 rounded-xl text-center"><div class="text-3xl font-bold text-orange-500">500+</div><p class="text-sm text-gray-600">Entreprises accompagnées</p></div>
+      <div class="glass p-6 rounded-xl text-center"><div class="text-3xl font-bold text-green-500">95 %</div><p class="text-sm text-gray-600">Taux de satisfaction</p></div>
+      <div class="glass p-6 rounded-xl text-center"><div class="text-3xl font-bold text-blue-500">24 h</div><p class="text-sm text-gray-600">Réponse sous 24h</p></div>
     </div>
   </div>
 </section>
 
-<!-- CONTENEUR DES MODULES -->
-<section id="module" class="px-6 pb-16 hidden">
+<!-- CATALOGUE (catalogue.html) -->
+<section id="catalogue" class="px-6 py-16 bg-blue-50">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-8">Catalogue des services & formations</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass p-6 rounded-xl"><h3 class="font-bold mb-2">Audit & Conformité</h3><p class="text-sm text-gray-600">RGPD, IA Act, cybersécurité</p></div>
+      <div class="glass p-6 rounded-xl"><h3 class="font-bold mb-2">Web & Légal</h3><p class="text-sm text-gray-600">Mentions légales, cookies, accessibilité</p></div>
+      <div class="glass p-6 rounded-xl"><h3 class="font-bold mb-2">Formations</h3><p class="text-sm text-gray-600">RGPD, IA, accessibilité, etc.</p></div>
+    </div>
+    <div class="text-center mt-8">
+      <a href="catalogue.html" class="btn-primary">Voir le catalogue complet</a>
+    </div>
+  </div>
+</section>
+
+<!-- OUTILS -->
+<section id="outils" class="px-6 py-16">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-8">Outils rapides</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="tool-card glass p-6 rounded-xl" onclick="showScanner()"><div class="text-orange-500 text-2xl mb-2">🔍</div><h3 class="font-bold">Scanner RGPD</h3><p class="text-sm text-gray-600">Analyse instantanée</p></div>
+      <div class="tool-card glass p-6 rounded-xl" onclick="showChecklist()"><div class="text-blue-500 text-2xl mb-2">✅</div><h3 class="font-bold">Checklist RGPD</h3><p class="text-sm text-gray-600">Interactive & locale</p></div>
+      <div class="tool-card glass p-6 rounded-xl" onclick="showRecom()"><div class="text-green-500 text-2xl mb-2">💡</div><h3 class="font-bold">Recommandations</h3><p class="text-sm text-gray-600">Actions priorisées</p></div>
+      <div class="tool-card glass p-6 rounded-xl" onclick="showReports()"><div class="text-purple-500 text-2xl mb-2">📊</div><h3 class="font-bold">Rapports</h3><p class="text-sm text-gray-600">Export PDF / CSV</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE CONTENEUR -->
+<section id="module" class="px-6 py-16 hidden">
   <div class="max-w-3xl mx-auto glass p-6 rounded-xl">
     <div class="flex justify-between items-center mb-4">
       <h2 id="module-title" class="font-bold text-lg"></h2>
@@ -69,16 +97,9 @@
   </div>
 </section>
 
-<section id="services" class="px-6 pb-16">
-  <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="glass p-6 rounded-xl"><h3 class="font-bold mb-2">Audit & Conformité</h3><p class="text-sm text-gray-600">RGPD, IA Act, cybersécurité</p></div>
-    <div class="glass p-6 rounded-xl"><h3 class="font-bold mb-2">Web & Légal</h3><p class="text-sm text-gray-600">Mentions légales, cookies, accessibilité</p></div>
-    <div class="glass p-6 rounded-xl"><h3 class="font-bold mb-2">Formations</h3><p class="text-sm text-gray-600">RGPD, IA, accessibilité, etc.</p></div>
-  </div>
-</section>
-
-<section id="contact" class="px-6 pb-16 text-center">
-  <h2 class="text-2xl font-bold mb-4">Besoin d’un accompagnement ?</h2>
+<!-- CONTACT -->
+<section id="contact" class="px-6 py-16 bg-blue-50 text-center">
+  <h2 class="text-3xl font-bold mb-4">Parlons de votre conformité</h2>
   <a href="mailto:contact@awenoria.fr" class="btn-primary">Nous contacter</a>
 </section>
 
@@ -116,7 +137,7 @@
     loadCk();
   }
   function saveCk() {
-    const checks = Array.from(body.querySelectorAll('input')).map((cb, i) => ({ checked: cb.checked }));
+    const checks = Array.from(body.querySelectorAll('input')).map(cb => ({ checked: cb.checked }));
     localStorage.setItem('awenoria_ck', JSON.stringify(checks));
   }
   function loadCk() {
@@ -128,14 +149,8 @@
     title.textContent = 'Recommandations';
     body.innerHTML = `
       <div class="space-y-4">
-        <div class="border-l-4 border-red-500 glass p-4 rounded">
-          <h4 class="font-semibold text-red-700">Bannière de consentement manquante</h4>
-          <p class="text-sm text-gray-600">Ajoutez une bannière claire et des boutons équivalents.</p>
-        </div>
-        <div class="border-l-4 border-amber-500 glass p-4 rounded">
-          <h4 class="font-semibold text-amber-700">Politique de confidentialité incomplète</h4>
-          <p class="text-sm text-gray-600">Indiquez les finalités et durées de conservation.</p>
-        </div>
+        <div class="border-l-4 border-red-500 glass p-4 rounded"><h4 class="font-semibold text-red-700">Bannière de consentement manquante</h4><p class="text-sm text-gray-600">Ajoutez une bannière claire et des boutons équivalents.</p></div>
+        <div class="border-l-4 border-amber-500 glass p-4 rounded"><h4 class="font-semibold text-amber-700">Politique de confidentialité incomplète</h4><p class="text-sm text-gray-600">Indiquez les finalités et durées de conservation.</p></div>
       </div>
     `;
     module.classList.remove('hidden');
