@@ -380,3 +380,99 @@ header.navbar{
 
 /* ------------------ Espacement a-propos ------------------ */
 .hero-apropos{ padding:56px 0 22px !important; }
+
+/* =================================================================
+   PRICING — Effet “mise en avant” au survol (PJ2)
+   ================================================================= */
+.pricing{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+@media (max-width:980px){.pricing{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.pricing{grid-template-columns:1fr}}
+
+.pricing .offer{
+  position: relative;
+  border-radius: 22px;
+  border: 1.5px solid rgba(15,23,32,.12);
+  padding: 20px;
+  display: grid;
+  gap: 12px;
+  background: var(--panel);
+  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+}
+
+/* halo doux derrière la carte */
+.pricing .offer::before{
+  content:"";
+  position:absolute; inset:-10px; border-radius:28px;
+  box-shadow: 0 20px 50px rgba(255,138,61,.18);
+  opacity:0; transition: opacity .22s ease;
+  pointer-events:none;
+}
+
+/* état “hover/focus” = rendu PJ2 */
+.pricing .offer:hover,
+.pricing .offer:focus-within{
+  transform: translateY(-6px);
+  border-color: var(--copper);
+  box-shadow:
+    0 16px 36px rgba(0,0,0,.08),
+    0 0 0 1.5px rgba(255,138,61,.35) inset;
+  background: linear-gradient(180deg, #fff, #fff9f5);
+}
+.pricing .offer:hover::before,
+.pricing .offer:focus-within::before{ opacity:1; }
+
+/* badge “Populaire” (affiché au hover/focus) */
+.pricing .offer .flag{
+  position:absolute; top:-12px; left:22px;
+  padding:6px 10px; border-radius:999px;
+  font: 800 12px/1 var(--font-ui); letter-spacing:.02em;
+  color:#fff; background: linear-gradient(90deg, #ff8a3d, #ff9a56);
+  border:1px solid rgba(255,255,255,.66);
+  box-shadow: 0 8px 16px rgba(255,138,61,.25), inset 0 1px 0 rgba(255,255,255,.9);
+  opacity:0; transform: translateY(-6px) scale(.98);
+  transition: .22s ease;
+  pointer-events:none;
+}
+.pricing .offer:hover .flag,
+.pricing .offer:focus-within .flag{ opacity:1; transform:none; }
+
+/* prix avec € réduit */
+.offer .price{ margin-top:6px; font-size:28px; font-weight:800; color:var(--copper); }
+.offer .price .euro{ font-size:.6em; vertical-align:.2em; font-weight:700; }
+
+/* bouton “Choisir cette offre” (uniquement au hover/focus) */
+.offer .choose{
+  display:none;
+  align-self:flex-start;
+  margin-top:8px;
+  padding:10px 14px;
+  border-radius:9999px;
+  font-weight:800; font-size:14px;
+  color:#fff; text-decoration:none;
+  background: linear-gradient(90deg, var(--copper), #ff9a56);
+  box-shadow: 0 10px 20px rgba(var(--copper-rgb), .26), inset 0 1px 0 rgba(255,255,255,.9);
+  border:1px solid rgba(255,255,255,.55);
+  transition: transform .12s ease, box-shadow .18s ease, filter .18s ease;
+}
+.offer .choose:hover{ filter:brightness(1.03) saturate(1.03); transform: translateY(-1px); }
+.pricing .offer:hover .choose,
+.pricing .offer:focus-within .choose{ display:inline-flex; }
+
+/* Variante : garder une offre toujours mise en avant */
+.offer.is-featured{
+  transform: translateY(-6px);
+  border-color: var(--copper);
+  box-shadow: 0 16px 36px rgba(0,0,0,.08), 0 0 0 1.5px rgba(255,138,61,.35) inset;
+  background: linear-gradient(180deg,#fff,#fff9f5);
+}
+.offer.is-featured .flag,
+.offer.is-featured .choose{ display:inline-flex; opacity:1; transform:none; }
+
+/* motion-safe */
+@media (prefers-reduced-motion: reduce){
+  .pricing .offer,
+  .pricing .offer::before,
+  .pricing .offer .flag,
+  .offer .choose{ transition: none !important; }
+}
