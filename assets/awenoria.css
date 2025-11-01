@@ -95,7 +95,7 @@ header.navbar{position:sticky;top:0;z-index:1100;background:rgba(255,255,255,.85
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
 .brand-img{height:clamp(56px,8vw,96px);object-fit:contain;display:block}
 .nav-main{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;margin-left:8px;flex-wrap:wrap}
-.nav-main a,.nav-main button{appearance:none;background:none;border:none;cursor:pointer;color:var(--text);text-decoration:none;font-weight:800;font-size:16px;height:var(--nav-h);line-height:var(--nav-h));padding:0 12px;border-radius:10px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.nav-main a,.nav-main button{appearance:none;background:none;border:none;cursor:pointer;color:var(--text);text-decoration:none;font-weight:800;font-size:16px;height:var(--nav-h));line-height:var(--nav-h));padding:0 12px;border-radius:10px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 .nav-main a:hover,.nav-main button:hover{background:rgba(27,136,255,.10)}
 .nav-actions{display:flex;align-items:center;gap:8px;margin-left:6px}
 
@@ -175,11 +175,7 @@ header.navbar{position:sticky;top:0;z-index:1100;background:rgba(255,255,255,.85
   .side-panel{width:100%;right:-100%;border-radius:0}
 }
 
-/* =================================================================
-   FOOTER + AUTRES SECTIONS (inchangées)
-   ================================================================= */
-
-/* ------------------ Footer ------------------ */
+/* ------------------ Footer + sections inchangées ------------------ */
 .cc-footer{background:#0a0a0a;color:#eaeaea;padding:28px 0 12px;border-top:1px solid rgba(255,255,255,.12)}
 .cc-container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
 .cc-top{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
