@@ -1,12 +1,12 @@
 <header class="navbar" role="banner">
   <div class="nav-wrap">
 
-    <!-- 1. Logo à GAUCHE -->
+    <!-- 1. Logo -->
     <a class="brand" href="index.html" aria-label="Aller à l’accueil">
       <img class="brand-img" src="images/logo-venoria.png" alt="Logo Venoria">
     </a>
 
-    <!-- 2. Menu CENTRAL -->
+    <!-- 2. Menu -->
     <nav class="nav-main" aria-label="Navigation principale">
       <a href="qui-sommes-nous.html">Qui sommes-nous ?</a>
 
@@ -18,38 +18,48 @@
         </button>
 
         <div id="mega-services" class="mega clean" role="menu" aria-label="Nos services">
-          <ul class="clean-list">
-            <li class="clean-group">
-              <strong class="clean-h">Conseil & conformité</strong>
-              <ul>
+          <div class="clean-2col">
+            <!-- COL 1 -->
+            <div class="clean-group">
+              <button class="accordion-toggle" aria-expanded="false" aria-controls="acc-conseil">
+                🧩 Conseil & conformité
+              </button>
+              <ul id="acc-conseil" class="accordion-panel">
                 <li><a role="menuitem" href="index.html#audit">Audit & Analyse</a></li>
                 <li><a role="menuitem" href="index.html#conformite">Accompagnement RGPD</a></li>
                 <li><a role="menuitem" href="index.html#ia-act">Conformité IA (UE)</a></li>
               </ul>
-            </li>
+            </div>
 
-            <li class="clean-group">
-              <strong class="clean-h">Web & légal</strong>
-              <ul>
+            <div class="clean-group">
+              <button class="accordion-toggle" aria-expanded="false" aria-controls="acc-web">
+                ⚙️ Web & légal
+              </button>
+              <ul id="acc-web" class="accordion-panel">
                 <li><a role="menuitem" href="modeles-juridiques.html">Modèles juridiques</a></li>
                 <li><a role="menuitem" href="complement-modeles-juridiques-politique-de-cookies.html">Complément modèles</a></li>
                 <li><a role="menuitem" href="politique-de-confidentialite.html">Politique de confidentialité</a></li>
               </ul>
-            </li>
+            </div>
+          </div>
 
-            <li class="clean-group">
-              <strong class="clean-h">Formats & modalités</strong>
-              <div class="clean-badges">
-                <span>Audit flash</span><span>Mission</span><span>Abonnement</span><span>À la carte</span>
-              </div>
-              <p class="clean-note">Livrables clairs, priorisation par impact, suivi possible.</p>
-              <a class="btn ghost" href="contact.html" role="menuitem">Demander un devis</a>
-            </li>
+          <!-- COL 2 -->
+          <div class="clean-group">
+            <strong class="clean-h">Formats & modalités</strong>
+            <div class="clean-badges">
+              <span>Audit flash</span>
+              <span>Mission</span>
+              <span>Abonnement</span>
+              <span>À la carte</span>
+            </div>
+            <p class="clean-note">Livrables clairs, priorisation par impact, suivi possible.</p>
+            <a class="btn ghost" href="contact.html" role="menuitem">Demander un devis</a>
+          </div>
 
-            <li class="clean-group clean-cta">
-              <a href="catalogue.html" class="btn copper-ghost" role="menuitem">Catalogue complet des services</a>
-            </li>
-          </ul>
+          <!-- CTA -->
+          <div class="clean-cta">
+            <a href="catalogue.html" class="btn copper-ghost" role="menuitem">Catalogue complet des services</a>
+          </div>
         </div>
       </div>
       <!-- ▲ /NOS SERVICES -->
@@ -62,11 +72,13 @@
         </button>
 
         <div id="mega-formations" class="mega clean" role="menu" aria-label="Nos formations">
-          <ul class="clean-list clean-3col">
-            <!-- COL 1 : PAR THÉMATIQUE -->
-            <li class="clean-group">
-              <strong class="clean-h">Par thématique</strong>
-              <ul>
+          <div class="clean-2col">
+            <!-- COL 1 -->
+            <div class="clean-group">
+              <button class="accordion-toggle" aria-expanded="false" aria-controls="acc-theme">
+                📚 Par thématique
+              </button>
+              <ul id="acc-theme" class="accordion-panel">
                 <li><a role="menuitem" href="formations-rgpd.html">RGPD essentiels, registre, AIPD</a></li>
                 <li><a role="menuitem" href="formations-ia-act.html">IA Act – obligations & documentation</a></li>
                 <li><a role="menuitem" href="formations-cookies.html">Cookies & CMP</a></li>
@@ -74,39 +86,40 @@
                 <li><a role="menuitem" href="formations-accessibilite.html">Accessibilité (RGAA / EN 301 549)</a></li>
                 <li><a role="menuitem" href="formations-cybersecurite.html">Cybersécurité de base</a></li>
               </ul>
-            </li>
+            </div>
 
-            <!-- COL 2 : PAR PUBLIC -->
-            <li class="clean-group">
-              <strong class="clean-h">Par public</strong>
-              <ul>
+            <div class="clean-group">
+              <button class="accordion-toggle" aria-expanded="false" aria-controls="acc-public">
+                👥 Par public
+              </button>
+              <ul id="acc-public" class="accordion-panel">
                 <li><a role="menuitem" href="formations-dirigeants.html">Dirigeants & responsables</a></li>
                 <li><a role="menuitem" href="formations-equipes.html">Équipes opérationnelles</a></li>
                 <li><a role="menuitem" href="formations-dpo.html">Référents / DPO</a></li>
                 <li><a role="menuitem" href="formations-dev.html">Dev, Produit & Data</a></li>
               </ul>
-            </li>
+            </div>
+          </div>
 
-            <!-- COL 3 : FORMATS & MODALITÉS -->
-            <li class="clean-group">
-              <strong class="clean-h">Formats & modalités</strong>
-              <div class="clean-badges">
-                <span>Atelier 2 h</span>
-                <span>½ journée</span>
-                <span>1 journée</span>
-                <span>Parcours</span>
-                <span>Présentiel</span>
-                <span>Distanciel</span>
-              </div>
-              <p class="clean-note">Supports fournis, quiz & attestation inclus.</p>
-              <a class="btn ghost" href="contact.html?objet=formation" role="menuitem">Demander un programme</a>
-            </li>
+          <!-- COL 2 -->
+          <div class="clean-group">
+            <strong class="clean-h">Formats & modalités</strong>
+            <div class="clean-badges">
+              <span>Atelier 2 h</span>
+              <span>½ journée</span>
+              <span>1 journée</span>
+              <span>Parcours</span>
+              <span>Présentiel</span>
+              <span>Distanciel</span>
+            </div>
+            <p class="clean-note">Supports fournis, quiz & attestation inclus.</p>
+            <a class="btn ghost" href="contact.html?objet=formation" role="menuitem">Demander un programme</a>
+          </div>
 
-            <!-- CTA FULL WIDTH -->
-            <li class="clean-group clean-cta">
-              <a href="nos-formations.html" class="btn copper-ghost" role="menuitem">Voir toutes nos formations</a>
-            </li>
-          </ul>
+          <!-- CTA -->
+          <div class="clean-cta">
+            <a href="nos-formations.html" class="btn copper-ghost" role="menuitem">Voir toutes nos formations</a>
+          </div>
         </div>
       </div>
       <!-- ▲ /NOS FORMATIONS -->
@@ -115,7 +128,7 @@
       <a href="contact.html">Contact</a>
     </nav>
 
-    <!-- 3. Connexion à DROITE -->
+    <!-- 3. Connexion -->
     <div class="nav-actions">
       <div class="account">
         <button class="account-btn" id="accountBtn"
