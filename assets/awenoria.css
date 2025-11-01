@@ -86,15 +86,14 @@ a{color:inherit}
 }
 
 /* =================================================================
-   HEADER (NOUVEAU LAYOUT + MEGA ÉPURÉ)
+   HEADER (layout capture + fond blanc)
    ================================================================= */
 
-/* ----- Navbar ----- */
 header.navbar{
   position:sticky;
   top:0;
   z-index:1100;
-  background:#fffdf9;
+  background:#ffffff;            /* fond blanc */
   border-bottom:1px solid rgba(15,23,32,.08);
 }
 .nav-wrap{
@@ -103,12 +102,12 @@ header.navbar{
   padding:8px 14px;
   display:flex;
   align-items:center;
-  justify-content:space-between; /* ← répartition gauche/centre/droite */
+  justify-content:space-between;
 }
-/* --- ordre des blocs --- */
-.nav-actions{order:1;}   /* Connexion à gauche */
-.nav-main{order:2;}      /* Menu au centre */
-.brand{order:3;}         /* Logo à droite */
+/* --- ordre : logo – menu – connexion --- */
+.brand{order:1;}
+.nav-main{order:2;}
+.nav-actions{order:3;}
 
 .brand{
   display:flex;
@@ -157,7 +156,7 @@ header.navbar{
   gap:8px;
 }
 
-/* ----- Boutons ----- */
+/* ---------- boutons ---------- */
 .btn{
   position:relative;
   display:inline-flex;
@@ -173,27 +172,10 @@ header.navbar{
   text-decoration:none;
   border:1px solid transparent;
 }
-.btn.primary{
-  background:rgba(27,136,255,.80);
-  color:#fff;
-  border-color:rgba(255,255,255,.25);
-  box-shadow:inset 0 0 12px rgba(255,255,255,.15),0 4px 18px rgba(27,136,255,.30);
-}
-.btn.secondary{
-  background:rgba(255,255,255,.22);
-  color:var(--text);
-  border:2px solid rgba(15,23,32,.28);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.65),0 8px 18px rgba(15,23,32,.08);
-}
-.btn.secondary:hover{
-  background:rgba(255,255,255,.35);
-  border-color:rgba(15,23,32,.38);
-}
 .btn.ghost{
   background:transparent;
   color:var(--text);
   border:1px solid rgba(15,23,32,.12);
-  box-shadow:none;
 }
 .btn.copper-ghost{
   background:rgba(255,138,61,.10);
@@ -211,10 +193,9 @@ header.navbar{
   color:#fff;
   border-color:rgba(255,255,255,.55);
   transform:translateY(-1px);
-  box-shadow:0 10px 26px rgba(255,138,61,.22),inset 0 1px 0 rgba(255,255,255,1);
 }
 
-/* ----- Dropdown / Mega (ÉPURÉ) ----- */
+/* ---------- dropdown épuré ---------- */
 .dropdown{position:relative}
 .dropdown-toggle svg{
   width:14px;
@@ -242,8 +223,6 @@ header.navbar{
   from{opacity:0;transform:translate(-50%,-4px)}
   to{opacity:1;transform:translate(-50%,0)}
 }
-
-/* ---------- MEGA CLEAN (épuré) ---------- */
 .mega.clean{
   width:min(420px,96vw);
   padding:12px 0;
@@ -313,7 +292,7 @@ header.navbar{
   text-align:center;
 }
 
-/* ---------- Compte (connexion à gauche) ---------- */
+/* ---------- compte (icône à droite) ---------- */
 .account{position:relative}
 .account-btn{
   display:grid;
@@ -357,11 +336,10 @@ header.navbar{
 .acc-item:hover{background:rgba(27,136,255,.08);}
 .acc-title{margin:0;font-size:15px}
 
-/* ---------- Mobile ---------- */
+/* ---------- mobile ---------- */
 @media(max-width:768px){
   .mega{position:static;inset:0;border-radius:0;border:none;padding:20px;overflow-y:auto}
-  .mega-grid--4{grid-template-columns:1fr}
-  .side-panel{width:100%;right:-100%;border-radius:0}
+  .nav-main{flex-direction:column;align-items:flex-start;gap:8px}
 }
 
 /* ------------------ Footer + sections inchangées ------------------ */
