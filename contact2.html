@@ -7,15 +7,15 @@
 
 <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400 ;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- SEO: ContactPoint -->
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
+  "@context":"https://schema.org ",
   "@type":"Organization",
   "name":"Awenoria",
-  "url":"https://awenoria-dev.github.io/awenoria/",
+  "url":"https://awenoria-dev.github.io/awenoria/ ",
   "contactPoint":[{
     "@type":"ContactPoint",
     "contactType":"customer support",
@@ -219,43 +219,13 @@ textarea{resize:none}
 /* FOOTER */
 .footer{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
 </style>
+<!-- CSS global identique à ressources.html -->
+<link rel="stylesheet" href="assets/awenoria.css">
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
-<header id="site-header" class="header">
-  <div class="container nav">
-    <a href="./index.html" class="brand"><img src="./images/logo.png" alt="Awenoria" class="brand__logo"></a>
-    <ul class="mainnav">
-      <li class="menu-item"><a class="menu-link" href="index.html">Accueil</a></li>
-      <li class="menu-item">
-        <a class="menu-link" href="audit.html">Audit ▾</a>
-        <div class="dropdown">
-          <a href="fonctionnalites.html">• Fonctionnalités</a>
-          <a href="comment.html">• Méthodologie</a>
-          <a href="tarifs.html">• Tarifs</a>
-        </div>
-      </li>
-      <li class="menu-item">
-        <a class="menu-link" href="ressources.html">Ressources ▾</a>
-        <div class="dropdown">
-          <a href="guides.html">• Guides & bonnes pratiques</a>
-          <a href="modeles.html">• Modèles juridiques</a>
-          <a href="faq.html">• FAQ</a>
-        </div>
-      </li>
-      <li class="menu-item">
-        <a class="menu-link" href="a-propos.html">À propos ▾</a>
-        <div class="dropdown">
-          <a href="a-propos.html#mission">• Mission & valeurs</a>
-          <a href="mentions.html">• Mentions légales</a>
-          <a href="confidentialite.html">• Confidentialité</a>
-        </div>
-      </li>
-      <li class="menu-item"><a class="menu-link active" href="contact.html">Contact</a></li>
-    </ul>
-  </div>
-</header>
+<!-- ===== HEADER INJECTÉ ===== -->
+<div id="header"></div>
 
 <!-- ===== HERO ===== -->
 <section class="hero--image">
@@ -306,8 +276,8 @@ textarea{resize:none}
       <!-- CTA en pile + couleurs de marque (flèche retirée sur FAQ) -->
       <div class="cta-col">
         <a class="cta faq" href="faq.html">FAQ complète</a>
-        <a class="cta whatsapp" href="https://wa.me/33600000000" target="_blank" rel="noopener">WhatsApp Business</a>
-        <a class="cta calendly" href="https://calendly.com/" target="_blank" rel="noopener">Programmer un appel</a>
+        <a class="cta whatsapp" href="https://wa.me/33600000000 " target="_blank" rel="noopener">WhatsApp Business</a>
+        <a class="cta calendly" href="https://calendly.com/ " target="_blank" rel="noopener">Programmer un appel</a>
       </div>
 
       <hr>
@@ -319,7 +289,7 @@ textarea{resize:none}
 
     <!-- Colonne droite : formulaire -->
     <div class="card">
-      <form id="contactForm" action="https://awenoria.bmavcontact.workers.dev/contact" method="POST" novalidate>
+      <form id="contactForm" action="https://awenoria.bmavcontact.workers.dev/contact " method="POST" novalidate>
         <div class="form-grid">
           <div>
             <label class="req">Votre demande</label>
@@ -424,13 +394,8 @@ textarea{resize:none}
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
-<footer class="container footer">
-  <div style="display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap">
-    <span>© <span id="year"></span> Awenoria</span>
-    <span><a href="mentions.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a></span>
-  </div>
-</footer>
+<!-- ===== FOOTER INJECTÉ ===== -->
+<div id="footer"></div>
 
 <!-- ===== JS ===== -->
 <script>
@@ -443,86 +408,3 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const SPEED = 22;
   const els = [...document.querySelectorAll('.type-on-view')];
   els.forEach(el=>{
-    const full = (el.getAttribute('data-text') || el.textContent || '').trim();
-    el.dataset.fullText = full; el.textContent = ''; el.__typingTimer=null; el.__ready=true;
-  });
-  function type(el){
-    clearTimeout(el.__typingTimer);
-    const full = el.dataset.fullText || ''; el.textContent = ''; let i=0;
-    (function tick(){ el.textContent = full.slice(0, ++i);
-      if(i < full.length) el.__typingTimer=setTimeout(tick, SPEED); else {el.__typingTimer=null; el.__ready=false;}
-    })();
-  }
-  const io = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      const el = entry.target;
-      if(entry.isIntersecting){ if(el.__ready) type(el); }
-      else { el.__ready = true; clearTimeout(el.__typingTimer); el.__typingTimer=null; }
-    });
-  }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
-  els.forEach(el=>io.observe(el));
-})();
-
-/* Champs conditionnels */
-(function(){
-  const select = document.getElementById('demande');
-  const societeWrap = document.getElementById('societeWrap');
-  const precisionWrap = document.getElementById('precisionWrap');
-
-  function update(){
-    const v = select.value;
-    societeWrap.style.display   = (v === 'partenariat' || v === 'devis') ? 'block' : 'none';
-    precisionWrap.style.display = (v === 'autre') ? 'block' : 'none';
-
-    // required dynamique
-    societeWrap.querySelector('input').required   = (v === 'partenariat' || v === 'devis');
-    precisionWrap.querySelector('input').required = (v === 'autre');
-  }
-  select.addEventListener('change', update);
-  update();
-})();
-
-/* Lazy-load Turnstile dès interaction avec le form */
-let turnstileLoaded = false;
-function loadTurnstile(){
-  if(turnstileLoaded) return;
-  turnstileLoaded = true;
-  const s = document.createElement('script');
-  s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
-  s.async = true; s.defer = true;
-  document.head.appendChild(s);
-}
-['focusin','pointerdown','touchstart'].forEach(ev=>{
-  document.getElementById('contactForm').addEventListener(ev, loadTurnstile, { once:true, passive:true });
-});
-window.awenTurnstileOK = function(){ /* callback OK si besoin */ };
-
-/* Envoi vers le Worker */
-const form   = document.getElementById('contactForm');
-const btn    = document.getElementById('sendBtn');
-const okBox  = document.getElementById('msgOk');
-const koBox  = document.getElementById('msgKo');
-
-function show(el){ el.classList.add('fade'); el.style.display='flex'; }
-function hide(el){ el.style.display='none'; el.classList.remove('fade'); }
-
-form.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  hide(okBox); hide(koBox);
-
-  // Validation douce côté front
-  if(!form.reportValidity()){ return; }
-
-  btn.classList.add('loading'); btn.disabled = true;
-
-  try{
-    const r = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
-    const j = await r.json().catch(()=>({}));
-    if(r.ok && j.ok){ show(okBox); form.reset(); setTimeout(()=>hide(okBox), 7000); }
-    else{ show(koBox); setTimeout(()=>hide(koBox), 9000); }
-  }catch(err){ show(koBox); setTimeout(()=>hide(koBox), 9000); }
-  finally{ btn.classList.remove('loading'); btn.disabled = false; }
-});
-</script>
-</body>
-</html>
