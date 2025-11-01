@@ -85,7 +85,7 @@ a{color:inherit}
 }
 
 /* =================================================================
-   HEADER (layout capture + fond blanc + accordéons)
+   HEADER (layout capture + fond blanc + blocs ajustés)
    ================================================================= */
 
 header.navbar{
@@ -291,25 +291,16 @@ header.navbar{
 }
 .accordion-panel a:hover{background:rgba(27,136,255,.08);}
 
-/* ---------- NOS FORMATIONS 3 colonnes ---------- */
-.clean-3col{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-@media (max-width:768px){
-  .clean-3col{grid-template-columns:1fr}
-}
-
 /* ---------- MEGA-MENUS : BLOCS INTERACTIFS ---------- */
-.explore-grid-3{
+.explore-full{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:24px;
   padding:0 20px;
+  width:100%;              /* ← s’adapte à la largeur de la bulle-mère */
 }
 @media (max-width:768px){
-  .explore-grid-3{grid-template-columns:1fr}
+  .explore-full{grid-template-columns:1fr}
 }
 .explore-block{
   background:#ffffff;
@@ -440,7 +431,7 @@ header.navbar{
 .cc-brand img{height:clamp(56px,7vw,90px);object-fit:contain;display:block}
 .cc-locale{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(255,255,255,.25);border-radius:999px;text-decoration:none;color:#eaeaea}
 .cc-locale svg{width:18px;height:18px;stroke:#eaeaea;fill:none}
-.cc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)),gap:22px;padding:20px 0}
+.cc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;padding:20px 0}
 .cc-col h4{margin:0 0 12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#a7afbf}
 .cc-col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .cc-col a{color:#eaeaea;text-decoration:none;font-weight:600}
