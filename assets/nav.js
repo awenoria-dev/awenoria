@@ -1,8 +1,19 @@
-/* ====== Navigation Awenoria (dropdowns + compte) ====== */
+/* ====== Navigation Awenoria (dropdowns + compte + accordéons) ====== */
 (function () {
+
+  /* ---------- Accordéons inside mega-menus ---------- */
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.explore-header');
+    if (!btn) return;
+    const panel = document.getElementById(btn.getAttribute('aria-controls'));
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', !expanded);
+    panel.classList.toggle('open', !expanded);
+  });
+
+  /* ---------- Dropdowns principaux ---------- */
   const ddList = Array.from(document.querySelectorAll('.dropdown'));
 
-  // Helpers dropdowns
   const openDD = (dd) => {
     ddList.forEach(d => closeDD(d));
     const btn = dd.querySelector('.dropdown-toggle');
@@ -12,6 +23,7 @@
     panel.classList.add('open');
     btn.setAttribute('aria-expanded', 'true');
   };
+
   const closeDD = (dd) => {
     const btn = dd.querySelector('.dropdown-toggle');
     const panel = dd.querySelector('.mega');
@@ -21,23 +33,19 @@
     btn.setAttribute('aria-expanded', 'false');
   };
 
-  // Init dropdowns
   ddList.forEach(dd => {
     const btn = dd.querySelector('.dropdown-toggle');
     const panel = dd.querySelector('.mega');
     if (!btn || !panel) return;
 
-    // Click toggle
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       panel.classList.contains('open') ? closeDD(dd) : openDD(dd);
     });
 
-    // Hover (desktop)
     dd.addEventListener('mouseenter', () => openDD(dd));
     dd.addEventListener('mouseleave', () => closeDD(dd));
 
-    // Keyboard
     btn.addEventListener('keydown', (e) => {
       if (['Enter', ' ', 'ArrowDown'].includes(e.key)) {
         e.preventDefault();
@@ -56,12 +64,11 @@
     });
   });
 
-  // Close dropdowns on outside click
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.dropdown')) ddList.forEach(closeDD);
   });
 
-  // ===== Compte (survol + click + clavier)
+  /* ---------- Compte ---------- */
   (function () {
     const account = document.querySelector('.account');
     if (!account) return;
@@ -77,15 +84,12 @@
     const close   = () => { if (isOpen())   { menu.classList.remove('open'); btn.setAttribute('aria-expanded','false'); } };
     const toggle  = () => (isOpen() ? close() : open());
 
-    // Survol (comme sur l’accueil)
     account.addEventListener('mouseenter', () => { clearTimeout(hoverTimer); open(); });
     account.addEventListener('mouseleave', () => { clearTimeout(hoverTimer); hoverTimer = setTimeout(close, 140); });
 
-    // Click + click dehors
     btn.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
     document.addEventListener('pointerdown', (e) => { if (isOpen() && !account.contains(e.target)) close(); });
 
-    // Clavier
     btn.addEventListener('keydown', (e) => {
       const { key } = e;
       if (key === 'Escape') { close(); return; }
@@ -110,7 +114,6 @@
       }
     });
 
-    // Fermer après clic sur un lien
     items.forEach(a => a.addEventListener('click', () => close()));
   })();
 
