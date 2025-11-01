@@ -291,32 +291,14 @@ header.navbar{
 }
 .accordion-panel a:hover{background:rgba(27,136,255,.08);}
 
-/* badges & cta */
-.clean-badges{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin:8px 0;
+/* ---------- NOS FORMATIONS 3 colonnes ---------- */
+.clean-3col{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
-.clean-badges span{
-  background:rgba(27,136,255,.08);
-  border:1px solid rgba(27,136,255,.20);
-  color:#0f3a6e;
-  border-radius:999px;
-  padding:4px 10px;
-  font-size:12px;
-  font-weight:700;
-}
-.clean-note{
-  margin:8px 0 12px;
-  font-size:13px;
-  color:var(--muted);
-}
-.clean-cta{
-  border-top:1px solid rgba(15,23,32,.08);
-  margin-top:10px;
-  padding-top:16px;
-  text-align:center;
+@media (max-width:768px){
+  .clean-3col{grid-template-columns:1fr}
 }
 
 /* ---------- compte ---------- */
