@@ -1,32 +1,13 @@
 <header class="navbar" role="banner">
   <div class="nav-wrap">
 
-    <!-- Connexion (gauche) -->
-    <div class="nav-actions">
-      <div class="account">
-        <button class="account-btn" id="accountBtn"
-                aria-haspopup="true" aria-expanded="false"
-                aria-controls="accountMenu" title="Connexion">
-          <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
-            <path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"
-                  fill="none" stroke="currentColor" stroke-width="2"/>
-          </svg>
-        </button>
+    <!-- 1. Logo à GAUCHE -->
+    <a class="brand" href="index.html" aria-label="Aller à l’accueil">
+      <img class="brand-img" src="images/logo-venoria.png" alt="Logo Venoria">
+    </a>
 
-        <div class="account-menu glass menu-elev" id="accountMenu" role="menu" aria-label="Connexion">
-          <a class="acc-item client" href="login-client.html" role="menuitem">
-            <span class="acc-title">Connexion Client</span>
-          </a>
-          <a class="acc-item partner" href="login-partenaire.html" role="menuitem">
-            <span class="acc-title">Connexion Partenaire</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Navigation principale (centre) -->
+    <!-- 2. Menu CENTRAL -->
     <nav class="nav-main" aria-label="Navigation principale">
-      <a href="catalogue.html">Catalogue</a>
       <a href="qui-sommes-nous.html">Qui sommes-nous ?</a>
 
       <!-- ▼ Nos services -->
@@ -73,13 +54,33 @@
       </div>
       <!-- ▲ /NOS SERVICES -->
 
+      <a href="nos-formations.html">Nos formations</a>
+      <a href="blog.html">Blog</a>
       <a href="contact.html">Contact</a>
     </nav>
 
-    <!-- Logo (droite) -->
-    <a class="brand" href="index.html" aria-label="Aller à l’accueil">
-      <img class="brand-img" src="images/logo-venoria.png" alt="Logo Venoria">
-    </a>
+    <!-- 3. Connexion à DROITE -->
+    <div class="nav-actions">
+      <div class="account">
+        <button class="account-btn" id="accountBtn"
+                aria-haspopup="true" aria-expanded="false"
+                aria-controls="accountMenu" title="Connexion">
+          <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+            <path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4 0-7 2-7 4v1h14v-1c0-2-3-4-7-4z"
+                  fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+
+        <div class="account-menu glass menu-elev" id="accountMenu" role="menu" aria-label="Connexion">
+          <a class="acc-item client" href="login-client.html" role="menuitem">
+            <span class="acc-title">Connexion Client</span>
+          </a>
+          <a class="acc-item partner" href="login-partenaire.html" role="menuitem">
+            <span class="acc-title">Connexion Partenaire</span>
+          </a>
+        </div>
+      </div>
+    </div>
 
   </div>
 </header>
