@@ -58,7 +58,18 @@
     if (!e.target.closest('.dropdown')) ddList.forEach(closeDD);
   });
 
-  /* ---------- génération des cartes depuis window.COURSES ---------- */
+  /* ---------- on attend que COURSES soit défini ---------- */
+  function waitCourses() {
+    if (!window.COURSES || !Array.isArray(window.COURSES)) {
+      setTimeout(waitCourses, 50);
+      return;
+    }
+    buildCards('formations-cards', ['rgpd-essentiels', 'cookies', 'ia-act', 'access', 'cyber']);
+    buildServicesCards();
+  }
+  waitCourses();
+
+  /* ---------- génération des cartes ---------- */
   function buildCards(containerId, themesFilter) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -89,9 +100,6 @@
       </div>
     `).join('');
   }
-
-  buildCards('formations-cards', ['rgpd-essentiels', 'cookies', 'ia-act', 'access', 'cyber']);
-  buildServicesCards();
 
   /* ---------- volet latéral fluide ---------- */
   const sidePanel = document.getElementById('sidePanel');
