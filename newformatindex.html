@@ -9,6 +9,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet"/>
 
+<!-- CSS globale (même chemin que l’exemple) -->
+<link rel="stylesheet" href="assets/awenoria.css">
+
 <style>
 /* ============ Design tokens ============ */
 :root{
@@ -40,7 +43,8 @@ a{color:inherit;text-decoration:none}
 .btn-copper{background:var(--copper);color:#fff;box-shadow:0 8px 28px rgba(255,138,61,.30)}
 .btn-ghost{background:transparent;border:1px solid rgba(15,23,32,.12)}
 
-/* Header */
+/* (Optionnel) si tu gardes le header local, ces styles s’appliquent,
+   mais comme on injecte un header externe, ils ne gênent pas */
 header.navbar{position:sticky;top:0;z-index:1000;background:#ffffffc4;backdrop-filter:blur(12px);border-bottom:1px solid rgba(15,23,32,.08)}
 .nav-wrap{max-width:var(--maxw);margin:auto;padding:.8rem 1rem;display:flex;align-items:center;justify-content:space-between}
 .brand{font-weight:900;font-size:1.4rem;letter-spacing:.2px;color:var(--brand)}
@@ -126,25 +130,19 @@ textarea{min-height:160px;resize:vertical}
 .actions{display:flex;justify-content:flex-end;gap:10px;margin-top:12px}
 .send{appearance:none;border:none;border-radius:9999px;padding:14px 22px;font-weight:800;background:var(--copper);color:#fff;cursor:pointer}
 
-/* Footer (compact) */
+/* Footer local (désormais remplacé par le footer injecté) */
 footer{background:#0a0a0a;color:#eaeaea;padding:28px 0 16px;margin-top:32px}
 .footer-inner{max-width:var(--maxw);margin:auto;padding:0 1.2rem;display:flex;justify-content:space-between;gap:12px;border-top:1px solid #ffffff1a;padding-top:12px;font-size:.92rem;color:#b8bfcc}
 </style>
+
+<!-- même comportement que l’exemple : tous les liens s’ouvrent dans un nouvel onglet -->
+<base target="_blank">
 </head>
 
-<body>
-<header class="navbar">
-  <div class="nav-wrap">
-    <a class="brand" href="#">Awenoria</a>
-    <nav class="nav-main" aria-label="Navigation principale">
-      <a href="#intro">Accueil</a>
-      <a href="#audit-gratuit">Audit gratuit</a>
-      <a href="#offres">Offres</a>
-      <a href="#blog">Blog</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
+<body class="page-accueil">
+
+<!-- Header injecté (identique à l’exemple) -->
+<div id="header"></div>
 
 <!-- HERO -->
 <section class="hero" id="intro">
@@ -339,12 +337,8 @@ footer{background:#0a0a0a;color:#eaeaea;padding:28px 0 16px;margin-top:32px}
   </div>
 </section>
 
-<footer>
-  <div class="footer-inner">
-    <small>© 2025 Awenoria. Tous droits réservés.</small>
-    <small>Conformité, accessibilité, RGPD & IA – France.</small>
-  </div>
-</footer>
+<!-- Footer injecté -->
+<div id="footer"></div>
 
 <!-- Scripts -->
 <script>
@@ -370,6 +364,76 @@ function demoAudit(e){e.preventDefault();const u=document.getElementById('auditU
     setTimeout(()=>{btn.disabled=false;btn.textContent='Envoyer'},1800);
   });
 })();
+</script>
+
+<!-- ===== Loader header/footer + nav (copié de la page Ressources) ===== -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const headMount = document.getElementById("header");
+  const footMount = document.getElementById("footer");
+  if (!headMount && !footMount) return;
+
+  const isGh = /github\.io$/.test(location.hostname);
+  let base = "/";
+  if (isGh) {
+    const parts = location.pathname.split("/").filter(Boolean);
+    base = parts.length ? `/${parts[0]}/` : "/";
+  }
+
+  const candidates = (p) => {
+    const clean = p.replace(/^\//, "");
+    return [ base + clean, "./" + clean, "../" + clean ];
+  };
+
+  async function fetchAny(paths) {
+    const queue = paths.flatMap(candidates);
+    for (const u of queue) {
+      try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+    }
+    throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+  }
+
+  function fixRootUrls(container) {
+    container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+      .forEach(el => {
+        const attr = el.hasAttribute("href") ? "href" : "src";
+        const val = el.getAttribute(attr);
+        if (/^\/\//.test(val)) return;
+        el.setAttribute(attr, base + val.replace(/^\//, ""));
+      });
+  }
+
+  // HEADER
+  if (headMount) {
+    fetchAny(["header.html", "partials/header.html"])
+      .then(html => {
+        headMount.innerHTML = html;
+        fixRootUrls(headMount);
+        return fetchAny(["assets/nav.js", "nav.js"]);
+      })
+      .then(code => {
+        const s = document.createElement("script");
+        if (/\b(import|export)\b/.test(code)) s.type = "module";
+        s.textContent = code;
+        document.body.appendChild(s);
+        console.log("[awenoria] header + nav chargés");
+      })
+      .catch(err => {
+        console.error("Header load error:", err);
+        headMount.innerHTML = "<!-- Header introuvable -->";
+      });
+  }
+
+  // FOOTER
+  if (footMount) {
+    fetchAny(["footer.html", "partials/footer.html"])
+      .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+      .catch(err => {
+        console.error("Footer load error:", err);
+        footMount.innerHTML = "<!-- Footer introuvable -->";
+      });
+  }
+});
 </script>
 </body>
 </html>
