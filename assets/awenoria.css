@@ -10,7 +10,6 @@
 
 /* ------------------ Variables de thème ------------------ */
 :root{
-  /* Base */
   --font-ui: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --bg:#f6f9fc;
   --panel:#ffffff;
@@ -29,9 +28,9 @@
   --caret:.6s;
 
   /* Aliases pour les encarts (reprennent la charte) */
-  --aw-blue: var(--brand);     /* bleu logo */
-  --aw-copper: var(--copper);  /* cuivre logo */
-  --aw-ink:#0a2a46;            /* bleu foncé de contraste */
+  --aw-blue: var(--brand);
+  --aw-copper: var(--copper);
+  --aw-ink:#0a2a46;
   --aw-muted: var(--muted);
   --aw-panel: var(--panel);
   --aw-radius:18px;
@@ -86,7 +85,7 @@ a{color:inherit}
 }
 
 /* =================================================================
-   HEADER (layout capture + fond blanc)
+   HEADER (layout capture + fond blanc + accordéons)
    ================================================================= */
 
 header.navbar{
@@ -194,7 +193,7 @@ header.navbar{
   transform:translateY(-1px);
 }
 
-/* ---------- dropdown épuré ---------- */
+/* ---------- dropdown + accordéons ---------- */
 .dropdown{position:relative}
 .dropdown-toggle svg{
   width:14px;
@@ -223,16 +222,16 @@ header.navbar{
   to{opacity:1;transform:translate(-50%,0)}
 }
 .mega.clean{
-  width:min(420px,96vw);
+  width:min(640px,96vw);
   padding:12px 0;
 }
-.clean-list{
-  list-style:none;
-  margin:0;
-  padding:0;
-  display:flex;
-  flex-direction:column;
-  gap:2px;
+.clean-2col{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+@media (max-width:768px){
+  .clean-2col{grid-template-columns:1fr}
 }
 .clean-group{
   padding:10px 20px;
@@ -246,24 +245,53 @@ header.navbar{
   color:var(--muted);
   margin-bottom:6px;
 }
-.clean-list ul{
+.accordion-toggle{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  width:100%;
+  background:none;
+  border:none;
+  font-weight:800;
+  font-size:15px;
+  color:var(--text);
+  cursor:pointer;
+  padding:8px 0;
+}
+.accordion-toggle::before{
+  content:"▶";
+  transition:transform .2s;
+  font-size:12px;
+}
+.accordion-toggle[aria-expanded="true"]::before{
+  transform:rotate(90deg);
+}
+.accordion-panel{
   list-style:none;
-  margin:0;
+  margin:0 0 12px 20px;
   padding:0;
   display:grid;
   gap:4px;
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .25s ease;
 }
-.clean-list a{
+.accordion-panel.open{
+  max-height:300px;
+}
+.accordion-panel a{
   display:block;
-  padding:8px 12px;
-  border-radius:8px;
+  padding:6px 10px;
+  border-radius:6px;
   text-decoration:none;
   color:var(--text);
   font-weight:700;
-  font-size:15px;
+  font-size:14px;
   transition:background .18s;
 }
-.clean-list a:hover{background:rgba(27,136,255,.08);}
+.accordion-panel a:hover{background:rgba(27,136,255,.08);}
+
+/* badges & cta */
 .clean-badges{
   display:flex;
   flex-wrap:wrap;
@@ -291,17 +319,7 @@ header.navbar{
   text-align:center;
 }
 
-/* ---------- NOS FORMATIONS 3 colonnes ---------- */
-.clean-3col{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-@media (max-width:768px){
-  .clean-3col{grid-template-columns:1fr}
-}
-
-/* ---------- compte (icône à droite) ---------- */
+/* ---------- compte ---------- */
 .account{position:relative}
 .account-btn{
   display:grid;
@@ -351,7 +369,7 @@ header.navbar{
   .nav-main{flex-direction:column;align-items:flex-start;gap:8px}
 }
 
-/* ------------------ Footer + sections inchangées ------------------ */
+/* ------------------ Footer inchangé ------------------ */
 .cc-footer{background:#0a0a0a;color:#eaeaea;padding:28px 0 12px;border-top:1px solid rgba(255,255,255,.12)}
 .cc-container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
 .cc-top{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
