@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Accueil – Awenoria</title>
 <meta name="description" content="Awenoria – conformité RGPD & IA rendue simple, humaine et accessible."/>
+
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet"/>
 
-<!-- CSS globale (même chemin que l’exemple) -->
+<!-- CSS globale identique à la page Ressources -->
 <link rel="stylesheet" href="assets/awenoria.css">
 
 <style>
@@ -42,15 +43,6 @@ a{color:inherit;text-decoration:none}
 .btn-secondary:hover{background:var(--brand);color:#fff}
 .btn-copper{background:var(--copper);color:#fff;box-shadow:0 8px 28px rgba(255,138,61,.30)}
 .btn-ghost{background:transparent;border:1px solid rgba(15,23,32,.12)}
-
-/* (Optionnel) si tu gardes le header local, ces styles s’appliquent,
-   mais comme on injecte un header externe, ils ne gênent pas */
-header.navbar{position:sticky;top:0;z-index:1000;background:#ffffffc4;backdrop-filter:blur(12px);border-bottom:1px solid rgba(15,23,32,.08)}
-.nav-wrap{max-width:var(--maxw);margin:auto;padding:.8rem 1rem;display:flex;align-items:center;justify-content:space-between}
-.brand{font-weight:900;font-size:1.4rem;letter-spacing:.2px;color:var(--brand)}
-.nav-main{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;justify-content:center}
-.nav-main a{padding:.5rem .9rem;border-radius:10px;font-weight:800}
-.nav-main a:hover{background:rgba(27,136,255,.10)}
 
 /* Hero */
 .hero{padding:70px 1.2rem;background:radial-gradient(1400px 700px at 10% -20%,#eef5ff 0%,transparent 60%)}
@@ -130,310 +122,315 @@ textarea{min-height:160px;resize:vertical}
 .actions{display:flex;justify-content:flex-end;gap:10px;margin-top:12px}
 .send{appearance:none;border:none;border-radius:9999px;padding:14px 22px;font-weight:800;background:var(--copper);color:#fff;cursor:pointer}
 
-/* Footer local (désormais remplacé par le footer injecté) */
-footer{background:#0a0a0a;color:#eaeaea;padding:28px 0 16px;margin-top:32px}
-.footer-inner{max-width:var(--maxw);margin:auto;padding:0 1.2rem;display:flex;justify-content:space-between;gap:12px;border-top:1px solid #ffffff1a;padding-top:12px;font-size:.92rem;color:#b8bfcc}
+/* ⚠️ AUCUN style local de header/footer ici
+   -> c’est header.html + assets/awenoria.css qui contrôlent l’apparence */
 </style>
 
-<!-- même comportement que l’exemple : tous les liens s’ouvrent dans un nouvel onglet -->
+<!-- Comme sur la page Ressources : tous les liens ouvrent dans un nouvel onglet par défaut -->
 <base target="_blank">
 </head>
 
 <body class="page-accueil">
 
-<!-- Header injecté (identique à l’exemple) -->
-<div id="header"></div>
+  <!-- Header injecté (identique à la page Ressources) -->
+  <div id="header"></div>
 
-<!-- HERO -->
-<section class="hero" id="intro">
-  <div class="hero-inner">
-    <div>
-      <h1 class="type-on-view" data-text="La conformité RGPD & IA rendue simple, humaine et accessible."></h1>
-      <p class="subtitle-center" style="text-align:left;margin:10px 0 18px">Awenoria vous accompagne vers la conformité numérique grâce à des outils d’audit automatisés et un accompagnement humain personnalisé.</p>
-      <form class="url-bar" onsubmit="demoAudit(event)">
-        <input id="auditUrl" type="url" placeholder="https://votresite.fr" required />
-        <button type="submit">Analyser gratuitement</button>
-      </form>
-    </div>
-    <div class="card" style="min-height:260px;display:grid;place-items:center;color:var(--muted)">Capture d’écran outil</div>
-  </div>
-</section>
-
-<!-- AUDIT – cartes (extraits) -->
-<section id="audit-gratuit" class="section">
-  <div class="inner">
-    <h2 class="title-center">Scannez votre site gratuitement</h2>
-    <div class="underline" aria-hidden="true"></div>
-    <div class="grid-3">
-      <article class="card">
-        <h3>Résultats rapides (exemple)</h3>
-        <ul style="list-style:none;padding:0;margin:.6rem 0;display:grid;gap:8px">
-          <li>✅ Cookies bloqués avant consentement</li>
-          <li>⚠️ Politique de confidentialité absente</li>
-          <li>✅ HTTPS sécurisé</li>
-          <li>❌ Mentions légales non détectées</li>
-        </ul>
-        <a class="btn-secondary btn" href="#">Télécharger le rapport complet (PDF) – 79 €</a>
-      </article>
-      <article class="card">
-        <span class="badge">Couverture</span>
-        <h3>Multi-normes</h3>
-        <p>Un seul outil pour vérifier l’essentiel : RGPD, accessibilité, mentions légales et cookies.</p>
-      </article>
-      <article class="card">
-        <span class="badge">Impact</span>
-        <h3>Diagnostic priorisé</h3>
-        <p>Score global + recommandations classées par impact, avec exemples concrets.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- OFFRES -->
-<section id="offres" class="section offers-wrap">
-  <div class="inner">
-    <h2 class="title-center">Des solutions adaptées à chaque structure</h2>
-    <div class="underline" aria-hidden="true"></div>
-    <p class="subtitle-center">Des services flexibles, automatisés ou accompagnés, selon vos besoins et votre budget.</p>
-
-    <div class="offers-grid" role="list">
-      <!-- Start RGPD -->
-      <article class="offer" role="listitem" aria-labelledby="o1">
-        <h3 id="o1">Start RGPD</h3>
-        <p class="for">TPE & indépendants</p>
-        <ul>
-          <li>Audit de base</li>
-          <li>Politique automatique</li>
-          <li>Registre checker</li>
-        </ul>
-        <p class="price">490 €</p>
-        <button class="cta-choose">Choisir cette offre</button>
-      </article>
-
-      <!-- Pro RGPD (Populaire) -->
-      <article class="offer popular" role="listitem" aria-labelledby="o2">
-        <span class="badge-pop">Populaire</span>
-        <h3 id="o2">Pro RGPD</h3>
-        <p class="for">PME / associations</p>
-        <ul>
-          <li>Audit complet</li>
-          <li>PIA / AIPD</li>
-          <li>Suivi 6 mois</li>
-        </ul>
-        <p class="price">1&nbsp;290 €</p>
-        <button class="cta-choose">Choisir cette offre</button>
-      </article>
-
-      <!-- IA Act -->
-      <article class="offer" role="listitem" aria-labelledby="o3">
-        <h3 id="o3">IA Act Starter</h3>
-        <p class="for">Startups IA</p>
-        <ul>
-          <li>Audit conformité IA</li>
-          <li>Documentation exigée</li>
-          <li>Feuille de route</li>
-        </ul>
-        <p class="price">990 €</p>
-        <button class="cta-choose">Choisir cette offre</button>
-      </article>
-    </div>
-
-    <div class="offers-actions">
-      <a class="btn btn-secondary" href="#services">Voir le détail des packs</a>
-      <a class="btn btn-copper" href="#contact">Obtenir un devis rapide</a>
-    </div>
-  </div>
-</section>
-
-<!-- BLOG (court) -->
-<section id="blog" class="section">
-  <div class="inner">
-    <h2 class="title-center">Derniers articles du blog</h2>
-    <div class="underline" aria-hidden="true"></div>
-    <div class="grid-3">
-      <article class="card"><img src="images/blog-iaact-2025.jpg" alt="IA Act 2025"/><div><h3>IA Act : ce qui change en 2025</h3><p>Exigences clés et comment s’y préparer.</p></div></article>
-      <article class="card"><img src="images/blog-rgpd-erreurs.jpg" alt="RGPD erreurs"/><div><h3>RGPD : les 10 erreurs fréquentes</h3><p>Des pièges classiques aux solutions concrètes.</p></div></article>
-      <article class="card"><img src="images/blog-audit-score.jpg" alt="Score conformité"/><div><h3>Lire votre score de conformité</h3><p>Nos critères et pondérations.</p></div></article>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT corrigé -->
-<section id="contact" class="section">
-  <div class="contact-wrap">
-    <h2 class="title-center">Parlons de votre conformité</h2>
-    <div class="underline" aria-hidden="true"></div>
-    <p class="subtitle-center">Une question, un devis, un partenariat ? Votre message nous parvient via un envoi sécurisé.</p>
-
-    <div class="contact-grid">
-      <!-- Colonne info -->
-      <aside class="contact-aside">
-        <span class="badge">Service client</span>
-        <ul>
-          <li><strong>contact@awenoria.fr</strong></li>
-          <li>Réponse sous 24–48 h ouvrées</li>
-          <li>Données traitées en France, RGPD</li>
-        </ul>
-        <div class="stack">
-          <a class="cta alt" href="faq.html">FAQ complète</a>
-          <a class="cta primary" href="https://calendly.com/" target="_blank" rel="noopener">Programmer un appel</a>
-        </div>
-      </aside>
-
-      <!-- Formulaire -->
-      <div class="contact-form">
-        <form id="contactForm" action="https://awenoria.bmavcontact.workers.dev/contact" method="POST" novalidate>
-          <div class="form-row">
-            <div>
-              <label for="demande">Votre demande *</label>
-              <select class="input" name="demande" id="demande" required>
-                <option value="">Choisissez un élément dans la liste</option>
-                <option value="rdv">Demande de rendez-vous</option>
-                <option value="devis">Demande de devis</option>
-                <option value="partenariat">Partenariat</option>
-                <option value="autre">Autre</option>
-              </select>
-            </div>
-            <div>
-              <label for="dest">Choisissez le destinataire *</label>
-              <select class="input" name="destinataire" id="dest" required>
-                <option value="">Choisissez un élément dans la liste</option>
-                <option>RGPD</option>
-                <option>Accessibilité</option>
-                <option>Hébergement</option>
-                <option>Logiciels et outils</option>
-                <option>Autre</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div>
-              <label for="email">Votre adresse e-mail *</label>
-              <input class="input" id="email" name="email" type="email" placeholder="du type nom@exemple.com" required>
-            </div>
-            <div>
-              <label for="tel">Téléphone (facultatif)</label>
-              <input class="input" id="tel" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+33 X XX XX XX XX">
-              <div style="font-size:12px;color:var(--muted);margin-top:4px">Format conseillé : +33 X XX XX XX XX</div>
-            </div>
-          </div>
-
-          <div style="margin-top:6px">
-            <label for="msg">Votre message *</label>
-            <textarea id="msg" name="message" class="input" rows="8" placeholder="Votre message…" required></textarea>
-          </div>
-
-          <div class="actions">
-            <button class="send" type="submit">Envoyer</button>
-          </div>
-
-          <!-- honeypots -->
-          <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
-          <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
+  <!-- HERO -->
+  <section class="hero" id="intro">
+    <div class="hero-inner">
+      <div>
+        <h1 class="type-on-view" data-text="La conformité RGPD & IA rendue simple, humaine et accessible."></h1>
+        <p class="subtitle-center" style="text-align:left;margin:10px 0 18px">
+          Awenoria vous accompagne vers la conformité numérique grâce à des outils d’audit automatisés et un accompagnement humain personnalisé.
+        </p>
+        <form class="url-bar" onsubmit="demoAudit(event)">
+          <input id="auditUrl" type="url" placeholder="https://votresite.fr" required />
+          <button type="submit">Analyser gratuitement</button>
         </form>
       </div>
+      <div class="card" style="min-height:260px;display:grid;place-items:center;color:var(--muted)">
+        Capture d’écran outil
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Footer injecté -->
-<div id="footer"></div>
+  <!-- AUDIT – cartes (extraits) -->
+  <section id="audit-gratuit" class="section">
+    <div class="inner">
+      <h2 class="title-center">Scannez votre site gratuitement</h2>
+      <div class="underline" aria-hidden="true"></div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Résultats rapides (exemple)</h3>
+          <ul style="list-style:none;padding:0;margin:.6rem 0;display:grid;gap:8px">
+            <li>✅ Cookies bloqués avant consentement</li>
+            <li>⚠️ Politique de confidentialité absente</li>
+            <li>✅ HTTPS sécurisé</li>
+            <li>❌ Mentions légales non détectées</li>
+          </ul>
+          <a class="btn-secondary btn" href="#">Télécharger le rapport complet (PDF) – 79 €</a>
+        </article>
+        <article class="card">
+          <span class="badge">Couverture</span>
+          <h3>Multi-normes</h3>
+          <p>Un seul outil pour vérifier l’essentiel : RGPD, accessibilité, mentions légales et cookies.</p>
+        </article>
+        <article class="card">
+          <span class="badge">Impact</span>
+          <h3>Diagnostic priorisé</h3>
+          <p>Score global + recommandations classées par impact, avec exemples concrets.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-<!-- Scripts -->
-<script>
-/* typing effect */
-document.querySelectorAll('.type-on-view').forEach(el=>{
-  const txt=el.dataset.text||el.textContent; el.textContent=''; let i=0;
-  const io=new IntersectionObserver((e,ob)=>{if(e[0].isIntersecting){ob.disconnect();(function t(){if(i<txt.length){el.textContent+=txt[i++];setTimeout(t,85)}})()}},{threshold:.4}); io.observe(el);
-});
-/* demo audit */
-function demoAudit(e){e.preventDefault();const u=document.getElementById('auditUrl').value||'https://votresite.fr';alert(`Aperçu généré pour : ${u}\n\n• Cookies bloqués ✅\n• Politique absente ⚠️\n• Mentions manquantes ❌`);}
+  <!-- OFFRES -->
+  <section id="offres" class="section offers-wrap">
+    <div class="inner">
+      <h2 class="title-center">Des solutions adaptées à chaque structure</h2>
+      <div class="underline" aria-hidden="true"></div>
+      <p class="subtitle-center">Des services flexibles, automatisés ou accompagnés, selon vos besoins et votre budget.</p>
 
-/* Envoi du formulaire (feedback léger) */
-(function(){
-  const form=document.getElementById('contactForm'); if(!form) return;
-  form.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    const btn=form.querySelector('.send'); btn.disabled=true; btn.textContent='Envoi…';
-    try{
-      const r=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
-      btn.textContent= r.ok ? 'Envoyé ✅' : 'Réessayer';
-      if(r.ok) form.reset();
-    }catch(err){ btn.textContent='Réessayer'; }
-    setTimeout(()=>{btn.disabled=false;btn.textContent='Envoyer'},1800);
+      <div class="offers-grid" role="list">
+        <!-- Start RGPD -->
+        <article class="offer" role="listitem" aria-labelledby="o1">
+          <h3 id="o1">Start RGPD</h3>
+          <p class="for">TPE & indépendants</p>
+          <ul>
+            <li>Audit de base</li>
+            <li>Politique automatique</li>
+            <li>Registre checker</li>
+          </ul>
+          <p class="price">490 €</p>
+          <button class="cta-choose">Choisir cette offre</button>
+        </article>
+
+        <!-- Pro RGPD (Populaire) -->
+        <article class="offer popular" role="listitem" aria-labelledby="o2">
+          <span class="badge-pop">Populaire</span>
+          <h3 id="o2">Pro RGPD</h3>
+          <p class="for">PME / associations</p>
+          <ul>
+            <li>Audit complet</li>
+            <li>PIA / AIPD</li>
+            <li>Suivi 6 mois</li>
+          </ul>
+          <p class="price">1&nbsp;290 €</p>
+          <button class="cta-choose">Choisir cette offre</button>
+        </article>
+
+        <!-- IA Act -->
+        <article class="offer" role="listitem" aria-labelledby="o3">
+          <h3 id="o3">IA Act Starter</h3>
+          <p class="for">Startups IA</p>
+          <ul>
+            <li>Audit conformité IA</li>
+            <li>Documentation exigée</li>
+            <li>Feuille de route</li>
+          </ul>
+          <p class="price">990 €</p>
+          <button class="cta-choose">Choisir cette offre</button>
+        </article>
+      </div>
+
+      <div class="offers-actions">
+        <a class="btn btn-secondary" href="#services">Voir le détail des packs</a>
+        <a class="btn btn-copper" href="#contact">Obtenir un devis rapide</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG (court) -->
+  <section id="blog" class="section">
+    <div class="inner">
+      <h2 class="title-center">Derniers articles du blog</h2>
+      <div class="underline" aria-hidden="true"></div>
+      <div class="grid-3">
+        <article class="card"><img src="images/blog-iaact-2025.jpg" alt="IA Act 2025"/><div><h3>IA Act : ce qui change en 2025</h3><p>Exigences clés et comment s’y préparer.</p></div></article>
+        <article class="card"><img src="images/blog-rgpd-erreurs.jpg" alt="RGPD erreurs"/><div><h3>RGPD : les 10 erreurs fréquentes</h3><p>Des pièges classiques aux solutions concrètes.</p></div></article>
+        <article class="card"><img src="images/blog-audit-score.jpg" alt="Score conformité"/><div><h3>Lire votre score de conformité</h3><p>Nos critères et pondérations.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="contact-wrap">
+      <h2 class="title-center">Parlons de votre conformité</h2>
+      <div class="underline" aria-hidden="true"></div>
+      <p class="subtitle-center">Une question, un devis, un partenariat ? Votre message nous parvient via un envoi sécurisé.</p>
+
+      <div class="contact-grid">
+        <!-- Colonne info -->
+        <aside class="contact-aside">
+          <span class="badge">Service client</span>
+          <ul>
+            <li><strong>contact@awenoria.fr</strong></li>
+            <li>Réponse sous 24–48 h ouvrées</li>
+            <li>Données traitées en France, RGPD</li>
+          </ul>
+          <div class="stack">
+            <a class="cta alt" href="faq.html">FAQ complète</a>
+            <a class="cta primary" href="https://calendly.com/" target="_blank" rel="noopener">Programmer un appel</a>
+          </div>
+        </aside>
+
+        <!-- Formulaire -->
+        <div class="contact-form">
+          <form id="contactForm" action="https://awenoria.bmavcontact.workers.dev/contact" method="POST" novalidate>
+            <div class="form-row">
+              <div>
+                <label for="demande">Votre demande *</label>
+                <select class="input" name="demande" id="demande" required>
+                  <option value="">Choisissez un élément dans la liste</option>
+                  <option value="rdv">Demande de rendez-vous</option>
+                  <option value="devis">Demande de devis</option>
+                  <option value="partenariat">Partenariat</option>
+                  <option value="autre">Autre</option>
+                </select>
+              </div>
+              <div>
+                <label for="dest">Choisissez le destinataire *</label>
+                <select class="input" name="destinataire" id="dest" required>
+                  <option value="">Choisissez un élément dans la liste</option>
+                  <option>RGPD</option>
+                  <option>Accessibilité</option>
+                  <option>Hébergement</option>
+                  <option>Logiciels et outils</option>
+                  <option>Autre</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div>
+                <label for="email">Votre adresse e-mail *</label>
+                <input class="input" id="email" name="email" type="email" placeholder="du type nom@exemple.com" required>
+              </div>
+              <div>
+                <label for="tel">Téléphone (facultatif)</label>
+                <input class="input" id="tel" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+33 X XX XX XX XX">
+                <div style="font-size:12px;color:var(--muted);margin-top:4px">Format conseillé : +33 X XX XX XX XX</div>
+              </div>
+            </div>
+
+            <div style="margin-top:6px">
+              <label for="msg">Votre message *</label>
+              <textarea id="msg" name="message" class="input" rows="8" placeholder="Votre message…" required></textarea>
+            </div>
+
+            <div class="actions">
+              <button class="send" type="submit">Envoyer</button>
+            </div>
+
+            <!-- honeypots -->
+            <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
+            <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer injecté -->
+  <div id="footer"></div>
+
+  <!-- Scripts locaux -->
+  <script>
+  /* typing effect */
+  document.querySelectorAll('.type-on-view').forEach(el=>{
+    const txt=el.dataset.text||el.textContent; el.textContent=''; let i=0;
+    const io=new IntersectionObserver((e,ob)=>{if(e[0].isIntersecting){ob.disconnect();(function t(){if(i<txt.length){el.textContent+=txt[i++];setTimeout(t,85)}})()}},{threshold:.4}); io.observe(el);
   });
-})();
-</script>
+  /* demo audit */
+  function demoAudit(e){e.preventDefault();const u=document.getElementById('auditUrl').value||'https://votresite.fr';alert(`Aperçu généré pour : ${u}\n\n• Cookies bloqués ✅\n• Politique absente ⚠️\n• Mentions manquantes ❌`);}
+  /* Envoi du formulaire (feedback léger) */
+  (function(){
+    const form=document.getElementById('contactForm'); if(!form) return;
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const btn=form.querySelector('.send'); btn.disabled=true; btn.textContent='Envoi…';
+      try{
+        const r=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+        btn.textContent= r.ok ? 'Envoyé ✅' : 'Réessayer';
+        if(r.ok) form.reset();
+      }catch(err){ btn.textContent='Réessayer'; }
+      setTimeout(()=>{btn.disabled=false;btn.textContent='Envoyer'},1800);
+    });
+  })();
+  </script>
 
-<!-- ===== Loader header/footer + nav (copié de la page Ressources) ===== -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const headMount = document.getElementById("header");
-  const footMount = document.getElementById("footer");
-  if (!headMount && !footMount) return;
+  <!-- ===== Loader header/footer + nav (copié de “Ressources”) ===== -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
 
-  const isGh = /github\.io$/.test(location.hostname);
-  let base = "/";
-  if (isGh) {
-    const parts = location.pathname.split("/").filter(Boolean);
-    base = parts.length ? `/${parts[0]}/` : "/";
-  }
-
-  const candidates = (p) => {
-    const clean = p.replace(/^\//, "");
-    return [ base + clean, "./" + clean, "../" + clean ];
-  };
-
-  async function fetchAny(paths) {
-    const queue = paths.flatMap(candidates);
-    for (const u of queue) {
-      try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
     }
-    throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
-  }
 
-  function fixRootUrls(container) {
-    container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
-      .forEach(el => {
-        const attr = el.hasAttribute("href") ? "href" : "src";
-        const val = el.getAttribute(attr);
-        if (/^\/\//.test(val)) return;
-        el.setAttribute(attr, base + val.replace(/^\//, ""));
-      });
-  }
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean ];
+    };
 
-  // HEADER
-  if (headMount) {
-    fetchAny(["header.html", "partials/header.html"])
-      .then(html => {
-        headMount.innerHTML = html;
-        fixRootUrls(headMount);
-        return fetchAny(["assets/nav.js", "nav.js"]);
-      })
-      .then(code => {
-        const s = document.createElement("script");
-        if (/\b(import|export)\b/.test(code)) s.type = "module";
-        s.textContent = code;
-        document.body.appendChild(s);
-        console.log("[awenoria] header + nav chargés");
-      })
-      .catch(err => {
-        console.error("Header load error:", err);
-        headMount.innerHTML = "<!-- Header introuvable -->";
-      });
-  }
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+      }
+      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+    }
 
-  // FOOTER
-  if (footMount) {
-    fetchAny(["footer.html", "partials/footer.html"])
-      .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
-      .catch(err => {
-        console.error("Footer load error:", err);
-        footMount.innerHTML = "<!-- Footer introuvable -->";
-      });
-  }
-});
-</script>
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return;
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
+    }
+
+    // HEADER
+    if (headMount) {
+      fetchAny(["header.html", "partials/header.html"])
+        .then(html => {
+          headMount.innerHTML = html;
+          fixRootUrls(headMount);
+          return fetchAny(["assets/nav.js", "nav.js"]);
+        })
+        .then(code => {
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+          console.log("[awenoria] header + nav chargés");
+        })
+        .catch(err => {
+          console.error("Header load error:", err);
+          headMount.innerHTML = "<!-- Header introuvable -->";
+        });
+    }
+
+    // FOOTER
+    if (footMount) {
+      fetchAny(["footer.html", "partials/footer.html"])
+        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+        .catch(err => {
+          console.error("Footer load error:", err);
+          footMount.innerHTML = "<!-- Footer introuvable -->";
+        });
+    }
+  });
+  </script>
+
+  <!-- Tous les liens s’ouvrent par défaut en _blank ; forcer interne : target="_self" -->
+  <base target="_blank">
 </body>
 </html>
