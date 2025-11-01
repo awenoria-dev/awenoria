@@ -93,7 +93,7 @@ header.navbar{
   position:sticky;
   top:0;
   z-index:1100;
-  background:#ffffff;            /* fond blanc */
+  background:#ffffff;
   border-bottom:1px solid rgba(15,23,32,.08);
 }
 .nav-wrap{
@@ -104,7 +104,6 @@ header.navbar{
   align-items:center;
   justify-content:space-between;
 }
-/* --- ordre : logo – menu – connexion --- */
 .brand{order:1;}
 .nav-main{order:2;}
 .nav-actions{order:3;}
@@ -290,6 +289,16 @@ header.navbar{
   margin-top:10px;
   padding-top:16px;
   text-align:center;
+}
+
+/* ---------- NOS FORMATIONS 3 colonnes ---------- */
+.clean-3col{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+@media (max-width:768px){
+  .clean-3col{grid-template-columns:1fr}
 }
 
 /* ---------- compte (icône à droite) ---------- */
