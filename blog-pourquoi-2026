@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Awenoria — Pourquoi maintenant ? (2026)</title>
+  <meta name="description" content="Comprendre pourquoi renforcer la conformité de votre site dès maintenant : contexte européen et français, jalons 2025–2026, priorités RGPD, accessibilité et mentions légales.">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS globale (mêmes styles header/footer/nav) -->
+  <link rel="stylesheet" href="assets/awenoria.css">
+
+  <style>
+    :root{
+      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
+      --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
+      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+      --transition:.6s cubic-bezier(.22,1,.36,1);
+    }
+    @media (prefers-color-scheme:dark){
+      :root{
+        --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
+        --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+      }
+    }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      line-height:1.7; color:var(--aw-ink); background:var(--aw-bg); -webkit-font-smoothing:antialiased;
+    }
+    a{text-decoration:none;color:var(--aw-blue)}
+    img{max-width:100%;display:block}
+    .container{max-width:1160px;margin:0 auto;padding:24px 20px}
+
+    /* ---------- HERO identique Ressources/Modèles/Catalogue ---------- */
+    .hero{
+      position:relative; min-height:60vh; display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff; overflow:hidden;
+      background:
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+    }
+    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
+    .hero .content{position:relative; z-index:2; max-width:900px; padding:0 20px; animation:fadeInUp 1s both;}
+    .hero h1{font-size:clamp(48px,7vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em;}
+    .hero .lead{font-size:1.25rem; font-weight:500; margin:22px auto 0; color:#e8f0ff;}
+
+    /* ---------- Sections ---------- */
+    .section{padding:72px 0}
+    .section.alt{background:var(--aw-panel)}
+    h2{margin:0 0 12px; font-size:clamp(26px,3.5vw,32px); color:#0f2746}
+    .lead-txt{color:var(--aw-muted); max-width:900px}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    @media(max-width:900px){.grid-3,.grid-2{grid-template-columns:1fr}}
+
+    .tile{
+      background:#fff; border:1px solid rgba(15,23,32,.08); border-radius:16px;
+      box-shadow:0 10px 24px rgba(0,0,0,.06); padding:18px;
+      transition:transform .18s var(--transition), box-shadow .18s var(--transition), border-color .18s;
+    }
+    .tile:hover{transform:translateY(-3px); box-shadow:0 24px 48px rgba(0,0,0,.10); border-color:#d5e7f4}
+    .badge{display:inline-block;background:#0f2746;color:#fff;padding:6px 12px;border-radius:999px;font-weight:800;font-size:12px}
+
+    .timeline{position:relative;margin-top:8px}
+    .timeline::before{content:"";position:absolute;left:12px;top:0;bottom:0;width:2px;background:#dfe8f0}
+    .milestone{position:relative;padding-left:36px;margin:14px 0}
+    .milestone::before{content:"";position:absolute;left:6px;top:6px;width:12px;height:12px;border-radius:50%;background:#0f2746}
+    .milestone h3{margin:0 0 4px;font-size:18px;color:#0f2746}
+    .milestone p{margin:0;color:var(--aw-muted)}
+
+    .notice{background:#fff;border:1px dashed #d5e7f4;padding:14px;border-radius:12px;color:var(--aw-muted)}
+
+    .btn{
+      appearance:none;border:none;cursor:pointer;font-weight:800;font-size:16px;
+      padding:14px 18px;border-radius:12px;color:#fff;background:#0f2746;
+      box-shadow:var(--shadow);transition:background .18s, transform .08s, filter .18s;
+      display:inline-block;
+    }
+    .btn:hover{background:var(--aw-copper);filter:brightness(1.02)}
+    .btn.secondary{background:#fff;color:#0f2746;border:1px solid rgba(15,23,32,.12)}
+    .btn.secondary:hover{border-color:#d5e7f4;color:var(--aw-copper)}
+
+    /* Reveal */
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
+    .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s, transform .5s}
+    .reveal.is-visible{opacity:1;transform:none}
+  </style>
+</head>
+<body class="page-pourquoi-2026">
+
+  <!-- ===== HEADER injecté ===== -->
+  <div id="header"></div>
+
+  <!-- ===== HERO bleu (dégradé + particules) ===== -->
+  <section class="hero">
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="content">
+      <h1>Pourquoi maintenant ? (2026)</h1>
+      <p class="lead">Le cadre européen et français se renforce sur trois axes : <b>protection des données</b>, <b>accessibilité numérique</b> et <b>information des consommateurs</b>. Anticiper en 2025–2026 évite des non-conformités et améliore l’expérience utilisateur.</p>
+    </div>
+  </section>
+
+  <main>
+    <!-- RAISONS PRINCIPALES -->
+    <section class="section alt">
+      <div class="container">
+        <h2 class="reveal">Les 3 raisons clés d’anticiper</h2>
+        <div class="grid-3">
+          <article class="tile reveal"><span class="badge">1</span><h3>Exigences accrues</h3><p class="lead-txt">Clarification des attentes, contrôles plus réguliers, attentes marché/clients plus élevées.</p></article>
+          <article class="tile reveal"><span class="badge">2</span><h3>Risques maîtrisés</h3><p class="lead-txt">Limiter les non-conformités (données, accessibilité, mentions), éviter litiges et perte de confiance.</p></article>
+          <article class="tile reveal"><span class="badge">3</span><h3>Gain d’efficacité</h3><p class="lead-txt">Des corrections prioritaires, des modèles prêts à l’emploi et une meilleure lisibilité du site.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE 2025–2026 -->
+    <section class="section">
+      <div class="container">
+        <h2 class="reveal">Repères 2025–2026</h2>
+        <div class="grid-2">
+          <div class="tile reveal">
+            <h3 style="margin-top:0">2025 — Consolidation</h3>
+            <div class="timeline">
+              <div class="milestone"><h3>RGPD (pratiques)</h3><p>Mise à niveau des politiques, bandeau cookies conforme, clauses formulaires, registre à jour.</p></div>
+              <div class="milestone"><h3>Accessibilité (bases A11y)</h3><p>Contrastes, structure sémantique, focus visibles, textes alternatifs essentiels.</p></div>
+              <div class="milestone"><h3>Mentions légales</h3><p>Pages légales complètes et à jour, contacts/médiation, informations e-commerce le cas échéant.</p></div>
+            </div>
+          </div>
+          <div class="tile reveal">
+            <h3 style="margin-top:0">2026 — Généralisation</h3>
+            <div class="timeline">
+              <div class="milestone"><h3>Contrôles et attentes</h3><p>Demande accrue de conformité côté clients/partenaires, vérifications plus fréquentes.</p></div>
+              <div class="milestone"><h3>Professionnalisation</h3><p>Documentation et preuves (journaux de consentement, rapports, historique des mises à jour).</p></div>
+              <div class="milestone"><h3>Accessibilité continue</h3><p>Améliorations progressives, déclaration et plan d’action à jour sur le site.</p></div>
+            </div>
+          </div>
+        </div>
+        <p class="notice reveal" style="margin-top:16px">Ces repères sont génériques et <b>ne remplacent pas</b> vos obligations sectorielles spécifiques ni un avis juridique. Adaptez-les à votre contexte.</p>
+      </div>
+    </section>
+
+    <!-- PRIORITÉS -->
+    <section class="section alt">
+      <div class="container">
+        <h2 class="reveal">Priorités d’action</h2>
+        <div class="grid-3">
+          <article class="tile reveal"><h3>1) Pages légales</h3><p class="lead-txt">Mentions légales, Politique de confidentialité et Cookies — liens visibles en pied de page.</p></article>
+          <article class="tile reveal"><h3>2) Cookies & consentement</h3><p class="lead-txt">CMP conforme, refus aussi simple que l’acceptation, preuve du consentement.</p></article>
+          <article class="tile reveal"><h3>3) Accessibilité utile</h3><p class="lead-txt">Contrastes, ALT, navigation clavier, focus — mettez à jour votre déclaration.</p></article>
+          <article class="tile reveal"><h3>4) Formulaires</h3><p class="lead-txt">Information au point de collecte (finalités, base légale, droits) et liens internes utiles.</p></article>
+          <article class="tile reveal"><h3>5) Documentation</h3><p class="lead-txt">Registre des traitements, DPA avec sous-traitants, politiques internes minimales.</p></article>
+          <article class="tile reveal"><h3>6) Preuves</h3><p class="lead-txt">Captures, rapports, dates de mise à jour, export des consentements.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- AIDE & RESSOURCES -->
+    <section class="section">
+      <div class="container grid-2">
+        <div class="tile reveal">
+          <h2 style="margin-top:0">Comment Awenoria vous aide</h2>
+          <ul style="line-height:1.9">
+            <li>Audit automatique avec score global et recommandations par thématique.</li>
+            <li>Guides & modèles pour corriger vite (RGPD, A11y, Mentions).</li>
+            <li>Options de rapport PDF, historique et suivi.</li>
+            <li>Accompagnement ponctuel (atelier) ou mission d’audit sur mesure.</li>
+          </ul>
+          <div style="margin-top:12px">
+            <a class="btn" href="index.html#resultat">Lancer un audit</a>
+            <a class="btn secondary" style="margin-left:8px" href="contact.html">Parler à un expert</a>
+          </div>
+        </div>
+        <div class="tile reveal">
+          <h2 style="margin-top:0">Ressources utiles</h2>
+          <p class="lead-txt">Pour aller plus loin :</p>
+          <ul style="line-height:1.9">
+            <li><a href="guides.html">Guides & bonnes pratiques</a></li>
+            <li><a href="modeles.html">Modèles juridiques</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="fonctionnalites.html#rgpd">Fonctionnalités — RGPD</a></li>
+            <li><a href="fonctionnalites.html#a11y">Fonctionnalités — Accessibilité</a></li>
+            <li><a href="fonctionnalites.html#legal">Fonctionnalités — Mentions légales</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section alt">
+      <div class="container" style="text-align:center">
+        <h2 class="reveal">Anticipez 2026 dès aujourd’hui</h2>
+        <p class="lead-txt reveal" style="margin:0 auto">Démarrez par un diagnostic clair, corrigez l’essentiel, documentez — et gardez vos preuves.</p>
+        <div class="reveal" style="margin-top:12px">
+          <a class="btn" href="index.html#resultat">Démarrer un audit</a>
+          <a class="btn secondary" style="margin-left:8px" href="contact.html">Contacter un expert</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER injecté ===== -->
+  <div id="footer"></div>
+
+  <!-- ===== JS : hero particules ===== -->
+  <script>
+    const canvas = document.getElementById('heroCanvas');
+    const ctx = canvas.getContext('2d');
+    function size(){ canvas.width = innerWidth; canvas.height = Math.max(innerHeight*0.6, 480); }
+    size(); addEventListener('resize', size);
+
+    const particles = [];
+    const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
+    class Particle{
+      constructor(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>canvas.width) this.vx*=-1; if(this.y<0||this.y>canvas.height) this.vy*=-1; }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
+    }
+    for(let i=0;i<opts.count;i++) particles.push(new Particle());
+    (function anim(){ ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(anim); })();
+  </script>
+
+  <!-- ===== Loader header/footer + nav (priorité racine, fallback partials/) ===== -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
+
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
+    }
+
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean ];
+    };
+
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+      }
+      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+    }
+
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return;
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
+    }
+
+    // HEADER
+    if (headMount) {
+      fetchAny(["header.html", "partials/header.html"])
+        .then(html => {
+          headMount.innerHTML = html;
+          fixRootUrls(headMount);
+          return fetchAny(["assets/nav.js", "nav.js"]);
+        })
+        .then(code => {
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+        })
+        .catch(err => {
+          console.error("Header load error:", err);
+          headMount.innerHTML = "<!-- Header introuvable -->";
+        });
+    }
+
+    // FOOTER
+    if (footMount) {
+      fetchAny(["footer.html", "partials/footer.html"])
+        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+        .catch(err => {
+          console.error("Footer load error:", err);
+          footMount.innerHTML = "<!-- Footer introuvable -->";
+        });
+    }
+  });
+  </script>
+</body>
+</html>
