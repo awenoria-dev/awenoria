@@ -6,25 +6,27 @@
   <title>404 – Introuvable | Awenoria</title>
   <meta name="description" content="La page que vous cherchez n’existe pas. Retournez à l’accueil.">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --matrix:#00ff41;
-      --bg:#000;
-      --neon:#00ffff;
-      --text:#e0e0e0;
+      --matrix:#0073B6;   /* bleu logo */
+      --neon:#FF6600;     /* orange logo */
+      --bg:#16233A;       /* fond très foncé logo */
+      --text:#E0E0E0;     /* gris clair */
       --radius:12px;
       --transition:.3s;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{font-family:'Courier New',Courier,monospace;background:var(--bg);color:var(--text);overflow:hidden;position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;}
+    body{font-family:'Manrope',system-ui,-apple-system,Arial,sans-serif;background:var(--bg);color:var(--text);overflow:hidden;position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;}
     canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0}
     .content{position:relative;z-index:1;padding:0 20px;max-width:600px}
     h1{font-size:clamp(80px,15vw,140px);color:var(--matrix);text-shadow:0 0 10px var(--matrix),0 0 20px var(--matrix);letter-spacing:-.05em}
     h2{font-size:clamp(24px,4vw,32px);margin:16px 0;color:var(--neon)}
     p{margin:8px 0 24px;font-size:clamp(14px,2vw,18px);color:var(--text)}
-    .btn{display:inline-block;background:var(--neon);color:#000;padding:14px 28px;border-radius:var(--radius);font-weight:800;text-decoration:none;transition:var(--transition);box-shadow:0 0 12px var(--neon)}
-    .btn:hover{background:#fff;box-shadow:0 0 20px var(--neon)}
+    .btn{display:inline-block;background:var(--neon);color:#fff;padding:14px 28px;border-radius:var(--radius);font-weight:800;text-decoration:none;transition:var(--transition);box-shadow:0 0 12px var(--neon)}
+    .btn:hover{background:#fff;color:var(--bg);box-shadow:0 0 20px var(--neon)}
     footer{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--matrix)}
   </style>
 </head>
@@ -47,20 +49,20 @@
     // Année dynamique
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Effet Matrix
+    // Effet Matrix aux couleurs du logo
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
     let width = canvas.width = innerWidth;
     let height = canvas.height = innerHeight;
     const cols = Math.floor(width / 20);
     const drops = Array(cols).fill(1);
-    const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}".split("");
+    const matrix = "AWENORIA133700FF66000073B6".split("");
 
     function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, .05)';
+      ctx.fillStyle = 'rgba(22, 35, 58, .08)';
       ctx.fillRect(0, 0, width, height);
-      ctx.fillStyle = '#00ff41';
-      ctx.font = '15px monospace';
+      ctx.fillStyle = '#0073B6'; // bleu logo
+      ctx.font = '15px Manrope';
       drops.forEach((y, i) => {
         const text = matrix[Math.floor(Math.random() * matrix.length)];
         ctx.fillText(text, i * 20, y * 20);
