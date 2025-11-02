@@ -6,11 +6,12 @@
   <title>Awenoria — Pourquoi maintenant ? (2026)</title>
   <meta name="description" content="Comprendre pourquoi renforcer la conformité de votre site dès maintenant : contexte européen et français, jalons 2025–2026, priorités RGPD, accessibilité et mentions légales.">
 
+  <!-- Favicon + police -->
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- CSS globale (mêmes styles header/footer/nav) -->
+  <!-- CSS globale (header/footer/nav) -->
   <link rel="stylesheet" href="assets/awenoria.css">
 
   <style>
@@ -37,7 +38,7 @@
     img{max-width:100%;display:block}
     .container{max-width:1160px;margin:0 auto;padding:24px 20px}
 
-    /* ---------- HERO identique Ressources/Modèles/Catalogue ---------- */
+    /* ---------- HERO (même style que Ressources/Modèles/Catalogue) ---------- */
     .hero{
       position:relative; min-height:60vh; display:flex; align-items:center; justify-content:center;
       text-align:center; color:#fff; overflow:hidden;
@@ -88,7 +89,7 @@
     .btn.secondary{background:#fff;color:#0f2746;border:1px solid rgba(15,23,32,.12)}
     .btn.secondary:hover{border-color:#d5e7f4;color:var(--aw-copper)}
 
-    /* Reveal */
+    /* Reveal (corrigé avec script plus bas) */
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
     .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s, transform .5s}
     .reveal.is-visible{opacity:1;transform:none}
@@ -96,10 +97,10 @@
 </head>
 <body class="page-pourquoi-2026">
 
-  <!-- ===== HEADER injecté ===== -->
+  <!-- Header injecté -->
   <div id="header"></div>
 
-  <!-- ===== HERO bleu (dégradé + particules) ===== -->
+  <!-- HERO -->
   <section class="hero">
     <canvas id="heroCanvas" aria-hidden="true"></canvas>
     <div class="content">
@@ -116,7 +117,7 @@
         <div class="grid-3">
           <article class="tile reveal"><span class="badge">1</span><h3>Exigences accrues</h3><p class="lead-txt">Clarification des attentes, contrôles plus réguliers, attentes marché/clients plus élevées.</p></article>
           <article class="tile reveal"><span class="badge">2</span><h3>Risques maîtrisés</h3><p class="lead-txt">Limiter les non-conformités (données, accessibilité, mentions), éviter litiges et perte de confiance.</p></article>
-          <article class="tile reveal"><span class="badge">3</span><h3>Gain d’efficacité</h3><p class="lead-txt">Des corrections prioritaires, des modèles prêts à l’emploi et une meilleure lisibilité du site.</p></article>
+          <article class="tile reveal"><span class="badge">3</span><h3>Gain d’efficacité</h3><p class="lead-txt">Corrections prioritaires, modèles prêts à l’emploi et meilleure lisibilité du site.</p></article>
         </div>
       </div>
     </section>
@@ -206,15 +207,15 @@
     </section>
   </main>
 
-  <!-- ===== FOOTER injecté ===== -->
+  <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- ===== JS : hero particules ===== -->
+  <!-- ===== JS : particules du hero ===== -->
   <script>
     const canvas = document.getElementById('heroCanvas');
     const ctx = canvas.getContext('2d');
-    function size(){ canvas.width = innerWidth; canvas.height = Math.max(innerHeight*0.6, 480); }
-    size(); addEventListener('resize', size);
+    function sizeHero(){ canvas.width = innerWidth; canvas.height = Math.max(innerHeight*0.6, 480); }
+    sizeHero(); addEventListener('resize', sizeHero);
 
     const particles = [];
     const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
@@ -226,6 +227,26 @@
     }
     for(let i=0;i<opts.count;i++) particles.push(new Particle());
     (function anim(){ ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(anim); })();
+  </script>
+
+  <!-- ===== Script REVEAL (corrige la page "vide") ===== -->
+  <script>
+    (function(){
+      const els = Array.from(document.querySelectorAll('.reveal'));
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(el => el.classList.add('is-visible'));
+        return;
+      }
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold:.12 });
+      els.forEach(el => io.observe(el));
+    })();
   </script>
 
   <!-- ===== Loader header/footer + nav (priorité racine, fallback partials/) ===== -->
@@ -265,7 +286,6 @@
         });
     }
 
-    // HEADER
     if (headMount) {
       fetchAny(["header.html", "partials/header.html"])
         .then(html => {
@@ -285,7 +305,6 @@
         });
     }
 
-    // FOOTER
     if (footMount) {
       fetchAny(["footer.html", "partials/footer.html"])
         .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
