@@ -1,103 +1,223 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog - Awenoria</title>
-  <meta name="description" content="Articles RGPD, accessibilité, mentions légales">
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog — Awenoria</title>
+  <meta name="description" content="Guides, actualités et bonnes pratiques RGPD, accessibilité, mentions légales, cookies/CMP.">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS globale (mêmes styles header/footer) -->
+  <link rel="stylesheet" href="assets/awenoria.css">
+
   <style>
     :root{
-      --blue:#0073b6;
-      --orange:#ff6600;
-      --bg:#f5f7ff;
-      --text:#16233a;
-      --muted:#5d6b7c;
-      --radius:16px;
-      --shadow:0 4px 12px rgba(16,32,48,.06);
+      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
+      --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
+      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+      --transition:.6s cubic-bezier(.22,1,.36,1);
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:system-ui,-apple-system,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
-    .container{max-width:1100px;margin:0 auto;padding:40px 20px}
-    header{background:#fff;border-bottom:1px solid #e6edf3;padding:20px 0;text-align:center}
-    .logo{height:80px}
-    nav a{margin:0 15px;color:var(--blue);font-weight:600;text-decoration:none}
-    nav a:hover{color:var(--orange)}
-    h1{margin-bottom:10px;font-size:2.2rem;color:var(--blue)}
-    .lead{color:var(--muted);max-width:700px;margin:0 auto 40px;text-align:center}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-    .card{background:#fff;border:1px solid #e6edf3;border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;transition:transform .2s}
-    .card:hover{transform:translateY(-3px)}
-    .tag{background:var(--blue);color:#fff;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;margin-bottom:8px;display:inline-block}
-    .card h3{margin:8px 0;font-size:1.1rem}
-    .card p{color:var(--muted);font-size:.95rem}
-    .card time{font-size:.8rem;color:var(--muted)}
-    footer{background:#fff;border-top:1px solid #e6edf3;padding:30px 0;text-align:center;font-size:.9rem;color:var(--muted)}
-    footer a{color:var(--blue)}
+    @media (prefers-color-scheme:dark){
+      :root{
+        --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
+        --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+      }
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;
+      line-height:1.7; color:var(--aw-ink); background:var(--aw-bg);
+      -webkit-font-smoothing:antialiased;
+    }
+    a{text-decoration:none;color:var(--aw-blue)}
+    img{max-width:100%;display:block}
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+    /* ---------- HERO (identique Ressources/Modèles) ---------- */
+    .hero{
+      position:relative; min-height:60vh; display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff; overflow:hidden;
+      background:
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+    }
+    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
+    .hero .content{position:relative; z-index:2; max-width:880px; padding:0 20px; animation:fadeInUp 1s both;}
+    .hero h1{font-size:clamp(48px,7vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em;}
+    .hero .lead{font-size:1.3rem; font-weight:500; margin:22px auto 0; color:#e8f0ff;}
+
+    /* ---------- Section liste ---------- */
+    .section{max-width:1200px;margin:0 auto;padding:56px 20px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:22px}
+    @media (max-width:980px){.grid{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.grid{grid-template-columns:1fr}}
+
+    .card{
+      background:var(--aw-panel);
+      border:1px solid rgba(15,23,32,.08);
+      border-radius:20px; padding:20px;
+      box-shadow:var(--shadow);
+      transition:transform .25s var(--transition), box-shadow .25s var(--transition), border-color .25s;
+    }
+    .card:hover{ transform:translateY(-4px); box-shadow:0 28px 56px rgba(0,0,0,.1); border-color:var(--aw-copper); }
+
+    .tag{
+      display:inline-block; padding:6px 12px; border-radius:999px;
+      background:var(--aw-blue); color:#fff; font:800 12px/1 "Inter",system-ui,-apple-system,Arial,sans-serif;
+      margin-bottom:8px;
+    }
+    .card h3{margin:6px 0 6px; font-size:1.1rem}
+    .card p{color:var(--aw-muted); margin:0 0 8px}
+    .meta{display:flex;align-items:center;gap:8px;color:var(--aw-muted);font-size:.9rem}
+    .meta time{font-variant-numeric:tabular-nums}
+    .read{display:inline-flex;align-items:center;gap:6px;font-weight:800}
+    .read:hover{color:var(--aw-copper)}
+
+    /* ---------- Anim ---------- */
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
   </style>
 </head>
-
 <body>
-  <!-- HEADER SIMPLE -->
-  <header>
-    <div class="container">
-      <img src="images/logo.png" alt="Awenoria" class="logo">
-      <nav>
-        <a href="index.html">Accueil</a>
-        <a href="fonctionnalites.html">Audit</a>
-        <a href="guides.html">Ressources</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+
+  <!-- ===== HEADER injecté ===== -->
+  <div id="header"></div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="content">
+      <h1>Blog Transparence & Confiance</h1>
+      <p class="lead">Guides, actualités et bonnes pratiques RGPD, accessibilité, mentions légales et cookies/CMP.</p>
     </div>
-  </header>
+  </section>
 
-  <!-- HERO -->
-  <main class="container">
-    <h1>Blog Transparence & Confiance</h1>
-    <p class="lead">
-      Guides, actualités et bonnes pratiques RGPD, accessibilité, mentions légales.
-    </p>
+  <!-- ===== LISTE D’ARTICLES ===== -->
+  <main class="section">
+    <div class="container">
+      <div class="grid">
+        <article class="card">
+          <span class="tag">RGPD</span>
+          <h3>Les 5 vérifications rapides avant 2026</h3>
+          <p>Bandeau cookies, mentions légales, registre… un checklist express.</p>
+          <div class="meta">
+            <time datetime="2025-06-02">2 juin 2025</time>
+            <span>•</span><a class="read" href="guides.html#rgpd">Lire</a>
+          </div>
+        </article>
 
-    <!-- GRILLE ARTICLES -->
-    <div class="grid">
-      <article class="card">
-        <span class="tag">RGPD</span>
-        <h3>Les 5 vérifications rapides avant 2026</h3>
-        <p>Bandeau cookies, mentions légales, registre… un checklist express.</p>
-        <time>2 juin 2025</time>
-      </article>
+        <article class="card">
+          <span class="tag">Accessibilité</span>
+          <h3>Améliorer le contraste sans casser la charte</h3>
+          <p>Astuces design pour respecter le critère 1.4.3.</p>
+          <div class="meta">
+            <time datetime="2025-05-25">25 mai 2025</time>
+            <span>•</span><a class="read" href="guides.html#access">Lire</a>
+          </div>
+        </article>
 
-      <article class="card">
-        <span class="tag">Accessibilité</span>
-        <h3>Améliorer le contraste sans casser la charte</h3>
-        <p>Astuces design pour respecter le critère 1.4.3.</p>
-        <time>25 mai 2025</time>
-      </article>
-
-      <article class="card">
-        <span class="tag">Cookies</span>
-        <h3>Installer un CMP gratuit et conforme</h3>
-        <p>Comparatif des solutions open-source en 10 min.</p>
-        <time>18 mai 2025</time>
-      </article>
+        <article class="card">
+          <span class="tag">Cookies</span>
+          <h3>Installer un CMP gratuit et conforme</h3>
+          <p>Comparatif des solutions open-source en 10&nbsp;min.</p>
+          <div class="meta">
+            <time datetime="2025-05-18">18 mai 2025</time>
+            <span>•</span><a class="read" href="guides.html#cookies">Lire</a>
+          </div>
+        </article>
+      </div>
     </div>
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <img src="images/logo.png" alt="Awenoria" style="height:32px">
-      <p>
-        <a href="mentions.html">Mentions légales</a> ·
-        <a href="confidentialite.html">Confidentialité</a>
-      </p>
-      <p>© <span id="year"></span> Awenoria</p>
-    </div>
-  </footer>
+  <!-- ===== FOOTER injecté ===== -->
+  <div id="footer"></div>
 
+  <!-- ===== JS : hero particules ===== -->
   <script>
-    // année dynamique
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const canvas = document.getElementById('heroCanvas');
+    const ctx = canvas.getContext('2d');
+    function size(){ canvas.width = innerWidth; canvas.height = Math.max(innerHeight*0.6, 480); }
+    size(); addEventListener('resize', size);
+    const particles = [];
+    const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
+    class Particle{
+      constructor(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>canvas.width) this.vx*=-1; if(this.y<0||this.y>canvas.height) this.vy*=-1; }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
+    }
+    for(let i=0;i<opts.count;i++) particles.push(new Particle());
+    (function anim(){ ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(anim); })();
+  </script>
+
+  <!-- ===== Loader header/footer + nav (priorité racine, fallback partials/) ===== -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
+
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
+    }
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean ];
+    };
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+      }
+      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+    }
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return;
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
+    }
+
+    // HEADER
+    if (headMount) {
+      fetchAny(["header.html", "partials/header.html"])
+        .then(html => {
+          headMount.innerHTML = html;
+          fixRootUrls(headMount);
+          return fetchAny(["assets/nav.js", "nav.js"]);
+        })
+        .then(code => {
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+        })
+        .catch(err => {
+          console.error("Header load error:", err);
+          headMount.innerHTML = "<!-- Header introuvable -->";
+        });
+    }
+
+    // FOOTER
+    if (footMount) {
+      fetchAny(["footer.html", "partials/footer.html"])
+        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+        .catch(err => {
+          console.error("Footer load error:", err);
+          footMount.innerHTML = "<!-- Footer introuvable -->";
+        });
+    }
+  });
   </script>
 </body>
 </html>
