@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
 
-  <!-- CSS globale (nécessaire pour le header/footer identiques) -->
+  <!-- CSS globale (header/footer) -->
   <link rel="stylesheet" href="assets/awenoria.css">
 
   <style>
@@ -25,20 +25,45 @@
       --font-ui:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
       --bg:#f6f9fc; --panel:#fff; --muted:#4a6176; --text:#0f5f9a; --brand:#0f5f9a;
       --accent:#16a34a; --copper:#ff8a3d; --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.08);
-      --maxw:1200px; --nav-h:40px
+      --maxw:1200px; --nav-h:40px;
+      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
+      --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
+      --transition:.6s cubic-bezier(.22,1,.36,1);
     }
+    @media (prefers-color-scheme:dark){
+      :root{
+        --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
+        --aw-panel:#0b0f1a; --aw-bg:#0a0d14;
+      }
+    }
+
     *{box-sizing:border-box} html,body{height:100%}
     body{
       margin:0;color:var(--text);background:
       radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),
-      linear-gradient(180deg,#fff 0%,#f6f9fc 100%);-webkit-font-smoothing:antialiased;
+      linear-gradient(180deg,#fff 0%,#f6f9fc 100%);
+      -webkit-font-smoothing:antialiased;
       font-family:var(--font-ui)
     }
     h1,h2,h3,h4{font-weight:800}
     .glass{background:rgba(255,255,255,.86);backdrop-filter:blur(10px);border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow)}
     a.btn, .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1px solid transparent;background:rgba(27,136,255,.88);color:#fff;text-decoration:none}
 
-    /* Layout */
+    /* ---------- HERO bleu (identique Ressources/Modèles) ---------- */
+    .hero{
+      position:relative; min-height:60vh; display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff; overflow:hidden;
+      background:
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+    }
+    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
+    .hero .content{position:relative; z-index:2; max-width:800px; padding:0 20px; animation:fadeInUp 1s both;}
+    .hero h1{font-size:clamp(52px,7vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em;}
+    .hero .lead{font-size:1.4rem; font-weight:500; margin:24px auto 0; color:#e8f0ff;}
+
+    /* ---------- Layout sections ---------- */
     .section{max-width:var(--maxw);margin:32px auto;padding:0 20px}
     .title-center{text-align:center;font-size:clamp(26px,4vw,40px);margin:10px 0 6px}
     .subtitle-center{max-width:980px;margin:0 auto 14px;text-align:center;color:var(--muted)}
@@ -78,6 +103,9 @@
     .catalogue-cta{text-align:center;margin-top:16px}
     .btn-outline{background:transparent;border-color:rgba(27,136,255,.35);color:var(--text)}
     .btn-outline:hover{background:rgba(27,136,255,.08)}
+
+    /* Anim */
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
   </style>
 </head>
 <body>
@@ -85,15 +113,22 @@
   <!-- ===== HEADER injecté ===== -->
   <div id="header"></div>
 
+  <!-- ===== HERO bleu avec particules ===== -->
+  <section class="hero">
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="content">
+      <h1>Catalogue</h1>
+      <p class="lead">Parcourez nos services et nos formations&nbsp;: thématiques, publics, formats & modalités.</p>
+    </div>
+  </section>
+
+  <!-- ===== CONTENU ===== -->
   <section class="section">
     <nav class="crumbs" aria-label="Fil d'Ariane">
       <a href="index.html">Accueil</a>
       <span aria-hidden="true">›</span>
       <span>Catalogue</span>
     </nav>
-
-    <h1 class="title-center">Catalogue</h1>
-    <div class="underline"></div>
 
     <div class="split">
       <!-- SERVICES -->
@@ -203,9 +238,25 @@
   <!-- ===== FOOTER injecté ===== -->
   <div id="footer"></div>
 
-  <!-- ===== JS : données + rendu (import dynamique compatible GitHub Pages) ===== -->
+  <!-- ===== JS : Hero particules + données + rendu ===== -->
   <script>
-    // Base path helper (même logique que le loader header/footer)
+    // HERO canvas (même logique que Ressources/Modèles)
+    const canvas = document.getElementById('heroCanvas');
+    const ctx = canvas.getContext('2d');
+    function size(){ canvas.width = innerWidth; canvas.height = Math.max(innerHeight*0.6, 480); }
+    size(); addEventListener('resize', size);
+    const particles = [];
+    const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
+    class Particle{
+      constructor(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>canvas.width) this.vx*=-1; if(this.y<0||this.y>canvas.height) this.vy*=-1; }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
+    }
+    for(let i=0;i<opts.count;i++) particles.push(new Particle());
+    (function anim(){ ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(anim); })();
+
+    // ===== Données formations : import compatible GitHub Pages =====
     const isGh = /github\.io$/.test(location.hostname);
     let BASE = "/";
     if (isGh) {
@@ -213,7 +264,6 @@
       BASE = parts.length ? `/${parts[0]}/` : "/";
     }
 
-    // Charge le module de données au bon chemin (local ou GitHub Pages)
     let COURSES = [];
     import(BASE + "js/courses-data.js")
       .then(mod => { COURSES = mod.COURSES || []; initCatalogue(); })
@@ -328,7 +378,7 @@
         root.innerHTML = list.length ? list.map(courseCard).join("") : `<p>Aucune formation trouvée pour ce filtre.</p>`;
       }
 
-      // Tuiles
+      // Tuiles haut
       const themesRoot = document.getElementById("themes");
       const audiencesRoot = document.getElementById("audiences");
       const formatsRoot = document.getElementById("formats");
@@ -396,7 +446,7 @@
         Object.entries(panes).forEach(([k,el]) => { el.hidden = (k!==name); });
         pills.forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab===name)));
       }
-      pills.forEach(b => b.addEventListener('click', () => selectTab(b.dataset.tab)));
+      pills.forEach(b => { b.dataset.tab = b.dataset.tab || b.textContent.trim().toLowerCase(); b.addEventListener('click', () => selectTab(b.dataset.tab)); });
 
       const a = params.get("public"); const f = params.get("format"); const m = params.get("modalite");
       if (a) selectTab('audiences'); else if (f || m) selectTab('formats'); else selectTab('themes');
