@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accueil – Awenoria</title>
+  <meta name="description" content="Awenoria – conformité RGPD & IA rendue simple, humaine et accessible.">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+  <link rel="stylesheet" href="assets/awenoria.css">
+
+  <!-- POSITION DU LOGO ANIMÉ -->
+  <style>
+    #logo-anime{
+      position:absolute;
+      top:12px;
+      right:20px;
+      width:64px;
+      height:64px;
+      z-index:10;
+      filter:drop-shadow(0 2px 4px rgba(0,0,0,.15));
+    }
+    /* ------ vos autres styles existants ------ */
+    .hero-intro{position:relative; isolation:isolate; padding:64px 0 34px; border-bottom:1px solid rgba(15,23,32,.08);}
+    .hero-intro .wrap{max-width:1280px; margin:0 auto; padding:0 20px; display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:center;}
+    @media (max-width:980px){.hero-intro .wrap{grid-template-columns:1fr}}
+    .hero-intro h1{margin:0 0 12px; font-size:clamp(24px, 4.8vw, 46px); line-height:1.1}
+    .lead{margin:0 0 16px; color:var(--muted); font-size:clamp(16px, 1.6vw, 18px)}
+    /* … copie ici le reste de vos styles si besoin … */
+  </style>
+</head>
+
+<body>
+  <!-- ============== HEADER AVEC LOGO ANIMÉ ============== -->
+  <header id="header">
+    <svg id="logo-anime" viewBox="0 0 200 200" aria-label="Awenoria" role="img">
+      <style>
+        :root{--c1:#00ffff;--c2:#ff00ff;--d:4s}
+        #r{fill:none;stroke:var(--c1);stroke-width:4;transform-origin:center;animation:p var(--d) infinite}
+        @keyframes p{0%,100%{transform:scale(.8);opacity:0}20%{transform:scale(1);opacity:1}40%{stroke:var(--c2)}80%{transform:scale(1.05)}}
+        #t{fill:var(--c1);transform-origin:center;animation:s var(--d) infinite}
+        @keyframes s{0%,20%{transform:rotate(0deg)}40%{transform:rotate(180deg);fill:var(--c2)}100%{transform:rotate(180deg)}}
+        #w{font:bold 26px/1 sans-serif;fill:#fff;letter-spacing:2px;animation:sl var(--d) infinite}
+        @keyframes sl{0%,40%{clip-path:inset(0 100% 0 0)}60%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 0 0)}}
+      </style>
+      <circle cx="100" cy="100" r="98" fill="#00ffff" opacity=".1"/>
+      <circle id="r" cx="100" cy="100" r="70"/>
+      <path id="t" d="M100 40L140 120H60z"/>
+      <text id="w" x="100" y="105" text-anchor="middle">Awenoria</text>
+    </svg>
+
+    <!-- (exemple de nav minimale – adapte selon ton vrai header) -->
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="catalogue.html">Packs</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ============== HERO ============== -->
+  <section class="hero-intro" id="intro">
+    <div class="wrap">
+      <div>
+        <h1 class="type-on-view" data-text="La conformité RGPD & IA rendue simple, humaine et accessible.">La conformité RGPD & IA rendue simple, humaine et accessible.</h1>
+        <p class="lead">Awenoria vous accompagne vers la conformité numérique grâce à des outils d’audit automatisés et un accompagnement humain personnalisé.</p>
+        <ul class="checks checks-inline">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Analyse locale par défaut, sans stockage.</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Score global & recommandations priorisées.</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>RGPD, accessibilité, mentions légales & cookies.</li>
+        </ul>
+        <div class="cta-row">
+          <a class="btn ghost" href="#audit-gratuit">Lancer un audit gratuit</a>
+          <a class="btn copper-ghost" href="#offres">Voir le détail des packs</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="images/hero.jpg" alt="" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== OUTIL GRATUIT D’AUDIT ============== -->
+  <section id="audit-gratuit" class="section">
+    <h2 class="title-center">Scannez votre site gratuitement</h2>
+    <div class="underline" aria-hidden="true"></div>
+    <p class="subtitle-center">Entrez simplement l’adresse de votre site pour obtenir un aperçu immédiat de votre conformité RGPD.</p>
+    <form class="url-bar" onsubmit="event.preventDefault(); alert('Audit démo lancé pour :\n' + auditUrl.value);">
+      <input type="url" id="auditUrl" placeholder="https://monsite.fr" required>
+      <button type="submit">Analyser</button>
+    </form>
+  </section>
+
+  <!-- ============== OFFRES ============== -->
+  <section id="offres" class="section">
+    <h2 class="title-center">Des solutions adaptées à chaque structure</h2>
+    <div class="underline" aria-hidden="true"></div>
+    <div class="pricing">
+      <article class="offer glass">
+        <h3>Start RGPD</h3>
+        <p class="for">TPE & indépendants</p>
+        <ul>
+          <li>Audit de base</li>
+          <li>Politique automatique</li>
+          <li>Registre checker</li>
+        </ul>
+        <p class="price">490 €</p>
+      </article>
+      <article class="offer glass">
+        <h3>Pro RGPD</h3>
+        <p class="for">PME / associations</p>
+        <ul>
+          <li>Audit complet</li>
+          <li>PIA / AIPD</li>
+          <li>Suivi 6 mois</li>
+        </ul>
+        <p class="price">1 290 €</p>
+      </article>
+      <article class="offer glass">
+        <h3>IA Act Starter</h3>
+        <p class="for">Startups IA</p>
+        <ul>
+          <li>Audit conformité IA</li>
+          <li>Documentation exigée</li>
+          <li>Feuille de route</li>
+        </ul>
+        <p class="price">990 €</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============== CONTACT ============== -->
+  <section id="contact" class="section">
+    <h2 class="title-center">Parlons de votre conformité</h2>
+    <div class="underline" aria-hidden="true"></div>
+    <p class="subtitle-center">Une question, un devis, un partenariat ? Contactez-nous via le formulaire sécurisé.</p>
+    <div class="contact-form-wrap">
+      <form action="contact@awenoria.fr" method="post">
+        <input type="email" placeholder="Votre e-mail" required>
+        <textarea placeholder="Votre message" rows="5" required></textarea>
+        <button class="btn primary" type="submit">Envoyer</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer id="footer">
+    <p>© 2025 Awenoria – Tous droits réservés</p>
+  </footer>
+
+  <!-- SCRIPTS MINIMAUX -->
+  <script>
+    // typing effect simple (respecte prefers-reduced-motion)
+    document.querySelectorAll('.type-on-view').forEach(el=>{
+      const full = el.dataset.text || el.textContent;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){ el.textContent = full; return;}
+      el.textContent=''; let i=0;
+      (function tick(){ el.textContent = full.slice(0, ++i); if(i<full.length) setTimeout(tick, 80);})();
+    });
+  </script>
+</body>
+</html>
