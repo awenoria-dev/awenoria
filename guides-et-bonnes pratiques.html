@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Guides & bonnes pratiques — Awenoria</title>
+  <meta name="description" content="Guides pratiques pour passer de l’audit au plan d’actions : RGPD côté site, accessibilité (WCAG/RGAA), mentions légales & e-commerce, cookies/CMP.">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS globale -->
+  <link rel="stylesheet" href="assets/awenoria.css">
+
+  <style>
+    :root{
+      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
+      --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
+      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+      --transition:.6s cubic-bezier(.22,1,.36,1);
+    }
+    @media (prefers-color-scheme:dark){
+      :root{
+        --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
+        --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+      }
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;line-height:1.7;color:var(--aw-ink);background:var(--aw-bg);-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;color:var(--aw-blue)}
+    img{max-width:100%;display:block}
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+    /* ---------- Hero (identique aux autres pages) ---------- */
+    .hero{
+      position:relative; min-height:60vh; min-height:60svh;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff; overflow:hidden;
+      background:
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+    }
+    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
+    .hero .content{position:relative; z-index:2; max-width:900px; padding:0 20px; animation:fadeInUp 1s both;}
+    .hero h1{font-size:clamp(48px,6.5vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em;}
+    .hero .lead{font-size:1.25rem; font-weight:500; margin:18px auto 0; color:#e8f0ff;}
+
+    /* ---------- Sections ---------- */
+    .section{max-width:1200px; margin:0 auto; padding:100px 20px;}
+    .section.alt{background:var(--aw-bg);}
+    .title{
+      margin:0 0 10px; text-align:center; font-size:clamp(30px,4.5vw,42px);
+      color:var(--aw-ink); font-weight:800;
+    }
+    .title::after{content:''; display:block; width:60px; height:4px; background:var(--aw-copper); margin:10px auto 0; border-radius:3px;}
+
+    .grid{display:grid; gap:24px; margin-top:18px;}
+    .cols-2{grid-template-columns:repeat(2,1fr)}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    @media(max-width:980px){.cols-2,.cols-3{grid-template-columns:1fr}}
+
+    .card{
+      background:var(--aw-panel); border:1px solid rgba(15,23,32,.08);
+      border-radius:var(--aw-radius); box-shadow:var(--shadow);
+      padding:24px; transition:all var(--transition);
+      color:inherit;
+    }
+    .card:hover{transform:translateY(-2px)}
+    .pill{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:6px 12px; border-radius:999px; background:var(--aw-blue);
+      color:#fff; font:800 12px/1 "Inter",system-ui,-apple-system,Arial,sans-serif;
+      margin:0 0 10px 0;
+    }
+    .list{margin:0;padding-left:18px}
+    .muted{color:var(--aw-muted)}
+    .small{font-size:13px;color:var(--aw-muted)}
+    .btn{
+      display:inline-block; padding:10px 14px; border-radius:10px; font-weight:800;
+      color:#fff; background:var(--aw-blue); box-shadow:var(--shadow); font-size:14px; transition:all var(--transition);
+    }
+    .btn:hover{background:var(--aw-copper); transform:translateY(-2px);}
+    .btn.ghost{background:var(--aw-panel); color:var(--aw-blue); border:1px solid rgba(15,23,32,.08);}
+    .dl{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+
+    /* Anim */
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
+  </style>
+</head>
+<body class="page-guides">
+
+  <!-- Header injecté -->
+  <div id="header"></div>
+
+  <!-- HERO bleu + particules -->
+  <section class="hero">
+    <canvas id="canvas" aria-hidden="true"></canvas>
+    <div class="content">
+      <h1 id="top">Guides & bonnes pratiques</h1>
+      <p class="lead">Passe à l’action avec des check-lists prêtes à l’emploi : <b>RGPD côté site</b>, <b>Accessibilité (WCAG/RGAA)</b>, <b>Mentions & e-commerce</b>, <b>Cookies/CMP</b>.</p>
+    </div>
+  </section>
+
+  <main>
+    <!-- Accès rapide -->
+    <section class="section">
+      <div class="container">
+        <h2 class="title">Accès rapide</h2>
+        <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:18px">
+          <a class="card" href="#rgpd">
+            <span class="pill">RGPD</span>
+            <h3>RGPD côté site</h3>
+            <p class="muted">Infos à afficher + preuves.</p>
+          </a>
+          <a class="card" href="#a11y">
+            <span class="pill">Accessibilité</span>
+            <h3>WCAG / RGAA</h3>
+            <p class="muted">Points essentiels à corriger.</p>
+          </a>
+          <a class="card" href="#mentions">
+            <span class="pill">Mentions</span>
+            <h3>Mentions & e-commerce</h3>
+            <p class="muted">Obligations d’information.</p>
+          </a>
+          <a class="card" href="#cookies">
+            <span class="pill">Cookies</span>
+            <h3>Cookies & CMP</h3>
+            <p class="muted">Consentement & preuve.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- RGPD -->
+    <section id="rgpd" class="section alt">
+      <div class="container">
+        <h2 class="title">RGPD côté site — check-list</h2>
+        <div class="grid cols-2">
+          <article class="card">
+            <h3>Ce qu’il faut afficher</h3>
+            <ul class="list">
+              <li><b>Politique de confidentialité</b> accessible depuis toutes les pages (footer, header ou menu).</li>
+              <li><b>Finalités</b> de traitement clairement listées (contact, newsletter, analytics, paiement…).</li>
+              <li><b>Bases légales</b> correspondantes (consentement, contrat, intérêt légitime…).</li>
+              <li><b>Durées de conservation</b> par finalité (valeurs ou critères de détermination).</li>
+              <li><b>Droits des personnes</b> (accès, rectification, effacement, opposition, limitation, portabilité).</li>
+              <li><b>Contact</b> (DPO ou référent) + canal de demande (email/formulaire).</li>
+              <li><b>Transferts hors UE</b> (si applicable) et garanties.</li>
+              <li><b>Dernière mise à jour</b> de la politique.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Formulaires & preuve</h3>
+            <ul class="list">
+              <li><b>Information au point de collecte</b> : court paragraphe + lien vers la politique.</li>
+              <li><b>Consentement</b> si nécessaire : case non cochée par défaut, texte précis, journalisation.</li>
+              <li><b>Preuve</b> : logs ou référence CMP, date/version de la politique, trace des MAJ.</li>
+              <li><b>Emails</b> : mention “se désinscrire” + lien fonctionnel, registre opt-in.</li>
+            </ul>
+            <div class="dl">
+              <a class="btn ghost" href="modeles.html">Modèles de clauses →</a>
+              <a class="btn" href="fonctionnalites.html#rgpd">Ce que l’outil vérifie →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Accessibilité -->
+    <section id="a11y" class="section">
+      <div class="container">
+        <h2 class="title">Accessibilité (WCAG / RGAA) — check-list</h2>
+        <div class="grid cols-3">
+          <article class="card">
+            <h3>Perceptible</h3>
+            <ul class="list">
+              <li><b>Textes alternatifs</b> pour les images porteuses d’info.</li>
+              <li><b>Contrastes</b> conformes (texte/fond, boutons, liens).</li>
+              <li><b>Hiérarchie sémantique</b> (h1→h2→h3), titres de pages pertinents.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Utilisable</h3>
+            <ul class="list">
+              <li><b>Navigation clavier</b> complète (focus visible, ordre logique).</li>
+              <li><b>Composants</b> utilisables sans souris (menus, modales, carrousels).</li>
+              <li><b>Médias</b> avec sous-titres/transcriptions (si applicable).</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Compréhensible & robuste</h3>
+            <ul class="list">
+              <li><b>Libellés clairs</b> pour liens/boutons (“Télécharger le PDF” plutôt que “Cliquez ici”).</li>
+              <li><b>ARIA landmarks</b> (header, nav, main, footer) et rôles adaptés.</li>
+              <li><b>Déclaration d’accessibilité</b> + mécanisme de contact/médiation.</li>
+            </ul>
+            <div class="dl">
+              <a class="btn ghost" href="fonctionnalites.html#accessibilite">Vérifications automatiques →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mentions & e-commerce -->
+    <section id="mentions" class="section alt">
+      <div class="container">
+        <h2 class="title">Mentions légales & e-commerce — check-list</h2>
+        <div class="grid cols-2">
+          <article class="card">
+            <h3>Identification & contact</h3>
+            <ul class="list">
+              <li><b>Éditeur</b> (raison sociale, adresse, RCS/SIREN, TVA intracommunautaire).</li>
+              <li><b>Hébergeur</b> (nom, adresse, téléphone ou email).</li>
+              <li><b>Contact</b> direct (email, formulaire, téléphone si prévu).</li>
+              <li><b>Propriété intellectuelle</b> (textes, images, marques).</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Vente en ligne</h3>
+            <ul class="list">
+              <li><b>CGV/CGU</b> accessibles, acceptation explicite.</li>
+              <li><b>Droit de rétractation</b> (délais, modalités, formulaire si B2C).</li>
+              <li><b>Médiation</b> à la consommation (si B2C, FR).</li>
+              <li><b>Prix</b> TTC/HT clairs, frais et délais de livraison (si applicable).</li>
+            </ul>
+            <div class="dl">
+              <a class="btn ghost" href="modeles.html">Modèles : mentions & CGV →</a>
+              <a class="btn" href="fonctionnalites.html#mentions">Ce que l’outil vérifie →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cookies / CMP -->
+    <section id="cookies" class="section">
+      <div class="container">
+        <h2 class="title">Cookies & CMP — check-list</h2>
+        <div class="grid cols-3">
+          <article class="card">
+            <h3>Bandeau & choix</h3>
+            <ul class="list">
+              <li><b>Refus aussi simple</b> que l’acceptation (même niveau, même visibilité).</li>
+              <li><b>Continuer sans accepter</b> ou <b>Tout refuser</b> présent dès la 1ʳᵉ couche.</li>
+              <li><b>Preuve du consentement</b> (journal CMP, horodatage, version).</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Politique cookies</h3>
+            <ul class="list">
+              <li><b>Liste des cookies</b> (finalité, durée, tiers).</li>
+              <li><b>Retrait/modification</b> du consentement à tout moment.</li>
+              <li><b>Date de mise à jour</b> + versionnage.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Mise en conformité technique</h3>
+            <ul class="list">
+              <li><b>Blocage par défaut</b> des tags non essentiels avant consentement.</li>
+              <li><b>Consistance</b> des choix d’une page à l’autre (bannières SPA, sous-domaines).</li>
+              <li><b>Trace</b> de la bannière et des changements d’état.</li>
+            </ul>
+            <div class="dl">
+              <a class="btn ghost" href="fonctionnalites.html#cookies">Contrôles automatiques →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section alt">
+      <div class="container" style="text-align:center">
+        <h2 class="title" style="margin-bottom:10px">Besoin d’un plan d’actions priorisé ?</h2>
+        <p class="lead">On transforme ton diagnostic en feuille de route avec priorités, exemples et modèles prêts à l’emploi.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px">
+          <a class="btn" href="contact.html">Parler à un expert</a>
+          <a class="btn ghost" href="tarifs.html">Voir les offres</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer injecté -->
+  <div id="footer"></div>
+
+  <!-- ===== JS : canvas hero (particules) ===== -->
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = innerWidth;
+    let h = canvas.height = innerHeight;
+    const particles = [];
+    const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
+
+    addEventListener('resize', () => { w = canvas.width = innerWidth; h = canvas.height = innerHeight; });
+
+    class Particle{
+      constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
+    }
+    function init(){ particles.length=0; for(let i=0;i<opts.count;i++) particles.push(new Particle()); }
+    function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); }
+    init(); animate();
+  </script>
+
+  <!-- ===== Loader header/footer + nav (priorité racine, fallback partials/) ===== -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
+
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
+    }
+
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean ];
+    };
+
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+      }
+      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+    }
+
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return;
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
+    }
+
+    // HEADER
+    if (headMount) {
+      fetchAny(["header.html", "partials/header.html"])
+        .then(html => {
+          headMount.innerHTML = html;
+          fixRootUrls(headMount);
+          return fetchAny(["assets/nav.js", "nav.js"]);
+        })
+        .then(code => {
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+          console.log("[awenoria] header + nav chargés");
+        })
+        .catch(err => {
+          console.error("Header load error:", err);
+          headMount.innerHTML = "<!-- Header introuvable -->";
+        });
+    }
+
+    // FOOTER
+    if (footMount) {
+      fetchAny(["footer.html", "partials/footer.html"])
+        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+        .catch(err => {
+          console.error("Footer load error:", err);
+          footMount.innerHTML = "<!-- Footer introuvable -->";
+        });
+    }
+  });
+  </script>
+</body>
+</html>
