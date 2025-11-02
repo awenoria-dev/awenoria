@@ -8,36 +8,66 @@
 <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/awenoria.css">
+
+<!-- SEO: ContactPoint -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"Awenoria",
+  "url":"https://awenoria-dev.github.io/awenoria/",
+  "contactPoint":[{
+    "@type":"ContactPoint",
+    "contactType":"customer support",
+    "email":"contact@awenoria.fr",
+    "availableLanguage":["fr","en"],
+    "areaServed":"FR"
+  }]
+}
+</script>
 
 <style>
+/* =================== Variables et bases =================== */
 :root{
+  /* Palette initiale de la page contact (conservée) */
   --blue:#0073b6; --blue-dark:#005a8e; --orange:#ff6600;
   --bg-top:#f7f9fc; --bg:#edf3f7; --surface:#fff; --stroke:#e9eef4;
   --text:#16233a; --muted:#5d6b7c; --radius:20px;
   --shadow-sm:0 6px 20px rgba(16,32,48,.06);
   --shadow-lg:0 24px 48px rgba(16,32,48,.10);
 
-  --hero-overlay-rgb:0,90,142; --hero-overlay-alpha:.42; --hero-overlay-alpha-mobile:.52;
-  --copper-1:#B86122; --copper-2:#D67A2E; --copper-3:#F2B56C;
-  --blue-soft-1:#A9D3FF; --blue-soft-2:#7FB2CB; --blue-soft-3:#6FB3D8;
-
   --grad-btn: linear-gradient(90deg,#005a8e 0%, #007ec2 50%, #00a2df 100%);
   --grad-btn-hover: linear-gradient(90deg,#ff7a1a 0%, #ff6600 50%, #ff8840 100%);
 
-  --wa:#25D366;
-  --wa-dark:#128C7E;
-  --cal:#0069ff;
+  /* Variables partagées pour hero bleu */
+  --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
+  --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
+  --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+  --transition:.6s cubic-bezier(.22,1,.36,1);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg-top),var(--bg));color:var(--text);line-height:1.65}
+@media (prefers-color-scheme:dark){
+  :root{
+    --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
+    --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:linear-gradient(180deg,var(--bg-top), var(--bg));
+  color:var(--text);
+  line-height:1.65
+}
 a{text-decoration:none;color:var(--blue-dark)}
 img{max-width:100%;display:block}
 .container{max-width:1160px;margin:0 auto;padding:24px 20px}
 
-/* ===== HERO (copie conforme ressources.html) ===== */
+/* =================== HERO BLEU UNIFIÉ (plein écran) =================== */
 .hero{
-  position:relative; min-height:60vh; display:flex; align-items:center; justify-content:center;
+  position:relative; min-height:100vh; /* même hauteur que “À propos” */
+  display:flex; align-items:center; justify-content:center;
   text-align:center; color:#fff; overflow:hidden;
   background:
     radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
@@ -46,19 +76,52 @@ img{max-width:100%;display:block}
 }
 .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
 .hero .content{position:relative; z-index:2; max-width:800px; padding:0 20px; animation:fadeInUp 1s both;}
-.hero h1{font-size:clamp(52px,7vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em;}
-.hero .lead{font-size:1.4rem; font-weight:500; margin:24px auto 0; color:#e8f0ff;}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
+.hero h1{font-size:clamp(52px,7vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em; margin:0;}
+.hero .lead{font-size:1.4rem; font-weight:600; margin:24px auto 0; color:#e8f0ff;}
 
-/* ===== LAYOUT ===== */
+/* Formes géométriques flottantes (overlay) */
+.hero-geo{ position:absolute; inset:0; pointer-events:none; z-index:1; overflow:hidden; }
+.hero-geo .g{ position:absolute; width:64px; height:64px; opacity:.18; filter:blur(.2px);
+  animation:geoFloat var(--dur,18s) cubic-bezier(.22,1,.36,1) infinite; will-change:transform,opacity; }
+.hero-geo .circle{ border-radius:50%; border:3px solid rgba(255,255,255,.65); }
+.hero-geo .square{ border:3px solid rgba(255,255,255,.5); border-radius:14px; }
+.hero-geo .triangle{ --s:64px; width:var(--s); height:var(--s); clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
+  box-shadow:inset 0 0 0 3px rgba(255,255,255,.55); border-radius:8px; background:transparent; }
+.hero-geo .diamond{ border:3px solid rgba(255,255,255,.55); transform:rotate(45deg); animation-name:geoFloatDiamond; }
+.hero-geo .g:nth-child(1){ left:6%;  top:12%;  --dur:22s; --scale:.9 }
+.hero-geo .g:nth-child(2){ left:78%; top:18%;  --dur:26s; --scale:1.1 }
+.hero-geo .g:nth-child(3){ left:16%; top:64%;  --dur:24s; --scale:.85 }
+.hero-geo .g:nth-child(4){ left:88%; top:68%;  --dur:20s; --scale:.95 }
+.hero-geo .g:nth-child(5){ left:44%; top:8%;   --dur:28s; --scale:.8 }
+.hero-geo .g:nth-child(6){ left:54%; top:72%;  --dur:23s; --scale:1.0 }
+.hero-geo .g:nth-child(7){ left:28%; top:36%;  --dur:25s; --scale:1.2 }
+.hero-geo .g:nth-child(8){ left:70%; top:44%;  --dur:27s; --scale:.9 }
+
+@keyframes geoFloat{
+  0%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.12}
+  25%{transform:translate3d(20px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.22}
+  50%{transform:translate3d(-10px,-60px,0) scale(var(--scale,1)) rotate(12deg); opacity:.2}
+  75%{transform:translate3d(-30px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.24}
+  100%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.18}
+}
+@keyframes geoFloatDiamond{
+  0%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.14}
+  25%{transform:rotate(55deg) translate3d(18px,-30px,0) scale(var(--scale,1)); opacity:.22}
+  50%{transform:rotate(65deg) translate3d(-12px,-60px,0) scale(var(--scale,1)); opacity:.2}
+  75%{transform:rotate(55deg) translate3d(-28px,-30px,0) scale(var(--scale,1)); opacity:.24}
+  100%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.18}
+}
+
+/* ============ Mise en page Contact (inchangée hors header/footer/hero) ============ */
+.lead{max-width:980px;}
+.type-on-view{min-height:1.2em}
 .form-wrap{position:relative;z-index:3;margin-top:64px;}
 @media(max-width:900px){.form-wrap{margin-top:40px}}
 .grid-2{display:grid;grid-template-columns:420px 1fr;gap:20px;max-width:1160px;margin:0 auto}
 @media(max-width:1080px){.grid-2{grid-template-columns:1fr}}
 .card{background:#fff;border:1px solid var(--stroke);border-radius:20px;padding:18px 20px;box-shadow:var(--shadow-lg)}
-
-/* ===== Colonne infos ===== */
 .info{display:flex;flex-direction:column;gap:8px}
+/* Badge Service client — icône retirée */
 .info .badge{
   align-self:flex-start; display:inline-flex; align-items:center; gap:0;
   padding:10px 14px; border-radius:16px; font-weight:900; letter-spacing:.2px;
@@ -66,11 +129,12 @@ img{max-width:100%;display:block}
   border:1px solid rgba(16,32,48,.08);
   box-shadow:0 2px 6px rgba(16,32,48,.06), inset 0 1px 0 rgba(255,255,255,.8);
 }
-.info .badge svg{display:none}
+.info .badge svg{display:none} /* plus d'icône */
 .info .list{margin:6px 0 0;padding:0;list-style:none}
 .info .list li{display:flex;gap:10px;align-items:flex-start;margin:8px 0;color:var(--muted)}
 .info .list svg{flex:0 0 auto;width:18px;height:18px;color:#3b516a;opacity:.92}
 
+/* CTA en pile */
 .info .cta-col{display:flex;flex-direction:column;gap:10px;margin-top:10px}
 .info .cta{
   display:flex;align-items:center;justify-content:center;gap:10px;
@@ -89,8 +153,11 @@ img{max-width:100%;display:block}
 
 .info hr{border:none;border-top:1px dashed var(--stroke);margin:10px 0}
 .info .note{font-size:13px;color:var(--muted);margin:0}
-
-.info .brand-mark{width:140px;height:auto;margin:8px auto 2px;display:block;opacity:1;filter:drop-shadow(0 6px 12px rgba(16,32,48,.12)) contrast(1.08);}
+/* Logo discret sous la note (plus visible) */
+.info .brand-mark{
+  width:140px;height:auto;margin:8px auto 2px;display:block;
+  opacity:1; filter:drop-shadow(0 6px 12px rgba(16,32,48,.12)) contrast(1.08);
+}
 @media (max-width:1080px){ .info .brand-mark{width:130px} }
 
 /* ===== Formulaire ===== */
@@ -105,8 +172,11 @@ label{font-weight:800;font-size:14px}
 .input:focus, textarea:focus, select:focus{border-color:#8ec5e9; box-shadow:0 0 0 3px rgba(0,115,182,.12); outline:0}
 select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(45deg,transparent 50%,#7aa9c7 50%),linear-gradient(135deg,#7aa9c7 50%,transparent 50%),linear-gradient(to right,#dbe5ee,#dbe5ee);background-position:calc(100% - 18px) calc(1em - 2px),calc(100% - 13px) calc(1em - 2px),calc(100% - 2.5em) .5em;background-size:5px 5px,5px 5px,1px 1.8em;background-repeat:no-repeat}
 .help{font-size:12px;color:var(--muted);margin-top:4px}
+
+/* textarea fixe : pas de redimensionnement */
 textarea{resize:none}
 
+/* actions */
 .actions{display:flex;gap:12px;justify-content:flex-end;align-items:center;margin-top:14px}
 @media(max-width:680px){.actions{flex-direction:column;align-items:stretch}}
 .btn{
@@ -121,10 +191,12 @@ textarea{resize:none}
 .btn.loading .spinner{display:inline-block}
 @keyframes spin{to{transform:rotate(360deg)}}
 
+/* note & checkboxes */
 .note{font-size:13px;color:var(--muted);margin-top:8px}
 .check{display:flex;align-items:flex-start;gap:8px;margin-top:8px}
 .check input{margin-top:3px}
 
+/* status dynamiques */
 .status{display:none;border-radius:12px;padding:12px 14px;font-weight:700;align-items:center;gap:10px}
 .status svg{flex:0 0 auto}
 .status.ok{background:#eaf7ef;border:1px solid #cdebd7;color:#0c5132}
@@ -133,27 +205,40 @@ textarea{resize:none}
 .fade{animation:fadeIn .25s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(2px)} to{opacity:1;transform:none}}
 
-/* FOOTER */
-.footer{border-top:1px solid var(--stroke);padding:24px 0;margin-top:44px;color:#5c6a7a;font-size:14px}
+/* Animations génériques */
+@keyframes fadeInUp{ from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none} }
+.reveal{ opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1) }
+.reveal.is-visible{ opacity:1; transform:none }
 </style>
-<!-- CSS global identique à ressources.html -->
-<link rel="stylesheet" href="assets/awenoria.css">
 </head>
 <body>
 
-<!-- ===== HEADER INJECTÉ ===== -->
+<!-- ===== Header injecté (comme les autres pages) ===== -->
 <div id="header"></div>
 
-<!-- ===== HERO (fond bleu + formes géométriques animées) ===== -->
+<!-- ===== HERO BLEU PLEIN ÉCRAN ===== -->
 <section class="hero">
   <canvas id="canvas" aria-hidden="true"></canvas>
+
+  <!-- Formes géométriques flottantes -->
+  <div class="hero-geo" aria-hidden="true">
+    <span class="g circle"></span>
+    <span class="g square"></span>
+    <span class="g triangle"></span>
+    <span class="g diamond"></span>
+    <span class="g circle"></span>
+    <span class="g square"></span>
+    <span class="g triangle"></span>
+    <span class="g diamond"></span>
+  </div>
+
   <div class="content">
     <h1>Nous contacter</h1>
     <p id="hero-lead" class="lead type-on-view" data-text="Une question, un devis, un partenariat ? Votre message nous parvient via un envoi sécurisé."></p>
   </div>
 </section>
 
-<!-- ===== 2 COLONNES ===== -->
+<!-- ===== 2 COLONNES (inchangé) ===== -->
 <section class="form-wrap">
   <div class="grid-2">
 
@@ -165,6 +250,7 @@ textarea{resize:none}
 
       <ul class="list">
         <li>
+          <!-- Enveloppe premium -->
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M3.5 7.75A2.75 2.75 0 0 1 6.25 5h11.5A2.75 2.75 0 0 1 20.5 7.75v8.5A2.75 2.75 0 0 1 17.75 19H6.25A2.75 2.75 0 0 1 3.5 16.25v-8.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
             <path d="M4.2 7.6l7.8 5.3 7.8-5.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -172,6 +258,7 @@ textarea{resize:none}
           <strong>contact@awenoria.fr</strong>
         </li>
         <li>
+          <!-- Horloge premium -->
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.6"/>
             <path d="M12 7.5v5l3.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -179,6 +266,7 @@ textarea{resize:none}
           Réponse sous 24–48 h ouvrées
         </li>
         <li>
+          <!-- Bouclier RGPD premium -->
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M12 3.5l7 2.2v5.3c0 4.5-3 8.6-7 9.5-4-1-7-5-7-9.5V5.7l7-2.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
             <path d="M9.75 12.25L11.2 13.7 14.5 10.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
@@ -187,21 +275,23 @@ textarea{resize:none}
         </li>
       </ul>
 
+      <!-- CTA en pile -->
       <div class="cta-col">
         <a class="cta faq" href="faq.html">FAQ complète</a>
-        <a class="cta whatsapp" href="https://wa.me/33600000000 " target="_blank" rel="noopener">WhatsApp Business</a>
-        <a class="cta calendly" href="https://calendly.com/ " target="_blank" rel="noopener">Programmer un appel</a>
+        <a class="cta whatsapp" href="https://wa.me/33600000000" target="_blank" rel="noopener">WhatsApp Business</a>
+        <a class="cta calendly" href="https://calendly.com/" target="_blank" rel="noopener">Programmer un appel</a>
       </div>
 
       <hr>
       <p class="note">Besoin d’une réponse rapide ? Indiquez-le dans votre message, nous prioriserons votre demande.</p>
 
+      <!-- Logo discret -->
       <img class="brand-mark" src="./images/awenoria-mark.png" alt="Awenoria">
     </aside>
 
     <!-- Colonne droite : formulaire -->
     <div class="card">
-      <form id="contactForm" action="https://awenoria.bmavcontact.workers.dev/contact " method="POST" novalidate>
+      <form id="contactForm" action="https://awenoria.bmavcontact.workers.dev/contact" method="POST" novalidate>
         <div class="form-grid">
           <div>
             <label class="req">Votre demande</label>
@@ -306,135 +396,184 @@ textarea{resize:none}
   </div>
 </section>
 
-<!-- ===== FOOTER INJECTÉ ===== -->
+<!-- ===== Footer injecté ===== -->
 <div id="footer"></div>
 
-<!-- ===== SCRIPTS ===== -->
+<!-- ===== JS : hero (canvas + formes) + typing + form (inchangé) ===== -->
 <script>
-/* année + header sticky */
-document.getElementById('year').textContent = new Date().getFullYear();
-(function(){const h=document.getElementById('site-header');const t=()=>{if(window.scrollY>10)h.classList.add('scrolled');else h.classList.remove('scrolled')};t();window.addEventListener('scroll',t,{passive:true})})();
-
-/* typing */
-(function(){
-  const SPEED = 22;
-  const els = [...document.querySelectorAll('.type-on-view')];
-  els.forEach(el=>{ el.dataset.fullText=(el.getAttribute('data-text')||el.textContent||'').trim(); el.textContent=''; el.__ready=true; });
-  function type(el){ let i=0; const txt=el.dataset.fullText||''; (function tick(){ el.textContent=txt.slice(0,++i); if(i<txt.length) setTimeout(tick,SPEED); else el.__ready=false; })(); }
-  const io=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting&&e.target.__ready) type(e.target); }); },{threshold:0.4});
-  els.forEach(el=>io.observe(el));
-})();
-
-/* champs conditionnels */
-(function(){
-  const select=document.getElementById('demande');
-  const sWrap=document.getElementById('societeWrap');
-  const pWrap=document.getElementById('precisionWrap');
-  function update(){
-    const v=select.value;
-    sWrap.style.display=(v==='partenariat'||v==='devis')?'block':'none';
-    pWrap.style.display=(v==='autre')?'block':'none';
-    sWrap.querySelector('input').required=(v==='partenariat'||v==='devis');
-    pWrap.querySelector('input').required=(v==='autre');
-  }
-  select.addEventListener('change',update); update();
-})();
-
-/* Turnstile lazy */
-let turnstileLoaded=false;
-function loadTurnstile(){ if(turnstileLoaded)return; turnstileLoaded=true; const s=document.createElement('script'); s.src='https://challenges.cloudflare.com/turnstile/v0/api.js'; s.async=true; s.defer=true; document.head.appendChild(s); }
-['focusin','pointerdown','touchstart'].forEach(ev=>{ document.getElementById('contactForm').addEventListener(ev,loadTurnstile,{once:true,passive:true}); });
-window.awenTurnstileOK=()=>{};
-
-/* envoi formulaire */
-const form=document.getElementById('contactForm'), btn=document.getElementById('sendBtn'), okBox=document.getElementById('msgOk'), koBox=document.getElementById('msgKo');
-function show(el){ el.classList.add('fade'); el.style.display='flex'; }
-function hide(el){ el.style.display='none'; el.classList.remove('fade'); }
-form.addEventListener('submit',async(e)=>{
-  e.preventDefault(); hide(okBox); hide(koBox);
-  if(!form.reportValidity())return;
-  btn.classList.add('loading'); btn.disabled=true;
-  try{
-    const r=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
-    const j=await r.json().catch(()=>({}));
-    if(r.ok&&j.ok){ show(okBox); form.reset(); setTimeout(()=>hide(okBox),7000); }
-    else{ show(koBox); setTimeout(()=>hide(koBox),9000); }
-  }catch(err){ show(koBox); setTimeout(()=>hide(koBox),9000); }
-  finally{ btn.classList.remove('loading'); btn.disabled=false; }
-});
-
-/* canvas particles (same as ressources.html) */
-const canvas=document.getElementById('canvas');
-const ctx=canvas.getContext('2d');
-let w=canvas.width=innerWidth;
-let h=canvas.height=innerHeight;
-const particles=[];
-const opts={count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
-addEventListener('resize',()=>{ w=canvas.width=innerWidth; h=canvas.height=innerHeight; });
+// Particules hero (canvas)
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+let w = canvas.width = innerWidth;
+let h = canvas.height = innerHeight;
+const particles = [];
+const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
+addEventListener('resize', () => { w = canvas.width = innerWidth; h = canvas.height = innerHeight; });
 class Particle{
   constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
-  update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w)this.vx*=-1; if(this.y<0||this.y>h)this.vy*=-1; }
+  update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
   draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
   lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
 }
-function init(){ for(let i=0;i<opts.count;i++)particles.push(new Particle()); }
+function init(){ particles.length = 0; for(let i=0;i<opts.count;i++) particles.push(new Particle()); }
 function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); }
 init(); animate();
-</script>
 
-<!-- ===== Injection header/footer + resolve chemins (identique ressources.html) ===== -->
-<script>
-/* ---------- config racine ---------- */
-(()=>{
-  const isGh=/github\.io$/.test(location.hostname);
-  let base="/";
-  if(isGh){ const parts=location.pathname.split("/").filter(Boolean); base=parts.length?`/${parts[0]}/`:"/"; }
-  window.__awBase=base;
+// Typing identique à l’accueil
+(function(){
+  const SPEED = 22;
+  const els = [...document.querySelectorAll('.type-on-view')];
+  els.forEach(el=>{
+    const full = (el.getAttribute('data-text') || el.textContent || '').trim();
+    el.dataset.fullText = full; el.textContent = ''; el.__typingTimer=null; el.__ready=true;
+  });
+  function type(el){
+    clearTimeout(el.__typingTimer);
+    const full = el.dataset.fullText || ''; el.textContent = ''; let i=0;
+    (function tick(){ el.textContent = full.slice(0, ++i);
+      if(i < full.length) el.__typingTimer=setTimeout(tick, SPEED); else {el.__typingTimer=null; el.__ready=false;}
+    })();
+  }
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      const el = entry.target;
+      if(entry.isIntersecting){ if(el.__ready) type(el); }
+      else { el.__ready = true; clearTimeout(el.__typingTimer); el.__typingTimer=null; }
+    });
+  }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
+  els.forEach(el=>io.observe(el));
 })();
 
-/* ---------- charge n’importe quelle ressource (text) ---------- */
-async function fetchAny(paths){
-  const queue=(Array.isArray(paths)?paths:[paths]).flatMap(p=>[window.__awBase+p,"./"+p,"../"+p]);
-  for(const u of queue){ try{ const r=await fetch(u,{cache:"no-cache"}); if(r.ok)return r.text(); }catch{} }
-  throw new Error("Introuvable : "+paths.join(" | "));
-}
+// Champs conditionnels (inchangé)
+(function(){
+  const select = document.getElementById('demande');
+  const societeWrap = document.getElementById('societeWrap');
+  const precisionWrap = document.getElementById('precisionWrap');
 
-/* ---------- ré-écrit les liens absolus relatifs à la racine ---------- */
-function fixRootUrls(container){
-  container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
-          .forEach(el=>{
-            const attr=el.hasAttribute("href")?"href":"src";
-            const val=el.getAttribute(attr);
-            if(/^\/\//.test(val))return;
-            el.setAttribute(attr,window.__awBase+val.replace(/^\//,""));
-          });
-}
+  function update(){
+    const v = select.value;
+    societeWrap.style.display   = (v === 'partenariat' || v === 'devis') ? 'block' : 'none';
+    precisionWrap.style.display = (v === 'autre') ? 'block' : 'none';
 
-/* ---------- HEADER ---------- */
-const headMount=document.getElementById("header");
-if(headMount){
-  fetchAny(["header.html","partials/header.html"])
-    .then(html=>{
-      headMount.innerHTML=html;
-      fixRootUrls(headMount);
-      return fetchAny(["assets/nav.js","nav.js"]);
-    })
-    .then(code=>{
-      const s=document.createElement("script");
-      if(/\b(import|export)\b/.test(code))s.type="module";
-      s.textContent=code;
-      document.body.appendChild(s);
-    })
-    .catch(err=>{ headMount.innerHTML="<!-- header absent -->"; console.error(err); });
-}
+    // required dynamique
+    societeWrap.querySelector('input').required   = (v === 'partenariat' || v === 'devis');
+    precisionWrap.querySelector('input').required = (v === 'autre');
+  }
+  select.addEventListener('change', update);
+  update();
+})();
 
-/* ---------- FOOTER ---------- */
-const footMount=document.getElementById("footer");
-if(footMount){
-  fetchAny(["footer.html","partials/footer.html"])
-    .then(html=>{ footMount.innerHTML=html; fixRootUrls(footMount); })
-    .catch(err=>{ footMount.innerHTML="<!-- footer absent -->"; console.error(err); });
+// Lazy-load Turnstile dès interaction avec le form
+let turnstileLoaded = false;
+function loadTurnstile(){
+  if(turnstileLoaded) return;
+  turnstileLoaded = true;
+  const s = document.createElement('script');
+  s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+  s.async = true; s.defer = true;
+  document.head.appendChild(s);
 }
+['focusin','pointerdown','touchstart'].forEach(ev=>{
+  document.getElementById('contactForm').addEventListener(ev, loadTurnstile, { once:true, passive:true });
+});
+window.awenTurnstileOK = function(){ /* callback OK si besoin */ };
+
+// Envoi vers le Worker (inchangé)
+const form   = document.getElementById('contactForm');
+const btn    = document.getElementById('sendBtn');
+const okBox  = document.getElementById('msgOk');
+const koBox  = document.getElementById('msgKo');
+
+function show(el){ el.classList.add('fade'); el.style.display='flex'; }
+function hide(el){ el.style.display='none'; el.classList.remove('fade'); }
+
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  hide(okBox); hide(koBox);
+
+  // Validation douce côté front
+  if(!form.reportValidity()){ return; }
+
+  btn.classList.add('loading'); btn.disabled = true;
+
+  try{
+    const r = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
+    const j = await r.json().catch(()=>({}));
+    if(r.ok && j.ok){ show(okBox); form.reset(); setTimeout(()=>hide(okBox), 7000); }
+    else{ show(koBox); setTimeout(()=>hide(koBox), 9000); }
+  }catch(err){ show(koBox); setTimeout(()=>hide(koBox), 9000); }
+  finally{ btn.classList.remove('loading'); btn.disabled = false; }
+});
+</script>
+
+<!-- ===== Loader header/footer + nav (priorité racine, fallback partials/) ===== -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const headMount = document.getElementById("header");
+  const footMount = document.getElementById("footer");
+  if (!headMount && !footMount) return;
+
+  const isGh = /github\.io$/.test(location.hostname);
+  let base = "/";
+  if (isGh) {
+    const parts = location.pathname.split("/").filter(Boolean);
+    base = parts.length ? `/${parts[0]}/` : "/";
+  }
+
+  const candidates = (p) => {
+    const clean = p.replace(/^\//, "");
+    return [ base + clean, "./" + clean, "../" + clean ];
+  };
+
+  async function fetchAny(paths) {
+    const queue = paths.flatMap(candidates);
+    for (const u of queue) {
+      try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+    }
+    throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+  }
+
+  function fixRootUrls(container) {
+    container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+      .forEach(el => {
+        const attr = el.hasAttribute("href") ? "href" : "src";
+        const val = el.getAttribute(attr);
+        if (/^\/\//.test(val)) return; // //cdn...
+        el.setAttribute(attr, base + val.replace(/^\//, ""));
+      });
+  }
+
+  // HEADER
+  if (headMount) {
+    fetchAny(["header.html", "partials/header.html"])
+      .then(html => {
+        headMount.innerHTML = html;
+        fixRootUrls(headMount);
+        return fetchAny(["assets/nav.js", "nav.js"]);
+      })
+      .then(code => {
+        const s = document.createElement("script");
+        if (/\b(import|export)\b/.test(code)) s.type = "module";
+        s.textContent = code;
+        document.body.appendChild(s);
+        console.log("[awenoria] header + nav chargés");
+      })
+      .catch(err => {
+        console.error("Header load error:", err);
+        headMount.innerHTML = "<!-- Header introuvable -->";
+      });
+  }
+
+  // FOOTER
+  if (footMount) {
+    fetchAny(["footer.html", "partials/footer.html"])
+      .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+      .catch(err => {
+        console.error("Footer load error:", err);
+        footMount.innerHTML = "<!-- Footer introuvable -->";
+      });
+  }
+});
 </script>
 </body>
 </html>
