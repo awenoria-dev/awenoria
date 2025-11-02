@@ -35,13 +35,7 @@
     .glass{background:rgba(255,255,255,.86);backdrop-filter:blur(10px);border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow)}
     a.btn, .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1px solid transparent;background:rgba(27,136,255,.88);color:#fff;text-decoration:none}
 
-    /* NAV */
-    header.navbar{position:sticky;top:0;z-index:1100;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(15,23,32,.08)}
-    .nav-wrap{max-width:var(--maxw);margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:14px}
-    .brand-img{height: clamp(56px,8vw,96px);object-fit:contain;display:block}
-    .nav-main{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;margin-left:8px;flex-wrap:wrap}
-    .nav-main a{color:var(--text);text-decoration:none;font-weight:800;font-size:16px;height:var(--nav-h);line-height:var(--nav-h);padding:0 12px;border-radius:10px}
-    .nav-main a:hover{background:rgba(27,136,255,.10)}
+    /* (L’ancien header local est retiré au profit du header injecté) */
 
     /* Layout */
     .section{max-width:var(--maxw);margin:32px auto;padding:0 20px}
@@ -89,380 +83,446 @@
   </style>
 </head>
 <body>
-<header class="navbar" role="banner">
-  <div class="nav-wrap">
-    <a class="brand" href="/index.html" aria-label="Aller à l'accueil"><img class="brand-img" src="/images/logo.png" alt="Awenoria"></a>
-    <nav class="nav-main" aria-label="Navigation principale">
-      <a href="/index.html#qui-sommes-nous">Qui sommes-nous ?</a>
-      <a href="/Nos-services.html">Nos services</a>
-      <a href="/nos-formations.html">Nos formations</a>
-      <a href="/index.html#blog">Blog</a>
-      <a href="/nos-formations.html#contact">Contact</a>
+
+  <!-- ===== HEADER injecté ===== -->
+  <div id="header"></div>
+
+  <section class="section">
+    <nav class="crumbs" aria-label="Fil d'Ariane">
+      <a href="/index.html">Accueil</a>
+      <span aria-hidden="true">›</span>
+      <span>Catalogue</span>
     </nav>
-  </div>
-</header>
 
-<section class="section">
-  <nav class="crumbs" aria-label="Fil d'Ariane">
-    <a href="/index.html">Accueil</a>
-    <span aria-hidden="true">›</span>
-    <span>Catalogue</span>
-  </nav>
+    <!-- PJ1 : Titre principal uniquement "Catalogue" -->
+    <h1 class="title-center">Catalogue</h1>
+    <div class="underline"></div>
 
-  <!-- PJ1 : Titre principal uniquement "Catalogue" -->
-  <h1 class="title-center">Catalogue</h1>
-  <div class="underline"></div>
+    <!-- SPLIT PANELS -->
+    <div class="split">
+      <!-- SERVICES -->
+      <section class="panel glass" aria-labelledby="services-title">
+        <header>
+          <!-- PJ2 : "Catalogue des services" -->
+          <h2 id="services-title">Catalogue des services</h2>
+          <p class="lead">Conseils & conformité, web & légal, formats & modalités. Explorez aussi tous nos services, packs et modules à la carte.</p>
+          <div class="underline"></div>
+        </header>
 
-  <!-- SPLIT PANELS -->
-  <div class="split">
-    <!-- SERVICES -->
-    <section class="panel glass" aria-labelledby="services-title">
-      <header>
-        <!-- PJ2 : "Catalogue des services" -->
-        <h2 id="services-title">Catalogue des services</h2>
-        <p class="lead">Conseils & conformité, web & légal, formats & modalités. Explorez aussi tous nos services, packs et modules à la carte.</p>
-        <div class="underline"></div>
-      </header>
+        <h3 class="section-title">Conseils & conformité</h3>
+        <div class="grid">
+          <article class="card">
+            <h3 style="margin:0 0 6px">Diagnostic & feuille de route</h3>
+            <p class="subtle">État des lieux rapide, priorisation, plan d’action.</p>
+            <p style="margin-top:10px"><a class="btn" href="/Nos-services.html#diagnostic" aria-label="Voir le service Diagnostic & feuille de route">Voir le service</a></p>
+          </article>
+          <article class="card">
+            <h3 style="margin:0 0 6px">RGPD & conformité data</h3>
+            <p class="subtle">Registre, AIPD, régularisation, accompagnement DPO.</p>
+            <p style="margin-top:10px"><a class="btn" href="/Nos-services.html#rgpd" aria-label="Voir le service RGPD & conformité data">Voir le service</a></p>
+          </article>
+          <article class="card">
+            <h3 style="margin:0 0 6px">Cybersécurité de base</h3>
+            <p class="subtle">Sensibilisation, premiers contrôles, bonnes pratiques.</p>
+            <p style="margin-top:10px"><a class="btn" href="/Nos-services.html#cyber" aria-label="Voir le service Cybersécurité de base">Voir le service</a></p>
+          </article>
+        </div>
 
-      <h3 class="section-title">Conseils & conformité</h3>
-      <div class="grid">
-        <article class="card">
-          <h3 style="margin:0 0 6px">Diagnostic & feuille de route</h3>
-          <p class="subtle">État des lieux rapide, priorisation, plan d’action.</p>
-          <p style="margin-top:10px"><a class="btn" href="/Nos-services.html#diagnostic" aria-label="Voir le service Diagnostic & feuille de route">Voir le service</a></p>
+        <h3 class="section-title" style="margin-top:16px">Web & légal</h3>
+        <div class="grid">
+          <article class="card">
+            <h3 style="margin:0 0 6px">Mentions légales & politiques</h3>
+            <p class="subtle">Pages légales, politique de confidentialité, e-commerce.</p>
+            <p style="margin-top:10px"><a class="btn" href="/Nos-services.html#web-legal" aria-label="Voir le service Mentions légales & politiques">Voir le service</a></p>
+          </article>
+          <article class="card">
+            <h3 style="margin:0 0 6px">Cookies & CMP</h3>
+            <p class="subtle">Bandeau conforme, paramétrage CMP, exemptions.</p>
+            <p style="margin-top:10px"><a class="btn" href="/Nos-services.html#cookies" aria-label="Voir le service Cookies & CMP">Voir le service</a></p>
+          </article>
+          <article class="card">
+            <h3 style="margin:0 0 6px">Accessibilité (RGAA / EN 301 549)</h3>
+            <p class="subtle">Audit rapide, priorisation, obligations de mise en accessibilité.</p>
+            <p style="margin-top:10px"><a class="btn" href="/Nos-services.html#access" aria-label="Voir le service Accessibilité">Voir le service</a></p>
+          </article>
+        </div>
+
+        <h3 class="section-title" style="margin-top:16px">Formats & modalités</h3>
+        <div class="grid" id="services-formats">
+          <article class="card">
+            <h3 style="margin:0 0 6px">Atelier 2h</h3>
+            <p class="subtle">Focus opérationnel court sur un sujet clé.</p>
+          </article>
+          <article class="card">
+            <h3 style="margin:0 0 6px">1/2 journée • 1 journée</h3>
+            <p class="subtle">Approfondissement ou parcours complet avec livrables.</p>
+          </article>
+          <article class="card">
+            <h3 style="margin:0 0 6px">Présentiel / Distanciel</h3>
+            <p class="subtle">Sur site ou en visioconférence, supports inclus.</p>
+          </article>
+        </div>
+
+        <div class="panel-actions">
+          <a class="btn-outline btn" href="/Nos-services.html" aria-label="Voir tous nos services">Tous nos services</a>
+          <a class="btn" href="/Nos-services.html#packs" aria-label="Voir packs et modules à la carte">Packs & modules à la carte</a>
+        </div>
+      </section>
+
+      <!-- FORMATIONS -->
+      <section class="panel glass" aria-labelledby="formations-title">
+        <header>
+          <!-- PJ3 : "Catalogue des formations" -->
+          <h2 id="formations-title">Catalogue des formations</h2>
+          <p class="lead">Par thématiques, par public, ou par formats & modalités. Cliquez pour filtrer le catalogue.</p>
+          <div class="underline"></div>
+        </header>
+
+        <div class="pills" role="tablist" aria-label="Choisir une vue">
+          <button class="pill" role="tab" aria-selected="true" data-tab="themes">Thématiques</button>
+          <button class="pill" role="tab" aria-selected="false" data-tab="audiences">Par public</button>
+          <button class="pill" role="tab" aria-selected="false" data-tab="formats">Formats & modalités</button>
+        </div>
+
+        <!-- Thématiques -->
+        <div class="tab-pane" id="tab-themes" role="tabpanel">
+          <div class="grid" id="themes"></div>
+        </div>
+
+        <!-- Audiences -->
+        <div class="tab-pane" id="tab-audiences" role="tabpanel" hidden>
+          <div class="grid" id="audiences"></div>
+        </div>
+
+        <!-- Formats & modalités -->
+        <div class="tab-pane" id="tab-formats" role="tabpanel" hidden>
+          <h3 class="section-title">Formats</h3>
+          <div class="grid" id="formats"></div>
+
+          <h3 class="section-title" style="margin-top:12px">Modalités</h3>
+          <div class="grid" id="modalites"></div>
+        </div>
+
+        <p class="catalogue-cta">
+          <a class="btn-outline btn" href="#catalogue" aria-label="Aller au catalogue filtré">Descendre au catalogue</a>
+        </p>
+      </section>
+    </div>
+  </section>
+
+  <!-- CATALOGUE (résultats) -->
+  <section id="catalogue" class="section" aria-label="Catalogue filtré">
+    <nav class="crumbs" aria-label="Filtre courant">
+      <a href="/nos-formations.html">Formations</a>
+      <span aria-hidden="true">›</span>
+      <span id="crumb-leaf">Catalogue</span>
+    </nav>
+
+    <!-- Pas de titre/sous-titre/underline ici -->
+
+    <div id="cards" class="grid-3" aria-live="polite"></div>
+
+    <p class="subtitle-center" style="margin-top:14px">
+      <a class="btn" href="/nos-formations.html#contact">Demander un programme détaillé</a>
+    </p>
+  </section>
+
+  <!-- ===== FOOTER injecté ===== -->
+  <div id="footer"></div>
+
+  <script type="module">
+    import { COURSES } from "/js/courses-data.js";
+
+    // ====== Libellés ======
+    const THEME_LABELS = {
+      "rgpd-essentiels":"RGPD – essentiels, registre, AIPD",
+      "ia-act":"IA Act – obligations & documentation",
+      "cookies":"Cookies & CMP",
+      "web-legal":"Mentions légales & conformité web",
+      "access":"Accessibilité (RGAA / EN 301 549)",
+      "cyber":"Cybersécurité de base"
+    };
+    const AUDIENCE_LABELS = {
+      dirigeants:"Dirigeants & responsables",
+      equipes:"Équipes opérationnelles",
+      dpo:"Référents / DPO",
+      dev:"Dev, Produit & Data"
+    };
+    const FORMATS = {
+      "atelier-2h": { title: "Atelier 2h", desc: "Focus rapide et opérationnel sur un sujet clé avec exercices." },
+      "demi-journee": { title: "1/2 journée", desc: "Module condensé pour lancer ou approfondir un thème prioritaire." },
+      "journee": { title: "1 journée", desc: "Formation complète avec mise en pratique et livrables." },
+      "parcours": { title: "Parcours", desc: "Programme modulaire sur plusieurs séances avec suivi." }
+    };
+    const MODALITES = {
+      "presentiel": { title: "Présentiel", desc: "Animation sur site, interaction forte, ateliers en salle." },
+      "distanciel": { title: "Distanciel", desc: "Classes virtuelles en visioconférence, supports partagés." }
+    };
+
+    // ====== Helpers DOM ======
+    const params = new URLSearchParams(location.search);
+    const root = document.getElementById("cards");
+    const crumbLeaf = document.getElementById("crumb-leaf");
+
+    const theme = params.get("theme");
+    const audience = params.get("public");
+    const formatKey = params.get("format");
+    const modalite = params.get("modalite");
+
+    function setHead(metaTitle, metaDesc){
+      document.title = metaTitle;
+      const m = document.querySelector('meta[name="description"]');
+      if(m) m.setAttribute('content', metaDesc);
+    }
+
+    function pickCopy(course){
+      if (audience && course.pitchByAudience?.[audience]) return course.pitchByAudience[audience];
+      if (theme && course.pitchByTheme?.[theme]) return course.pitchByTheme[theme];
+      return course.summary || "";
+    }
+
+    function courseCard(course){
+      const copy = pickCopy(course);
+      const dur = course.duration ? `<span class="tag" aria-label="Durée">${course.duration}</span>` : "";
+      const lvl = course.level ? `<span class="tag" aria-label="Niveau">${course.level}</span>` : "";
+      const mods = (course.modalities || []).map(m=>`<span class="tag">${m}</span>`).join("");
+      const items = (course.program || []).map(li=>`<li>${li}</li>`).join("");
+
+      const src = audience ? "public" : (theme ? "theme" : (formatKey ? "format" : (modalite ? "modalite" : "catalogue")));
+      const url = `/formation/${course.slug}.html?from=${src}`
+        + (audience ? `&public=${encodeURIComponent(audience)}` : "")
+        + (theme ? `&theme=${encodeURIComponent(theme)}` : "")
+        + (formatKey ? `&format=${encodeURIComponent(formatKey)}` : "")
+        + (modalite ? `&modalite=${encodeURIComponent(modalite)}` : "");
+
+      return `
+        <article class="card glass course">
+          <h3>${course.title}</h3>
+          <div class="meta">${dur}${lvl}${mods}</div>
+          <p>${copy}</p>
+          ${items ? `<div class="program"><ul>${items}</ul></div>` : ""}
+          <p style="margin-top:8px"><a class="btn" href="${url}" aria-label="Voir la fiche détaillée de ${course.title}">Voir la fiche</a></p>
         </article>
-        <article class="card">
-          <h3 style="margin:0 0 6px">RGPD & conformité data</h3>
-          <p class="subtle">Registre, AIPD, régularisation, accompagnement DPO.</p>
-          <p style="margin-top:10px"><a class="btn" href="/Nos-services.html#rgpd" aria-label="Voir le service RGPD & conformité data">Voir le service</a></p>
-        </article>
-        <article class="card">
-          <h3 style="margin:0 0 6px">Cybersécurité de base</h3>
-          <p class="subtle">Sensibilisation, premiers contrôles, bonnes pratiques.</p>
-          <p style="margin-top:10px"><a class="btn" href="/Nos-services.html#cyber" aria-label="Voir le service Cybersécurité de base">Voir le service</a></p>
-        </article>
-      </div>
+      `;
+    }
 
-      <h3 class="section-title" style="margin-top:16px">Web & légal</h3>
-      <div class="grid">
-        <article class="card">
-          <h3 style="margin:0 0 6px">Mentions légales & politiques</h3>
-          <p class="subtle">Pages légales, politique de confidentialité, e-commerce.</p>
-          <p style="margin-top:10px"><a class="btn" href="/Nos-services.html#web-legal" aria-label="Voir le service Mentions légales & politiques">Voir le service</a></p>
-        </article>
-        <article class="card">
-          <h3 style="margin:0 0 6px">Cookies & CMP</h3>
-          <p class="subtle">Bandeau conforme, paramétrage CMP, exemptions.</p>
-          <p style="margin-top:10px"><a class="btn" href="/Nos-services.html#cookies" aria-label="Voir le service Cookies & CMP">Voir le service</a></p>
-        </article>
-        <article class="card">
-          <h3 style="margin:0 0 6px">Accessibilité (RGAA / EN 301 549)</h3>
-          <p class="subtle">Audit rapide, priorisation, obligations de mise en accessibilité.</p>
-          <p style="margin-top:10px"><a class="btn" href="/Nos-services.html#access" aria-label="Voir le service Accessibilité">Voir le service</a></p>
-        </article>
-      </div>
+    function normalize(str){ return (str||"").toString().trim().toLowerCase(); }
 
-      <h3 class="section-title" style="margin-top:16px">Formats & modalités</h3>
-      <div class="grid" id="services-formats">
-        <article class="card">
-          <h3 style="margin:0 0 6px">Atelier 2h</h3>
-          <p class="subtle">Focus opérationnel court sur un sujet clé.</p>
-        </article>
-        <article class="card">
-          <h3 style="margin:0 0 6px">1/2 journée • 1 journée</h3>
-          <p class="subtle">Approfondissement ou parcours complet avec livrables.</p>
-        </article>
-        <article class="card">
-          <h3 style="margin:0 0 6px">Présentiel / Distanciel</h3>
-          <p class="subtle">Sur site ou en visioconférence, supports inclus.</p>
-        </article>
-      </div>
+    function renderCatalogue(){
+      let list = COURSES;
 
-      <div class="panel-actions">
-        <a class="btn-outline btn" href="/Nos-services.html" aria-label="Voir tous nos services">Tous nos services</a>
-        <a class="btn" href="/Nos-services.html#packs" aria-label="Voir packs et modules à la carte">Packs & modules à la carte</a>
-      </div>
-    </section>
+      // Filtres
+      if (theme) list = list.filter(c => (c.themes || []).includes(theme));
+      if (audience) list = list.filter(c => (c.audiences || []).includes(audience));
+      if (formatKey) list = list.filter(c => (c.formats || c.formatKeys || []).includes(formatKey));
+      if (modalite){
+        const key = normalize(modalite);
+        list = list.filter(c => (c.modalities || []).some(m => {
+          const v = normalize(m);
+          return (key==="presentiel" && (v.includes("présentiel") || v.includes("presentiel"))) ||
+                 (key==="distanciel" && v.includes("distanciel"));
+        }));
+      }
 
-    <!-- FORMATIONS -->
-    <section class="panel glass" aria-labelledby="formations-title">
-      <header>
-        <!-- PJ3 : "Catalogue des formations" -->
-        <h2 id="formations-title">Catalogue des formations</h2>
-        <p class="lead">Par thématiques, par public, ou par formats & modalités. Cliquez pour filtrer le catalogue.</p>
-        <div class="underline"></div>
-      </header>
+      // Metas / breadcrumb
+      if (theme){
+        const label = THEME_LABELS[theme] || "Thématique";
+        crumbLeaf.textContent = label;
+        setHead(`Catalogue – ${label} | Awenoria`, `Catalogue filtré par thématique : ${label}.`);
+      } else if (audience){
+        const label = AUDIENCE_LABELS[audience] || "Public";
+        crumbLeaf.textContent = label;
+        setHead(`Catalogue – ${label} | Awenoria`, `Catalogue filtré par public : ${label}.`);
+      } else if (formatKey){
+        const f = FORMATS[formatKey]?.title || "Format";
+        crumbLeaf.textContent = f;
+        setHead(`Catalogue – ${f} | Awenoria`, `Catalogue filtré par format : ${f}.`);
+      } else if (modalite){
+        const m = MODALITES[modalite]?.title || "Modalité";
+        crumbLeaf.textContent = m;
+        setHead(`Catalogue – ${m} | Awenoria`, `Catalogue filtré par modalité : ${m}.`);
+      } else {
+        crumbLeaf.textContent = "Catalogue";
+        setHead(`Catalogue | Awenoria`, `Parcourez nos services et nos formations : thématiques, publics, formats & modalités.`);
+      }
 
-      <div class="pills" role="tablist" aria-label="Choisir une vue">
-        <button class="pill" role="tab" aria-selected="true" data-tab="themes">Thématiques</button>
-        <button class="pill" role="tab" aria-selected="false" data-tab="audiences">Par public</button>
-        <button class="pill" role="tab" aria-selected="false" data-tab="formats">Formats & modalités</button>
-      </div>
+      // Rendu
+      root.innerHTML = list.length ? list.map(courseCard).join("") : `<p>Aucune formation trouvée pour ce filtre.</p>`;
+    }
 
-      <!-- Thématiques -->
-      <div class="tab-pane" id="tab-themes" role="tabpanel">
-        <div class="grid" id="themes"></div>
-      </div>
+    // ====== Rendu tuiles (thèmes / publics / formats / modalités) ======
+    const themesRoot = document.getElementById("themes");
+    const audiencesRoot = document.getElementById("audiences");
+    const formatsRoot = document.getElementById("formats");
+    const modesRoot = document.getElementById("modalites");
 
-      <!-- Audiences -->
-      <div class="tab-pane" id="tab-audiences" role="tabpanel" hidden>
-        <div class="grid" id="audiences"></div>
-      </div>
+    const THEMES = {
+      "rgpd-essentiels": { title: "RGPD – essentiels, registre, AIPD", desc: "Mettre en place la conformité : bases, registre de traitements, rôles, AIPD." },
+      "ia-act": { title: "IA Act – obligations & documentation", desc: "Comprendre le cadre européen, classer les risques, préparer la documentation." },
+      "cookies": { title: "Cookies & CMP", desc: "Conformité bandeau, paramétrage CMP, exemptions, mesure d’audience." },
+      "web-legal": { title: "Mentions légales & conformité web", desc: "Pages légales, politiques, parcours utilisateur, e-commerce." },
+      "access": { title: "Accessibilité (RGAA / EN 301 549)", desc: "Audit rapide, priorisation, obligations de mise en accessibilité." },
+      "cyber": { title: "Cybersécurité de base", desc: "Bonnes pratiques, sensibilisation équipes, premiers contrôles." }
+    };
 
-      <!-- Formats & modalités -->
-      <div class="tab-pane" id="tab-formats" role="tabpanel" hidden>
-        <h3 class="section-title">Formats</h3>
-        <div class="grid" id="formats"></div>
+    const AUDIENCES = {
+      "dirigeants": { title: "Dirigeants & responsables", desc: "Vision risques/opportunités, feuilles de route, décisions à prendre." },
+      "equipes": { title: "Équipes opérationnelles", desc: "Ateliers concrets orientés mise en pratique et appropriation rapide." },
+      "dpo": { title: "Référents / DPO", desc: "Approfondissements, registre, AIPD, pilotage de conformité." },
+      "dev": { title: "Dev, Produit & Data", desc: "Intégration privacy by design, sécurité, documentation technique." }
+    };
 
-        <h3 class="section-title" style="margin-top:12px">Modalités</h3>
-        <div class="grid" id="modalites"></div>
-      </div>
-
-      <p class="catalogue-cta">
-        <a class="btn-outline btn" href="#catalogue" aria-label="Aller au catalogue filtré">Descendre au catalogue</a>
-      </p>
-    </section>
-  </div>
-</section>
-
-<!-- CATALOGUE (résultats) -->
-<section id="catalogue" class="section" aria-label="Catalogue filtré">
-  <nav class="crumbs" aria-label="Filtre courant">
-    <a href="/nos-formations.html">Formations</a>
-    <span aria-hidden="true">›</span>
-    <span id="crumb-leaf">Catalogue</span>
-  </nav>
-
-  <!-- PJ4 : on SUPPRIME le bloc titre/sous-titre/underline du bas -->
-  <!-- (on garde seulement la grille de cartes + CTA) -->
-
-  <div id="cards" class="grid-3" aria-live="polite"></div>
-
-  <p class="subtitle-center" style="margin-top:14px">
-    <a class="btn" href="/nos-formations.html#contact">Demander un programme détaillé</a>
-  </p>
-</section>
-
-<script type="module">
-  import { COURSES } from "/js/courses-data.js";
-
-  // ====== Libellés ======
-  const THEME_LABELS = {
-    "rgpd-essentiels":"RGPD – essentiels, registre, AIPD",
-    "ia-act":"IA Act – obligations & documentation",
-    "cookies":"Cookies & CMP",
-    "web-legal":"Mentions légales & conformité web",
-    "access":"Accessibilité (RGAA / EN 301 549)",
-    "cyber":"Cybersécurité de base"
-  };
-  const AUDIENCE_LABELS = {
-    dirigeants:"Dirigeants & responsables",
-    equipes:"Équipes opérationnelles",
-    dpo:"Référents / DPO",
-    dev:"Dev, Produit & Data"
-  };
-  const FORMATS = {
-    "atelier-2h": { title: "Atelier 2h", desc: "Focus rapide et opérationnel sur un sujet clé avec exercices." },
-    "demi-journee": { title: "1/2 journée", desc: "Module condensé pour lancer ou approfondir un thème prioritaire." },
-    "journee": { title: "1 journée", desc: "Formation complète avec mise en pratique et livrables." },
-    "parcours": { title: "Parcours", desc: "Programme modulaire sur plusieurs séances avec suivi." }
-  };
-  const MODALITES = {
-    "presentiel": { title: "Présentiel", desc: "Animation sur site, interaction forte, ateliers en salle." },
-    "distanciel": { title: "Distanciel", desc: "Classes virtuelles en visioconférence, supports partagés." }
-  };
-
-  // ====== Helpers DOM ======
-  const params = new URLSearchParams(location.search);
-  const root = document.getElementById("cards");
-  const crumbLeaf = document.getElementById("crumb-leaf");
-
-  const theme = params.get("theme");
-  const audience = params.get("public");
-  const formatKey = params.get("format");
-  const modalite = params.get("modalite");
-
-  function setHead(metaTitle, metaDesc){
-    document.title = metaTitle;
-    const m = document.querySelector('meta[name="description"]');
-    if(m) m.setAttribute('content', metaDesc);
-  }
-
-  function pickCopy(course){
-    if (audience && course.pitchByAudience?.[audience]) return course.pitchByAudience[audience];
-    if (theme && course.pitchByTheme?.[theme]) return course.pitchByTheme[theme];
-    return course.summary || "";
-  }
-
-  function courseCard(course){
-    const copy = pickCopy(course);
-    const dur = course.duration ? `<span class="tag" aria-label="Durée">${course.duration}</span>` : "";
-    const lvl = course.level ? `<span class="tag" aria-label="Niveau">${course.level}</span>` : "";
-    const mods = (course.modalities || []).map(m=>`<span class="tag">${m}</span>`).join("");
-    const items = (course.program || []).map(li=>`<li>${li}</li>`).join("");
-
-    const src = audience ? "public" : (theme ? "theme" : (formatKey ? "format" : (modalite ? "modalite" : "catalogue")));
-    const url = `/formation/${course.slug}.html?from=${src}`
-      + (audience ? `&public=${encodeURIComponent(audience)}` : "")
-      + (theme ? `&theme=${encodeURIComponent(theme)}` : "")
-      + (formatKey ? `&format=${encodeURIComponent(formatKey)}` : "")
-      + (modalite ? `&modalite=${encodeURIComponent(modalite)}` : "");
-
-    return `
-      <article class="card glass course">
-        <h3>${course.title}</h3>
-        <div class="meta">${dur}${lvl}${mods}</div>
-        <p>${copy}</p>
-        ${items ? `<div class="program"><ul>${items}</ul></div>` : ""}
-        <p style="margin-top:8px"><a class="btn" href="${url}" aria-label="Voir la fiche détaillée de ${course.title}">Voir la fiche</a></p>
+    themesRoot.innerHTML = Object.entries(THEMES).map(([k,v]) => `
+      <article class="card">
+        <h3 style="margin:0 0 6px">${v.title}</h3>
+        <p class="subtle">${v.desc}</p>
+        <p style="margin-top:10px">
+          <a class="btn" href="${withParams({theme:k})}" aria-label="Voir les formations ${v.title}">Voir les formations</a>
+        </p>
       </article>
-    `;
-  }
+    `).join("");
 
-  function normalize(str){ return (str||"").toString().trim().toLowerCase(); }
+    audiencesRoot.innerHTML = Object.entries(AUDIENCES).map(([k,v]) => `
+      <article class="card">
+        <h3 style="margin:0 0 6px">${v.title}</h3>
+        <p class="subtle">${v.desc}</p>
+        <p style="margin-top:10px">
+          <a class="btn" href="${withParams({public:k})}" aria-label="Voir les formations pour ${v.title}">Voir les formations</a>
+        </p>
+      </article>
+    `).join("");
 
-  function renderCatalogue(){
-    let list = COURSES;
+    document.getElementById("formats").innerHTML = Object.entries(${JSON.stringify({
+      "atelier-2h": { title: "Atelier 2h", desc: "Focus rapide et opérationnel sur un sujet clé avec exercices." },
+      "demi-journee": { title: "1/2 journée", desc: "Module condensé pour lancer ou approfondir un thème prioritaire." },
+      "journee": { title: "1 journée", desc: "Formation complète avec mise en pratique et livrables." },
+      "parcours": { title: "Parcours", desc: "Programme modulaire sur plusieurs séances avec suivi." }
+    })}).map(([k,v]) => `
+      <article class="card">
+        <h3 style="margin:0 0 6px">${v.title}</h3>
+        <p class="subtle">${v.desc}</p>
+        <p style="margin-top:10px">
+          <a class="btn" href="${withParams({format:k})}" aria-label="Voir les formations format ${v.title}">Voir les formations</a>
+        </p>
+      </article>
+    `).join("");
 
-    // Filtres
-    if (theme) list = list.filter(c => (c.themes || []).includes(theme));
-    if (audience) list = list.filter(c => (c.audiences || []).includes(audience));
-    if (formatKey) list = list.filter(c => (c.formats || c.formatKeys || []).includes(formatKey));
-    if (modalite){
-      const key = normalize(modalite);
-      list = list.filter(c => (c.modalities || []).some(m => {
-        const v = normalize(m);
-        return (key==="presentiel" && (v.includes("présentiel") || v.includes("presentiel"))) ||
-               (key==="distanciel" && v.includes("distanciel"));
-      }));
+    document.getElementById("modalites").innerHTML = Object.entries(${JSON.stringify({
+      "presentiel": { title: "Présentiel", desc: "Animation sur site, interaction forte, ateliers en salle." },
+      "distanciel": { title: "Distanciel", desc: "Classes virtuelles en visioconférence, supports partagés." }
+    })}).map(([k,v]) => `
+      <article class="card">
+        <h3 style="margin:0 0 6px">${v.title}</h3>
+        <p class="subtle">${v.desc}</p>
+        <p style="margin-top:10px">
+          <a class="btn" href="${withParams({modalite:k})}" aria-label="Voir les formations en ${v.title}">Voir les formations</a>
+        </p>
+      </article>
+    `).join("");
+
+    // Génère une URL vers cette même page avec les filtres souhaités
+    function withParams(obj){
+      const p = new URLSearchParams(location.search);
+      Object.entries(obj).forEach(([k,v]) => {
+        if (k==="theme") p.delete("public"), p.delete("format"), p.delete("modalite");
+        if (k==="public") p.delete("theme"), p.delete("format"), p.delete("modalite");
+        if (k==="format") p.delete("theme"), p.delete("public"), p.delete("modalite");
+        if (k==="modalite") p.delete("theme"), p.delete("public"), p.delete("format");
+        p.set(k, v);
+      });
+      return `${location.pathname}?${p.toString()}#catalogue`;
     }
 
-    // Metas / breadcrumb seulement (on n'affiche plus de titre bas de page)
-    if (theme){
-      const label = THEME_LABELS[theme] || "Thématique";
-      crumbLeaf.textContent = label;
-      setHead(`Catalogue – ${label} | Awenoria`, `Catalogue filtré par thématique : ${label}.`);
-    } else if (audience){
-      const label = AUDIENCE_LABELS[audience] || "Public";
-      crumbLeaf.textContent = label;
-      setHead(`Catalogue – ${label} | Awenoria`, `Catalogue filtré par public : ${label}.`);
-    } else if (formatKey){
-      const f = FORMATS[formatKey]?.title || "Format";
-      crumbLeaf.textContent = f;
-      setHead(`Catalogue – ${f} | Awenoria`, `Catalogue filtré par format : ${f}.`);
-    } else if (modalite){
-      const m = MODALITES[modalite]?.title || "Modalité";
-      crumbLeaf.textContent = m;
-      setHead(`Catalogue – ${m} | Awenoria`, `Catalogue filtré par modalité : ${m}.`);
-    } else {
-      crumbLeaf.textContent = "Catalogue";
-      setHead(`Catalogue | Awenoria`, `Parcourez nos services et nos formations : thématiques, publics, formats & modalités.`);
+    // ====== Onglets Formations ======
+    const pills = Array.from(document.querySelectorAll('.pill'));
+    const panes = {
+      themes: document.getElementById('tab-themes'),
+      audiences: document.getElementById('tab-audiences'),
+      formats: document.getElementById('tab-formats')
+    };
+    function selectTab(name){
+      Object.entries(panes).forEach(([k,el]) => { el.hidden = (k!==name); });
+      pills.forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab===name)));
+    }
+    pills.forEach(b => b.addEventListener('click', () => selectTab(b.dataset.tab)));
+
+    // Pré-sélection d’un onglet selon les params
+    if (audience) selectTab('audiences');
+    else if (formatKey || modalite) selectTab('formats');
+    else selectTab('themes');
+
+    // ====== Go ======
+    renderCatalogue();
+  </script>
+
+  <!-- ===== Loader header/footer + nav (priorité racine, fallback partials/) ===== -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
+
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
     }
 
-    // Rendu
-    root.innerHTML = list.length ? list.map(courseCard).join("") : `<p>Aucune formation trouvée pour ce filtre.</p>`;
-  }
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean ];
+    };
 
-  // ====== Rendu tuiles (thèmes / publics / formats / modalités) ======
-  const themesRoot = document.getElementById("themes");
-  const audiencesRoot = document.getElementById("audiences");
-  const formatsRoot = document.getElementById("formats");
-  const modesRoot = document.getElementById("modalites");
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+      }
+      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+    }
 
-  const THEMES = {
-    "rgpd-essentiels": { title: "RGPD – essentiels, registre, AIPD", desc: "Mettre en place la conformité : bases, registre de traitements, rôles, AIPD." },
-    "ia-act": { title: "IA Act – obligations & documentation", desc: "Comprendre le cadre européen, classer les risques, préparer la documentation." },
-    "cookies": { title: "Cookies & CMP", desc: "Conformité bandeau, paramétrage CMP, exemptions, mesure d’audience." },
-    "web-legal": { title: "Mentions légales & conformité web", desc: "Pages légales, politiques, parcours utilisateur, e-commerce." },
-    "access": { title: "Accessibilité (RGAA / EN 301 549)", desc: "Audit rapide, priorisation, obligations de mise en accessibilité." },
-    "cyber": { title: "Cybersécurité de base", desc: "Bonnes pratiques, sensibilisation équipes, premiers contrôles." }
-  };
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return;
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
+    }
 
-  const AUDIENCES = {
-    "dirigeants": { title: "Dirigeants & responsables", desc: "Vision risques/opportunités, feuilles de route, décisions à prendre." },
-    "equipes": { title: "Équipes opérationnelles", desc: "Ateliers concrets orientés mise en pratique et appropriation rapide." },
-    "dpo": { title: "Référents / DPO", desc: "Approfondissements, registre, AIPD, pilotage de conformité." },
-    "dev": { title: "Dev, Produit & Data", desc: "Intégration privacy by design, sécurité, documentation technique." }
-  };
+    // HEADER
+    if (headMount) {
+      fetchAny(["header.html", "partials/header.html"])
+        .then(html => {
+          headMount.innerHTML = html;
+          fixRootUrls(headMount);
+          return fetchAny(["assets/nav.js", "nav.js"]);
+        })
+        .then(code => {
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+          console.log("[awenoria] header + nav chargés");
+        })
+        .catch(err => {
+          console.error("Header load error:", err);
+          headMount.innerHTML = "<!-- Header introuvable -->";
+        });
+    }
 
-  themesRoot.innerHTML = Object.entries(THEMES).map(([k,v]) => `
-    <article class="card">
-      <h3 style="margin:0 0 6px">${v.title}</h3>
-      <p class="subtle">${v.desc}</p>
-      <p style="margin-top:10px">
-        <a class="btn" href="${withParams({theme:k})}" aria-label="Voir les formations ${v.title}">Voir les formations</a>
-      </p>
-    </article>
-  `).join("");
-
-  audiencesRoot.innerHTML = Object.entries(AUDIENCES).map(([k,v]) => `
-    <article class="card">
-      <h3 style="margin:0 0 6px">${v.title}</h3>
-      <p class="subtle">${v.desc}</p>
-      <p style="margin-top:10px">
-        <a class="btn" href="${withParams({public:k})}" aria-label="Voir les formations pour ${v.title}">Voir les formations</a>
-      </p>
-    </article>
-  `).join("");
-
-  const FORMATS_LIST = ${"`"}${"${''}"}${"`"}; // no-op to keep template literal highlighting happy
-
-  const FORMATS_ENTRIES = Object.entries(FORMATS);
-  const MODALITES_ENTRIES = Object.entries(MODALITES);
-
-  document.getElementById("formats").innerHTML = FORMATS_ENTRIES.map(([k,v]) => `
-    <article class="card">
-      <h3 style="margin:0 0 6px">${v.title}</h3>
-      <p class="subtle">${v.desc}</p>
-      <p style="margin-top:10px">
-        <a class="btn" href="${withParams({format:k})}" aria-label="Voir les formations format ${v.title}">Voir les formations</a>
-      </p>
-    </article>
-  `).join("");
-
-  document.getElementById("modalites").innerHTML = MODALITES_ENTRIES.map(([k,v]) => `
-    <article class="card">
-      <h3 style="margin:0 0 6px">${v.title}</h3>
-      <p class="subtle">${v.desc}</p>
-      <p style="margin-top:10px">
-        <a class="btn" href="${withParams({modalite:k})}" aria-label="Voir les formations en ${v.title}">Voir les formations</a>
-      </p>
-    </article>
-  `).join("");
-
-  // Génère une URL vers cette même page avec les filtres souhaités
-  function withParams(obj){
-    const p = new URLSearchParams(location.search);
-    Object.entries(obj).forEach(([k,v]) => {
-      if (k==="theme") p.delete("public"), p.delete("format"), p.delete("modalite");
-      if (k==="public") p.delete("theme"), p.delete("format"), p.delete("modalite");
-      if (k==="format") p.delete("theme"), p.delete("public"), p.delete("modalite");
-      if (k==="modalite") p.delete("theme"), p.delete("public"), p.delete("format");
-      p.set(k, v);
-    });
-    return `${location.pathname}?${p.toString()}#catalogue`;
-  }
-
-  // ====== Onglets Formations ======
-  const pills = Array.from(document.querySelectorAll('.pill'));
-  const panes = {
-    themes: document.getElementById('tab-themes'),
-    audiences: document.getElementById('tab-audiences'),
-    formats: document.getElementById('tab-formats')
-  };
-  function selectTab(name){
-    Object.entries(panes).forEach(([k,el]) => { el.hidden = (k!==name); });
-    pills.forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab===name)));
-  }
-  pills.forEach(b => b.addEventListener('click', () => selectTab(b.dataset.tab)));
-
-  // Pré-sélection d’un onglet selon les params
-  if (audience) selectTab('audiences');
-  else if (formatKey || modalite) selectTab('formats');
-  else selectTab('themes');
-
-  // ====== Go ======
-  renderCatalogue();
-</script>
+    // FOOTER
+    if (footMount) {
+      fetchAny(["footer.html", "partials/footer.html"])
+        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+        .catch(err => {
+          console.error("Footer load error:", err);
+          footMount.innerHTML = "<!-- Footer introuvable -->";
+        });
+    }
+  });
+  </script>
 </body>
 </html>
