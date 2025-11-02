@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Awenoria — FAQ</title>
+
+<!-- Polices + CSS global -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/awenoria.css">
+
+<style>
+  /* ===== Variables (alignées avec les autres pages) ===== */
+  :root{
+    --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
+    --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
+    --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+    --transition:.6s cubic-bezier(.22,1,.36,1);
+
+    --bg:#f6f9fc; --card:#fff;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
+      --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+    }
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;
+    color:var(--aw-ink);
+    background:var(--aw-bg);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--aw-blue); text-decoration:none}
+  img{max-width:100%; display:block}
+  .container{max-width:1200px; margin:0 auto; padding:0 20px}
+
+  /* ===== HERO BLEU (même rendu que “À propos” / “Contact”) ===== */
+  .hero{
+    position:relative; min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center; color:#fff; overflow:hidden;
+    background:
+      radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+      radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+      linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+  }
+  .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
+  .hero .content{position:relative; z-index:2; max-width:800px; padding:0 20px; animation:fadeInUp 1s both;}
+  .hero h1{font-size:clamp(52px,7vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em; margin:0;}
+  .hero .lead{font-size:1.2rem; font-weight:600; margin:16px auto 0; color:#e8f0ff;}
+
+  /* Formes géométriques flottantes (overlay) */
+  .hero-geo{ position:absolute; inset:0; pointer-events:none; z-index:1; overflow:hidden; }
+  .hero-geo .g{ position:absolute; width:64px; height:64px; opacity:.18; filter:blur(.2px);
+    animation:geoFloat var(--dur,18s) cubic-bezier(.22,1,.36,1) infinite; will-change:transform,opacity; }
+  .hero-geo .circle{ border-radius:50%; border:3px solid rgba(255,255,255,.65); }
+  .hero-geo .square{ border:3px solid rgba(255,255,255,.5); border-radius:14px; }
+  .hero-geo .triangle{ --s:64px; width:var(--s); height:var(--s); clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
+    box-shadow:inset 0 0 0 3px rgba(255,255,255,.55); border-radius:8px; background:transparent; }
+  .hero-geo .diamond{ border:3px solid rgba(255,255,255,.55); transform:rotate(45deg); animation-name:geoFloatDiamond; }
+  .hero-geo .g:nth-child(1){ left:6%;  top:12%;  --dur:22s; --scale:.9 }
+  .hero-geo .g:nth-child(2){ left:78%; top:18%;  --dur:26s; --scale:1.1 }
+  .hero-geo .g:nth-child(3){ left:16%; top:64%;  --dur:24s; --scale:.85 }
+  .hero-geo .g:nth-child(4){ left:88%; top:68%;  --dur:20s; --scale:.95 }
+  .hero-geo .g:nth-child(5){ left:44%; top:8%;   --dur:28s; --scale:.8 }
+  .hero-geo .g:nth-child(6){ left:54%; top:72%;  --dur:23s; --scale:1.0 }
+  .hero-geo .g:nth-child(7){ left:28%; top:36%;  --dur:25s; --scale:1.2 }
+  .hero-geo .g:nth-child(8){ left:70%; top:44%;  --dur:27s; --scale:.9 }
+
+  @keyframes geoFloat{
+    0%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.12}
+    25%{transform:translate3d(20px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.22}
+    50%{transform:translate3d(-10px,-60px,0) scale(var(--scale,1)) rotate(12deg); opacity:.2}
+    75%{transform:translate3d(-30px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.24}
+    100%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.18}
+  }
+  @keyframes geoFloatDiamond{
+    0%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.14}
+    25%{transform:rotate(55deg) translate3d(18px,-30px,0) scale(var(--scale,1)); opacity:.22}
+    50%{transform:rotate(65deg) translate3d(-12px,-60px,0) scale(var(--scale,1)); opacity:.2}
+    75%{transform:rotate(55deg) translate3d(-28px,-30px,0) scale(var(--scale,1)); opacity:.24}
+    100%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.18}
+  }
+
+  /* ===== Section FAQ ===== */
+  .section{max-width:1200px; margin:0 auto; padding:100px 20px;}
+  .title{
+    margin:0 0 10px; text-align:center; font-size:clamp(36px,5vw,48px);
+    color:var(--aw-ink); font-weight:800;
+  }
+  .title::after{content:''; display:block; width:60px; height:4px; background:var(--aw-copper); margin:10px auto 0; border-radius:3px;}
+  .subtitle-center{font-size:1.1rem; color:var(--aw-muted); max-width:680px; margin:0 auto 32px; text-align:center;}
+
+  .faq{display:grid; gap:16px; max-width:900px; margin:0 auto;}
+  .item{
+    background:var(--aw-panel);
+    border:1px solid rgba(15,23,32,.08);
+    border-radius:var(--aw-radius);
+    box-shadow:var(--shadow);
+    padding:20px 24px;
+  }
+  .item h3{margin:6px 0; font-size:20px}
+  .item p{color:var(--aw-muted); margin:8px 0 0; line-height:1.7}
+
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
+</style>
+</head>
+<body class="page-faq">
+
+  <!-- Header injecté -->
+  <div id="header"></div>
+
+  <!-- ===== HERO BLEU ===== -->
+  <section class="hero">
+    <canvas id="canvas" aria-hidden="true"></canvas>
+
+    <!-- Formes géométriques flottantes -->
+    <div class="hero-geo" aria-hidden="true">
+      <span class="g circle"></span>
+      <span class="g square"></span>
+      <span class="g triangle"></span>
+      <span class="g diamond"></span>
+      <span class="g circle"></span>
+      <span class="g square"></span>
+      <span class="g triangle"></span>
+      <span class="g diamond"></span>
+    </div>
+
+    <div class="content">
+      <h1>Foire aux questions</h1>
+      <p class="lead">Des réponses rapides aux questions les plus courantes.</p>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <main class="section">
+    <div class="faq">
+      <div class="item">
+        <h3>Le scan analyse-t-il mes données ?</h3>
+        <p>Non. La démo Awenoria fonctionne en local dans votre navigateur. Aucune URL ni contenu n’est envoyé à un serveur.</p>
+      </div>
+      <div class="item">
+        <h3>Quels critères sont vérifiés ?</h3>
+        <p>Les essentiels : présence/piste de <b>politique RGPD</b>, <b>bandeau cookies</b>, <b>mentions légales</b>, et signaux d’<b>accessibilité</b> (alt, ARIA, contraste estimé).</p>
+      </div>
+      <div class="item">
+        <h3>La version payante proposera quoi en plus ?</h3>
+        <p>Un <b>rapport PDF</b> horodaté, des <b>modèles juridiques</b> prêts à remplir (mentions, RGPD, CGV/CGU), l’<b>analyse de PDF</b> locaux et un <b>historique</b> de vos audits.</p>
+      </div>
+      <div class="item">
+        <h3>Comment se passera l’essai de 3 jours à 1 € ?</h3>
+        <p>Vous payez 1 € pour activer l’essai. À J+3, bascule automatique sur mensuel ou annuel (au choix), avec <b>3D Secure</b>. Résiliation simple via le <b>Portail client</b>.</p>
+      </div>
+      <div class="item">
+        <h3>Et pour les paiements pros en SEPA ?</h3>
+        <p>SEPA B2B disponible au lancement, avec <b>carte de secours</b> (empreinte 3DS) en cas d’échec SEPA. Transparent et sécurisé.</p>
+      </div>
+      <div class="item">
+        <h3>Puis-je utiliser les résultats comme preuve ?</h3>
+        <p>La version payante générera une <b>preuve d’audit</b> (PDF) à usage interne, avec horodatage et résumé des vérifications.</p>
+      </div>
+    </div>
+
+    <p style="text-align:center; margin-top:22px">
+      <a href="index.html">← Retour à l’accueil</a>
+    </p>
+  </main>
+
+  <!-- Footer injecté -->
+  <div id="footer"></div>
+
+  <!-- ===== JS : canvas (particules + lignes) ===== -->
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = innerWidth;
+    let h = canvas.height = innerHeight;
+    const particles = [];
+    const opts = {count:60, speed:.3, radius:2, distance:120, color:'rgba(255,255,255,.25)'};
+
+    addEventListener('resize', () => {
+      w = canvas.width = innerWidth; h = canvas.height = innerHeight;
+    });
+
+    class Particle{
+      constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y);
+        if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y);
+          ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } });
+      }
+    }
+    function init(){ particles.length = 0; for(let i=0;i<opts.count;i++) particles.push(new Particle()); }
+    function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); }
+    init(); animate();
+  </script>
+
+  <!-- ===== Loader header/footer + nav (mêmes includes que les autres pages) ===== -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
+
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
+    }
+
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean ];
+    };
+
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+      }
+      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+    }
+
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return;
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
+    }
+
+    // HEADER
+    if (headMount) {
+      fetchAny(["header.html", "partials/header.html"])
+        .then(html => {
+          headMount.innerHTML = html;
+          fixRootUrls(headMount);
+          return fetchAny(["assets/nav.js", "nav.js"]);
+        })
+        .then(code => {
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+          console.log("[awenoria] header + nav chargés");
+        })
+        .catch(err => {
+          console.error("Header load error:", err);
+          headMount.innerHTML = "<!-- Header introuvable -->";
+        });
+    }
+
+    // FOOTER
+    if (footMount) {
+      fetchAny(["footer.html", "partials/footer.html"])
+        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+        .catch(err => {
+          console.error("Footer load error:", err);
+          footMount.innerHTML = "<!-- Footer introuvable -->";
+        });
+    }
+  });
+  </script>
+</body>
+</html>
