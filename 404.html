@@ -1,122 +1,78 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Page introuvable — Awenoria</title>
-  <meta name="robots" content="noindex" />
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 – Introuvable | Awenoria</title>
+  <meta name="description" content="La page que vous cherchez n’existe pas. Retournez à l’accueil.">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
   <style>
-    :root{ --blue:#0073b6; --blue-dark:#005a8e; --orange:#ff6600; --bg-top:#f7f9fc; --bg:#edf3f7; --bg-grad:linear-gradient(180deg,var(--bg-top) 0%,var(--bg) 100%); --surface:#fff; --stroke:#e6edf3; --text:#16233a; --muted:#5d6b7c; --radius:16px; --shadow-sm:0 4px 12px rgba(16,32,48,.06); --shadow-lg:0 14px 30px rgba(16,32,48,.10); }
-    *{ box-sizing:border-box }
-    body{ margin:0; font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--text); background:var(--bg-grad),var(--bg) }
-    a{ text-decoration:none }
-    .container{ max-width:1160px; margin:0 auto; padding:24px 20px }
-    .header{ position:sticky; top:0; z-index:60; background:var(--bg-top); border-bottom:1px solid transparent; transition:background-color .25s ease, box-shadow .25s ease, border-color .25s ease }
-    .header.scrolled{ background:#fff; border-bottom-color:var(--stroke); box-shadow:0 6px 20px rgba(16,32,48,.06) }
-    .nav{ display:flex; align-items:center; justify-content:space-between; gap:20px; padding:10px 0; min-height:80px }
-    .brand__logo{ display:block; height:92px; width:auto }
-    @media(min-width:992px){ .brand__logo{ height:100px } }
-    .mainnav{ display:flex; align-items:center; gap:2px; margin-left:auto }
-    .menu-item{ list-style:none; position:relative }
-    .menu-link{ position:relative; display:inline-block; padding:14px 14px; border-radius:12px; color:var(--blue-dark); font-weight:800; letter-spacing:.1px; line-height:1; transition: color .2s ease, background .2s ease }
-    .menu-link::after{ content:""; position:absolute; left:12px; right:12px; bottom:6px; height:3px; background:var(--orange); border-radius:2px; opacity:.9; transform:scaleX(0); transform-origin:left; transition:transform .22s ease }
-    .menu-link:hover{ color:var(--orange); background:rgba(0,115,182,.06) }
-    .menu-link:hover::after{ transform:scaleX(1) }
-    .hero{ padding:56px 0 40px; text-align:center }
-    h1{ margin:0; font-size:44px; line-height:1.08; color:var(--blue-dark) }
-    p.sub{ color:var(--muted); max-width:760px; margin:10px auto 0 }
-    .actions{ margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap }
-    .btn{ appearance:none; border:none; cursor:pointer; font-weight:800; font-size:16px; padding:14px 18px; border-radius:12px; color:#fff; background:var(--blue-dark); box-shadow:var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.35); transition: background .18s ease, transform .08s ease, filter .18s ease }
-    .btn:hover{ background:var(--orange); filter:brightness(1.02) }
-    .btn.secondary{ background:#fff; color:var(--blue-dark); border:1px solid var(--stroke); box-shadow:var(--shadow-sm) }
-    .btn.secondary:hover{ border-color:#d5e7f4; color:var(--orange) }
-    .footer{ margin-top:44px; padding:24px 0; color:#5c6a7a; font-size:14px; border-top:1px solid var(--stroke) }
+    :root{
+      --matrix:#00ff41;
+      --bg:#000;
+      --neon:#00ffff;
+      --text:#e0e0e0;
+      --radius:12px;
+      --transition:.3s;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Courier New',Courier,monospace;background:var(--bg);color:var(--text);overflow:hidden;position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;}
+    canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0}
+    .content{position:relative;z-index:1;padding:0 20px;max-width:600px}
+    h1{font-size:clamp(80px,15vw,140px);color:var(--matrix);text-shadow:0 0 10px var(--matrix),0 0 20px var(--matrix);letter-spacing:-.05em}
+    h2{font-size:clamp(24px,4vw,32px);margin:16px 0;color:var(--neon)}
+    p{margin:8px 0 24px;font-size:clamp(14px,2vw,18px);color:var(--text)}
+    .btn{display:inline-block;background:var(--neon);color:#000;padding:14px 28px;border-radius:var(--radius);font-weight:800;text-decoration:none;transition:var(--transition);box-shadow:0 0 12px var(--neon)}
+    .btn:hover{background:#fff;box-shadow:0 0 20px var(--neon)}
+    footer{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--matrix)}
   </style>
 </head>
+
 <body>
-  <header id="site-header" class="header">
-    <div class="container nav">
-      <a href="./index.html" class="brand" title="Accueil"><img src="./images/logo.png" alt="Awenoria" class="brand__logo"></a>
-      <ul class="mainnav" aria-label="Navigation principale">
-        <li class="menu-item"><a class="menu-link" href="index.html">Accueil</a></li>
-        <li class="menu-item"><a class="menu-link" href="guides.html">Guides</a></li>
-        <li class="menu-item"><a class="menu-link" href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </header>
+  <!-- Canvas Matrix -->
+  <canvas id="matrix"></canvas>
 
-  <main class="container hero">
-    <h1>Oups, cette page est introuvable (404)</h1>
-    <p class="sub">Le lien que vous avez suivi est peut‑être incorrect ou la page a été déplacée.</p>
-    <div class="actions">
-      <a class="btn" href="index.html">← Retour à l’accueil</a>
-      <a class="btn secondary" href="guides.html">Voir les guides</a>
-      <a class="btn secondary" href="contact.html">Contacter un expert</a>
-    </div>
-  </main>
+  <!-- Contenu 404 -->
+  <div class="content">
+    <h1>404</h1>
+    <h2>Page introuvable</h2>
+    <p>La page que vous cherchez n'existe pas ou a été déplacée.</p>
+    <a href="index.html" class="btn">Retour à l'accueil</a>
+  </div>
 
-  <footer class="container footer">
-    <div style="display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap">
-      <span>© <span id="year"></span> Awenoria</span>
-      <span><a href="mentions.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a></span>
-    </div>
-  </footer>
+  <footer>© <span id="year"></span> Awenoria</footer>
 
   <script>
+    // Année dynamique
     document.getElementById('year').textContent = new Date().getFullYear();
-    (function(){ const h=document.getElementById('site-header'); const t=()=>{ if(window.scrollY>10) h.classList.add('scrolled'); else h.classList.remove('scrolled'); }; t(); window.addEventListener('scroll', t, {passive:true}); })();
+
+    // Effet Matrix
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = innerWidth;
+    let height = canvas.height = innerHeight;
+    const cols = Math.floor(width / 20);
+    const drops = Array(cols).fill(1);
+    const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}".split("");
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, .05)';
+      ctx.fillRect(0, 0, width, height);
+      ctx.fillStyle = '#00ff41';
+      ctx.font = '15px monospace';
+      drops.forEach((y, i) => {
+        const text = matrix[Math.floor(Math.random() * matrix.length)];
+        ctx.fillText(text, i * 20, y * 20);
+        if (y * 20 > height && Math.random() > .975) drops[i] = 0;
+        drops[i]++;
+      });
+    }
+    setInterval(drawMatrix, 50);
+    window.addEventListener('resize', () => {
+      width = canvas.width = innerWidth;
+      height = canvas.height = innerHeight;
+    });
   </script>
 </body>
 </html>
-```
-
----
-
-## `robots.txt`
-
-> À la racine du site (même niveau que `index.html`). Ajoute la ligne `Sitemap` en pointant vers ton domaine réel.
-
-```
-User-agent: *
-Allow: /
-
-# Évite d’indexer les fichiers bruts de modèles si besoin
-Disallow: /docs/
-
-Sitemap: https://www.awenoria.fr/sitemap.xml
-```
-
----
-
-## `sitemap.xml`
-
-> À la racine. Remplace `https://www.awenoria.fr` par ton domaine si besoin. Tu peux ajouter/retirer des URLs.
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.awenoria.fr/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.awenoria.fr/fonctionnalites.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.awenoria.fr/comment.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.awenoria.fr/tarifs.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.awenoria.fr/guides.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.awenoria.fr/modeles.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.awenoria.fr/pourquoi-2026.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.awenoria.fr/a-propos.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.awenoria.fr/mentions.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.awenoria.fr/confidentialite.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.awenoria.fr/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.awenoria.fr/contact.html</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
-</urlset>
-```
-
----
-
-### Astuces GitHub Pages
-
-* Projet **user/org** (`awenoria.github.io`) : l’URL par défaut est `https://awenoria.github.io/` → la ligne `Sitemap:` doit pointer ici.
-* Projet **repository** (ex. `/awenoria-site/`) : l’URL est `https://awenoria.github.io/awenoria-site/`. Dans ce cas, mets `Sitemap: https://awenoria.github.io/awenoria-site/sitemap.xml` et vérifie que tous tes liens restent **relatifs** (c’est déjà le cas dans nos pages).
-* Domaine custom : ajoute un fichier `CNAME` à la racine avec ton domaine, et garde l’URL de ton domaine dans le `sitemap.xml` et `robots.txt`.
