@@ -19,16 +19,26 @@
   <link rel="stylesheet" href="./assets/awenoria.css?v=1">
 
   <style>
-    /* ----------  VARIABLES  ---------- */
+    /* ----------  VARIABLES (charte logo)  ---------- */
     :root{
-      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff8a3d; --aw-muted:#6b7280;
-      --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
+      --aw-ink:#0B0F1A;               /* bleu nuit */
+      --aw-blue:#0066FF;              /* bleu électrique */
+      --aw-copper:#FF8A3D;            /* orange cuivré */
+      --aw-muted:#6b7280;
+      --aw-panel:#FFFFFF;
+      --aw-bg:#F5F7FF;
+      --aw-radius:24px;
       --shadow:0 25px 50px -12px rgba(0,0,0,.15);
     }
     @media (prefers-color-scheme:dark){
       :root{
-        --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
-        --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+        --aw-ink:#F5F7FF;
+        --aw-blue:#3d8bff;
+        --aw-copper:#FF8A3D;
+        --aw-muted:#a1a9c0;
+        --aw-panel:#0B0F1A;
+        --aw-bg:#06080D;
+        --shadow:0 25px 50px -12px rgba(0,0,0,.45);
       }
     }
 
@@ -61,7 +71,7 @@
     .subtitle-center{max-width:900px; margin:0 auto 22px; text-align:center; color:var(--aw-muted)}
     .underline{width:84px; height:4px; border-radius:999px; background:var(--aw-copper); margin:12px auto 28px}
 
-    /* ----------  CARROUSELS (rubans)  ---------- */
+    /* ----------  CARROUSELS  ---------- */
     .ruban{position:relative; width:100%; overflow:hidden; height:310px; margin:8px 0 28px}
     .ruban-track{display:flex; gap:24px; position:absolute; top:0; will-change:transform}
     .ruban-track[data-direction="right"]{animation:rubanRight 22s linear infinite}
@@ -155,7 +165,30 @@
       transition:background .2s;
     }
     .bubble .back a:hover{background:rgba(255,255,255,.3)}
-    .editorial-cta{text-align:center;margin-top:24px}
+
+    /* ----------  CTAs CAPSULES  ---------- */
+    .editorial-cta{
+      text-align:center;
+      margin-top:32px;
+    }
+    .cta-capsule{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:52px;
+      padding:0 32px;
+      border-radius:999px;
+      background:var(--aw-copper);
+      color:#fff;
+      font-weight:800;
+      text-decoration:none;
+      box-shadow:0 12px 28px rgba(255,138,61,.28);
+      transition:.25s;
+    }
+    .cta-capsule:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 36px rgba(255,138,61,.35);
+    }
 
     /* ----------  NAV FLOTTANTE  ---------- */
     .nav{position:fixed; bottom:18px; left:50%; transform:translateX(-50%); display:flex; gap:10px; z-index:20}
@@ -342,7 +375,7 @@
         </span>
       </div>
     </div>
-    <p class="editorial-cta"><a href="mailto:hello@awenoria.fr?subject=Devis Services" class="cta">Demander un devis</a></p>
+    <p class="editorial-cta"><a href="mailto:hello@awenoria.fr?subject=Devis Services" class="cta-capsule">Demander un devis</a></p>
   </section>
 
   <!-- ==========  NOS FORMATIONS  (BULLES) ========== -->
@@ -378,7 +411,7 @@
         </span>
       </div>
     </div>
-    <p class="editorial-cta"><a href="mailto:hello@awenoria.fr?subject=Programme Formations" class="cta">Demander un programme</a></p>
+    <p class="editorial-cta"><a href="mailto:hello@awenoria.fr?subject=Programme Formations" class="cta-capsule">Demander un programme</a></p>
   </section>
 
   <!-- ==========  AUDIT & ANALYSE  (BULLES) ========== -->
@@ -403,7 +436,7 @@
         </span>
       </div>
     </div>
-    <p class="editorial-cta"><a href="mailto:hello@awenoria.fr?subject=Devis Audit&Analyse" class="cta">Demander un devis</a></p>
+    <p class="editorial-cta"><a href="mailto:hello@awenoria.fr?subject=Devis Audit&Analyse" class="cta-capsule">Demander un devis</a></p>
   </section>
 
   <!-- ==========  ATELIER 2 H RGPD  (BULLES) ========== -->
@@ -429,7 +462,7 @@
         </span>
       </div>
     </div>
-    <p class="editorial-cta"><a href="mailto:hello@awenoria.fr?subject=Programme Atelier 2h RGPD" class="cta">Demander un programme</a></p>
+    <p class="editorial-cta"><a href="mailto:hello@awenoria.fr?subject=Programme Atelier 2h RGPD" class="cta-capsule">Demander un programme</a></p>
   </section>
 
   <!-- Footer injecté -->
