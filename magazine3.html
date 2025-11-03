@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Awéboria – Magazine Conformité</title>
+
+  <!-- Polices + favicons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
+
+  <!-- CSS globale (header/footer + base) -->
+  <link rel="stylesheet" href="./assets/awenoria.css?v=1">
+
+  <style>
+    :root{
+      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff8a3d; --aw-muted:#6b7280;
+      --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
+      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+    }
+    @media (prefers-color-scheme:dark){
+      :root{
+        --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
+        --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+      }
+    }
+
+    /* ---------- HERO bleu avec particules (mêmes proportions que les autres) ---------- */
+    .hero{
+      position:relative; min-height:60vh; display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff; overflow:hidden;
+      background:
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+      border-bottom:4px solid #e8eefb;
+    }
+    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0; display:block; pointer-events:none;}
+    .hero .content{position:relative; z-index:1; max-width:900px; padding:0 20px;}
+    .hero h1{font-family:"Playfair Display",serif; font-weight:700; font-size:clamp(36px,6vw,64px); line-height:1.05; margin:0;}
+    .hero .lead{font-size:1.2rem; font-weight:600; color:#eaf3ff; margin-top:10px;}
+
+    /* ---------- Page ---------- */
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--aw-ink); background:var(--aw-bg);}
+    .section{max-width:1200px; margin:0 auto; padding:80px 20px;}
+    .title-center{margin:0 0 6px; text-align:center; font-weight:800; font-size:clamp(26px,3.8vw,40px);}
+    .subtitle-center{max-width:900px; margin:0 auto 22px; text-align:center; color:var(--aw-muted);}
+    .underline{width:84px; height:4px; border-radius:999px; background:var(--aw-copper); margin:12px auto 28px;}
+    .grid{display:grid; gap:18px;}
+    .card{
+      background:var(--aw-panel); border:1px solid rgba(15,23,32,.08);
+      border-radius:22px; box-shadow:var(--shadow); padding:18px;
+    }
+    .btn-soft{
+      display:inline-flex; align-items:center; justify-content:center;
+      background:rgba(0,102,255,.1); color:#0066ff; font-weight:800;
+      padding:10px 20px; border-radius:999px; text-decoration:none; transition:.2s;
+    }
+    .btn-soft:hover{background:rgba(0,102,255,.2); transform:translateY(-1px);}
+
+    /* ---------- Rubans (carrousels horizontaux) ---------- */
+    .ruban{position:relative; width:100%; overflow:hidden; height:310px; margin:8px 0 28px;}
+    .ruban-track{display:flex; gap:24px; position:absolute; top:0; will-change:transform;}
+    .ruban-track[data-direction="right"]{animation:rubanRight 22s linear infinite}
+    .ruban-track[data-direction="left"]{animation:rubanLeft 22s linear infinite}
+    .ruban:hover .ruban-track{animation-play-state:paused}
+    @keyframes rubanRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+    @keyframes rubanLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    .ruban-card{
+      flex:0 0 340px; background:var(--aw-panel); border:1px solid rgba(15,23,32,.08);
+      border-radius:20px; overflow:hidden; display:flex; flex-direction:column; position:relative; box-shadow:0 12px 28px rgba(0,0,0,.08);
+    }
+    .ruban-card img{width:100%; height:190px; object-fit:cover;}
+    .ruban-card figcaption{padding:18px;}
+    .ruban-card h3{margin:0 0 6px; font-size:1.05rem; font-weight:800;}
+    .ruban-card p{margin:0 0 14px; color:var(--aw-muted); font-size:.95rem;}
+    .badge{
+      position:absolute; top:10px; left:10px; font-size:.75rem; font-weight:800; padding:4px 8px;
+      border-radius:999px; backdrop-filter:blur(6px); color:#fff; z-index:2;
+    }
+    .badge[data-cat="conformite"]{background:#ff4757}
+    .badge[data-cat="access"]{background:#3742fa}
+    .badge[data-cat="cyber"]{background:#2ed573}
+    .badge[data-cat="cookies"]{background:#ffa502}
+    .badge[data-cat="audit"]{background:#747d8c}
+    .badge[data-cat="web"]{background:#3742fa}
+    .badge[data-cat="rgpd"]{background:#ff6b6b}
+    .badge[data-cat="ia"]{background:#a55eea}
+
+    /* ---------- Éditorial (blocs texte) ---------- */
+    .editorial{background:var(--aw-panel); border-top:1px solid rgba(15,23,32,.06); border-bottom:1px solid rgba(15,23,32,.06);}
+    .editorial h2{font-size:clamp(22px,3.2vw,30px); font-weight:800; text-align:center; margin:0;}
+    .editorial p{max-width:820px; margin:14px auto 0; text-align:center; color:var(--aw-ink);}
+    .editorial .cta{
+      display:inline-block; margin-top:14px; background:var(--aw-copper); color:#fff; padding:.8rem 1.6rem;
+      border-radius:30px; font-weight:800; text-decoration:none; box-shadow:0 12px 28px rgba(255,138,61,.28); transition:.25s;
+    }
+    .editorial .cta:hover{transform:translateY(-2px); box-shadow:0 18px 36px rgba(255,138,61,.35);}
+
+    /* Nav flottante (petite) */
+    .nav{position:fixed; bottom:18px; left:50%; transform:translateX(-50%); display:flex; gap:10px; z-index:20}
+    .nav a{background:var(--aw-panel); color:#0033cc; padding:.55rem 1rem; border-radius:999px; text-decoration:none; font-weight:800; box-shadow:0 10px 24px rgba(0,0,0,.15); border:1px solid rgba(15,23,32,.06);}
+  </style>
+</head>
+
+<body class="page-magazine2">
+
+  <!-- Header injecté -->
+  <div id="header"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="canvas" aria-hidden="true"></canvas>
+    <div class="content">
+      <h1>Awéboria</h1>
+      <p class="lead">Magazine conformité & IA — édition 2025</p>
+    </div>
+  </section>
+
+  <!-- Sommaire + carrousels -->
+  <section class="section">
+    <h2 class="title-center">Sommaire</h2>
+    <p class="subtitle-center">Une sélection d’articles, services et formations à ne pas manquer.</p>
+    <div class="underline"></div>
+
+    <!-- CARROUSEL SERVICES -->
+    <div class="ruban" aria-label="Tous nos services">
+      <div class="ruban-track" data-direction="right">
+        <!-- originaux -->
+        <figure class="ruban-card">
+          <span class="badge" data-cat="conformite">#Conformité</span>
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>RGPD Live</h3>
+            <p>L’audit qui finit en standing ovation.</p>
+            <a class="btn-soft" href="./Nos-services.html#rgpd">Je prends ma place</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="access">#Access</span>
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>Accessibilité Show</h3>
+            <p>Devenez conforme en un solo.</p>
+            <a class="btn-soft" href="./Nos-services.html#access">Je prends ma place</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="cyber">#Cyber</span>
+          <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>Cyber Night</h3>
+            <p>La crise devient scénario.</p>
+            <a class="btn-soft" href="./Nos-services.html#cyber">Je prends ma place</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="cookies">#Cookies</span>
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>Cookies Party</h3>
+            <p>Bandeau & CMP en rythme.</p>
+            <a class="btn-soft" href="./Nos-services.html#cookies">Je prends ma place</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="audit">#Audit</span>
+          <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>Diagnostic Premiere</h3>
+            <p>Le grand écran de vos priorités.</p>
+            <a class="btn-soft" href="./Nos-services.html#diagnostic">Je prends ma place</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="web">#Web</span>
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>Legal Remix</h3>
+            <p>Mentions légales version hit.</p>
+            <a class="btn-soft" href="./Nos-services.html#web-legal">Je prends ma place</a>
+          </figcaption>
+        </figure>
+
+        <!-- copies pour boucle fluide -->
+        <figure class="ruban-card">
+          <span class="badge" data-cat="conformite">#Conformité</span>
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>RGPD Live</h3>
+            <p>L’audit qui finit en standing ovation.</p>
+            <a class="btn-soft" href="./Nos-services.html#rgpd">Je prends ma place</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="access">#Access</span>
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>Accessibilité Show</h3>
+            <p>Devenez conforme en un solo.</p>
+            <a class="btn-soft" href="./Nos-services.html#access">Je prends ma place</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="cyber">#Cyber</span>
+          <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>Cyber Night</h3>
+            <p>La crise devient scénario.</p>
+            <a class="btn-soft" href="./Nos-services.html#cyber">Je prends ma place</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- CARROUSEL FORMATIONS -->
+    <div class="ruban" aria-label="Toutes nos formations">
+      <div class="ruban-track" data-direction="left">
+        <figure class="ruban-card">
+          <span class="badge" data-cat="rgpd">#RGPD</span>
+          <img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>RGPD Express</h3>
+            <p>2 h chrono, 100 % live.</p>
+            <a class="btn-soft" href="./formation/rgpd-2h.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="ia">#IA</span>
+          <img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>IA Act Day</h3>
+            <p>Le cadre européen en one-man-show.</p>
+            <a class="btn-soft" href="./formation/ia-act.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="access">#Access</span>
+          <img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>Access Night</h3>
+            <p>Devenez conforme sous les projecteurs.</p>
+            <a class="btn-soft" href="./formation/access.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="cyber">#Cyber</span>
+          <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>Cyber Stage</h3>
+            <p>La sécurité en stand-up.</p>
+            <a class="btn-soft" href="./formation/cyber.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="cookies">#Cookies</span>
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>Cookies Live</h3>
+            <p>Bandeau & CMP en live coding.</p>
+            <a class="btn-soft" href="./formation/cookies.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="web">#Web</span>
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>Legal Remix</h3>
+            <p>Mentions légales version acoustic.</p>
+            <a class="btn-soft" href="./formation/web-legal.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <!-- copies -->
+        <figure class="ruban-card">
+          <span class="badge" data-cat="rgpd">#RGPD</span>
+          <img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>RGPD Express</h3>
+            <p>2 h chrono, 100 % live.</p>
+            <a class="btn-soft" href="./formation/rgpd-2h.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="ia">#IA</span>
+          <img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>IA Act Day</h3>
+            <p>Le cadre européen en one-man-show.</p>
+            <a class="btn-soft" href="./formation/ia-act.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="access">#Access</span>
+          <img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&fit=crop&w=800&q=60" alt="">
+          <figcaption>
+            <h3>Access Night</h3>
+            <p>Devenez conforme sous les projecteurs.</p>
+            <a class="btn-soft" href="./formation/access.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Éditos (Services / Formations / Audit / Atelier) -->
+  <section id="services" class="section editorial">
+    <h2>Nos Services</h2>
+    <p><strong>Conseil & conformité</strong> — Audit & Analyse, RGPD, IA Act.<br>
+       <strong>Web & légal</strong> — mentions, cookies, accessibilité.<br>
+       <strong>Formats & modalités</strong> — atelier 2 h, 1/2 j, présentiel/distanciel.</p>
+    <p style="text-align:center"><a href="mailto:hello@awenoria.fr?subject=Devis Services" class="cta">Demander un devis</a></p>
+  </section>
+
+  <section id="formations" class="section editorial">
+    <h2>Nos Formations</h2>
+    <p><strong>Par thématique</strong> — RGPD, cookies, accessibilité, cyber, IA Act.<br>
+       <strong>Par public</strong> — dirigeants, DPO, devs, opérationnels.<br>
+       <strong>Formats & modalités</strong> — 2 h, 1 j, 2 j, présentiel/distanciel.</p>
+    <p style="text-align:center"><a href="mailto:hello@awenoria.fr?subject=Programme Formations" class="cta">Demander un programme</a></p>
+  </section>
+
+  <section id="audit" class="section editorial">
+    <h2>Audit & Analyse</h2>
+    <p>Diagnostic rapide en ½ journée (audit flash) ou audit complet sur mesure. Livraison d’un rapport détaillé avec priorités, planning d’action et modèles prêts à l’emploi.</p>
+    <p style="text-align:center"><a href="mailto:hello@awenoria.fr?subject=Devis Audit&Analyse" class="cta">Demander un devis</a></p>
+  </section>
+
+  <section id="atelier" class="section editorial">
+    <h2>Atelier 2 h RGPD</h2>
+    <p>Parfait pour les équipes pressées : direction, marketing, dev. Contenu : bases RGPD, registre, cookies, check-list mise en conformité. Modalités : présentiel (Paris) ou distanciel — supports fournis — questionnaire pré/post-formation.</p>
+    <p style="text-align:center"><a href="mailto:hello@awenoria.fr?subject=Programme Atelier 2h RGPD" class="cta">Demander un programme</a></p>
+  </section>
+
+  <!-- Footer injecté -->
+  <div id="footer"></div>
+
+  <!-- Nav flottante -->
+  <div class="nav">
+    <a href="#cover" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</a>
+    <a href="#services">Services</a>
+    <a href="#formations">Formations</a>
+    <a href="#audit">Audit</a>
+    <a href="#atelier">Atelier</a>
+  </div>
+
+  <!-- Canvas particules (réseau aléatoire, pas de formes fixes) -->
+  <script>
+    (function(){
+      const cvs = document.getElementById('canvas'); if(!cvs) return;
+      const ctx = cvs.getContext('2d');
+      const hero = cvs.parentElement;
+
+      function resize(){
+        const r = hero.getBoundingClientRect();
+        cvs.width = r.width; cvs.height = r.height;
+      }
+      let w,h; function upd(){ resize(); w=cvs.width; h=cvs.height; }
+
+      const P=[], CFG={n:70, speed:.35, r:2, link:120};
+      class Dot{
+        constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*CFG.speed; this.vy=(Math.random()-.5)*CFG.speed; }
+        step(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
+        draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,CFG.r,0,Math.PI*2); ctx.fillStyle='rgba(255,255,255,.25)'; ctx.fill(); }
+        links(){ for(const q of P){ const d=Math.hypot(this.x-q.x,this.y-q.y); if(d<CFG.link){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/CFG.link})`; ctx.stroke(); } } }
+      }
+      function init(){ upd(); P.length=0; for(let i=0;i<CFG.n;i++) P.push(new Dot()); }
+      function loop(){ ctx.clearRect(0,0,w,h); P.forEach(p=>{ p.step(); p.draw(); p.links(); }); requestAnimationFrame(loop); }
+      init(); loop(); addEventListener('resize', upd, {passive:true});
+    })();
+  </script>
+
+  <!-- Injection header/footer + correction des URLs pour la racine -->
+  <script>
+  (function(){
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    const PREFIX = ""; // page à la racine
+
+    function rewriteRelativeURLs(container){
+      if (!container) return;
+      container.querySelectorAll('a[href], img[src], link[href], script[src]').forEach(el=>{
+        const attr = el.hasAttribute('href') ? 'href' : 'src';
+        const val = el.getAttribute(attr);
+        if (!val) return;
+        if (/^(?:[a-z]+:)?\/\//i.test(val) || val.startsWith('#') || /^mailto:|^tel:/i.test(val)) return;
+        const clean = val.replace(/^\.?\//,'').replace(/^\//,'');
+        el.setAttribute(attr, (PREFIX + clean));
+      });
+    }
+    async function fetchAny(paths){
+      for (const p of paths){
+        try{ const r = await fetch(PREFIX + p, { cache: "no-cache" }); if (r.ok) return r.text(); }catch(_){}
+      }
+      return null;
+    }
+
+    // HEADER
+    (async()=>{
+      const html = await fetchAny(["partials/header.html","header.html"]);
+      headMount.innerHTML = html || "<!-- Header introuvable -->";
+      rewriteRelativeURLs(headMount);
+      if (!window.__aw_nav_loaded__){
+        window.__aw_nav_loaded__ = true;
+        const code = await fetchAny(["assets/nav.js","nav.js"]);
+        if (code){
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+        }
+      }
+    })();
+
+    // FOOTER
+    (async()=>{
+      const html = await fetchAny(["partials/footer.html","footer.html"]);
+      footMount.innerHTML = html || "<!-- Footer introuvable -->";
+      rewriteRelativeURLs(footMount);
+    })();
+  })();
+  </script>
+</body>
+</html>
