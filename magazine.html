@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Magazine Awenoria – Luxe & Compliance</title>
+<title>Awenoria – Magazine Luxe</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -19,11 +19,11 @@
   body{background:var(--cream);font-family:'Inter',sans-serif;color:var(--char);overflow:hidden}
   h1,h2,h3{font-family:'Playfair Display',serif;font-weight:700}
 
-  header{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2.5rem;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(0,0,0,.05);z-index:30}
-  header .logo{font-size:1.8rem;color:var(--violet);letter-spacing:-1px}
-  .nav-btn{background:var(--orange);color:#fff;border:none;padding:.7rem 1.5rem;border-radius:30px;font-size:1rem;cursor:pointer;transition:background .3s}
-  .nav-btn:hover{background:#e55e00}
+  /* ===== HEADER ===== */
+  header{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:center;padding:1.2rem 2.5rem;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(0,0,0,.05);z-index:30}
+  header .logo{font-size:2rem;color:var(--violet);letter-spacing:-1px}
 
+  /* ===== MAGAZINE 3-D ===== */
   #mag{height:100vh;display:flex;align-items:center;justify-content:center;perspective:3000px}
   .book{width:min(90vw,850px);height:min(80vh,600px);position:relative;transform-style:preserve-3d;transition:transform var(--speed) cubic-bezier(.25,1,.5,1)}
   .page{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;background:#fff;box-shadow:0 30px 60px rgba(0,0,0,.2);overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:0}
@@ -35,14 +35,24 @@
   .txt-overlay{position:relative;z-index:1;padding:4rem;color:#fff}
   .txt-overlay h2{font-size:3.5rem;margin-bottom:1.5rem}
   .txt-overlay p{font-size:1.2rem;max-width:80%}
-  .liste{padding:4rem 5rem}
-  .liste h2{font-size:3rem;margin-bottom:2rem;color:var(--violet)}
-  .liste h3{font-size:1.5rem;margin:2rem 0 1rem;color:var(--orange)}
-  .liste ul{list-style:none;padding-left:1.2rem}
-  .liste li{margin:.7rem 0;position:relative;padding-left:1.5rem;font-size:1.1rem}
-  .liste li::before{content:"";position:absolute;left:0;top:.55em;width:10px;height:10px;background:var(--orange);border-radius:50%}
+  .sommaire{padding:4rem 5rem;display:flex;flex-direction:column;align-items:center}
+  .sommaire h2{font-size:3rem;margin-bottom:3rem;color:var(--violet)}
+  .vignettes{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;width:100%}
+  .vignette{background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.08);overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s}
+  .vignette:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,.15)}
+  .vignette img{width:100%;height:200px;object-fit:cover}
+  .vignette .text{padding:1.5rem}
+  .vignette .text h3{font-size:1.5rem;margin-bottom:.5rem;color:var(--violet)}
+  .vignette .text p{font-size:1rem;color:var(--char)}
 
-  .dots{position:fixed;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;gap:.7rem;z-index:20}
+  /* ===== FLECHES CENTREES EN BAS ===== */
+  .nav-bottom{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:1rem;z-index:20}
+  .nav-bottom button{background:var(--orange);color:#fff;border:none;padding:.7rem 1.5rem;border-radius:30px;font-size:1rem;cursor:pointer;transition:background .3s}
+  .nav-bottom button:hover{background:#e55e00}
+  .nav-bottom button:disabled{background:#ccc}
+
+  /* ===== DOTS ===== */
+  .dots{position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);display:flex;gap:.7rem;z-index:20}
   .dot{width:14px;height:14px;border-radius:50%;background:#ccc;cursor:pointer;transition:all .3s}
   .dot.on{background:var(--violet);transform:scale(1.2)}
 </style>
@@ -51,63 +61,65 @@
 <body>
 <header>
   <div class="logo">Awenoria</div>
-  <div>
-    <button class="nav-btn" id="prevBtn">←</button>
-    <button class="nav-btn" id="nextBtn">→</button>
-  </div>
 </header>
 
 <div id="mag">
   <div class="book" id="book">
     <!-- 1 COUVERTURE -->
-    <div class="page cover"><h1>Awenoria<br>Magazine</h1><p>Luxe & Compliance – édition 2025</p></div>
+    <div class="page cover"><h1>Awenoria</h1><p>Magazine luxe & compliance – édition 2025</p></div>
 
-    <!-- 2 SERVICES -->
-    <div class="page liste">
-      <h2>Nos Services</h2>
-      <h3>Conseil & conformité</h3>
-      <ul><li>RGPD essentiels, registre, AIPD</li><li>Audit & Analyse</li><li>Accompagnement RGPD</li></ul>
-      <h3>Web & Legal</h3>
-      <ul><li>Web & Legal</li><li>Accessibilité (RGAA / EN 301 549)</li></ul>
-      <h3>Modèles juridiques</h3>
-      <ul><li>Modèles juridiques clés en main</li><li>Complément modèles</li></ul>
-      <h3>Offres</h3>
-      <ul><li>Mission à la carte</li><li>Abonnement</li></ul>
-      <h3>Conformité IA</h3>
-      <ul><li>Conformité IA (UE)</li></ul>
+    <!-- 2 SOMMAIRE VISUEL -->
+    <div class="page sommaire">
+      <h2>Sommaire</h2>
+      <div class="vignettes">
+        <div class="vignette" onclick="goTo(2)">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=60" alt="services">
+          <div class="text"><h3>Services</h3><p>Audit, Web&Legal, RGPD, modèles, accompagnement</p></div>
+        </div>
+        <div class="vignette" onclick="goTo(3)">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=60" alt="formations">
+          <div class="text"><h3>Formations</h3><p>Ateliers, journées, thématiques, publics spécifiques</p></div>
+        </div>
+        <div class="vignette" onclick="goTo(4)">
+          <img src="https://images.unsplash.com/photo-1556761175-4b46a572b386?auto=format&fit=crop&w=800&q=60" alt="formats">
+          <div class="text"><h3>Formats</h3><p>2h, 1j, 2j – présentiel, distanciel, intra</p></div>
+        </div>
+        <div class="vignette" onclick="goTo(5)">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba02777871?auto=format&fit=crop&w=800&q=60" alt="publics">
+          <div class="text"><h3>Publics</h3><p>Dirigeants, DPO, devs, opérationnels…</p></div>
+        </div>
+      </div>
     </div>
 
-    <!-- 3 FORMATIONS -->
-    <div class="page liste">
-      <h2>Nos Formations</h2>
-      <h3>Par durée</h3>
-      <ul><li>Atelier 2 h</li><li>Formation 1 journée</li><li>Formation 2 jours</li></ul>
-      <h3>Par thématique</h3>
-      <ul><li>RGPD essentiels, registre, AIPD</li><li>Cookies & CMP</li><li>Accessibilité (RGAA / EN 301 549)</li><li>Cybersécurité de base</li></ul>
-      <h3>Par public</h3>
-      <ul><li>Dirigeants & responsables</li><li>Équipes opérationnelles</li><li>Référents / DPO</li><li>Dev, Produit & Data</li></ul>
-      <h3>Spécifiques</h3>
-      <ul><li>IA Act – obligations & documentation</li></ul>
+    <!-- 3 SERVICES -->
+    <div class="page">
+      <img class="bg-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1350&q=80" alt="services">
+      <div class="txt-overlay"><h2>Services</h2><p>De l’audit initial à la mise en conformité complète, nous vous accompagnons à chaque étape : RGPD, Web&Legal, modèles juridiques, accessibilité, cybersécurité et pilotage IA.</p></div>
     </div>
 
-    <!-- 4 FORMATS & MODALITÉS -->
-    <div class="page liste">
-      <h2>Formats & Modalités</h2>
-      <ul><li>Présentiel en région parisienne</li><li>À distance (Teams / Zoom)</li><li>Intra-entreprise (sur site)</li><li>Plateforme e-learning (coming soon)</li></ul>
+    <!-- 4 FORMATIONS -->
+    <div class="page">
+      <img class="bg-img" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1350&q=80" alt="formations">
+      <div class="txt-overlay"><h2>Formations</h2><p>Ateliers 2 h, journées ou sessions 2 jours, en présentiel ou distanciel. Thématiques : RGPD, cookies, accessibilité, cybersécurité, IA Act. Publics : dirigeants, DPO, devs, opérationnels.</p></div>
     </div>
 
-    <!-- 5 PORTRAIT – photo + citation -->
-    <div class="page"><img class="bg-img" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1350&q=80" alt="portrait"><div class="txt-overlay"><h2>« Le droit doit être aussi beau que fonctionnel »</h2><p>Rencontre avec nos experts juridiques & créatifs.</p></div></div>
-
-    <!-- 6 ÉDITORIAL – façon ELLE -->
-    <div class="page"><img class="bg-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1350&q=80" alt="editorial"><div class="txt-overlay"><h2>Éditorial</h2><p>Chaque page est une invitation à repenser la compliance comme une expérience luxueuse, intuitive et désirable. Bienvenue dans l’univers Awenoria.</p></div></div>
+    <!-- 5 EDITORIAL -->
+    <div class="page">
+      <img class="bg-img" src="https://images.unsplash.com/photo-1519389950473-47ba02777871?auto=format&fit=crop&w=1350&q=80" alt="editorial">
+      <div class="txt-overlay"><h2>Éditorial</h2><p>Chaque page est une invitation à repenser la compliance comme une expérience luxueuse, intuitive et désirable. Bienvenue dans l’univers Awenoria.</p></div>
+    </div>
   </div>
 </div>
 
-<div class="dots"><span class="dot on" data-i="0"></span><span class="dot" data-i="1"></span><span class="dot" data-i="2"></span><span class="dot" data-i="3"></span><span class="dot" data-i="4"></span><span class="dot" data-i="5"></span></div>
+<div class="dots"><span class="dot on" data-i="0"></span><span class="dot" data-i="1"></span><span class="dot" data-i="2"></span><span class="dot" data-i="3"></span><span class="dot" data-i="4"></span></div>
+
+<div class="nav-bottom">
+  <button id="prevBtn">←</button>
+  <button id="nextBtn">→</button>
+</div>
 
 <script>
-  const book=document.getElementById('book'),dots=document.querySelectorAll('.dot');let idx=0,total=6;function update(){book.style.transform=`rotateY(${-idx*180}deg)`;dots.forEach((d,i)=>d.classList.toggle('on',i===idx));prevBtn.disabled=idx===0;nextBtn.disabled=idx===total-1}document.getElementById('nextBtn').onclick=()=>{if(idx<total-1){idx++;update()}};document.getElementById('prevBtn').onclick=()=>{if(idx>0){idx--;update()}};dots.forEach(d=>d.onclick=()=>{idx=+d.dataset.i;update()});update();
+  const book=document.getElementById('book'),dots=document.querySelectorAll('.dot');let idx=0,total=5;function update(){book.style.transform=`rotateY(${-idx*180}deg)`;dots.forEach((d,i)=>d.classList.toggle('on',i===idx));prevBtn.disabled=idx===0;nextBtn.disabled=idx===total-1}document.getElementById('nextBtn').onclick=()=>{if(idx<total-1){idx++;update()}};document.getElementById('prevBtn').onclick=()=>{if(idx>0){idx--;update()}};dots.forEach(d=>d.onclick=()=>{idx=+d.dataset.i;update()});function goTo(page){idx=page;update()}update();
 </script>
 </body>
 </html>
