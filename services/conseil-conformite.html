@@ -15,23 +15,47 @@
   <link rel="stylesheet" href="../assets/awenoria.css">
 
   <style>
-    :root{--font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--text:#0f5f9a;--muted:#4a6176;--copper:#ff8a3d;--shadow:0 12px 28px rgba(0,0,0,.08);--maxw:1100px}
+    :root{
+      --font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      --text:#0f5f9a; --muted:#4a6176; --copper:#ff8a3d; --shadow:0 12px 28px rgba(0,0,0,.08);
+      --maxw:1100px;
+    }
     *{box-sizing:border-box} html,body{height:100%}
     body{
       margin:0;color:var(--text);font-family:var(--font);
       background:
         radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),
         linear-gradient(180deg,#fff 0%,#f6f9fc 100%);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
     .wrap{max-width:var(--maxw);margin:28px auto;padding:0 20px}
-    h1{font-weight:800;font-size:clamp(24px,4.4vw,42px);margin:6px 0}
-    .lead{color:var(--muted)}
+    h1{font-weight:800;font-size:clamp(28px,6vw,48px);margin:6px 0}
+    .lead{color:#e8f0ff;font-weight:600}
     .underline{width:84px;height:4px;border-radius:999px;background:var(--copper);margin:12px 0 22px;opacity:.95}
+
+    /* ===== HERO bleu + canvas (identique aux autres pages) ===== */
+    .hero{
+      position:relative; min-height:60vh;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff; overflow:hidden;
+      background:
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+      border-bottom:4px solid #e8eefb;
+    }
+    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
+    .hero .content{position:relative; z-index:2; max-width:860px; padding:0 20px;}
+    .hero .back{
+      display:inline-block; margin-bottom:10px; color:#eaf3ff; opacity:.9; text-decoration:none; font-weight:800;
+      padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.08);
+    }
+
+    /* ===== Grille cartes ===== */
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
     .card{background:rgba(255,255,255,.86);border:1px solid rgba(15,23,32,.08);border-radius:22px;padding:18px;box-shadow:var(--shadow)}
     .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1px solid transparent;background:rgba(27,136,255,.80);color:#fff;text-decoration:none}
     .note{color:var(--muted);font-size:14px}
-    header a{color:inherit;text-decoration:none}
   </style>
 </head>
 <body>
@@ -39,23 +63,26 @@
   <!-- Header injecté -->
   <div id="header"></div>
 
-  <!-- En-tête local de la page -->
-  <header class="wrap">
-    <a href="../index.html#services">← Retour “Nos services”</a>
-    <h1>Conseil & conformité</h1>
-    <p class="lead">Audit, accompagnement et conformité opérationnelle.</p>
-    <div class="underline"></div>
-  </header>
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <canvas id="canvas" aria-hidden="true"></canvas>
+    <div class="content">
+      <a class="back" href="../index.html#services">← Retour “Nos services”</a>
+      <h1>Conseil & conformité</h1>
+      <p class="lead">Audit, accompagnement et conformité opérationnelle.</p>
+    </div>
+  </section>
 
   <main class="wrap">
+    <div class="underline"></div>
     <section class="grid" id="services"></section>
   </main>
 
   <!-- Footer injecté -->
   <div id="footer"></div>
 
+  <!-- Cartes services -->
   <script type="module">
-    // Liens RELATIFS (compatibles sous-dossiers & GH Pages)
     const SERVICES = {
       "audit": {
         title: "Audit & Analyse",
@@ -73,9 +100,8 @@
         href: "services/liste.html?service=ia-act"
       }
     };
-
     const root = document.getElementById("services");
-    root.innerHTML = Object.entries(SERVICES).map(([k,v]) => `
+    root.innerHTML = Object.values(SERVICES).map(v => `
       <article class="card">
         <h3 style="margin:0 0 6px">${v.title}</h3>
         <p class="note">${v.desc}</p>
@@ -86,6 +112,31 @@
     `).join("");
   </script>
 
+  <!-- Canvas particules (mêmes paramètres que les autres pages) -->
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = innerWidth;
+    let h = canvas.height = innerHeight;
+    const particles = [];
+    const opts = { count:60, speed:.3, radius:2, distance:120, color:'rgba(255,255,255,.25)' };
+
+    addEventListener('resize', () => {
+      w = canvas.width = innerWidth;
+      const hero = canvas.parentElement;
+      h = canvas.height = hero.offsetHeight;   // garde les proportions du hero
+    });
+
+    class Particle{
+      constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
+    }
+    (function init(){ for(let i=0;i<opts.count;i++) particles.push(new Particle()); })();
+    (function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); })();
+  </script>
+
   <!-- Loader header/footer + nav — robuste sous-dossiers + GH Pages -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -93,7 +144,6 @@
     const footMount = document.getElementById("footer");
     if (!headMount && !footMount) return;
 
-    // base / GH Pages
     const isGh = /github\.io$/.test(location.hostname);
     let basePath = "/";
     if (isGh) {
@@ -104,25 +154,17 @@
 
     const candidates = (p) => {
       const clean = p.replace(/^\//, "");
-      return [
-        basePath + clean,   // /repo/partials/header.html (GH)
-        "./" + clean,       // ./partials/header.html
-        "../" + clean       // ../partials/header.html
-      ];
+      return [ basePath + clean, "./" + clean, "../" + clean ];
     };
 
     async function fetchAny(paths) {
       const queue = paths.flatMap(candidates);
       for (const u of queue) {
-        try {
-          const r = await fetch(u, { cache: "no-cache" });
-          if (r.ok) return r.text();
-        } catch(_) {}
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
       }
       return null;
     }
 
-    // Réécrit TOUTES les URLs (href/src) internes dans un container injecté
     function fixAllUrls(container) {
       const nodes = container.querySelectorAll('a[href], img[src], link[href], script[src]');
       nodes.forEach(el => {
@@ -140,7 +182,6 @@
       });
     }
 
-    // HEADER
     (async () => {
       const html = await fetchAny(["partials/header.html", "header.html"]);
       if (html){
@@ -153,20 +194,15 @@
           s.textContent = code;
           document.body.appendChild(s);
         }
-      } else {
-        headMount.innerHTML = "<!-- Header introuvable -->";
-      }
+      } else { headMount.innerHTML = "<!-- Header introuvable -->"; }
     })();
 
-    // FOOTER
     (async () => {
       const html = await fetchAny(["partials/footer.html", "footer.html"]);
       if (html){
         footMount.innerHTML = html;
         fixAllUrls(footMount);
-      } else {
-        footMount.innerHTML = "<!-- Footer introuvable -->";
-      }
+      } else { footMount.innerHTML = "<!-- Footer introuvable -->"; }
     })();
   });
   </script>
