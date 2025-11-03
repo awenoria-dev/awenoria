@@ -87,19 +87,13 @@
     .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
     .reveal.is-visible{opacity:1;transform:none}
 
-    /* Éditeur */
-    #fastEditor{margin-top:24px;display:none;}
+    /* Éditeur visible */
+    #fastEditor{margin-top:24px;display:block;max-width:680px;margin:auto;}
     #fastEditor input,#fastEditor select{
       width:100%;padding:10px 12px;border:1px solid rgba(15,23,32,.08);border-radius:12px;font-family:inherit;font-size:14px;background:var(--aw-panel);color:var(--aw-ink);
     }
     #fastEditor label{font-size:13px;color:var(--aw-muted);}
     .advanced-only{display:none;} /* seront affichés uniquement en mode avancé */
-
-    /* Split-pane preview (avancé) */
-    #advancedPreview{position:fixed;inset:0;background:var(--aw-bg);z-index:999;display:none;grid-template-columns:1fr 1fr;gap:12px;padding:12px;}
-    #advancedPreview .pane{background:var(--aw-panel);border-radius:var(--aw-radius);box-shadow:var(--shadow);padding:12px;overflow:auto;}
-    #advancedPreview iframe{width:100%;height:100%;border:none;}
-    #advancedPreview .close{position:absolute;top:16px;right:20px;background:none;border:none;font-size:24px;cursor:pointer;color:var(--aw-muted);}
   </style>
 </head>
 <body class="page-modeles">
@@ -134,7 +128,7 @@
       </div>
     </section>
 
-    <!-- Éditeur rapide / avancé -->
+    <!-- Éditeur visible -->
     <section class="section">
       <div class="container">
         <h2 class="title reveal">Je personnalise en 30 s</h2>
@@ -144,7 +138,7 @@
           <button class="btn ghost" onclick="openAdvancedEditor()">Éditeur avancé (60 s)</button>
         </div>
 
-        <form id="fastEditor" class="reveal" style="display:none;max-width:680px;margin:auto">
+        <form id="fastEditor" class="reveal" style="max-width:680px;margin:auto">
           <!-- OBLIGATOIRES (rapide) -->
           <div class="grid cols-3" style="gap:10px">
             <input name="raison" placeholder="Raison sociale" required value="Awenoria">
@@ -440,13 +434,12 @@ Droit français. Tribunaux compétents selon le droit commun.
       btn.textContent = 'Copié ✓'; setTimeout(()=>btn.textContent='Copier le modèle',1500);
     });
 
-    // Éditeur
-    function toggleFastEditor(){ const form = document.getElementById('fastEditor'); form.style.display = form.style.display==='none' ? 'block' : 'none'; }
-    function openFastEditor(){ toggleFastEditor(); hideAdvanced(); }
-    function openAdvancedEditor(){ toggleFastEditor(); showAdvanced(); }
-
+    // Éditeur visible
     function hideAdvanced(){ document.querySelectorAll('.advanced-only').forEach(el=>el.style.display='none'); }
     function showAdvanced(){ document.querySelectorAll('.advanced-only').forEach(el=>el.style.display='block')); }
+
+    function openFastEditor(){ hideAdvanced(); }
+    function openAdvancedEditor(){ showAdvanced(); }
 
     // Auto-complétion SIREN
     document.getElementById('fastEditor').siren?.addEventListener('blur', async (e) => {
@@ -501,107 +494,72 @@ Droit français. Tribunaux compétents selon le droit commun.
       navigator.clipboard.writeText(all).then(()=>alert('Tous les modèles ont été copiés !'));
     }
 
-    // Télécharger le pack conformité (avancé)
-    function downloadPack(){
-      const data = Object.fromEntries(new FormData(fastEditor).entries());
-      const zip = new JSZip();
-      zip.file("politique-confidentialite.html", document.getElementById('mdl-polconf').value);
-      zip.file("mentions-legales.html", document.getElementById('mdl-mentions').value);
-      zip.file("politique-cookies.html", document.getElementById('mdl-cookies').value);
-      zip.file("cookies-liste.csv", 'Nom,Finalité,Tiers,Durée\n'+document.getElementById('mdl-cookies').value.split('|').join(','));
-      zip.file("README-conformite.md", `# Pack conformité généré le ${new Date().toLocaleDateString('fr-FR')}
-- Responsable : ${data.raison}
-- Email RGPD : ${data.emailRGPD}
-- SIREN : ${data.siren}
-- Hébergeur : ${data.hebergeur}
-- Médiateur : ${data.mediateur||'non applicable'}
-`);
-      zip.generateAsync({type:"blob"}).then(blob=>{
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a'); a.href = url; a.download = `pack-conformite-${Date.now()}.zip`; a.click();
-      });
-    }
+    // Header/Footer loader (inchangé)
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const headMount = document.getElementById("header");
+      const footMount = document.getElementById("footer");
+      if (!headMount && !footMount) return;
 
-    // Preview split-pane (avancé)
-    function openSplitPane(){
-      const preview = document.getElementById('advancedPreview');
-      preview.style.display='grid';
-      const left = document.querySelector('#advancedPreview .left');
-      const right = document.querySelector('#advancedPreview iframe');
-      left.innerHTML='<h3>Modèles mis à jour</h3>'+Array.from(document.querySelectorAll('.model textarea')).map(t=>`<details><summary>${t.id}</summary><pre>`+t.value+'</pre></details>').join('');
-      right.src='data:text/html;charset=utf-8,'+encodeURIComponent('<h1>Preview</h1>'+document.getElementById('mdl-polconf').value);
-    }
-  </script>
-
-  <!-- Libs pour zip -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-
-  <!-- Header/Footer loader (inchangé) -->
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const headMount = document.getElementById("header");
-    const footMount = document.getElementById("footer");
-    if (!headMount && !footMount) return;
-
-    const isGh = /github\.io$/.test(location.hostname);
-    let base = "/";
-    if (isGh) {
-      const parts = location.pathname.split("/").filter(Boolean);
-      base = parts.length ? `/${parts[0]}/` : "/";
-    }
-
-    const candidates = (p) => {
-      const clean = p.replace(/^\//, "");
-      return [ base + clean, "./" + clean, "../" + clean ];
-    };
-
-    async function fetchAny(paths) {
-      const queue = paths.flatMap(candidates);
-      for (const u of queue) {
-        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+      const isGh = /github\.io$/.test(location.hostname);
+      let base = "/";
+      if (isGh) {
+        const parts = location.pathname.split("/").filter(Boolean);
+        base = parts.length ? `/${parts[0]}/` : "/";
       }
-      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
-    }
 
-    function fixRootUrls(container) {
-      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
-        .forEach(el => {
-          const attr = el.hasAttribute("href") ? "href" : "src";
-          const val = el.getAttribute(attr);
-          if (/^\/\//.test(val)) return;
-          el.setAttribute(attr, base + val.replace(/^\//, ""));
-        });
-    }
+      const candidates = (p) => {
+        const clean = p.replace(/^\//, "");
+        return [ base + clean, "./" + clean, "../" + clean ];
+      };
 
-    if (headMount) {
-      fetchAny(["header.html", "partials/header.html"])
-        .then(html => {
-          headMount.innerHTML = html;
-          fixRootUrls(headMount);
-          return fetchAny(["assets/nav.js", "nav.js"]);
-        })
-        .then(code => {
-          const s = document.createElement("script");
-          if (/\b(import|export)\b/.test(code)) s.type = "module";
-          s.textContent = code;
-          document.body.appendChild(s);
-          console.log("[awenoria] header + nav chargés");
-        })
-        .catch(err => {
-          console.error("Header load error:", err);
-          headMount.innerHTML = "<!-- Header introuvable -->";
-        });
-    }
+      async function fetchAny(paths) {
+        const queue = paths.flatMap(candidates);
+        for (const u of queue) {
+          try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+        }
+        throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+      }
 
-    if (footMount) {
-      fetchAny(["footer.html", "partials/footer.html"])
-        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
-        .catch(err => {
-          console.error("Footer load error:", err);
-          footMount.innerHTML = "<!-- Footer introuvable -->";
-        });
-    }
-  });
-  </script>
+      function fixRootUrls(container) {
+        container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+          .forEach(el => {
+            const attr = el.hasAttribute("href") ? "href" : "src";
+            const val = el.getAttribute(attr);
+            if (/^\/\//.test(val)) return;
+            el.setAttribute(attr, base + val.replace(/^\//, ""));
+          });
+      }
+
+      if (headMount) {
+        fetchAny(["header.html", "partials/header.html"])
+          .then(html => {
+            headMount.innerHTML = html;
+            fixRootUrls(headMount);
+            return fetchAny(["assets/nav.js", "nav.js"]);
+          })
+          .then(code => {
+            const s = document.createElement("script");
+            if (/\b(import|export)\b/.test(code)) s.type = "module";
+            s.textContent = code;
+            document.body.appendChild(s);
+            console.log("[awenoria] header + nav chargés");
+          })
+          .catch(err => {
+            console.error("Header load error:", err);
+            headMount.innerHTML = "<!-- Header introuvable -->";
+          });
+      }
+
+      if (footMount) {
+        fetchAny(["footer.html", "partials/footer.html"])
+          .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+          .catch(err => {
+            console.error("Footer load error:", err);
+            footMount.innerHTML = "<!-- Footer introuvable -->";
+          });
+      }
+    });
+    </script>
 </body>
 </html>
