@@ -2,153 +2,125 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Awenoria – Catalogue complet Services & Formations</title>
+<title>Awenoria – Magazine Conformité</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root{--cream:#F9F7F3;--violet:#5B2C6F;--orange:#FF6B00;--char:#222}
+  :root{--cream:#F9F7F3;--violet:#5B2C6F;--orange:#FF6B00;--grad:linear-gradient(135deg,var(--violet) 0%,var(--orange) 100%);--char:#222}
   *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
   body{background:var(--cream);font-family:'Inter',sans-serif;color:var(--char);line-height:1.6}
   h1,h2,h3{font-family:'Playfair Display',serif;font-weight:700}
-  header{text-align:center;padding:2rem 1rem;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.05)}
-  header h1{font-size:2.5rem;color:var(--violet)}
-  header p{font-size:1.1rem;margin-top:.5rem}
-  nav{padding:2rem 1rem;background:var(--cream)}
-  nav h2{font-size:2rem;margin-bottom:1.5rem;text-align:center;color:var(--violet)}
-  .col-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
-  .col{background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:1.5rem}
-  .col h3{margin-bottom:1rem;color:var(--orange);font-size:1.3rem}
-  .col ul{list-style:none;padding-left:0}
-  .col li{margin:.6rem 0;padding-left:1.2rem;position:relative}
-  .col li::before{content:"";position:absolute;left:0;top:.5em;width:8px;height:8px;background:var(--orange);border-radius:50%}
-  .col a.cta{display:inline-block;margin-top:1rem;background:var(--orange);color:#fff;padding:.6rem 1.2rem;border-radius:30px;font-size:.95rem;transition:background .3s}
-  .col a.cta:hover{background:#e55e00}
-  section{padding:3rem 1rem;max-width:1000px;margin:auto}
-  section h2{font-size:2rem;margin-bottom:2rem;color:var(--violet)}
-  .service-block{margin-bottom:3rem}
-  .service-block h3{font-size:1.5rem;margin-bottom:1rem;color:var(--orange)}
-  .service-block p{margin-bottom:1rem}
-  .service-block a.cta{display:inline-block;background:var(--orange);color:#fff;padding:.7rem 1.5rem;border-radius:30px;font-size:1rem;transition:background .3s}
-  .service-block a.cta:hover{background:#e55e00}
-  footer{text-align:center;padding:2rem 1rem;font-size:.9rem;color:#777}
+  section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:4rem 2rem;text-align:center}
+  .cover{background:var(--grad);color:#fff}
+  .cover h1{font-size:clamp(3rem,8vw,5rem);line-height:1.1}
+  .cover p{font-size:1.3rem;margin-top:1rem;opacity:.9}
+  .sommaire{background:#fff}
+  .sommaire h2{font-size:2.5rem;margin-bottom:2rem;color:var(--violet)}
+  .vignettes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem}
+  .vignette{background:var(--cream);border-radius:16px;padding:2rem;box-shadow:0 10px 30px rgba(0,0,0,.08);transition:transform .3s;text-decoration:none;color:inherit}
+  .vignette:hover{transform:translateY(-8px)}
+  .vignette img{width:100%;height:120px;object-fit:cover;border-radius:12px;margin-bottom:1rem}
+  .vignette h3{font-size:1.4rem;margin-bottom:.5rem;color:var(--violet)}
+  .editorial{background:#fff;padding:4rem 2rem}
+  .editorial h2{font-size:2rem;margin-bottom:1.5rem;color:var(--violet)}
+  .editorial p{font-size:1.1rem;line-height:1.8;margin-bottom:1.5rem;max-width:700px;margin-left:auto;margin-right:auto}
+  .editorial .cta{display:inline-block;background:var(--orange);color:#fff;padding:.8rem 1.8rem;border-radius:30px;font-size:1rem;transition:background .3s;text-decoration:none}
+  .editorial .cta:hover{background:#e55e00}
+  .nav{bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:1rem;position:fixed;z-index:20}
+  .nav a{background:#fff;color:var(--violet);padding:.6rem 1.2rem;border-radius:999px;text-decoration:none;font-weight:700;box-shadow:0 4px 20px rgba(0,0,0,.15)}
 </style>
 </head>
 
 <body>
-<header>
-  <h1>Awenoria</h1>
-  <p>Catalogue complet – Services & Formations</p>
-</header>
 
-<nav id="sommaire">
+<!-- 1 COVER -->
+<section id="cover" class="cover">
+  <h1>Awéboria</h1>
+  <p>Magazine conformité & IA – édition 2025</p>
+</section>
+
+<!-- 2 SOMMAIRE -->
+<section id="sommaire" class="sommaire">
   <h2>Sommaire</h2>
-  <div class="col-grid">
-    <div class="col">
-      <h3><a href="#services">Nos Services</a></h3>
-      <ul>
-        <li><a href="#audit">Audit & Analyse</a></li>
-        <li><a href="#weblegal">Web & Legal</a></li>
-        <li><a href="#rgpd">RGPD & Conformité</a></li>
-        <li><a href="#modeles">Modèles juridiques</a></li>
-        <li><a href="# accomp">Accompagnement sur mesure</a></li>
-        <li><a href="#ia">Conformité IA (UE)</a></li>
-        <li><a href="#formats">Formats & modalités</a></li>
-      </ul>
-      <a href="mailto:hello@awenoria.fr?subject=Catalogue Services" class="cta">Catalogue complet</a>
-    </div>
-    <div class="col">
-      <h3><a href="#formations">Nos Formations</a></h3>
-      <ul>
-        <li><a href="#atelier">Atelier 2 h</a></li>
-        <li><a href="#1jour">1 journée</a></li>
-        <li><a href="#2jours">2 jours</a></li>
-        <li><a href="#thématiques">Par thématique</a></li>
-        <li><a href="#publics">Par public</a></li>
-        <li><a href="#rgpdess">RGPD essentiels</a></li>
-        <li><a href="#cmp">Cookies & CMP</a></li>
-        <li><a href="#access">Accessibilité</a></li>
-        <li><a href="#cyber">Cybersécurité</a></li>
-        <li><a href="#iaact">IA Act</a></li>
-      </ul>
-      <a href="mailto:hello@awenoria.fr?subject=Programme Formations" class="cta">Toutes nos formations</a>
-    </div>
-  </div>
-</nav>
-
-<section id="services">
-  <h2>Nos Services</h2>
-
-  <div class="service-block" id="audit">
-    <h3>Audit & Analyse</h3>
-    <p>Audit flash ou complet, rapport détaillé, planning d’action, modèles prêts à l’emploi.</p>
-    <a href="mailto:hello@awenoria.fr?subject=Devis Audit&Analyse" class="cta">Demander un devis</a>
-  </div>
-
-  <div class="service-block" id="weblegal">
-    <h3>Web & Legal</h3>
-    <p>Conseil juridique digital, rédaction de mentions légales, CGV, CGU, politiques de confidentialité.</p>
-    <a href="mailto:hello@awenoria.fr?subject=Devis Web&Legal" class="cta">Demander un devis</a>
-  </div>
-
-  <div class="service-block" id="rgpd">
-    <h3>RGPD & Conformité</h3>
-    <p>Registre, AIPD, procédures, formation des équipes, mise en conformité complète.</p>
-    <a href="mailto:hello@awenoria.fr?subject=Devis RGPD" class="cta">Demander un devis</a>
-  </div>
-
-  <div class="service-block" id="modeles">
-    <h3>Modèles juridiques</h3>
-    <p>Bibliothèque de contrats, clauses, politiques, mises à jour incluses. Abonnement ou à la carte.</p>
-    <a href="mailto:hello@awenoria.fr?subject=Catalogue Modèles" class="cta">Voir les modèles</a>
-  </div>
-
-  <div class="service-block" id="accomp">
-    <h3>Accompagnement sur mesure</h3>
-    <p>Mission « carte blanche » : objectifs, planning, livrables, forfait ou journalier.</p>
-    <a href="mailto:hello@awenoria.fr?subject=Mission sur mesure" class="cta">Nous contacter</a>
-  </div>
-
-  <div class="service-block" id="ia">
-    <h3>Conformité IA (UE)</h3>
-    <p>IA Act : documentation, évaluation des risques, gouvernance, formation des équipes.</p>
-    <a href="mailto:hello@awenoria.fr?subject=Devis IA Act" class="cta">Devis IA Act</a>
+  <div class="vignettes">
+    <a href="#page1" class="vignette">
+      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=60" alt="services">
+      <h3>Services</h3>
+      <p>Audit, RGPD, Web&Legal, IA Act</p>
+    </a>
+    <a href="#page2" class="vignette">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=60" alt="formations">
+      <h3>Formations</h3>
+      <p>Ateliers, thématiques, publics</p>
+    </a>
+    <a href="#page3" class="vignette">
+      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b386?auto=format&fit=crop&w=800&q=60" alt="audit">
+      <h3>Audit express</h3>
+      <p>Diagnostic 2 h + rapport</p>
+    </a>
+    <a href="#page4" class="vignette">
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba02777871?auto=format&fit=crop&w=800&q=60" alt="IA">
+      <h3>IA Act</h3>
+      <p>Obligations & documentation</p>
+    </a>
   </div>
 </section>
 
-<section id="formations">
-  <h2>Nos Formations</h2>
-
-  <div class="service-block" id="atelier">
-    <h3>Atelier 2 h</h3>
-    <p>Parfait pour les équipes pressées. Thèmes : RGPD, cookies, accessibilité, cybersécurité. Présentiel ou distanciel.</p>
-    <a href="mailto:hello@awenoria.fr?subject=Programme Atelier 2h" class="cta">Voir le programme</a>
-  </div>
-
-  <div class="service-block" id="1jour">
-    <h3>1 journée</h3>
-    <p>Formation immersive avec études de cas, ateliers pratiques, supports fournis.</p>
-    <a href="mailto:hello@awenoria.fr?subject=Programme 1 jour" class="cta">Voir le programme</a>
-  </div>
-
-  <div class="service-block" id="2jours">
-    <h3>2 jours</h3>
-    <p>Session complète : théorie + pratique + mise en situation + questionnaire de contrôle.</p>
-    <a href="mailto:hello@awenoria.fr?subject=Programme 2 jours" class="cta">Voir le programme</a>
-  </div>
-
-  <div class="service-block" id="thématiques">
-    <h3>Par thématique</h3>
-    <p>RGPD essentiels, registre, AIPD, cookies & CMP, accessibilité (RGAA), cybersécurité de base, IA Act.</p>
-    <a href="mailto:hello@awenoria.fr?subject=Programme par thématique" class="cta">Toutes les thématiques</a>
-  </div>
-
-  <div class="service-block" id="publics">
-    <h3>Par public</h3>
-    <p>Dirigeants & responsables, équipes opérationnelles, référents/DPO, dev/produit/data.</p>
-    <a href="mailto:hello@awenoria.fr?subject=Programme par public" class="cta">Choisir mon public</a>
-  </div>
+<!-- 3 PAGE 1 – SERVICES -->
+<section id="page1" class="editorial">
+  <h2>Services clés en main</h2>
+  <p>
+    <strong>Audit & Analyse</strong> – diagnostic rapide, rapport détaillé, planning d’action.<br>
+    <strong>RGPD & conformité</strong> – registre, AIPD, cookies, formation des équipes.<br>
+    <strong>Web & Legal</strong> – mentions légales, CMP, accessibilité (RGAA / EN 301 549).<br>
+    <strong>Conformité IA</strong> – IA Act UE, documentation, gouvernance, classification des risques.
+  </p>
+  <a href="mailto:hello@awenoria.fr?subject=Devis Services" class="cta">Demander un devis</a>
 </section>
 
-<footer>© 2025 Awenoria – Tous droits réservés</footer>
+<!-- 4 PAGE 2 – FORMATIONS -->
+<section id="page2" class="editorial">
+  <h2>Formations sur mesure</h2>
+  <p>
+    <strong>Atelier 2 h</strong> – express & opérationnel.<br>
+    <strong>1 journée</strong> – théorie + mise en pratique.<br>
+    <strong>2 jours</strong> – parcours complet avec études de cas.<br>
+    <strong>Thématiques</strong> : RGPD, cookies, accessibilité, cybersécurité, IA Act.<br>
+    <strong>Publics</strong> : dirigeants, DPO, devs, opérationnels.
+  </p>
+  <a href="mailto:hello@awenoria.fr?subject=Programme Formations" class="cta">Voir le programme</a>
+</section>
+
+<!-- 5 PAGE 3 – AUDIT EXPRESS -->
+<section id="page3" class="editorial">
+  <h2>Audit express</h2>
+  <p>
+    En 2 h, nous scanneons votre site ou votre activité : mentions légales, cookies, RGPD, accessibilité, IA Act.
+    Vous recevez un rapport clair avec priorités & corrections à faire.
+  </p>
+  <a href="mailto:hello@awenoria.fr?subject=Audit Express" class="cta">Lancer mon audit</a>
+</section>
+
+<!-- 6 PAGE 4 – IA ACT -->
+<section id="page4" class="editorial">
+  <h2>IA Act – prêt·e ?</h2>
+  <p>
+    L’IA Act entre en vigueur : classification des risques, documentation, gouvernance, formation des équipes.
+    Nous vous accompagnons pour être « compliant » avant l’échéance.
+  </p>
+  <a href="mailto:hello@awenoria.fr?subject=IA Act" class="cta">Évaluer mon projet IA</a>
+</section>
+
+<!-- NAVIGATION FIXE -->
+<div class="nav">
+  <a href="#cover">↑</a>
+  <a href="#sommaire">Sommaire</a>
+  <a href="#page1">Services</a>
+  <a href="#page2">Formations</a>
+  <a href="#page3">Audit</a>
+  <a href="#page4">IA Act</a>
+</div>
+
 </body>
 </html>
