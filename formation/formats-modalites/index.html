@@ -13,41 +13,37 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16.png">
 
-  <!-- CSS global (chemin correct depuis /formation/) -->
-  <link rel="stylesheet" href="../assets/awenoria.css?v=1">
+  <!-- Tentative standard (chemin relatif supposé) -->
+  <link id="awenoriaCss" rel="stylesheet" href="../assets/awenoria.css?v=1">
 
-  <!-- CRITICAL CSS NAV (sécurise l’affichage même sans le CSS global) -->
+  <!-- Garde-fou initial (empêche les menus de s’ouvrir en vrac si le CSS global rate) -->
   <style>
     :root{--font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--text:#0f5f9a;--muted:#4a6176;--copper:#ff8a3d;--maxw:1100px}
     *{box-sizing:border-box} html,body{height:100%}
     body{margin:0;font-family:var(--font);color:var(--text);
-      background:
-        radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),
-        linear-gradient(180deg,#fff 0%,#f6f9fc 100%);
-      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-    }
+      background:radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),
+                 linear-gradient(180deg,#fff 0%,#f6f9fc 100%);}
+    /* liens par défaut si le CSS global manque */
+    a{color:inherit;text-decoration:none}
 
-    /* --- Header “safe” --- */
+    /* Header minimal sûr */
     header.navbar{position:sticky;top:0;z-index:1100;background:#fff;border-bottom:1px solid rgba(15,23,32,.08)}
     .nav-wrap{max-width:1200px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+    .brand{display:flex;align-items:center;gap:10px}
     .brand-img{height:64px;display:block}
     .nav-main{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
-    .nav-main a,.nav-main button{
-      appearance:none;background:none;border:none;cursor:pointer;color:inherit;text-decoration:none;
-      font-weight:800;font-size:16px;height:40px;line-height:40px;padding:0 12px;border-radius:10px;display:inline-flex;align-items:center;gap:6px
-    }
+    .nav-main a,.nav-main button{appearance:none;background:none;border:none;cursor:pointer;
+      color:inherit;font-weight:800;font-size:16px;height:40px;line-height:40px;padding:0 12px;border-radius:10px;display:inline-flex;align-items:center;gap:6px}
     .nav-main a:hover,.nav-main button:hover{background:rgba(27,136,255,.10)}
     .nav-actions{display:flex;align-items:center;gap:8px}
     .account-btn{display:grid;place-content:center;width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid rgba(15,23,32,.12);cursor:pointer}
-
-    /* Dropdown states (FOUC guard) */
+    /* FOUC guards */
     .mega{position:absolute;display:none}
     .mega.open{display:block}
     .account-menu{position:absolute;display:none}
     .account-menu.open{display:flex}
 
-    /* --- HERO --- */
+    /* HERO bleu + canvas */
     .hero{
       position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;
       text-align:center;color:#fff;overflow:hidden;
@@ -59,19 +55,17 @@
     }
     .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
     .hero .content{position:relative;z-index:2;max-width:860px;padding:0 20px}
-    .hero .back{display:inline-block;margin-bottom:10px;color:#eaf3ff;opacity:.9;text-decoration:none;font-weight:800;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08)}
     h1{font-weight:800;font-size:clamp(28px,6vw,48px);margin:6px 0}
     .lead{color:#e8f0ff;font-weight:600}
     .underline{width:84px;height:4px;border-radius:999px;background:var(--copper);margin:12px auto 22px;opacity:.95}
 
-    /* --- Contenu --- */
+    /* Contenu */
     .wrap{max-width:var(--maxw);margin:28px auto;padding:0 20px}
     h2{font-weight:800;font-size:clamp(18px,2.8vw,26px);margin:6px 0 12px}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
     .card{background:rgba(255,255,255,.86);border:1px solid rgba(15,23,32,.08);border-radius:22px;padding:18px;box-shadow:0 12px 28px rgba(0,0,0,.08)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1px solid transparent;background:rgba(27,136,255,.80);color:#fff;text-decoration:none}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1px solid transparent;background:rgba(27,136,255,.80);color:#fff}
     .note{color:var(--muted);font-size:14px}
-    .section{margin-top:18px}
   </style>
 </head>
 <body>
@@ -83,7 +77,6 @@
   <section class="hero">
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="content">
-      <a class="back" href="../formation/index.html">← Retour “Nos formations”</a>
       <h1>Formats & modalités</h1>
       <p class="lead">Choisissez un format ou une modalité pour afficher le catalogue filtré.</p>
     </div>
@@ -93,13 +86,13 @@
     <div class="underline"></div>
 
     <!-- Formats -->
-    <section class="section">
+    <section>
       <h2>Formats</h2>
       <div class="grid" id="formats"></div>
     </section>
 
     <!-- Modalités -->
-    <section class="section">
+    <section style="margin-top:18px">
       <h2>Modalités</h2>
       <div class="grid" id="modalites"></div>
     </section>
@@ -111,60 +104,48 @@
   <!-- CONTENU DYNAMIQUE -->
   <script type="module">
     const FORMATS = {
-      "atelier-2h": { title: "Atelier 2h", desc: "Focus rapide et opérationnel sur un sujet clé avec exercices." },
-      "demi-journee": { title: "1/2 journée", desc: "Module condensé pour lancer ou approfondir un thème prioritaire." },
-      "journee": { title: "1 journée", desc: "Formation complète avec mise en pratique et livrables." },
-      "parcours": { title: "Parcours", desc: "Programme modulaire sur plusieurs séances avec suivi." }
+      "atelier-2h": { title:"Atelier 2h", desc:"Focus rapide et opérationnel sur un sujet clé avec exercices." },
+      "demi-journee": { title:"1/2 journée", desc:"Module condensé pour lancer ou approfondir un thème prioritaire." },
+      "journee": { title:"1 journée", desc:"Formation complète avec mise en pratique et livrables." },
+      "parcours": { title:"Parcours", desc:"Programme modulaire sur plusieurs séances avec suivi." }
     };
     const MODALITES = {
-      "presentiel": { title: "Présentiel", desc: "Animation sur site, interaction forte, ateliers en salle." },
-      "distanciel": { title: "Distanciel", desc: "Classes virtuelles en visioconférence, supports partagés." }
+      "presentiel": { title:"Présentiel", desc:"Animation sur site, interaction forte, ateliers en salle." },
+      "distanciel": { title:"Distanciel", desc:"Classes virtuelles en visioconférence, supports partagés." }
     };
     document.getElementById("formats").innerHTML = Object.entries(FORMATS).map(([k,v]) => `
       <article class="card">
         <h3 style="margin:0 0 6px">${v.title}</h3>
         <p class="note">${v.desc}</p>
-        <p style="margin-top:10px">
-          <a class="btn" href="liste.html?format=${encodeURIComponent(k)}">Voir les formations</a>
-        </p>
-      </article>
-    `).join("");
+        <p style="margin-top:10px"><a class="btn" href="liste.html?format=${encodeURIComponent(k)}">Voir les formations</a></p>
+      </article>`).join("");
     document.getElementById("modalites").innerHTML = Object.entries(MODALITES).map(([k,v]) => `
       <article class="card">
         <h3 style="margin:0 0 6px">${v.title}</h3>
         <p class="note">${v.desc}</p>
-        <p style="margin-top:10px">
-          <a class="btn" href="liste.html?modalite=${encodeURIComponent(k)}">Voir les formations</a>
-        </p>
-      </article>
-    `).join("");
+        <p style="margin-top:10px"><a class="btn" href="liste.html?modalite=${encodeURIComponent(k)}">Voir les formations</a></p>
+      </article>`).join("");
   </script>
 
   <!-- Canvas particules -->
   <script>
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    let w = canvas.width = innerWidth;
-    let h = canvas.height = innerHeight;
-    const particles = [];
-    const opts = { count:60, speed:.3, radius:2, distance:120, color:'rgba(255,255,255,.25)' };
-    addEventListener('resize', () => { w = canvas.width = innerWidth; const hero = canvas.parentElement; h = canvas.height = hero.offsetHeight; });
-    class Particle{
-      constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
-      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
-      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
-      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
-    }
-    for(let i=0;i<opts.count;i++) particles.push(new Particle());
-    (function loop(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(loop); })();
+    const c = document.getElementById('canvas'), x = c.getContext('2d');
+    let w = c.width = innerWidth, h = c.height = innerHeight;
+    const P = [], K = {n:60, v:.3, r:2, d:120};
+    addEventListener('resize', ()=>{ w=c.width=innerWidth; h=c.height=c.parentElement.offsetHeight; });
+    class Dot{constructor(){this.x=Math.random()*w;this.y=Math.random()*h;this.vx=(Math.random()-.5)*K.v;this.vy=(Math.random()-.5)*K.v}
+      step(){this.x+=this.vx;this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1}
+      draw(){x.beginPath();x.arc(this.x,this.y,K.r,0,Math.PI*2);x.fillStyle='rgba(255,255,255,.25)';x.fill()}
+      link(){for(const q of P){const d=Math.hypot(this.x-q.x,this.y-q.y); if(d<K.d){x.beginPath();x.moveTo(this.x,this.y);x.lineTo(q.x,q.y);x.strokeStyle=`rgba(255,255,255,${1-d/K.d})`;x.stroke();}}}}
+    for(let i=0;i<K.n;i++) P.push(new Dot());
+    (function loop(){x.clearRect(0,0,w,h); P.forEach(p=>{p.step();p.draw();p.link()}); requestAnimationFrame(loop)})();
   </script>
 
-  <!-- Loader header/footer + nav (robuste sous-dossiers + GH Pages, avec réécriture URL absolue) -->
+  <!-- Loader header/footer + nav (+ réécriture chemins) -->
   <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  (function(){
     const headMount = document.getElementById("header");
     const footMount = document.getElementById("footer");
-    if (!headMount && !footMount) return;
 
     const isGh = /github\.io$/.test(location.hostname);
     let basePath = "/";
@@ -173,15 +154,14 @@
       basePath = parts.length ? `/${parts[0]}/` : "/";
     }
     const baseAbs = location.origin + basePath;
-
     const candidates = (p) => {
-      const clean = p.replace(/^\//, "");
-      return [ basePath + clean, "./" + clean, "../" + clean ];
+      const clean = p.replace(/^\//,"");
+      return [ basePath + clean, "./" + clean, "../" + clean, "../../" + clean ];
     };
     async function fetchAny(paths){
       const queue = paths.flatMap(candidates);
       for (const u of queue){
-        try{ const r = await fetch(u, { cache:"no-cache" }); if (r.ok) return r.text(); }catch(_){}
+        try{ const r = await fetch(u,{cache:"no-cache"}); if (r.ok) return r.text(); }catch(_){}
       }
       return null;
     }
@@ -189,14 +169,14 @@
       container.querySelectorAll('a[href], img[src], link[href], script[src]').forEach(el=>{
         const attr = el.hasAttribute("href") ? "href" : "src";
         const val = el.getAttribute(attr);
-        if (!val) return;
-        if (/^(https?:)?\/\//i.test(val) || val.startsWith("#") || /^mailto:|^tel:/i.test(val)) return;
+        if (!val || /^(https?:)?\/\//i.test(val) || val.startsWith("#") || /^mailto:|^tel:/i.test(val)) return;
         try{ el.setAttribute(attr, new URL(val, baseAbs).href); }
         catch(_){ el.setAttribute(attr, baseAbs + val.replace(/^\.\//,"").replace(/^\//,"")); }
       });
     }
 
-    (async () => {
+    // Inject header + nav.js (une seule fois)
+    (async()=>{
       const html = await fetchAny(["partials/header.html","header.html"]);
       headMount.innerHTML = html || "<!-- Header introuvable -->";
       if (html){ absolutize(headMount); }
@@ -205,19 +185,40 @@
         const code = await fetchAny(["assets/nav.js","nav.js"]);
         if (code){
           const s = document.createElement("script");
-          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          if (/\b(import|export)\b/.test(code)) s.type="module";
           s.textContent = code;
           document.body.appendChild(s);
         }
       }
     })();
 
-    (async () => {
+    // Inject footer
+    (async()=>{
       const html = await fetchAny(["partials/footer.html","footer.html"]);
       footMount.innerHTML = html || "<!-- Footer introuvable -->";
       if (html){ absolutize(footMount); }
     })();
-  });
+
+    // === Fallback CSS global : si le <link> a raté, on va le chercher et on l’injecte en <style> ===
+    (async()=>{
+      const probe = document.getElementById('awenoriaCss');
+      let loaded = false;
+      if (probe) {
+        probe.addEventListener('load', ()=> loaded = true);
+        probe.addEventListener('error', ()=> loaded = false);
+        // courte attente pour laisser une chance au link
+        await new Promise(r=>setTimeout(r, 50));
+        loaded = !![...document.styleSheets].find(s=> (s.href||"").includes("awenoria.css"));
+      }
+      if (!loaded){
+        const cssText = await fetchAny(["assets/awenoria.css","../assets/awenoria.css","../../assets/awenoria.css"]);
+        if (cssText){
+          const st = document.createElement("style"); st.textContent = cssText;
+          document.head.appendChild(st);
+        }
+      }
+    })();
+  })();
   </script>
 </body>
 </html>
