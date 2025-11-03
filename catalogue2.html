@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Catalogue | Awenoria – Le spectacle du conforme</title>
-  <meta name="description" content="Services et formations en live : clés en main, formats courts, ambiances festival.">
+  <title>Catalogue | Awenoria – Le globe du conforme</title>
+  <meta name="description" content="Services et formations qui tournent en boucle : vivez le conforme en live.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,40 +81,45 @@
       max-width: 600px;
     }
 
-    /* ---------- CARROUSEL TOURNANT ---------- */
-    @keyframes spinRight {
-      from { transform: translateX(0) rotate(0deg) }
-      to   { transform: translateX(-100%) rotate(360deg) }
-    }
-    @keyframes spinLeft {
-      from { transform: translateX(0) rotate(360deg) }
-      to   { transform: translateX(-100%) rotate(0deg) }
-    }
-
-    .carousel {
-      overflow: hidden; /* on cache la scrollbar pour l’effet « roue » */
+    /* ---------- GLOBE TOURNANT (VERTICAL) ---------- */
+    .globe {
+      height: 420px; /* ≈ 3 cartes visibles */
+      overflow: hidden;
       position: relative;
-      width: 100%;
+      perspective: 1000px; /* effet 3D doux */
     }
-    .carousel-track {
+    .globe-track {
       display: flex;
-      gap: 24px;
-      width: max-content;
+      flex-direction: column;
+      gap: 20px;
       will-change: transform;
     }
-    #services .carousel-track {
-      animation: spinRight 25s linear infinite;
+    /* Sens de rotation */
+    .globe-track[data-direction="down"] {
+      animation: globeDown 12s linear infinite;
     }
-    #formations .carousel-track {
-      animation: spinLeft 25s linear infinite;
+    .globe-track[data-direction="up"] {
+      animation: globeUp 12s linear infinite;
     }
-    .carousel:hover .carousel-track,
-    .carousel:active .carousel-track {
+    /* Pause au survol / touch */
+    .globe:hover .globe-track,
+    .globe:active .globe-track {
       animation-play-state: paused;
     }
+    @keyframes globeDown {
+      from { transform: translateY(-33.333%) }
+      to { transform: translateY(0) }
+    }
+    @keyframes globeUp {
+      from { transform: translateY(0) }
+      to { transform: translateY(-33.333%) }
+    }
 
-    .card-slide {
-      flex: 0 0 320px;
+    /* Cartes */
+    .globe-card {
+      flex: 0 0 auto;
+      width: 320px;
+      margin: 0 auto;
       background: #fff;
       border: 1px solid rgba(15,23,32,.08);
       border-radius: 20px;
@@ -123,23 +128,23 @@
       display: flex;
       flex-direction: column;
     }
-    .card-slide img {
+    .globe-card img {
       width: 100%;
       height: 180px;
       object-fit: cover;
     }
-    .card-slide figcaption {
+    .globe-card figcaption {
       padding: 24px;
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-    .card-slide h3 {
+    .globe-card h3 {
       margin: 0 0 6px;
       font-size: 1.2rem;
     }
-    .card-slide p {
+    .globe-card p {
       margin: 0 0 16px;
       color: #4a6176;
       font-size: .95rem;
@@ -202,15 +207,15 @@
     </div>
   </section>
 
-  <!-- ===== SERVICES ---------- -->
+  <!-- ===== SERVICES – GLOBE HORAIRE ---------- -->
   <section id="services" class="block">
     <h2>On vous met sous les projecteurs</h2>
-    <p class="lead">Conformité, accessibilité, cybersécurité : vos sujets critiques deviennent spectaculaires</p>
+    <p class="lead">Conformité, accessibilité, cybersécurité : vos sujets critiques défilent devant vous</p>
 
-    <div class="carousel" role="region" aria-label="Tous nos services" tabindex="0">
-      <div class="carousel-track">
-        <!-- 1 -->
-        <figure class="card-slide">
+    <div class="globe" aria-label="Tous nos services">
+      <div class="globe-track" data-direction="down">
+        <!-- Copie 1 (visible) -->
+        <figure class="globe-card">
           <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>RGPD Live</h3>
@@ -219,8 +224,7 @@
           </figcaption>
         </figure>
 
-        <!-- 2 -->
-        <figure class="card-slide">
+        <figure class="globe-card">
           <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>Accessibilité Show</h3>
@@ -229,8 +233,7 @@
           </figcaption>
         </figure>
 
-        <!-- 3 -->
-        <figure class="card-slide">
+        <figure class="globe-card">
           <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>Cyber Night</h3>
@@ -239,48 +242,46 @@
           </figcaption>
         </figure>
 
-        <!-- 4 -->
-        <figure class="card-slide">
-          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=400&q=60" alt="">
+        <!-- Copie 2 (boucle) -->
+        <figure class="globe-card">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
-            <h3>Cookies Party</h3>
-            <p>Bandeau & CMP en rythme.</p>
-            <a class="btn-soft" href="Nos-services.html#cookies">Je prends ma place</a>
+            <h3>RGPD Live</h3>
+            <p>L’audit qui finit en standing ovation.</p>
+            <a class="btn-soft" href="Nos-services.html#rgpd">Je prends ma place</a>
           </figcaption>
         </figure>
 
-        <!-- 5 -->
-        <figure class="card-slide">
-          <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=400&q=60" alt="">
+        <figure class="globe-card">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
-            <h3>Diagnostic Premiere</h3>
-            <p>Le grand écran de vos priorités.</p>
-            <a class="btn-soft" href="Nos-services.html#diagnostic">Je prends ma place</a>
+            <h3>Accessibilité Show</h3>
+            <p>Devenez conforme en un solo.</p>
+            <a class="btn-soft" href="Nos-services.html#access">Je prends ma place</a>
           </figcaption>
         </figure>
 
-        <!-- 6 -->
-        <figure class="card-slide">
-          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&q=60" alt="">
+        <figure class="globe-card">
+          <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
-            <h3>Legal Remix</h3>
-            <p>Mentions légales version hit.</p>
-            <a class="btn-soft" href="Nos-services.html#web-legal">Je prends ma place</a>
+            <h3>Cyber Night</h3>
+            <p>La crise devient scénario.</p>
+            <a class="btn-soft" href="Nos-services.html#cyber">Je prends ma place</a>
           </figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- ===== FORMATIONS ---------- -->
+  <!-- ===== FORMATIONS – GLOBE ANTI-HORAIRE ---------- -->
   <section id="formations" class="block">
     <h2>On vous donne le micro</h2>
     <p class="lead">Formats courts, interactifs, avec souvenirs à emporter</p>
 
-    <div class="carousel" role="region" aria-label="Toutes nos formations" tabindex="0">
-      <div class="carousel-track">
-        <!-- 1 -->
-        <figure class="card-slide">
+    <div class="globe" aria-label="Toutes nos formations">
+      <div class="globe-track" data-direction="up">
+        <!-- Copie 1 (visible) -->
+        <figure class="globe-card">
           <img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>RGPD Express</h3>
@@ -289,8 +290,7 @@
           </figcaption>
         </figure>
 
-        <!-- 2 -->
-        <figure class="card-slide">
+        <figure class="globe-card">
           <img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>IA Act Day</h3>
@@ -299,8 +299,7 @@
           </figcaption>
         </figure>
 
-        <!-- 3 -->
-        <figure class="card-slide">
+        <figure class="globe-card">
           <img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>Access Night</h3>
@@ -309,33 +308,31 @@
           </figcaption>
         </figure>
 
-        <!-- 4 -->
-        <figure class="card-slide">
-          <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=400&q=60" alt="">
+        <!-- Copie 2 (boucle) -->
+        <figure class="globe-card">
+          <img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
-            <h3>Cyber Stage</h3>
-            <p>La sécurité en stand-up.</p>
-            <a class="btn-soft" href="formation/cyber.html">Je réserve ma date</a>
+            <h3>RGPD Express</h3>
+            <p>2 h chrono, 100 % live.</p>
+            <a class="btn-soft" href="formation/rgpd-2h.html">Je réserve ma date</a>
           </figcaption>
         </figure>
 
-        <!-- 5 -->
-        <figure class="card-slide">
-          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=400&q=60" alt="">
+        <figure class="globe-card">
+          <img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
-            <h3>Cookies Live</h3>
-            <p>Bandeau & CMP en live coding.</p>
-            <a class="btn-soft" href="formation/cookies.html">Je réserve ma date</a>
+            <h3>IA Act Day</h3>
+            <p>Le cadre européen en one-man-show.</p>
+            <a class="btn-soft" href="formation/ia-act.html">Je réserve ma date</a>
           </figcaption>
         </figure>
 
-        <!-- 6 -->
-        <figure class="card-slide">
-          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&q=60" alt="">
+        <figure class="globe-card">
+          <img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
-            <h3>Legal Remix</h3>
-            <p>Mentions légales version acoustic.</p>
-            <a class="btn-soft" href="formation/web-legal.html">Je réserve ma date</a>
+            <h3>Access Night</h3>
+            <p>Devenez conforme sous les projecteurs.</p>
+            <a class="btn-soft" href="formation/access.html">Je réserve ma date</a>
           </figcaption>
         </figure>
       </div>
