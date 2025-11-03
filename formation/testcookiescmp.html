@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Fiche formation – Awenoria</title>
+  <meta name="description" content="Détail de la formation : objectifs, programme, durée, modalités. Présentiel / distanciel, supports et attestation inclus." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32.png">
+
+  <!-- Polices -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS globale (styles header/footer + base site) -->
+  <link rel="stylesheet" href="../../assets/awenoria.css">
+
+  <style>
+    /* ===== Variables & bases (identiques à la page modèle) ===== */
+    :root{
+      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
+      --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
+      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+      --transition:.6s cubic-bezier(.22,1,.36,1);
+    }
+    @media (prefers-color-scheme:dark){
+      :root{
+        --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
+        --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+      }
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;
+      line-height:1.7; color:var(--aw-ink); background:var(--aw-bg);
+      -webkit-font-smoothing:antialiased; overflow-x:hidden;
+    }
+
+    /* ===== Hero bleu + formes géométriques (même rendu) ===== */
+    .hero{
+      position:relative; min-height:46vh; display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff; overflow:hidden;
+      background:
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+    }
+    .hero canvas{ position:absolute; inset:0; width:100%; height:100%; z-index:0; }
+    .hero .content{ position:relative; z-index:2; max-width:900px; padding:0 20px; animation:fadeInUp 1s both; }
+    .hero h1{ font-size:clamp(42px,6vw,64px); font-weight:800; line-height:1.05; letter-spacing:-.02em; }
+    .hero .lead{ font-size:1.25rem; font-weight:500; margin:18px auto 0; color:#e8f0ff; }
+    .hero .actions{ margin-top:26px; display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+
+    .btn{ display:inline-flex; align-items:center; justify-content:center; font-weight:800; font-size:17px;
+      padding:14px 26px; border-radius:999px; text-decoration:none; transition:all var(--transition);
+      border:1px solid transparent; box-shadow:0 8px 24px rgba(0,0,0,.10); }
+    .btn.primary{ background:var(--aw-copper); color:#fff; box-shadow:0 10px 30px rgba(255,138,61,.30); }
+    .btn.primary:hover{ transform:translateY(-3px); box-shadow:0 14px 40px rgba(255,138,61,.40); }
+    .btn.ghost{ background:transparent; color:#fff; border:2px solid rgba(255,255,255,.45); }
+    .btn.ghost:hover{ background:rgba(255,255,255,.15); }
+
+    /* Formes géométriques flottantes (identiques) */
+    .hero-geo{ position:absolute; inset:0; pointer-events:none; z-index:1; overflow:hidden; }
+    .hero-geo .g{ position:absolute; width:64px; height:64px; opacity:.18; filter:blur(.2px);
+      animation:geoFloat var(--dur,18s) cubic-bezier(.22,1,.36,1) infinite; will-change:transform,opacity; }
+    .hero-geo .circle{ border-radius:50%; border:3px solid rgba(255,255,255,.65); }
+    .hero-geo .square{ border:3px solid rgba(255,255,255,.5); border-radius:14px; }
+    .hero-geo .triangle{ --s:64px; width:var(--s); height:var(--s); clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
+      box-shadow:inset 0 0 0 3px rgba(255,255,255,.55); border-radius:8px; background:transparent; }
+    .hero-geo .diamond{ border:3px solid rgba(255,255,255,.55); transform:rotate(45deg); animation-name:geoFloatDiamond; }
+    .hero-geo .g:nth-child(1){ left:6%;  top:12%;  --dur:22s; --scale:.9 }
+    .hero-geo .g:nth-child(2){ left:78%; top:18%;  --dur:26s; --scale:1.1 }
+    .hero-geo .g:nth-child(3){ left:16%; top:64%;  --dur:24s; --scale:.85 }
+    .hero-geo .g:nth-child(4){ left:88%; top:68%;  --dur:20s; --scale:.95 }
+    .hero-geo .g:nth-child(5){ left:44%; top:8%;   --dur:28s; --scale:.8 }
+    .hero-geo .g:nth-child(6){ left:54%; top:72%;  --dur:23s; --scale:1.0 }
+    .hero-geo .g:nth-child(7){ left:28%; top:36%;  --dur:25s; --scale:1.2 }
+    .hero-geo .g:nth-child(8){ left:70%; top:44%;  --dur:27s; --scale:.9 }
+    @keyframes geoFloat{
+      0%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.12}
+      25%{transform:translate3d(20px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.22}
+      50%{transform:translate3d(-10px,-60px,0) scale(var(--scale,1)) rotate(12deg); opacity:.2}
+      75%{transform:translate3d(-30px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.24}
+      100%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.18}
+    }
+    @keyframes geoFloatDiamond{
+      0%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.14}
+      25%{transform:rotate(55deg) translate3d(18px,-30px,0) scale(var(--scale,1)); opacity:.22}
+      50%{transform:rotate(65deg) translate3d(-12px,-60px,0) scale(var(--scale,1)); opacity:.2}
+      75%{transform:rotate(55deg) translate3d(-28px,-30px,0) scale(var(--scale,1)); opacity:.24}
+      100%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.18}
+    }
+    @media (prefers-reduced-motion: reduce){ .hero-geo .g{ animation:none; opacity:.15 } }
+
+    /* ===== Sections / cartes (fiche) ===== */
+    .section{ max-width:1200px; margin:0 auto; padding:80px 20px; }
+    .section.alt{ background:var(--aw-bg); }
+    .subtitle-center{ font-size:1.05rem; color:var(--aw-muted); max-width:760px; margin:0 auto 28px; text-align:center; }
+
+    .breadcrumbs{ display:flex; gap:8px; justify-content:center; color:#e8f0ff; opacity:.95; font-weight:700; margin-top:10px; }
+    .breadcrumbs a{ color:#e8f0ff; text-decoration:underline; }
+
+    .grid{ display:grid; grid-template-columns:2fr 1fr; gap:24px; }
+    @media (max-width:980px){ .grid{ grid-template-columns:1fr } }
+
+    .card{
+      background:var(--aw-panel); border:1px solid rgba(15,23,32,.08); border-radius:var(--aw-radius);
+      padding:24px; box-shadow:var(--shadow);
+    }
+    .card h2{ margin:0 0 10px }
+
+    .meta{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:14px }
+    .tag{ border:1px solid rgba(15,23,32,.12); border-radius:999px; padding:6px 10px; font-size:12px; font-weight:800; background:rgba(27,136,255,.06) }
+
+    .note{ color:var(--aw-muted); font-size:14px }
+    .back{ display:inline-flex; align-items:center; gap:6px }
+
+    @keyframes fadeInUp{ from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none} }
+  </style>
+</head>
+
+<body class="page-fiche">
+  <!-- Header injecté -->
+  <div id="header"></div>
+
+  <!-- ===== HERO (titre/pitch dynamiques) ===== -->
+  <section class="hero">
+    <canvas id="canvas" aria-hidden="true"></canvas>
+
+    <!-- Formes géométriques -->
+    <div class="hero-geo" aria-hidden="true">
+      <span class="g circle"></span><span class="g square"></span><span class="g triangle"></span><span class="g diamond"></span>
+      <span class="g circle"></span><span class="g square"></span><span class="g triangle"></span><span class="g diamond"></span>
+    </div>
+
+    <div class="content">
+      <nav class="breadcrumbs" aria-label="Fil d'Ariane">
+        <a href="../liste.html" id="crumb-mid">Catalogue</a>
+        <span aria-hidden="true">›</span>
+        <span id="crumb-leaf">Fiche</span>
+      </nav>
+      <h1 id="course-title">Titre formation</h1>
+      <p id="course-pitch" class="lead">Résumé personnalisé selon l’origine (thématique / public).</p>
+      <div id="course-meta" class="meta"></div>
+      <div class="actions">
+        <a class="btn ghost" id="back-link" href="javascript:history.back()">← Revenir</a>
+        <a class="btn primary" href="/index.html#contact">Demander un devis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTENU ===== -->
+  <main class="section" id="content" aria-label="Contenu et actions">
+    <div class="grid">
+      <article class="card">
+        <h2>Programme</h2>
+        <div id="course-program" class="program"></div>
+
+        <h2 style="margin-top:16px">Objectifs</h2>
+        <ul id="course-objectives"></ul>
+      </article>
+
+      <aside class="card" style="height:fit-content">
+        <h2 style="margin:0 0 8px">Infos pratiques</h2>
+        <ul class="note" id="practical-list" style="padding-left:18px;margin:8px 0 0">
+          <li>Formats : atelier 2h, 1/2 journée, 1 journée</li>
+          <li>Modalités : présentiel ou distanciel</li>
+          <li>Financement : selon OPCO/plan interne</li>
+        </ul>
+        <p class="note" style="margin-top:12px">Supports & modèles fournis • Quiz & attestation inclus</p>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer injecté -->
+  <div id="footer"></div>
+
+  <!-- ===== JS : canvas particules (identique) ===== -->
+  <script>
+    // Particules hero (canvas)
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = innerWidth;
+    let h = canvas.height = innerHeight * .6;
+    const particles = [];
+    const opts = { count:60, speed:.3, radius:2, distance:120, color:'rgba(255,255,255,.25)' };
+    addEventListener('resize', () => { w = canvas.width = innerWidth; h = canvas.height = innerHeight * .6; });
+    class Particle{
+      constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
+    }
+    (function init(){ for(let i=0;i<opts.count;i++) particles.push(new Particle()); })();
+    (function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); })();
+  </script>
+
+  <!-- ===== Données & logique de la fiche ===== -->
+  <script type="module">
+    import { COURSES } from "../../js/courses-data.js";
+
+    const THEME_LABELS = {
+      "rgpd-essentiels":"RGPD – essentiels, registre, AIPD",
+      "ia-act":"IA Act – obligations & documentation",
+      "cookies":"Cookies & CMP",
+      "web-legal":"Mentions légales & conformité web",
+      "access":"Accessibilité (RGAA / EN 301 549)",
+      "cyber":"Cybersécurité de base"
+    };
+    const AUDIENCE_LABELS = {
+      dirigeants:"Dirigeants & responsables",
+      equipes:"Équipes opérationnelles",
+      dpo:"Référents / DPO",
+      dev:"Dev, Produit & Data"
+    };
+
+    const slug = location.pathname.split('/').pop().replace('.html','');
+    const params = new URLSearchParams(location.search);
+    const from = params.get('from');
+    const theme = params.get('theme');
+    const audience = params.get('public');
+
+    const titleEl = document.getElementById('course-title');
+    const pitchEl = document.getElementById('course-pitch');
+    const metaEl = document.getElementById('course-meta');
+    const progEl = document.getElementById('course-program');
+    const objEl = document.getElementById('course-objectives');
+    const crumbMid = document.getElementById('crumb-mid');
+    const crumbLeaf = document.getElementById('crumb-leaf');
+    const backLink = document.getElementById('back-link');
+
+    const course = COURSES.find(c => c.slug === slug);
+    function setHead(t,d){document.title=t; const m=document.querySelector('meta[name="description"]'); if(m) m.setAttribute('content',d);}
+
+    function pickPitch(){
+      if(from==='public' && audience && course.pitchByAudience?.[audience]) return course.pitchByAudience[audience];
+      if(from==='theme' && theme && course.pitchByTheme?.[theme]) return course.pitchByTheme[theme];
+      return course.summary||'';
+    }
+
+    function renderCrumbs(){
+      if(from==='theme' && theme){
+        crumbMid.textContent = THEME_LABELS[theme] || 'Thématique';
+        crumbMid.href = `../liste.html?theme=${encodeURIComponent(theme)}`;
+      } else if(from==='public' && audience){
+        crumbMid.textContent = AUDIENCE_LABELS[audience] || 'Public';
+        crumbMid.href = `../liste.html?public=${encodeURIComponent(audience)}`;
+      } else {
+        crumbMid.textContent = 'Catalogue';
+        crumbMid.href = `../liste.html`;
+      }
+      crumbLeaf.textContent = course ? course.title : 'Fiche';
+    }
+
+    function renderNotFound(){
+      document.getElementById('content').innerHTML =
+        `<div class="section"><h2>Formation introuvable</h2>
+          <p>La fiche demandée n'existe pas. Retour au <a href="../liste.html">catalogue</a>.</p></div>`;
+    }
+
+    if(!course){ renderNotFound(); throw new Error('Course not found'); }
+
+    titleEl.textContent = course.title;
+    pitchEl.textContent = pickPitch();
+
+    const originLabel = from==='public'
+      ? (AUDIENCE_LABELS[audience]||'')
+      : from==='theme'
+        ? (THEME_LABELS[theme]||'')
+        : 'Catalogue';
+
+    setHead(`${course.title} – Awenoria`, `${course.summary||''} ${originLabel?' • Contexte : '+originLabel:''}`);
+
+    const dur = course.duration ? `<span class="tag" aria-label="Durée">${course.duration}</span>` : '';
+    const lvl = course.level ? `<span class="tag" aria-label="Niveau">${course.level}</span>` : '';
+    const mods = (course.modalities||[]).map(m=>`<span class="tag">${m}</span>`).join('');
+    metaEl.innerHTML = dur + lvl + mods;
+
+    const items = (course.program||[]).map(li=>`<li>${li}</li>`).join('');
+    document.getElementById('course-program').innerHTML =
+      items ? `<ul>${items}</ul>` : `<p class="note">Le programme détaillé sera fourni sur demande.</p>`;
+
+    objEl.innerHTML = [
+      'Comprendre les obligations et le périmètre',
+      'Savoir appliquer dans votre contexte',
+      'Produire les premiers livrables utiles',
+      'Établir une feuille de route opérationnelle'
+    ].map(o=>`<li>${o}</li>`).join('');
+
+    renderCrumbs();
+
+    backLink.href =
+      from==='public' && audience ? `../liste.html?public=${encodeURIComponent(audience)}`
+      : from==='theme' && theme ? `../liste.html?theme=${encodeURIComponent(theme)}`
+      : `../liste.html`;
+  </script>
+
+  <!-- ===== Loader header/footer + nav (identique) ===== -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
+
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
+    }
+
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean, "../../" + clean ];
+    };
+
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+      }
+      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+    }
+
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return;
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
+    }
+
+    // HEADER
+    if (headMount) {
+      fetchAny(["header.html", "partials/header.html"])
+        .then(html => {
+          headMount.innerHTML = html;
+          fixRootUrls(headMount);
+          return fetchAny(["assets/nav.js", "nav.js"]);
+        })
+        .then(code => {
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+        })
+        .catch(() => { headMount.innerHTML = "<!-- Header introuvable -->"; });
+    }
+
+    // FOOTER
+    if (footMount) {
+      fetchAny(["footer.html", "partials/footer.html"])
+        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+        .catch(() => { footMount.innerHTML = "<!-- Footer introuvable -->"; });
+    }
+  });
+  </script>
+</body>
+</html>
