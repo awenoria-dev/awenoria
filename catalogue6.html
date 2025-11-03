@@ -105,23 +105,23 @@
     .bubbles .bubble-grid{
       display:flex;
       flex-wrap:wrap;
-      gap: 60px;              /* ← espacement horizontal + vertical */
+      gap: 60px;
       justify-content:center;
       margin: 60px 0 32px;
     }
     .bubble{
       position:relative;
-      width: 280px;           /* ← diamètre +20 px vs version précédente */
+      width: 280px;
       height: 280px;
       border-radius:50%;
-      background:rgba(255,255,255,.55);
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
-      box-shadow:0 12px 28px rgba(0,0,0,.08), inset 0 0 0 1px rgba(255,255,255,.6);
-      cursor:pointer;
-      transition:transform .25s cubic-bezier(.35,1.3,.6,1);
+      background: rgba(0,102,255,.12);   /* bleu « Envoyer » très translucide */
+      color: #0066FF;                    /* texte bleu */
+      box-shadow: 0 12px 28px rgba(0,102,255,.08);
+      cursor: default;                   /* plus de main */
+      transition: none;                  /* immobile */
     }
-    .bubble:hover{transform:scale(1.06) translateY(-4px)}
+    .bubble:hover{transform: none}       /* plus d’animation */
+
     .bubble .front,
     .bubble .back{
       position:absolute;
@@ -130,7 +130,7 @@
       align-items:center;
       justify-content:center;
       text-align:center;
-      padding: 32px;          /* ← air autour du texte */
+      padding: 32px;
       border-radius:inherit;
       transition:opacity .18s ease-out;
     }
@@ -142,10 +142,10 @@
     }
     .bubble .back{
       flex-direction:column;
-      gap: 12px;              /* ← entre les liens */
+      gap: 12px;
       opacity:0;
       pointer-events:none;
-      background:var(--aw-copper);
+      background: #0066FF;               /* bleu « Envoyer » opaque au survol */
       color:#fff;
     }
     .bubble:hover .back,
@@ -159,19 +159,23 @@
       color:#fff;
       font-weight:600;
       text-decoration:none;
-      padding: 8px 16px;      /* ← liens plus larges */
+      padding: 8px 16px;
       border-radius:999px;
       background:rgba(255,255,255,.18);
       transition:background .2s;
-      font-size: 1rem;        /* ← taille de base conservée */
+      font-size: 1rem;
+      white-space: nowrap;   /* évite retour à la ligne */
     }
     .bubble .back a:hover{background:rgba(255,255,255,.3)}
 
-    /* ----------  CENTRAGE RÉEL DES TITRES  ---------- */
-    .editorial.bubbles h2{
-      text-align:center;
-      margin:0 auto 24px;
-      width:100%;
+    /* ----------  TITRES SECTIONS  ---------- */
+    .section h2,
+    .editorial.bubbles h2 {
+      color: #0066FF;                 /* teinte RGPD */
+      font-weight: 800;
+      font-size: clamp(26px, 3.8vw, 40px); /* même échelle que Sommaire */
+      text-align: center;
+      margin: 0 auto 24px;
     }
 
     /* ----------  CTAs CAPSULES  ---------- */
@@ -369,17 +373,17 @@
       <div class="bubble" tabindex="0">
         <span class="front">Web & légal</span>
         <span class="back">
-          <a href="./Nos-services.html#mentions">Mentions légales</a>
+          <a href="./Nos-services.html#mentions">Mentions</a>
           <a href="./Nos-services.html#cookies">Cookies</a>
-          <a href="./Nos-services.html#access">Accessibilité</a>
+          <a href="./Nos-services.html#access">Access</a>
         </span>
       </div>
       <div class="bubble" tabindex="0">
         <span class="front">Formats & modalités</span>
         <span class="back">
-          <a href="./Nos-services.html#atelier-2h">Atelier 2 h</a>
-          <a href="./Nos-services.html#1-2j">½ journée</a>
-          <a href="./Nos-services.html#distanciel">Présentiel / Distanciel</a>
+          <a href="./Nos-services.html#atelier-2h">Atelier 2h</a>
+          <a href="./Nos-services.html#1-2j">½j</a>
+          <a href="./Nos-services.html#distanciel">Présentiel ou distanciel</a>
         </span>
       </div>
     </div>
@@ -395,8 +399,8 @@
         <span class="back">
           <a href="./formations.html#rgpd">RGPD</a>
           <a href="./formations.html#cookies">Cookies</a>
-          <a href="./formations.html#access">Accessibilité</a>
-          <a href="./formations.html#cyber">Cyber-sécurité</a>
+          <a href="./formations.html#access">Access</a>
+          <a href="./formations.html#cyber">Cyber</a>
           <a href="./formations.html#ia">IA Act</a>
         </span>
       </div>
@@ -405,17 +409,17 @@
         <span class="back">
           <a href="./formations.html#dirigeants">Dirigeants</a>
           <a href="./formations.html#dpo">DPO</a>
-          <a href="./formations.html#devs">Développeurs</a>
-          <a href="./formations.html#ops">Opérationnels</a>
+          <a href="./formations.html#devs">Devs</a>
+          <a href="./formations.html#ops">Ops</a>
         </span>
       </div>
       <div class="bubble" tabindex="0">
         <span class="front">Formats & modalités</span>
         <span class="back">
-          <a href="./formations.html#2h">2 h</a>
-          <a href="./formations.html#1j">1 jour</a>
-          <a href="./formations.html#2j">2 jours</a>
-          <a href="./formations.html#distanciel">Présentiel / Distanciel</a>
+          <a href="./formations.html#2h">2h</a>
+          <a href="./formations.html#1j">1j</a>
+          <a href="./formations.html#2j">2j</a>
+          <a href="./formations.html#distanciel">Présentiel ou distanciel</a>
         </span>
       </div>
     </div>
@@ -438,9 +442,9 @@
         <span class="front">Audit complet</span>
         <span class="back">
           <a href="./audit.html#complet">Sur-mesure</a>
-          <a href="./audit.html#rapport">Rapport détaillé</a>
-          <a href="./audit.html#planning">Planning d’action</a>
-          <a href="./audit.html#modeles">Modèles prêts à l’emploi</a>
+          <a href="./audit.html#rapport">Rapport complet</a>
+          <a href="./audit.html#planning">Planning action</a>
+          <a href="./audit.html#modeles">Modèles clés</a>
         </span>
       </div>
     </div>
@@ -457,7 +461,7 @@
           <a href="./atelier.html#bases">Bases RGPD</a>
           <a href="./atelier.html#registre">Registre</a>
           <a href="./atelier.html#cookies">Cookies</a>
-          <a href="./atelier.html#checklist">Check-list mise en conformité</a>
+          <a href="./atelier.html#checklist">Check-list</a>
         </span>
       </div>
       <div class="bubble" tabindex="0">
@@ -465,8 +469,8 @@
         <span class="back">
           <a href="./atelier.html#paris">Présentiel (Paris)</a>
           <a href="./atelier.html#distanciel">Distanciel</a>
-          <a href="./atelier.html#supports">Supports fournis</a>
-          <a href="./atelier.html#questionnaire">Questionnaire pré/post</a>
+          <a href="./atelier.html#supports">Supports</a>
+          <a href="./atelier.html#questionnaire">Q-pre/post</a>
         </span>
       </div>
     </div>
@@ -508,7 +512,6 @@
       function init(){ upd(); P.length=0; for(let i=0;i<CFG.n;i++) P.push(new Dot()); }
       function loop(){ ctx.clearRect(0,0,w,h); P.forEach(p=>{ p.step(); p.draw(); p.links(); }); requestAnimationFrame(loop); }
       init(); loop(); addEventListener('resize', upd, {passive:true});
-    })();
   </script>
 
   <!-- Injection header/footer + compat GitHub Pages -->
