@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Awenoria – Magazine Conformité</title>
+<title>Awéboria – Magazine Conformité</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -17,14 +17,36 @@
   .cover p{font-size:1.3rem;margin-top:1rem;opacity:.9}
   .sommaire{background:#fff}
   .sommaire h2{font-size:2.5rem;margin-bottom:2rem;color:var(--violet)}
-  .vignettes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem}
-  .vignette{background:var(--cream);border-radius:16px;padding:2rem;box-shadow:0 10px 30px rgba(0,0,0,.08);transition:transform .3s;text-decoration:none;color:inherit}
-  .vignette:hover{transform:translateY(-8px)}
-  .vignette img{width:100%;height:120px;object-fit:cover;border-radius:12px;margin-bottom:1rem}
-  .vignette h3{font-size:1.4rem;margin-bottom:.5rem;color:var(--violet)}
+
+  /* ===== CARROUSELS (copiés de ton code) ===== */
+  .ruban{position:relative;width:100%;overflow:hidden;height:280px}
+  .ruban-track{display:flex;gap:24px;position:absolute;top:0;will-change:transform}
+  .ruban-track[data-direction="right"]{animation:rubanRight 20s linear infinite}
+  .ruban-track[data-direction="left"]{animation:rubanLeft 20s linear infinite}
+  .ruban:hover .ruban-track{animation-play-state:paused}
+  @keyframes rubanRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  @keyframes rubanLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  .ruban-card{flex:0 0 320px;background:#fff;border:1px solid rgba(15,23,32,.08);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+  .ruban-card img{width:100%;height:180px;object-fit:cover}
+  .ruban-card figcaption{padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+  .ruban-card h3{margin:0 0 6px;font-size:1.2rem}
+  .ruban-card p{margin:0 0 16px;color:#4a6176;font-size:.95rem}
+  .btn-soft{display:inline-flex;align-items:center;justify-content:center;background:rgba(0,102,255,.1);color:#0066ff;font-weight:800;padding:10px 20px;border-radius:999px;text-decoration:none;transition:.2s}
+  .btn-soft:hover{background:rgba(0,102,255,.2)}
+
+  .badge{position:absolute;top:12px;left:12px;background:var(--bg);color:var(--txt);font-size:.75rem;font-weight:800;padding:4px 8px;border-radius:999px;z-index:2;pointer-events:none;backdrop-filter:blur(4px)}
+  .badge[data-cat="conformite"]{--bg:#ff4757;--txt:#fff}
+  .badge[data-cat="access"]{--bg:#3742fa;--txt:#fff}
+  .badge[data-cat="cyber"]{--bg:#2ed573;--txt:#fff}
+  .badge[data-cat="cookies"]{--bg:#ffa502;--txt:#fff}
+  .badge[data-cat="audit"]{--bg:#747d8c;--txt:#fff}
+  .badge[data-cat="web"]{--bg:#3742fa;--txt:#fff}
+  .badge[data-cat="rgpd"]{--bg:#ff6b6b;--txt:#fff}
+  .badge[data-cat="ia"]{--bg:#a55eea;--txt:#fff}
+
   .editorial{background:#fff;padding:4rem 2rem}
   .editorial h2{font-size:2rem;margin-bottom:1.5rem;color:var(--violet)}
-  .editorial h3{font-size:1.3rem;margin:1.5rem 0 .5rem;color:var(--orange)}
   .editorial p{font-size:1.1rem;line-height:1.8;margin-bottom:1.5rem;max-width:700px;margin-left:auto;margin-right:auto}
   .editorial .cta{display:inline-block;background:var(--orange);color:#fff;padding:.8rem 1.8rem;border-radius:30px;font-size:1rem;transition:background .3s;text-decoration:none}
   .editorial .cta:hover{background:#e55e00}
@@ -41,108 +63,234 @@
   <p>Magazine conformité & IA – édition 2025</p>
 </section>
 
-<!-- 2 SOMMAIRE -->
+<!-- 2 SOMMAIRE → CARROUSELS -->
 <section id="sommaire" class="sommaire">
   <h2>Sommaire</h2>
-  <div class="vignettes">
-    <a href="#services" class="vignette">
-      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=60" alt="services">
-      <h3>Nos Services</h3>
-      <p>Conseil & conformité, Web & légal, formats & modalités</p>
-    </a>
-    <a href="#formations" class="vignette">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=60" alt="formations">
-      <h3>Nos Formations</h3>
-      <p>Par thématique, par public, formats & modalités</p>
-    </a>
-    <a href="#audit" class="vignette">
-      <img src="https://images.unsplash.com/photo-1556761175-4b46a572b386?auto=format&fit=crop&w=800&q=60" alt="audit">
-      <h3>Audit & Analyse</h3>
-      <p>Diagnostic rapide & rapport détaillé</p>
-    </a>
-    <a href="#atelier" class="vignette">
-      <img src="https://images.unsplash.com/photo-1519389950473-47ba02777871?auto=format&fit=crop&w=800&q=60" alt="atelier">
-      <h3>Atelier 2 h RGPD</h3>
-      <p>Express & efficace pour vos équipes</p>
-    </a>
+
+  <!-- CARROUSEL SERVICES -->
+  <div class="ruban" aria-label="Tous nos services">
+    <div class="ruban-track" data-direction="right">
+      <!-- ORIGINALES -->
+      <figure class="ruban-card">
+        <span class="badge" data-cat="conformite">#Conformité</span>
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>RGPD Live</h3>
+          <p>L’audit qui finit en standing ovation.</p>
+          <a class="btn-soft" href="Nos-services.html#rgpd">Je prends ma place</a>
+        </figcaption>
+      </figure>
+
+      <figure class="ruban-card">
+        <span class="badge" data-cat="access">#Access</span>
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>Accessibilité Show</h3>
+          <p>Devenez conforme en un solo.</p>
+          <a class="btn-soft" href="Nos-services.html#access">Je prends ma place</a>
+        </figcaption>
+      </figure>
+
+      <figure class="ruban-card">
+        <span class="badge" data-cat="cyber">#Cyber</span>
+        <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>Cyber Night</h3>
+          <p>La crise devient scénario.</p>
+          <a class="btn-soft" href="Nos-services.html#cyber">Je prends ma place</a>
+        </figcaption>
+      </figure>
+
+      <figure class="ruban-card">
+        <span class="badge" data-cat="cookies">#Cookies</span>
+        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>Cookies Party</h3>
+          <p>Bandeau & CMP en rythme.</p>
+          <a class="btn-soft" href="Nos-services.html#cookies">Je prends ma place</a>
+        </figcaption>
+      </figure>
+
+      <figure class="ruban-card">
+        <span class="badge" data-cat="audit">#Audit</span>
+        <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>Diagnostic Premiere</h3>
+          <p>Le grand écran de vos priorités.</p>
+          <a class="btn-soft" href="Nos-services.html#diagnostic">Je prends ma place</a>
+        </figcaption>
+      </figure>
+
+      <figure class="ruban-card">
+        <span class="badge" data-cat="web">#Web</span>
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>Legal Remix</h3>
+          <p>Mentions légales version hit.</p>
+          <a class="btn-soft" href="Nos-services.html#web-legal">Je prends ma place</a>
+        </figcaption>
+      </figure>
+
+      <!-- COPIES (même ordre) – boucle fluide -->
+      <figure class="ruban-card">
+        <span class="badge" data-cat="conformite">#Conformité</span>
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>RGPD Live</h3>
+          <p>L’audit qui finit en standing ovation.</p>
+          <a class="btn-soft" href="Nos-services.html#rgpd">Je prends ma place</a>
+        </figcaption>
+      </figure>
+
+      <figure class="ruban-card">
+        <span class="badge" data-cat="access">#Access</span>
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>Accessibilité Show</h3>
+          <p>Devenez conforme en un solo.</p>
+          <a class="btn-soft" href="Nos-services.html#access">Je prends ma place</a>
+        </figcaption>
+      </figure>
+
+      <figure class="ruban-card">
+        <span class="badge" data-cat="cyber">#Cyber</span>
+        <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>Cyber Night</h3>
+          <p>La crise devient scénario.</p>
+          <a class="btn-soft" href="Nos-services.html#cyber">Je prends ma place</a>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- CARROUSEL FORMATIONS -->
+  <div class="ruban" aria-label="Toutes nos formations">
+    <div class="ruban-track" data-direction="left">
+      <!-- ORIGINALES -->
+      <figure class="ruban-card">
+        <span class="badge" data-cat="rgpd">#RGPD</span>
+        <img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>RGPD Express</h3>
+          <p>2 h chrono, 100 % live.</p>
+          <a class="btn-soft" href="formation/rgpd-2h.html">Je réserve ma date</a>
+        </figcaption>
+      </figure>
+
+      <figure class="ruban-card">
+        <span class="badge" data-cat="ia">#IA</span>
+        <img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>IA Act Day</h3>
+          <p>Le cadre européen en one-man-show.</p>
+          <a class="btn-soft" href="formation/ia-act.html">Je réserve ma date</a>
+        </figcaption>
+      </figure>
+
+      <figure class="ruban-card">
+        <span class="badge" data-cat="access">#Access</span>
+        <img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>Access Night</h3>
+          <p>Devenez conforme sous les projecteurs.</p>
+          <a class="btn-soft" href="formation/access.html">Je réserve ma date</a>
+        </figcaption>
+      </figure>
+
+      <figure class="ruban-card">
+        <span class="badge" data-cat="cyber">#Cyber</span>
+        <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>Cyber Stage</h3>
+          <p>La sécurité en stand-up.</p>
+          <a class="btn-soft" href="formation/cyber.html">Je réserve ma date</a>
+        </figcaption>
+      </figure>
+
+      <figure class="ruban-card">
+        <span class="badge" data-cat="cookies">#Cookies</span>
+        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>Cookies Live</h3>
+          <p>Bandeau & CMP en live coding.</p>
+          <a class="btn-soft" href="formation/cookies.html">Je réserve ma date</a>
+        </figcaption>
+      </figure>
+
+      <figure class="ruban-card">
+        <span class="badge" data-cat="web">#Web</span>
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>Legal Remix</h3>
+          <p>Mentions légales version acoustic.</p>
+          <a class="btn-soft" href="formation/web-legal.html">Je réserve ma date</a>
+        </figcaption>
+      </figure>
+
+      <!-- COPIES – boucle fluide -->
+      <figure class="ruban-card">
+        <span class="badge" data-cat="rgpd">#RGPD</span>
+        <img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>RGPD Express</h3>
+          <p>2 h chrono, 100 % live.</p>
+          <a class="btn-soft" href="formation/rgpd-2h.html">Je réserve ma date</a>
+        </figcaption>
+      </figure>
+
+      <figure class="ruban-card">
+        <span class="badge" data-cat="ia">#IA</span>
+        <img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>IA Act Day</h3>
+          <p>Le cadre européen en one-man-show.</p>
+          <a class="btn-soft" href="formation/ia-act.html">Je réserve ma date</a>
+        </figcaption>
+      </figure>
+
+      <figure class="ruban-card">
+        <span class="badge" data-cat="access">#Access</span>
+        <img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&fit=crop&w=400&q=60" alt="">
+        <figcaption>
+          <h3>Access Night</h3>
+          <p>Devenez conforme sous les projecteurs.</p>
+          <a class="btn-soft" href="formation/access.html">Je réserve ma date</a>
+        </figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
 <!-- 3 PAGE SERVICES -->
 <section id="services" class="editorial">
   <h2>Nos Services</h2>
-
-  <h3>Conseil & conformité</h3>
-  <p>
-    <strong>Audit & Analyse</strong> – diagnostic rapide, rapport détaillé, planning d’action.<br>
-    <strong>RGPD & conformité</strong> – registre, AIPD, cookies, formation des équipes.<br>
-    <strong>Conformité IA (UE)</strong> – IA Act, documentation, gouvernance, classification des risques.
-  </p>
-
-  <h3>Web & légal</h3>
-  <p>
-    <strong>Mentions légales & politiques</strong> – pages légales, politique de confidentialité, e-commerce.<br>
-    <strong>Cookies & CMP</strong> – bandeau conforme, paramétrage CMP, exemptions.<br>
-    <strong>Accessibilité (RGAA / EN 301 549)</strong> – audit rapide, priorisation, obligations.
-  </p>
-
-  <h3>Formats & modalités</h3>
-  <p>
-    <strong>Atelier 2 h</strong> – focus rapide sur un sujet clé.<br>
-    <strong>1/2 journée • 1 journée</strong> – module condensé ou parcours complet.<br>
-    <strong>Présentiel / Distanciel</strong> – sur site ou visioconférence, supports inclus.
-  </p>
-
-  <a href="mailto:hello@awenoria.fr?subject=Demander un devis" class="cta">Demander un devis</a>
+  <p><strong>Conseil & conformité</strong> – Audit & Analyse, RGPD, IA Act.<br>
+     <strong>Web & légal</strong> – mentions, cookies, accessibilité.<br>
+     <strong>Formats & modalités</strong> – atelier 2 h, 1/2 j, présentiel/distanciel.</p>
+  <a href="mailto:hello@awenoria.fr?subject=Devis Services" class="cta">Demander un devis</a>
 </section>
 
 <!-- 4 PAGE FORMATIONS -->
 <section id="formations" class="editorial">
   <h2>Nos Formations</h2>
-
-  <h3>Par thématique</h3>
-  <p>
-    <strong>RGPD essentiels, registre, AIPD</strong> – bases, registre, analyse d’impact.<br>
-    <strong>Cookies & CMP</strong> – bandeau, paramétrage, exemptions.<br>
-    <strong>Accessibilité (RGAA / EN 301 549)</strong> – audit, priorisation, obligations.<br>
-    <strong>Cybersécurité de base</strong> – bonnes pratiques, sensibilisation.<br>
-    <strong>IA Act – obligations & documentation</strong> – cadre européen, classification des risques.
-  </p>
-
-  <h3>Par public</h3>
-  <p>
-    <strong>Dirigeants & responsables</strong> – vision risques/opportunités, feuilles de route.<br>
-    <strong>Équipes opérationnelles</strong> – ateliers concrets, mise en pratique rapide.<br>
-    <strong>Référents / DPO</strong> – approfondissements, registre, AIPD, pilotage.<br>
-    <strong>Dev, Produit & Data</strong> – privacy by design, sécurité, documentation technique.
-  </p>
-
-  <h3>Formats & modalités</h3>
-  <p>
-    <strong>Atelier 2 h</strong> – express & opérationnel.<br>
-    <strong>1 journée</strong> – théorie + mise en pratique.<br>
-    <strong>2 jours</strong> – parcours complet avec études de cas.<br>
-    <strong>Présentiel / Distanciel</strong> – sur site ou visioconférence, supports inclus.
-  </p>
-
-  <a href="mailto:hello@awenoria.fr?subject=Demander un programme" class="cta">Demander un programme</a>
+  <p><strong>Par thématique</strong> – RGPD, cookies, accessibilité, cyber, IA Act.<br>
+     <strong>Par public</strong> – dirigeants, DPO, devs, opérationnels.<br>
+     <strong>Formats & modalités</strong> – 2 h, 1 j, 2 j, présentiel/distanciel.</p>
+  <a href="mailto:hello@awenoria.fr?subject=Programme Formations" class="cta">Demander un programme</a>
 </section>
 
-<!-- 5 PAGE AUDIT & ANALYSE -->
+<!-- 5 PAGE AUDIT -->
 <section id="audit" class="editorial">
   <h2>Audit & Analyse</h2>
-  <p>
-    Diagnostic rapide en ½ journée (audit flash) ou audit complet sur mesure. Livraison d’un rapport détaillé avec priorités, planning d’action et modèles prêts à l’emploi. Formats : présentiel, distanciel ou sur site. À la carte ou forfait.
-  </p>
+  <p>Diagnostic rapide en ½ journée (audit flash) ou audit complet sur mesure. Livraison d’un rapport détaillé avec priorités, planning d’action et modèles prêts à l’emploi.</p>
   <a href="mailto:hello@awenoria.fr?subject=Devis Audit&Analyse" class="cta">Demander un devis</a>
 </section>
 
-<!-- 6 PAGE ATELIER 2H RGPD -->
+<!-- 6 PAGE ATELIER -->
 <section id="atelier" class="editorial">
   <h2>Atelier 2 h RGPD</h2>
-  <p>
-    Parfait pour les équipes pressées : direction, marketing, dev. Contenu : bases RGPD, registre, cookies, check-list mise en conformité. Modalités : présentiel (Paris) ou distanciel – supports fournis – questionnaire pré/post-formation.
-  </p>
+  <p>Parfait pour les équipes pressées : direction, marketing, dev. Contenu : bases RGPD, registre, cookies, check-list mise en conformité. Modalités : présentiel (Paris) ou distanciel – supports fournis – questionnaire pré/post-formation.</p>
   <a href="mailto:hello@awenoria.fr?subject=Programme Atelier 2h RGPD" class="cta">Demander un programme</a>
 </section>
 
