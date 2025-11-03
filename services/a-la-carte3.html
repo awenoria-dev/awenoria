@@ -5,13 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Services à la carte — Awenoria</title>
   <meta name="description" content="Tous nos services, packs et modules à la carte : audits automatisés (site, documents, apps), packs RGPD, IA Act, abonnements. Tarifs transparents.">
-  <title>Services — Awenoria</title>
-  <meta name="description" content="Tous les services Awenoria : audits automatisés (site, documents, apps), packs RGPD, IA Act, abonnements, à la carte. Tarifs transparents.">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/awenoria.css">
 
   <style>
     :root{
@@ -22,9 +18,6 @@
       --radius:18px; --shadow:0 18px 40px rgba(15,23,32,.10);
       --shadow-soft:0 10px 24px rgba(15,23,32,.08);
       --maxw:1200px;
-      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
-      --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px; --shadow:0 25px 50px -12px rgba(0,0,0,.15);
-      --transition:.6s cubic-bezier(.22,1,.36,1);
     }
     *{box-sizing:border-box}
     html,body{margin:0}
@@ -32,22 +25,12 @@
       font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--ink); background:var(--bg); line-height:1.6;
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    @media (prefers-color-scheme:dark){
-      :root{ --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0; --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);}
     }
     a{color:var(--blue-deep); text-decoration:none}
     img{max-width:100%; display:block}
     .container{max-width:var(--maxw); margin:0 auto; padding:0 20px}
 
     /* ===== HERO (cadre bleu + formes géométriques) ===== */
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;line-height:1.7;color:var(--aw-ink);background:var(--aw-bg);-webkit-font-smoothing:antialiased}
-    img{max-width:100%;display:block}
-    a{text-decoration:none;color:var(--aw-blue)}
-    .container{max-width:1200px;margin:0 auto;padding:0 20px}
-
-    /* ===== Hero (cadre bleu + particules identiques) ===== */
     .hero{
       position:relative; overflow:hidden;
       background:linear-gradient(180deg,#0b57d0 0%, #1b88ff 100%);
@@ -63,12 +46,6 @@
       display:inline-flex; align-items:center; justify-content:center;
       gap:8px; padding:12px 18px; border-radius:999px; font-weight:800; font-size:14px;
       box-shadow:var(--shadow-soft); border:1px solid rgba(255,255,255,.22)
-      position:relative; min-height:60vh; display:flex; align-items:center; justify-content:center;
-      text-align:center; color:#fff; overflow:hidden;
-      background:
-        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
-        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
     }
     .btn.primary{background:#fff; color:#0b57d0}
     .btn.ghost{background:rgba(255,255,255,.16); color:#fff; border-color:rgba(255,255,255,.32)}
@@ -88,36 +65,11 @@
     @media (max-width:1200px){.grid-4{grid-template-columns:repeat(3,1fr)}}
     @media (max-width:980px){.grid-4,.grid-3{grid-template-columns:repeat(2,1fr)}}
     @media (max-width:620px){.grid-4,.grid-3,.grid-2{grid-template-columns:1fr}}
-    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
-    .hero .content{position:relative; z-index:2; max-width:950px; padding:0 20px; animation:fadeInUp 1s both;}
-    .hero h1{font-size:clamp(42px,6vw,62px); font-weight:800; line-height:1.06; letter-spacing:-.01em;}
-    .hero .lead{font-size:1.15rem; font-weight:600; margin:16px auto 0; color:#e8f0ff;}
-    .cta-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:18px}
-    .btn{display:inline-block; padding:12px 16px; border-radius:12px; font-weight:800; color:#fff; background:var(--aw-blue); box-shadow:var(--shadow); font-size:14px; transition:all var(--transition)}
-    .btn:hover{background:var(--aw-copper); transform:translateY(-2px)}
-    .btn.ghost{background:var(--aw-panel); color:var(--aw-blue); border:1px solid rgba(15,23,32,.12)}
-
-    /* ===== Sections / grilles ===== */
-    .section{max-width:1200px; margin:0 auto; padding:72px 20px}
-    .section.alt{background:var(--aw-bg)}
-    .title{margin:0 0 10px; text-align:center; font-size:clamp(28px,4.5vw,40px); color:var(--aw-ink); font-weight:800;}
-    .title::after{content:''; display:block; width:60px; height:4px; background:var(--aw-copper); margin:10px auto 0; border-radius:3px;}
-    .subtitle-center{font-size:1rem; color:var(--aw-muted); max-width:820px; margin:6px auto 0; text-align:center;}
-
-    .grid{display:grid; gap:18px; margin-top:18px}
-    .cols-2{grid-template-columns:repeat(2,1fr)}
-    .cols-3{grid-template-columns:repeat(3,1fr)}
-    .cols-4{grid-template-columns:repeat(4,1fr)}
-    @media(max-width:1024px){.cols-4{grid-template-columns:repeat(3,1fr)}}
-    @media(max-width:820px){.cols-3,.cols-4,.cols-2{grid-template-columns:1fr}}
 
     .card{
       background:var(--panel); border:1px solid var(--stroke);
       border-radius:22px; padding:18px; box-shadow:var(--shadow-soft);
       display:flex; flex-direction:column; gap:8px; min-height:146px;
-      background:var(--aw-panel); border:1px solid rgba(15,23,32,.08); border-radius:16px;
-      box-shadow:var(--shadow); padding:18px; transition:transform .3s ease, box-shadow .3s ease;
-      display:flex; flex-direction:column; gap:8px; min-height:160px
     }
     .badge{
       align-self:flex-start; background:rgba(27,136,255,.10);
@@ -150,17 +102,6 @@
 
     /* Légère ombre sous sections pour respirer */
     .section.alt{background:#fff}
-    .card:hover{transform:translateY(-3px); box-shadow:0 28px 56px rgba(0,0,0,.10)}
-    .pill{align-self:flex-start; display:inline-block; background:var(--aw-blue); color:#fff; border-radius:999px; padding:6px 10px; font-weight:800; font-size:12px}
-    .list{margin:0; padding-left:18px}
-    .muted{color:var(--aw-muted)}
-    .small{font-size:13px; color:var(--aw-muted)}
-    .price{font-weight:800; color:var(--aw-copper); margin-top:.15rem}
-
-    /* Animations */
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
-    .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
-    .reveal.is-visible{opacity:1;transform:none}
   </style>
 </head>
 <body>
@@ -255,20 +196,6 @@
           <p class="price-inline">290–590 €</p>
           <a class="btn secondary" href="#cta">Démarrer</a>
         </article>
-<body class="page-services">
-
-  <!-- Header injecté -->
-  <div id="header"></div>
-
-  <!-- ===== HERO ===== -->
-  <section class="hero">
-    <canvas id="canvas" aria-hidden="true"></canvas>
-    <div class="content">
-      <h1>Tous nos services, packs et modules à la carte.</h1>
-      <p class="lead">Compose ta conformité : audits automatisés (site, documents, apps), packs RGPD, IA Act, abonnements.</p>
-      <div class="cta-row">
-        <a class="btn" href="index.html#audit-gratuit">Scanner mon site gratuitement</a>
-        <a class="btn ghost" href="#packs">Voir les packs</a>
       </div>
     </div>
   </section>
@@ -311,21 +238,6 @@
           <p class="price-inline">99 € / fournisseur</p>
           <a class="btn secondary" href="#cta">Vérifier</a>
         </article>
-  <main>
-    <!-- Audits Web -->
-    <section id="web" class="section">
-      <h2 class="title">Audits Site Web</h2>
-      <p class="subtitle-center">RGPD / ePrivacy / sécurité “hygiène” / accessibilité / éco-conception / SEO.</p>
-      <div class="grid cols-4">
-        <article class="card reveal"><span class="pill">Cookies & traceurs</span><h3>Scanner (avant/après consentement)</h3><ul class="list"><li>Détecte CMP, blocage réel, tiers, storage</li><li>PDF + score</li></ul><p class="price">79–149 € / scan</p><p><a class="btn ghost" href="index.html#audit-gratuit">Tester</a></p></article>
-        <article class="card reveal"><span class="pill">Bandeau CMP</span><h3>Vérif consentement</h3><ul class="list"><li>“Tout refuser”, granularité, preuve</li></ul><p class="price">59 € / site</p><p><a class="btn ghost" href="#contact">Vérifier</a></p></article>
-        <article class="card reveal"><span class="pill">Sécurité Web</span><h3>HTTPS / HSTS / CSP</h3><ul class="list"><li>En-têtes & redirections</li></ul><p class="price">39 € / site</p><p><a class="btn ghost" href="#contact">Contrôler</a></p></article>
-        <article class="card reveal"><span class="pill">Formulaires</span><h3>Form-finder & minimisation</h3><ul class="list"><li>Champs sensibles & mentions</li></ul><p class="price">99 € auto (+90 € revue)</p><p><a class="btn ghost" href="#contact">Auditer</a></p></article>
-
-        <article class="card reveal"><span class="pill">Accessibilité</span><h3>Smoke test (axe-core)</h3><ul class="list"><li>Erreurs majeures, contrastes</li></ul><p class="price">79 € / site</p><p><a class="btn ghost" href="#contact">Demander</a></p></article>
-        <article class="card reveal"><span class="pill">Éco</span><h3>Éco-indicateurs</h3><ul class="list"><li>Poids, requêtes, vidéos, polices</li></ul><p class="price">59 € / site</p><p><a class="btn ghost" href="#contact">Demander</a></p></article>
-        <article class="card reveal"><span class="pill">SEO</span><h3>Hygiène technique</h3><ul class="list"><li>Title/desc, sitemap/robots</li></ul><p class="price">39 € / site</p><p><a class="btn ghost" href="#contact">Demander</a></p></article>
-        <article class="card reveal"><span class="pill">Multi-pages</span><h3>Audit Pro (10–30 URL)</h3><ul class="list"><li>Tout-en-un + plan d’action</li></ul><p class="price">290–590 €</p><p><a class="btn ghost" href="#contact">Démarrer</a></p></article>
       </div>
     </div>
   </section>
@@ -360,16 +272,6 @@
           <p class="price-inline">149 €</p>
           <a class="btn secondary" href="#cta">Créer</a>
         </article>
-    </section>
-
-    <!-- Documents & gouvernance -->
-    <section id="docs" class="section alt">
-      <h2 class="title">Documents & gouvernance</h2>
-      <div class="grid cols-4">
-        <article class="card reveal"><span class="pill">Générateur</span><h3>Politique de confidentialité</h3><ul class="list"><li>Questionnaire → doc conforme</li></ul><p class="price">149 € ou 9 €/mois</p><p><a class="btn ghost" href="#contact">Générer</a></p></article>
-        <article class="card reveal"><span class="pill">Analyse</span><h3>Politique / Cookies / Mentions</h3><ul class="list"><li>Checklist CNIL/CEPD</li></ul><p class="price">59–149 € / doc</p><p><a class="btn ghost" href="#contact">Analyser</a></p></article>
-        <article class="card reveal"><span class="pill">Registre</span><h3>Contrôleur de registre</h3><ul class="list"><li>CSV/XLS – champs & durées</li></ul><p class="price">79 € / import</p><p><a class="btn ghost" href="#contact">Contrôler</a></p></article>
-        <article class="card reveal"><span class="pill">Sous-traitants</span><h3>DPA & transferts</h3><ul class="list"><li>Clauses clés, SCC, localisation</li></ul><p class="price">99 € / fournisseur</p><p><a class="btn ghost" href="#contact">Vérifier</a></p></article>
       </div>
     </div>
   </section>
@@ -400,15 +302,6 @@
           <p class="price">1 290 €</p>
           <a class="btn primary" href="#cta">Obtenir un devis</a>
         </article>
-    </section>
-
-    <!-- Applications mobiles -->
-    <section id="apps" class="section">
-      <h2 class="title">Applications mobiles</h2>
-      <div class="grid cols-3">
-        <article class="card reveal"><span class="pill">Audit mobile</span><h3>APK/IPA (MobSF)</h3><ul class="list"><li>Permissions, SDK, trackers</li></ul><p class="price">690–990 €</p><p><a class="btn ghost" href="#contact">Auditer</a></p></article>
-        <article class="card reveal"><span class="pill">Grille CNIL</span><h3>Conformité apps</h3><ul class="list"><li>Consentement, géoloc, ID pub</li></ul><p class="price">Inclus avec audit</p><p><a class="btn ghost" href="#contact">En savoir plus</a></p></article>
-        <article class="card reveal"><span class="pill">Fiche</span><h3>Privacy labelling</h3><ul class="list"><li>Permissions & finalités (Stores)</li></ul><p class="price">149 €</p><p><a class="btn ghost" href="#contact">Créer</a></p></article>
       </div>
     </div>
   </section>
@@ -443,33 +336,6 @@
           <p class="price">990 €</p>
           <a class="btn primary" href="#cta">Obtenir un devis</a>
         </article>
-    </section>
-
-    <!-- Packs RGPD -->
-    <section id="packs" class="section alt">
-      <h2 class="title">Packs RGPD</h2>
-      <div class="grid cols-2">
-        <article class="card reveal"><h3>Start RGPD</h3><p class="small">TPE & indépendants</p><ul class="list"><li>Audit de base</li><li>Politique automatique</li><li>Registre checker</li></ul><p class="price">490 €</p><p><a class="btn" href="#contact">Obtenir un devis</a></p></article>
-        <article class="card reveal"><h3>Pro RGPD</h3><p class="small">PME / associations</p><ul class="list"><li>Audit complet</li><li>PIA / AIPD</li><li>Suivi 6 mois</li></ul><p class="price">1 290 €</p><p><a class="btn" href="#contact">Obtenir un devis</a></p></article>
-      </div>
-    </section>
-
-    <!-- IA Act -->
-    <section id="iaact" class="section">
-      <h2 class="title">IA Act (UE)</h2>
-      <div class="grid cols-3">
-        <article class="card reveal"><span class="pill">Starter</span><h3>Qualification & obligations</h3><ul class="list"><li>Matrice risque & livrables</li></ul><p class="price">290–590 €</p><p><a class="btn ghost" href="#contact">Démarrer</a></p></article>
-        <article class="card reveal"><span class="pill">Docs</span><h3>Pack documentation IA</h3><ul class="list"><li>Gestion des risques, traçabilité</li></ul><p class="price">199 €</p><p><a class="btn ghost" href="#contact">Obtenir</a></p></article>
-        <article class="card reveal"><h3>IA Act Starter</h3><p class="small">Startups IA</p><ul class="list"><li>Audit conformité IA</li><li>Documentation exigée</li><li>Feuille de route</li></ul><p class="price">990 €</p><p><a class="btn" href="#contact">Obtenir un devis</a></p></article>
-      </div>
-    </section>
-
-    <!-- Abonnements + CTA -->
-    <section id="abos" class="section alt">
-      <h2 class="title">Abonnements</h2>
-      <div class="grid cols-2">
-        <article class="card reveal"><span class="pill">Support</span><h3>DPO Light</h3><ul class="list"><li>Hotline illimitée (mail/visio)</li><li>1 re-scan/mois + veille</li></ul><p class="price">150 €/mois</p><p><a class="btn ghost" href="#contact">Souscrire</a></p></article>
-        <article class="card reveal"><span class="pill">Portail</span><h3>Portail Client Pro</h3><ul class="list"><li>Historique audits, dépôts doc, re-scans</li></ul><p class="price">39–99 €/mois</p><p><a class="btn ghost" href="#contact">Activer</a></p></article>
       </div>
     </div>
   </section>
@@ -479,52 +345,6 @@
     <div class="container">
       <h2 class="title-center">Abonnements</h2>
       <div class="underline"></div>
-      <div class="container" style="text-align:center;margin-top:22px">
-        <h3 class="title" style="margin-bottom:10px">Obtenir un devis rapide</h3>
-        <p class="subtitle-center">Dites-nous votre besoin, on vous répond sous 24–48 h ouvrées.</p>
-        <p class="cta-row"><a class="btn" href="index.html#contact">Ouvrir le formulaire</a></p>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer injecté -->
-  <div id="footer"></div>
-
-  <!-- ===== JS : hero canvas + reveal ===== -->
-  <script>
-    // Particules du hero (même rendu que les autres pages)
-    const canvas=document.getElementById('canvas'); const ctx=canvas.getContext('2d');
-    let w=canvas.width=innerWidth, h=canvas.height=innerHeight;
-    const particles=[]; const opts={count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
-    addEventListener('resize',()=>{w=canvas.width=innerWidth;h=canvas.height=innerHeight});
-    class Particle{constructor(){this.x=Math.random()*w;this.y=Math.random()*h;this.vx=(Math.random()-.5)*opts.speed;this.vy=(Math.random()-.5)*opts.speed;}
-      update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>w)this.vx*=-1;if(this.y<0||this.y>h)this.vy*=-1;}
-      draw(){ctx.beginPath();ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2);ctx.fillStyle=opts.color;ctx.fill();}
-      lines(){particles.forEach(p=>{const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ctx.beginPath();ctx.moveTo(this.x,this.y);ctx.lineTo(p.x,p.y);ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`;ctx.stroke();}});}
-    }
-    function init(){for(let i=0;i<opts.count;i++)particles.push(new Particle());}
-    function animate(){ctx.clearRect(0,0,w,h);particles.forEach(p=>{p.update();p.draw();p.lines();});requestAnimationFrame(animate);}
-    init(); animate();
-
-    // Reveal on scroll
-    const reveals=document.querySelectorAll('.reveal');
-    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('is-visible');});},{threshold:.2});
-    reveals.forEach(el=>io.observe(el));
-  </script>
-
-  <!-- ===== Loader header/footer + nav (comme les autres pages) ===== -->
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const headMount=document.getElementById("header");
-    const footMount=document.getElementById("footer");
-    if(!headMount && !footMount) return;
-
-    const isGh=/github\.io$/.test(location.hostname);
-    let base="/";
-    if(isGh){
-      const parts=location.pathname.split("/").filter(Boolean);
-      base=parts.length?`/${parts[0]}/`:"/";
-    }
 
       <div class="grid-2">
         <article class="card">
@@ -534,7 +354,6 @@
           <p class="price-inline">150 €/mois</p>
           <a class="btn secondary" href="#cta">Souscrire</a>
         </article>
-    const candidates=(p)=>{ const clean=p.replace(/^\//,""); return [ base+clean, "./"+clean, "../"+clean ]; };
 
         <article class="card">
           <span class="cap">Portail</span>
@@ -546,11 +365,6 @@
       </div>
     </div>
   </section>
-    async function fetchAny(paths){
-      const queue=paths.flatMap(candidates);
-      for(const u of queue){ try{ const r=await fetch(u,{cache:"no-cache"}); if(r.ok) return r.text(); }catch(_){ } }
-      throw new Error("Aucun chemin valide parmi: "+paths.join(", "));
-    }
 
   <!-- ===== CTA ===== -->
   <section id="cta" class="section">
@@ -562,12 +376,6 @@
     </div>
   </section>
 </main>
-    function fixRootUrls(container){
-      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]').forEach(el=>{
-        const attr=el.hasAttribute("href")?"href":"src"; const val=el.getAttribute(attr);
-        if(/^\/\//.test(val)) return; el.setAttribute(attr, base+val.replace(/^\//,""));
-      });
-    }
 
 <!-- ===== FX Canvas (formes géométriques animées, léger) ===== -->
 <script>
@@ -588,29 +396,15 @@
           if(d<conf.link){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/conf.link})`; ctx.stroke(); }
         }
       }
-    // HEADER
-    if(headMount){
-      fetchAny(["header.html","partials/header.html"])
-        .then(html=>{ headMount.innerHTML=html; fixRootUrls(headMount); return fetchAny(["assets/nav.js","nav.js"]); })
-        .then(code=>{ const s=document.createElement("script"); if (/\b(import|export)\b/.test(code)) s.type="module"; s.textContent=code; document.body.appendChild(s); })
-        .catch(err=>{ console.error("Header load error:", err); headMount.innerHTML="<!-- Header introuvable -->"; });
     }
     for(let i=0;i<conf.n;i++) P.push(new Dot());
     function loop(){
       ctx.clearRect(0,0,w,h);
       P.forEach(p=>{ p.step(); p.draw(); p.links(); });
       requestAnimationFrame(loop);
-
-    // FOOTER
-    if(footMount){
-      fetchAny(["footer.html","partials/footer.html"])
-        .then(html=>{ footMount.innerHTML=html; fixRootUrls(footMount); })
-        .catch(err=>{ console.error("Footer load error:", err); footMount.innerHTML="<!-- Footer introuvable -->"; });
     }
     resize(); loop();
   })();
 </script>
-  });
-  </script>
 </body>
 </html>
