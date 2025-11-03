@@ -49,4 +49,384 @@
       background:
         radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
         radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, #003
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+      border-bottom:4px solid #e8eefb;
+    }
+    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none}
+    .hero .content{position:relative; z-index:1; max-width:900px; padding:0 20px}
+    .hero h1{
+      font-family:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      font-weight:800;
+      font-size:clamp(52px,7vw,72px);
+      line-height:1.05;
+      letter-spacing:-.02em;
+      margin:0;
+    }
+    .hero .lead{font-size:1.2rem; font-weight:600; color:#eaf3ff; margin-top:10px}
+
+    /* ----------  BASE  ---------- */
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--aw-ink); background:var(--aw-bg)}
+    .section{max-width:1200px; margin:0 auto; padding:80px 20px}
+    .title-center{margin:0 0 6px; text-align:center; font-weight:800; font-size:clamp(26px,3.8vw,40px)}
+    .subtitle-center{max-width:900px; margin:0 auto 22px; text-align:center; color:var(--aw-muted)}
+    .underline{width:84px; height:4px; border-radius:999px; background:var(--aw-copper); margin:12px auto 28px}
+
+    /* ----------  CARROUSELS  ---------- */
+    .ruban{position:relative; width:100%; overflow:hidden; margin:8px 0 28px; padding-block:2px}
+    .ruban-track{display:flex; gap:24px; position:absolute; top:0; left:0; will-change:transform; padding:2px 0}
+    .ruban-track[data-direction="right"]{animation:rubanRight 22s linear infinite}
+    .ruban-track[data-direction="left"]{animation:rubanLeft 22s linear infinite}
+    .ruban:hover .ruban-track{animation-play-state:paused}
+    @keyframes rubanRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+    @keyframes rubanLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @media (prefers-reduced-motion: reduce){.ruban-track{animation:none !important; position:relative}}
+
+    .ruban-card{
+      flex:0 0 auto;
+      width:clamp(260px, 28vw, 340px);
+      background:var(--aw-panel); border:1px solid rgba(15,23,32,.08);
+      border-radius:20px; overflow:hidden; display:flex; flex-direction:column; position:relative; box-shadow:0 12px 28px rgba(0,0,0,.08);
+    }
+    .ruban-card .media{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden}
+    .ruban-card .media img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+
+    .ruban-card figcaption{padding:16px 16px 18px}
+    .ruban-card h3{margin:0 0 6px; font-size:1.05rem; font-weight:800}
+    .ruban-card p{margin:0 0 14px; color:var(--aw-muted); font-size:.95rem}
+
+    .btn-soft{
+      display:inline-flex; align-items:center; justify-content:center;
+      background:rgba(0,102,255,.1); color:#0066ff; font-weight:800;
+      padding:10px 20px; border-radius:999px; text-decoration:none; transition:.2s;
+      white-space:nowrap;
+    }
+    .btn-soft:hover{background:rgba(0,102,255,.2); transform:translateY(-1px)}
+
+    .badge{
+      position:absolute; top:10px; left:10px; font-size:.75rem; font-weight:800; padding:4px 8px;
+      border-radius:999px; backdrop-filter:blur(6px); color:#fff; z-index:2;
+    }
+    .badge[data-cat="conformite"], .badge[data-cat="rgpd"]{background:#ff4757}
+    .badge[data-cat="access"], .badge[data-cat="web"]{background:#3742fa}
+    .badge[data-cat="cyber"]{background:#2ed573}
+    .badge[data-cat="cookies"]{background:#ffa502}
+    .badge[data-cat="audit"]{background:#747d8c}
+    .badge[data-cat="ia"]{background:#a55eea}
+
+    /* ----------  TOOLTIP FORMATION  ---------- */
+    .formation-tip{
+      position:absolute;
+      z-index:50;
+      width:320px;
+      background:var(--aw-panel);
+      border:1px solid rgba(15,23,32,.08);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:20px;
+      font-size:.95rem;
+      pointer-events:none;
+      opacity:0;
+      transform:translateY(10px);
+      transition:.18s ease-out;
+    }
+    .formation-tip.visible{
+      opacity:1;
+      transform:translateY(0);
+      pointer-events:auto;
+    }
+    .formation-tip h4{
+      margin:0 0 8px;
+      font-weight:800;
+      color:var(--aw-blue);
+    }
+    .formation-tip p{
+      margin:0 0 12px;
+      color:var(--aw-muted);
+    }
+    .formation-tip a.btn-soft{
+      background:rgba(0,102,255,.1);
+      color:#0066ff;
+      padding:8px 16px;
+      font-size:.9rem;
+    }
+    .formation-tip a.btn-soft:hover{background:rgba(0,102,255,.2)}
+  </style>
+</head>
+
+<body class="page-magazine2">
+  <div id="header"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="canvas" aria-hidden="true"></canvas>
+    <div class="content">
+      <h1>Catalogue</h1>
+      <p class="lead">Conformité RGPD & IA – édition 2025</p>
+    </div>
+  </section>
+
+  <!-- SOMMAIRE + CARROUSELS -->
+  <section class="section">
+    <h2 class="title-center">Sommaire</h2>
+    <p class="subtitle-center">Une sélection d’articles, services et formations à ne pas manquer.</p>
+    <div class="underline"></div>
+
+    <!-- CARROUSEL SERVICES -->
+    <div class="ruban" aria-label="Tous nos services">
+      <div class="ruban-track" data-direction="right">
+        <figure class="ruban-card">
+          <span class="badge" data-cat="conformite">#Conformité</span>
+          <div class="media"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=60" alt=""></div>
+          <figcaption>
+            <h3>RGPD Live</h3>
+            <p>L’audit qui finit en standing ovation.</p>
+            <a class="btn-soft" href="./Nos-services.html#rgpd">Je prends ma place</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="access">#Access</span>
+          <div class="media"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=60" alt=""></div>
+          <figcaption>
+            <h3>Accessibilité Show</h3>
+            <p>Devenez conforme en un solo.</p>
+            <a class="btn-soft" href="./Nos-services.html#access">Je prends ma place</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="cyber">#Cyber</span>
+          <div class="media"><img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=800&q=60" alt=""></div>
+          <figcaption>
+            <h3>Cyber Night</h3>
+            <p>La crise devient scénario.</p>
+            <a class="btn-soft" href="./Nos-services.html#cyber">Je prends ma place</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="cookies">#Cookies</span>
+          <div class="media"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=60" alt=""></div>
+          <figcaption>
+            <h3>Cookies Party</h3>
+            <p>Bandeau & CMP en rythme.</p>
+            <a class="btn-soft" href="./Nos-services.html#cookies">Je prends ma place</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="audit">#Audit</span>
+          <div class="media"><img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=60" alt=""></div>
+          <figcaption>
+            <h3>Diagnostic Premiere</h3>
+            <p>Le grand écran de vos priorités.</p>
+            <a class="btn-soft" href="./Nos-services.html#diagnostic">Je prends ma place</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="web">#Web</span>
+          <div class="media"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=60" alt=""></div>
+          <figcaption>
+            <h3>Legal Remix</h3>
+            <p>Mentions légales version hit.</p>
+            <a class="btn-soft" href="./Nos-services.html#web-legal">Je prends ma place</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- CARROUSEL FORMATIONS -->
+    <div class="ruban" aria-label="Toutes nos formations">
+      <div class="ruban-track" data-direction="left">
+        <figure class="ruban-card">
+          <span class="badge" data-cat="rgpd">#RGPD</span>
+          <div class="media"><img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=800&q=60" alt=""></div>
+          <figcaption>
+            <h3>RGPD Express</h3>
+            <p>2 h chrono, 100 % live.</p>
+            <a class="btn-soft" href="./formation/rgpd-2h.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="ia">#IA</span>
+          <div class="media"><img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=800&q=60" alt=""></div>
+          <figcaption>
+            <h3>IA Act Day</h3>
+            <p>Le cadre européen en one-man-show.</p>
+            <a class="btn-soft" href="./formation/ia-act.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="access">#Access</span>
+          <div class="media"><img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&fit=crop&w=800&q=60" alt=""></div>
+          <figcaption>
+            <h3>Access Night</h3>
+            <p>Devenez conforme sous les projecteurs.</p>
+            <a class="btn-soft" href="./formation/access.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="cyber">#Cyber</span>
+          <div class="media"><img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=800&q=60" alt=""></div>
+          <figcaption>
+            <h3>Cyber Stage</h3>
+            <p>La sécurité en stand-up.</p>
+            <a class="btn-soft" href="./formation/cyber.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="cookies">#Cookies</span>
+          <div class="media"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=60" alt=""></div>
+          <figcaption>
+            <h3>Cookies Live</h3>
+            <p>Bandeau & CMP en live coding.</p>
+            <a class="btn-soft" href="./formation/cookies.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ruban-card">
+          <span class="badge" data-cat="web">#Web</span>
+          <div class="media"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=60" alt=""></div>
+          <figcaption>
+            <h3>Legal Remix</h3>
+            <p>Mentions légales version acoustic.</p>
+            <a class="btn-soft" href="./formation/web-legal.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer injecté -->
+  <div id="footer"></div>
+
+  <!-- Nav flottante -->
+  <div class="nav">
+    <a href="#cover" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</a>
+    <a href="#services">Services</a>
+    <a href="#formations">Formations</a>
+    <a href="#audit">Audit</a>
+    <a href="#atelier">Atelier</a>
+  </div>
+
+  <!-- ==========  TEMPLATES POUR TOOLTIPS  ========== -->
+  <template id="tip-rgpd">
+    <div class="formation-tip" data-key="rgpd">
+      <h4>RGPD : les essentiels opérationnels</h4>
+      <p>½ journée – Débutant à intermédiaire – Présentiel ou distanciel</p>
+      <p>Comprendre les obligations clés (base légale, registre, information, droits) et savoir quoi faire demain matin.</p>
+      <a href="./formation/fiche-rgpd.html" target="_blank" class="btn-soft">Voir la fiche</a>
+    </div>
+  </template>
+
+  <template id="tip-cookies">
+    <div class="formation-tip" data-key="cookies">
+      <h4>Cookies, traceurs & CMP conformes</h4>
+      <p>½ journée – Intermédiaire</p>
+      <p>Mettre en place une CMP propre, auditer les tags, documenter le consentement et limiter l’impact business.</p>
+      <a href="./formation/fiche-cookies.html" target="_blank" class="btn-soft">Voir la fiche</a>
+    </div>
+  </template>
+
+  <!-- ==========  SCRIPTS  ========== -->
+  <!-- Canvas particules -->
+  <script>
+    (function(){
+      const cvs = document.getElementById('canvas'); if(!cvs) return;
+      const ctx = cvs.getContext('2d');
+      const hero = cvs.parentElement;
+      function resize(){
+        const r = hero.getBoundingClientRect();
+        cvs.width = r.width; cvs.height = r.height;
+      }
+      let w,h; function upd(){ resize(); w=cvs.width; h=cvs.height; }
+      const P=[], CFG={n:70, speed:.35, r:2, link:120};
+      class Dot{
+        constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*CFG.speed; this.vy=(Math.random()-.5)*CFG.speed; }
+        step(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
+        draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,CFG.r,0,Math.PI*2); ctx.fillStyle='rgba(255,255,255,.25)'; ctx.fill(); }
+        links(){ for(const q of P){ const d=Math.hypot(this.x-q.x,this.y-q.y); if(d<CFG.link){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/CFG.link})`; ctx.stroke(); } } }
+      }
+      function init(){ upd(); P.length=0; for(let i=0;i<CFG.n;i++) P.push(new Dot()); }
+      function loop(){ ctx.clearRect(0,0,w,h); P.forEach(p=>{ p.step(); p.draw(); p.links(); }); requestAnimationFrame(loop); }
+      init(); loop(); addEventListener('resize', upd, {passive:true});
+    })();
+  </script>
+
+  <!-- Script tooltip formations -->
+  <script>
+  (() => {
+    const tips = {};
+    const offset = 16;
+
+    function getTip(key) {
+      if (tips[key]) return tips[key];
+      const tpl = document.getElementById('tip-' + key);
+      if (!tpl) return null;
+      tips[key] = tpl.content.cloneNode(true).querySelector('.formation-tip');
+      document.body.appendChild(tips[key]);
+      return tips[key];
+    }
+
+    function placeTip(tip, card) {
+      const r = card.getBoundingClientRect();
+      tip.style.left = `${r.left + window.scrollX + (r.width - tip.offsetWidth) / 2}px`;
+      tip.style.top  = `${r.top  + window.scrollY - tip.offsetHeight - offset}px`;
+    }
+
+    document.querySelectorAll('.ruban-card').forEach(card => {
+      const h3 = card.querySelector('h3');
+      if (!h3) return;
+      const txt = h3.textContent.toLowerCase();
+      let key = null;
+      if (txt.includes('rgpd'))       key = 'rgpd';
+      else if (txt.includes('cookies')) key = 'cookies';
+      if (!key) return;
+
+      const tip = getTip(key);
+      if (!tip) return;
+
+      card.addEventListener('mouseenter', () => {
+        placeTip(tip, card);
+        tip.classList.add('visible');
+      });
+      card.addEventListener('mouseleave', () => {
+        tip.classList.remove('visible');
+      });
+
+      window.addEventListener('resize', () => {
+        if (tip.classList.contains('visible')) placeTip(tip, card);
+      });
+    });
+  })();
+  </script>
+
+  <!-- Ajustement hauteur rubans -->
+  <script>
+    (function(){
+      function syncRubanHeights(){
+        document.querySelectorAll('.ruban').forEach(r => {
+          const cards = r.querySelectorAll('.ruban-card');
+          let max = 0;
+          cards.forEach(c => { max = Math.max(max, c.offsetHeight); });
+          r.style.height = (max + 4) + 'px';
+        });
+      }
+      const ro = new ResizeObserver(syncRubanHeights);
+      window.addEventListener('load', () => {
+        document.querySelectorAll('.ruban-card').forEach(el => ro.observe(el));
+        syncRubanHeights();
+      }, { once:true });
+      window.addEventListener('resize', syncRubanHeights, { passive:true });
+      document.addEventListener('load', e => {
+        if(e.target && e.target.tagName === 'IMG') syncRubanHeights();
+      }, true);
+    })();
+  </script>
+</body>
+</html>
