@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
 
-  <!-- Polices & CSS global (même stack que les autres pages) -->
+  <!-- Polices + CSS global (identiques aux autres pages) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/awenoria.css">
@@ -79,7 +79,6 @@
     }
     .price-inline{margin:.25rem 0 0; font-weight:800; color:var(--copper)}
 
-    /* Pricing “offre” */
     .offer{
       background:rgba(255,255,255,.86); backdrop-filter:blur(10px);
       border:1px solid var(--stroke); border-radius:22px; padding:20px;
@@ -95,13 +94,12 @@
       color:#fff; font-size:12px; font-weight:800; display:inline-block;
       box-shadow:0 10px 24px rgba(27,136,255,.25);
     }
-
     .section.alt{background:#fff}
   </style>
 </head>
 <body>
 
-  <!-- Mounts identiques aux autres pages -->
+  <!-- Mounts identiques -->
   <div id="header"></div>
 
   <!-- ===== HERO ===== -->
@@ -131,10 +129,7 @@
           <article class="card">
             <span class="cap">Cookies & traceurs</span>
             <h3>Scanner (avant/après consentement)</h3>
-            <ul>
-              <li>Détecte CMP, blocage réel, tiers, storage</li>
-              <li>PDF + score</li>
-            </ul>
+            <ul><li>Détecte CMP, blocage réel, tiers, storage</li><li>PDF + score</li></ul>
             <p class="price-inline">79–149 € / scan</p>
             <a class="btn secondary" href="#cta">Tester</a>
           </article>
@@ -284,9 +279,7 @@
           <article class="offer">
             <h3>Start RGPD</h3>
             <p class="for">TPE & indépendants</p>
-            <ul>
-              <li>Audit de base</li><li>Politique automatique</li><li>Registre checker</li>
-            </ul>
+            <ul><li>Audit de base</li><li>Politique automatique</li><li>Registre checker</li></ul>
             <p class="price">490 €</p>
             <a class="btn primary" href="#cta">Obtenir un devis</a>
           </article>
@@ -294,9 +287,7 @@
           <article class="offer">
             <h3>Pro RGPD</h3>
             <p class="for">PME / associations</p>
-            <ul>
-              <li>Audit complet</li><li>PIA / AIPD</li><li>Suivi 6 mois</li>
-            </ul>
+            <ul><li>Audit complet</li><li>PIA / AIPD</li><li>Suivi 6 mois</li></ul>
             <p class="price">1 290 €</p>
             <a class="btn primary" href="#cta">Obtenir un devis</a>
           </article>
@@ -390,25 +381,75 @@
         constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*.4; this.vy=(Math.random()-.5)*.4; }
         step(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
         draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,conf.r,0,Math.PI*2); ctx.fillStyle=conf.col; ctx.fill(); }
-        links(){
-          for(const q of P){
-            const d=Math.hypot(this.x*q.x, this.y*q.y); // légère variation esthétique
-            const D=Math.hypot(this.x-q.x,this.y-q.y);
-            if(D<conf.link){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle=`rgba(255,255,255,${1-D/conf.link})`; ctx.stroke(); }
-          }
-        }
+        links(){ for(const q of P){ const d=Math.hypot(this.x-q.x,this.y-q.y); if(d<conf.link){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/conf.link})`; ctx.stroke(); } } }
       }
       for(let i=0;i<conf.n;i++) P.push(new Dot());
-      (function loop(){
-        ctx.clearRect(0,0,w,h);
-        P.forEach(p=>{ p.step(); p.draw(); p.links(); });
-        requestAnimationFrame(loop);
-      })();
+      (function loop(){ ctx.clearRect(0,0,w,h); P.forEach(p=>{ p.step(); p.draw(); p.links(); }); requestAnimationFrame(loop); })();
       resize();
     })();
   </script>
 
-  <!-- Injection header/footer + nav (identique aux autres pages) -->
-  <script defer src="assets/includes.js"></script>
+  <!-- Loader header/footer + nav (copié de ta page "Qui sommes-nous") -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
+
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
+    }
+
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean ];
+    };
+
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+      }
+      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+    }
+
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return;
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
+    }
+
+    // HEADER
+    if (headMount) {
+      fetchAny(["header.html", "partials/header.html"])
+        .then(html => {
+          headMount.innerHTML = html;
+          fixRootUrls(headMount);
+          return fetchAny(["assets/nav.js", "nav.js"]);
+        })
+        .then(code => {
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+        })
+        .catch(() => { headMount.innerHTML = "<!-- Header introuvable -->"; });
+    }
+
+    // FOOTER
+    if (footMount) {
+      fetchAny(["footer.html", "partials/footer.html"])
+        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+        .catch(() => { footMount.innerHTML = "<!-- Footer introuvable -->"; });
+    }
+  });
+  </script>
 </body>
 </html>
