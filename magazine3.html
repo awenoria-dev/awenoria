@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Awéboria – Magazine Conformité</title>
+  <title>Catalogue – Conformité RGPD & IA</title>
 
   <!-- Polices + favicons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +28,7 @@
       }
     }
 
-    /* ---------- HERO bleu avec particules (mêmes proportions que les autres) ---------- */
+    /* ---------- HERO bleu avec particules ---------- */
     .hero{
       position:relative; min-height:60vh; display:flex; align-items:center; justify-content:center;
       text-align:center; color:#fff; overflow:hidden;
@@ -43,7 +43,6 @@
     .hero h1{font-family:"Playfair Display",serif; font-weight:700; font-size:clamp(36px,6vw,64px); line-height:1.05; margin:0;}
     .hero .lead{font-size:1.2rem; font-weight:600; color:#eaf3ff; margin-top:10px;}
 
-    /* ---------- Page ---------- */
     body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--aw-ink); background:var(--aw-bg);}
     .section{max-width:1200px; margin:0 auto; padding:80px 20px;}
     .title-center{margin:0 0 6px; text-align:center; font-weight:800; font-size:clamp(26px,3.8vw,40px);}
@@ -91,7 +90,6 @@
     .badge[data-cat="rgpd"]{background:#ff6b6b}
     .badge[data-cat="ia"]{background:#a55eea}
 
-    /* ---------- Éditorial (blocs texte) ---------- */
     .editorial{background:var(--aw-panel); border-top:1px solid rgba(15,23,32,.06); border-bottom:1px solid rgba(15,23,32,.06);}
     .editorial h2{font-size:clamp(22px,3.2vw,30px); font-weight:800; text-align:center; margin:0;}
     .editorial p{max-width:820px; margin:14px auto 0; text-align:center; color:var(--aw-ink);}
@@ -101,7 +99,6 @@
     }
     .editorial .cta:hover{transform:translateY(-2px); box-shadow:0 18px 36px rgba(255,138,61,.35);}
 
-    /* Nav flottante (petite) */
     .nav{position:fixed; bottom:18px; left:50%; transform:translateX(-50%); display:flex; gap:10px; z-index:20}
     .nav a{background:var(--aw-panel); color:#0033cc; padding:.55rem 1rem; border-radius:999px; text-decoration:none; font-weight:800; box-shadow:0 10px 24px rgba(0,0,0,.15); border:1px solid rgba(15,23,32,.06);}
   </style>
@@ -109,15 +106,14 @@
 
 <body class="page-magazine2">
 
-  <!-- Header injecté -->
   <div id="header"></div>
 
   <!-- HERO -->
   <section class="hero">
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="content">
-      <h1>Awéboria</h1>
-      <p class="lead">Magazine conformité & IA — édition 2025</p>
+      <h1>Catalogue</h1>
+      <p class="lead">Conformité RGPD & IA – édition 2025</p>
     </div>
   </section>
 
@@ -130,7 +126,6 @@
     <!-- CARROUSEL SERVICES -->
     <div class="ruban" aria-label="Tous nos services">
       <div class="ruban-track" data-direction="right">
-        <!-- originaux -->
         <figure class="ruban-card">
           <span class="badge" data-cat="conformite">#Conformité</span>
           <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=60" alt="">
@@ -321,7 +316,7 @@
     </div>
   </section>
 
-  <!-- Éditos (Services / Formations / Audit / Atelier) -->
+  <!-- Éditos -->
   <section id="services" class="section editorial">
     <h2>Nos Services</h2>
     <p><strong>Conseil & conformité</strong> — Audit & Analyse, RGPD, IA Act.<br>
@@ -350,6 +345,11 @@
     <p style="text-align:center"><a href="mailto:hello@awenoria.fr?subject=Programme Atelier 2h RGPD" class="cta">Demander un programme</a></p>
   </section>
 
+  <!-- PJ1 intégrée à la fin -->
+  <section class="section" style="text-align:center;">
+    <img src="image.png" alt="Vous êtes prêt ? On vous répond en 30 min chrono." style="max-width:100%; height:auto; border-radius:12px; box-shadow:var(--shadow);" />
+  </section>
+
   <!-- Footer injecté -->
   <div id="footer"></div>
 
@@ -362,7 +362,7 @@
     <a href="#atelier">Atelier</a>
   </div>
 
-  <!-- Canvas particules (réseau aléatoire, pas de formes fixes) -->
+  <!-- Canvas particules -->
   <script>
     (function(){
       const cvs = document.getElementById('canvas'); if(!cvs) return;
@@ -388,12 +388,12 @@
     })();
   </script>
 
-  <!-- Injection header/footer + correction des URLs pour la racine -->
+  <!-- Injection header/footer -->
   <script>
   (function(){
     const headMount = document.getElementById("header");
     const footMount = document.getElementById("footer");
-    const PREFIX = ""; // page à la racine
+    const PREFIX = "";
 
     function rewriteRelativeURLs(container){
       if (!container) return;
@@ -413,7 +413,6 @@
       return null;
     }
 
-    // HEADER
     (async()=>{
       const html = await fetchAny(["partials/header.html","header.html"]);
       headMount.innerHTML = html || "<!-- Header introuvable -->";
@@ -430,7 +429,6 @@
       }
     })();
 
-    // FOOTER
     (async()=>{
       const html = await fetchAny(["partials/footer.html","footer.html"]);
       footMount.innerHTML = html || "<!-- Footer introuvable -->";
