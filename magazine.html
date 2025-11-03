@@ -2,8 +2,9 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Magazine Wenoria</title>
+<title>Magazine Awenoria</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --cream:#F9F7F3;
@@ -11,81 +12,50 @@
     --orange:#FF6B00;
     --grad:linear-gradient(135deg, var(--violet) 0%, var(--orange) 100%);
     --char:#222;
-    --speed:.9s;
+    --speed:.8s;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
-  body{background:var(--cream);color:var(--char);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;font-size:18px}
-  a{text-decoration:none;color:inherit}
+  body{background:var(--cream);font-family:'Inter',sans-serif;color:var(--char);overflow:hidden}
+  h1,h2,h3{font-family:'Playfair Display',serif;font-weight:700}
 
-  /* ===== HEADER ===== */
   header{
-    position:fixed;
-    top:0;left:0;right:0;
+    position:fixed;top:0;left:0;right:0;
     display:flex;align-items:center;justify-content:space-between;
-    padding:1rem 2rem;
-    background:#fff;
-    box-shadow:0 2px 10px rgba(0,0,0,.05);
-    z-index:20;
+    padding:1.2rem 2.5rem;background:rgba(255,255,255,.85);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    box-shadow:0 2px 20px rgba(0,0,0,.05);z-index:30;
   }
-  header .logo{font-weight:700;font-size:1.5rem;color:var(--violet)}
-  header .nav-btn{
-    background:var(--orange);color:#fff;border:none;
-    padding:.6rem 1.3rem;border-radius:30px;font-size:1rem;
-    cursor:pointer;transition:background .3s;
-  }
-  header .nav-btn:hover{background:#e55e00}
+  header .logo{font-size:1.8rem;color:var(--violet);letter-spacing:-1px}
+  .nav-btn{background:var(--orange);color:#fff;border:none;padding:.7rem 1.5rem;border-radius:30px;font-size:1rem;cursor:pointer;transition:background .3s}
+  .nav-btn:hover{background:#e55e00}
 
-  /* ===== MAGAZINE 3-D ===== */
-  #mag{
-    height:100vh;
-    display:flex;align-items:center;justify-content:center;
-    perspective:2500px;
-  }
-  .book{
-    width:min(90vw,800px);
-    height:min(80vh,550px);
-    position:relative;
-    transform-style:preserve-3d;
-    transition:transform var(--speed) cubic-bezier(.25,1,.5,1);
-  }
-  .page{
-    position:absolute;
-    inset:0;
-    backface-visibility:hidden;
-    border-radius:12px;
-    background:#fff;
-    box-shadow:0 25px 50px rgba(0,0,0,.15);
-    padding:3.5rem 4rem;
-    display:flex;flex-direction:column;justify-content:center;
-  }
+  #mag{height:100vh;display:flex;align-items:center;justify-content:center;perspective:3000px}
+  .book{width:min(90vw,850px);height:min(80vh,600px);position:relative;transform-style:preserve-3d;transition:transform var(--speed) cubic-bezier(.25,1,.5,1)}
+  .page{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;background:#fff;box-shadow:0 30px 60px rgba(0,0,0,.2);overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:0}
   .page:nth-child(even){transform:rotateY(180deg)}
-  .page h2{font-size:2.8rem;margin-bottom:2rem;letter-spacing:-1px;color:var(--violet)}
-  .page.fullgrad{background:var(--grad);color:#fff;text-align:center}
-  .page.fullgrad h2{color:#fff;font-size:3.5rem}
-  .page ul{list-style:none;padding-left:1.2rem}
-  .page li{margin:.8rem 0;position:relative;padding-left:1.5rem}
-  .page li::before{
-    content:"";position:absolute;left:0;top:.55em;
-    width:10px;height:10px;background:var(--orange);border-radius:50%
-  }
+  .page.cover{background:var(--grad);color:#fff;text-align:center}
+  .page.cover h1{font-size:4rem;line-height:1.1}
+  .page.cover p{font-size:1.3rem;margin-top:1rem;opacity:.9}
+  .bg-img{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;z-index:-1;filter:brightness(.6)}
+  .txt-overlay{position:relative;z-index:1;padding:4rem;color:#fff}
+  .txt-overlay h2{font-size:3.5rem;margin-bottom:1.5rem}
+  .txt-overlay p{font-size:1.2rem;max-width:80%}
+  .liste{padding:4rem 5rem}
+  .liste h2{font-size:3rem;margin-bottom:2rem;color:var(--violet)}
+  .liste ul{list-style:none;padding-left:1.2rem}
+  .liste li{margin:.8rem 0;position:relative;padding-left:1.5rem;font-size:1.2rem}
+  .liste li::before{content:"";position:absolute;left:0;top:.55em;width:10px;height:10px;background:var(--orange);border-radius:50%}
 
-  /* ===== DOTS ===== */
-  .dots{
-    position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);
-    display:flex;gap:.6rem;
-  }
-  .dot{
-    width:12px;height:12px;border-radius:50%;
-    background:#ccc;cursor:pointer;transition:all .3s;
-  }
+  .dots{position:fixed;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;gap:.7rem;z-index:20}
+  .dot{width:14px;height:14px;border-radius:50%;background:#ccc;cursor:pointer;transition:all .3s}
   .dot.on{background:var(--violet);transform:scale(1.2)}
 </style>
 </head>
 
 <body>
 <header>
-  <div class="logo">Wenoria</div>
+  <div class="logo">Awenoria</div>
   <div>
     <button class="nav-btn" id="prevBtn">←</button>
     <button class="nav-btn" id="nextBtn">→</button>
@@ -94,69 +64,18 @@
 
 <div id="mag">
   <div class="book" id="book">
-    <!-- COUVERTURE -->
-    <div class="page fullgrad">
-      <h2>Magazine<br>Web&Legal</h2>
-      <p>Édition 2025 – clés en main & sur-mesure</p>
-    </div>
-
-    <!-- SERVICES -->
-    <div class="page">
-      <h2>Nos Services</h2>
-      <ul>
-        <li>Audit & Analyse</li>
-        <li>Web & Legal</li>
-        <li>RGPD & Conformité</li>
-        <li>Modèles juridiques</li>
-        <li>Accompagnement sur mesure</li>
-        <li>Abonnement & à la carte</li>
-      </ul>
-    </div>
-
-    <!-- FORMATIONS -->
-    <div class="page">
-      <h2>Nos Formations</h2>
-      <ul>
-        <li>Atelier 2 h</li>
-        <li>Formation 1 jour</li>
-        <li>Formation 2 jours</li>
-        <li>Par thématique</li>
-        <li>Par public</li>
-        <li>RGPD essentiels, Cookies, Accessibilité, Cyber sécurité</li>
-      </ul>
-    </div>
-
-    <!-- QUATRIÈME PAGE – CALL-TO-ACTION -->
-    <div class="page fullgrad">
-      <h2>Prêt à vous lancer ?</h2>
-      <p>Contactez-nous et découvrez la solution qui vous correspond.</p>
-      <a href="mailto:hello@wenoria.fr" class="nav-btn" style="margin-top:2rem;display:inline-block;">Nous contacter</a>
-    </div>
+    <div class="page cover"><h1>Awenoria<br>Magazine</h1><p>Édition 2025 – luxe & compliance</p></div>
+    <div class="page liste"><h2>Nos Services</h2><ul><li>Audit & Analyse</li><li>Web & Legal</li><li>RGPD & Conformité</li><li>Modèles juridiques</li><li>Accompagnement sur mesure</li><li>Abonnement & à la carte</li></ul></div>
+    <div class="page liste"><h2>Nos Formations</h2><ul><li>Atelier 2 h</li><li>Formation 1 jour</li><li>Formation 2 jours</li><li>Par thématique</li><li>Par public</li><li>RGPD essentiels, Cookies, Accessibilité, Cyber sécurité</li></ul></div>
+    <div class="page"><img class="bg-img" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1350&q=80" alt="portrait"><div class="txt-overlay"><h2>« Le droit doit être aussi beau que fonctionnel »</h2><p>Rencontre avec nos experts juridiques & créatifs.</p></div></div>
+    <div class="page"><img class="bg-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1350&q=80" alt="editorial"><div class="txt-overlay"><h2>Éditorial</h2><p>Chaque page est une invitation à repenser la compliance comme une expérience luxueuse, intuitive et désirable. Bienvenue dans l’univers Awenoria.</p></div></div>
   </div>
 </div>
 
-<div class="dots">
-  <span class="dot on" data-i="0"></span>
-  <span class="dot" data-i="1"></span>
-  <span class="dot" data-i="2"></span>
-  <span class="dot" data-i="3"></span>
-</div>
+<div class="dots"><span class="dot on" data-i="0"></span><span class="dot" data-i="1"></span><span class="dot" data-i="2"></span><span class="dot" data-i="3"></span><span class="dot" data-i="4"></span></div>
 
 <script>
-  const book=document.getElementById('book');
-  const dots=document.querySelectorAll('.dot');
-  let idx=0, total=4;
-
-  function update(){
-    book.style.transform=`rotateY(${-idx*180}deg)`;
-    dots.forEach((d,i)=>d.classList.toggle('on',i===idx));
-    prevBtn.disabled=idx===0;
-    nextBtn.disabled=idx===total-1;
-  }
-  document.getElementById('nextBtn').onclick=()=>{if(idx<total-1){idx++;update()}};
-  document.getElementById('prevBtn').onclick=()=>{if(idx>0){idx--;update()}};
-  dots.forEach(d=>d.onclick=()=>{idx=+d.dataset.i;update()});
-  update();
+  const book=document.getElementById('book'),dots=document.querySelectorAll('.dot');let idx=0,total=5;function update(){book.style.transform=`rotateY(${-idx*180}deg)`;dots.forEach((d,i)=>d.classList.toggle('on',i===idx));prevBtn.disabled=idx===0;nextBtn.disabled=idx===total-1}document.getElementById('nextBtn').onclick=()=>{if(idx<total-1){idx++;update()}};document.getElementById('prevBtn').onclick=()=>{if(idx>0){idx--;update()}};dots.forEach(d=>d.onclick=()=>{idx=+d.dataset.i;update()});update();
 </script>
 </body>
 </html>
