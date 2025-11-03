@@ -12,46 +12,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* Dégradé de fond + glassmorphism */
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #1a365d 0%, #4299e1 100%);
-      color: #fff;
-      min-height: 100vh;
-    }
-    .glass {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-    }
-    #chart {
-      height: 280px;
-    }
-    table tbody tr {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    table tbody tr:last-child {
-      border-bottom: none;
-    }
-    a {
-      color: #93c5fd;
-    }
-    a:hover {
-      color: #dbeafe;
-    }
-    /* Impression */
-    @media print {
-      body {
-        background: #fff;
-        color: #000;
-      }
-      .glass {
-        background: #fff;
-        border: 1px solid #e5e7eb;
-      }
-      #chart {
-        height: 200px;
-      }
+    body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#1a365d 0%,#4299e1 100%);color:#fff;min-height:100vh}
+    .glass{background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18)}
+    #chart{height:280px}
+    table tbody tr{border-bottom:1px solid rgba(255,255,255,.1)}
+    table tbody tr:last-child{border-bottom:none}
+    a{color:#93c5fd}
+    a:hover{color:#dbeafe}
+    @media print{
+      body{background:#fff;color:#000}
+      .glass{background:#fff;border:1px solid #e5e7eb}
+      #chart{height:200px}
     }
   </style>
 </head>
@@ -91,21 +62,4 @@
   </section>
 
   <!-- ===== TABLEAU DES ÉCARTS ===== -->
-  <section class="glass rounded-xl p-6 mb-6 max-w-5xl mx-auto">
-    <h2 class="text-lg font-semibold mb-4">Écarts constatés à vérifier</h2>
-    <div class="overflow-x-auto">
-      <table class="w-full text-sm">
-        <thead class="border-b border-white/20">
-          <tr>
-            <th class="text-left py-2">ID</th>
-            <th class="text-left">Constat</th>
-            <th class="text-left">Référentiel</th>
-          </tr>
-        </thead>
-        <tbody id="issues"></tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ===== MÉTRIQUES DÉTAILLÉES ===== -->
-  <section class
+  <section class="glass rounded-xl p-6
