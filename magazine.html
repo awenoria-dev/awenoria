@@ -1,170 +1,57 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Catalogue - Web&Legal</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", sans-serif;
-      background: #f9f9f9;
-      color: #0d1b2a;
-    }
+<!-- ========== CATALOGUE INTERACTIF ========== -->
+<section id="catalogue-section">
+  <h2>📘 Catalogue interactif</h2>
 
-    header {
-      text-align: center;
-      padding: 1rem;
-      background: #e0e1dd;
-    }
+  <nav id="sommaire">
+    <a href="#page-services">Nos Services</a>
+    <a href="#page-formations">Nos Formations</a>
+  </nav>
 
-    #sommaire {
-      background: #ffffff;
-      padding: 1rem;
-      border-bottom: 2px solid #ff6b00;
-    }
+  <div id="flipbook">
+    <!-- Page 1 -->
+    <div class="page active" id="page-services">
+      <div>
+        <h3>Nos Services</h3>
+        <ul>
+          <li>Audit & Analyse</li>
+          <li>Web & Legal</li>
+          <li>RGPD & Conformité</li>
+          <li>Modèles juridiques</li>
+          <li>Accompagnement sur mesure</li>
+          <li>Abonnement & à la carte</li>
+        </ul>
+      </div>
+      <div class="nav-buttons">
+        <span></span>
+        <button onclick="flip(1)">Suivant →</button>
+      </div>
+    </div>
 
-    #sommaire ul {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    #sommaire a {
-      text-decoration: none;
-      color: #0d1b2a;
-      font-weight: bold;
-      padding: 0.5rem 1rem;
-      border: 2px solid transparent;
-      transition: all 0.3s;
-    }
-
-    #sommaire a:hover {
-      border-color: #ff6b00;
-      color: #ff6b00;
-    }
-
-    #flipbook {
-      position: relative;
-      width: 90%;
-      max-width: 800px;
-      margin: 2rem auto;
-      overflow: hidden;
-      height: 500px;
-      background: #ffffff;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border-radius: 8px;
-    }
-
-    .page {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      padding: 2rem;
-      box-sizing: border-box;
-      display: none;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .page.active {
-      display: flex;
-    }
-
-    button {
-      align-self: flex-end;
-      background: #ff6b00;
-      color: #fff;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    button.prev {
-      align-self: flex-start;
-    }
-  </style>
-</head>
-<body>
-
-<header>
-  <h1>📘 Catalogue Web&Legal</h1>
-  <p>Parcours interactif de nos services et formations</p>
-</header>
-
-<nav id="sommaire">
-  <h2>Sommaire</h2>
-  <ul>
-    <li><a href="#page-services">Nos Services</a></li>
-    <li><a href="#page-formations">Nos Formations</a></li>
-  </ul>
-</nav>
-
-<main id="flipbook">
-
-  <!-- Page 1 : Services -->
-  <section class="page" id="page-services">
-    <h2>Nos Services</h2>
-    <ul>
-      <li>Audit & Analyse</li>
-      <li>Web & Legal</li>
-      <li>RGPD & Conformité</li>
-      <li>Modèles juridiques</li>
-      <li>Accompagnement sur mesure</li>
-      <li>Abonnement & à la carte</li>
-    </ul>
-    <button class="next">Suivant →</button>
-  </section>
-
-  <!-- Page 2 : Formations -->
-  <section class="page" id="page-formations">
-    <h2>Nos Formations</h2>
-    <ul>
-      <li>Atelier 2h</li>
-      <li>Formation 1 jour</li>
-      <li>Formation 2 jours</li>
-      <li>Par thématique</li>
-      <li>Par public</li>
-      <li>RGPD essentiels, Cookies, Accessibilité, Cyber sécurité</li>
-    </ul>
-    <button class="prev">← Précédent</button>
-  </section>
-
-</main>
+    <!-- Page 2 -->
+    <div class="page" id="page-formations">
+      <div>
+        <h3>Nos Formations</h3>
+        <ul>
+          <li>Atelier 2 h</li>
+          <li>Formation 1 jour</li>
+          <li>Formation 2 jours</li>
+          <li>Par thématique</li>
+          <li>Par public</li>
+          <li>RGPD essentiels, Cookies, Accessibilité, Cyber sécurité</li>
+        </ul>
+      </div>
+      <div class="nav-buttons">
+        <button onclick="flip(0)">← Précédent</button>
+        <span></span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <script>
   const pages = document.querySelectorAll('.page');
-  let current = 0;
-
-  function show(index) {
-    pages.forEach((p, i) => p.classList.toggle('active', i === index));
+  function flip(index){
+    pages.forEach(p => p.classList.remove('active'));
+    pages[index].classList.add('active');
   }
-
-  document.querySelectorAll('.next').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (current < pages.length - 1) {
-        current++;
-        show(current);
-      }
-    });
-  });
-
-  document.querySelectorAll('.prev').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (current > 0) {
-        current--;
-        show(current);
-      }
-    });
-  });
-
-  // Affiche la première page
-  show(0);
 </script>
-
-</body>
-</html>
