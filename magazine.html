@@ -2,50 +2,105 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Magazine Web&Legal</title>
+<title>Magazine Wenoria</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   :root{
-    --orange:#ff6b00;
-    --txt:#222;
-    --bg:#fafafa;
-    --grad:linear-gradient(135deg, #fff 50%, #f5f5f5 50.1%);
+    --cream:#F9F7F3;
+    --violet:#5B2C6F;
+    --orange:#FF6B00;
+    --grad:linear-gradient(135deg, var(--violet) 0%, var(--orange) 100%);
+    --char:#222;
+    --speed:.9s;
   }
-  *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-  body{background:var(--bg);color:var(--txt);overflow:hidden}
-  header{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.05);z-index:10}
-  header h1{font-size:1.4rem;font-weight:600;letter-spacing:-.5px}
-  .swiper{display:flex;align-items:center;justify-content:center;gap:.5rem}
-  .swiper button{background:var(--orange);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:30px;font-size:1rem;cursor:pointer;transition:background .3s}
-  .swiper button:disabled{background:#ccc}
-  #magazine{height:100vh;display:flex;align-items:center;justify-content:center;perspective:2000px}
-  .sheet{width:min(90vw,700px);height:min(80vh,500px);position:relative;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.25,1,.5,1)}
-  .page{position:absolute;width:100%;height:100%;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;padding:3rem;border-radius:16px;background:var(--grad);box-shadow:0 20px 40px rgba(0,0,0,.15)}
-  .page:nth-child(odd){transform:rotateY(0deg)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--cream);color:var(--char);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;font-size:18px}
+  a{text-decoration:none;color:inherit}
+
+  /* ===== HEADER ===== */
+  header{
+    position:fixed;
+    top:0;left:0;right:0;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1rem 2rem;
+    background:#fff;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+    z-index:20;
+  }
+  header .logo{font-weight:700;font-size:1.5rem;color:var(--violet)}
+  header .nav-btn{
+    background:var(--orange);color:#fff;border:none;
+    padding:.6rem 1.3rem;border-radius:30px;font-size:1rem;
+    cursor:pointer;transition:background .3s;
+  }
+  header .nav-btn:hover{background:#e55e00}
+
+  /* ===== MAGAZINE 3-D ===== */
+  #mag{
+    height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    perspective:2500px;
+  }
+  .book{
+    width:min(90vw,800px);
+    height:min(80vh,550px);
+    position:relative;
+    transform-style:preserve-3d;
+    transition:transform var(--speed) cubic-bezier(.25,1,.5,1);
+  }
+  .page{
+    position:absolute;
+    inset:0;
+    backface-visibility:hidden;
+    border-radius:12px;
+    background:#fff;
+    box-shadow:0 25px 50px rgba(0,0,0,.15);
+    padding:3.5rem 4rem;
+    display:flex;flex-direction:column;justify-content:center;
+  }
   .page:nth-child(even){transform:rotateY(180deg)}
-  .page h2{font-size:2.5rem;margin-bottom:1.5rem;letter-spacing:-1px}
-  .page p{font-size:1.1rem;margin-bottom:1rem}
+  .page h2{font-size:2.8rem;margin-bottom:2rem;letter-spacing:-1px;color:var(--violet)}
+  .page.fullgrad{background:var(--grad);color:#fff;text-align:center}
+  .page.fullgrad h2{color:#fff;font-size:3.5rem}
   .page ul{list-style:none;padding-left:1.2rem}
-  .page li{margin:.6rem 0;position:relative;padding-left:1.2rem}
-  .page li::before{content:"";position:absolute;left:0;top:.5em;width:8px;height:8px;background:var(--orange);border-radius:50%}
-  .dots{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem}
-  .dot{width:10px;height:10px;border-radius:50%;background:#ccc;cursor:pointer;transition:background .3s}
-  .dot.on{background:var(--orange)}
+  .page li{margin:.8rem 0;position:relative;padding-left:1.5rem}
+  .page li::before{
+    content:"";position:absolute;left:0;top:.55em;
+    width:10px;height:10px;background:var(--orange);border-radius:50%
+  }
+
+  /* ===== DOTS ===== */
+  .dots{
+    position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);
+    display:flex;gap:.6rem;
+  }
+  .dot{
+    width:12px;height:12px;border-radius:50%;
+    background:#ccc;cursor:pointer;transition:all .3s;
+  }
+  .dot.on{background:var(--violet);transform:scale(1.2)}
 </style>
 </head>
-<body>
 
+<body>
 <header>
-  <h1>Web&Legal Magazine</h1>
-  <div class="swiper">
-    <button id="prevBtn">←</button>
-    <button id="nextBtn">→</button>
+  <div class="logo">Wenoria</div>
+  <div>
+    <button class="nav-btn" id="prevBtn">←</button>
+    <button class="nav-btn" id="nextBtn">→</button>
   </div>
 </header>
 
-<div id="magazine">
-  <div class="sheet" id="sheet">
-    <!-- Page 1 -->
+<div id="mag">
+  <div class="book" id="book">
+    <!-- COUVERTURE -->
+    <div class="page fullgrad">
+      <h2>Magazine<br>Web&Legal</h2>
+      <p>Édition 2025 – clés en main & sur-mesure</p>
+    </div>
+
+    <!-- SERVICES -->
     <div class="page">
       <h2>Nos Services</h2>
       <ul>
@@ -57,7 +112,8 @@
         <li>Abonnement & à la carte</li>
       </ul>
     </div>
-    <!-- Page 2 -->
+
+    <!-- FORMATIONS -->
     <div class="page">
       <h2>Nos Formations</h2>
       <ul>
@@ -69,21 +125,30 @@
         <li>RGPD essentiels, Cookies, Accessibilité, Cyber sécurité</li>
       </ul>
     </div>
+
+    <!-- QUATRIÈME PAGE – CALL-TO-ACTION -->
+    <div class="page fullgrad">
+      <h2>Prêt à vous lancer ?</h2>
+      <p>Contactez-nous et découvrez la solution qui vous correspond.</p>
+      <a href="mailto:hello@wenoria.fr" class="nav-btn" style="margin-top:2rem;display:inline-block;">Nous contacter</a>
+    </div>
   </div>
 </div>
 
 <div class="dots">
   <span class="dot on" data-i="0"></span>
   <span class="dot" data-i="1"></span>
+  <span class="dot" data-i="2"></span>
+  <span class="dot" data-i="3"></span>
 </div>
 
 <script>
-  const sheet=document.getElementById('sheet');
+  const book=document.getElementById('book');
   const dots=document.querySelectorAll('.dot');
-  let idx=0, total=2;
+  let idx=0, total=4;
 
   function update(){
-    sheet.style.transform=`rotateY(${-idx*180}deg)`;
+    book.style.transform=`rotateY(${-idx*180}deg)`;
     dots.forEach((d,i)=>d.classList.toggle('on',i===idx));
     prevBtn.disabled=idx===0;
     nextBtn.disabled=idx===total-1;
