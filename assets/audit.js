@@ -12,7 +12,27 @@ const SIGMA = (function () {
     const url = new URL(rawURL);
     console.log('[Σ] Début scan', url.href);
 
-    const res = await fetch(url, { redirect: 'follow', credentials: 'omit' });
+    // --- sécurité : on n’analyse que du HTTPS ---
+    if (url.protocol !== 'https:') throw 'Veuillez fournir une URL en HTTPS (ex : https://votresite.fr)';
+
+    // --- fetch avec timeout & gestion CORS ---
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+    let res;
+    try {
+      res = await fetch(url, {
+        mode: 'cors',
+        credentials: 'omit',
+        signal: controller.signal
+      });
+    } catch (err) {
+      clearTimeout(timeout);
+      if (err.name === 'AbortError') throw 'Le site met trop de temps à répondre (8 s max).';
+      throw 'Accès refusé (CORS) ou site injoignable. Utilisez le bookmarklet ou notre scanner desktop.';
+    }
+    clearTimeout(timeout);
+
+    if (!res.ok) throw `Site inaccessible (code ${res.status})`;
     const html = await res.text();
     const doc = new DOMParser().parseFromString(html, 'text/html');
 
@@ -21,7 +41,6 @@ const SIGMA = (function () {
     const cmp = !!doc.querySelector('button[id*="tarteaucitron"],button[class*="cmp"],button[class*="cookie"]');
     const refuse = !!doc.querySelector('button[class*="refuse"],button[id*="refuse"]');
 
-    const tlsOk = url.protocol === 'https:';
     const hsts = res.headers.get('strict-transport-security');
     const csp = res.headers.get('content-security-policy');
     const xfo = res.headers.get('x-frame-options');
@@ -35,8 +54,6 @@ const SIGMA = (function () {
     const imgs = [...doc.images];
     const altMissing = imgs.filter(i => !i.alt).length;
     const transferKB = Math.round((new Blob([html]).size + 2 * 1024) / 1024);
-
-    const policyLink = [...doc.querySelectorAll('a')].find(a => /politique|confidentialité|privacy/i.test(a.textContent));
 
     const issues = [];
     if (third > REF.cookies.maxThirdParty) issues.push({ id: 'C-01', msg: `${third} cookies tiers détectés`, ref: 'EDPB 2020/05' });
