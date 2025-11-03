@@ -1,1 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modèles juridiques – Awenoria</title>
+  <meta name="description" content="Modèles prêts à l’emploi : politique de confidentialité, politique cookies, mentions légales, CGU/CGV, clauses sous-traitants (DPA), registre, AIPD, et plus.">
 
+  <!-- Polices -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
+
+  <!-- (Optionnel) CSS global si présent dans ton repo : décommenter si tu veux -->
+  <!-- <link rel="stylesheet" href="assets/awenoria.css?v=1"> -->
+
+  <style>
+    :root{
+      --ink:#0a0a0a; --blue:#0066ff; --copper:#ff8a3d; --muted:#6b7280;
+      --panel:#ffffff; --bg:#f5f7ff; --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+      --radius:22px;
+    }
+    @media (prefers-color-scheme:dark){
+      :root{
+        --ink:#e7ecff; --blue:#3d8bff; --muted:#a1a9c0;
+        --panel:#0b0f1a; --bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+      }
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      -webkit-font-smoothing:antialiased;
+    }
+    img{max-width:100%; display:block}
+
+    /* ===== HERO bleu + particules (mêmes proportions que les autres pages) ===== */
+    .hero{
+      position:relative; min-height:60vh; display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff; overflow:hidden;
+      background:
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+      border-bottom:4px solid #e8eefb;
+    }
+    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none}
+    .hero .content{position:relative; z-index:1; max-width:920px; padding:0 20px}
+    .hero h1{
+      font-weight:800; letter-spacing:-.02em;
+      font-size:clamp(44px,7vw,72px); line-height:1.05; margin:0;
+    }
+    .hero .lead{font-size:1.2rem; font-weight:600; color:#eaf3ff; margin-top:12px}
+
+    /* ===== Layout de page ===== */
+    .section{max-width:1200px; margin:0 auto; padding:80px 20px}
+    .title-center{margin:0 0 6px; text-align:center; font-weight:800; font-size:clamp(26px,3.8vw,40px)}
+    .subtitle-center{max-width:900px; margin:0 auto 22px; text-align:center; color:var(--muted)}
+    .underline{width:84px; height:4px; border-radius:999px; background:var(--copper); margin:12px auto 28px}
+
+    .grid-3{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px}
+    @media (max-width:1024px){.grid-3{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.grid-3{grid-template-columns:1fr}}
+
+    .card{
+      background:var(--panel); border:1px solid rgba(15,23,32,.08); border-radius:var(--radius);
+      box-shadow:var(--shadow); padding:18px;
+    }
+    .card h3{margin:0 0 6px; font-weight:800; font-size:1.05rem}
+    .card p{margin:0; color:var(--muted)}
+    .card .meta{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 8px}
+    .tag{border:1px solid rgba(15,23,32,.12); border-radius:999px; padding:6px 10px; font-size:12px; font-weight:800; background:rgba(27,136,255,.06); color:#0f5f9a}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; font-weight:800;
+      border-radius:9999px; padding:10px 16px; border:1px solid transparent;
+      background:rgba(27,136,255,.88); color:#fff; text-decoration:none;
+      transition:transform .15s ease, box-shadow .15s ease;
+      box-shadow:0 10px 24px rgba(0,102,255,.25);
+    }
+    .btn:hover{transform:translateY(-1px); box-shadow:0 14px 30px rgba(0,102,255,.35)}
+    .btn.outline{background:transparent; color:#0f5f9a; border-color:rgba(27,136,255,.35)}
+    .btn.outline:hover{background:rgba(27,136,255,.08)}
+
+    /* Accessibilité badge (option) */
+    .badge{display:inline-block; font-size:.75rem; font-weight:800; color:#fff; background:#0f5f9a;
+      padding:4px 8px; border-radius:999px}
+
+    /* Petite nav flottante */
+    .nav{position:fixed; bottom:18px; left:50%; transform:translateX(-50%); display:flex; gap:10px; z-index:20}
+    .nav a{background:var(--panel); color:#0033cc; padding:.55rem 1rem; border-radius:999px; text-decoration:none; font-weight:800; box-shadow:0 10px 24px rgba(0,0,0,.15); border:1px solid rgba(15,23,32,.06)}
+  </style>
+</head>
+
+<body class="page-modeles">
+
+  <!-- Header injecté -->
+  <div id="header"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="content">
+      <h1>Modèles juridiques</h1>
+      <p class="lead">Des modèles prêts à l’emploi pour accélérer votre conformité : politiques, mentions, contrats et documentation.</p>
+    </div>
+  </section>
+
+  <!-- CONTENU -->
+  <section class="section">
+    <h2 class="title-center">Les indispensables</h2>
+    <p class="subtitle-center">Téléchargez, adaptez, déployez. Chaque modèle inclut des zones à compléter et des notes d’utilisation.</p>
+    <div class="underline"></div>
+
+    <div class="grid-3">
+      <article class="card">
+        <h3>Politique de confidentialité</h3>
+        <div class="meta">
+          <span class="tag">Site / App</span><span class="tag">RGPD</span>
+        </div>
+        <p>Structure complète : bases légales, durées, droits, DPO, transferts.</p>
+        <p style="margin-top:10px"><a class="btn" href="ressources-et-documentation.html#modeles">Voir le modèle</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Politique Cookies & CMP</h3>
+        <div class="meta">
+          <span class="tag">Cookies</span><span class="tag">CMP</span>
+        </div>
+        <p>Catégories, exemptions, bandeau et paramétrage de la plateforme.</p>
+        <p style="margin-top:10px"><a class="btn" href="ressources-et-documentation.html#modeles">Voir le modèle</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Mentions légales</h3>
+        <div class="meta">
+          <span class="tag">Web</span><span class="tag">Obligations</span>
+        </div>
+        <p>Éditeur, hébergeur, contacts, propriété intellectuelle, crédits.</p>
+        <p style="margin-top:10px"><a class="btn" href="ressources-et-documentation.html#modeles">Voir le modèle</a></p>
+      </article>
+
+      <article class="card">
+        <h3>CGU / CGV</h3>
+        <div class="meta">
+          <span class="tag">SaaS</span><span class="tag">E-commerce</span>
+        </div>
+        <p>Processus de commande, paiement, obligations, rétractation, garanties.</p>
+        <p style="margin-top:10px"><a class="btn" href="ressources-et-documentation.html#modeles">Voir le modèle</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Clauses sous-traitants (DPA)</h3>
+        <div class="meta">
+          <span class="tag">Contrats</span><span class="tag">Article 28</span>
+        </div>
+        <p>Confidentialité, sécurité, coopération AIPD, restitution/suppression.</p>
+        <p style="margin-top:10px"><a class="btn" href="ressources-et-documentation.html#modeles">Voir le modèle</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Registre de traitements</h3>
+        <div class="meta">
+          <span class="tag">Obligatoire</span><span class="tag">Pilotage</span>
+        </div>
+        <p>Tableur structuré + guide d’inventaire et de mise à jour.</p>
+        <p style="margin-top:10px"><a class="btn" href="ressources-et-documentation.html#modeles">Voir le modèle</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Modèle AIPD (DPIA)</h3>
+        <div class="meta">
+          <span class="tag">Analyse</span><span class="tag">Risques</span>
+        </div>
+        <p>Étapes CNIL : description, nécessité, risques, mesures, validation.</p>
+        <p style="margin-top:10px"><a class="btn" href="ressources-et-documentation.html#modeles">Voir le modèle</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Politique de sécurité (base)</h3>
+        <div class="meta">
+          <span class="tag">Cyber</span><span class="tag">Bonnes pratiques</span>
+        </div>
+        <p>Accès, sauvegardes, chiffrement, MFA, mises à jour, journalisation.</p>
+        <p style="margin-top:10px"><a class="btn" href="ressources-et-documentation.html#modeles">Voir le modèle</a></p>
+      </article>
+
+      <article class="card">
+        <h3>Trames de sensibilisation</h3>
+        <div class="meta">
+          <span class="tag">Ateliers</span><span class="tag">Équipes</span>
+        </div>
+        <p>Slides & exercices pour acculturer rapidement l’organisation.</p>
+        <p style="margin-top:10px"><a class="btn" href="ressources-et-documentation.html#modeles">Voir le modèle</a></p>
+      </article>
+    </div>
+
+    <p class="subtitle-center" style="margin-top:18px">
+      <a class="btn outline" href="Nos-services.html#web-legal">Besoin d’aide pour l’adaptation ?</a>
+    </p>
+  </section>
+
+  <!-- Footer injecté -->
+  <div id="footer"></div>
+
+  <!-- Nav flottante -->
+  <div class="nav">
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Haut</a>
+    <a href="ressources-et-documentation.html#modeles">Tous les modèles</a>
+    <a href="Nos-services.html#web-legal">Web & légal</a>
+  </div>
+
+  <!-- ===== HERO particules : réseau aléatoire (pas de formes fixes) ===== -->
+  <script>
+    (function(){
+      const canvas = document.getElementById('heroCanvas'); if(!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const hero = canvas.parentElement;
+      function resize(){
+        const r = hero.getBoundingClientRect();
+        canvas.width = r.width; canvas.height = r.height;
+      }
+      let w,h; function upd(){ resize(); w=canvas.width; h=canvas.height; }
+      const P=[], CFG={n:70, speed:.35, r:2, link:120};
+      class Dot{
+        constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*CFG.speed; this.vy=(Math.random()-.5)*CFG.speed; }
+        step(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
+        draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,CFG.r,0,Math.PI*2); ctx.fillStyle='rgba(255,255,255,.25)'; ctx.fill(); }
+        links(){ for(const q of P){ const d=Math.hypot(this.x-q.x,this.y-q.y); if(d<CFG.link){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/CFG.link})`; ctx.stroke(); } } }
+      }
+      function init(){ upd(); P.length=0; for(let i=0;i<CFG.n;i++) P.push(new Dot()); }
+      function loop(){ ctx.clearRect(0,0,w,h); P.forEach(p=>{ p.step(); p.draw(); p.links(); }); requestAnimationFrame(loop); }
+      init(); loop(); addEventListener('resize', upd, {passive:true});
+    })();
+  </script>
+
+  <!-- ===== Loader header/footer + correction d’URLs (racine & GitHub Pages) ===== -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
+
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
+    }
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean ];
+    };
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+      }
+      return null;
+    }
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (!val || /^\/\//.test(val)) return;
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
+    }
+
+    // HEADER
+    (async()=>{
+      const html = await fetchAny(["header.html", "partials/header.html"]);
+      if (html){ headMount.innerHTML = html; fixRootUrls(headMount); }
+      const code = await fetchAny(["assets/nav.js", "nav.js"]);
+      if (code){
+        const s = document.createElement("script");
+        if (/\b(import|export)\b/.test(code)) s.type = "module";
+        s.textContent = code;
+        document.body.appendChild(s);
+      }
+    })();
+
+    // FOOTER
+    (async()=>{
+      const html = await fetchAny(["footer.html", "partials/footer.html"]);
+      if (html){ footMount.innerHTML = html; fixRootUrls(footMount); }
+    })();
+  });
+  </script>
+</body>
+</html>
