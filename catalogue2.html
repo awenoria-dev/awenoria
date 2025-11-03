@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Catalogue | Awenoria</title>
+  <meta name="description" content="Parcourez nos services et nos formations : thématiques, publics, formats & modalités. Présentiel / distanciel, supports et attestation inclus.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/icône-apple-touch.png">
+  <meta name="theme-color" content="#0f5f9a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/awenoria.css">
+
+  <style>
+    :root {
+      --font-ui: "Manrope", system-ui, sans-serif;
+      --text: #0f5f9a;
+      --muted: #4a6176;
+      --accent: #16a34a;
+      --copper: #ff8a3d;
+      --radius: 16px;
+      --shadow: 0 8px 24px rgba(0,0,0,.06);
+      --maxw: 1200px;
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-ui);
+      background: #f6f9fc;
+      color: var(--text);
+    }
+    h1, h2, h3, h4 { font-weight: 800 }
+    .section { max-width: var(--maxw); margin: 40px auto; padding: 0 20px }
+    .title-center { text-align: center; font-size: clamp(28px, 5vw, 40px); margin-bottom: 8px }
+    .subtitle-center { text-align: center; color: var(--muted); margin-bottom: 32px }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 24px }
+    @media (max-width: 800px) { .split { grid-template-columns: 1fr } }
+    .panel {
+      background: #fff;
+      border: 1px solid rgba(15,23,32,.08);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .panel h3 { margin-top: 0; font-size: 1.4rem }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid rgba(15,23,32,.08);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card h4 { margin: 0 0 6px; font-size: 1rem }
+    .card .subtle { font-size: .9rem; color: var(--muted); margin-bottom: 10px }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: .9rem;
+      background: var(--text);
+      color: #fff;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .filters button {
+      background: #fff;
+      border: 1px solid rgba(15,23,32,.2);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: .85rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .filters button:hover,
+    .filters button.active {
+      background: rgba(15,95,154,.1);
+      border-color: var(--text);
+    }
+    #results {
+      margin-top: 48px;
+    }
+    .crumbs {
+      display: flex;
+      gap: 8px;
+      font-size: .9rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .crumbs a {
+      color: var(--text);
+      text-decoration: none;
+    }
+    .crumbs a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER injecté ===== -->
+  <div id="header"></div>
+
+  <!-- ===== HERO (inchangé) ===== -->
+  <section class="hero">
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="content">
+      <h1>Catalogue</h1>
+      <p class="lead">Parcourez nos services et nos formations&nbsp;: thématiques, publics, formats & modalités.</p>
+    </div>
+  </section>
+
+  <!-- ===== NOUVEAU CONTENU ===== -->
+  <section class="section">
+    <nav class="crumbs" aria-label="Fil d'Ariane">
+      <a href="index.html">Accueil</a>
+      <span aria-hidden="true">›</span>
+      <span>Catalogue</span>
+    </nav>
+
+    <h2 class="title-center">Services & formations</h2>
+    <p class="subtitle-center">Cliquez sur un filtre pour afficher les contenus correspondants.</p>
+
+    <div class="split">
+      <!-- SERVICES -->
+      <div class="panel">
+        <h3>Services</h3>
+        <p class="subtle">Conseils, conformité, web, accessibilité, cybersécurité.</p>
+
+        <div class="grid" id="services-list">
+          <!-- injecté via JS -->
+        </div>
+
+        <div class="filters" id="services-filters">
+          <button data-filter="theme-rgpd">RGPD</button>
+          <button data-filter="theme-cyber">Cybersécurité</button>
+          <button data-filter="theme-access">Accessibilité</button>
+          <button data-filter="theme-web">Web & légal</button>
+        </div>
+      </div>
+
+      <!-- FORMATIONS -->
+      <div class="panel">
+        <h3>Formations</h3>
+        <p class="subtle">RGPD, IA Act, cookies, accessibilité, cybersécurité.</p>
+
+        <div class="grid" id="formations-list">
+          <!-- injecté via JS -->
+        </div>
+
+        <div class="filters" id="formations-filters">
+          <button data-filter="public-dirigeants">Dirigeants</button>
+          <button data-filter="public-dpo">DPO</button>
+          <button data-filter="format-2h">2h</button>
+          <button data-filter="format-journee">1 journée</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RÉSULTATS FILTRÉS -->
+    <div id="results" class="grid" aria-live="polite">
+      <!-- injecté via JS -->
+    </div>
+  </section>
+
+  <!-- ===== FOOTER injecté ===== -->
+  <div id="footer"></div>
+
+  <!-- ===== HERO CANVAS (inchangé) ===== -->
+  <script>
+    const canvas = document.getElementById('heroCanvas');
+    const ctx = canvas.getContext('2d');
+    function size(){ canvas.width = innerWidth; canvas.height = Math.max(innerHeight*0.6, 480); }
+    size(); addEventListener('resize', size);
+    const particles = [];
+    const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
+    class Particle{
+      constructor(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>canvas.width) this.vx*=-1; if(this.y<0||this.y>canvas.height) this.vy*=-1; }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
+    }
+    for(let i=0;i<opts.count;i++) particles.push(new Particle());
+    (function anim(){ ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(anim); })();
+  </script>
+
+  <!-- ===== DONNÉES & RENDU ===== -->
+  <script type="module">
+    const isGh = /github\.io$/.test(location.hostname);
+    let BASE = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      BASE = parts.length ? `/${parts[0]}/` : "/";
+    }
+
+    let COURSES = [];
+    try {
+      const mod = await import(BASE + "js/courses-data.js");
+      COURSES = mod.COURSES || [];
+    } catch (e) {
+      console.warn("courses-data.js non trouvé – mode démo");
+    }
+
+    const SERVICES = [
+      { title: "Diagnostic & feuille de route", desc: "État des lieux rapide, priorisation, plan d’action.", url: "Nos-services.html#diagnostic", tags: ["theme-rgpd"] },
+      { title: "RGPD & conformité data", desc: "Registre, AIPD, régularisation, accompagnement DPO.", url: "Nos-services.html#rgpd", tags: ["theme-rgpd"] },
+      { title: "Cybersécurité de base", desc: "Sensibilisation, premiers contrôles, bonnes pratiques.", url: "Nos-services.html#cyber", tags: ["theme-cyber"] },
+      { title: "Mentions légales & politiques", desc: "Pages légales, politique de confidentialité, e-commerce.", url: "Nos-services.html#web-legal", tags: ["theme-web"] },
+      { title: "Cookies & CMP", desc: "Bandeau conforme, paramétrage CMP, exemptions.", url: "Nos-services.html#cookies", tags: ["theme-web"] },
+      { title: "Accessibilité (RGAA)", desc: "Audit rapide, priorisation, obligations.", url: "Nos-services.html#access", tags: ["theme-access"] }
+    ];
+
+    const FORMATIONS = COURSES.map(c => ({
+      title: c.title,
+      desc: c.summary || "",
+      url: `${BASE}formation/${c.slug}.html`,
+      tags: [
+        ...(c.themes || []).map(t => `theme-${t}`),
+        ...(c.audiences || []).map(a => `public-${a}`),
+        ...(c.formats || []).map(f => `format-${f}`)
+      ].flat()
+    }));
+
+    function renderCards(list, mountId) {
+      const mount = document.getElementById(mountId);
+      mount.innerHTML = list.map(item => `
+        <article class="card">
+          <h4>${item.title}</h4>
+          <p class="subtle">${item.desc}</p>
+          <a class="btn" href="${item.url}">Voir</a>
+        </article>
+      `).join("");
+    }
+
+    function filterAndRender(filter, all, mountId) {
+      const filtered = filter === "all" ? all : all.filter(i => i.tags.includes(filter));
+      renderCards(filtered, mountId);
+    }
+
+    function initFilters(filterGroupId, list, listMountId) {
+      const buttons = document.querySelectorAll(`#${filterGroupId} button`);
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          buttons.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          filterAndRender(btn.dataset.filter, list, listMountId);
+        });
+      });
+      // affichage initial
+      filterAndRender("all", list, listMountId);
+    }
+
+    renderCards(SERVICES, "services-list");
+    renderCards(FORMATIONS, "formations-list");
+
+    initFilters("services-filters", SERVICES, "services-list");
+    initFilters("formations-filters", FORMATIONS, "formations-list");
+  </script>
+
+  <!-- ===== HEADER/FOOTER LOADER (inchangé) ===== -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
+
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
+    }
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean ];
+    };
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+      }
+      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+    }
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return;
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
+    }
+    if (headMount) {
+      fetchAny(["header.html", "partials/header.html"])
+        .then(html => {
+          headMount.innerHTML = html;
+          fixRootUrls(headMount);
+          return fetchAny(["assets/nav.js", "nav.js"]);
+        })
+        .then(code => {
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+        })
+        .catch(err => {
+          console.error("Header load error:", err);
+          headMount.innerHTML = "<!-- Header introuvable -->";
+        });
+    }
+    if (footMount) {
+      fetchAny(["footer.html", "partials/footer.html"])
+        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+        .catch(err => {
+          console.error("Footer load error:", err);
+          footMount.innerHTML = "<!-- Footer introuvable -->";
+        });
+    }
+  });
+  </script>
+</body>
+</html>
