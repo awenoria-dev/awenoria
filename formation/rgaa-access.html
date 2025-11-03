@@ -5,134 +5,302 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fiche formation – Awenoria</title>
   <meta name="description" content="Détail de la formation : objectifs, programme, durée, modalités. Présentiel / distanciel, supports et attestation inclus." />
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-  <link rel="shortcut icon" href="../favicon.ico">
-  <link rel="apple-touch-icon" href="../icône-apple-touch.png">
-  <meta name="theme-color" content="#0f5f9a">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+
+  <!-- Police du site -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    :root{ --font-ui:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; --bg:#f6f9fc; --panel:#fff; --muted:#4a6176; --text:#0f5f9a; --brand:#0f5f9a; --accent:#16a34a; --copper:#ff8a3d; --radius:16px; --shadow:0 12px 28px rgba(0,0,0,.08); --maxw:1100px; --nav-h:40px }
-    *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;color:var(--text);background:radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),linear-gradient(180deg,#fff 0%,#f6f9fc 100%);-webkit-font-smoothing:antialiased}
-    body,button,input,select,textarea{font-family:var(--font-ui)}
-    h1,h2,h3,h4{font-weight:800}
-    a{color:inherit;text-decoration:none}
-    a:hover{text-decoration:underline}
-    .glass{background:rgba(255,255,255,.86);backdrop-filter:blur(10px);border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow)}
-    header.navbar{position:sticky;top:0;z-index:1100;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(15,23,32,.08)}
-    .nav-wrap{max-width:var(--maxw);margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:14px}
-    .brand-img{height: clamp(56px,8vw,96px);object-fit:contain;display:block}
-    .nav-main{display:flex;align-items:center;gap:4px;flex:1;justify-content:center;margin-left:8px;flex-wrap:wrap}
-    .nav-main a{color:var(--text);text-decoration:none;font-weight:800;font-size:16px;height:var(--nav-h);line-height:var(--nav-h);padding:0 12px;border-radius:10px}
-    .nav-main a:hover{background:rgba(27,136,255,.10)}
-    .wrap{max-width:var(--maxw);margin:28px auto;padding:0 20px}
-    .crumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:#456;font-weight:700;margin-bottom:14px}
-    .crumbs a{color:#456}
-    .title{font-size:clamp(24px,4.4vw,42px);margin:4px 0}
-    .lead{color:var(--muted);margin-top:4px}
+    :root{
+      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
+      --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
+      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+      --transition:.6s cubic-bezier(.22,1,.36,1);
+      --maxw:1200px;
+    }
+    @media (prefers-color-scheme:dark){
+      :root{ --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0; --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45); }
+    }
+
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;line-height:1.65;color:var(--aw-ink);background:var(--aw-bg);-webkit-font-smoothing:antialiased}
+
+    /* ===== HERO bleu (avec formes) ===== */
+    .hero{position:relative;min-height:46vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;
+      background:
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);}
+    .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+    .hero .content{position:relative;z-index:2;max-width:960px;padding:0 20px;animation:fadeInUp 1s both}
+    .hero h1{font-size:clamp(32px,5.6vw,56px);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin:0 0 10px}
+    .hero .lead{font-size:1.15rem;font-weight:500;color:#e8f0ff;margin:0}
+
+    .hero-geo{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+    .hero-geo .g{position:absolute;width:64px;height:64px;opacity:.18;filter:blur(.2px);animation:geoFloat var(--dur,18s) cubic-bezier(.22,1,.36,1) infinite;will-change:transform,opacity}
+    .hero-geo .circle{border-radius:50%;border:3px solid rgba(255,255,255,.65)}
+    .hero-geo .square{border:3px solid rgba(255,255,255,.5);border-radius:14px}
+    .hero-geo .triangle{--s:64px;width:var(--s);height:var(--s);clip-path:polygon(50% 0%, 0% 100%, 100% 100%);box-shadow:inset 0 0 0 3px rgba(255,255,255,.55);border-radius:8px}
+    .hero-geo .diamond{border:3px solid rgba(255,255,255,.55);transform:rotate(45deg);animation-name:geoFloatDiamond}
+    .hero-geo .g:nth-child(1){left:6%;top:12%;--dur:22s;--scale:.9}
+    .hero-geo .g:nth-child(2){left:78%;top:18%;--dur:26s;--scale:1.1}
+    .hero-geo .g:nth-child(3){left:16%;top:64%;--dur:24s;--scale:.85}
+    .hero-geo .g:nth-child(4){left:88%;top:68%;--dur:20s;--scale:.95}
+    .hero-geo .g:nth-child(5){left:44%;top:8%;--dur:28s;--scale:.8}
+    .hero-geo .g:nth-child(6){left:54%;top:72%;--dur:23s;--scale:1.0}
+    .hero-geo .g:nth-child(7){left:28%;top:36%;--dur:25s;--scale:1.2}
+    .hero-geo .g:nth-child(8){left:70%;top:44%;--dur:27s;--scale:.9}
+    @keyframes geoFloat{0%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg);opacity:.12}25%{transform:translate3d(20px,-30px,0) scale(var(--scale,1)) rotate(6deg);opacity:.22}50%{transform:translate3d(-10px,-60px,0) scale(var(--scale,1)) rotate(12deg);opacity:.2}75%{transform:translate3d(-30px,-30px,0) scale(var(--scale,1)) rotate(6deg);opacity:.24}100%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg);opacity:.18}}
+    @keyframes geoFloatDiamond{0%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1));opacity:.14}25%{transform:rotate(55deg) translate3d(18px,-30px,0) scale(var(--scale,1));opacity:.22}50%{transform:rotate(65deg) translate3d(-12px,-60px,0) scale(var(--scale,1));opacity:.2}75%{transform:rotate(55deg) translate3d(-28px,-30px,0) scale(var(--scale,1));opacity:.24}100%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1));opacity:.18}}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+    @media (prefers-reduced-motion: reduce){ .hero-geo .g{ animation:none; opacity:.15 } }
+
+    /* ===== Mise en page contenu ===== */
+    .section{max-width:var(--maxw);margin:0 auto;padding:64px 20px}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:24px}
+    @media (max-width:980px){.grid{grid-template-columns:1fr}}
+    .card{background:var(--aw-panel);border:1px solid rgba(15,23,32,.08);border-radius:var(--aw-radius);padding:22px;box-shadow:var(--shadow)}
+    .card h2{margin:0 0 10px}
+    .note{color:var(--aw-muted);font-size:14px}
+    .program ul{margin:.25rem 0;padding-left:20px}
+    .program li{margin:.22rem 0}
+
     .meta{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
     .tag{border:1px solid rgba(15,23,32,.12);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;background:rgba(27,136,255,.06)}
-    .grid{display:grid;grid-template-columns:2fr 1fr;gap:18px}
-    @media (max-width:980px){.grid{grid-template-columns:1fr}}
-    .card{border-radius:18px;padding:18px;border:1px solid rgba(15,23,32,.08);background:rgba(255,255,255,.86)}
-    .card h2{margin:0 0 10px}
-    .program ul{margin:.25rem 0 .25rem;padding-left:18px}
-    .program li{margin:.18rem 0}
-    .cta-col{display:grid;gap:12px;height:fit-content;align-content:start}
+
+    .back{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:inherit}
     .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:12px 20px;font-size:16px;text-decoration:none;border:1px solid transparent}
-    .btn.primary{background:rgba(27,136,255,.80);color:#fff;border-color:rgba(255,255,255,.25);box-shadow:inset 0 0 12px rgba(255,255,255,.15),0 4px 18px rgba(27,136,255,.30)}
-    .btn.secondary{background:#fff;color:var(--text);border:1px solid rgba(15,23,32,.18)}
-    .note{color:var(--muted);font-size:14px}
-    .back{display:inline-flex;align-items:center;gap:6px}
+    .btn.primary{background:var(--aw-copper);color:#fff;box-shadow:0 10px 30px rgba(255,138,61,.30)}
+    .btn.primary:hover{transform:translateY(-2px)}
+    .btn.ghost{background:transparent;color:var(--aw-ink);border:2px solid rgba(15,23,32,.18)}
   </style>
 </head>
 <body>
-<header class="navbar" role="banner">
-  <div class="nav-wrap">
-    <a class="brand" href="../index.html" aria-label="Aller à l'accueil"><img class="brand-img" src="../images/logo.png" alt="Awenoria"></a>
-    <nav class="nav-main" aria-label="Navigation principale">
-      <a href="../index.html#qui-sommes-nous">Qui sommes-nous ?</a>
-      <a href="../Nos-services.html">Nos services</a>
-      <a href="../nos-formations.html">Nos formations</a>
-      <a href="../index.html#blog">Blog</a>
-      <a href="../nos-formations.html#contact">Contact</a>
-    </nav>
-  </div>
-</header>
 
-<main class="wrap" id="content">
-  <nav class="crumbs" aria-label="Fil d'Ariane">
-    <a href="../nos-formations.html">Formations</a>
-    <span aria-hidden="true">›</span>
-    <a id="crumb-mid" href="../formations-liste.html">Catalogue</a>
-    <span aria-hidden="true">›</span>
-    <span id="crumb-leaf">Fiche</span>
-  </nav>
+  <!-- Header injecté -->
+  <div id="header"></div>
 
-  <header>
-    <h1 id="course-title" class="title">Titre formation</h1>
-    <p id="course-pitch" class="lead">Résumé personnalisé selon l’origine (thématique / public).</p>
-    <div id="course-meta" class="meta"></div>
-  </header>
+  <!-- ===== HERO bleu ===== -->
+  <section class="hero" aria-labelledby="hero-title">
+    <canvas id="canvas" aria-hidden="true"></canvas>
+    <div class="hero-geo" aria-hidden="true">
+      <span class="g circle"></span><span class="g square"></span><span class="g triangle"></span><span class="g diamond"></span>
+      <span class="g circle"></span><span class="g square"></span><span class="g triangle"></span><span class="g diamond"></span>
+    </div>
+    <div class="content">
+      <!-- Fil d’Ariane léger (texte blanc) -->
+      <nav aria-label="Fil d'Ariane" style="opacity:.95;font-weight:700;margin-bottom:6px">
+        <a href="../nos-formations.html" style="color:#e8f0ff;text-decoration:underline">Formations</a>
+        <span aria-hidden="true">›</span>
+        <a id="crumb-mid" href="../formations-liste.html" style="color:#e8f0ff;text-decoration:underline">Catalogue</a>
+        <span aria-hidden="true">›</span>
+        <span id="crumb-leaf">Fiche</span>
+      </nav>
 
-  <section class="grid" aria-label="Contenu et actions">
-    <article class="card glass">
-      <h2>Programme</h2>
-      <div id="course-program" class="program"></div>
-      <h2 style="margin-top:16px">Objectifs</h2>
-      <ul id="course-objectives"></ul>
-    </article>
+      <h1 id="course-title">Titre formation</h1>
+      <p id="course-pitch" class="lead">Résumé personnalisé selon l’origine (thématique / public).</p>
 
-    <aside class="cta-col">
-      <a id="back-link" class="back" href="javascript:history.back()" aria-label="Revenir à la liste précédente">← Revenir</a>
-
-      <div class="card glass">
-        <h2 style="margin:0 0 8px">Obtenir le programme détaillé</h2>
-        <p class="note">Précisez vos dates, le format (présentiel/distanciel) et le public cible.</p>
-        <p><a class="btn primary" href="../index.html#contact">Demander un devis</a></p>
-        <p class="note" style="margin-top:8px">Supports & modèles fournis • Quiz & attestation inclus</p>
-      </div>
-
-      <div class="card">
-        <h2 style="margin:0 0 8px">Infos pratiques</h2>
-        <ul class="note" id="practical-list" style="padding-left:18px;margin:8px 0 0">
-          <li>Formats : atelier 2h, 1/2 journée, 1 journée</li>
-          <li>Modalités : présentiel ou distanciel</li>
-          <li>Financement : selon OPCO/plan interne</li>
-        </ul>
-      </div>
-    </aside>
+      <!-- Pas de boutons dans le hero -->
+      <div id="course-meta" class="meta" style="justify-content:center;margin-top:14px"></div>
+    </div>
   </section>
-</main>
 
-<script type="module">
-  import { COURSES } from "../js/courses-data.js";
-  const THEME_LABELS = {"rgpd-essentiels":"RGPD – essentiels, registre, AIPD","ia-act":"IA Act – obligations & documentation","cookies":"Cookies & CMP","web-legal":"Mentions légales & conformité web","access":"Accessibilité (RGAA / EN 301 549)","cyber":"Cybersécurité de base"};
-  const AUDIENCE_LABELS = {dirigeants:"Dirigeants & responsables",equipes:"Équipes opérationnelles",dpo:"Référents / DPO",dev:"Dev, Produit & Data"};
-  const slug = location.pathname.split('/').pop().replace('.html','');
-  const params = new URLSearchParams(location.search);
-  const from = params.get('from'); const theme = params.get('theme'); const audience = params.get('public');
-  const titleEl = document.getElementById('course-title'); const pitchEl = document.getElementById('course-pitch'); const metaEl = document.getElementById('course-meta');
-  const progEl = document.getElementById('course-program'); const objEl = document.getElementById('course-objectives');
-  const crumbMid = document.getElementById('crumb-mid'); const crumbLeaf = document.getElementById('crumb-leaf'); const backLink = document.getElementById('back-link');
-  const course = COURSES.find(c => c.slug === slug);
-  function setHead(t,d){document.title=t; const m=document.querySelector('meta[name="description"]'); if(m) m.setAttribute('content',d);}
-  function pickPitch(){ if(from==='public'&&audience&&course.pitchByAudience?.[audience]) return course.pitchByAudience[audience]; if(from==='theme'&&theme&&course.pitchByTheme?.[theme]) return course.pitchByTheme[theme]; return course.summary||''; }
-  function renderCrumbs(){ if(from==='theme'&&theme){crumbMid.textContent=THEME_LABELS[theme]||'Thématique';crumbMid.href=`../formations-liste.html?theme=${encodeURIComponent(theme)}`} else if(from==='public'&&audience){crumbMid.textContent=AUDIENCE_LABELS[audience]||'Public';crumbMid.href=`../formations-liste.html?public=${encodeURIComponent(audience)}`} else {crumbMid.textContent='Catalogue';crumbMid.href=`../formations-liste.html`} crumbLeaf.textContent=course?course.title:'Fiche'; }
-  function renderNotFound(){ document.getElementById('content').innerHTML=`<div class="wrap"><h1>Formation introuvable</h1><p>La fiche demandée n'existe pas. Retour au <a href="../formations-liste.html">catalogue</a>.</p></div>`; }
-  if(!course){ renderNotFound(); throw new Error('Course not found'); }
-  titleEl.textContent=course.title; pitchEl.textContent=pickPitch();
-  const originLabel=from==='public'?(AUDIENCE_LABELS[audience]||''):from==='theme'?(THEME_LABELS[theme]||''):'Catalogue';
-  setHead(`${course.title} – Awenoria`, `${course.summary||''} ${originLabel?' • Contexte : '+originLabel:''}`);
-  const dur=course.duration?`<span class="tag" aria-label="Durée">${course.duration}</span>`:''; const lvl=course.level?`<span class="tag" aria-label="Niveau">${course.level}</span>`:''; const mods=(course.modalities||[]).map(m=>`<span class="tag">${m}</span>`).join('');
-  metaEl.innerHTML = dur+lvl+mods;
-  const items=(course.program||[]).map(li=>`<li>${li}</li>`).join(''); progEl.innerHTML = items?`<ul>${items}</ul>`:`<p class="note">Le programme détaillé sera fourni sur demande.</p>`;
-  objEl.innerHTML = ['Comprendre les obligations et le périmètre','Savoir appliquer dans votre contexte','Produire les premiers livrables utiles','Établir une feuille de route opérationnelle'].map(o=>`<li>${o}</li>`).join('');
-  renderCrumbs();
-  backLink.href = from==='public'&&audience?`../formations-liste.html?public=${encodeURIComponent(audience)}`:from==='theme'&&theme?`../formations-liste.html?theme=${encodeURIComponent(theme)}`:`../formations-liste.html`;
-</script>
-<script src="../js/site.js" defer></script>
+  <!-- ===== CONTENU ===== -->
+  <main class="section" id="content" aria-label="Contenu et actions">
+    <div class="grid">
+      <article class="card">
+        <a id="back-link" class="back" href="javascript:history.back()" aria-label="Revenir" style="margin-bottom:8px">← Revenir</a>
+
+        <h2>Programme</h2>
+        <div id="course-program" class="program"></div>
+
+        <h2 style="margin-top:16px">Objectifs</h2>
+        <ul id="course-objectives"></ul>
+      </article>
+
+      <aside style="display:grid;gap:12px;height:fit-content;align-content:start">
+        <div class="card">
+          <h2 style="margin:0 0 8px">Infos pratiques</h2>
+          <ul class="note" id="practical-list" style="padding-left:18px;margin:8px 0 0">
+            <li>Formats : atelier 2h, 1/2 journée, 1 journée</li>
+            <li>Modalités : présentiel ou distanciel</li>
+            <li>Financement : selon OPCO/plan interne</li>
+          </ul>
+        </div>
+
+        <!-- CTA déplacé sous la bulle Infos pratiques -->
+        <div class="card" style="text-align:center">
+          <h2 style="margin:0 0 8px">Obtenir le programme détaillé</h2>
+          <p class="note">Précisez vos dates, le format (présentiel/distanciel) et le public cible.</p>
+          <p style="margin:12px 0 2px">
+            <a class="btn primary" href="../index.html#contact">Demander un devis</a>
+          </p>
+          <p class="note" style="margin-top:8px">Supports & modèles fournis • Quiz & attestation inclus</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer injecté -->
+  <div id="footer"></div>
+
+  <!-- ===== Particules (canvas) ===== -->
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    function resize(){ canvas.width = innerWidth; canvas.height = Math.max(300, innerHeight * .55); }
+    resize(); addEventListener('resize', resize);
+
+    const particles = [];
+    const opts = { count:60, speed:.3, radius:2, distance:120, color:'rgba(255,255,255,.25)' };
+    class Particle{
+      constructor(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>canvas.width) this.vx*=-1; if(this.y<0||this.y>canvas.height) this.vy*=-1; }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
+    }
+    for(let i=0;i<opts.count;i++) particles.push(new Particle());
+    (function animate(){ ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); })();
+  </script>
+
+  <!-- ===== Données & logique fiche ===== -->
+  <script type="module">
+    import { COURSES } from "../js/courses-data.js";
+    const THEME_LABELS = {"rgpd-essentiels":"RGPD – essentiels, registre, AIPD","ia-act":"IA Act – obligations & documentation","cookies":"Cookies & CMP","web-legal":"Mentions légales & conformité web","access":"Accessibilité (RGAA / EN 301 549)","cyber":"Cybersécurité de base"};
+    const AUDIENCE_LABELS = {dirigeants:"Dirigeants & responsables",equipes:"Équipes opérationnelles",dpo:"Référents / DPO",dev:"Dev, Produit & Data"};
+
+    const slug = location.pathname.split('/').pop().replace('.html','');
+    const params = new URLSearchParams(location.search);
+    const from = params.get('from'); const theme = params.get('theme'); const audience = params.get('public');
+
+    const titleEl = document.getElementById('course-title');
+    const pitchEl = document.getElementById('course-pitch');
+    const metaEl  = document.getElementById('course-meta');
+    const progEl  = document.getElementById('course-program');
+    const objEl   = document.getElementById('course-objectives');
+    const crumbMid= document.getElementById('crumb-mid');
+    const crumbLeaf= document.getElementById('crumb-leaf');
+    const backLink= document.getElementById('back-link');
+
+    function setHead(t,d){document.title=t; const m=document.querySelector('meta[name="description"]'); if(m) m.setAttribute('content',d);}
+
+    const course = COURSES.find(c => c.slug === slug);
+    if (!course){
+      document.getElementById('content').innerHTML =
+        `<div class="section"><h2>Formation introuvable</h2><p>Retour au <a href="../formations-liste.html">catalogue</a>.</p></div>`;
+      throw new Error('Course not found');
+    }
+
+    function pickPitch(){
+      if(from==='public'&&audience&&course.pitchByAudience?.[audience]) return course.pitchByAudience[audience];
+      if(from==='theme'&&theme&&course.pitchByTheme?.[theme]) return course.pitchByTheme[theme];
+      return course.summary||'';
+    }
+
+    // Hydrate
+    titleEl.textContent = course.title;
+    pitchEl.textContent = pickPitch();
+
+    const dur = course.duration ? `<span class="tag" aria-label="Durée">${course.duration}</span>` : '';
+    const lvl = course.level ? `<span class="tag" aria-label="Niveau">${course.level}</span>` : '';
+    const mods = (course.modalities||[]).map(m=>`<span class="tag">${m}</span>`).join('');
+    metaEl.innerHTML = dur+lvl+mods;
+
+    const items=(course.program||[]).map(li=>`<li>${li}</li>`).join('');
+    progEl.innerHTML = items ? `<ul>${items}</ul>` : `<p class="note">Le programme détaillé sera fourni sur demande.</p>`;
+
+    objEl.innerHTML = (course.objectives?.length ? course.objectives : [
+      'Comprendre les obligations et le périmètre',
+      'Savoir appliquer dans votre contexte',
+      'Produire les premiers livrables utiles',
+      'Établir une feuille de route opérationnelle'
+    ]).map(o=>`<li>${o}</li>`).join('');
+
+    // Fil d’Ariane (+ lien retour)
+    if(from==='theme' && theme){
+      crumbMid.textContent = THEME_LABELS[theme] || 'Thématique';
+      crumbMid.href = `../formations-liste.html?theme=${encodeURIComponent(theme)}`;
+    } else if(from==='public' && audience){
+      crumbMid.textContent = AUDIENCE_LABELS[audience] || 'Public';
+      crumbMid.href = `../formations-liste.html?public=${encodeURIComponent(audience)}`;
+    } else { crumbMid.textContent='Catalogue'; crumbMid.href='../formations-liste.html'; }
+    crumbLeaf.textContent = course.title;
+    backLink.href =
+      from==='public' && audience ? `../formations-liste.html?public=${encodeURIComponent(audience)}` :
+      from==='theme' && theme ? `../formations-liste.html?theme=${encodeURIComponent(theme)}` :
+      `../formations-liste.html`;
+
+    setHead(`${course.title} – Awenoria`, course.summary||'');
+  </script>
+
+  <!-- ===== Loader header/footer + CSS globale ===== -->
+  <script>
+  (function () {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
+
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
+    }
+
+    // CSS globale
+    if (!document.querySelector('link[href*="awenoria.css"]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = base + "assets/awenoria.css";
+      document.head.appendChild(link);
+    }
+    if (!document.querySelector('link[rel="icon"]')) {
+      const fav = document.createElement("link");
+      fav.rel = "icon"; fav.type = "image/png"; fav.sizes = "32x32";
+      fav.href = base + "images/favicon-32.png";
+      document.head.appendChild(fav);
+    }
+
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean, "../../" + clean, "../../../" + clean ];
+    };
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) { try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {} }
+      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+    }
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return;
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
+    }
+
+    if (headMount) {
+      fetchAny(["header.html", "partials/header.html"])
+        .then(html => {
+          headMount.innerHTML = html; fixRootUrls(headMount);
+          return fetchAny(["assets/nav.js", "nav.js"]);
+        })
+        .then(code => {
+          if (!code) return;
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code; document.body.appendChild(s);
+        })
+        .catch(() => { headMount.innerHTML = "<!-- Header introuvable -->"; });
+    }
+
+    if (footMount) {
+      fetchAny(["footer.html", "partials/footer.html"])
+        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+        .catch(() => { footMount.innerHTML = "<!-- Footer introuvable -->"; });
+    }
+  })();
+  </script>
 </body>
 </html>
