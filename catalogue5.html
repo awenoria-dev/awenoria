@@ -55,10 +55,10 @@
     @keyframes rubanRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
     @keyframes rubanLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-    /* Cartes + fix badges non tronqués */
+    /* Cartes (badges non tronqués) */
     .ruban-card{
       flex:0 0 340px; background:var(--panel); border:1px solid rgba(15,23,32,.08);
-      border-radius:20px; overflow:visible; display:flex; flex-direction:column; position:relative;
+      border-radius:20px; overflow:visible !important; display:flex; flex-direction:column; position:relative;
       box-shadow:0 12px 28px rgba(0,0,0,.08)
     }
     .ruban-card img{
@@ -68,9 +68,12 @@
     .ruban-card figcaption{padding:18px}
     .ruban-card h3{margin:0 0 6px; font-size:1.05rem; font-weight:800}
     .ruban-card p{margin:0 0 14px; color:var(--muted); font-size:.95rem}
+
+    /* Badge : éloigné de l'arrondi + jamais clipé */
     .badge{
-      position:absolute; top:10px; left:10px; font-size:.78rem; font-weight:800; padding:6px 10px;
-      border-radius:999px; backdrop-filter:blur(6px); color:#fff; z-index:3; box-shadow:0 6px 16px rgba(0,0,0,.15)
+      position:absolute; top:14px; left:14px; font-size:.78rem; font-weight:800; padding:6px 10px;
+      border-radius:999px; backdrop-filter:blur(6px); color:#fff; z-index:5; isolation:isolate; transform:translateZ(0);
+      box-shadow:0 6px 16px rgba(0,0,0,.15)
     }
     .badge[data-cat="conformite"]{background:#ff4757}
     .badge[data-cat="access"]{background:#3742fa}
