@@ -5,16 +5,12 @@
   <title>Fiche formation – Awenoria</title>
   <meta name="description" content="Détail de la formation : objectifs, programme, durée, modalités. Présentiel / distanciel, supports et attestation inclus." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32.png">
 
-  <!-- Polices -->
+  <!-- Police identique au site -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- CSS globale (styles header/footer + base site) -->
-  <link rel="stylesheet" href="../../assets/awenoria.css">
-
   <style>
-    /* ===== Variables & bases (identiques à la page modèle) ===== */
+    /* ===== Variables & bases (identiques au modèle) ===== */
     :root{
       --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
       --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
@@ -35,7 +31,7 @@
       -webkit-font-smoothing:antialiased; overflow-x:hidden;
     }
 
-    /* ===== Hero bleu + formes géométriques (même rendu) ===== */
+    /* ===== Hero bleu + formes géométriques ===== */
     .hero{
       position:relative; min-height:46vh; display:flex; align-items:center; justify-content:center;
       text-align:center; color:#fff; overflow:hidden;
@@ -50,6 +46,7 @@
     .hero .lead{ font-size:1.25rem; font-weight:500; margin:18px auto 0; color:#e8f0ff; }
     .hero .actions{ margin-top:26px; display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
 
+    /* Boutons */
     .btn{ display:inline-flex; align-items:center; justify-content:center; font-weight:800; font-size:17px;
       padding:14px 26px; border-radius:999px; text-decoration:none; transition:all var(--transition);
       border:1px solid transparent; box-shadow:0 8px 24px rgba(0,0,0,.10); }
@@ -58,7 +55,7 @@
     .btn.ghost{ background:transparent; color:#fff; border:2px solid rgba(255,255,255,.45); }
     .btn.ghost:hover{ background:rgba(255,255,255,.15); }
 
-    /* Formes géométriques flottantes (identiques) */
+    /* Formes géométriques flottantes */
     .hero-geo{ position:absolute; inset:0; pointer-events:none; z-index:1; overflow:hidden; }
     .hero-geo .g{ position:absolute; width:64px; height:64px; opacity:.18; filter:blur(.2px);
       animation:geoFloat var(--dur,18s) cubic-bezier(.22,1,.36,1) infinite; will-change:transform,opacity; }
@@ -91,9 +88,8 @@
     }
     @media (prefers-reduced-motion: reduce){ .hero-geo .g{ animation:none; opacity:.15 } }
 
-    /* ===== Sections / cartes (fiche) ===== */
+    /* ===== Mise en page fiche ===== */
     .section{ max-width:1200px; margin:0 auto; padding:80px 20px; }
-    .section.alt{ background:var(--aw-bg); }
     .subtitle-center{ font-size:1.05rem; color:var(--aw-muted); max-width:760px; margin:0 auto 28px; text-align:center; }
 
     .breadcrumbs{ display:flex; gap:8px; justify-content:center; color:#e8f0ff; opacity:.95; font-weight:700; margin-top:10px; }
@@ -122,7 +118,7 @@
   <!-- Header injecté -->
   <div id="header"></div>
 
-  <!-- ===== HERO (titre/pitch dynamiques) ===== -->
+  <!-- ===== HERO ===== -->
   <section class="hero">
     <canvas id="canvas" aria-hidden="true"></canvas>
 
@@ -143,7 +139,7 @@
       <div id="course-meta" class="meta"></div>
       <div class="actions">
         <a class="btn ghost" id="back-link" href="javascript:history.back()">← Revenir</a>
-        <a class="btn primary" href="/index.html#contact">Demander un devis</a>
+        <a class="btn primary" href="../../index.html#contact">Demander un devis</a>
       </div>
     </div>
   </section>
@@ -174,9 +170,8 @@
   <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- ===== JS : canvas particules (identique) ===== -->
+  <!-- ===== Canvas particules ===== -->
   <script>
-    // Particules hero (canvas)
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     let w = canvas.width = innerWidth;
@@ -194,7 +189,7 @@
     (function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); })();
   </script>
 
-  <!-- ===== Données & logique de la fiche ===== -->
+  <!-- ===== Données & logique fiche ===== -->
   <script type="module">
     import { COURSES } from "../../js/courses-data.js";
 
@@ -276,8 +271,7 @@
     metaEl.innerHTML = dur + lvl + mods;
 
     const items = (course.program||[]).map(li=>`<li>${li}</li>`).join('');
-    document.getElementById('course-program').innerHTML =
-      items ? `<ul>${items}</ul>` : `<p class="note">Le programme détaillé sera fourni sur demande.</p>`;
+    progEl.innerHTML = items ? `<ul>${items}</ul>` : `<p class="note">Le programme détaillé sera fourni sur demande.</p>`;
 
     objEl.innerHTML = [
       'Comprendre les obligations et le périmètre',
@@ -294,13 +288,14 @@
       : `../liste.html`;
   </script>
 
-  <!-- ===== Loader header/footer + nav (identique) ===== -->
+  <!-- ===== Loader header/footer + nav + CSS global (compatible sous-dossiers & GH Pages) ===== -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
     const footMount = document.getElementById("footer");
     if (!headMount && !footMount) return;
 
+    // Détection GitHub Pages et calcul du prefix base
     const isGh = /github\.io$/.test(location.hostname);
     let base = "/";
     if (isGh) {
@@ -308,6 +303,18 @@
       base = parts.length ? `/${parts[0]}/` : "/";
     }
 
+    // Injecte awenoria.css et favicon avec le bon prefix
+    const ensureHeadAsset = (href, rel, attr = {}) => {
+      const l = document.createElement("link");
+      l.rel = rel;
+      l.href = base + href.replace(/^\//, "");
+      Object.entries(attr).forEach(([k,v]) => l.setAttribute(k,v));
+      document.head.appendChild(l);
+    };
+    ensureHeadAsset("assets/awenoria.css", "stylesheet");
+    ensureHeadAsset("images/favicon-32.png", "icon", { sizes:"32x32", type:"image/png" });
+
+    // Aides pour charger depuis un sous-dossier
     const candidates = (p) => {
       const clean = p.replace(/^\//, "");
       return [ base + clean, "./" + clean, "../" + clean, "../../" + clean ];
@@ -326,7 +333,7 @@
         .forEach(el => {
           const attr = el.hasAttribute("href") ? "href" : "src";
           const val = el.getAttribute(attr);
-          if (/^\/\//.test(val)) return;
+          if (/^\/\//.test(val)) return; // conserve //cdn
           el.setAttribute(attr, base + val.replace(/^\//, ""));
         });
     }
