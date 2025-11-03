@@ -13,35 +13,43 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16.png">
 
-  <!-- CSS global (chemin correct depuis /formation/) + cache-busting -->
-  <link rel="stylesheet" href="../assets/awenoria.css?v=2025-11-03">
-  <!-- Filet de sécurité : masque les panneaux avant que le CSS global ne soit prêt -->
-  <style>
-    .mega{display:none!important}
-    .mega.open{display:block!important}
-    .account-menu{display:none!important}
-    .account-menu.open{display:flex!important}
-  </style>
+  <!-- CSS global (chemin correct depuis /formation/) -->
+  <link rel="stylesheet" href="../assets/awenoria.css?v=1">
 
+  <!-- CRITICAL CSS NAV (sécurise l’affichage même sans le CSS global) -->
   <style>
-    :root{
-      --font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-      --text:#0f5f9a;--muted:#4a6176;--copper:#ff8a3d;
-      --shadow:0 12px 28px rgba(0,0,0,.08);
-      --maxw:1100px;
-    }
-    *{box-sizing:border-box} html,body{height:100%;margin:0;padding:0;}
-    body{font-family:var(--font);color:var(--text);
+    :root{--font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--text:#0f5f9a;--muted:#4a6176;--copper:#ff8a3d;--maxw:1100px}
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;font-family:var(--font);color:var(--text);
       background:
         radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),
         linear-gradient(180deg,#fff 0%,#f6f9fc 100%);
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
     }
 
-    /* ===== HERO bleu + canvas ===== */
+    /* --- Header “safe” --- */
+    header.navbar{position:sticky;top:0;z-index:1100;background:#fff;border-bottom:1px solid rgba(15,23,32,.08)}
+    .nav-wrap{max-width:1200px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+    .brand-img{height:64px;display:block}
+    .nav-main{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+    .nav-main a,.nav-main button{
+      appearance:none;background:none;border:none;cursor:pointer;color:inherit;text-decoration:none;
+      font-weight:800;font-size:16px;height:40px;line-height:40px;padding:0 12px;border-radius:10px;display:inline-flex;align-items:center;gap:6px
+    }
+    .nav-main a:hover,.nav-main button:hover{background:rgba(27,136,255,.10)}
+    .nav-actions{display:flex;align-items:center;gap:8px}
+    .account-btn{display:grid;place-content:center;width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid rgba(15,23,32,.12);cursor:pointer}
+
+    /* Dropdown states (FOUC guard) */
+    .mega{position:absolute;display:none}
+    .mega.open{display:block}
+    .account-menu{position:absolute;display:none}
+    .account-menu.open{display:flex}
+
+    /* --- HERO --- */
     .hero{
-      position:relative;min-height:60vh;
-      display:flex;align-items:center;justify-content:center;
+      position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;
       text-align:center;color:#fff;overflow:hidden;
       background:
         radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
@@ -49,27 +57,21 @@
         linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
       border-bottom:4px solid #e8eefb;
     }
-    .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
-    .hero .content{position:relative;z-index:2;max-width:860px;padding:0 20px;}
-    .hero .back{
-      display:inline-block;margin-bottom:10px;color:#eaf3ff;opacity:.9;
-      text-decoration:none;font-weight:800;
-      padding:6px 10px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.25);
-      background:rgba(255,255,255,.08);
-    }
-    h1{font-weight:800;font-size:clamp(28px,6vw,48px);margin:6px 0;}
-    .lead{color:#e8f0ff;font-weight:600;}
-    .underline{width:84px;height:4px;border-radius:999px;background:var(--copper);margin:12px auto 22px;opacity:.95;}
+    .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+    .hero .content{position:relative;z-index:2;max-width:860px;padding:0 20px}
+    .hero .back{display:inline-block;margin-bottom:10px;color:#eaf3ff;opacity:.9;text-decoration:none;font-weight:800;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08)}
+    h1{font-weight:800;font-size:clamp(28px,6vw,48px);margin:6px 0}
+    .lead{color:#e8f0ff;font-weight:600}
+    .underline{width:84px;height:4px;border-radius:999px;background:var(--copper);margin:12px auto 22px;opacity:.95}
 
-    /* ===== CONTENU ===== */
-    .wrap{max-width:var(--maxw);margin:28px auto;padding:0 20px;}
-    h2{font-weight:800;font-size:clamp(18px,2.8vw,26px);margin:6px 0 12px;}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;}
-    .card{background:rgba(255,255,255,.86);border:1px solid rgba(15,23,32,.08);border-radius:22px;padding:18px;box-shadow:var(--shadow);}
-    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1px solid transparent;background:rgba(27,136,255,.80);color:#fff;text-decoration:none;}
-    .note{color:var(--muted);font-size:14px;}
-    .section{margin-top:18px;}
+    /* --- Contenu --- */
+    .wrap{max-width:var(--maxw);margin:28px auto;padding:0 20px}
+    h2{font-weight:800;font-size:clamp(18px,2.8vw,26px);margin:6px 0 12px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+    .card{background:rgba(255,255,255,.86);border:1px solid rgba(15,23,32,.08);border-radius:22px;padding:18px;box-shadow:0 12px 28px rgba(0,0,0,.08)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1px solid transparent;background:rgba(27,136,255,.80);color:#fff;text-decoration:none}
+    .note{color:var(--muted);font-size:14px}
+    .section{margin-top:18px}
   </style>
 </head>
 <body>
@@ -77,7 +79,7 @@
   <!-- Header injecté -->
   <div id="header"></div>
 
-  <!-- ===== HERO ===== -->
+  <!-- HERO -->
   <section class="hero">
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="content">
@@ -106,58 +108,33 @@
   <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- === CONTENU DYNAMIQUE === -->
+  <!-- CONTENU DYNAMIQUE -->
   <script type="module">
     const FORMATS = {
-      "atelier-2h": {
-        title: "Atelier 2h",
-        desc: "Focus rapide et opérationnel sur un sujet clé avec exercices."
-      },
-      "demi-journee": {
-        title: "1/2 journée",
-        desc: "Module condensé pour lancer ou approfondir un thème prioritaire."
-      },
-      "journee": {
-        title: "1 journée",
-        desc: "Formation complète avec mise en pratique et livrables."
-      },
-      "parcours": {
-        title: "Parcours",
-        desc: "Programme modulaire sur plusieurs séances avec suivi."
-      }
+      "atelier-2h": { title: "Atelier 2h", desc: "Focus rapide et opérationnel sur un sujet clé avec exercices." },
+      "demi-journee": { title: "1/2 journée", desc: "Module condensé pour lancer ou approfondir un thème prioritaire." },
+      "journee": { title: "1 journée", desc: "Formation complète avec mise en pratique et livrables." },
+      "parcours": { title: "Parcours", desc: "Programme modulaire sur plusieurs séances avec suivi." }
     };
-
     const MODALITES = {
-      "presentiel": {
-        title: "Présentiel",
-        desc: "Animation sur site, interaction forte, ateliers en salle."
-      },
-      "distanciel": {
-        title: "Distanciel",
-        desc: "Classes virtuelles en visioconférence, supports partagés."
-      }
+      "presentiel": { title: "Présentiel", desc: "Animation sur site, interaction forte, ateliers en salle." },
+      "distanciel": { title: "Distanciel", desc: "Classes virtuelles en visioconférence, supports partagés." }
     };
-
-    const formatsRoot = document.getElementById("formats");
-    formatsRoot.innerHTML = Object.entries(FORMATS).map(([k,v]) => `
+    document.getElementById("formats").innerHTML = Object.entries(FORMATS).map(([k,v]) => `
       <article class="card">
         <h3 style="margin:0 0 6px">${v.title}</h3>
         <p class="note">${v.desc}</p>
         <p style="margin-top:10px">
-          <a class="btn" href="liste.html?format=${encodeURIComponent(k)}"
-             aria-label="Voir les formations format ${v.title}">Voir les formations</a>
+          <a class="btn" href="liste.html?format=${encodeURIComponent(k)}">Voir les formations</a>
         </p>
       </article>
     `).join("");
-
-    const modesRoot = document.getElementById("modalites");
-    modesRoot.innerHTML = Object.entries(MODALITES).map(([k,v]) => `
+    document.getElementById("modalites").innerHTML = Object.entries(MODALITES).map(([k,v]) => `
       <article class="card">
         <h3 style="margin:0 0 6px">${v.title}</h3>
         <p class="note">${v.desc}</p>
         <p style="margin-top:10px">
-          <a class="btn" href="liste.html?modalite=${encodeURIComponent(k)}"
-             aria-label="Voir les formations en ${v.title}">Voir les formations</a>
+          <a class="btn" href="liste.html?modalite=${encodeURIComponent(k)}">Voir les formations</a>
         </p>
       </article>
     `).join("");
@@ -171,31 +148,24 @@
     let h = canvas.height = innerHeight;
     const particles = [];
     const opts = { count:60, speed:.3, radius:2, distance:120, color:'rgba(255,255,255,.25)' };
-
-    addEventListener('resize', () => {
-      w = canvas.width = innerWidth;
-      const hero = canvas.parentElement;
-      h = canvas.height = hero.offsetHeight;
-    });
-
+    addEventListener('resize', () => { w = canvas.width = innerWidth; const hero = canvas.parentElement; h = canvas.height = hero.offsetHeight; });
     class Particle{
       constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
       update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
       draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
       lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
     }
-    (function init(){ for(let i=0;i<opts.count;i++) particles.push(new Particle()); })();
-    (function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); })();
+    for(let i=0;i<opts.count;i++) particles.push(new Particle());
+    (function loop(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(loop); })();
   </script>
 
-  <!-- Loader header/footer + nav (robuste sous-dossiers + GH Pages) -->
+  <!-- Loader header/footer + nav (robuste sous-dossiers + GH Pages, avec réécriture URL absolue) -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
     const footMount = document.getElementById("footer");
     if (!headMount && !footMount) return;
 
-    // Détection GitHub Pages (sous-chemin)
     const isGh = /github\.io$/.test(location.hostname);
     let basePath = "/";
     if (isGh) {
@@ -208,65 +178,44 @@
       const clean = p.replace(/^\//, "");
       return [ basePath + clean, "./" + clean, "../" + clean ];
     };
-
-    async function fetchAny(paths) {
+    async function fetchAny(paths){
       const queue = paths.flatMap(candidates);
-      for (const u of queue) {
-        try {
-          const r = await fetch(u, { cache: "no-cache" });
-          if (r.ok) return r.text();
-        } catch (_) {}
+      for (const u of queue){
+        try{ const r = await fetch(u, { cache:"no-cache" }); if (r.ok) return r.text(); }catch(_){}
       }
       return null;
     }
-
-    function fixAllUrls(container) {
-      const nodes = container.querySelectorAll('a[href], img[src], link[href], script[src]');
-      nodes.forEach(el => {
+    function absolutize(container){
+      container.querySelectorAll('a[href], img[src], link[href], script[src]').forEach(el=>{
         const attr = el.hasAttribute("href") ? "href" : "src";
         const val = el.getAttribute(attr);
         if (!val) return;
         if (/^(https?:)?\/\//i.test(val) || val.startsWith("#") || /^mailto:|^tel:/i.test(val)) return;
-        try {
-          const resolved = new URL(val, baseAbs).href;
-          el.setAttribute(attr, resolved);
-        } catch (_) {
-          const clean = val.replace(/^\.\//,"").replace(/^\//,"");
-          el.setAttribute(attr, baseAbs + clean);
-        }
+        try{ el.setAttribute(attr, new URL(val, baseAbs).href); }
+        catch(_){ el.setAttribute(attr, baseAbs + val.replace(/^\.\//,"").replace(/^\//,"")); }
       });
     }
 
-    // HEADER
     (async () => {
-      const html = await fetchAny(["partials/header.html", "header.html"]);
-      if (html){
-        headMount.innerHTML = html;
-        fixAllUrls(headMount);
-        if (!window.__aw_nav_loaded__) {
-          window.__aw_nav_loaded__ = true;
-          const code = await fetchAny(["assets/nav.js", "nav.js"]);
-          if (code){
-            const s = document.createElement("script");
-            if (/\b(import|export)\b/.test(code)) s.type = "module";
-            s.textContent = code;
-            document.body.appendChild(s);
-          }
+      const html = await fetchAny(["partials/header.html","header.html"]);
+      headMount.innerHTML = html || "<!-- Header introuvable -->";
+      if (html){ absolutize(headMount); }
+      if (!window.__aw_nav_loaded__){
+        window.__aw_nav_loaded__ = true;
+        const code = await fetchAny(["assets/nav.js","nav.js"]);
+        if (code){
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
         }
-      } else {
-        headMount.innerHTML = "<!-- Header introuvable -->";
       }
     })();
 
-    // FOOTER
     (async () => {
-      const html = await fetchAny(["partials/footer.html", "footer.html"]);
-      if (html){
-        footMount.innerHTML = html;
-        fixAllUrls(footMount);
-      } else {
-        footMount.innerHTML = "<!-- Footer introuvable -->";
-      }
+      const html = await fetchAny(["partials/footer.html","footer.html"]);
+      footMount.innerHTML = html || "<!-- Footer introuvable -->";
+      if (html){ absolutize(footMount); }
     })();
   });
   </script>
