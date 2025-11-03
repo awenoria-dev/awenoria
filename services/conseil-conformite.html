@@ -5,16 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Conseil & conformité – Awenoria</title>
   <meta name="description" content="Audit & Analyse, Accompagnement RGPD, Conformité IA (UE). Ouvrez la page service correspondante ou demandez un devis." />
+
+  <!-- Polices + CSS global (depuis /services/) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16.png">
+  <link rel="stylesheet" href="../assets/awenoria.css">
+
   <style>
     :root{--font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--text:#0f5f9a;--muted:#4a6176;--copper:#ff8a3d;--shadow:0 12px 28px rgba(0,0,0,.08);--maxw:1100px}
     *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;color:var(--text);font-family:var(--font);background:radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),linear-gradient(180deg,#fff 0%,#f6f9fc 100%)}
+    body{
+      margin:0;color:var(--text);font-family:var(--font);
+      background:
+        radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),
+        linear-gradient(180deg,#fff 0%,#f6f9fc 100%);
+    }
     .wrap{max-width:var(--maxw);margin:28px auto;padding:0 20px}
     h1{font-weight:800;font-size:clamp(24px,4.4vw,42px);margin:6px 0}
-    .lead{color:var(--muted)} .underline{width:84px;height:4px;border-radius:999px;background:var(--copper);margin:12px 0 22px;opacity:.95}
+    .lead{color:var(--muted)}
+    .underline{width:84px;height:4px;border-radius:999px;background:var(--copper);margin:12px 0 22px;opacity:.95}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
     .card{background:rgba(255,255,255,.86);border:1px solid rgba(15,23,32,.08);border-radius:22px;padding:18px;box-shadow:var(--shadow)}
     .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1px solid transparent;background:rgba(27,136,255,.80);color:#fff;text-decoration:none}
@@ -23,46 +35,140 @@
   </style>
 </head>
 <body>
-<header class="wrap">
-  <a href="/index.html#services">← Retour “Nos services”</a>
-  <h1>Conseil & conformité</h1>
-  <p class="lead">Audit, accompagnement et conformité opérationnelle.</p>
-  <div class="underline"></div>
-</header>
 
-<main class="wrap">
-  <section class="grid" id="services"></section>
-</main>
+  <!-- Header injecté -->
+  <div id="header"></div>
 
-<script type="module">
-  const SERVICES = {
-    "audit": {
-      title: "Audit & Analyse",
-      desc: "Cartographie, écarts, priorisation par impact et feuille de route.",
-      href: "/services/liste.html?service=audit"
-    },
-    "rgpd": {
-      title: "Accompagnement RGPD",
-      desc: "Registre, politiques, AIPD, contrat/sous-traitants, sensibilisation.",
-      href: "/services/liste.html?service=rgpd"
-    },
-    "ia-act": {
-      title: "Conformité IA (UE)",
-      desc: "Classification des risques, documentation, exigences IA Act.",
-      href: "/services/liste.html?service=ia-act"
+  <!-- En-tête local de la page -->
+  <header class="wrap">
+    <a href="../index.html#services">← Retour “Nos services”</a>
+    <h1>Conseil & conformité</h1>
+    <p class="lead">Audit, accompagnement et conformité opérationnelle.</p>
+    <div class="underline"></div>
+  </header>
+
+  <main class="wrap">
+    <section class="grid" id="services"></section>
+  </main>
+
+  <!-- Footer injecté -->
+  <div id="footer"></div>
+
+  <script type="module">
+    // Liens RELATIFS (compatibles sous-dossiers & GH Pages)
+    const SERVICES = {
+      "audit": {
+        title: "Audit & Analyse",
+        desc: "Cartographie, écarts, priorisation par impact et feuille de route.",
+        href: "services/liste.html?service=audit"
+      },
+      "rgpd": {
+        title: "Accompagnement RGPD",
+        desc: "Registre, politiques, AIPD, contrat/sous-traitants, sensibilisation.",
+        href: "services/liste.html?service=rgpd"
+      },
+      "ia-act": {
+        title: "Conformité IA (UE)",
+        desc: "Classification des risques, documentation, exigences IA Act.",
+        href: "services/liste.html?service=ia-act"
+      }
+    };
+
+    const root = document.getElementById("services");
+    root.innerHTML = Object.entries(SERVICES).map(([k,v]) => `
+      <article class="card">
+        <h3 style="margin:0 0 6px">${v.title}</h3>
+        <p class="note">${v.desc}</p>
+        <p style="margin-top:10px">
+          <a class="btn" href="${v.href}" aria-label="Voir ${v.title}">Voir le détail</a>
+        </p>
+      </article>
+    `).join("");
+  </script>
+
+  <!-- Loader header/footer + nav — robuste sous-dossiers + GH Pages -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
+
+    // base / GH Pages
+    const isGh = /github\.io$/.test(location.hostname);
+    let basePath = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      basePath = parts.length ? `/${parts[0]}/` : "/";
     }
-  };
+    const baseAbs = location.origin + basePath;
 
-  const root = document.getElementById("services");
-  root.innerHTML = Object.entries(SERVICES).map(([k,v]) => `
-    <article class="card">
-      <h3 style="margin:0 0 6px">${v.title}</h3>
-      <p class="note">${v.desc}</p>
-      <p style="margin-top:10px">
-        <a class="btn" href="${v.href}" aria-label="Voir ${v.title}">Voir le détail</a>
-      </p>
-    </article>
-  `).join("");
-</script>
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [
+        basePath + clean,   // /repo/partials/header.html (GH)
+        "./" + clean,       // ./partials/header.html
+        "../" + clean       // ../partials/header.html
+      ];
+    };
+
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
+        try {
+          const r = await fetch(u, { cache: "no-cache" });
+          if (r.ok) return r.text();
+        } catch(_) {}
+      }
+      return null;
+    }
+
+    // Réécrit TOUTES les URLs (href/src) internes dans un container injecté
+    function fixAllUrls(container) {
+      const nodes = container.querySelectorAll('a[href], img[src], link[href], script[src]');
+      nodes.forEach(el => {
+        const attr = el.hasAttribute("href") ? "href" : "src";
+        const val = el.getAttribute(attr);
+        if (!val) return;
+        if (/^(https?:)?\/\//i.test(val) || val.startsWith("#") || /^mailto:|^tel:/i.test(val)) return;
+        try{
+          const resolved = new URL(val, baseAbs).href;
+          el.setAttribute(attr, resolved);
+        }catch(_){
+          const clean = val.replace(/^\.\//,"").replace(/^\//,"");
+          el.setAttribute(attr, baseAbs + clean);
+        }
+      });
+    }
+
+    // HEADER
+    (async () => {
+      const html = await fetchAny(["partials/header.html", "header.html"]);
+      if (html){
+        headMount.innerHTML = html;
+        fixAllUrls(headMount);
+        const code = await fetchAny(["assets/nav.js", "nav.js"]);
+        if (code){
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+        }
+      } else {
+        headMount.innerHTML = "<!-- Header introuvable -->";
+      }
+    })();
+
+    // FOOTER
+    (async () => {
+      const html = await fetchAny(["partials/footer.html", "footer.html"]);
+      if (html){
+        footMount.innerHTML = html;
+        fixAllUrls(footMount);
+      } else {
+        footMount.innerHTML = "<!-- Footer introuvable -->";
+      }
+    })();
+  });
+  </script>
 </body>
 </html>
