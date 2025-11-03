@@ -81,23 +81,40 @@
       max-width: 600px;
     }
 
-    /* ---------- CARROUSEL ---------- */
+    /* ---------- CARROUSEL TOURNANT ---------- */
+    @keyframes spinRight {
+      from { transform: translateX(0) rotate(0deg) }
+      to   { transform: translateX(-100%) rotate(360deg) }
+    }
+    @keyframes spinLeft {
+      from { transform: translateX(0) rotate(360deg) }
+      to   { transform: translateX(-100%) rotate(0deg) }
+    }
+
     .carousel {
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: #0066ff #f6f9fc;
+      overflow: hidden; /* on cache la scrollbar pour l’effet « roue » */
+      position: relative;
+      width: 100%;
     }
     .carousel-track {
       display: flex;
       gap: 24px;
       width: max-content;
-      padding-bottom: 8px;
+      will-change: transform;
     }
+    #services .carousel-track {
+      animation: spinRight 25s linear infinite;
+    }
+    #formations .carousel-track {
+      animation: spinLeft 25s linear infinite;
+    }
+    .carousel:hover .carousel-track,
+    .carousel:active .carousel-track {
+      animation-play-state: paused;
+    }
+
     .card-slide {
       flex: 0 0 320px;
-      margin: 0;
       background: #fff;
       border: 1px solid rgba(15,23,32,.08);
       border-radius: 20px;
@@ -256,7 +273,7 @@
   </section>
 
   <!-- ===== FORMATIONS ---------- -->
-  <section class="block">
+  <section id="formations" class="block">
     <h2>On vous donne le micro</h2>
     <p class="lead">Formats courts, interactifs, avec souvenirs à emporter</p>
 
@@ -339,12 +356,83 @@
   <!-- ===== HERO CANVAS (inchangé) ===== -->
   <script>
     const canvas = document.getElementById('heroCanvas');
-    const ctx = canvas.getContext('2d');
-    function size(){ canvas.width = innerWidth; canvas.height = Math.max(innerHeight*0.6, 480); }
-    size(); addEventListener('resize', size);
-    const particles = [];
-    const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
-    class Particle{
-      constructor(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
-      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>canvas.width) this.vx*=-1; if(this.y<0||this.y>canvas.height) this.vy*=-1; }
-      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      function size(){ canvas.width = innerWidth; canvas.height = Math.max(innerHeight*0.6, 480); }
+      size(); addEventListener('resize', size);
+      const particles = [];
+      const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
+      class Particle{
+        constructor(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+        update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>canvas.width) this.vx*=-1; if(this.y<0||this.y>canvas.height) this.vy*=-1; }
+        draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
+        lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
+      }
+      for(let i=0;i<opts.count;i++) particles.push(new Particle());
+      (function anim(){ ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(anim); })();
+    }
+  </script>
+
+  <!-- ===== HEADER/FOOTER LOADER (inchangé) ===== -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
+
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
+    }
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean ];
+    };
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+      }
+      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+    }
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return;
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
+    }
+    if (headMount) {
+      fetchAny(["header.html", "partials/header.html"])
+        .then(html => {
+          headMount.innerHTML = html;
+          fixRootUrls(headMount);
+          return fetchAny(["assets/nav.js", "nav.js"]);
+        })
+        .then(code => {
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+        })
+        .catch(err => {
+          console.error("Header load error:", err);
+          headMount.innerHTML = "<!-- Header introuvable -->";
+        });
+    }
+    if (footMount) {
+      fetchAny(["footer.html", "partials/footer.html"])
+        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+        .catch(err => {
+          console.error("Footer load error:", err);
+          footMount.innerHTML = "<!-- Footer introuvable -->";
+        });
+    }
+  });
+  </script>
+</body>
+</html>
