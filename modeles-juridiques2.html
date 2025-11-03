@@ -128,16 +128,19 @@
       </div>
     </section>
 
-    <!-- Éditeur visible -->
+    <!-- Éditeur toujours visible -->
     <section class="section">
       <div class="container">
         <h2 class="title reveal">Je personnalise en 30 s</h2>
         <p class="subtitle-center reveal">Remplis le mini-formulaire : le texte se met à jour automatiquement dans chaque modèle.</p>
+
+        <!-- Boutons -->
         <div class="btn-row reveal" style="justify-content:center">
           <button class="btn" onclick="openFastEditor()">Éditeur rapide (30 s)</button>
           <button class="btn ghost" onclick="openAdvancedEditor()">Éditeur avancé (60 s)</button>
         </div>
 
+        <!-- Formulaire déplié par défaut -->
         <form id="fastEditor" class="reveal" style="max-width:680px;margin:auto">
           <!-- OBLIGATOIRES (rapide) -->
           <div class="grid cols-3" style="gap:10px">
@@ -435,12 +438,14 @@ Droit français. Tribunaux compétents selon le droit commun.
     });
 
     // Éditeur visible
-    function hideAdvanced(){ document.querySelectorAll('.advanced-only').forEach(el=>el.style.display='none'); }
-    function showAdvanced(){ document.querySelectorAll('.advanced-only').forEach(el=>el.style.display='block')); }
-
-    function openFastEditor(){ hideAdvanced(); }
-    function openAdvancedEditor(){ showAdvanced(); }
-
+    function openFastEditor(){
+      document.querySelectorAll('.advanced-only').forEach(el=>el.style.display='none');
+      document.getElementById('btnDownload').style.display='none';
+    }
+    function openAdvancedEditor(){
+      document.querySelectorAll('.advanced-only').forEach(el=>el.style.display='block');
+      document.getElementById('btnDownload').style.display='inline-block';
+    }
     // Auto-complétion SIREN
     document.getElementById('fastEditor').siren?.addEventListener('blur', async (e) => {
       const s = e.target.value.replace(/\s/g,'');
@@ -457,7 +462,6 @@ Droit français. Tribunaux compétents selon le droit commun.
         }
       }catch{/* silent fail */}
     });
-
     // Live replacement
     document.getElementById('fastEditor').addEventListener('input',()=>{
       const data = Object.fromEntries(new FormData(fastEditor).entries());
@@ -495,7 +499,6 @@ Droit français. Tribunaux compétents selon le droit commun.
     }
 
     // Header/Footer loader (inchangé)
-    <script>
     document.addEventListener("DOMContentLoaded", () => {
       const headMount = document.getElementById("header");
       const footMount = document.getElementById("footer");
@@ -560,6 +563,6 @@ Droit français. Tribunaux compétents selon le droit commun.
           });
       }
     });
-    </script>
+  </script>
 </body>
 </html>
