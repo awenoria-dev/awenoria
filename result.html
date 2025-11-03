@@ -6,29 +6,54 @@
   <title>Rapport SIGMA-light – Awenoria</title>
   <meta name="description" content="Rapport d’analyse RGPD non juridique – Awenoria">
 
-  <!-- Tailwind + ECharts + Google Fonts -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#1a365d 0%,#4299e1 100%);color:#fff;min-height:100vh}
-    .glass{background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18)}
-    #chart{height:280px}
-    table tbody tr{border-bottom:1px solid rgba(255,255,255,.1)}
-    table tbody tr:last-child{border-bottom:none}
-    a{color:#93c5fd}
-    a:hover{color:#dbeafe}
-    @media print{
-      body{background:#fff;color:#000}
-      .glass{background:#fff;border:1px solid #e5e7eb}
-      #chart{height:200px}
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1a365d 0%, #4299e1 100%);
+      color: #fff;
+      min-height: 100vh;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    #chart {
+      height: 280px;
+    }
+    table tbody tr {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    table tbody tr:last-child {
+      border-bottom: none;
+    }
+    a {
+      color: #93c5fd;
+    }
+    a:hover {
+      color: #dbeafe;
+    }
+    @media print {
+      body {
+        background: #fff;
+        color: #000;
+      }
+      .glass {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+      }
+      #chart {
+        height: 200px;
+      }
     }
   </style>
 </head>
 <body class="p-4 md:p-8">
 
-  <!-- ===== EN-TÊTE ===== -->
   <header class="glass rounded-xl p-4 mb-6 max-w-5xl mx-auto">
     <div class="flex items-center justify-between">
       <div>
@@ -42,7 +67,6 @@
     </div>
   </header>
 
-  <!-- ===== SCORE GLOBAL ===== -->
   <section class="glass rounded-xl p-6 mb-6 max-w-5xl mx-auto">
     <div class="flex items-center justify-between">
       <div>
@@ -55,11 +79,67 @@
     </div>
   </section>
 
-  <!-- ===== GRAPHIC ===== -->
   <section class="glass rounded-xl p-6 mb-6 max-w-5xl mx-auto">
     <h2 class="text-lg font-semibold mb-4">Répartition des écarts</h2>
     <div id="chart"></div>
   </section>
 
-  <!-- ===== TABLEAU DES ÉCARTS ===== -->
-  <section class="glass rounded-xl p-6
+  <section class="glass rounded-xl p-6 max-w-5xl mx-auto">
+    <h2 class="text-lg font-semibold mb-4">Tableau des écarts détectés</h2>
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="text-left opacity-70">
+          <th class="pb-2">ID</th>
+          <th class="pb-2">Description</th>
+          <th class="pb-2">Référentiel</th>
+        </tr>
+      </thead>
+      <tbody id="issues-tbody"></tbody>
+    </table>
+  </section>
+
+  <script>
+    const report = JSON.parse(sessionStorage.getItem('sigmaReport') || '{}');
+
+    if (!report.url) {
+      document.body.innerHTML = '<div class="text-center text-xl mt-10">Aucun rapport trouvé. Veuillez d’abord lancer une analyse depuis la page d’accueil.</div>';
+    }
+
+    document.getElementById('date').textContent = new Date().toLocaleString('fr-FR');
+    document.getElementById('score').textContent = report.score + '%';
+    document.getElementById('url').textContent = report.url;
+
+    const chart = echarts.init(document.getElementById('chart'));
+    const categories = {};
+    report.issues.forEach(iss => {
+      const cat = iss.id.split('-')[0];
+      categories[cat] = (categories[cat] || 0) + 1;
+    });
+
+    chart.setOption({
+      backgroundColor: 'transparent',
+      color: ['#f59e0b', '#ef4444', '#3b82f6', '#10b981'],
+      series: [{
+        type: 'pie',
+        radius: ['40%', '70%'],
+        data: Object.entries(categories).map(([name, value]) => ({ name, value })),
+        label: {
+          color: '#fff'
+        }
+      }]
+    });
+
+    const tbody = document.getElementById('issues-tbody');
+    report.issues.forEach(iss => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td class="py-2">${iss.id}</td>
+        <td class="py-2">${iss.msg}</td>
+        <td class="py-2"><a href="https://example.com/ref/${iss.ref}" target="_blank">${iss.ref}</a></td>
+      `;
+      tbody.appendChild(tr);
+    });
+  </script>
+
+</body>
+</html>
