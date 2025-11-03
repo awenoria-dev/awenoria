@@ -5,74 +5,255 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Formations par thématique – Awenoria</title>
   <meta name="description" content="Parcourez les thématiques (RGPD, IA Act, cookies, accessibilité, etc.) et ouvrez le catalogue filtré." />
+
+  <!-- Polices + favicons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16.png">
+
+  <!-- CSS global -->
+  <link rel="stylesheet" href="../../assets/awenoria.css?v=1">
+
   <style>
-    :root{--font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--text:#0f5f9a;--muted:#4a6176;--copper:#ff8a3d;--shadow:0 12px 28px rgba(0,0,0,.08);--maxw:1100px}
+    :root{--font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--text:#0f5f9a;--muted:#4a6176;--copper:#ff8a3d;--maxw:1100px}
     *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;color:var(--text);font-family:var(--font);background:radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),linear-gradient(180deg,#fff 0%,#f6f9fc 100%)}
+    body{
+      margin:0;font-family:var(--font);color:var(--text);
+      background:
+        radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),
+        linear-gradient(180deg,#fff 0%,#f6f9fc 100%);
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit;text-decoration:none}
+    .mega{display:none}.mega.open{display:block}
+    .account-menu{display:none}.account-menu.open{display:flex}
+
+    /* HERO bleu */
+    .hero{
+      position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;
+      text-align:center;color:#fff;overflow:hidden;
+      background:
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+      border-bottom:4px solid #e8eefb;
+    }
+    .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block;pointer-events:none}
+    .hero .content{position:relative;z-index:2;max-width:860px;padding:0 20px}
+    h1{font-weight:800;font-size:clamp(28px,6vw,48px);margin:6px 0}
+    .lead{color:#e8f0ff;font-weight:600}
+
+    /* Formes géométriques */
+    .hero-geo{ position:absolute; inset:0; pointer-events:none; z-index:1; overflow:hidden; }
+    .hero-geo .g{ position:absolute; width:64px; height:64px; opacity:.18; filter:blur(.2px);
+      animation:geoFloat var(--dur,18s) cubic-bezier(.22,1,.36,1) infinite; will-change:transform,opacity; }
+    .hero-geo .circle{ border-radius:50%; border:3px solid rgba(255,255,255,.65); }
+    .hero-geo .square{ border:3px solid rgba(255,255,255,.5); border-radius:14px; }
+    .hero-geo .triangle{ --s:64px; width:var(--s); height:var(--s); clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
+      box-shadow:inset 0 0 0 3px rgba(255,255,255,.55); border-radius:8px; background:transparent; }
+    .hero-geo .diamond{ border:3px solid rgba(255,255,255,.55); transform:rotate(45deg); animation-name:geoFloatDiamond; }
+    .hero-geo .g:nth-child(1){ left:6%;  top:12%;  --dur:22s; --scale:.9 }
+    .hero-geo .g:nth-child(2){ left:78%; top:18%;  --dur:26s; --scale:1.1 }
+    .hero-geo .g:nth-child(3){ left:16%; top:64%;  --dur:24s; --scale:.85 }
+    .hero-geo .g:nth-child(4){ left:88%; top:68%;  --dur:20s; --scale:.95 }
+    .hero-geo .g:nth-child(5){ left:44%; top:8%;   --dur:28s; --scale:.8 }
+    .hero-geo .g:nth-child(6){ left:54%; top:72%;  --dur:23s; --scale:1.0 }
+    .hero-geo .g:nth-child(7){ left:28%; top:36%;  --dur:25s; --scale:1.2 }
+    .hero-geo .g:nth-child(8){ left:70%; top:44%;  --dur:27s; --scale:.9 }
+    @keyframes geoFloat{
+      0%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.12}
+      25%{transform:translate3d(20px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.22}
+      50%{transform:translate3d(-10px,-60px,0) scale(var(--scale,1)) rotate(12deg); opacity:.2}
+      75%{transform:translate3d(-30px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.24}
+      100%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.18}
+    }
+    @keyframes geoFloatDiamond{
+      0%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.14}
+      25%{transform:rotate(55deg) translate3d(18px,-30px,0) scale(var(--scale,1)); opacity:.22}
+      50%{transform:rotate(65deg) translate3d(-12px,-60px,0) scale(var(--scale,1)); opacity:.2}
+      75%{transform:rotate(55deg) translate3d(-28px,-30px,0) scale(var(--scale,1)); opacity:.24}
+      100%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.18}
+    }
+
+    .underline{width:84px;height:4px;border-radius:999px;background:var(--copper);margin:12px auto 22px;opacity:.95}
     .wrap{max-width:var(--maxw);margin:28px auto;padding:0 20px}
-    h1{font-weight:800;font-size:clamp(24px,4.4vw,42px);margin:6px 0}
-    .lead{color:var(--muted)} .underline{width:84px;height:4px;border-radius:999px;background:var(--copper);margin:12px 0 22px;opacity:.95}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
-    .card{background:rgba(255,255,255,.86);border:1px solid rgba(15,23,32,.08);border-radius:22px;padding:18px;box-shadow:var(--shadow)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1px solid transparent;background:rgba(27,136,255,.80);color:#fff;text-decoration:none}
+    .card{background:rgba(255,255,255,.86);border:1px solid rgba(15,23,32,.08);border-radius:22px;padding:18px;box-shadow:0 12px 28px rgba(0,0,0,.08)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1px solid transparent;background:rgba(27,136,255,.80);color:#fff}
     .note{color:var(--muted);font-size:14px}
-    header a{color:inherit;text-decoration:none}
   </style>
 </head>
 <body>
-<header class="wrap">
-  <a href="/formation/index.html">← Retour “Nos formations”</a>
-  <h1>Thématiques</h1>
-  <p class="lead">Choisissez une thématique pour afficher le catalogue filtré.</p>
-  <div class="underline"></div>
-</header>
 
-<main class="wrap">
-  <section class="grid" id="themes"></section>
-</main>
+  <!-- Header injecté -->
+  <div id="header"></div>
 
-<script type="module">
-  // Descriptions succinctes (grâce au même vocabulaire que COURSES.themes)
-  const THEMES = {
-    "rgpd-essentiels": {
-      title: "RGPD – essentiels, registre, AIPD",
-      desc: "Mettre en place la conformité : bases, registre de traitements, rôles, AIPD."
-    },
-    "ia-act": {
-      title: "IA Act – obligations & documentation",
-      desc: "Comprendre le cadre européen, classer les risques, préparer la documentation."
-    },
-    "cookies": {
-      title: "Cookies & CMP",
-      desc: "Conformité bandeau, paramétrage CMP, exemptions, mesure d’audience."
-    },
-    "web-legal": {
-      title: "Mentions légales & conformité web",
-      desc: "Pages légales, politiques, parcours utilisateur, e-commerce."
-    },
-    "access": {
-      title: "Accessibilité (RGAA / EN 301 549)",
-      desc: "Audit rapide, priorisation, obligations de mise en accessibilité."
-    },
-    "cyber": {
-      title: "Cybersécurité de base",
-      desc: "Bonnes pratiques, sensibilisation équipes, premiers contrôles."
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="canvas" aria-hidden="true"></canvas>
+
+    <!-- Formes géométriques -->
+    <div class="hero-geo" aria-hidden="true">
+      <span class="g circle"></span>
+      <span class="g square"></span>
+      <span class="g triangle"></span>
+      <span class="g diamond"></span>
+      <span class="g circle"></span>
+      <span class="g square"></span>
+      <span class="g triangle"></span>
+      <span class="g diamond"></span>
+    </div>
+
+    <div class="content">
+      <h1>Thématiques</h1>
+      <p class="lead">Choisissez une thématique pour afficher le catalogue filtré.</p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="underline"></div>
+
+    <section class="grid" id="themes"></section>
+  </main>
+
+  <!-- Footer injecté -->
+  <div id="footer"></div>
+
+  <!-- Cartes thématiques -->
+  <script type="module">
+    const THEMES = {
+      "rgpd-essentiels": {
+        title: "RGPD – essentiels, registre, AIPD",
+        desc: "Mettre en place la conformité : bases, registre de traitements, rôles, AIPD."
+      },
+      "ia-act": {
+        title: "IA Act – obligations & documentation",
+        desc: "Comprendre le cadre européen, classer les risques, préparer la documentation."
+      },
+      "cookies": {
+        title: "Cookies & CMP",
+        desc: "Conformité bandeau, paramétrage CMP, exemptions, mesure d’audience."
+      },
+      "web-legal": {
+        title: "Mentions légales & conformité web",
+        desc: "Pages légales, politiques, parcours utilisateur, e-commerce."
+      },
+      "access": {
+        title: "Accessibilité (RGAA / EN 301 549)",
+        desc: "Audit rapide, priorisation, obligations de mise en accessibilité."
+      },
+      "cyber": {
+        title: "Cybersécurité de base",
+        desc: "Bonnes pratiques, sensibilisation équipes, premiers contrôles."
+      }
+    };
+
+    const root = document.getElementById("themes");
+    root.innerHTML = Object.entries(THEMES).map(([k,v]) => `
+      <article class="card">
+        <h3 style="margin:0 0 6px">${v.title}</h3>
+        <p class="note">${v.desc}</p>
+        <p style="margin-top:10px">
+          <a class="btn" href="../liste.html?theme=${encodeURIComponent(k)}"
+             aria-label="Voir les formations ${v.title}">Voir les formations</a>
+        </p>
+      </article>
+    `).join("");
+  </script>
+
+  <!-- Canvas particules (taille = hauteur réelle du hero) -->
+  <script>
+    (function(){
+      const cvs = document.getElementById('canvas'); if(!cvs) return;
+      const ctx = cvs.getContext('2d');
+      const hero = cvs.parentElement;
+
+      function sizeToHero(){
+        const rect = hero.getBoundingClientRect();
+        cvs.width  = rect.width;
+        cvs.height = rect.height;
+      }
+
+      let w,h;
+      function updateSize(){ sizeToHero(); w=cvs.width; h=cvs.height; }
+
+      const P=[], conf={n:60, v:.3, r:2, dist:120};
+      class Dot{
+        constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*conf.v; this.vy=(Math.random()-.5)*conf.v; }
+        step(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
+        draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,conf.r,0,Math.PI*2); ctx.fillStyle='rgba(255,255,255,.25)'; ctx.fill(); }
+        link(){ for(const q of P){ const d=Math.hypot(this.x-q.x,this.y-q.y); if(d<conf.dist){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/conf.dist})`; ctx.stroke(); } } }
+      }
+
+      function init(){ updateSize(); P.length=0; for(let i=0;i<conf.n;i++) P.push(new Dot()); }
+      function loop(){ ctx.clearRect(0,0,w,h); P.forEach(p=>{ p.step(); p.draw(); p.link(); }); requestAnimationFrame(loop); }
+
+      init(); loop();
+      addEventListener('resize', ()=>{ updateSize(); }, {passive:true});
+    })();
+  </script>
+
+  <!-- Injection header/footer + réécriture des chemins relatifs -->
+  <script>
+  (function(){
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    const PREFIX = "../../"; // /formation/themes/ → 2 niveaux
+
+    function rewriteRelativeURLs(container){
+      if (!container) return;
+      container.querySelectorAll('a[href], img[src], link[href], script[src]').forEach(el=>{
+        const attr = el.hasAttribute('href') ? 'href' : 'src';
+        const val = el.getAttribute(attr);
+        if (!val) return;
+        if (/^(?:[a-z]+:)?\/\//i.test(val) || val.startsWith('#') || /^mailto:|^tel:/i.test(val)) return;
+        const clean = val.replace(/^\.?\//,'').replace(/^\//,'');
+        el.setAttribute(attr, PREFIX + clean);
+      });
+      container.querySelectorAll('use[href]').forEach(u=>{
+        const val = u.getAttribute('href');
+        if (!val || val.startsWith('#') || /^(?:[a-z]+:)?\/\//i.test(val)) return;
+        const clean = val.replace(/^\.?\//,'').replace(/^\//,'');
+        u.setAttribute('href', PREFIX + clean);
+      });
     }
-  };
 
-  const root = document.getElementById("themes");
-  root.innerHTML = Object.entries(THEMES).map(([k,v]) => `
-    <article class="card">
-      <h3 style="margin:0 0 6px">${v.title}</h3>
-      <p class="note">${v.desc}</p>
-      <p style="margin-top:10px">
-        <a class="btn" href="/formation/liste.html?theme=${encodeURIComponent(k)}" aria-label="Voir les formations ${v.title}">Voir les formations</a>
-      </p>
-    </article>
-  `).join("");
-</script>
+    async function fetchAny(paths){
+      for (const p of paths){
+        try{
+          const r = await fetch(PREFIX + p, { cache:"no-cache" });
+          if (r.ok) return r.text();
+        }catch(_){}
+      }
+      return null;
+    }
+
+    // HEADER
+    (async()=>{
+      const html = await fetchAny(["partials/header.html","header.html"]);
+      headMount.innerHTML = html || "<!-- Header introuvable -->";
+      rewriteRelativeURLs(headMount);
+      if (!window.__aw_nav_loaded__){
+        window.__aw_nav_loaded__ = true;
+        const code = await fetchAny(["assets/nav.js","nav.js"]);
+        if (code){
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+        }
+      }
+    })();
+
+    // FOOTER
+    (async()=>{
+      const html = await fetchAny(["partials/footer.html","footer.html"]);
+      footMount.innerHTML = html || "<!-- Footer introuvable -->";
+      rewriteRelativeURLs(footMount);
+    })();
+  })();
+  </script>
 </body>
 </html>
