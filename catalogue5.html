@@ -85,18 +85,24 @@
     .ruban-card figcaption{padding:18px}
     .ruban-card h3{margin:0 0 6px; font-size:1.05rem; font-weight:800}
     .ruban-card p{margin:0 0 14px; color:var(--aw-muted); font-size:.95rem}
-    .badge{
-      position:absolute; top:8px; left:8px; font-size:.75rem; font-weight:800; padding:4px 8px;
-      border-radius:999px; backdrop-filter:blur(6px); color:#fff; z-index:2;
+
+    /* Badge unique fixe */
+    #badge-fixed{
+      position:fixed; top:16px; left:16px; z-index:999;
+      font-size:.75rem; font-weight:800; padding:4px 8px;
+      border-radius:999px; backdrop-filter:blur(6px); color:#fff;
+      pointer-events:none; display:none;
     }
-    .badge[data-cat="conformite"]{background:#ff4757}
-    .badge[data-cat="access"]{background:#3742fa}
-    .badge[data-cat="cyber"]{background:#2ed573}
-    .badge[data-cat="cookies"]{background:#ffa502}
-    .badge[data-cat="audit"]{background:#747d8c}
-    .badge[data-cat="web"]{background:#3742fa}
-    .badge[data-cat="rgpd"]{background:#ff6b6b}
-    .badge[data-cat="ia"]{background:#a55eea}
+
+    /* Couleurs des catégories */
+    #badge-fixed.conformite{background:#ff4757}
+    #badge-fixed.access{background:#3742fa}
+    #badge-fixed.cyber{background:#2ed573}
+    #badge-fixed.cookies{background:#ffa502}
+    #badge-fixed.audit{background:#747d8c}
+    #badge-fixed.web{background:#3742fa}
+    #badge-fixed.rgpd{background:#ff6b6b}
+    #badge-fixed.ia{background:#a55eea}
 
     /* Éditoriaux */
     .editorial{background:var(--aw-panel); border-top:1px solid rgba(15,23,32,.06); border-bottom:1px solid rgba(15,23,32,.06)}
@@ -117,6 +123,9 @@
 <body class="page-magazine2">
   <div id="header"></div>
 
+  <!-- Badge unique fixe -->
+  <div id="badge-fixed"></div>
+
   <section class="hero">
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="content">
@@ -133,9 +142,7 @@
     <!-- CARROUSEL SERVICES -->
     <div class="ruban" aria-label="Tous nos services">
       <div class="ruban-track" data-direction="right">
-        <!-- cartes -->
-        <figure class="ruban-card">
-          <span class="badge" data-cat="conformite">#Conformité</span>
+        <figure class="ruban-card" data-badge="Conformité" data-cat="conformite">
           <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=60" alt="">
           <figcaption>
             <h3>RGPD Live</h3>
@@ -144,8 +151,7 @@
           </figcaption>
         </figure>
 
-        <figure class="ruban-card">
-          <span class="badge" data-cat="access">#Access</span>
+        <figure class="ruban-card" data-badge="Access" data-cat="access">
           <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=60" alt="">
           <figcaption>
             <h3>Accessibilité Show</h3>
@@ -154,8 +160,7 @@
           </figcaption>
         </figure>
 
-        <figure class="ruban-card">
-          <span class="badge" data-cat="cyber">#Cyber</span>
+        <figure class="ruban-card" data-badge="Cyber" data-cat="cyber">
           <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=800&q=60" alt="">
           <figcaption>
             <h3>Cyber Night</h3>
@@ -164,8 +169,7 @@
           </figcaption>
         </figure>
 
-        <figure class="ruban-card">
-          <span class="badge" data-cat="cookies">#Cookies</span>
+        <figure class="ruban-card" data-badge="Cookies" data-cat="cookies">
           <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=60" alt="">
           <figcaption>
             <h3>Cookies Party</h3>
@@ -174,8 +178,7 @@
           </figcaption>
         </figure>
 
-        <figure class="ruban-card">
-          <span class="badge" data-cat="audit">#Audit</span>
+        <figure class="ruban-card" data-badge="Audit" data-cat="audit">
           <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=60" alt="">
           <figcaption>
             <h3>Diagnostic Premiere</h3>
@@ -184,8 +187,7 @@
           </figcaption>
         </figure>
 
-        <figure class="ruban-card">
-          <span class="badge" data-cat="web">#Web</span>
+        <figure class="ruban-card" data-badge="Web" data-cat="web">
           <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=60" alt="">
           <figcaption>
             <h3>Legal Remix</h3>
@@ -199,9 +201,7 @@
     <!-- CARROUSEL FORMATIONS -->
     <div class="ruban" aria-label="Toutes nos formations">
       <div class="ruban-track" data-direction="left">
-        <!-- cartes -->
-        <figure class="ruban-card">
-          <span class="badge" data-cat="rgpd">#RGPD</span>
+        <figure class="ruban-card" data-badge="RGPD" data-cat="rgpd">
           <img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=800&q=60" alt="">
           <figcaption>
             <h3>RGPD Express</h3>
@@ -210,8 +210,7 @@
           </figcaption>
         </figure>
 
-        <figure class="ruban-card">
-          <span class="badge" data-cat="ia">#IA</span>
+        <figure class="ruban-card" data-badge="IA" data-cat="ia">
           <img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=800&q=60" alt="">
           <figcaption>
             <h3>IA Act Day</h3>
@@ -220,8 +219,7 @@
           </figcaption>
         </figure>
 
-        <figure class="ruban-card">
-          <span class="badge" data-cat="access">#Access</span>
+        <figure class="ruban-card" data-badge="Access" data-cat="access">
           <img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&fit=crop&w=800&q=60" alt="">
           <figcaption>
             <h3>Access Night</h3>
@@ -230,8 +228,7 @@
           </figcaption>
         </figure>
 
-        <figure class="ruban-card">
-          <span class="badge" data-cat="cyber">#Cyber</span>
+        <figure class="ruban-card" data-badge="Cyber" data-cat="cyber">
           <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=800&q=60" alt="">
           <figcaption>
             <h3>Cyber Stage</h3>
@@ -240,8 +237,7 @@
           </figcaption>
         </figure>
 
-        <figure class="ruban-card">
-          <span class="badge" data-cat="cookies">#Cookies</span>
+        <figure class="ruban-card" data-badge="Cookies" data-cat="cookies">
           <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=60" alt="">
           <figcaption>
             <h3>Cookies Live</h3>
@@ -250,8 +246,7 @@
           </figcaption>
         </figure>
 
-        <figure class="ruban-card">
-          <span class="badge" data-cat="web">#Web</span>
+        <figure class="ruban-card" data-badge="Web" data-cat="web">
           <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=60" alt="">
           <figcaption>
             <h3>Legal Remix</h3>
@@ -386,6 +381,46 @@
         .catch(() => { footMount.innerHTML = "<!-- Footer introuvable -->"; });
     }
   });
+  </script>
+
+  <!-- Badge suiveur -->
+  <script>
+  (function(){
+    const cards = document.querySelectorAll('.ruban-card');
+    const badge = document.getElementById('badge-fixed');
+    if (!cards.length || !badge) return;
+
+    const colors = {
+      conformite:'#ff4757',
+      access:'#3742fa',
+      cyber:'#2ed573',
+      cookies:'#ffa502',
+      audit:'#747d8c',
+      web:'#3742fa',
+      rgpd:'#ff6b6b',
+      ia:'#a55eea'
+    };
+
+    function update(){
+      let active = null;
+      for (const card of cards) {
+        const r = card.getBoundingClientRect();
+        if (r.left >= 0 && r.left < window.innerWidth / 2) { active = card; break; }
+      }
+      if (active) {
+        const cat = active.dataset.cat;
+        const txt = active.dataset.badge;
+        badge.textContent = '#' + txt;
+        badge.className = cat;
+        badge.style.display = 'block';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update, {passive:true});
+    update();
+  })();
   </script>
 </body>
 </html>
