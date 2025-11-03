@@ -94,6 +94,12 @@
     }
     #fastEditor label{font-size:13px;color:var(--aw-muted);}
     .advanced-only{display:none;} /* seront affichés uniquement en mode avancé */
+
+    /* Split-pane preview (avancé) */
+    #advancedPreview{position:fixed;inset:0;background:var(--aw-bg);z-index:999;display:none;grid-template-columns:1fr 1fr;gap:12px;padding:12px;}
+    #advancedPreview .pane{background:var(--aw-panel);border-radius:var(--aw-radius);box-shadow:var(--shadow);padding:12px;overflow:auto;}
+    #advancedPreview iframe{width:100%;height:100%;border:none;}
+    #advancedPreview .close{position:absolute;top:16px;right:20px;background:none;border:none;font-size:24px;cursor:pointer;color:var(--aw-muted);}
   </style>
 </head>
 <body class="page-modeles">
@@ -178,6 +184,12 @@
               <textarea name="finalitesMarketing" placeholder="Finalités marketing" rows="2" style="resize:vertical;grid-column:1/-1"></textarea>
             </div>
           </div>
+
+          <!-- BOUTONS ACTION -->
+          <div class="btn-row" style="margin-top:12px">
+            <button type="button" class="btn" onclick="copyAllModels()">Copier tous les modèles</button>
+            <button type="button" class="btn ghost" onclick="downloadPack()" id="btnDownload" style="display:none">Télécharger le pack conformité</button>
+          </div>
         </form>
       </div>
     </section>
@@ -212,7 +224,7 @@ Délégué à la Protection des Données (le cas échéant) : [[DPO nom]] – [[
 Données accessibles en interne aux personnes habilitées. Sous-traitants : [[liste sous-traitants]], situés [[UE/hors UE avec garanties]].
 
 5) Transferts hors UE
-[[transfert hors UE::En cas de transfert, nous appliquons les garanties appropriées (clauses types, mesures complémentaires). Informations : [[email RGPD]].]]
+[[transfert hors UE]]
 
 6) Droits des personnes
 Accès, rectification, effacement, limitation, opposition, portabilité. Retrait du consentement à tout moment. Exercer vos droits : [[email RGPD / formulaire]]. Réclamation : CNIL (cnil.fr).
@@ -477,10 +489,52 @@ Droit français. Tribunaux compétents selon le droit commun.
           .replace(/\[\[transfert hors UE\]\]/g, data.transfertHorsUE?'En cas de transfert, nous appliquons les garanties appropriées (clauses types, mesures complémentaires). Informations : [[email RGPD]].':'Aucun transfert hors UE n’est effectué.')
           .replace(/\[\[liste sous-traitants\]\]/g, data.sousTraitants?data.sousTraitants.split('\n').join(', '):'[[liste sous-traitants]]')
           .replace(/\[\[finalites marketing\]\]/g, data.finalitesMarketing?data.finalitesMarketing:'[[finalites marketing]]')
+          .replace(/\[\[durée\]\]/g, data.durée||'36 mois')
+          .replace(/\[\[JJ/MM/AAAA\]\]/g, new Date().toLocaleDateString('fr-FR'))
           .replace(/\[\[outil analytics\]\]/g, data.analytics?'Google Analytics':'notre outil de mesure');
       });
     });
+
+    // Copier tous les modèles
+    function copyAllModels(){
+      const all = Array.from(document.querySelectorAll('.model textarea')).map(t=>t.value).join('\n\n---\n\n');
+      navigator.clipboard.writeText(all).then(()=>alert('Tous les modèles ont été copiés !'));
+    }
+
+    // Télécharger le pack conformité (avancé)
+    function downloadPack(){
+      const data = Object.fromEntries(new FormData(fastEditor).entries());
+      const zip = new JSZip();
+      zip.file("politique-confidentialite.html", document.getElementById('mdl-polconf').value);
+      zip.file("mentions-legales.html", document.getElementById('mdl-mentions').value);
+      zip.file("politique-cookies.html", document.getElementById('mdl-cookies').value);
+      zip.file("cookies-liste.csv", 'Nom,Finalité,Tiers,Durée\n'+document.getElementById('mdl-cookies').value.split('|').join(','));
+      zip.file("README-conformite.md", `# Pack conformité généré le ${new Date().toLocaleDateString('fr-FR')}
+- Responsable : ${data.raison}
+- Email RGPD : ${data.emailRGPD}
+- SIREN : ${data.siren}
+- Hébergeur : ${data.hebergeur}
+- Médiateur : ${data.mediateur||'non applicable'}
+`);
+      zip.generateAsync({type:"blob"}).then(blob=>{
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href = url; a.download = `pack-conformite-${Date.now()}.zip`; a.click();
+      });
+    }
+
+    // Preview split-pane (avancé)
+    function openSplitPane(){
+      const preview = document.getElementById('advancedPreview');
+      preview.style.display='grid';
+      const left = document.querySelector('#advancedPreview .left');
+      const right = document.querySelector('#advancedPreview iframe');
+      left.innerHTML='<h3>Modèles mis à jour</h3>'+Array.from(document.querySelectorAll('.model textarea')).map(t=>`<details><summary>${t.id}</summary><pre>`+t.value+'</pre></details>').join('');
+      right.src='data:text/html;charset=utf-8,'+encodeURIComponent('<h1>Preview</h1>'+document.getElementById('mdl-polconf').value);
+    }
   </script>
+
+  <!-- Libs pour zip -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
   <!-- Header/Footer loader (inchangé) -->
   <script>
