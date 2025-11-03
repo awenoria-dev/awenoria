@@ -10,62 +10,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16.png">
 
-  <!-- Tentative standard (chemin relatif supposé) -->
-  <link id="awenoriaCss" rel="stylesheet" href="../assets/awenoria.css?v=1">
+  <!-- ✅ CHEMIN CORRIGÉ (2 niveaux au-dessus) -->
+  <link id="awenoriaCss" rel="stylesheet" href="../../assets/awenoria.css?v=1">
 
-  <!-- Garde-fou initial (empêche les menus de s’ouvrir en vrac si le CSS global rate) -->
+  <!-- Garde-fou minimal (évite les menus ouverts si le CSS tarde) -->
   <style>
     :root{--font:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--text:#0f5f9a;--muted:#4a6176;--copper:#ff8a3d;--maxw:1100px}
-    *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;font-family:var(--font);color:var(--text);
-      background:radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),
-                 linear-gradient(180deg,#fff 0%,#f6f9fc 100%);}
-    /* liens par défaut si le CSS global manque */
+    *{box-sizing:border-box} html,body{height:100%} body{margin:0;font-family:var(--font);color:var(--text);
+      background:radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),linear-gradient(180deg,#fff 0%,#f6f9fc 100%)}
     a{color:inherit;text-decoration:none}
-
-    /* Header minimal sûr */
-    header.navbar{position:sticky;top:0;z-index:1100;background:#fff;border-bottom:1px solid rgba(15,23,32,.08)}
-    .nav-wrap{max-width:1200px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:10px}
-    .brand-img{height:64px;display:block}
-    .nav-main{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
-    .nav-main a,.nav-main button{appearance:none;background:none;border:none;cursor:pointer;
-      color:inherit;font-weight:800;font-size:16px;height:40px;line-height:40px;padding:0 12px;border-radius:10px;display:inline-flex;align-items:center;gap:6px}
-    .nav-main a:hover,.nav-main button:hover{background:rgba(27,136,255,.10)}
-    .nav-actions{display:flex;align-items:center;gap:8px}
-    .account-btn{display:grid;place-content:center;width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid rgba(15,23,32,.12);cursor:pointer}
-    /* FOUC guards */
-    .mega{position:absolute;display:none}
-    .mega.open{display:block}
-    .account-menu{position:absolute;display:none}
-    .account-menu.open{display:flex}
-
-    /* HERO bleu + canvas */
-    .hero{
-      position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;
-      text-align:center;color:#fff;overflow:hidden;
-      background:
-        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
-        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
-      border-bottom:4px solid #e8eefb;
-    }
-    .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-    .hero .content{position:relative;z-index:2;max-width:860px;padding:0 20px}
-    h1{font-weight:800;font-size:clamp(28px,6vw,48px);margin:6px 0}
-    .lead{color:#e8f0ff;font-weight:600}
-    .underline{width:84px;height:4px;border-radius:999px;background:var(--copper);margin:12px auto 22px;opacity:.95}
-
-    /* Contenu */
-    .wrap{max-width:var(--maxw);margin:28px auto;padding:0 20px}
-    h2{font-weight:800;font-size:clamp(18px,2.8vw,26px);margin:6px 0 12px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
-    .card{background:rgba(255,255,255,.86);border:1px solid rgba(15,23,32,.08);border-radius:22px;padding:18px;box-shadow:0 12px 28px rgba(0,0,0,.08)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1px solid transparent;background:rgba(27,136,255,.80);color:#fff}
-    .note{color:var(--muted);font-size:14px}
+    .mega{display:none}.mega.open{display:block}
+    .account-menu{display:none}.account-menu.open{display:flex}
   </style>
 </head>
 <body>
@@ -74,34 +32,37 @@
   <div id="header"></div>
 
   <!-- HERO -->
-  <section class="hero">
-    <canvas id="canvas" aria-hidden="true"></canvas>
-    <div class="content">
-      <h1>Formats & modalités</h1>
-      <p class="lead">Choisissez un format ou une modalité pour afficher le catalogue filtré.</p>
+  <section class="hero" style="position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;background:
+    radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+    radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+    linear-gradient(180deg, #0033cc 0%, #0066ff 100%);border-bottom:4px solid #e8eefb;">
+    <canvas id="canvas" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:0"></canvas>
+    <div class="content" style="position:relative;z-index:2;max-width:860px;padding:0 20px">
+      <h1 style="font-weight:800;font-size:clamp(28px,6vw,48px);margin:6px 0">Formats & modalités</h1>
+      <p class="lead" style="color:#e8f0ff;font-weight:600">Choisissez un format ou une modalité pour afficher le catalogue filtré.</p>
     </div>
   </section>
 
-  <main class="wrap">
-    <div class="underline"></div>
+  <main class="wrap" style="max-width:1100px;margin:28px auto;padding:0 20px">
+    <div class="underline" style="width:84px;height:4px;border-radius:999px;background:#ff8a3d;margin:12px auto 22px;opacity:.95"></div>
 
     <!-- Formats -->
     <section>
-      <h2>Formats</h2>
-      <div class="grid" id="formats"></div>
+      <h2 style="font-weight:800;font-size:clamp(18px,2.8vw,26px);margin:6px 0 12px">Formats</h2>
+      <div class="grid" id="formats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px"></div>
     </section>
 
     <!-- Modalités -->
     <section style="margin-top:18px">
-      <h2>Modalités</h2>
-      <div class="grid" id="modalites"></div>
+      <h2 style="font-weight:800;font-size:clamp(18px,2.8vw,26px);margin:6px 0 12px">Modalités</h2>
+      <div class="grid" id="modalites" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px"></div>
     </section>
   </main>
 
   <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- CONTENU DYNAMIQUE -->
+  <!-- Cartes -->
   <script type="module">
     const FORMATS = {
       "atelier-2h": { title:"Atelier 2h", desc:"Focus rapide et opérationnel sur un sujet clé avec exercices." },
@@ -113,18 +74,14 @@
       "presentiel": { title:"Présentiel", desc:"Animation sur site, interaction forte, ateliers en salle." },
       "distanciel": { title:"Distanciel", desc:"Classes virtuelles en visioconférence, supports partagés." }
     };
-    document.getElementById("formats").innerHTML = Object.entries(FORMATS).map(([k,v]) => `
-      <article class="card">
+    const card = (v, href) => `
+      <article class="card" style="background:rgba(255,255,255,.86);border:1px solid rgba(15,23,32,.08);border-radius:22px;padding:18px;box-shadow:0 12px 28px rgba(0,0,0,.08)">
         <h3 style="margin:0 0 6px">${v.title}</h3>
-        <p class="note">${v.desc}</p>
-        <p style="margin-top:10px"><a class="btn" href="liste.html?format=${encodeURIComponent(k)}">Voir les formations</a></p>
-      </article>`).join("");
-    document.getElementById("modalites").innerHTML = Object.entries(MODALITES).map(([k,v]) => `
-      <article class="card">
-        <h3 style="margin:0 0 6px">${v.title}</h3>
-        <p class="note">${v.desc}</p>
-        <p style="margin-top:10px"><a class="btn" href="liste.html?modalite=${encodeURIComponent(k)}">Voir les formations</a></p>
-      </article>`).join("");
+        <p class="note" style="color:#4a6176;font-size:14px">${v.desc}</p>
+        <p style="margin-top:10px"><a class="btn" style="display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:10px 16px;border:1px solid transparent;background:rgba(27,136,255,.80);color:#fff" href="${href}">Voir les formations</a></p>
+      </article>`;
+    document.getElementById("formats").innerHTML = Object.entries(FORMATS).map(([k,v]) => card(v, `../liste.html?format=${encodeURIComponent(k)}`)).join("");
+    document.getElementById("modalites").innerHTML = Object.entries(MODALITES).map(([k,v]) => card(v, `../liste.html?modalite=${encodeURIComponent(k)}`)).join("");
   </script>
 
   <!-- Canvas particules -->
@@ -133,90 +90,63 @@
     let w = c.width = innerWidth, h = c.height = innerHeight;
     const P = [], K = {n:60, v:.3, r:2, d:120};
     addEventListener('resize', ()=>{ w=c.width=innerWidth; h=c.height=c.parentElement.offsetHeight; });
-    class Dot{constructor(){this.x=Math.random()*w;this.y=Math.random()*h;this.vx=(Math.random()-.5)*K.v;this.vy=(Math.random()-.5)*K.v}
-      step(){this.x+=this.vx;this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1}
-      draw(){x.beginPath();x.arc(this.x,this.y,K.r,0,Math.PI*2);x.fillStyle='rgba(255,255,255,.25)';x.fill()}
-      link(){for(const q of P){const d=Math.hypot(this.x-q.x,this.y-q.y); if(d<K.d){x.beginPath();x.moveTo(this.x,this.y);x.lineTo(q.x,q.y);x.strokeStyle=`rgba(255,255,255,${1-d/K.d})`;x.stroke();}}}}
+    class Dot{constructor(){this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*K.v; this.vy=(Math.random()-.5)*K.v}
+      step(){this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1}
+      draw(){x.beginPath(); x.arc(this.x,this.y,K.r,0,Math.PI*2); x.fillStyle='rgba(255,255,255,.25)'; x.fill()}
+      link(){for(const q of P){const d=Math.hypot(this.x-q.x,this.y-q.y); if(d<K.d){x.beginPath(); x.moveTo(this.x,this.y); x.lineTo(q.x,q.y); x.strokeStyle=`rgba(255,255,255,${1-d/K.d})`; x.stroke();}}}
+    }
     for(let i=0;i<K.n;i++) P.push(new Dot());
     (function loop(){x.clearRect(0,0,w,h); P.forEach(p=>{p.step();p.draw();p.link()}); requestAnimationFrame(loop)})();
   </script>
 
-  <!-- Loader header/footer + nav (+ réécriture chemins) -->
+  <!-- Injection header/footer + nav -->
   <script>
   (function(){
     const headMount = document.getElementById("header");
     const footMount = document.getElementById("footer");
 
-    const isGh = /github\.io$/.test(location.hostname);
-    let basePath = "/";
-    if (isGh) {
-      const parts = location.pathname.split("/").filter(Boolean);
-      basePath = parts.length ? `/${parts[0]}/` : "/";
-    }
-    const baseAbs = location.origin + basePath;
+    // On est dans /formation/formats-modalites/ ➜ 2 niveaux à remonter
     const candidates = (p) => {
-      const clean = p.replace(/^\//,"");
-      return [ basePath + clean, "./" + clean, "../" + clean, "../../" + clean ];
+      const clean = p.replace(/^\//,'');
+      return [ "../../" + clean, "../" + clean, "./" + clean ];
     };
     async function fetchAny(paths){
       const queue = paths.flatMap(candidates);
       for (const u of queue){
-        try{ const r = await fetch(u,{cache:"no-cache"}); if (r.ok) return r.text(); }catch(_){}
+        try{ const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); }catch(_){}
       }
       return null;
     }
-    function absolutize(container){
-      container.querySelectorAll('a[href], img[src], link[href], script[src]').forEach(el=>{
-        const attr = el.hasAttribute("href") ? "href" : "src";
-        const val = el.getAttribute(attr);
-        if (!val || /^(https?:)?\/\//i.test(val) || val.startsWith("#") || /^mailto:|^tel:/i.test(val)) return;
-        try{ el.setAttribute(attr, new URL(val, baseAbs).href); }
-        catch(_){ el.setAttribute(attr, baseAbs + val.replace(/^\.\//,"").replace(/^\//,"")); }
+    function fixAbs(container){
+      container.querySelectorAll('a[href],img[src],link[href],script[src]').forEach(el=>{
+        const attr = el.hasAttribute('href') ? 'href' : 'src';
+        const val = el.getAttribute(attr); if(!val) return;
+        if (/^(https?:)?\/\//i.test(val) || val.startsWith('#') || /^mailto:|^tel:/i.test(val)) return;
+        // Réécrit en relatif depuis cette page (2 niveaux)
+        if (val.startsWith('/')) el.setAttribute(attr, '../../' + val.replace(/^\//,''));
       });
     }
 
-    // Inject header + nav.js (une seule fois)
     (async()=>{
-      const html = await fetchAny(["partials/header.html","header.html"]);
-      headMount.innerHTML = html || "<!-- Header introuvable -->";
-      if (html){ absolutize(headMount); }
+      const h = await fetchAny(["partials/header.html","header.html"]);
+      headMount.innerHTML = h || "<!-- Header introuvable -->";
+      if (h){ fixAbs(headMount); }
       if (!window.__aw_nav_loaded__){
         window.__aw_nav_loaded__ = true;
         const code = await fetchAny(["assets/nav.js","nav.js"]);
         if (code){
-          const s = document.createElement("script");
-          if (/\b(import|export)\b/.test(code)) s.type="module";
+          const s=document.createElement('script');
+          if (/\b(import|export)\b/.test(code)) s.type='module';
           s.textContent = code;
           document.body.appendChild(s);
         }
       }
     })();
 
-    // Inject footer
     (async()=>{
-      const html = await fetchAny(["partials/footer.html","footer.html"]);
-      footMount.innerHTML = html || "<!-- Footer introuvable -->";
-      if (html){ absolutize(footMount); }
-    })();
-
-    // === Fallback CSS global : si le <link> a raté, on va le chercher et on l’injecte en <style> ===
-    (async()=>{
-      const probe = document.getElementById('awenoriaCss');
-      let loaded = false;
-      if (probe) {
-        probe.addEventListener('load', ()=> loaded = true);
-        probe.addEventListener('error', ()=> loaded = false);
-        // courte attente pour laisser une chance au link
-        await new Promise(r=>setTimeout(r, 50));
-        loaded = !![...document.styleSheets].find(s=> (s.href||"").includes("awenoria.css"));
-      }
-      if (!loaded){
-        const cssText = await fetchAny(["assets/awenoria.css","../assets/awenoria.css","../../assets/awenoria.css"]);
-        if (cssText){
-          const st = document.createElement("style"); st.textContent = cssText;
-          document.head.appendChild(st);
-        }
-      }
+      const f = await fetchAny(["partials/footer.html","footer.html"]);
+      footMount.innerHTML = f || "<!-- Footer introuvable -->";
+      if (f){ fixAbs(footMount); }
     })();
   })();
   </script>
