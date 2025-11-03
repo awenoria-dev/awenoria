@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fiche formation – Awenoria</title>
   <meta name="description" content="Détail de la formation : objectifs, programme, durée, modalités. Présentiel / distanciel, supports et attestation inclus." />
-  <!-- Police du site -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
@@ -33,10 +31,6 @@
     .hero .content{position:relative;z-index:2;max-width:var(--maxw);width:100%;padding:0 20px;animation:fadeInUp 1s both}
     .hero h1{font-size:clamp(42px,6vw,64px);font-weight:800;line-height:1.05;letter-spacing:-.02em}
     .hero .lead{font-size:1.15rem;font-weight:500;margin:14px auto 0;color:#e8f0ff;max-width:900px}
-    .hero .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
-    .tag{border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;background:rgba(255,255,255,.12);color:#fff}
-    .breadcrumbs{display:flex;gap:8px;justify-content:center;color:#e8f0ff;opacity:.95;font-weight:800;margin-bottom:8px}
-    .breadcrumbs a{color:#e8f0ff;text-decoration:underline}
 
     .hero-geo{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
     .hero-geo .g{position:absolute;width:64px;height:64px;opacity:.18;filter:blur(.2px);animation:geoFloat var(--dur,18s) cubic-bezier(.22,1,.36,1) infinite;will-change:transform,opacity}
@@ -67,9 +61,9 @@
     .cta-col{display:grid;gap:12px;height:fit-content;align-content:start}
     .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:12px 20px;font-size:16px;text-decoration:none;border:1px solid transparent}
     .btn.primary{background:var(--aw-copper);color:#fff;border-color:rgba(255,255,255,.25);box-shadow:0 4px 18px rgba(27,136,255,.30)}
-    .btn.secondary{background:#fff;color:var(--aw-ink);border:1px solid rgba(15,23,32,.18)}
     .note{color:var(--aw-muted);font-size:14px}
 
+    .btn.block{width:100%}
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
   </style>
 </head>
@@ -78,7 +72,7 @@
   <!-- Header injecté -->
   <div id="header"></div>
 
-  <!-- ===== HERO BLEU ===== -->
+  <!-- ===== HERO épuré (pas de breadcrumbs ni tags) ===== -->
   <section class="hero" aria-label="En-tête visuel">
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="hero-geo" aria-hidden="true">
@@ -87,17 +81,8 @@
     </div>
 
     <div class="content">
-      <nav class="breadcrumbs" aria-label="Fil d'Ariane">
-        <a href="../nos-formations.html">Formations</a>
-        <span aria-hidden="true">›</span>
-        <a id="crumb-mid" href="../formations-liste.html">Catalogue</a>
-        <span aria-hidden="true">›</span>
-        <span id="crumb-leaf">Fiche</span>
-      </nav>
-
       <h1 id="course-title">Titre formation</h1>
       <p id="course-pitch" class="lead">Résumé personnalisé selon l’origine (thématique / public).</p>
-      <div id="course-meta" class="meta"></div>
     </div>
   </section>
 
@@ -112,15 +97,6 @@
       </article>
 
       <aside class="cta-col">
-        <a id="back-link" class="btn secondary" href="javascript:history.back()">← Revenir</a>
-
-        <div class="card">
-          <h2 style="margin:0 0 8px">Obtenir le programme détaillé</h2>
-          <p class="note">Précisez vos dates, le format (présentiel/distanciel) et le public cible.</p>
-          <p><a class="btn primary" href="../index.html#contact">Demander un devis</a></p>
-          <p class="note" style="margin-top:8px">Supports & modèles fournis • Quiz & attestation inclus</p>
-        </div>
-
         <div class="card">
           <h2 style="margin:0 0 8px">Infos pratiques</h2>
           <ul class="note" id="practical-list" style="padding-left:18px;margin:8px 0 0">
@@ -128,7 +104,11 @@
             <li>Modalités : présentiel ou distanciel</li>
             <li>Financement : selon OPCO/plan interne</li>
           </ul>
+          <p class="note" style="margin-top:12px">Supports & modèles fournis • Quiz & attestation inclus</p>
         </div>
+
+        <!-- CTA déplacée SOUS la bulle Infos pratiques -->
+        <a class="btn primary block" href="../index.html#contact">Demander un devis</a>
       </aside>
     </section>
   </main>
@@ -157,18 +137,14 @@
 
   <!-- ===== Données & fallback IA Act ===== -->
   <script type="module">
-    // IMPORTANT : cette page est dans /formation/ → accéder à ../js/...
+    // Chargement des données (depuis /formation → ../js)
     let COURSES = [];
     try {
       const mod = await import("../js/courses-data.js");
       COURSES = mod.COURSES || [];
-    } catch(e) {
-      console.warn("courses-data non chargé, on passe en fallback IA Act", e);
-    }
+    } catch(e) { console.warn("courses-data non chargé, fallback IA Act", e); }
 
-    // Fallback IA Act (d’après ta PJ3)
     const FB = {
-      slug: "aiact2",
       title: "IA Act (UE) : obligations & documentation",
       summary: "Qualifier les systèmes, comprendre les obligations par niveau de risque, préparer la doc et la gouvernance.",
       duration: "1/2 journée à 1 journée",
@@ -189,71 +165,36 @@
     };
 
     const slug = location.pathname.split('/').pop().replace('.html','');
-    // Essaie de trouver la fiche ; sinon, utilise le fallback IA Act
-    const course = COURSES.find(c => c.slug === slug) || COURSES.find(c => c.slug === "ia-act") || FB;
-
     const params = new URLSearchParams(location.search);
     const from = params.get('from'); const theme = params.get('theme'); const audience = params.get('public');
 
     const THEME_LABELS = {"rgpd-essentiels":"RGPD – essentiels, registre, AIPD","ia-act":"IA Act – obligations & documentation","cookies":"Cookies & CMP","web-legal":"Mentions légales & conformité web","access":"Accessibilité (RGAA / EN 301 549)","cyber":"Cybersécurité de base"};
     const AUDIENCE_LABELS = {dirigeants:"Dirigeants & responsables",equipes:"Équipes opérationnelles",dpo:"Référents / DPO",dev:"Dev, Produit & Data"};
 
-    const $ = sel => document.getElementById(sel);
+    const $ = id => document.getElementById(id);
     const titleEl = $("course-title");
     const pitchEl = $("course-pitch");
-    const metaEl  = $("course-meta");
     const progEl  = $("course-program");
     const objEl   = $("course-objectives");
-    const crumbMid= $("crumb-mid");
-    const crumbLeaf= $("crumb-leaf");
-    const backLink= $("back-link");
 
-    function setHead(t,d){document.title=t; const m=document.querySelector('meta[name="description"]'); if(m) m.setAttribute('content',d);}
+    const course = COURSES.find(c => c.slug === slug) || COURSES.find(c => c.slug === "ia-act") || null;
 
-    // Pitch avec priorité (audience -> thème -> summary)
-    const pitch =
-      (from==='public' && audience && course.pitchByAudience?.[audience]) ? course.pitchByAudience[audience] :
-      (from==='theme'  && theme    && course.pitchByTheme?.[theme])      ? course.pitchByTheme[theme] :
-      (course.summary || FB.summary);
+    const title = course?.title || FB.title;
+    const basePitch =
+      (from==='public' && audience && course?.pitchByAudience?.[audience]) ? course.pitchByAudience[audience] :
+      (from==='theme'  && theme    && course?.pitchByTheme?.[theme])      ? course.pitchByTheme[theme] :
+      (course?.summary || FB.summary);
 
-    titleEl.textContent = course.title || FB.title;
-    pitchEl.textContent = pitch;
+    titleEl.textContent = title;
+    pitchEl.textContent = basePitch;
+    document.title = `${title} – Awenoria`;
 
-    const dur = (course.duration || FB.duration) ? `<span class="tag" aria-label="Durée">${course.duration || FB.duration}</span>` : '';
-    const lvl = (course.level || FB.level) ? `<span class="tag" aria-label="Niveau">${course.level || FB.level}</span>` : '';
-    const mods = (course.modalities?.length ? course.modalities : FB.modalities).map(m=>`<span class="tag">${m}</span>`).join('');
-    metaEl.innerHTML = dur + lvl + mods;
-
-    const items = (course.program?.length ? course.program : FB.program).map(li=>`<li>${li}</li>`).join('');
+    const items = (course?.program?.length ? course.program : FB.program)
+      .map(li=>`<li>${li}</li>`).join('');
     progEl.innerHTML = `<ul>${items}</ul>`;
 
-    objEl.innerHTML = (course.objectives?.length ? course.objectives : FB.objectives)
+    objEl.innerHTML = (course?.objectives?.length ? course.objectives : FB.objectives)
       .map(o=>`<li>${o}</li>`).join('');
-
-    // Breadcrumbs + head
-    if(from==='theme' && theme){
-      crumbMid.textContent = THEME_LABELS[theme] || 'Thématique';
-      crumbMid.href = `../formations-liste.html?theme=${encodeURIComponent(theme)}`;
-    } else if(from==='public' && audience){
-      crumbMid.textContent = AUDIENCE_LABELS[audience] || 'Public';
-      crumbMid.href = `../formations-liste.html?public=${encodeURIComponent(audience)}`;
-    } else {
-      crumbMid.textContent = 'Catalogue';
-      crumbMid.href = `../formations-liste.html`;
-    }
-    crumbLeaf.textContent = course.title || FB.title;
-
-    const originLabel = from==='public' ? (AUDIENCE_LABELS[audience]||'')
-                        : from==='theme' ? (THEME_LABELS[theme]||'') : 'Catalogue';
-    setHead(`${course.title || FB.title} – Awenoria`, `${(course.summary || FB.summary)} ${originLabel?' • Contexte : '+originLabel:''}`);
-
-    // Lien retour
-    if (backLink) {
-      backLink.href =
-        from==='public'&&audience ? `../formations-liste.html?public=${encodeURIComponent(audience)}`
-        : from==='theme'&&theme   ? `../formations-liste.html?theme=${encodeURIComponent(theme)}`
-        : `../formations-liste.html`;
-    }
   </script>
 
   <!-- ===== Loader header/footer + CSS global ===== -->
@@ -270,7 +211,6 @@
       base = parts.length ? `/${parts[0]}/` : "/";
     }
 
-    // CSS global & favicon
     const ensureHeadAsset = (href, rel, attr = {}) => {
       const l = document.createElement("link");
       l.rel = rel; l.href = base + href.replace(/^\//, "");
@@ -303,7 +243,6 @@
         });
     }
 
-    // HEADER
     if (headMount) {
       fetchAny(["header.html", "partials/header.html"])
         .then(html => {
@@ -318,7 +257,6 @@
         .catch(() => { headMount.innerHTML = "<!-- Header introuvable -->"; });
     }
 
-    // FOOTER
     if (footMount) {
       fetchAny(["footer.html", "partials/footer.html"])
         .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
