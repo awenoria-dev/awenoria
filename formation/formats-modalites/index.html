@@ -6,13 +6,22 @@
   <title>Formats & modalités – Awenoria</title>
   <meta name="description" content="Choisissez un format (atelier 2h, 1/2 journée, 1 journée, parcours) ou une modalité (présentiel, distanciel) et ouvrez le catalogue filtré." />
 
-  <!-- Polices + CSS global -->
+  <!-- Polices + favicons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16.png">
-  <link rel="stylesheet" href="../assets/awenoria.css">
+
+  <!-- CSS global (chemin correct depuis /formation/) + cache-busting -->
+  <link rel="stylesheet" href="../assets/awenoria.css?v=2025-11-03">
+  <!-- Filet de sécurité : masque les panneaux avant que le CSS global ne soit prêt -->
+  <style>
+    .mega{display:none!important}
+    .mega.open{display:block!important}
+    .account-menu{display:none!important}
+    .account-menu.open{display:flex!important}
+  </style>
 
   <style>
     :root{
@@ -23,7 +32,10 @@
     }
     *{box-sizing:border-box} html,body{height:100%;margin:0;padding:0;}
     body{font-family:var(--font);color:var(--text);
-      background:radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),linear-gradient(180deg,#fff 0%,#f6f9fc 100%);
+      background:
+        radial-gradient(1400px 700px at 10% -20%,#eef6ff 0%,rgba(238,246,255,.6) 45%,transparent 60%),
+        linear-gradient(180deg,#fff 0%,#f6f9fc 100%);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
     /* ===== HERO bleu + canvas ===== */
@@ -176,13 +188,14 @@
     (function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); })();
   </script>
 
-  <!-- Loader header/footer + nav -->
+  <!-- Loader header/footer + nav (robuste sous-dossiers + GH Pages) -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
     const footMount = document.getElementById("footer");
     if (!headMount && !footMount) return;
 
+    // Détection GitHub Pages (sous-chemin)
     const isGh = /github\.io$/.test(location.hostname);
     let basePath = "/";
     if (isGh) {
@@ -199,7 +212,10 @@
     async function fetchAny(paths) {
       const queue = paths.flatMap(candidates);
       for (const u of queue) {
-        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+        try {
+          const r = await fetch(u, { cache: "no-cache" });
+          if (r.ok) return r.text();
+        } catch (_) {}
       }
       return null;
     }
@@ -211,37 +227,46 @@
         const val = el.getAttribute(attr);
         if (!val) return;
         if (/^(https?:)?\/\//i.test(val) || val.startsWith("#") || /^mailto:|^tel:/i.test(val)) return;
-        try{
+        try {
           const resolved = new URL(val, baseAbs).href;
           el.setAttribute(attr, resolved);
-        }catch(_){
+        } catch (_) {
           const clean = val.replace(/^\.\//,"").replace(/^\//,"");
           el.setAttribute(attr, baseAbs + clean);
         }
       });
     }
 
+    // HEADER
     (async () => {
       const html = await fetchAny(["partials/header.html", "header.html"]);
       if (html){
         headMount.innerHTML = html;
         fixAllUrls(headMount);
-        const code = await fetchAny(["assets/nav.js", "nav.js"]);
-        if (code){
-          const s = document.createElement("script");
-          if (/\b(import|export)\b/.test(code)) s.type = "module";
-          s.textContent = code;
-          document.body.appendChild(s);
+        if (!window.__aw_nav_loaded__) {
+          window.__aw_nav_loaded__ = true;
+          const code = await fetchAny(["assets/nav.js", "nav.js"]);
+          if (code){
+            const s = document.createElement("script");
+            if (/\b(import|export)\b/.test(code)) s.type = "module";
+            s.textContent = code;
+            document.body.appendChild(s);
+          }
         }
-      } else { headMount.innerHTML = "<!-- Header introuvable -->"; }
+      } else {
+        headMount.innerHTML = "<!-- Header introuvable -->";
+      }
     })();
 
+    // FOOTER
     (async () => {
       const html = await fetchAny(["partials/footer.html", "footer.html"]);
       if (html){
         footMount.innerHTML = html;
         fixAllUrls(footMount);
-      } else { footMount.innerHTML = "<!-- Footer introuvable -->"; }
+      } else {
+        footMount.innerHTML = "<!-- Footer introuvable -->";
+      }
     })();
   });
   </script>
