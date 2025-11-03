@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Formations – Awenoria</title>
   <meta name="description" content="Formations RGPD & IA Act par Awenoria : ateliers pratiques, parcours par publics, formats flexibles (présentiel/distanciel), supports & attestation inclus." />
-
-  <!-- Police -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -14,8 +12,7 @@
       --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#4a6176;
       --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
       --shadow:0 25px 50px -12px rgba(0,0,0,.12);
-      --transition:.6s cubic-bezier(.22,1,.36,1);
-      --maxw:1200px;
+      --transition:.6s cubic-bezier(.22,1,.36,1); --maxw:1200px;
     }
     @media (prefers-color-scheme:dark){
       :root{ --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0; --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45); }
@@ -24,7 +21,7 @@
     html{scroll-behavior:smooth}
     body{font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;line-height:1.7;color:var(--aw-ink);background:var(--aw-bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-    /* ===== HERO BLEU + FORMES ===== */
+    /* ===== HERO BLEU ===== */
     .hero{position:relative;min-height:48vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;
       background:
         radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
@@ -34,15 +31,18 @@
     .hero .content{position:relative;z-index:2;max-width:var(--maxw);padding:0 20px}
     .hero h1{font-size:clamp(36px,6vw,56px);font-weight:800;letter-spacing:-.02em;line-height:1.08}
     .hero .lead{max-width:880px;margin:10px auto 0;color:#e8f0ff;font-size:1.1rem}
-    .kpis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:12px}
-    .kpi{display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.35);border-radius:12px;padding:8px 12px;background:rgba(255,255,255,.12);backdrop-filter:blur(6px)}
-    .kpi svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2}
-    .hero .actions{margin-top:18px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+    /* KPI supprimés */
+    .kpis{display:none !important}
+
+    .hero .actions{margin-top:18px;display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center}
+
     .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:9999px;padding:12px 20px;font-size:16px;text-decoration:none;border:1px solid transparent;transition:all .25s ease}
     .btn.primary{background:var(--aw-copper);color:#fff;box-shadow:0 10px 24px rgba(255,138,61,.35)}
     .btn.secondary{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.45)}
     .btn.secondary:hover{background:rgba(255,255,255,.14)}
 
+    /* Formes géométriques */
     .hero-geo{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
     .hero-geo .g{position:absolute;width:64px;height:64px;opacity:.18;filter:blur(.2px);animation:geoFloat var(--dur,18s) cubic-bezier(.22,1,.36,1) infinite}
     .circle{border-radius:50%;border:3px solid rgba(255,255,255,.65)}
@@ -75,8 +75,7 @@
     .mega-list a:hover{background:rgba(27,136,255,.08)}
     .format-badges{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 10px}
     .pill{background:rgba(27,136,255,.10);border:1px solid rgba(27,136,255,.26);color:#0f3a6e;border-radius:999px;padding:6px 12px;font-weight:800;font-size:12px}
-
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+    .stack{display:grid;gap:10px}
   </style>
 </head>
 <body>
@@ -95,14 +94,14 @@
     <div class="content">
       <h1>Formations RGPD & IA : concrètes, opérationnelles</h1>
       <p class="lead">Petites cohortes, ateliers pratiques, supports & modèles fournis. Présentiel ou distanciel.</p>
-      <div class="kpis" aria-label="Points clés">
-        <div class="kpi"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><strong>Ateliers applicables</strong></div>
-        <div class="kpi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>2h à 1 journée</div>
-        <div class="kpi"><svg viewBox="0 0 24 24"><path d="M12 3l7 2v6c0 4-3 8-7 9-4-1-7-5-7-9V5l7-2Z"/></svg>Attestation incluse</div>
-      </div>
+
+      <!-- KPIs masqués (voir CSS) -->
+      <div class="kpis" aria-hidden="true"></div>
+
+      <!-- CTA : orange en premier, puis "Voir le catalogue" dessous -->
       <div class="actions">
-        <a class="btn secondary" href="#catalogue">Voir le catalogue</a>
         <a class="btn primary" href="../index.html#contact">Demander un programme</a>
+        <a class="btn secondary" href="#catalogue">Voir le catalogue</a>
       </div>
     </div>
   </section>
@@ -140,21 +139,20 @@
         <div class="format-badges" aria-label="Formats disponibles">
           <span class="pill">Atelier 2h</span><span class="pill">1/2 journée</span><span class="pill">1 journée</span><span class="pill">Parcours</span><span class="pill">Présentiel / Distanciel</span>
         </div>
-        <p class="subtitle-center" style="margin:0;color:var(--aw-muted);text-align:left">Supports fournis, quiz & attestation inclus.</p>
-        <p style="margin-top:10px"><a class="btn" style="border:1px solid rgba(15,23,32,.18)" href="../index.html#contact">Demander un programme</a></p>
+        <p style="margin:4px 0 6px;color:var(--aw-muted)">Supports fournis, quiz & attestation inclus.</p>
+        <div class="stack">
+          <a class="btn primary" href="../index.html#contact">Demander un programme</a>
+          <a class="btn" style="border:1px solid rgba(15,23,32,.18);color:var(--aw-ink)" href="#catalogue">Voir le catalogue</a>
+        </div>
       </article>
     </div>
   </section>
 
-  <!-- ===== CATALOGUE (placeholder si besoin) ===== -->
+  <!-- ===== CATALOGUE ===== -->
   <section class="section" id="catalogue">
     <h2 class="title-center">Catalogue des formations</h2>
     <div class="underline" aria-hidden="true"></div>
-
-    <div class="grid-3">
-      <!-- Ajoute ici tes cartes de formations si nécessaire -->
-    </div>
-
+    <div class="grid-3"><!-- tes cartes ici --></div>
     <p class="subtitle-center" style="margin-top:12px">
       Financement formation : possible selon votre OPCO / plan interne — convention & attestation fournies.
     </p>
@@ -182,7 +180,7 @@
   <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- ===== Particules du hero ===== -->
+  <!-- Particules -->
   <script>
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
@@ -201,7 +199,7 @@
     (function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); })();
   </script>
 
-  <!-- ===== Loader header/footer + CSS global (mêmes chemins robustes) ===== -->
+  <!-- Loader header/footer + CSS global -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
@@ -215,7 +213,7 @@
       base = parts.length ? `/${parts[0]}/` : "/";
     }
 
-    // Ajout CSS global & favicon pour éviter 404 selon profondeur
+    // CSS global + favicon
     const ensureHeadAsset = (href, rel, attr = {}) => {
       const l = document.createElement("link");
       l.rel = rel; l.href = base + href.replace(/^\//, "");
@@ -232,9 +230,7 @@
 
     async function fetchAny(paths) {
       const queue = paths.flatMap(candidates);
-      for (const u of queue) {
-        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
-      }
+      for (const u of queue) { try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {} }
       throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
     }
 
