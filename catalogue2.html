@@ -3,115 +3,171 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Catalogue | Awenoria</title>
-  <meta name="description" content="Parcourez nos services et nos formations : thématiques, publics, formats & modalités. Présentiel / distanciel, supports et attestation inclus.">
+  <title>Catalogue | Awenoria – Le spectacle du conforme</title>
+  <meta name="description" content="Services et formations en live : clés en main, formats courts, ambiances festival.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/icône-apple-touch.png">
-  <meta name="theme-color" content="#0f5f9a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/awenoria.css">
-
   <style>
     :root {
       --font-ui: "Manrope", system-ui, sans-serif;
-      --text: #0f5f9a;
-      --muted: #4a6176;
-      --accent: #16a34a;
-      --copper: #ff8a3d;
-      --radius: 16px;
-      --shadow: 0 8px 24px rgba(0,0,0,.06);
-      --maxw: 1200px;
+      --brand: #0066ff;
+      --copper: #ff5c00;
+      --maxw: 1100px;
     }
-    body {
+    * { box-sizing: border-box }
+    body { margin: 0; font-family: var(--font-ui); color: #0a0a0a; background: #fff }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      background: radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.25), transparent 60%),
+                  linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 64px);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin: 0 0 16px;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 600px;
+      margin: 0 auto 32px;
+      color: #e8f0ff;
+    }
+    .btn-hero {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      color: #0066ff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 14px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,.15);
+      transition: .3s ease;
+    }
+    .btn-hero:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.2);
+    }
+
+    /* ---------- BLOCS ---------- */
+    .block {
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .block h2 {
+      font-size: clamp(28px, 5vw, 40px);
+      margin: 0 0 12px;
+      font-weight: 800;
+    }
+    .block .lead {
+      font-size: 1.1rem;
+      color: #4a6176;
+      margin: 0 auto 48px;
+      max-width: 600px;
+    }
+
+    /* ---------- CARROUSEL ---------- */
+    .carousel {
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #0066ff #f6f9fc;
+    }
+    .carousel-track {
+      display: flex;
+      gap: 24px;
+      width: max-content;
+      padding-bottom: 8px;
+    }
+    .card-slide {
+      flex: 0 0 320px;
       margin: 0;
-      font-family: var(--font-ui);
-      background: #f6f9fc;
-      color: var(--text);
-    }
-    h1, h2, h3, h4 { font-weight: 800 }
-    .section { max-width: var(--maxw); margin: 40px auto; padding: 0 20px }
-    .title-center { text-align: center; font-size: clamp(28px, 5vw, 40px); margin-bottom: 8px }
-    .subtitle-center { text-align: center; color: var(--muted); margin-bottom: 32px }
-    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 24px }
-    @media (max-width: 800px) { .split { grid-template-columns: 1fr } }
-    .panel {
       background: #fff;
       border: 1px solid rgba(15,23,32,.08);
-      border-radius: var(--radius);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,.06);
+      display: flex;
+      flex-direction: column;
+    }
+    .card-slide img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card-slide figcaption {
       padding: 24px;
-      box-shadow: var(--shadow);
-    }
-    .panel h3 { margin-top: 0; font-size: 1.4rem }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-    .card {
-      background: #fff;
-      border: 1px solid rgba(15,23,32,.08);
-      border-radius: 12px;
-      padding: 16px;
+      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-    .card h4 { margin: 0 0 6px; font-size: 1rem }
-    .card .subtle { font-size: .9rem; color: var(--muted); margin-bottom: 10px }
-    .btn {
+    .card-slide h3 {
+      margin: 0 0 6px;
+      font-size: 1.2rem;
+    }
+    .card-slide p {
+      margin: 0 0 16px;
+      color: #4a6176;
+      font-size: .95rem;
+    }
+    .btn-soft {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      background: rgba(0,102,255,.1);
+      color: #0066ff;
       font-weight: 800;
+      padding: 10px 20px;
       border-radius: 999px;
-      padding: 8px 14px;
-      font-size: .9rem;
-      background: var(--text);
-      color: #fff;
       text-decoration: none;
-      border: none;
-      cursor: pointer;
+      transition: .2s;
     }
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
+    .btn-soft:hover {
+      background: rgba(0,102,255,.2);
     }
-    .filters button {
-      background: #fff;
-      border: 1px solid rgba(15,23,32,.2);
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-size: .85rem;
-      font-weight: 700;
-      cursor: pointer;
+    .final {
+      background: #f6f9fc;
+      padding: 80px 20px;
+      text-align: center;
     }
-    .filters button:hover,
-    .filters button.active {
-      background: rgba(15,95,154,.1);
-      border-color: var(--text);
+    .final h2 {
+      font-size: clamp(28px, 5vw, 40px);
+      margin: 0 0 12px;
     }
-    #results {
-      margin-top: 48px;
+    .final p {
+      font-size: 1.1rem;
+      color: #4a6176;
+      margin: 0 auto 32px;
+      max-width: 600px;
     }
-    .crumbs {
-      display: flex;
-      gap: 8px;
-      font-size: .9rem;
-      color: var(--muted);
-      margin-bottom: 12px;
+    .final a {
+      margin: 0 8px;
     }
-    .crumbs a {
-      color: var(--text);
-      text-decoration: none;
+
+    /* ---------- ANIM ---------- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px) }
+      to { opacity: 1; transform: none }
     }
-    .crumbs a:hover {
-      text-decoration: underline;
+    .block, .final {
+      animation: fadeInUp 1s both;
     }
   </style>
 </head>
@@ -120,66 +176,161 @@
   <!-- ===== HEADER injecté ===== -->
   <div id="header"></div>
 
-  <!-- ===== HERO (inchangé) ===== -->
+  <!-- ===== HERO ---------- -->
   <section class="hero">
-    <canvas id="heroCanvas" aria-hidden="true"></canvas>
-    <div class="content">
-      <h1>Catalogue</h1>
-      <p class="lead">Parcourez nos services et nos formations&nbsp;: thématiques, publics, formats & modalités.</p>
+    <div>
+      <h1>Tout est prêt pour vous</h1>
+      <p>Des solutions clés en main, des formations qui s’adaptent à votre rythme.</p>
+      <a href="#services" class="btn-hero">Je découvre</a>
     </div>
   </section>
 
-  <!-- ===== NOUVEAU CONTENU ===== -->
-  <section class="section">
-    <nav class="crumbs" aria-label="Fil d'Ariane">
-      <a href="index.html">Accueil</a>
-      <span aria-hidden="true">›</span>
-      <span>Catalogue</span>
-    </nav>
+  <!-- ===== SERVICES ---------- -->
+  <section id="services" class="block">
+    <h2>On vous met sous les projecteurs</h2>
+    <p class="lead">Conformité, accessibilité, cybersécurité : vos sujets critiques deviennent spectaculaires</p>
 
-    <h2 class="title-center">Services & formations</h2>
-    <p class="subtitle-center">Cliquez sur un filtre pour afficher les contenus correspondants.</p>
+    <div class="carousel" role="region" aria-label="Tous nos services" tabindex="0">
+      <div class="carousel-track">
+        <!-- 1 -->
+        <figure class="card-slide">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=60" alt="">
+          <figcaption>
+            <h3>RGPD Live</h3>
+            <p>L’audit qui finit en standing ovation.</p>
+            <a class="btn-soft" href="Nos-services.html#rgpd">Je prends ma place</a>
+          </figcaption>
+        </figure>
 
-    <div class="split">
-      <!-- SERVICES -->
-      <div class="panel">
-        <h3>Services</h3>
-        <p class="subtle">Conseils, conformité, web, accessibilité, cybersécurité.</p>
+        <!-- 2 -->
+        <figure class="card-slide">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=60" alt="">
+          <figcaption>
+            <h3>Accessibilité Show</h3>
+            <p>Devenez conforme en un solo.</p>
+            <a class="btn-soft" href="Nos-services.html#access">Je prends ma place</a>
+          </figcaption>
+        </figure>
 
-        <div class="grid" id="services-list">
-          <!-- injecté via JS -->
-        </div>
+        <!-- 3 -->
+        <figure class="card-slide">
+          <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=400&q=60" alt="">
+          <figcaption>
+            <h3>Cyber Night</h3>
+            <p>La crise devient scénario.</p>
+            <a class="btn-soft" href="Nos-services.html#cyber">Je prends ma place</a>
+          </figcaption>
+        </figure>
 
-        <div class="filters" id="services-filters">
-          <button data-filter="theme-rgpd">RGPD</button>
-          <button data-filter="theme-cyber">Cybersécurité</button>
-          <button data-filter="theme-access">Accessibilité</button>
-          <button data-filter="theme-web">Web & légal</button>
-        </div>
-      </div>
+        <!-- 4 -->
+        <figure class="card-slide">
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=400&q=60" alt="">
+          <figcaption>
+            <h3>Cookies Party</h3>
+            <p>Bandeau & CMP en rythme.</p>
+            <a class="btn-soft" href="Nos-services.html#cookies">Je prends ma place</a>
+          </figcaption>
+        </figure>
 
-      <!-- FORMATIONS -->
-      <div class="panel">
-        <h3>Formations</h3>
-        <p class="subtle">RGPD, IA Act, cookies, accessibilité, cybersécurité.</p>
+        <!-- 5 -->
+        <figure class="card-slide">
+          <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=400&q=60" alt="">
+          <figcaption>
+            <h3>Diagnostic Premiere</h3>
+            <p>Le grand écran de vos priorités.</p>
+            <a class="btn-soft" href="Nos-services.html#diagnostic">Je prends ma place</a>
+          </figcaption>
+        </figure>
 
-        <div class="grid" id="formations-list">
-          <!-- injecté via JS -->
-        </div>
-
-        <div class="filters" id="formations-filters">
-          <button data-filter="public-dirigeants">Dirigeants</button>
-          <button data-filter="public-dpo">DPO</button>
-          <button data-filter="format-2h">2h</button>
-          <button data-filter="format-journee">1 journée</button>
-        </div>
+        <!-- 6 -->
+        <figure class="card-slide">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&q=60" alt="">
+          <figcaption>
+            <h3>Legal Remix</h3>
+            <p>Mentions légales version hit.</p>
+            <a class="btn-soft" href="Nos-services.html#web-legal">Je prends ma place</a>
+          </figcaption>
+        </figure>
       </div>
     </div>
+  </section>
 
-    <!-- RÉSULTATS FILTRÉS -->
-    <div id="results" class="grid" aria-live="polite">
-      <!-- injecté via JS -->
+  <!-- ===== FORMATIONS ---------- -->
+  <section class="block">
+    <h2>On vous donne le micro</h2>
+    <p class="lead">Formats courts, interactifs, avec souvenirs à emporter</p>
+
+    <div class="carousel" role="region" aria-label="Toutes nos formations" tabindex="0">
+      <div class="carousel-track">
+        <!-- 1 -->
+        <figure class="card-slide">
+          <img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=400&q=60" alt="">
+          <figcaption>
+            <h3>RGPD Express</h3>
+            <p>2 h chrono, 100 % live.</p>
+            <a class="btn-soft" href="formation/rgpd-2h.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <!-- 2 -->
+        <figure class="card-slide">
+          <img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=400&q=60" alt="">
+          <figcaption>
+            <h3>IA Act Day</h3>
+            <p>Le cadre européen en one-man-show.</p>
+            <a class="btn-soft" href="formation/ia-act.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <!-- 3 -->
+        <figure class="card-slide">
+          <img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&fit=crop&w=400&q=60" alt="">
+          <figcaption>
+            <h3>Access Night</h3>
+            <p>Devenez conforme sous les projecteurs.</p>
+            <a class="btn-soft" href="formation/access.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <!-- 4 -->
+        <figure class="card-slide">
+          <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=400&q=60" alt="">
+          <figcaption>
+            <h3>Cyber Stage</h3>
+            <p>La sécurité en stand-up.</p>
+            <a class="btn-soft" href="formation/cyber.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <!-- 5 -->
+        <figure class="card-slide">
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=400&q=60" alt="">
+          <figcaption>
+            <h3>Cookies Live</h3>
+            <p>Bandeau & CMP en live coding.</p>
+            <a class="btn-soft" href="formation/cookies.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+
+        <!-- 6 -->
+        <figure class="card-slide">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&q=60" alt="">
+          <figcaption>
+            <h3>Legal Remix</h3>
+            <p>Mentions légales version acoustic.</p>
+            <a class="btn-soft" href="formation/web-legal.html">Je réserve ma date</a>
+          </figcaption>
+        </figure>
+      </div>
     </div>
+  </section>
+
+  <!-- ===== CONTACT ---------- -->
+  <section class="final">
+    <h2>Vous êtes prêt ?</h2>
+    <p>On vous répond en 30 min chrono.</p>
+    <a class="btn-soft" href="tel:0123456789">📞 01 23 45 67 89</a>
+    <a class="btn-soft" href="mailto:bonjour@awenoria.fr">✉️ bonjour@awenoria.fr</a>
   </section>
 
   <!-- ===== FOOTER injecté ===== -->
@@ -196,146 +347,4 @@
     class Particle{
       constructor(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
       update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>canvas.width) this.vx*=-1; if(this.y<0||this.y>canvas.height) this.vy*=-1; }
-      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
-      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
-    }
-    for(let i=0;i<opts.count;i++) particles.push(new Particle());
-    (function anim(){ ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(anim); })();
-  </script>
-
-  <!-- ===== DONNÉES & RENDU ===== -->
-  <script type="module">
-    const isGh = /github\.io$/.test(location.hostname);
-    let BASE = "/";
-    if (isGh) {
-      const parts = location.pathname.split("/").filter(Boolean);
-      BASE = parts.length ? `/${parts[0]}/` : "/";
-    }
-
-    let COURSES = [];
-    try {
-      const mod = await import(BASE + "js/courses-data.js");
-      COURSES = mod.COURSES || [];
-    } catch (e) {
-      console.warn("courses-data.js non trouvé – mode démo");
-    }
-
-    const SERVICES = [
-      { title: "Diagnostic & feuille de route", desc: "État des lieux rapide, priorisation, plan d’action.", url: "Nos-services.html#diagnostic", tags: ["theme-rgpd"] },
-      { title: "RGPD & conformité data", desc: "Registre, AIPD, régularisation, accompagnement DPO.", url: "Nos-services.html#rgpd", tags: ["theme-rgpd"] },
-      { title: "Cybersécurité de base", desc: "Sensibilisation, premiers contrôles, bonnes pratiques.", url: "Nos-services.html#cyber", tags: ["theme-cyber"] },
-      { title: "Mentions légales & politiques", desc: "Pages légales, politique de confidentialité, e-commerce.", url: "Nos-services.html#web-legal", tags: ["theme-web"] },
-      { title: "Cookies & CMP", desc: "Bandeau conforme, paramétrage CMP, exemptions.", url: "Nos-services.html#cookies", tags: ["theme-web"] },
-      { title: "Accessibilité (RGAA)", desc: "Audit rapide, priorisation, obligations.", url: "Nos-services.html#access", tags: ["theme-access"] }
-    ];
-
-    const FORMATIONS = COURSES.map(c => ({
-      title: c.title,
-      desc: c.summary || "",
-      url: `${BASE}formation/${c.slug}.html`,
-      tags: [
-        ...(c.themes || []).map(t => `theme-${t}`),
-        ...(c.audiences || []).map(a => `public-${a}`),
-        ...(c.formats || []).map(f => `format-${f}`)
-      ].flat()
-    }));
-
-    function renderCards(list, mountId) {
-      const mount = document.getElementById(mountId);
-      mount.innerHTML = list.map(item => `
-        <article class="card">
-          <h4>${item.title}</h4>
-          <p class="subtle">${item.desc}</p>
-          <a class="btn" href="${item.url}">Voir</a>
-        </article>
-      `).join("");
-    }
-
-    function filterAndRender(filter, all, mountId) {
-      const filtered = filter === "all" ? all : all.filter(i => i.tags.includes(filter));
-      renderCards(filtered, mountId);
-    }
-
-    function initFilters(filterGroupId, list, listMountId) {
-      const buttons = document.querySelectorAll(`#${filterGroupId} button`);
-      buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-          buttons.forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          filterAndRender(btn.dataset.filter, list, listMountId);
-        });
-      });
-      // affichage initial
-      filterAndRender("all", list, listMountId);
-    }
-
-    renderCards(SERVICES, "services-list");
-    renderCards(FORMATIONS, "formations-list");
-
-    initFilters("services-filters", SERVICES, "services-list");
-    initFilters("formations-filters", FORMATIONS, "formations-list");
-  </script>
-
-  <!-- ===== HEADER/FOOTER LOADER (inchangé) ===== -->
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const headMount = document.getElementById("header");
-    const footMount = document.getElementById("footer");
-    if (!headMount && !footMount) return;
-
-    const isGh = /github\.io$/.test(location.hostname);
-    let base = "/";
-    if (isGh) {
-      const parts = location.pathname.split("/").filter(Boolean);
-      base = parts.length ? `/${parts[0]}/` : "/";
-    }
-    const candidates = (p) => {
-      const clean = p.replace(/^\//, "");
-      return [ base + clean, "./" + clean, "../" + clean ];
-    };
-    async function fetchAny(paths) {
-      const queue = paths.flatMap(candidates);
-      for (const u of queue) {
-        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
-      }
-      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
-    }
-    function fixRootUrls(container) {
-      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
-        .forEach(el => {
-          const attr = el.hasAttribute("href") ? "href" : "src";
-          const val = el.getAttribute(attr);
-          if (/^\/\//.test(val)) return;
-          el.setAttribute(attr, base + val.replace(/^\//, ""));
-        });
-    }
-    if (headMount) {
-      fetchAny(["header.html", "partials/header.html"])
-        .then(html => {
-          headMount.innerHTML = html;
-          fixRootUrls(headMount);
-          return fetchAny(["assets/nav.js", "nav.js"]);
-        })
-        .then(code => {
-          const s = document.createElement("script");
-          if (/\b(import|export)\b/.test(code)) s.type = "module";
-          s.textContent = code;
-          document.body.appendChild(s);
-        })
-        .catch(err => {
-          console.error("Header load error:", err);
-          headMount.innerHTML = "<!-- Header introuvable -->";
-        });
-    }
-    if (footMount) {
-      fetchAny(["footer.html", "partials/footer.html"])
-        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
-        .catch(err => {
-          console.error("Footer load error:", err);
-          footMount.innerHTML = "<!-- Footer introuvable -->";
-        });
-    }
-  });
-  </script>
-</body>
-</html>
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius
