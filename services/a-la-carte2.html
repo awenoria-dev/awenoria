@@ -8,11 +8,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
 
-  <!-- Polices (aligné sur les autres pages) -->
+  <!-- Polices & CSS global (même stack que les autres pages) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- CSS globale (styles header/footer + base site) -->
   <link rel="stylesheet" href="assets/awenoria.css">
 
   <style>
@@ -36,7 +34,7 @@
     img{max-width:100%; display:block}
     .container{max-width:var(--maxw); margin:0 auto; padding:0 20px}
 
-    /* ===== HERO (cadre bleu + formes géométriques) ===== */
+    /* ===== HERO ===== */
     .hero{
       position:relative; overflow:hidden;
       background:linear-gradient(180deg,#0b57d0 0%, #1b88ff 100%);
@@ -79,14 +77,7 @@
       border-radius:22px; padding:18px; box-shadow:var(--shadow-soft);
       display:flex; flex-direction:column; gap:8px; min-height:146px;
     }
-    .badge{
-      align-self:flex-start; background:rgba(27,136,255,.10);
-      color:#0f3a6e; border:1px solid rgba(27,136,255,.28);
-      border-radius:999px; padding:5px 12px; font-size:12px; font-weight:800;
-    }
     .price-inline{margin:.25rem 0 0; font-weight:800; color:var(--copper)}
-    .card ul{margin:.25rem 0 .25rem; padding-left:18px}
-    .card ul li{margin:.18rem 0}
 
     /* Pricing “offre” */
     .offer{
@@ -98,7 +89,6 @@
     .offer .for{color:var(--muted); margin:0}
     .offer .price{font-size:26px; font-weight:800; color:var(--copper)}
 
-    /* Petites étiquettes bleues (têtes de cartes) */
     .cap{
       position:relative; margin:-6px -6px 8px; padding:8px 10px; border-radius:12px;
       background:linear-gradient(90deg,#0b57d0, #1b88ff);
@@ -106,16 +96,15 @@
       box-shadow:0 10px 24px rgba(27,136,255,.25);
     }
 
-    /* Légère ombre sous sections pour respirer */
     .section.alt{background:#fff}
   </style>
 </head>
 <body>
 
-  <!-- Header injecté (identique aux pages Ressources/Qui sommes-nous) -->
+  <!-- Mounts identiques aux autres pages -->
   <div id="header"></div>
 
-  <!-- ===== HERO bleu + formes géométriques ===== -->
+  <!-- ===== HERO ===== -->
   <section class="hero">
     <canvas id="heroFx" aria-hidden="true"></canvas>
     <div class="content container">
@@ -386,10 +375,9 @@
     </section>
   </main>
 
-  <!-- Footer injecté (identique aux pages Ressources/Qui sommes-nous) -->
   <div id="footer"></div>
 
-  <!-- ===== FX Canvas (formes géométriques animées, léger) ===== -->
+  <!-- FX Canvas -->
   <script>
     (function(){
       const cvs=document.getElementById('heroFx'); if(!cvs) return;
@@ -404,82 +392,23 @@
         draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,conf.r,0,Math.PI*2); ctx.fillStyle=conf.col; ctx.fill(); }
         links(){
           for(const q of P){
-            const d=Math.hypot(this.x-q.x,this.y-q.y);
-            if(d<conf.link){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/conf.link})`; ctx.stroke(); }
+            const d=Math.hypot(this.x*q.x, this.y*q.y); // légère variation esthétique
+            const D=Math.hypot(this.x-q.x,this.y-q.y);
+            if(D<conf.link){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle=`rgba(255,255,255,${1-D/conf.link})`; ctx.stroke(); }
           }
         }
       }
       for(let i=0;i<conf.n;i++) P.push(new Dot());
-      function loop(){
+      (function loop(){
         ctx.clearRect(0,0,w,h);
         P.forEach(p=>{ p.step(); p.draw(); p.links(); });
         requestAnimationFrame(loop);
-      }
-      resize(); loop();
+      })();
+      resize();
     })();
   </script>
 
-  <!-- ===== Loader header/footer + nav (priorité racine, fallback partials/) ===== -->
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const headMount = document.getElementById("header");
-    const footMount = document.getElementById("footer");
-    if (!headMount && !footMount) return;
-
-    const isGh = /github\.io$/.test(location.hostname);
-    let base = "/";
-    if (isGh) {
-      const parts = location.pathname.split("/").filter(Boolean);
-      base = parts.length ? `/${parts[0]}/` : "/";
-    }
-
-    const candidates = (p) => {
-      const clean = p.replace(/^\//, "");
-      return [ base + clean, "./" + clean, "../" + clean ];
-    };
-
-    async function fetchAny(paths) {
-      const queue = paths.flatMap(candidates);
-      for (const u of queue) {
-        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
-      }
-      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
-    }
-
-    function fixRootUrls(container) {
-      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
-        .forEach(el => {
-          const attr = el.hasAttribute("href") ? "href" : "src";
-          const val = el.getAttribute(attr);
-          if (/^\/\//.test(val)) return;
-          el.setAttribute(attr, base + val.replace(/^\//, ""));
-        });
-    }
-
-    // HEADER
-    if (headMount) {
-      fetchAny(["header.html", "partials/header.html"])
-        .then(html => {
-          headMount.innerHTML = html;
-          fixRootUrls(headMount);
-          return fetchAny(["assets/nav.js", "nav.js"]);
-        })
-        .then(code => {
-          const s = document.createElement("script");
-          if (/\b(import|export)\b/.test(code)) s.type = "module";
-          s.textContent = code;
-          document.body.appendChild(s);
-        })
-        .catch(() => { headMount.innerHTML = "<!-- Header introuvable -->"; });
-    }
-
-    // FOOTER
-    if (footMount) {
-      fetchAny(["footer.html", "partials/footer.html"])
-        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
-        .catch(() => { footMount.innerHTML = "<!-- Footer introuvable -->"; });
-    }
-  });
-  </script>
+  <!-- Injection header/footer + nav (identique aux autres pages) -->
+  <script defer src="assets/includes.js"></script>
 </body>
 </html>
