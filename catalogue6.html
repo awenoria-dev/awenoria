@@ -105,14 +105,14 @@
     .bubbles .bubble-grid{
       display:flex;
       flex-wrap:wrap;
-      gap:24px;
+      gap: 40px;              /* ← espacement horizontal + vertical */
       justify-content:center;
-      margin:32px 0 18px;
+      margin: 48px 0 24px;
     }
     .bubble{
       position:relative;
-      width:200px;
-      height:200px;
+      width: 230px;           /* ← diamètre augmenté */
+      height: 230px;
       border-radius:50%;
       background:rgba(255,255,255,.55);
       backdrop-filter:blur(10px);
@@ -130,7 +130,7 @@
       align-items:center;
       justify-content:center;
       text-align:center;
-      padding:22px;
+      padding: 28px;          /* ← air autour des liens */
       border-radius:inherit;
       transition:opacity .18s ease-out;
     }
@@ -142,7 +142,7 @@
     }
     .bubble .back{
       flex-direction:column;
-      gap:6px;
+      gap: 10px;              /* ← entre les liens */
       opacity:0;
       pointer-events:none;
       background:var(--aw-copper);
@@ -159,10 +159,11 @@
       color:#fff;
       font-weight:600;
       text-decoration:none;
-      padding:4px 10px;
+      padding: 6px 14px;      /* ← liens un peu plus larges */
       border-radius:999px;
       background:rgba(255,255,255,.18);
       transition:background .2s;
+      font-size: 0.95rem;
     }
     .bubble .back a:hover{background:rgba(255,255,255,.3)}
 
