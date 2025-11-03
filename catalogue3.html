@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Catalogue | Awenoria – Flux infini & badges PJ</title>
-  <meta name="description" content="Services et formations en défilement infini : badges PJ visibles instantanément.">
+  <title>Catalogue | Awenoria – Flux & Magazine</title>
+  <meta name="description" content="Services et formations en défilement infini + magazine interactif.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,7 +64,7 @@
       box-shadow: 0 12px 32px rgba(0,0,0,.2);
     }
 
-    /* ---------- BLOCS ---------- */
+    /* ---------- BLOCS ---------- -->
     .block {
       padding: 80px 20px;
       text-align: center;
@@ -81,7 +81,7 @@
       max-width: 600px;
     }
 
-    /* ---------- RUBAN INFINI FLUIDE ---------- */
+    /* ---------- RUBAN INFINI FLUIDE ---------- -->
     .ruban {
       position: relative;
       width: 100%;
@@ -190,23 +190,84 @@
     .badge[data-cat="rgpd"]        { --bg: #ff6b6b; --txt: #fff; }
     .badge[data-cat="ia"]          { --bg: #a55eea; --txt: #fff; }
     .badge[data-cat="format"]      { --bg: #70a1ff; --txt: #fff; }
-    .final {
-      background: #f6f9fc;
+
+    /* ---------- MAGAZINE ---------- */
+    .magazine {
       padding: 80px 20px;
-      text-align: center;
+      background: #f9fbfd;
     }
-    .final h2 {
+    .magazine h2 {
+      text-align: center;
       font-size: clamp(28px, 5vw, 40px);
       margin: 0 0 12px;
+      font-weight: 800;
     }
-    .final p {
+    .mag-grid {
+      display: flex;
+      gap: 40px;
+      max-width: var(--maxw);
+      margin: 48px auto 0;
+    }
+    .mag-col {
+      flex: 1;
+    }
+    .mag-col h3 {
+      font-size: 1.5rem;
+      margin: 0 0 24px;
+      color: var(--brand);
+      font-weight: 800;
+    }
+    .mag-card {
+      background: #fff;
+      border: 1px solid rgba(15,23,32,.08);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,.06);
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: .3s ease;
+    }
+    .mag-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0,0,0,.08);
+    }
+    .mag-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .mag-card h4 {
+      margin: 0 0 6px;
       font-size: 1.1rem;
-      color: #4a6176;
-      margin: 0 auto 32px;
-      max-width: 600px;
+      padding: 0 20px;
     }
-    .final a {
-      margin: 0 8px;
+    .mag-card p {
+      margin: 0 0 16px;
+      color: #4a6176;
+      font-size: .9rem;
+      padding: 0 20px;
+    }
+    .mag-card .btn-soft {
+      margin: 0 20px 20px;
+    }
+    .mag-note {
+      text-align: center;
+      margin-top: 48px;
+      font-size: .9rem;
+      color: #4a6176;
+    }
+    .mag-note a {
+      color: var(--brand);
+      font-weight: 800;
+    }
+
+    /* responsive */
+    @media (max-width: 800px) {
+      .mag-grid {
+        flex-direction: column;
+      }
     }
 
     /* ---------- ANIM ---------- */
@@ -214,7 +275,7 @@
       from { opacity: 0; transform: translateY(30px) }
       to { opacity: 1; transform: none }
     }
-    .block, .final {
+    .block, .final, .magazine {
       animation: fadeInUp 1s both;
     }
   </style>
@@ -435,6 +496,125 @@
         </figure>
       </div>
     </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!--                    MAGAZINE INTERACTIF                    -->
+  <!-- ========================================================= -->
+  <section class="magazine">
+    <h2>Feuilletez le magazine</h2>
+    <p class="lead">Tous nos services & formations, à la loupe.</p>
+
+    <div class="mag-grid">
+      <!-- --------- SERVICES ---------- -->
+      <div class="mag-col">
+        <h3>Services</h3>
+
+        <article class="mag-card" data-cat="conformite">
+          <span class="badge">#Conformité</span>
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=60" alt="">
+          <h4>Diagnostic & Feuille de route</h4>
+          <p>État des lieux rapide, priorisation, plan d’action.</p>
+          <a class="btn-soft" href="Nos-services.html#diagnostic">Feuilleter</a>
+        </article>
+
+        <article class="mag-card" data-cat="conformite">
+          <span class="badge">#RGPD</span>
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=60" alt="">
+          <h4>RGPD & conformité data</h4>
+          <p>Registre, AIPD, régularisation, accompagnement DPO.</p>
+          <a class="btn-soft" href="Nos-services.html#rgpd">Feuilleter</a>
+        </article>
+
+        <article class="mag-card" data-cat="cyber">
+          <span class="badge">#Cyber</span>
+          <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=400&q=60" alt="">
+          <h4>Cybersécurité de base</h4>
+          <p>Sensibilisation, premiers contrôles, bonnes pratiques.</p>
+          <a class="btn-soft" href="Nos-services.html#cyber">Feuilleter</a>
+        </article>
+
+        <article class="mag-card" data-cat="web">
+          <span class="badge">#Web</span>
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&q=60" alt="">
+          <h4>Mentions légales & politiques</h4>
+          <p>Pages légales, politique de confidentialité, e-commerce.</p>
+          <a class="btn-soft" href="Nos-services.html#web-legal">Feuilleter</a>
+        </article>
+
+        <article class="mag-card" data-cat="cookies">
+          <span class="badge">#Cookies</span>
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=400&q=60" alt="">
+          <h4>Cookies & CMP</h4>
+          <p>Bandeau conforme, paramétrage CMP, exemptions.</p>
+          <a class="btn-soft" href="Nos-services.html#cookies">Feuilleter</a>
+        </article>
+
+        <article class="mag-card" data-cat="access">
+          <span class="badge">#Access</span>
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=60" alt="">
+          <h4>Accessibilité (RGAA)</h4>
+          <p>Audit rapide, priorisation, obligations.</p>
+          <a class="btn-soft" href="Nos-services.html#access">Feuilleter</a>
+        </article>
+      </div>
+
+      <!-- --------- FORMATIONS ---------- -->
+      <div class="mag-col">
+        <h3>Formations</h3>
+
+        <article class="mag-card" data-cat="rgpd">
+          <span class="badge">#RGPD</span>
+          <img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=400&q=60" alt="">
+          <h4>RGPD Express</h4>
+          <p>2 h chrono, 100 % live.</p>
+          <a class="btn-soft" href="formation/rgpd-2h.html">Feuilleter</a>
+        </article>
+
+        <article class="mag-card" data-cat="ia">
+          <span class="badge">#IA</span>
+          <img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=400&q=60" alt="">
+          <h4>IA Act Day</h4>
+          <p>Le cadre européen en one-man-show.</p>
+          <a class="btn-soft" href="formation/ia-act.html">Feuilleter</a>
+        </article>
+
+        <article class="mag-card" data-cat="access">
+          <span class="badge">#Access</span>
+          <img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&fit=crop&w=400&q=60" alt="">
+          <h4>Access Night</h4>
+          <p>Devenez conforme sous les projecteurs.</p>
+          <a class="btn-soft" href="formation/access.html">Feuilleter</a>
+        </article>
+
+        <article class="mag-card" data-cat="cyber">
+          <span class="badge">#Cyber</span>
+          <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=400&q=60" alt="">
+          <h4>Cyber Stage</h4>
+          <p>La sécurité en stand-up.</p>
+          <a class="btn-soft" href="formation/cyber.html">Feuilleter</a>
+        </article>
+
+        <article class="mag-card" data-cat="cookies">
+          <span class="badge">#Cookies</span>
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=400&q=60" alt="">
+          <h4>Cookies Live</h4>
+          <p>Bandeau & CMP en live coding.</p>
+          <a class="btn-soft" href="formation/cookies.html">Feuilleter</a>
+        </article>
+
+        <article class="mag-card" data-cat="web">
+          <span class="badge">#Web</span>
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&q=60" alt="">
+          <h4>Legal Remix</h4>
+          <p>Mentions légales version acoustic.</p>
+          <a class="btn-soft" href="formation/web-legal.html">Feuilleter</a>
+        </article>
+      </div>
+    </div>
+
+    <!-- petite note fin de magazine -->
+    <p class="mag-note">📬 Un sujet manque ? <a href="mailto:bonjour@awenoria.fr">Demandez le prochain numéro</a></p>
   </section>
 
   <!-- ===== CONTACT ---------- -->
