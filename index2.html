@@ -26,6 +26,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
+    :root{--accent:#0f5f9a;--muted:#445669;--panel:#fff;--shadow:0 8px 20px rgba(15,23,32,.08);}
+    body{margin:0;font-family:Manrope,system-ui,sans-serif;background:#fafbfc;color:#111}
     .hero-intro{position:relative;isolation:isolate;padding:64px 0 34px;border-bottom:1px solid rgba(15,23,32,.08);background:linear-gradient(180deg, rgba(27,136,255,.06), transparent 55%)}
     .hero-intro .wrap{max-width:1280px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
     @media (max-width:980px){.hero-intro .wrap{grid-template-columns:1fr}}
@@ -36,8 +38,7 @@
     .checks li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:center}
     .checks li svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:3;margin-top:0}
     .hero-intro .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px;align-items:center}
-    .hero-visual{position:relative;border-radius:22px;overflow:hidden;background:var(--panel);border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow);min-height:280px}
-    .hero-visual img{width:100%;height:100%;object-fit:cover;display:block;mix-blend:normal}
+    .hero-visual{position:relative;border-radius:22px;overflow:hidden;background:linear-gradient(135deg, #1a365d 0%, #4299e1 100%);box-shadow:var(--shadow);min-height:280px}
 
     .url-bar{display:flex;align-items:center;gap:10px;height:56px;padding:8px 8px 8px 14px;background:linear-gradient(180deg,#eef5ff,#edf2f8);border:1.8px solid #b9c8d9;border-radius:999px;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 8px 20px rgba(15,23,32,.08)}
     .url-bar input{appearance:none;border:none;outline:none;background:transparent;color:var(--text);height:100%;padding:0 10px;font-weight:800;letter-spacing:.01em;flex:1;width:auto;caret-color:currentColor}
@@ -48,7 +49,9 @@
     .url-bar button:focus-visible{outline:0;box-shadow:0 0 0 4px rgba(var(--copper-rgb),.25),inset 0 1px 0 rgba(255,255,255,.9)}
 
     #results-section{display:none}
-    .glass{background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2)}
+    .glass{background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:1.5rem}
+    .bookmarklet{display:inline-flex;align-items:center;gap:.5rem;background:#0f5f9a;color:#fff;padding:.5rem 1rem;border-radius:6px;text-decoration:none;font-weight:600;cursor:move}
+    .bookmarklet:hover{background:#0d4e80}
   </style>
 </head>
 <body>
@@ -73,12 +76,12 @@
         </div>
       </div>
 
-      <div class="hero-visual">
-        <img src="images/hero.jpg" alt="" loading="lazy" decoding="async" />
-      </div>
+      <!-- GRADIENT à la place de l’image -->
+      <div class="hero-visual" aria-hidden="true"></div>
     </div>
   </section>
 
+  <!-- ===== FORMULAIRE + RÉSULTATS + BOOKMARKLET ===== -->
   <section id="audit-gratuit" class="section">
     <h2 class="title-center">Scannez votre site gratuitement</h2>
     <div class="underline" aria-hidden="true"></div>
@@ -89,6 +92,7 @@
       <button type="submit">Analyser votre site</button>
     </form>
 
+    <!-- RÉSULTATS RAPIDES (initialement cachés) -->
     <div id="results-section" class="hidden mt-6">
       <div class="glass rounded-xl p-6 shadow-lg">
         <h3 class="text-lg font-semibold text-gray-800 mb-4">Résultats de l’analyse</h3>
@@ -119,6 +123,13 @@
         </div>
       </div>
     </div>
+
+    <!-- BOOKMARKLET -->
+    <p style="margin-top:2rem">
+      <strong>Bookmarklet :</strong> glisse ce lien dans tes favoris puis clique-le sur n’importe quel site pour un audit instantané (sans CORS).<br>
+      <a class="bookmarklet" draggable="true" title="Glisser dans la barre de favoris"
+         href="javascript:!function(){const d=document,b=d.body,s=d.createElement('div');s.innerHTML='&lt;div id=&quot;sigmaPop&quot; style=&quot;position:fixed;inset:0;background:#000c;z-index:9999;color:#fff;padding:2rem;font-family:system-ui;overflow-y:auto&quot;&gt;&lt;div class=&quot;glass&quot; style=&quot;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:1.5rem;max-width:680px;margin:auto&quot;&gt;&lt;h2 style=&quot;margin-top:0&quot;&gt;Audit SIGMA-light&lt;/h2&gt;&lt;p style=&quot;font-size:.9rem;opacity:.8&quot;&gt;Rapport généré localement – non juridique&lt;/p&gt;&lt;div id=&quot;sigmaScore&quot; style=&quot;font-size:2rem;font-weight:700;margin:.5rem 0&quot;&gt;–&lt;/div&gt;&lt;ul id=&quot;sigmaList&quot;&gt;&lt;/ul&gt;&lt;button onclick=&quot;d.getElementById(\&quot;sigmaPop\&quot;).remove()&quot; style=&quot;margin-top:1rem;padding:.5rem 1.2rem;border:none;border-radius:6px;background:#0f5f9a;color:#fff;font-weight:600;cursor:pointer&quot;&gt;Fermer&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;';b.appendChild(s);const issues=[],push=i=>issues.push(i);let score=100;if(location.protocol!=='https:')push('🔓 Site non servi en HTTPS'),score-=15;const h=performance.getEntriesByType('navigation')[0].responseHeaders||{};if(!h['strict-transport-security'])push('🔒 Header HSTS absent'),score-=10;if(!h['content-security-policy'])push('🛡️ CSP non définie'),score-=10;const scripts=[...d.querySelectorAll('script[src]')],third=new Set(scripts.map(t=>new URL(t.src,location).hostname).filter(h=>h!==location.hostname)).size;if(third>5)push(`🍪 ${third} cookies tiers détectés`),score-=10;const alt=[...d.images].filter(i=>!i.alt).length;if(alt>5)push(`♿ ${alt} images sans alt`),score-=10;const txt=d.body.innerText.toLowerCase();if(!/\d{14}|w\d{9}|fr\w{11}/.test(txt))push('📜 Mentions légales incomplètes'),score-=10;d.getElementById('sigmaScore').textContent=Math.max(0,score)+'%';const list=d.getElementById('sigmaList');if(issues.length)issues.forEach(i=>{const li=d.createElement('li');li.textContent=i;list.appendChild(li)});else list.innerHTML='<li>✅ Aucun écart majeur détecté</li>';}();">🔍 Audit SIGMA (bookmarklet)</a>
+    </p>
   </section>
 
   <div id="footer"></div>
