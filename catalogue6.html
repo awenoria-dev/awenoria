@@ -105,14 +105,14 @@
     .bubbles .bubble-grid{
       display:flex;
       flex-wrap:wrap;
-      gap: 60px;              /* ← espacement horizontal + vertical augmenté */
+      gap: 60px;              /* ← espacement horizontal + vertical */
       justify-content:center;
       margin: 60px 0 32px;
     }
     .bubble{
       position:relative;
-      width: 260px;           /* ← diamètre +30 px */
-      height: 260px;
+      width: 280px;           /* ← diamètre +20 px vs version précédente */
+      height: 280px;
       border-radius:50%;
       background:rgba(255,255,255,.55);
       backdrop-filter:blur(10px);
@@ -163,7 +163,7 @@
       border-radius:999px;
       background:rgba(255,255,255,.18);
       transition:background .2s;
-      font-size: 1rem;        /* ← taille de texte confortable */
+      font-size: 1rem;        /* ← taille de base conservée */
     }
     .bubble .back a:hover{background:rgba(255,255,255,.3)}
 
