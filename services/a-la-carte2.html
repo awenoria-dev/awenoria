@@ -1,96 +1,371 @@
-<script>
-/* === Injection header/footer + CSS/JS robustes (multi-chemins) === */
-(function(){
-  const isGh = /github\.io$/.test(location.hostname);
-  let base = "/";
-  if (isGh) {
-    const parts = location.pathname.split("/").filter(Boolean);
-    base = parts.length ? `/${parts[0]}/` : "/";
-  }
-  const tryPaths = (p) => {
-    const clean = p.replace(/^\//,"");
-    return [ base+clean, "./"+clean, "../"+clean ];
-  };
-  async function fetchText(paths){
-    const list = Array.isArray(paths) ? paths : [paths];
-    const queue = list.flatMap(tryPaths);
-    for (const url of queue){
-      try{
-        const res = await fetch(url, {cache:"no-cache"});
-        if(res.ok){ console.log("[INCLUDES] OK", url); return res.text(); }
-        else console.warn("[INCLUDES] HTTP", res.status, url);
-      }catch(e){ console.warn("[INCLUDES] ERR", url, e); }
-    }
-    throw new Error("Introuvable: "+list.join(", "));
-  }
-  function fixRootUrls(container){
-    container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
-      .forEach(el=>{
-        const attr = el.hasAttribute("href") ? "href" : "src";
-        const val = el.getAttribute(attr);
-        if(/^\/\//.test(val)) return;
-        el.setAttribute(attr, base + val.replace(/^\//,""));
-      });
-  }
-  async function ensureCss(){
-    const el = document.getElementById("awenoria-css");
-    const paths = ["assets/awenoria.css","/assets/awenoria.css"];
-    let ok = false;
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services — Awenoria</title>
+  <meta name="description" content="Tous les services Awenoria : audits automatisés (site, documents, apps), packs RGPD, IA Act, abonnements, à la carte. Tarifs transparents.">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
+  <link rel="stylesheet" href="assets/awenoria.css">
 
-    function cssLoaded(){
-      try{
-        // si au moins 1 feuille contient des règles, on considère OK
-        return [...document.styleSheets].some(s=>{
-          try{ return (s.ownerNode && s.ownerNode.id==="awenoria-css" && s.cssRules && s.cssRules.length>0); }
-          catch(e){ return false; }
-        });
-      }catch(e){ return false; }
+  <!-- Styles spécifiques à cette page (préfixés .svc- pour éviter tout conflit) -->
+  <style>
+    :root{
+      --svc-blue:#0066ff; --svc-blue2:#0033cc; --svc-copper:#ff8a3d;
+      --svc-muted:#6b7280; --svc-ink:#0a0a0a;
+      --svc-panel:#ffffff; --svc-bg:#f2f5ff; --svc-radius:18px;
+      --svc-shadow:0 24px 48px rgba(0,0,0,.10);
+    }
+    @media(prefers-color-scheme:dark){
+      :root{
+        --svc-ink:#eef2ff; --svc-muted:#aab4cf;
+        --svc-panel:#0b0f1a; --svc-bg:#0a0d14;
+        --svc-blue:#3d8bff; --svc-blue2:#1a4fe0; --svc-copper:#ff9b58;
+        --svc-shadow:0 24px 48px rgba(0,0,0,.45);
+      }
     }
 
-    if (cssLoaded()) return true;
-
-    for(const url of paths.flatMap(tryPaths)){
-      await new Promise((r)=>setTimeout(r,0));
-      el.setAttribute("href", url);
-      await new Promise((r)=>setTimeout(r,120));
-      if (cssLoaded()){ console.log("[CSS] OK", url); ok = true; break; }
-      console.warn("[CSS] tentative échouée", url);
+    /* HERO (bleu + particules) */
+    .svc-hero{
+      position:relative; min-height:56vh; display:flex; align-items:center; justify-content:center;
+      color:#fff; text-align:center; overflow:hidden;
+      background:
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, var(--svc-blue2) 0%, var(--svc-blue) 100%);
     }
-    if (!ok) console.error("[CSS] awenoria.css introuvable");
-    return ok;
-  }
+    .svc-hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
+    .svc-hero .svc-hero__inner{position:relative; z-index:2; max-width:920px; padding:0 16px;}
+    .svc-hero h1{margin:0; font-size:clamp(34px,5.8vw,52px); line-height:1.08; font-weight:800; letter-spacing:-.01em;}
+    .svc-hero .lead{margin:14px auto 0; font-size:clamp(16px,1.6vw,18px); color:#e8f0ff; font-weight:600; max-width:860px;}
+    .svc-cta{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:16px;}
+    .svc-btn{display:inline-block; padding:12px 16px; border-radius:12px; font-weight:800; box-shadow:var(--svc-shadow); transition:transform .2s ease, background .2s ease;}
+    .svc-btn.primary{background:#fff; color:var(--svc-blue2)}
+    .svc-btn.ghost{background:rgba(255,255,255,.15); color:#fff; border:1px solid rgba(255,255,255,.35)}
+    .svc-btn:hover{transform:translateY(-2px)}
 
-  async function ensureNavJs(){
-    // Charge nav.js une seule fois
-    if (window.__awenoria_nav_ready) return;
-    const code = await fetchText(["assets/nav.js","nav.js","/assets/nav.js"]).catch(()=>null);
-    if (!code){ console.error("[NAV] nav.js introuvable"); return; }
-    const s = document.createElement("script");
-    // Si le fichier contient import/export, passe en module
-    if (/\b(import|export)\b/.test(code)) s.type = "module";
-    s.textContent = code;
-    document.body.appendChild(s);
-    window.__awenoria_nav_ready = true;
-  }
+    /* Sections */
+    .svc-section{max-width:1200px; margin:0 auto; padding:72px 20px;}
+    .svc-section.alt{background:var(--svc-bg); border-top:1px solid rgba(15,23,32,.06); border-bottom:1px solid rgba(15,23,32,.06);}
+    .svc-title{margin:0 0 10px; text-align:center; font-size:clamp(26px,4.2vw,34px); color:var(--svc-ink); font-weight:900;}
+    .svc-underline{width:70px; height:4px; background:var(--svc-copper); border-radius:3px; margin:10px auto 22px;}
+    .svc-subtitle{max-width:860px; margin:0 auto 10px; text-align:center; color:var(--svc-muted)}
 
-  async function inject(part, mountId){
-    const html = await fetchText([`partials/${part}.html`, `${part}.html`, `/partials/${part}.html`]);
-    const mount = document.getElementById(mountId);
-    if (!mount) return;
-    mount.innerHTML = html;
-    fixRootUrls(mount);
-  }
+    /* Grids + Cards */
+    .svc-grid{display:grid; gap:18px; margin-top:18px}
+    .svc-g2{grid-template-columns:repeat(2,1fr)}
+    .svc-g3{grid-template-columns:repeat(3,1fr)}
+    .svc-g4{grid-template-columns:repeat(4,1fr)}
+    @media(max-width:1024px){.svc-g4{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:980px){.svc-g3,.svc-g4{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:620px){.svc-g2,.svc-g3,.svc-g4{grid-template-columns:1fr}}
 
-  document.addEventListener("DOMContentLoaded", async ()=>{
-    try{
-      await ensureCss();                    // 1) s’assure de la CSS
-      await inject("header", "header");     // 2) injecte le header
-      await ensureNavJs();                  // 3) charge nav.js (menu)
-      await inject("footer", "footer");     // 4) injecte le footer
-      console.log("[INCLUDES] done");
-    }catch(e){
-      console.error("[INCLUDES] erreur", e);
+    .svc-card{
+      background:var(--svc-panel); border:1px solid rgba(15,23,32,.08);
+      border-radius:16px; box-shadow:var(--svc-shadow); padding:18px;
     }
-  });
-})();
-</script>
+    .svc-pill{display:inline-block; background:var(--svc-blue2); color:#fff; border-radius:999px; padding:6px 10px; font-weight:800; font-size:12px}
+    .svc-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .svc-price{color:var(--svc-copper); font-weight:800; margin:.25rem 0 0}
+
+    /* Reveal */
+    .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1)}
+    .reveal.is-visible{opacity:1; transform:none}
+  </style>
+</head>
+<body class="page-services">
+
+  <!-- Injection Header -->
+  <div id="header" data-include="partials/header.html"></div>
+
+  <!-- HERO -->
+  <section class="svc-hero">
+    <canvas id="svcCanvas" aria-hidden="true"></canvas>
+    <div class="svc-hero__inner">
+      <h1>Tous nos services, packs et<br> modules à la carte.</h1>
+      <p class="lead">Compose ta conformité : audits automatisés (site, documents, apps), packs RGPD, IA Act, abonnements.</p>
+      <div class="svc-cta">
+        <a class="svc-btn primary" href="index.html#audit-gratuit">Scanner mon site gratuitement</a>
+        <a class="svc-btn ghost" href="#packs">Voir les packs</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- Audits Web -->
+    <section id="web" class="svc-section">
+      <h2 class="svc-title">Audits Site Web</h2>
+      <div class="svc-underline"></div>
+      <p class="svc-subtitle">RGPD / ePrivacy / sécurité “hygiène” / accessibilité / éco-conception / SEO.</p>
+
+      <div class="svc-grid svc-g4">
+        <article class="svc-card reveal">
+          <span class="svc-pill">Cookies & traceurs</span>
+          <h3>Scanner (avant/après consentement)</h3>
+          <ul>
+            <li>Détecte CMP, blocage réel, tiers, storage</li>
+            <li>PDF + score</li>
+          </ul>
+          <p class="svc-price">79–149 € / scan</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="index.html#audit-gratuit">Tester</a></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <span class="svc-pill">Bandeau CMP</span>
+          <h3>Vérif consentement</h3>
+          <ul><li>“Tout refuser”, granularité, preuve</li></ul>
+          <p class="svc-price">59 € / site</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Vérifier</a></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <span class="svc-pill">Sécurité Web</span>
+          <h3>HTTPS / HSTS / CSP</h3>
+          <ul><li>En-têtes & redirections</li></ul>
+          <p class="svc-price">39 € / site</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Contrôler</a></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <span class="svc-pill">Formulaires</span>
+          <h3>Form-finder & minimisation</h3>
+          <ul>
+            <li>Champs sensibles & mentions</li>
+          </ul>
+          <p class="svc-price">99 € auto (+90 € revue)</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Auditer</a></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <span class="svc-pill">Accessibilité</span>
+          <h3>Smoke test (axe-core)</h3>
+          <ul><li>Erreurs majeures, contrastes</li></ul>
+          <p class="svc-price">79 € / site</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Demander</a></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <span class="svc-pill">Éco</span>
+          <h3>Éco-indicateurs</h3>
+          <ul><li>Poids, requêtes, vidéos, polices</li></ul>
+          <p class="svc-price">59 € / site</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Demander</a></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <span class="svc-pill">SEO</span>
+          <h3>Hygiène technique</h3>
+          <ul><li>Title/desc, sitemap/robots</li></ul>
+          <p class="svc-price">39 € / site</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Demander</a></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <span class="svc-pill">Multi-pages</span>
+          <h3>Audit Pro (10–30 URL)</h3>
+          <ul><li>Tout-en-un + plan d’action</li></ul>
+          <p class="svc-price">290–590 €</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Démarrer</a></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Documents & gouvernance -->
+    <section id="docs" class="svc-section alt">
+      <h2 class="svc-title">Documents & gouvernance</h2>
+      <div class="svc-underline"></div>
+
+      <div class="svc-grid svc-g4">
+        <article class="svc-card reveal">
+          <span class="svc-pill">Générateur</span>
+          <h3>Politique de confidentialité</h3>
+          <ul><li>Questionnaire → doc conforme</li></ul>
+          <p class="svc-price">149 € ou 9 €/mois</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Générer</a></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <span class="svc-pill">Analyse</span>
+          <h3>Politique / Cookies / Mentions</h3>
+          <ul><li>Checklist CNIL/CEPD</li></ul>
+          <p class="svc-price">59–149 € / doc</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Analyser</a></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <span class="svc-pill">Registre</span>
+          <h3>Contrôleur de registre</h3>
+          <ul><li>CSV/XLS — champs & durées</li></ul>
+          <p class="svc-price">79 € / import</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Contrôler</a></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <span class="svc-pill">Sous-traitants</span>
+          <h3>DPA & transferts</h3>
+          <ul><li>Clauses clés, SCC, localisation</li></ul>
+          <p class="svc-price">99 € / fournisseur</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Vérifier</a></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Apps mobiles -->
+    <section id="apps" class="svc-section">
+      <h2 class="svc-title">Applications mobiles</h2>
+      <div class="svc-underline"></div>
+      <div class="svc-grid svc-g3">
+        <article class="svc-card reveal">
+          <span class="svc-pill">Audit mobile</span>
+          <h3>APK/IPA (MobSF)</h3>
+          <ul><li>Permissions, SDK, trackers</li></ul>
+          <p class="svc-price">690–990 €</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Auditer</a></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <span class="svc-pill">Grille CNIL</span>
+          <h3>Conformité apps</h3>
+          <ul><li>Consentement, géoloc, ID pub</li></ul>
+          <p class="svc-price">Inclus avec audit</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">En savoir plus</a></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <span class="svc-pill">Fiche</span>
+          <h3>Privacy labelling</h3>
+          <ul><li>Permissions & finalités (Stores)</li></ul>
+          <p class="svc-price">149 €</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Créer</a></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Packs -->
+    <section id="packs" class="svc-section alt">
+      <h2 class="svc-title">Packs RGPD</h2>
+      <div class="svc-underline"></div>
+      <div class="svc-grid svc-g2">
+        <article class="svc-card reveal">
+          <h3>Start RGPD</h3>
+          <p class="svc-subtitle">TPE & indépendants</p>
+          <ul>
+            <li>Audit de base</li><li>Politique automatique</li><li>Registre checker</li>
+          </ul>
+          <p class="svc-price">490 €</p>
+          <div class="svc-actions"><a class="svc-btn primary" href="#contact">Obtenir un devis</a></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <h3>Pro RGPD</h3>
+          <p class="svc-subtitle">PME / associations</p>
+          <ul>
+            <li>Audit complet</li><li>PIA / AIPD</li><li>Suivi 6 mois</li>
+          </ul>
+          <p class="svc-price">1 290 €</p>
+          <div class="svc-actions"><a class="svc-btn primary" href="#contact">Obtenir un devis</a></div>
+        </article>
+      </div>
+
+      <h2 class="svc-title" style="margin-top:42px">IA Act (UE)</h2>
+      <div class="svc-underline"></div>
+      <div class="svc-grid svc-g3">
+        <article class="svc-card reveal">
+          <span class="svc-pill">Starter</span>
+          <h3>Qualification & obligations</h3>
+          <ul><li>Matrice risque & livrables</li></ul>
+          <p class="svc-price">290–590 €</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Démarrer</a></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <span class="svc-pill">Docs</span>
+          <h3>Pack documentation IA</h3>
+          <ul><li>Gestion des risques, traçabilité</li></ul>
+          <p class="svc-price">199 €</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Obtenir</a></div>
+        </article>
+
+        <article class="svc-card reveal">
+          <h3>IA Act Starter</h3>
+          <p class="svc-subtitle">Startups IA</p>
+          <ul><li>Audit conformité IA</li><li>Documentation exigée</li><li>Feuille de route</li></ul>
+          <p class="svc-price">990 €</p>
+          <div class="svc-actions"><a class="svc-btn primary" href="#contact">Obtenir un devis</a></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Abonnements + CTA -->
+    <section id="abos" class="svc-section">
+      <h2 class="svc-title">Abonnements</h2>
+      <div class="svc-underline"></div>
+      <div class="svc-grid svc-g2">
+        <article class="svc-card reveal">
+          <span class="svc-pill">Support</span>
+          <h3>DPO Light</h3>
+          <ul><li>Hotline illimitée (mail/visio)</li><li>1 re-scan/mois + veille</li></ul>
+          <p class="svc-price">150 €/mois</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Souscrire</a></div>
+        </article>
+        <article class="svc-card reveal">
+          <span class="svc-pill">Portail</span>
+          <h3>Portail Client Pro</h3>
+          <ul><li>Historique audits, dépôts doc, re-scans</li></ul>
+          <p class="svc-price">39–99 €/mois</p>
+          <div class="svc-actions"><a class="svc-btn ghost" href="#contact">Activer</a></div>
+        </article>
+      </div>
+
+      <div id="contact" class="svc-section" style="padding-top:36px">
+        <h2 class="svc-title">Obtenir un devis rapide</h2>
+        <div class="svc-underline"></div>
+        <p class="svc-subtitle">Dites-nous votre besoin, on vous répond sous 24–48 h ouvrées.</p>
+        <p style="text-align:center; margin-top:12px">
+          <a class="svc-btn primary" href="index.html#contact">Ouvrir le formulaire</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Injection Footer -->
+  <div id="footer" data-include="partials/footer.html"></div>
+
+  <!-- Scripts d’injection (comme tes autres pages) -->
+  <script defer src="assets/includes.js"></script>
+  <script defer src="assets/nav.js"></script>
+
+  <!-- Particules + reveal (autonomes, sans conflit) -->
+  <script>
+    // Particules hero
+    (function(){
+      const c = document.getElementById('svcCanvas'); if(!c) return;
+      const ctx = c.getContext('2d');
+      let w = c.width = innerWidth, h = c.height = Math.max(innerHeight*0.56, 360);
+      const particles = [];
+      const OPTS = { count: 60, speed: .35, radius: 2, dist: 120, color: 'rgba(255,255,255,.25)' };
+      addEventListener('resize', () => { w = c.width = innerWidth; h = c.height = Math.max(innerHeight*0.56, 360); });
+      class P{
+        constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*OPTS.speed; this.vy=(Math.random()-.5)*OPTS.speed; }
+        u(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
+        d(){ ctx.beginPath(); ctx.arc(this.x,this.y,OPTS.radius,0,Math.PI*2); ctx.fillStyle=OPTS.color; ctx.fill(); }
+        l(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<OPTS.dist){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/OPTS.dist})`; ctx.stroke(); } }); }
+      }
+      for(let i=0;i<OPTS.count;i++) particles.push(new P());
+      (function loop(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{p.u();p.d();p.l();}); requestAnimationFrame(loop); })();
+    })();
+
+    // Reveal au scroll
+    (function(){
+      const els = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('is-visible'); });
+      }, {threshold:.2});
+      els.forEach(el=>io.observe(el));
+    })();
+  </script>
+</body>
+</html>
