@@ -2,24 +2,17 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Awenoria – Magazine Local</title>
+<title>Awenoria – Magazine Nos Services & Formations</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --cream:#F9F7F3;
-    --violet:#5B2C6F;
-    --orange:#FF6B00;
-    --grad:linear-gradient(135deg, var(--violet) 0%, var(--orange) 100%);
-    --char:#222;
-    --speed:.8s;
-  }
+  :root{--cream:#F9F7F3;--violet:#5B2C6F;--orange:#FF6B00;--grad:linear-gradient(135deg,var(--violet) 0%,var(--orange) 100%);--char:#222;--speed:.8s}
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
   body{background:var(--cream);font-family:'Inter',sans-serif;color:var(--char);overflow:hidden}
   h1,h2,h3{font-family:'Playfair Display',serif;font-weight:700}
 
-  header{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:center;padding:1.2rem 2.5rem;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(0,0,0,.05);z-index:30}
+  header{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:center;padding:1.2rem 2.5rem;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(0,0,0,.05);z-index:30}
   header .logo{font-size:2rem;color:var(--violet);letter-spacing:-1px}
 
   #mag{height:100vh;display:flex;align-items:center;justify-content:center;perspective:3000px}
@@ -40,6 +33,7 @@
   .vignette .text p{font-size:1rem;color:var(--char)}
   .page.content{background:var(--cream);padding:4rem 5rem}
   .page.content h2{font-size:3rem;margin-bottom:2rem;color:var(--violet)}
+  .page.content h3{font-size:1.4rem;margin:2rem 0 1rem;color:var(--orange)}
   .page.content p{font-size:1.2rem;line-height:1.8;margin-bottom:1.5rem}
   .page.content .cta{background:var(--orange);color:#fff;padding:.8rem 1.8rem;border-radius:30px;font-size:1rem;display:inline-block;margin-top:1.5rem;transition:background .3s}
   .page.content .cta:hover{background:#e55e00}
@@ -61,7 +55,7 @@
 <div id="mag">
   <div class="book" id="book">
     <!-- 1 COUVERTURE -->
-    <div class="page cover"><h1>Awenoria</h1><p>Magazine luxe & compliance – édition 2025</p></div>
+    <div class="page cover"><h1>Awenoria</h1><p>Magazine Services & Formations – édition 2025</p></div>
 
     <!-- 2 SOMMAIRE VISUEL -->
     <div class="page sommaire">
@@ -76,47 +70,65 @@
           <div class="text"><h3>Formations</h3><p>Ateliers, journées, thématiques, publics spécifiques</p></div>
         </div>
         <div class="vignette" onclick="goTo(4)">
-          <div class="img">⏱️</div>
-          <div class="text"><h3>Formats</h3><p>2h, 1j, 2j – présentiel, distanciel, intra</p></div>
+          <div class="img">🔍</div>
+          <div class="text"><h3>Audit & Analyse</h3><p>Diagnostic rapide & rapport détaillé</p></div>
         </div>
         <div class="vignette" onclick="goTo(5)">
-          <div class="img">👥</div>
-          <div class="text"><h3>Publics</h3><p>Dirigeants, DPO, devs, opérationnels…</p></div>
+          <div class="img">⏱️</div>
+          <div class="text"><h3>Atelier 2 h RGPD</h3><p>Express & efficace pour vos équipes</p></div>
         </div>
       </div>
     </div>
 
-    <!-- 3 SERVICES -->
+    <!-- 3 SERVICES GÉNÉRALISTES -->
     <div class="page content">
-      <h2>Services</h2>
-      <p><strong>Conseil & conformité</strong> – RGPD essentiels, registre, AIPD, audit & analyse, accompagnement sur mesure.</p>
-      <p><strong>Web & Legal</strong> – Web & Legal, accessibilité (RGAA / EN 301 549).</p>
-      <p><strong>Modèles juridiques</strong> – Modèles clés en main, compléments, à la carte ou abonnement.</p>
-      <p><strong>Conformité IA</strong> – IA Act UE – obligations & documentation.</p>
-      <a class="cta" href="mailto:hello@awenoria.fr">Nous contacter</a>
+      <h2>Nos Services</h2>
+      <h3>Conseil & conformité</h3>
+      <p>RGPD essentiels, registre, AIPD, audit & analyse, accompagnement sur mesure.</p>
+      <h3>Web & Legal</h3>
+      <p>Web & Legal, accessibilité (RGAA / EN 301 549).</p>
+      <h3>Modèles juridiques</h3>
+      <p>Modèles clés en main, compléments, à la carte ou abonnement.</p>
+      <h3>Conformité IA</h3>
+      <p>IA Act UE – obligations & documentation.</p>
+      <a class="cta" href="mailto:hello@awenoria.fr">Demander le catalogue services</a>
     </div>
 
-    <!-- 4 FORMATIONS -->
+    <!-- 4 FORMATIONS GÉNÉRALISTES -->
     <div class="page content">
-      <h2>Formations</h2>
-      <p><strong>Ateliers 2 h</strong> – parfaits pour les équipes pressées.</p>
-      <p><strong>Journées ou 2 jours</strong> – formations immersives, présentiel ou distanciel.</p>
-      <p><strong>Thématiques</strong> – RGPD, cookies, accessibilité, cybersécurité, IA Act.</p>
-      <p><strong>Publics</strong> – dirigeants, DPO, devs, opérationnels, référents accessibilité.</p>
-      <a class="cta" href="mailto:hello@awenoria.fr">Demander le catalogue</a>
+      <h2>Nos Formations</h2>
+      <h3>Par durée</h3>
+      <p>Atelier 2 h, formation 1 journée, session 2 jours.</p>
+      <h3>Par thématique</h3>
+      <p>RGPD, cookies, accessibilité, cybersécurité, IA Act.</p>
+      <h3>Par public</h3>
+      <p>Dirigeants & responsables, équipes opérationnelles, référents/DPO, dev/produit/data.</p>
+      <h3>Modalités</h3>
+      <p>Présentiel, distanciel, intra-entreprise, supports fournis.</p>
+      <a class="cta" href="mailto:hello@awenoria.fr">Demander un programme</a>
     </div>
 
-    <!-- 5 EDITORIAL -->
+    <!-- 5 SOUS-SERVICE : Audit & Analyse -->
     <div class="page content">
-      <h2>Éditorial</h2>
-      <p>Chaque page est une invitation à repenser la compliance comme une expérience luxueuse, intuitive et désirable.</p>
-      <p>Bienvenue dans l’univers Awenoria.</p>
-      <a class="cta" href="mailto:hello@awenoria.fr">Nous découvrir</a>
+      <h2>Audit & Analyse</h2>
+      <p>Diagnostic rapide en ½ journée (audit flash) ou audit complet sur mesure.</p>
+      <p>Livraison d’un rapport détaillé avec priorités, planning d’action et modèles prêts à l’emploi.</p>
+      <p>Formats : présentiel, distanciel ou sur site. À la carte ou forfait.</p>
+      <a class="cta" href="mailto:hello@awenoria.fr?subject=Devis Audit&Analyse">Demander un devis</a>
+    </div>
+
+    <!-- 6 SOUS-FORMATION : Atelier 2 h RGPD -->
+    <div class="page content">
+      <h2>Atelier 2 h RGPD</h2>
+      <p>Parfait pour les équipes pressées : direction, marketing, dev.</p>
+      <p>Contenu : bases RGPD, registre, cookies, check-list mise en conformité.</p>
+      <p>Modalités : présentiel (Paris) ou distanciel – supports fournis – questionnaire pré/post-formation.</p>
+      <a class="cta" href="mailto:hello@awenoria.fr?subject=Programme Atelier 2h RGPD">Voir le programme</a>
     </div>
   </div>
 </div>
 
-<div class="dots"><span class="dot on" data-i="0"></span><span class="dot" data-i="1"></span><span class="dot" data-i="2"></span><span class="dot" data-i="3"></span><span class="dot" data-i="4"></span></div>
+<div class="dots"><span class="dot on" data-i="0"></span><span class="dot" data-i="1"></span><span class="dot" data-i="2"></span><span class="dot" data-i="3"></span><span class="dot" data-i="4"></span><span class="dot" data-i="5"></span></div>
 
 <div class="nav-bottom">
   <button id="prevBtn">←</button>
@@ -124,7 +136,7 @@
 </div>
 
 <script>
-  const book=document.getElementById('book'),dots=document.querySelectorAll('.dot');let idx=0,total=5;function update(){book.style.transform=`rotateY(${-idx*180}deg)`;dots.forEach((d,i)=>d.classList.toggle('on',i===idx));prevBtn.disabled=idx===0;nextBtn.disabled=idx===total-1}document.getElementById('nextBtn').onclick=()=>{if(idx<total-1){idx++;update()}};document.getElementById('prevBtn').onclick=()=>{if(idx>0){idx--;update()}};dots.forEach(d=>d.onclick=()=>{idx=+d.dataset.i;update()});function goTo(page){idx=page;update()}update();
+  const book=document.getElementById('book'),dots=document.querySelectorAll('.dot');let idx=0,total=6;function update(){book.style.transform=`rotateY(${-idx*180}deg)`;dots.forEach((d,i)=>d.classList.toggle('on',i===idx));prevBtn.disabled=idx===0;nextBtn.disabled=idx===total-1}document.getElementById('nextBtn').onclick=()=>{if(idx<total-1){idx++;update()}};document.getElementById('prevBtn').onclick=()=>{if(idx>0){idx--;update()}};dots.forEach(d=>d.onclick=()=>{idx=+d.dataset.i;update()});function goTo(page){idx=page;update()}update();
 </script>
 </body>
 </html>
