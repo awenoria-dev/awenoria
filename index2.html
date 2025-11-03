@@ -1,613 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Accueil – Awenoria</title>
-  <meta name="description" content="Awenoria – conformité RGPD & IA rendue simple, humaine et accessible. Audits automatisés, accompagnement expert, formations. Scan URL gratuit." />
-
-  <!-- Favicon / PWA -->
-  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-  <link rel="shortcut icon" href="favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#0f5f9a">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet" />
-
-  <!-- CSS global -->
-  <link rel="stylesheet" href="assets/awenoria.css" />
-
-  <!-- Tailwind & ECharts pour les résultats -->
+  <meta charset="utf-8">
+  <title>Rapport SIGMA-light – Awenoria</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
-
-  <!-- Styles internes -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Même bloc hero que vous aviez */
-    .hero-intro{position:relative;isolation:isolate;padding:64px 0 34px;border-bottom:1px solid rgba(15,23,32,.08);background:linear-gradient(180deg, rgba(27,136,255,.06), transparent 55%)}
-    .hero-intro .wrap{max-width:1280px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
-    @media (max-width:980px){.hero-intro .wrap{grid-template-columns:1fr}}
-    .hero-intro h1{margin:0 0 12px;font-size:clamp(24px,4.8vw,46px);line-height:1.1}
-    .lead{margin:0 0 16px;color:var(--muted);font-size:clamp(16px,1.6vw,18px)}
-    .checks{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:10px}
-    .checks-inline{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-    .checks li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:center}
-    .checks li svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:3;margin-top:0}
-    .hero-intro .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px;align-items:center}
-    .hero-visual{position:relative;border-radius:22px;overflow:hidden;background:var(--panel);border:1px solid rgba(15,23,32,.08);box-shadow:var(--shadow);min-height:280px}
-    .hero-visual img{width:100%;height:100%;object-fit:cover;display:block;mix-blend:normal}
-
-    /* Barre d’analyse */
-    .url-bar{display:flex;align-items:center;gap:10px;height:56px;padding:8px 8px 8px 14px;background:linear-gradient(180deg,#eef5ff,#edf2f8);border:1.8px solid #b9c8d9;border-radius:999px;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 8px 20px rgba(15,23,32,.08)}
-    .url-bar input{appearance:none;border:none;outline:none;background:transparent;color:var(--text);height:100%;padding:0 10px;font-weight:800;letter-spacing:.01em;flex:1;width:auto;caret-color:currentColor}
-    .url-bar input::placeholder{color:#7aa9c7;font-weight:800;opacity:1}
-    .url-bar button{margin-left:auto;height:40px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:linear-gradient(90deg,var(--copper),#ff9a56);color:#fff;font-weight:800;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 8px 22px rgba(var(--copper-rgb),.35);transition:transform .08s ease,box-shadow .15s ease,filter .15s ease}
-    .url-bar button:hover{filter:saturate(1.05) brightness(1.03)}
-    .url-bar button:active{transform:translateY(1px)}
-    .url-bar button:focus-visible{outline:0;box-shadow:0 0 0 4px rgba(var(--copper-rgb),.25),inset 0 1px 0 rgba(255,255,255,.9)}
-
-    /* Résultats */
-    #results-section{display:none}
-    .glass{background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2)}
+    body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#1a365d,#4299e1);color:#fff}
+    .glass{background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18)}
+    #chart{height:280px}
   </style>
 </head>
-<body>
+<body class="min-h-screen">
+  <header class="glass p-4 mb-6">
+    <h1 class="text-2xl font-bold">Rapport d’analyse SIGMA-light</h1>
+    <p class="text-sm opacity-80">Document à caractère informatif – non juridique</p>
+  </header>
 
-  <!-- ===== Header injecté ===== -->
-  <div id="header"></div>
+  <main class="container mx-auto px-4 grid gap-6">
+    <!-- Score global -->
+    <section class="glass rounded-xl p-6">
+      <div class="text-sm opacity-80">Score de conformité (référentiels publics)</div>
+      <div id="score" class="text-5xl font-bold text-green-400"></div>
+    </section>
 
-  <!-- ============== HERO ============== -->
-  <section class="hero-intro" id="intro">
-    <div class="wrap">
-      <div>
-        <h1 class="type-on-view" aria-live="off" data-text="La conformité RGPD & IA rendue simple, humaine et accessible.">La conformité RGPD & IA rendue simple, humaine et accessible.</h1>
-        <p class="lead">Awenoria vous accompagne vers la conformité numérique grâce à des outils d’audit automatisés et un accompagnement humain personnalisé.</p>
+    <!-- Graphique camembert -->
+    <section class="glass rounded-xl p-6">
+      <div id="chart"></div>
+    </section>
 
-        <ul class="checks checks-inline">
-          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Analyse locale par défaut, sans stockage.</li>
-          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Score global &amp; recommandations priorisées.</li>
-          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>RGPD, accessibilité, mentions légales &amp; cookies.</li>
-        </ul>
+    <!-- Tableau des écarts -->
+    <section class="glass rounded-xl p-6">
+      <h2 class="text-lg font-semibold mb-4">Écarts constatés à vérifier</h2>
+      <table class="w-full text-sm">
+        <thead class="border-b border-white/20">
+          <tr><th class="text-left py-2">ID</th><th class="text-left">Constat</th><th class="text-left">Référentiel</th></tr>
+        </thead>
+        <tbody id="issues"></tbody>
+      </table>
+    </section>
 
-        <div class="cta-row">
-          <a class="btn ghost" href="#audit-gratuit">Lancer un audit gratuit</a>
-          <a class="btn copper-ghost" href="#offres">Voir le détail des packs</a>
-        </div>
-      </div>
+    <!-- Disclaimer -->
+    <footer class="text-xs opacity-60 text-center py-4">
+      Ce rapport est une analyse technique non juridique. Awenoria n’est pas DPO externalisé.
+      Pour validation, rapprochez-vous d’un professionnel du droit.
+    </footer>
+  </main>
 
-      <div class="hero-visual">
-        <img src="images/hero.jpg" alt="" loading="lazy" decoding="async" />
-      </div>
-    </div>
-  </section>
-
-  <!-- ============== OUTIL GRATUIT D’AUDIT ============== -->
-  <section id="audit-gratuit" class="section">
-    <h2 class="title-center">Scannez votre site gratuitement</h2>
-    <div class="underline" aria-hidden="true"></div>
-    <p class="subtitle-center">Entrez simplement l’adresse de votre site pour obtenir un aperçu immédiat de votre conformité RGPD.</p>
-
-    <form class="url-bar" action="#analyse" method="get" onsubmit="event.preventDefault();runAudit();">
-      <input type="url" name="site" id="auditUrl" placeholder="https://votresite.fr " aria-label="Adresse du site à analyser" required autocomplete="off">
-      <button type="submit">Analyser votre site</button>
-    </form>
-
-    <!-- RÉSUMÉ RAPIDE (affiché après scan) -->
-    <div id="results-section" class="hidden mt-6">
-      <div class="glass rounded-xl p-6 shadow-lg">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">Résultats de l’analyse</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div class="bg-white rounded-lg p-4 border-l-4 border-green-500">
-            <div class="text-sm text-gray-600">Score de conformité</div>
-            <div class="text-2xl font-bold text-green-600" id="compliance-score">—</div>
-          </div>
-          <div class="bg-white rounded-lg p-4 border-l-4 border-blue-500">
-            <div class="text-sm text-gray-600">Points vérifiés</div>
-            <div class="text-2xl font-bold text-blue-600" id="checks-count">—</div>
-          </div>
-          <div class="bg-white rounded-lg p-4 border-l-4 border-amber-500">
-            <div class="text-sm text-gray-600">Écarts détectés</div>
-            <div class="text-2xl font-bold text-amber-600" id="issues-count">—</div>
-          </div>
-        </div>
-
-        <!-- Liste des écarts -->
-        <div id="issues-list" class="space-y-3"></div>
-
-        <!-- Bouton vers rapport complet (nouvel onglet) -->
-        <div class="mt-6 flex gap-3">
-          <button id="openReportBtn" class="flex-1 bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-            Voir le rapport complet (nouvel onglet)
-          </button>
-          <button onclick="window.print()" class="px-4 py-3 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors">
-            Imprimer
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- CARTES DÉMO (inchangées) -->
-    <div class="grid-3" style="margin-top:18px">
-      <article class="card glass">
-        <h3>Résultats rapides (exemple)</h3>
-        <div class="auditsamples">
-          <div class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Cookies bloqués avant consentement</div>
-          <div class="warn"><svg viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M12 3a9 9 0 100 18 9 9 0 000-18z"/></svg> Politique de confidentialité absente</div>
-          <div class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> HTTPS sécurisé</div>
-          <div class="bad"><svg viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg> Mentions légales non détectées</div>
-        </div>
-        <div class="cta-row" style="margin-top:12px">
-          <a class="btn ghost" href="#">Télécharger le rapport complet (PDF) – 79 €</a>
-        </div>
-      </article>
-      <article class="card glass">
-        <span class="badge">Couverture</span>
-        <h3>Multi-normes</h3>
-        <p>Un seul outil pour vérifier l’essentiel : RGPD, accessibilité, mentions légales et cookies.</p>
-      </article>
-      <article class="card glass">
-        <span class="badge">Impact</span>
-        <h3>Diagnostic priorisé</h3>
-        <p>Score global + recommandations classées par impact, avec exemples concrets.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ============== QUI SOMMES-NOUS ============== -->
-  <section id="qui-sommes-nous" class="section">
-    <h2 class="title-center">Chez Awenoria, la transparence et la confiance sont au cœur de nos engagements.</h2>
-    <div class="underline" aria-hidden="true"></div>
-    <p class="subtitle-center">
-      Cet espace est dédié à une conformité claire et pragmatique.
-      Nous vous aidons à comprendre, sécuriser et valoriser vos données
-      tout en garantissant la conformité de vos activités numériques.
-    </p>
-    <p class="subtitle-center">
-      <a class="btn ghost" href="#approche">Découvrir notre approche</a>
-    </p>
-  </section>
-
-  <!-- ============== EXPERTISES ============== -->
-  <section id="expertises" class="section">
-    <h2 class="title-center">Nos domaines d’expertise</h2>
-    <div class="underline" aria-hidden="true"></div>
-    <div class="grid-3">
-      <article class="card expertise glass" id="audit">
-        <span class="badge">Audit &amp; Analyse</span>
-        <h3>Audit &amp; Analyse automatisée</h3>
-        <p>Scannez votre site, vos documents ou vos applications pour identifier les points de non-conformité en quelques minutes.</p>
-        <a class="btn ghost cta-mini" href="#audit-gratuit">Tester gratuitement</a>
-      </article>
-      <article class="card expertise glass" id="conformite">
-        <span class="badge">Accompagnement</span>
-        <h3>Accompagnement &amp; Conformité</h3>
-        <p>Un expert vous guide pour structurer vos documents, corriger vos pratiques et maintenir la conformité dans la durée.</p>
-        <a class="btn copper-ghost cta-mini" href="#offres">Découvrir nos packs</a>
-      </article>
-      <article class="card expertise glass" id="formations">
-        <span class="badge">Formation</span>
-        <h3>Formation &amp; Sensibilisation</h3>
-        <p>Des modules concrets pour former vos équipes et comprendre les enjeux RGPD, IA Act et cybersécurité.</p>
-        <a class="btn ghost cta-mini" href="nos-formations.html">Explorer les formations</a>
-      </article>
-    </div>
-  </section>
-
-  <!-- ============== OFFRES ============== -->
-  <section id="offres" class="section">
-    <h2 class="title-center">Des solutions adaptées à chaque structure</h2>
-    <div class="underline" aria-hidden="true"></div>
-    <p class="subtitle-center">Des services flexibles, automatisés ou accompagnés, selon vos besoins et votre budget.</p>
-    <div class="pricing" aria-label="Offres">
-      <article class="offer glass">
-        <h3>Start RGPD</h3>
-        <p class="for">TPE &amp; indépendants</p>
-        <ul>
-          <li>Audit de base</li>
-          <li>Politique automatique</li>
-          <li>Registre checker</li>
-        </ul>
-        <p class="price">490 €</p>
-      </article>
-      <article class="offer glass">
-        <h3>Pro RGPD</h3>
-        <p class="for">PME / associations</p>
-        <ul>
-          <li>Audit complet</li>
-          <li>PIA / AIPD</li>
-          <li>Suivi 6 mois</li>
-        </ul>
-        <p class="price">1 290 €</p>
-      </article>
-      <article class="offer glass" id="ia-act">
-        <h3>IA Act Starter</h3>
-        <p class="for">Startups IA</p>
-        <ul>
-          <li>Audit conformité IA</li>
-          <li>Documentation exigée</li>
-          <li>Feuille de route</li>
-        </ul>
-        <p class="price">990 €</p>
-      </article>
-    </div>
-    <p class="subtitle-center" style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-      <a class="btn ghost" href="catalogue.html">Voir le détail des packs</a>
-      <a class="btn copper-ghost" href="contact.html">Obtenir un devis rapide</a>
-    </p>
-  </section>
-
-  <!-- ============== POURQUOI ============== -->
-  <section id="pourquoi" class="section">
-    <h2 class="title-center">Une approche différente de la conformité</h2>
-    <div class="underline" aria-hidden="true"></div>
-    <div class="grid-3">
-      <article class="card glass"><span class="badge">Expertise</span><h3>Humaine</h3><p>Des spécialistes à votre écoute, sans jargon inutile.</p></article>
-      <article class="card glass"><span class="badge">Automatisation</span><h3>Intelligente</h3><p>Nos outils analysent ; vous décidez en connaissance de cause.</p></article>
-      <article class="card glass"><span class="badge">Transparence</span><h3>Totale</h3><p>Tarifs clairs, méthodes publiées, résultats compréhensibles.</p></article>
-    </div>
-    <div class="grid-3" style="margin-top:18px">
-      <article class="card glass"><span class="badge">Sécurité</span><h3>Confidentialité</h3><p>Hébergement souverain, données chiffrées, aucune revente.</p></article>
-      <article class="card glass"><h3>En savoir plus</h3><p>Découvrez notre méthode, nos indicateurs et nos engagements.</p><a class="btn ghost" href="#approche">Notre méthode</a></article>
-      <article class="card glass"><h3>Cas clients</h3><p>Des résultats tangibles et mesurables.</p><a class="btn ghost" href="#clients">Voir des exemples</a></article>
-    </div>
-  </section>
-
-  <!-- ============== CLIENTS ============== -->
-  <section id="clients" class="section">
-    <h2 class="title-center">Ils nous font confiance</h2>
-    <div class="underline" aria-hidden="true"></div>
-    <div class="logos" aria-label="Logos partenaires" style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;align-items:center">
-      <div class="logo" style="height:44px;border-radius:12px;background:#eef3f9;display:grid;place-items:center;border:1px solid rgba(15,23,32,.06)">Agence Web</div>
-      <div class="logo" style="height:44px;border-radius:12px;background:#eef3f9;display:grid;place-items:center;border:1px solid rgba(15,23,32,.06)">Cabinet DPO</div>
-      <div class="logo" style="height:44px;border-radius:12px;background:#eef3f9;display:grid;place-items:center;border:1px solid rgba(15,23,32,.06)">Association</div>
-      <div class="logo" style="height:44px;border-radius:12px;background:#eef3f9;display:grid;place-items:center;border:1px solid rgba(15,23,32,.06)">Startup IA</div>
-      <div class="logo" style="height:44px;border-radius:12px;background:#eef3f9;display:grid;place-items:center;border:1px solid rgba(15,23,32,.06)">Collectivité</div>
-      <div class="logo" style="height:44px;border-radius:12px;background:#eef3f9;display:grid;place-items:center;border:1px solid rgba(15,23,32,.06)">Éditeur SaaS</div>
-    </div>
-    <p class="subtitle-center" style="margin-top:10px">Déjà choisi par des TPE, développeurs et formateurs soucieux de leur conformité.</p>
-  </section>
-
-  <!-- ============== BLOG ============== -->
-  <section id="blog" class="section">
-    <h2 class="title-center">Derniers articles du blog</h2>
-    <div class="underline" aria-hidden="true"></div>
-    <div class="posts">
-      <article class="post glass">
-        <img src="images/blog-iaact-2025.jpg" alt="IA Act : ce qui change en 2025" loading="lazy" width="640" height="360">
-        <div class="content">
-          <h3>IA Act : ce qui change en 2025</h3>
-          <p>Panorama des exigences clés et comment s’y préparer en pratique.</p>
-        </div>
-      </article>
-      <article class="post glass">
-        <img src="images/blog-rgpd-erreurs.jpg" alt="RGPD : les 10 erreurs les plus fréquentes" loading="lazy" width="640" height="360">
-        <div class="content">
-          <h3>RGPD : les 10 erreurs les plus fréquentes</h3>
-          <p>Des pièges classiques aux solutions concrètes.</p>
-        </div>
-      </ite>
-      <article class="post glass">
-        <img src="images/blog-audit-score.jpg" alt="Audit web : comment lire votre score de conformité ?" loading="lazy" width="640" height="360">
-        <div class="content">
-          <h3>Audit web : comment lire votre score de conformité ?</h3>
-          <p>Découvrez nos critères et nos pondérations.</p>
-        </div>
-      </article>
-    </div>
-    <p class="subtitle-center" style="margin-top:12px"><a class="btn ghost" href="blog.html">Voir tous les articles</a></p>
-  </section>
-
-  <!-- ============== CONTACT ============== -->
-  <section id="contact" class="section">
-    <h2 class="title-center">Parlons de votre conformité</h2>
-    <div class="underline" aria-hidden="true"></div>
-    <p id="hero-lead" class="subtitle-center type-on-view" data-text="Une question, un devis, un partenariat ? Votre message nous parvient via un envoi sécurisé.">Une question, un devis, un partenariat ? Votre message nous parvient via un envoi sécurisé.</p>
-
-    <div class="contact-form-wrap">
-      <div class="contact-grid-2">
-        <aside class="contact-card contact-info glass">
-          <span class="badge" aria-label="Service client"><span>Service client</span></span>
-          <ul class="list">
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M3.5 7.75A2.75 2.75 0 0 1 6.25 5h11.5A2.75 2.75 0 0 1 20.5 7.75v8.5A2.75 2.75 0 0 1 17.75 19H6.25A2.75 2.75 0 0 1 3.5 16.25v-8.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                <path d="M4.2 7.6l7.8 5.3 7.8-5.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <strong>contact@awenoria.fr</strong>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.6"/>
-                <path d="M12 7.5v5l3.5 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              Réponse sous 24–48 h ouvrées
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 3.5l7 2.2v5.3c0 4.5-3 8.6-7 9.5-4-1-7-5-7-9.5V5.7l7-2.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                <path d="M9.75 12.25L11.2 13.7 14.5 10.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              Données traitées en France, RGPD
-            </li>
-          </ul>
-
-          <div class="cta-col">
-            <a class="cta faq" href="faq.html">FAQ complète</a>
-            <a class="cta whatsapp" href="https://wa.me/33600000000 " target="_blank" rel="noopener">WhatsApp Business</a>
-            <a class="cta calendly" href="https://calendly.com/ " target="_blank" rel="noopener">Programmer un appel</a>
-          </div>
-
-          <hr>
-          <p class="note">Besoin d’une réponse rapide ? Indiquez-le dans votre message, nous prioriserons votre demande.</p>
-          <img class="brand-mark" src="images/logo.png" alt="Awenoria" width="140" height="52" loading="lazy">
-        </aside>
-
-        <div class="contact-card glass">
-          <form id="contactForm" action="https://awenoria.bmavcontact.workers.dev/contact " method="POST" novalidate>
-            <div class="form-grid">
-              <div>
-                <label class="req">Votre demande</label>
-                <select name="demande" class="input" id="demande" required>
-                  <option value="">Choisissez un élément dans la liste</option>
-                  <option value="rdv">Demande de rendez-vous</option>
-                  <option value="devis">Demande de devis</option>
-                  <option value="partenariat">Partenariat</option>
-                  <option value="autre">Autre</option>
-                </select>
-              </div>
-              <div>
-                <label class="req">Choisissez le destinataire</label>
-                <select name="destinataire" class="input" required>
-                  <option value="">Choisissez un élément dans la liste</option>
-                  <option>RGPD</option>
-                  <option>Hébergement</option>
-                  <option>Logiciels et outils</option>
-                  <option>Écoconception</option>
-                  <option>Accessibilité</option>
-                  <option>Autre</option>
-                </select>
-              </div>
-              <div>
-                <label class="req">Votre adresse e-mail</label>
-                <input class="input" type="email" name="email" placeholder="du type nom@exemple.com" required>
-              </div>
-              <div>
-                <label>Téléphone (facultatif)</label>
-                <input class="input" type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="+33 X XX XX XX XX">
-                <div class="help">Format conseillé : +33 X XX XX XX XX (facultatif)</div>
-              </div>
-              <div id="societeWrap" style="display:none">
-                <label class="req">Nom de votre société</label>
-                <input class="input" type="text" name="societe" placeholder="Votre société">
-              </div>
-              <div id="precisionWrap" style="display:none">
-                <label class="req">Précisez votre demande</label>
-                <input class="input" type="text" name="precision" placeholder="Quelques mots pour préciser">
-              </div>
-              <div style="grid-column:1/-1">
-                <label class="req">Votre message</label>
-                <textarea class="input" name="message" rows="7" placeholder="Votre message…" required></textarea>
-              </div>
-            </div>
-
-            <div class="checks-legal" style="display:grid;gap:8px;margin-top:10px">
-              <label class="check"><input type="checkbox" name="no_marketing" value="1"><span>Je ne souhaite pas recevoir de communication commerciale.</span></label>
-              <label class="check"><input type="checkbox" name="optin_news" value="1"><span>Je souhaite recevoir ponctuellement les actualités d’Awenoria (désinscription possible à tout moment).</span></label>
-            </div>
-
-            <p class="note">Les données collectées sont indispensables au traitement de votre demande. Pour en savoir plus, consultez notre <a href="politique-de-confidentialite.html">Politique de confidentialité</a>.</p>
-
-            <!-- honeypots -->
-            <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
-            <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
-
-            <div class="actions">
-              <div id="turnstileMount" class="cf-turnstile" data-sitekey="0x4AAAAAAB6sOpFo1gDVnkX1" data-appearance="interaction-only" data-callback="awenTurnstileOK"></div>
-              <button id="sendBtn" class="btn primary" type="submit"><span class="spinner" aria-hidden="true"></span><span>Envoyer</span></button>
-            </div>
-
-            <div class="status-wrap" aria-live="polite">
-              <div id="msgOk" class="status ok" role="status" style="display:none;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;font-weight:700;color:#0f5f9a;background:linear-gradient(180deg,#f3f8ff,#eef5ff);border:1px solid #d3deea;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7L10 17l-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Merci, votre message a bien été envoyé. Nous revenons vers vous sous 24–48 h ouvrées.
-              </div>
-              <div id="msgKo" class="status ko" role="alert" style="display:none;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;font-weight:700;color:#8b2a1a;background:linear-gradient(180deg,#fff6f5,#ffeceb);border:1px solid #f4cbc3;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.29 3.86l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.71-3.14l-8-14a 2 2 0 0 0-3.42 0Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                L’envoi a échoué. Réessayez ou écrivez-nous : contact@awenoria.fr.
-              </div>
-            </div>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Footer injecté ===== -->
-  <div id="footer"></div>
-
-  <!-- ============== SCRIPTS ============== -->
-
-  <!-- Loader header/footer -->
-  <script src="assets/includes.js" defer></script>
-
-  <!-- MOTEUR SIGMA-light + ouverture nouvel onglet -->
   <script>
-    /********************************************************************
-     *  SIGMA-light – scan côté client (zero-stockage)
-     *******************************************************************/
-    const SIGMA = (function(){
+    (function(){
+      const r = JSON.parse(sessionStorage.getItem('sigmaReport') || '{}');
+      if (!r.url) { document.body.innerHTML = '<div class="p-8 text-center">Aucun rapport trouvé.</div>'; return; }
 
-      const REF = {
-        cookies: { mustHaveRefuse:true, mustHaveLink:true, maxThirdParty:5 },
-        tls    : { minVersion:'TLS 1.3', mustHSTS:true },
-        headers: { csp:true, xfo:true, referrer:true },
-        wcag   : { minContrast:4.5, altMissingMax:5 },
-        eco    : { maxTransfer:800 } // KB
-      };
+      /* ---------- page 1 : score ---------- */
+      document.getElementById('score').textContent = r.score + '%';
 
-      async function scanURL(rawURL){
-        if(!rawURL) throw 'URL manquante';
-        const url = new URL(rawURL);
-        console.log('[Σ] Début scan',url.href);
-
-        const res = await fetch(url,{redirect:'follow', credentials:'omit'});
-        const html = await res.text();
-        const doc = new DOMParser().parseFromString(html,'text/html');
-
-        /* 1.a Cookies & scripts */
-        const scripts = [...doc.querySelectorAll('script[src]')].map(s=>new URL(s.src,url).hostname);
-        const third = new Set(scripts.filter(h=> h !== url.hostname)).size;
-        const cmp  = !!doc.querySelector('button[id*="tarteaucitron"],button[class*="cmp"],button[class*="cookie"]');
-        const refuse = !!doc.querySelector('button[class*="refuse"],button[id*="refuse"]');
-
-        /* 1.b HTTPS / TLS */
-        const tlsOk = url.protocol === 'https:';
-        const hsts = res.headers.get('strict-transport-security');
-
-        /* 1.c Headers sécurité */
-        const csp   = res.headers.get('content-security-policy');
-        const xfo   = res.headers.get('x-frame-options');
-        const refPol= res.headers.get('referrer-policy');
-
-        /* 1.d Mentions légales (simple string search) */
-        const text = doc.body.innerText.toLowerCase();
-        const siret = /\d{14}/.test(text);
-        const rna  = /w\d{9}/.test(text);
-        const tva  = /fr\w{11}/.test(text);
-
-        /* 1.e Accessibilité */
-        const imgs = [...doc.images];
-        const altMissing = imgs.filter(i=>!i.alt).length;
-
-        /* 1.f CO₂ – transfert */
-        const transferKB = Math.round((new Blob([html]).size + 2*1024) / 1024); // +2KB marge
-
-        /* 1.g Politique confidentialité */
-        const policyLink = [...doc.querySelectorAll('a')].find(a=>/politique|confidentialité|privacy/i.test(a.textContent));
-
-        /* ---------- 2. calcul des écarts ---------- */
-        const issues = [];
-        if(third > REF.cookies.maxThirdParty) issues.push({id:'C-01',msg:`${third} cookies tiers détectés`,ref:'EDPB 2020/05'});
-        if(!refuse) issues.push({id:'C-02',msg:'Bouton "Refuser" non trouvé',ref:'EDPB 2020/05'});
-        if(!hsts) issues.push({id:'S-01',msg:'Header HSTS absent',ref:'ANSSI RGS'});
-        if(!csp) issues.push({id:'S-02',msg:'CSP non définie',ref:'OWASP Secure Headers'});
-        if(!siret || !rna || !tva) issues.push({id:'M-01',msg:'Mentions légales incomplètes',ref:'Loi pour la confiance'});
-        if(altMissing > REF.wcag.altMissingMax) issues.push({id:'A-01',msg:`${altMissing} images sans alt`,ref:'WCAG 2.2'});
-        if(transferKB > REF.eco.maxTransfer) issues.push({id:'E-01',msg:`${transferKB} KB transférés (page d’accueil)`,ref:'Green-IT Model'});
-
-        const score = Math.max(0,100 - issues.length*8); // -8 pts par écart
-
-        /* ---------- 3. construction du rapport ---------- */
-        return {
-          url:url.href,
-          date:new Date().toISOString(),
-          score,
-          metrics:{
-            cookies:{third,cmp,refuse},
-            tls:{version:'TLS 1.3 (estimé)',hsts:!!hsts},
-            headers:{csp:!!csp,xfo:!!xfo,referrer:!!refPol},
-            mentions:{siret,rna,tva},
-            wcag:{altMissing},
-            eco:{transferKB}
-          },
-          issues
-        };
-      }
-
-      return {scanURL};
-    })();
-
-    /********************************************************************
-     *  Affichage rapide dans la page + ouverture nouvel onglet
-     *******************************************************************/
-    const qs = (s,el=document)=>el.querySelector(s);
-
-    async function runAudit(){
-      const input = qs('#auditUrl');
-      const btn   = qs('.url-bar button');
-      const resS  = qs('#results-section');
-      const scoreEl= qs('#compliance-score');
-      const checksEl=qs('#checks-count');
-      const issuesEl=qs('#issues-count');
-      const listEl =qs('#issues-list');
-      const openBtn=qs('#openReportBtn');
-
-      if(!input.value) return;
-      btn.disabled = true;
-      btn.textContent = 'Analyse en cours…';
-      resS.classList.remove('hidden');
-      listEl.innerHTML='';
-
-      try{
-        const report = await SIGMA.scanURL(input.value);
-        /* remplissage rapide */
-        scoreEl.textContent = report.score + '%';
-        checksEl.textContent = '8/8'; // 8 blocs testés
-        issuesEl.textContent = report.issues.length;
-
-        report.issues.forEach(iss=>{
-          const div = document.createElement('div');
-          div.className = 'flex items-start gap-3 bg-white rounded-lg p-3 border-l-4 border-amber-500';
-          div.innerHTML = `
-            <svg class="w-5 h-5 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-            <div>
-              <div class="text-sm font-semibold text-gray-800">${iss.msg}</div>
-              <a class="text-xs text-blue-600 hover:underline" href="https://example.com/ref/${iss.ref}" target="_blank">${iss.ref}</a>
-            </div>`;
-          listEl.appendChild(div);
-        });
-
-        /* stockage pour nouvel onglet */
-        sessionStorage.setItem('sigmaReport', JSON.stringify(report));
-
-        /* bouton ouvrir rapport */
-        openBtn.onclick = () => window.open('result.html', '_blank');
-
-      }catch(err){
-        console.error(err);
-        alert('Erreur : ' + err);
-      }finally{
-        btn.disabled = false;
-        btn.textContent = 'Analyser votre site';
-      }
-    }
-
-    /* ============== Scripts déjà présents chez vous ============== */
-    /* Typing-on-view, contact form, etc. (non modifiés) */
-    const SPEED = 85;
-    const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const els = [...document.querySelectorAll('.type-on-view')];
-    els.forEach(el=>{
-      const full = (el.getAttribute('data-text') || el.textContent || '').trim();
-      el.dataset.fullText = full;
-      if (REDUCE) { el.textContent = full; el.__ready = false; return; }
-      el.textContent=''; el.__typingTimer=null; el.__ready=true;
-      el.setAttribute('aria-live','off');
-    });
-    function type(el){
-      if (REDUCE) return;
-      clearTimeout(el.__typingTimer);
-      const full = el.dataset.fullText || ''; el.textContent=''; let i=0;
-      (function tick(){ el.textContent = full.slice(0, ++i); if(i<full.length){ el.__typingTimer=setTimeout(tick, SPEED);} else { el.__typingTimer=null; el.__ready=false; } })();
-    }
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        const el = entry.target;
-        if(entry.isIntersecting){ if(el.__ready) type(el); }
-        else{ el.__ready=true; clearTimeout(el.__typingTimer); el.__typingTimer=null; }
+      /* ---------- page 2 : graphique ---------- */
+      const chart = echarts.init(document.getElementById('chart'));
+      const ok = 100 - r.issues.length*8;
+      chart.setOption({
+        backgroundColor:'transparent',
+        title:{text:'Répartition des écarts', left:'center', textStyle:{color:'#fff'}},
+        tooltip:{trigger:'item'},
+        series:[{
+          type:'pie', radius:['40%','70%'],
+          data:[
+            {value:ok, name:'Conforme', itemStyle:{color:'#38a169'}},
+            {value:100-ok, name:'À vérifier', itemStyle:{color:'#e53e3e'}}
+          ]
+        }]
       });
-    }, { threshold: .4, rootMargin: '0px 0px -10% 0px' });
-    els.forEach(el=>io.observe(el));
 
-    /* contact form déjà présent */
-    /* ============== Footer injecté ======== */
-    <script src="assets/includes.js" defer></script>
+      /* ---------- page 3 : tableau ---------- */
+      const tbody = document.getElementById('issues');
+      r.issues.forEach(iss=>{
+        const tr = document.createElement('tr');
+        tr.className = 'border-b border-white/10';
+        tr.innerHTML = `<td class="py-2 font-mono text-xs">${iss.id}</td>
+                        <td class="py-2">${iss.msg}</td>
+                        <td class="py-2"><a class="text-blue-300 hover:underline" href="https://example.com/ref/${iss.ref}" target="_blank">${iss.ref}</a></td>`;
+        tbody.appendChild(tr);
+      });
+    })();
   </script>
 </body>
 </html>
