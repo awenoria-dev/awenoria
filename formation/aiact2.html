@@ -35,7 +35,6 @@
     .hero .lead{font-size:1.15rem;font-weight:500;margin:14px auto 0;color:#e8f0ff;max-width:900px}
     .hero .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
     .tag{border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;background:rgba(255,255,255,.12);color:#fff}
-
     .breadcrumbs{display:flex;gap:8px;justify-content:center;color:#e8f0ff;opacity:.95;font-weight:800;margin-bottom:8px}
     .breadcrumbs a{color:#e8f0ff;text-decoration:underline}
 
@@ -98,11 +97,7 @@
 
       <h1 id="course-title">Titre formation</h1>
       <p id="course-pitch" class="lead">Résumé personnalisé selon l’origine (thématique / public).</p>
-
-      <!-- Tags dans le hero -->
-      <div id="course-meta" class="meta">
-        <!-- rempli par JS -->
-      </div>
+      <div id="course-meta" class="meta"></div>
     </div>
   </section>
 
@@ -117,7 +112,7 @@
       </article>
 
       <aside class="cta-col">
-        <a id="back-link" class="btn secondary" href="javascript:history.back()" aria-label="Revenir à la liste précédente">← Revenir</a>
+        <a id="back-link" class="btn secondary" href="javascript:history.back()">← Revenir</a>
 
         <div class="card">
           <h2 style="margin:0 0 8px">Obtenir le programme détaillé</h2>
@@ -160,88 +155,108 @@
     (function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); })();
   </script>
 
-  <!-- ===== Données cours ===== -->
+  <!-- ===== Données & fallback IA Act ===== -->
   <script type="module">
-    import { COURSES } from "../js/courses-data.js";
+    // IMPORTANT : cette page est dans /formation/ → accéder à ../js/...
+    let COURSES = [];
+    try {
+      const mod = await import("../js/courses-data.js");
+      COURSES = mod.COURSES || [];
+    } catch(e) {
+      console.warn("courses-data non chargé, on passe en fallback IA Act", e);
+    }
+
+    // Fallback IA Act (d’après ta PJ3)
+    const FB = {
+      slug: "aiact2",
+      title: "IA Act (UE) : obligations & documentation",
+      summary: "Qualifier les systèmes, comprendre les obligations par niveau de risque, préparer la doc et la gouvernance.",
+      duration: "1/2 journée à 1 journée",
+      level: "Intermédiaire",
+      modalities: ["Distanciel","Présentiel"],
+      program: [
+        "Cartographier les cas d’usage",
+        "Qualification du risque & obligations",
+        "Dossier technique & transparence",
+        "Plan de mise en conformité"
+      ],
+      objectives: [
+        "Comprendre les obligations et le périmètre",
+        "Savoir appliquer dans votre contexte",
+        "Produire les premiers livrables utiles",
+        "Établir une feuille de route opérationnelle"
+      ]
+    };
+
+    const slug = location.pathname.split('/').pop().replace('.html','');
+    // Essaie de trouver la fiche ; sinon, utilise le fallback IA Act
+    const course = COURSES.find(c => c.slug === slug) || COURSES.find(c => c.slug === "ia-act") || FB;
+
+    const params = new URLSearchParams(location.search);
+    const from = params.get('from'); const theme = params.get('theme'); const audience = params.get('public');
 
     const THEME_LABELS = {"rgpd-essentiels":"RGPD – essentiels, registre, AIPD","ia-act":"IA Act – obligations & documentation","cookies":"Cookies & CMP","web-legal":"Mentions légales & conformité web","access":"Accessibilité (RGAA / EN 301 549)","cyber":"Cybersécurité de base"};
     const AUDIENCE_LABELS = {dirigeants:"Dirigeants & responsables",equipes:"Équipes opérationnelles",dpo:"Référents / DPO",dev:"Dev, Produit & Data"};
 
-    const slug = location.pathname.split('/').pop().replace('.html','');
-    const params = new URLSearchParams(location.search);
-    const from = params.get('from'); const theme = params.get('theme'); const audience = params.get('public');
-
-    const titleEl = document.getElementById('course-title');
-    const pitchEl = document.getElementById('course-pitch');
-    const metaEl  = document.getElementById('course-meta');
-    const progEl  = document.getElementById('course-program');
-    const objEl   = document.getElementById('course-objectives');
-    const crumbMid= document.getElementById('crumb-mid');
-    const crumbLeaf= document.getElementById('crumb-leaf');
-    const backLink= document.getElementById('back-link');
-
-    const course = COURSES.find(c => c.slug === slug);
+    const $ = sel => document.getElementById(sel);
+    const titleEl = $("course-title");
+    const pitchEl = $("course-pitch");
+    const metaEl  = $("course-meta");
+    const progEl  = $("course-program");
+    const objEl   = $("course-objectives");
+    const crumbMid= $("crumb-mid");
+    const crumbLeaf= $("crumb-leaf");
+    const backLink= $("back-link");
 
     function setHead(t,d){document.title=t; const m=document.querySelector('meta[name="description"]'); if(m) m.setAttribute('content',d);}
 
-    function pickPitch(){
-      if(from==='public' && audience && course?.pitchByAudience?.[audience]) return course.pitchByAudience[audience];
-      if(from==='theme'  && theme    && course?.pitchByTheme?.[theme])      return course.pitchByTheme[theme];
-      return course?.summary || '';
+    // Pitch avec priorité (audience -> thème -> summary)
+    const pitch =
+      (from==='public' && audience && course.pitchByAudience?.[audience]) ? course.pitchByAudience[audience] :
+      (from==='theme'  && theme    && course.pitchByTheme?.[theme])      ? course.pitchByTheme[theme] :
+      (course.summary || FB.summary);
+
+    titleEl.textContent = course.title || FB.title;
+    pitchEl.textContent = pitch;
+
+    const dur = (course.duration || FB.duration) ? `<span class="tag" aria-label="Durée">${course.duration || FB.duration}</span>` : '';
+    const lvl = (course.level || FB.level) ? `<span class="tag" aria-label="Niveau">${course.level || FB.level}</span>` : '';
+    const mods = (course.modalities?.length ? course.modalities : FB.modalities).map(m=>`<span class="tag">${m}</span>`).join('');
+    metaEl.innerHTML = dur + lvl + mods;
+
+    const items = (course.program?.length ? course.program : FB.program).map(li=>`<li>${li}</li>`).join('');
+    progEl.innerHTML = `<ul>${items}</ul>`;
+
+    objEl.innerHTML = (course.objectives?.length ? course.objectives : FB.objectives)
+      .map(o=>`<li>${o}</li>`).join('');
+
+    // Breadcrumbs + head
+    if(from==='theme' && theme){
+      crumbMid.textContent = THEME_LABELS[theme] || 'Thématique';
+      crumbMid.href = `../formations-liste.html?theme=${encodeURIComponent(theme)}`;
+    } else if(from==='public' && audience){
+      crumbMid.textContent = AUDIENCE_LABELS[audience] || 'Public';
+      crumbMid.href = `../formations-liste.html?public=${encodeURIComponent(audience)}`;
+    } else {
+      crumbMid.textContent = 'Catalogue';
+      crumbMid.href = `../formations-liste.html`;
     }
-
-    function renderCrumbs(){
-      if(from==='theme'&&theme){
-        crumbMid.textContent=THEME_LABELS[theme]||'Thématique';
-        crumbMid.href=`../formations-liste.html?theme=${encodeURIComponent(theme)}`;
-      }else if(from==='public'&&audience){
-        crumbMid.textContent=AUDIENCE_LABELS[audience]||'Public';
-        crumbMid.href=`../formations-liste.html?public=${encodeURIComponent(audience)}`;
-      }else{
-        crumbMid.textContent='Catalogue';
-        crumbMid.href=`../formations-liste.html`;
-      }
-      crumbLeaf.textContent = course ? course.title : 'Fiche';
-    }
-
-    function renderNotFound(){
-      document.getElementById('content').innerHTML =
-        `<div class="wrap"><h1>Formation introuvable</h1><p>La fiche demandée n'existe pas. Retour au <a href="../formations-liste.html">catalogue</a>.</p></div>`;
-    }
-
-    if(!course){ renderNotFound(); throw new Error('Course not found'); }
-
-    titleEl.textContent = course.title;
-    pitchEl.textContent = pickPitch();
+    crumbLeaf.textContent = course.title || FB.title;
 
     const originLabel = from==='public' ? (AUDIENCE_LABELS[audience]||'')
                         : from==='theme' ? (THEME_LABELS[theme]||'') : 'Catalogue';
-    setHead(`${course.title} – Awenoria`, `${course.summary||''} ${originLabel?' • Contexte : '+originLabel:''}`);
+    setHead(`${course.title || FB.title} – Awenoria`, `${(course.summary || FB.summary)} ${originLabel?' • Contexte : '+originLabel:''}`);
 
-    const dur = course.duration ? `<span class="tag" aria-label="Durée">${course.duration}</span>` : '';
-    const lvl = course.level    ? `<span class="tag" aria-label="Niveau">${course.level}</span>` : '';
-    const mods = (course.modalities||[]).map(m=>`<span class="tag">${m}</span>`).join('');
-    metaEl.innerHTML = dur + lvl + mods;
-
-    const items = (course.program||[]).map(li=>`<li>${li}</li>`).join('');
-    progEl.innerHTML = items ? `<ul>${items}</ul>` : `<p class="note">Le programme détaillé sera fourni sur demande.</p>`;
-
-    objEl.innerHTML = [
-      'Comprendre les obligations et le périmètre',
-      'Savoir appliquer dans votre contexte',
-      'Produire les premiers livrables utiles',
-      'Établir une feuille de route opérationnelle'
-    ].map(o=>`<li>${o}</li>`).join('');
-
-    renderCrumbs();
-
-    backLink.href =
-      from==='public'&&audience ? `../formations-liste.html?public=${encodeURIComponent(audience)}`
-      : from==='theme'&&theme   ? `../formations-liste.html?theme=${encodeURIComponent(theme)}`
-      : `../formations-liste.html`;
+    // Lien retour
+    if (backLink) {
+      backLink.href =
+        from==='public'&&audience ? `../formations-liste.html?public=${encodeURIComponent(audience)}`
+        : from==='theme'&&theme   ? `../formations-liste.html?theme=${encodeURIComponent(theme)}`
+        : `../formations-liste.html`;
+    }
   </script>
 
-  <!-- ===== Loader header/footer + CSS global (compat sous-dossiers & GH Pages) ===== -->
+  <!-- ===== Loader header/footer + CSS global ===== -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
@@ -255,7 +270,7 @@
       base = parts.length ? `/${parts[0]}/` : "/";
     }
 
-    // Injecte CSS global & favicon
+    // CSS global & favicon
     const ensureHeadAsset = (href, rel, attr = {}) => {
       const l = document.createElement("link");
       l.rel = rel; l.href = base + href.replace(/^\//, "");
@@ -267,7 +282,7 @@
 
     const candidates = (p) => {
       const clean = p.replace(/^\//, "");
-      return [ base + clean, "./" + clean, "../" + clean, "../../" + clean ];
+      return [ base + clean, "./" + clean, "../" + clean ];
     };
 
     async function fetchAny(paths) {
