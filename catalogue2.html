@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Catalogue | Awenoria – Le globe du conforme</title>
-  <meta name="description" content="Services et formations qui tournent en boucle : vivez le conforme en live.">
+  <title>Catalogue | Awenoria – Rubans du conforme</title>
+  <meta name="description" content="Services et formations qui défilent sans fin : un spectacle continu.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,45 +81,45 @@
       max-width: 600px;
     }
 
-    /* ---------- GLOBE TOURNANT (VERTICAL) ---------- */
-    .globe {
-      height: 420px; /* ≈ 3 cartes visibles */
-      overflow: hidden;
+    /* ---------- RUBAN HORIZONTAL INFINI ---------- */
+    .ruban {
       position: relative;
-      perspective: 1000px; /* effet 3D doux */
+      width: 100%;
+      overflow: hidden;
+      height: 280px; /* 1 carte visible */
+      perspective: 1000px;
     }
-    .globe-track {
+    .ruban-track {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
+      gap: 24px;
+      position: absolute;
+      top: 0;
       will-change: transform;
     }
-    /* Sens de rotation */
-    .globe-track[data-direction="down"] {
-      animation: globeDown 12s linear infinite;
+    /* Sens de défilement */
+    .ruban-track[data-direction="left"] {
+      animation: rubanLeft 20s linear infinite;
     }
-    .globe-track[data-direction="up"] {
-      animation: globeUp 12s linear infinite;
+    .ruban-track[data-direction="right"] {
+      animation: rubanRight 20s linear infinite;
     }
-    /* Pause au survol / touch */
-    .globe:hover .globe-track,
-    .globe:active .globe-track {
+    /* Pause interact */
+    .ruban:hover .ruban-track,
+    .ruban:active .ruban-track {
       animation-play-state: paused;
     }
-    @keyframes globeDown {
-      from { transform: translateY(-33.333%) }
-      to { transform: translateY(0) }
+    @keyframes rubanLeft {
+      from { transform: translateX(0) }
+      to { transform: translateX(-33.333%) }
     }
-    @keyframes globeUp {
-      from { transform: translateY(0) }
-      to { transform: translateY(-33.333%) }
+    @keyframes rubanRight {
+      from { transform: translateX(-33.333%) }
+      to { transform: translateX(0) }
     }
 
     /* Cartes */
-    .globe-card {
-      flex: 0 0 auto;
-      width: 320px;
-      margin: 0 auto;
+    .ruban-card {
+      flex: 0 0 320px;
       background: #fff;
       border: 1px solid rgba(15,23,32,.08);
       border-radius: 20px;
@@ -128,23 +128,23 @@
       display: flex;
       flex-direction: column;
     }
-    .globe-card img {
+    .ruban-card img {
       width: 100%;
       height: 180px;
       object-fit: cover;
     }
-    .globe-card figcaption {
+    .ruban-card figcaption {
       padding: 24px;
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-    .globe-card h3 {
+    .ruban-card h3 {
       margin: 0 0 6px;
       font-size: 1.2rem;
     }
-    .globe-card p {
+    .ruban-card p {
       margin: 0 0 16px;
       color: #4a6176;
       font-size: .95rem;
@@ -207,15 +207,15 @@
     </div>
   </section>
 
-  <!-- ===== SERVICES – GLOBE HORAIRE ---------- -->
+  <!-- ===== SERVICES – RUBAN ← ---------- -->
   <section id="services" class="block">
     <h2>On vous met sous les projecteurs</h2>
     <p class="lead">Conformité, accessibilité, cybersécurité : vos sujets critiques défilent devant vous</p>
 
-    <div class="globe" aria-label="Tous nos services">
-      <div class="globe-track" data-direction="down">
-        <!-- Copie 1 (visible) -->
-        <figure class="globe-card">
+    <div class="ruban" aria-label="Tous nos services">
+      <div class="ruban-track" data-direction="right">
+        <!-- 3 cartes + 3 copies pour boucle sans couture -->
+        <figure class="ruban-card">
           <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>RGPD Live</h3>
@@ -224,7 +224,7 @@
           </figcaption>
         </figure>
 
-        <figure class="globe-card">
+        <figure class="ruban-card">
           <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>Accessibilité Show</h3>
@@ -233,7 +233,7 @@
           </figcaption>
         </figure>
 
-        <figure class="globe-card">
+        <figure class="ruban-card">
           <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>Cyber Night</h3>
@@ -242,8 +242,8 @@
           </figcaption>
         </figure>
 
-        <!-- Copie 2 (boucle) -->
-        <figure class="globe-card">
+        <!-- COPIES MÊME ORDRE (boucle fluide) -->
+        <figure class="ruban-card">
           <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>RGPD Live</h3>
@@ -252,7 +252,7 @@
           </figcaption>
         </figure>
 
-        <figure class="globe-card">
+        <figure class="ruban-card">
           <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>Accessibilité Show</h3>
@@ -261,7 +261,7 @@
           </figcaption>
         </figure>
 
-        <figure class="globe-card">
+        <figure class="ruban-card">
           <img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>Cyber Night</h3>
@@ -273,15 +273,15 @@
     </div>
   </section>
 
-  <!-- ===== FORMATIONS – GLOBE ANTI-HORAIRE ---------- -->
+  <!-- ===== FORMATIONS – RUBAN → ---------- -->
   <section id="formations" class="block">
     <h2>On vous donne le micro</h2>
     <p class="lead">Formats courts, interactifs, avec souvenirs à emporter</p>
 
-    <div class="globe" aria-label="Toutes nos formations">
-      <div class="globe-track" data-direction="up">
-        <!-- Copie 1 (visible) -->
-        <figure class="globe-card">
+    <div class="ruban" aria-label="Toutes nos formations">
+      <div class="ruban-track" data-direction="left">
+        <!-- 3 cartes + 3 copies pour boucle fluide -->
+        <figure class="ruban-card">
           <img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>RGPD Express</h3>
@@ -290,7 +290,7 @@
           </figcaption>
         </figure>
 
-        <figure class="globe-card">
+        <figure class="ruban-card">
           <img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>IA Act Day</h3>
@@ -299,7 +299,7 @@
           </figcaption>
         </figure>
 
-        <figure class="globe-card">
+        <figure class="ruban-card">
           <img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>Access Night</h3>
@@ -308,8 +308,8 @@
           </figcaption>
         </figure>
 
-        <!-- Copie 2 (boucle) -->
-        <figure class="globe-card">
+        <!-- COPIES MÊME ORDRE (boucle fluide) -->
+        <figure class="ruban-card">
           <img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>RGPD Express</h3>
@@ -318,7 +318,7 @@
           </figcaption>
         </figure>
 
-        <figure class="globe-card">
+        <figure class="ruban-card">
           <img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>IA Act Day</h3>
@@ -327,7 +327,7 @@
           </figcaption>
         </figure>
 
-        <figure class="globe-card">
+        <figure class="ruban-card">
           <img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&fit=crop&w=400&q=60" alt="">
           <figcaption>
             <h3>Access Night</h3>
