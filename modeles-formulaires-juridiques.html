@@ -13,7 +13,7 @@
   <style>
     :root{
       --aw-ink:#9A9EA6;              /* texte général (gris foncé sans noir) */
-      --aw-blue:#7fbfff;             /* bleu clair au repos (comme avant) */
+      --aw-blue:#0066ff;             /* bleu ciel pour bulles (comme avant) */
       --aw-blue-hover:#3d8bff;       /* survol : bleu plus soutenu */
       --aw-copper:#ff5c00; --aw-muted:#6b7280;
       --aw-panel:#ffffff; --aw-bg:#f5f7ff;     /* fond clair */
@@ -24,7 +24,7 @@
     @media (prefers-color-scheme:dark){
       :root{
         --aw-ink:#9A9EA6;
-        --aw-blue:#7fbfff;
+        --aw-blue:#0066ff;
         --aw-blue-hover:#3d8bff;
         --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
         --aw-panel:#0b0f1a; --aw-bg:#0a0d14;
@@ -70,7 +70,7 @@
     .card{background:var(--aw-panel); border:1px solid rgba(15,95,154,.12); border-radius:var(--aw-radius); box-shadow:var(--shadow); padding:24px; transition:all var(--transition); display:block; position:relative; color:inherit; text-align:left;}
     .card:hover{transform:translateY(-4px); box-shadow:0 28px 56px rgba(15,95,154,.15); border-color:var(--aw-copper);}
 
-    .pill{display:inline-flex; align-items:center; justify-content:center; padding:6px 12px; margin:0 0 10px; border-radius:999px; background:#0F5F9A; color:#fff; font:800 12px/1 "Inter",system-ui,-apple-system,Arial,sans-serif;}
+    .pill{display:inline-flex; align-items:center; justify-content:center; padding:6px 12px; margin:0 0 10px; border-radius:999px; background:#0066ff; color:#fff; font:800 12px/1 "Inter",system-ui,-apple-system,Arial,sans-serif;}
 
     .muted{color:var(--aw-muted)} .small{font-size:13px; color:var(--aw-muted);}
     .btn{display:inline-flex; align-items:center; justify-content:center; padding:10px 14px; border-radius:12px; font-weight:800; color:#fff; background:var(--aw-blue); border:none; cursor:pointer; transition:all var(--transition); box-shadow:var(--shadow);}
@@ -108,7 +108,7 @@
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="content">
       <h1>Modèles juridiques</h1>
-      <p class="lead">Éditeur intelligent : remplis les champs, tous les <b>[[…]]</b> se complètent en temps réel. Copie chaque modèle ou télécharge un pack .zip sans serveur.</p>
+      <p class="lead" style="color:#FF5C00">Deux modes : Éditeur rapide (30 s) pour l’essentiel, Éditeur avancé (60 s) pour tout personnaliser.</p>
     </div>
   </section>
 
