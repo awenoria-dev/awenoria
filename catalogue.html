@@ -29,6 +29,12 @@
       --aw-bg:#F5F7FF;
       --aw-radius:24px;
       --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+
+      --folder-blue:#0066FF;
+      --folder-copper:#FF8A3D;
+      --folder-radius:22px;
+      --folder-shadow:0 8px 24px rgba(0,0,0,.08);
+      --folder-shadow-hover:0 12px 32px rgba(0,0,0,.12);
     }
     @media (prefers-color-scheme:dark){
       :root{
@@ -139,11 +145,7 @@
     .ruban-card:hover .hover-card,
     .ruban-card:focus-within .hover-card{ opacity:1; transform:translateY(0); pointer-events:auto }
     .hover-pills{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px }
-    .hover-pill{
-      font-size:.78rem; font-weight:800; line-height:1;
-      padding:6px 10px; border-radius:999px;
-      background:rgba(0,102,255,.10); color:#0066FF;
-    }
+    .hover-pill{ font-size:.78rem; font-weight:800; line-height:1; padding:6px 10px; border-radius:999px; background:rgba(0,102,255,.10); color:#0066FF; }
     .hover-card h4{ margin:0 0 6px; font-size:1rem; font-weight:800 }
     .hover-card p{ margin:0 0 10px; font-size:.92rem; color:var(--aw-ink) }
     .hover-card ul{ margin:0 0 12px 18px; padding:0; color:var(--aw-muted); font-size:.92rem }
@@ -152,110 +154,71 @@
     @media (max-width:640px){ .hover-card{ inset:auto 12px 12px 12px } }
 
     /* ----------  FOLDER BOARD 2025  ---------- */
-    :root{
-      --folder-blue:#0066FF;
-      --folder-copper:#FF8A3D;
-      --folder-radius:22px;
-      --folder-shadow:0 8px 24px rgba(0,0,0,.08);
-      --folder-shadow-hover:0 12px 32px rgba(0,0,0,.12);
-    }
-
     .folder-grid{
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      max-width: 720px;
-      margin: 40px auto 0;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+      max-width:720px;
+      margin:40px auto 0;
     }
-
     .folder{
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255,255,255,.65);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(0,0,0,.06);
-      border-radius: var(--folder-radius);
-      padding: 24px 12px;
-      cursor: pointer;
-      box-shadow: var(--folder-shadow);
-      transition: transform .22s cubic-bezier(.4,1.8,.6,1), box-shadow .22s ease;
-      font: inherit;
-      color: var(--aw-ink);
-      -webkit-tap-highlight-color: transparent;
+      position:relative; display:flex; flex-direction:column; align-items:center; gap:10px;
+      background:rgba(255,255,255,.65); backdrop-filter:blur(12px);
+      border:1px solid rgba(0,0,0,.06); border-radius:var(--folder-radius);
+      padding:24px 12px; cursor:pointer; box-shadow:var(--folder-shadow);
+      transition:transform .22s cubic-bezier(.4,1.8,.6,1), box-shadow .22s ease;
+      color:var(--aw-ink); -webkit-tap-highlight-color:transparent;
     }
-    .folder:hover{ transform: scale(1.05); box-shadow: var(--folder-shadow-hover); }
-    .folder:active{ transform: scale(.97); }
-
+    .folder:hover{ transform:scale(1.05); box-shadow:var(--folder-shadow-hover) }
+    .folder:active{ transform:scale(.97) }
     .folder-icon{
-      width: 52px; height: 52px;
-      display: grid; place-items: center;
-      border-radius: 14px;
-      font-size: 1.8rem;
-      background: linear-gradient(135deg, var(--folder-blue), var(--folder-copper));
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(0,102,255,.25);
+      width:52px; height:52px; display:grid; place-items:center; border-radius:14px; font-size:1.8rem;
+      background:linear-gradient(135deg,var(--folder-blue),var(--folder-copper)); color:#fff; box-shadow:0 4px 12px rgba(0,102,255,.25);
     }
-    .folder-label{ font-weight: 700; font-size: .92rem; text-align: center; }
+    .folder-label{ font-weight:700; font-size:.92rem; text-align:center }
 
-    /* ----------  DRAWER (anti-tronquage) ---------- */
+    /* ----------  DRAWER (fermé invisible, ouvert visible) ---------- */
     .folder-drawer{
-      grid-column: 1 / -1;
-      max-height: 0;
-      overflow: hidden;
-      background: rgba(255,255,255,.75);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(0,0,0,.05);
-      border-radius: 0 0 var(--folder-radius) var(--folder-radius);
-      margin: 0 8px;
-      padding: 0 20px; /* pas de padding vertical fermé */
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      gap: 12px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-gutter: stable both-edges;
-      transition: max-height .35s ease, padding .35s ease;
-      box-sizing: border-box;
+      grid-column:1 / -1;
+      max-height:0;
+      overflow:hidden;
+      /* masque les "traits" quand c'est fermé */
+      border:0;
+      background:transparent;
+      border-radius:0 0 var(--folder-radius) var(--folder-radius);
+      margin:0 8px;
+      padding:0 20px;
+      display:flex; flex-direction:row; flex-wrap:nowrap; gap:12px;
+      overflow-x:auto; -webkit-overflow-scrolling:touch;
+      scrollbar-gutter:stable both-edges;
+      transition:max-height .35s ease, padding .35s ease, border-color .2s ease, background .2s ease;
+      box-sizing:border-box;
+      pointer-events:none;
     }
     .folder-drawer.open{
-      max-height: 120px;       /* fallback si JS off */
-      padding: 16px 20px 26px; /* laisse respirer au-dessus de la scrollbar */
-      align-items: center;
+      max-height:120px;           /* fallback si JS off */
+      padding:16px 20px 26px;
+      align-items:center;
+      border:1px solid rgba(0,0,0,.05);
+      background:rgba(255,255,255,.75);
+      pointer-events:auto;
     }
     .folder-drawer a{
-      display: inline-flex;
-      align-items: center;
-      height: 38px;
-      padding: 0 16px;
-      border-radius: 999px;
-      background: rgba(0,102,255,.08);
-      color: var(--folder-blue);
-      font-weight: 700;
-      font-size: .87rem;
-      text-decoration: none;
-      transition: background .2s;
-      white-space: nowrap;
+      display:inline-flex; align-items:center; height:38px; padding:0 16px;
+      border-radius:999px; background:rgba(0,102,255,.08); color:var(--folder-blue);
+      font-weight:700; font-size:.87rem; text-decoration:none; transition:background .2s; white-space:nowrap;
     }
-    .folder-drawer a:hover{ background: rgba(0,102,255,.18); }
-    .folder-drawer::-webkit-scrollbar{ height: 8px; }
-    .folder-drawer::-webkit-scrollbar-thumb{ background: rgba(0,0,0,.25); border-radius:999px; }
+    .folder-drawer a:hover{ background:rgba(0,102,255,.18) }
+    .folder-drawer::-webkit-scrollbar{ height:8px }
+    .folder-drawer::-webkit-scrollbar-thumb{ background:rgba(0,0,0,.25); border-radius:999px }
 
-    /* Fleche indicateur */
+    /* flèche indicateur */
     .folder::after{
-      content: "";
-      position: absolute;
-      bottom: -8px; left: 50%; transform: translateX(-50%) scaleY(0);
-      width: 0; height: 0;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-top: 8px solid rgba(0,0,0,.08);
-      transition: transform .25s ease;
+      content:""; position:absolute; bottom:-8px; left:50%; transform:translateX(-50%) scaleY(0);
+      width:0; height:0; border-left:8px solid transparent; border-right:8px solid transparent; border-top:8px solid rgba(0,0,0,.08);
+      transition:transform .25s ease;
     }
-    .folder.open::after{ transform: translateX(-50%) scaleY(1); }
+    .folder.open::after{ transform:translateX(-50%) scaleY(1) }
 
     @media (max-width:480px){
       .folder-grid{ gap:12px }
@@ -350,10 +313,9 @@
       </div>
     </div>
 
-    <!-- CARROUSEL FORMATIONS -->
+    <!-- CARROUSEL FORMATIONS (extraits) -->
     <div class="ruban" aria-label="Toutes nos formations">
       <div class="ruban-track" data-direction="left">
-        <!-- Exemple 1 -->
         <figure class="ruban-card">
           <span class="badge" data-cat="rgpd">#RGPD</span>
           <div class="media"><img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=800&q=60" alt=""></div>
@@ -364,24 +326,19 @@
           </figcaption>
           <div class="hover-card" role="dialog" aria-label="Fiche RGPD Express">
             <div class="hover-pills">
-              <span class="hover-pill">1/2 journée</span>
-              <span class="hover-pill">Débutant à intermédiaire</span>
-              <span class="hover-pill">Présentiel</span>
-              <span class="hover-pill">Distanciel</span>
+              <span class="hover-pill">1/2 journée</span><span class="hover-pill">Débutant à intermédiaire</span>
+              <span class="hover-pill">Présentiel</span><span class="hover-pill">Distanciel</span>
             </div>
             <h4>RGPD : les essentiels opérationnels</h4>
             <p>Comprendre les obligations clés et savoir quoi faire demain matin.</p>
             <ul>
-              <li>Bases légales &amp; minimisation</li>
-              <li>Registre : quoi, comment, preuves</li>
-              <li>Droits des personnes : process &amp; SLA</li>
-              <li>Plan d’action 90 jours</li>
+              <li>Bases légales &amp; minimisation</li><li>Registre : quoi, comment, preuves</li>
+              <li>Droits des personnes : process &amp; SLA</li><li>Plan d’action 90 jours</li>
             </ul>
             <a class="btn-soft" href="./formation/rgpd-2h.html" target="_blank" rel="noopener">Voir la fiche</a>
           </div>
         </figure>
 
-        <!-- Exemple 2 -->
         <figure class="ruban-card">
           <span class="badge" data-cat="ia">#IA</span>
           <div class="media"><img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=800&q=60" alt=""></div>
@@ -392,24 +349,18 @@
           </figcaption>
           <div class="hover-card" role="dialog" aria-label="Fiche IA Act Day">
             <div class="hover-pills">
-              <span class="hover-pill">1 journée</span>
-              <span class="hover-pill">Intermédiaire</span>
-              <span class="hover-pill">Présentiel</span>
-              <span class="hover-pill">Distanciel</span>
+              <span class="hover-pill">1 journée</span><span class="hover-pill">Intermédiaire</span>
+              <span class="hover-pill">Présentiel</span><span class="hover-pill">Distanciel</span>
             </div>
             <h4>IA Act (UE) : obligations &amp; documentation</h4>
             <p>Qualifier les systèmes, comprendre les obligations et bâtir les preuves.</p>
             <ul>
-              <li>Catégorisation des risques &amp; calendrier</li>
-              <li>Exigences produit &amp; gouvernance des données</li>
-              <li>Documentation technique &amp; registres</li>
-              <li>Plan de mise en conformité</li>
+              <li>Catégorisation des risques &amp; calendrier</li><li>Exigences produit &amp; gouvernance des données</li>
+              <li>Documentation technique &amp; registres</li><li>Plan de mise en conformité</li>
             </ul>
             <a class="btn-soft" href="./formation/ia-act.html" target="_blank" rel="noopener">Voir la fiche</a>
           </div>
         </figure>
-
-        <!-- (Autres cartes inchangées)… -->
       </div>
     </div>
   </section>
@@ -423,23 +374,16 @@
     <div class="folder-grid">
       <!-- Boutons (rangée 1) -->
       <button class="folder" aria-expanded="false" aria-controls="f-services">
-        <span class="folder-icon">🛠️</span>
-        <span class="folder-label">Nos Services</span>
+        <span class="folder-icon">🛠️</span><span class="folder-label">Nos Services</span>
       </button>
-
       <button class="folder" aria-expanded="false" aria-controls="f-formations">
-        <span class="folder-icon">🎓</span>
-        <span class="folder-label">Nos Formations</span>
+        <span class="folder-icon">🎓</span><span class="folder-label">Nos Formations</span>
       </button>
-
       <button class="folder" aria-expanded="false" aria-controls="f-audit">
-        <span class="folder-icon">🔍</span>
-        <span class="folder-label">Audit & Analyse</span>
+        <span class="folder-icon">🔍</span><span class="folder-label">Audit & Analyse</span>
       </button>
-
       <button class="folder" aria-expanded="false" aria-controls="f-atelier">
-        <span class="folder-icon">⚙️</span>
-        <span class="folder-label">Atelier 2 h RGPD</span>
+        <span class="folder-icon">⚙️</span><span class="folder-label">Atelier 2 h RGPD</span>
       </button>
 
       <!-- Drawers (pleine largeur sous la rangée) -->
@@ -489,23 +433,16 @@
   <!-- Canvas particules -->
   <script>
     (function(){
-      const cvs = document.getElementById('canvas'); if(!cvs) return;
-      const ctx = cvs.getContext('2d');
-      const hero = cvs.parentElement;
-
-      function resize(){
-        const r = hero.getBoundingClientRect();
-        cvs.width = r.width; cvs.height = r.height;
-      }
+      const cvs=document.getElementById('canvas'); if(!cvs) return;
+      const ctx=cvs.getContext('2d'); const hero=cvs.parentElement;
+      function resize(){ const r=hero.getBoundingClientRect(); cvs.width=r.width; cvs.height=r.height; }
       let w,h; function upd(){ resize(); w=cvs.width; h=cvs.height; }
-
       const P=[], CFG={n:70, speed:.35, r:2, link:120};
       class Dot{
         constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*CFG.speed; this.vy=(Math.random()-.5)*CFG.speed; }
         step(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
         draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,CFG.r,0,Math.PI*2); ctx.fillStyle='rgba(255,255,255,.25)'; ctx.fill(); }
-        links(){ for(const q of P){ const d=Math.hypot(this.x-q.x,this.y-q.y); if(d<CFG.link){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/CFG.link})`; ctx.stroke(); } }
-        }
+        links(){ for(const q of P){ const d=Math.hypot(this.x-q.x,this.y-q.y); if(d<CFG.link){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/CFG.link})`; ctx.stroke(); } } }
       }
       function init(){ upd(); P.length=0; for(let i=0;i<CFG.n;i++) P.push(new Dot()); }
       function loop(){ ctx.clearRect(0,0,w,h); P.forEach(p=>{ p.step(); p.draw(); p.links(); }); requestAnimationFrame(loop); }
@@ -516,57 +453,38 @@
   <!-- Injection header/footer + compat GitHub Pages -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const headMount = document.getElementById("header");
-    const footMount = document.getElementById("footer");
-    if (!headMount && !footMount) return;
+    const headMount=document.getElementById("header");
+    const footMount=document.getElementById("footer");
+    if(!headMount && !footMount) return;
 
-    const isGh = /github\.io$/.test(location.hostname);
-    let base = "/";
-    if (isGh) {
-      const parts = location.pathname.split("/").filter(Boolean);
-      base = parts.length ? `/${parts[0]}/` : "/";
+    const isGh=/github\.io$/.test(location.hostname);
+    let base="/";
+    if(isGh){
+      const parts=location.pathname.split("/").filter(Boolean);
+      base=parts.length?`/${parts[0]}/`:"/";
     }
-    const candidates = (p) => {
-      const clean = p.replace(/^\//, "");
-      return [ base + clean, "./" + clean, "../" + clean ];
-    };
-    async function fetchAny(paths) {
-      const queue = paths.flatMap(candidates);
-      for (const u of queue) {
-        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
-      }
-      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+    const candidates=(p)=>{ const clean=p.replace(/^\//,""); return [ base+clean, "./"+clean, "../"+clean ]; };
+    async function fetchAny(paths){
+      const queue=paths.flatMap(candidates);
+      for(const u of queue){ try{ const r=await fetch(u,{cache:"no-cache"}); if(r.ok) return r.text(); }catch(_){} }
+      throw new Error("Aucun chemin valide parmi: "+paths.join(", "));
     }
-    function fixRootUrls(container) {
-      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
-        .forEach(el => {
-          const attr = el.hasAttribute("href") ? "href" : "src";
-          const val = el.getAttribute(attr);
-          if (/^\/\//.test(val)) return;
-          el.setAttribute(attr, base + val.replace(/^\//, ""));
-        });
+    function fixRootUrls(container){
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]').forEach(el=>{
+        const attr=el.hasAttribute("href")?"href":"src"; const val=el.getAttribute(attr);
+        if(/^\/\//.test(val)) return; el.setAttribute(attr, base + val.replace(/^\//,""));
+      });
     }
-    // HEADER
-    if (headMount) {
-      fetchAny(["header.html", "partials/header.html"])
-        .then(html => {
-          headMount.innerHTML = html;
-          fixRootUrls(headMount);
-          return fetchAny(["assets/nav.js", "nav.js"]);
-        })
-        .then(code => {
-          const s = document.createElement("script");
-          if (/\b(import|export)\b/.test(code)) s.type = "module";
-          s.textContent = code;
-          document.body.appendChild(s);
-        })
-        .catch(() => { headMount.innerHTML = "<!-- Header introuvable -->"; });
+    if(headMount){
+      fetchAny(["header.html","partials/header.html"])
+        .then(html=>{ headMount.innerHTML=html; fixRootUrls(headMount); return fetchAny(["assets/nav.js","nav.js"]); })
+        .then(code=>{ const s=document.createElement("script"); if(/\b(import|export)\b/.test(code)) s.type="module"; s.textContent=code; document.body.appendChild(s); })
+        .catch(()=>{ headMount.innerHTML="<!-- Header introuvable -->"; });
     }
-    // FOOTER
-    if (footMount) {
-      fetchAny(["footer.html", "partials/footer.html"])
-        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
-        .catch(() => { footMount.innerHTML = "<!-- Footer introuvable -->"; });
+    if(footMount){
+      fetchAny(["footer.html","partials/footer.html"])
+        .then(html=>{ footMount.innerHTML=html; fixRootUrls(footMount); })
+        .catch(()=>{ footMount.innerHTML="<!-- Footer introuvable -->"; });
     }
   });
   </script>
@@ -575,99 +493,57 @@
   <script>
     (function(){
       function syncRubanHeights(){
-        document.querySelectorAll('.ruban').forEach(r => {
-          const cards = r.querySelectorAll('.ruban-card');
-          let max = 0;
-          cards.forEach(c => { max = Math.max(max, c.offsetHeight); });
-          r.style.height = (max + 4) + 'px';
+        document.querySelectorAll('.ruban').forEach(r=>{
+          const cards=r.querySelectorAll('.ruban-card'); let max=0;
+          cards.forEach(c=>{ max=Math.max(max, c.offsetHeight); });
+          r.style.height=(max+4)+'px';
         });
       }
-      const ro = new ResizeObserver(syncRubanHeights);
-      window.addEventListener('load', () => {
-        document.querySelectorAll('.ruban-card').forEach(el => ro.observe(el));
-        syncRubanHeights();
-      }, { once:true });
-      window.addEventListener('resize', syncRubanHeights, { passive:true });
-      document.addEventListener('load', e => {
-        if(e.target && e.target.tagName === 'IMG') syncRubanHeights();
-      }, true);
+      const ro=new ResizeObserver(syncRubanHeights);
+      window.addEventListener('load', ()=>{ document.querySelectorAll('.ruban-card').forEach(el=>ro.observe(el)); syncRubanHeights(); }, {once:true});
+      window.addEventListener('resize', syncRubanHeights, {passive:true});
+      document.addEventListener('load', e=>{ if(e.target && e.target.tagName==='IMG') syncRubanHeights(); }, true);
     })();
   </script>
 
   <!-- ----------  FOLDERS : clic + survol (desktop), anti-tronquage ---------- -->
   <script>
-    // Ouvre un tiroir et ajuste sa hauteur au contenu réel
     function openDrawer(btn){
-      const id = btn.getAttribute('aria-controls');
-      const drawer = document.getElementById(id);
-      if (!drawer) return;
+      const id=btn.getAttribute('aria-controls');
+      const drawer=document.getElementById(id);
+      if(!drawer) return;
+      document.querySelectorAll('.folder').forEach(b=>{ b.classList.remove('open'); b.setAttribute('aria-expanded','false'); });
+      document.querySelectorAll('.folder-drawer').forEach(d=>{ d.classList.remove('open'); d.style.maxHeight=''; });
 
-      // reset
-      document.querySelectorAll('.folder').forEach(b => {
-        b.classList.remove('open');
-        b.setAttribute('aria-expanded', 'false');
-      });
-      document.querySelectorAll('.folder-drawer').forEach(d => {
-        d.classList.remove('open');
-        d.style.maxHeight = '';
-      });
-
-      // open
-      btn.classList.add('open');
-      btn.setAttribute('aria-expanded', 'true');
+      btn.classList.add('open'); btn.setAttribute('aria-expanded','true');
       drawer.classList.add('open');
 
-      // calc hauteur réelle (une ligne de puces + padding)
-      requestAnimationFrame(() => {
-        const verticalPadding = 16 + 26; // padding-top + padding-bottom définis en CSS .open
-        const contentHeight = drawer.scrollHeight + verticalPadding;
-        drawer.style.maxHeight = contentHeight + 'px';
+      requestAnimationFrame(()=>{
+        const verticalPadding=16+26; // padding-top + padding-bottom en CSS .open
+        const contentHeight=drawer.scrollHeight + verticalPadding;
+        drawer.style.maxHeight=contentHeight+'px';
       });
     }
-
     function closeAll(){
-      document.querySelectorAll('.folder').forEach(b => {
-        b.classList.remove('open');
-        b.setAttribute('aria-expanded', 'false');
-      });
-      document.querySelectorAll('.folder-drawer').forEach(d => {
-        d.classList.remove('open');
-        d.style.maxHeight = '';
-      });
+      document.querySelectorAll('.folder').forEach(b=>{ b.classList.remove('open'); b.setAttribute('aria-expanded','false'); });
+      document.querySelectorAll('.folder-drawer').forEach(d=>{ d.classList.remove('open'); d.style.maxHeight=''; });
     }
-
-    const buttons = document.querySelectorAll('.folder');
-    const grid = document.querySelector('.folder-grid');
-
-    buttons.forEach(btn => {
-      // 1) CLIC (mobile + desktop)
-      btn.addEventListener('click', () => {
-        const isOpen = btn.classList.contains('open');
-        if (isOpen) { closeAll(); } else { openDrawer(btn); }
-      });
-
-      // 2) SURVOL & FOCUS (desktop uniquement)
-      if (matchMedia('(hover: hover)').matches) {
-        btn.addEventListener('mouseenter', () => openDrawer(btn));
-        btn.addEventListener('focus', () => openDrawer(btn));
+    const buttons=document.querySelectorAll('.folder');
+    const grid=document.querySelector('.folder-grid');
+    buttons.forEach(btn=>{
+      btn.addEventListener('click', ()=>{ btn.classList.contains('open') ? closeAll() : openDrawer(btn); });
+      if(matchMedia('(hover: hover)').matches){
+        btn.addEventListener('mouseenter', ()=>openDrawer(btn));
+        btn.addEventListener('focus', ()=>openDrawer(btn));
       }
     });
-
-    // Option : quitter la zone ferme tout (desktop)
-    if (matchMedia('(hover: hover)').matches && grid) {
-      grid.addEventListener('mouseleave', closeAll);
-    }
-
-    // Recalcule à chaque resize
-    window.addEventListener('resize', () => {
-      const btn = document.querySelector('.folder.open');
-      if (!btn) return;
-      const drawer = document.getElementById(btn.getAttribute('aria-controls'));
-      if (!drawer) return;
-      const verticalPadding = 16 + 26;
-      const contentHeight = drawer.scrollHeight + verticalPadding;
-      drawer.style.maxHeight = contentHeight + 'px';
-    }, { passive:true });
+    if(matchMedia('(hover: hover)').matches && grid){ grid.addEventListener('mouseleave', closeAll); }
+    window.addEventListener('resize', ()=>{
+      const btn=document.querySelector('.folder.open'); if(!btn) return;
+      const drawer=document.getElementById(btn.getAttribute('aria-controls')); if(!drawer) return;
+      const verticalPadding=16+26; const contentHeight=drawer.scrollHeight + verticalPadding;
+      drawer.style.maxHeight=contentHeight+'px';
+    }, {passive:true});
   </script>
 </body>
 </html>
