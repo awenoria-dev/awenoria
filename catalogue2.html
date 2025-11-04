@@ -168,12 +168,11 @@
 
     .folder-grid{
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr); /* ✅ TOUJOURS 4 COLONNES */
       gap: 20px;
       max-width: 720px;
       margin: 40px auto 0;
     }
-    @media (min-width: 640px){ .folder-grid{ grid-template-columns: repeat(4, 1fr); } }
 
     .folder{
       position: relative;
@@ -220,8 +219,8 @@
       margin: 0 8px;
       padding: 0 20px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      flex-wrap: nowrap; /* ✅ HORIZONTAL */
+      gap: 12px;
       transition: max-height .35s ease, padding .35s ease;
     }
     .folder-drawer.open{
@@ -241,6 +240,7 @@
       font-size: .87rem;
       text-decoration: none;
       transition: background .2s;
+      white-space: nowrap; /* ✅ pas de retour à la ligne */
     }
     .folder-drawer a:hover{ background: rgba(0,102,255,.18); }
 
@@ -256,6 +256,14 @@
       transition: transform .25s ease;
     }
     .folder.open::after{ transform: translateX(-50%) scaleY(1); }
+
+    /* ----------  PETIT PLUS RESPONSIVE  ---------- */
+    @media (max-width: 480px){
+      .folder-grid{ gap: 12px; }
+      .folder{ padding: 18px 8px; }
+      .folder-icon{ width: 44px; height: 44px; font-size: 1.5rem; }
+      .folder-label{ font-size: .8rem; }
+    }
   </style>
 </head>
 
