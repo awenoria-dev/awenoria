@@ -12,18 +12,17 @@
 
   <style>
     :root{
-      --aw-ink:#0F5F9A;              /* ← logo colour */
-      --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
-      --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
-      --shadow:0 25px 50px -12px rgba(15,95,154,.15);   /* tinted with logo */
+      --aw-ink:#DCDDE1;              /* ← texte général */
+      --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#a1a9c0;
+      --aw-panel:#ffffff; --aw-bg:#0b0f1a;     /* fond sombre pour faire ressortir #DCDDE1 */
+      --aw-radius:24px;
+      --shadow:0 25px 50px -12px rgba(15,95,154,.25);
       --transition:.6s cubic-bezier(.22,1,.36,1);
     }
-    @media (prefers-color-scheme:dark){
+    @media (prefers-color-scheme:light){
       :root{
-        --aw-ink:#c7e2ff;            /* light tint for dark mode */
-        --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
-        --aw-panel:#0b0f1a; --aw-bg:#0a0d14;
-        --shadow:0 25px 50px -12px rgba(15,95,154,.25);
+        --aw-panel:#ffffff; --aw-bg:#f5f7ff;
+        --shadow:0 25px 50px -12px rgba(0,0,0,.15);
       }
     }
 
@@ -55,7 +54,7 @@
     /* ---------- Sections ---------- */
     .section{max-width:1200px; margin:0 auto; padding:100px 20px;}
     .section.alt{background:var(--aw-bg);}
-    .title{margin:0 0 10px; text-align:center; font-size:clamp(30px,4.5vw,42px); color:var(--aw-ink); font-weight:800;}
+    .title{margin:0 0 10px; text-align:center; font-size:clamp(30px,4.5vw,42px); color:#0F5F9A; font-weight:800;}
     .title::after{content:''; display:block; width:60px; height:4px; background:var(--aw-copper); margin:10px auto 0; border-radius:3px;}
 
     .grid{display:grid; grid-template-columns:2fr 1fr; gap:24px; margin-top:18px;}
@@ -111,12 +110,12 @@
         <!-- Colonne principale -->
         <article class="card">
           <h2>1) Responsable de traitement</h2>
-          <p>L’<b>éditeur du site Awenoria</b> (voir <a href="mentions.html">Mentions légales</a>) est responsable des traitements décrits ci-dessous.<br>
+          <p style="color:#DCDDE1">L’<b>éditeur du site Awenoria</b> (voir <a href="mentions.html">Mentions légales</a>) est responsable des traitements décrits ci-dessous.<br>
           Contact confidentialité / DPO : <a href="mailto:vosdroits@dpo101.fr">vosdroits@dpo101.fr</a> (objet : « Droit des personnes »).<br>
           Contact général : <a href="mailto:contact@dpo101.fr">contact@dpo101.fr</a>.</p>
 
           <h2>2) Quelles données, pourquoi et sur quelle base ?</h2>
-          <table>
+          <table style="color:#DCDDE1">
             <thead>
               <tr><th>Finalité</th><th>Données traitées</th><th>Base légale</th><th>Durée de conservation</th></tr>
             </thead>
@@ -161,46 +160,46 @@
           </table>
 
           <h2>3) Origine des données</h2>
-          <p>Les données proviennent directement de vous (saisie formulaire, préférences cookies) et de votre activité sur le site (logs techniques, mesures d’audience anonymisées le cas échéant).</p>
+          <p style="color:#DCDDE1">Les données proviennent directement de vous (saisie formulaire, préférences cookies) et de votre activité sur le site (logs techniques, mesures d’audience anonymisées le cas échéant).</p>
 
           <h2>4) Destinataires</h2>
-          <ul>
+          <ul style="color:#DCDDE1">
             <li>Équipe Awenoria et personnes habilitées à traiter les demandes.</li>
             <li>Hébergeurs et prestataires techniques (ex. hébergement du site / CDN, solutions d’analytique si activées).</li>
             <li>Le cas échéant, sous-traitants impliqués dans l’exécution de nos services (contrats, confidentialité et sécurité à l’appui).</li>
           </ul>
 
           <h2>5) Transferts hors UE</h2>
-          <p>Certaines solutions peuvent être situées hors UE. Dans ce cas, nous appliquons un <b>mécanisme de transfert</b> adéquat (décision d’adéquation, clauses contractuelles types), assorti de garanties appropriées.</p>
+          <p style="color:#DCDDE1">Certaines solutions peuvent être situées hors UE. Dans ce cas, nous appliquons un <b>mécanisme de transfert</b> adéquat (décision d’adéquation, clauses contractuelles types), assorti de garanties appropriées.</p>
 
           <h2>6) Vos droits</h2>
-          <p>Vous disposez des droits d’<b>accès</b>, <b>rectification</b>, <b>effacement</b>, <b>limitation</b>, <b>opposition</b> et <b>portabilité</b>, ainsi que du droit de définir des <b>directives post-mortem</b>.<br>
+          <p style="color:#DCDDE1">Vous disposez des droits d’<b>accès</b>, <b>rectification</b>, <b>effacement</b>, <b>limitation</b>, <b>opposition</b> et <b>portabilité</b>, ainsi que du droit de définir des <b>directives post-mortem</b>.<br>
           Pour l’emailing/prospection fondé sur le consentement, vous pouvez retirer votre consentement à tout moment.</p>
-          <p>Exercer vos droits : <a href="mailto:vosdroits@dpo101.fr">vosdroits@dpo101.fr</a> (objet : « Droit des personnes »). Une vérification d’identité peut être nécessaire.</p>
-          <p>Réclamation : <b>CNIL</b> — <a href="https://www.cnil.fr ">cnil.fr</a>, 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07.</p>
+          <p style="color:#DCDDE1">Exercer vos droits : <a href="mailto:vosdroits@dpo101.fr">vosdroits@dpo101.fr</a> (objet : « Droit des personnes »). Une vérification d’identité peut être nécessaire.</p>
+          <p style="color:#DCDDE1">Réclamation : <b>CNIL</b> — <a href="https://www.cnil.fr ">cnil.fr</a>, 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07.</p>
 
           <h2>7) Sécurité</h2>
-          <p>Mesures techniques et organisationnelles proportionnées : HTTPS, contrôles d’accès, journalisation sécurité, conservation limitée, revues régulières.</p>
+          <p style="color:#DCDDE1">Mesures techniques et organisationnelles proportionnées : HTTPS, contrôles d’accès, journalisation sécurité, conservation limitée, revues régulières.</p>
 
           <h2>8) Cookies & traceurs</h2>
-          <p>Voir notre <a href="politique-cookies.html">Politique cookies</a> pour les catégories, durées et la gestion des choix.<br>
+          <p style="color:#DCDDE1">Voir notre <a href="politique-cookies.html">Politique cookies</a> pour les catégories, durées et la gestion des choix.<br>
             Vous pouvez <b>modifier vos préférences</b> à tout moment :
             <button class="btn" onclick="(window.AwenoriaConsent||{}).open?.()">Gérer mes cookies</button>
           </p>
 
-          <p class="muted">Dernière mise à jour : <span id="lastUpdate">—</span></p>
+          <p class="muted" style="color:#DCDDE1">Dernière mise à jour : <span id="lastUpdate">—</span></p>
         </article>
 
         <!-- Colonne latérale -->
         <aside class="card">
-          <h3>Raccourcis utiles</h3>
+          <h3 style="color:#0F5F9A">Raccourcis utiles</h3>
           <p><a class="btn" href="#" onclick="(window.AwenoriaConsent||{}).open?.();return false;">Gérer mes cookies</a></p>
-          <p><a href="politique-cookies.html">Politique cookies</a></p>
-          <p><a href="mentions.html">Mentions légales</a></p>
-          <p><a href="contact.html">Contact</a></p>
+          <p><a href="politique-cookies.html" style="color:#DCDDE1">Politique cookies</a></p>
+          <p><a href="mentions.html" style="color:#DCDDE1">Mentions légales</a></p>
+          <p><a href="contact.html" style="color:#DCDDE1">Contact</a></p>
 
-          <h3 style="margin-top:18px">Rappels pratiques</h3>
-          <ul>
+          <h3 style="margin-top:18px;color:#0F5F9A">Rappels pratiques</h3>
+          <ul style="color:#DCDDE1">
             <li>Analyse par défaut <b>locale</b> (navigateur).</li>
             <li>Options serveur (ex. export PDF) : métadonnées minimales.</li>
             <li>Refus aussi simple que l’acceptation (cookies).</li>
@@ -217,8 +216,6 @@
   <script>
     // Année + date de MAJ
     document.addEventListener('DOMContentLoaded', () => {
-      const y = new Date().getFullYear();
-      // Le footer injecté contient déjà l’année — on laisse au footer sa propre logique si besoin.
       const lu = document.getElementById('lastUpdate');
       if (lu) lu.textContent = '2025-10-15';
     });
