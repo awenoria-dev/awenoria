@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mentions légales — Guide & modèles | Awenoria</title>
+  <title>Mentions légales | Awenoria</title>
   <meta name="description" content="Guide pratique pour rédiger vos mentions légales : contenus obligatoires selon votre statut, exemples, erreurs fréquentes, modèles téléchargeables.">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
@@ -34,7 +34,7 @@
     .hero .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
 
     /* Sections */
-    .section{max-width:1200px;margin:0 auto;padding:100px 20px}
+    .section{max-width:1200px;margin:0 auto;padding:140px 20px}
     .section.alt{background:var(--aw-bg)}
 
     /* Titles */
@@ -72,14 +72,11 @@
 <body class="page-mentions">
   <a class="skip-link" href="#main">Aller au contenu</a>
 
-  <!-- Header -->
-  <div id="header"></div>
-
   <!-- Hero -->
   <section class="hero">
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="content">
-      <h1>Mentions légales — Guide & modèles</h1>
+      <h1>Mentions légales</h1>
       <p class="lead">Tout ce qu’un <b>site</b> ou une <b>boutique en ligne</b> doit afficher : contenu obligatoire, exemples prêts à l’emploi et erreurs fréquentes à éviter.</p>
       <div class="cta-row">
         <a class="btn" href="#obligatoires" target="_self">Voir le contenu obligatoire ↓</a>
@@ -322,7 +319,7 @@
     const fmt = last.toLocaleDateString('fr-FR', { year:'numeric', month:'long', day:'2-digit' });
     const lastNode = document.getElementById('lastUpdated'); if(lastNode){ lastNode.textContent = fmt; lastNode.setAttribute('datetime', last.toISOString()) }
     const meta = document.createElement('meta'); meta.setAttribute('property','article:modified_time'); meta.setAttribute('content', last.toISOString()); document.head.appendChild(meta);
-    const ld = { '@context':'https://schema.org', '@type':'WebPage', name:'Mentions légales — Guide & modèles | Awenoria', url: location.href, dateModified: last.toISOString() };
+    const ld = { '@context':'https://schema.org ', '@type':'WebPage', name:'Mentions légales | Awenoria', url: location.href, dateModified: last.toISOString() };
     const ldScript = document.createElement('script'); ldScript.type = 'application/ld+json'; ldScript.textContent = JSON.stringify(ld); document.head.appendChild(ldScript);
   </script>
 
