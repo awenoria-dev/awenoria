@@ -7,20 +7,20 @@
   <meta name="description" content="Modèles prêts à l’emploi avec éditeur rapide et avancé : politique de confidentialité, cookies, mentions légales, clauses formulaires, emailing, CGV."/>
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400 ;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/awenoria.css">
   <base target="_blank">
 
   <style>
     :root{
-      --aw-ink:#0a0a0a;              /* texte général */
-      --aw-blue:#0066ff;             /* bleu principal */
-      --aw-blue-hover:#3d8bff;       /* survol */
-      --aw-copper:#ff5c00;           /* accent */
-      --aw-muted:#6b7280;            /* texte atténué */
-      --aw-panel:#ffffff;            /* surface */
-      --aw-bg:#f5f7ff;               /* fond */
-      --aw-radius:24px;              /* arrondis */
+      --aw-ink:#0a0a0a;
+      --aw-blue:#0066ff;
+      --aw-blue-hover:#3d8bff;
+      --aw-copper:#ff5c00;
+      --aw-muted:#6b7280;
+      --aw-panel:#ffffff;
+      --aw-bg:#f5f7ff;
+      --aw-radius:24px;
       --shadow:0 25px 50px -12px rgba(0,0,0,.15);
       --transition:.6s cubic-bezier(.22,1,.36,1);
     }
@@ -47,7 +47,7 @@
     .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
     .hero .content{position:relative;z-index:2;max-width:900px;padding:0 20px;animation:fadeInUp 1s both}
     .hero h1{font-size:clamp(52px,7vw,72px);font-weight:800;line-height:1.05;letter-spacing:-.02em}
-    .hero .lead{font-size:1.3rem;font-weight:500;margin:18px auto 0;color:#e8f0ff}
+    /* .hero .lead supprimé comme demandé */
 
     /* Sections / titres */
     .section{max-width:1200px;margin:0 auto;padding:100px 20px}
@@ -99,6 +99,10 @@
     .model{display:flex;flex-direction:column;gap:10px}
     .model textarea{width:100%;min-height:320px;resize:vertical;padding:14px;border:1px solid rgba(15,95,154,.12);border-radius:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:14px;line-height:1.55;background:var(--aw-bg);color:var(--aw-ink)}
 
+    /* Back to top */
+    .to-top{position:fixed; right:16px; bottom:16px; z-index:50; opacity:0; visibility:hidden; transform:translateY(12px); transition:all .3s ease}
+    .to-top.show{opacity:1; visibility:visible; transform:none}
+
     /* Animations */
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
     .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
@@ -114,7 +118,8 @@
   <section class="hero">
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="content">
-      <h1>Modèles juridiques</h1>
+      <h1 id="top">Modèles juridiques</h1>
+      <!-- Texte PJ1 supprimé -->
     </div>
   </section>
 
@@ -123,7 +128,7 @@
     <section class="section">
       <div class="container">
         <h2 class="title">Éditer mon formulaire</h2>
-        <p class="subtitle-center">L’éditeur intelligent pré-remplit tous les <b>[[…]]</b> en temps réel : choisis un modèle, filtre par thème, puis finalise en 30 s (rapide) ou 60 s (avancé) et copie ou télécharge le pack .zip.</p>
+        <p class="subtitle-center">Choisis un modèle, filtre par thème, puis utilise l’éditeur intelligent pour pré-remplir les <b>[[…]]</b>.</p>
 
         <div class="filterbar" role="search">
           <input id="filterInput" type="search" placeholder="Filtrer (ex. RGPD, cookies, mentions, CGV)" aria-label="Filtrer les cartes"/>
@@ -231,7 +236,7 @@
                   <div class="grid cols-3">
                     <div><label for="rcsVille">RCS (Ville)</label><input id="rcsVille" name="rcsVille" placeholder="Paris"></div>
                     <div><label for="telephone">Téléphone</label><input id="telephone" name="telephone" placeholder="01 23 45 67 89"></div>
-                    <div><label for="siteURL">URL du site</label><input id="siteURL" name="siteURL" placeholder="https://exemple.fr "></div>
+                    <div><label for="siteURL">URL du site</label><input id="siteURL" name="siteURL" placeholder="https://exemple.fr"></div>
                   </div>
                 </fieldset>
               </form>
@@ -243,6 +248,10 @@
           </section>
 
           <!-- Modèles -->
+          <!-- (le reste de la page est inchangé) -->
+          <!-- ... TOUT TON CONTENU DE MODÈLES ICI (inchangé) ... -->
+
+          <!-- --- Début des sections modèles existantes --- -->
           <section id="polconf" class="section alt reveal" tabindex="-1" style="padding-top:0">
             <h2 class="title">Politique de confidentialité — modèle “site vitrine”</h2>
             <div class="card model">
@@ -421,6 +430,7 @@ Droit français. Tribunaux compétents selon le droit commun.
               <div class="btn-row"><button class="btn" data-copy="#mdl-cgv">Copier le modèle</button></div>
             </div>
           </section>
+          <!-- --- Fin des sections modèles existantes --- -->
         </div>
       </div>
     </section>
@@ -435,13 +445,16 @@ Droit français. Tribunaux compétents selon le droit commun.
     </section>
   </main>
 
+  <!-- Bouton ↑ Haut -->
+  <a class="btn to-top" id="toTop" href="#top" target="_self" aria-label="Revenir en haut">↑ Haut</a>
+
   <div id="footer"></div>
 
   <!-- JS libs pack zip -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js " crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js " crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <!-- JS: canvas + reveal + in-view + scrollspy + copier + éditeur + filtre + date + zip -->
+  <!-- JS: canvas + reveal + in-view + scrollspy + copier + éditeur + filtre + date + zip + toTop -->
   <script>
     /* Canvas particles */
     const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
@@ -565,8 +578,15 @@ Généré avec l'éditeur intelligent.
     /* Last updated + SEO */
     const last=new Date(document.lastModified); const fmt=last.toLocaleDateString('fr-FR',{year:'numeric',month:'long',day:'2-digit'}); const lastNode=document.getElementById('lastUpdated'); if(lastNode){ lastNode.textContent=fmt; lastNode.setAttribute('datetime',last.toISOString()) }
     const meta=document.createElement('meta'); meta.setAttribute('property','article:modified_time'); meta.setAttribute('content',last.toISOString()); document.head.appendChild(meta);
-    const ld={ '@context':'https://schema.org ', '@type':'WebPage', name:'Modèles juridiques — Awenoria', url: location.href, dateModified: last.toISOString() };
+    const ld={ '@context':'https://schema.org', '@type':'WebPage', name:'Modèles juridiques — Awenoria', url: location.href, dateModified: last.toISOString() };
     const ldScript=document.createElement('script'); ldScript.type='application/ld+json'; ldScript.textContent=JSON.stringify(ld); document.head.appendChild(ldScript);
+
+    /* Back to top */
+    const toTop = document.getElementById('toTop');
+    const ioTop = new IntersectionObserver(([entry]) => {
+      if(entry.isIntersecting){ toTop.classList.remove('show'); } else { toTop.classList.add('show'); }
+    });
+    ioTop.observe(document.querySelector('.hero'));
   </script>
 
   <!-- Loader header/footer + nav -->
