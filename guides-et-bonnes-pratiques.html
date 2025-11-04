@@ -8,9 +8,10 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  
   <!-- CSS globale -->
   <link rel="stylesheet" href="assets/awenoria.css">
+  <base target="_blank">
 
   <style>
     :root{
@@ -32,7 +33,11 @@
     img{max-width:100%;display:block}
     .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
-    /* ---------- Hero (identique aux autres pages) ---------- */
+    /* ---------- Skip link ---------- */
+    .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{left:10px;top:10px;width:auto;height:auto;z-index:1000;background:#000;color:#fff;padding:8px 10px;border-radius:8px}
+
+    /* ---------- Hero ---------- */
     .hero{
       position:relative; min-height:60vh; min-height:60svh;
       display:flex; align-items:center; justify-content:center;
@@ -46,14 +51,20 @@
     .hero .content{position:relative; z-index:2; max-width:900px; padding:0 20px; animation:fadeInUp 1s both;}
     .hero h1{font-size:clamp(48px,6.5vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em;}
     .hero .lead{font-size:1.25rem; font-weight:500; margin:18px auto 0; color:#e8f0ff;}
+    .hero .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
 
     /* ---------- Sections ---------- */
     .section{max-width:1200px; margin:0 auto; padding:100px 20px;}
     .section.alt{background:var(--aw-bg);}
+
+    /* ---------- Titres (alignés sur la page Ressources) ---------- */
     .title{
-      margin:0 0 10px; text-align:center; font-size:clamp(30px,4.5vw,42px);
-      color:var(--aw-ink); font-weight:800;
+      margin:0 auto 10px; text-align:center; font-size:clamp(36px,5vw,48px); font-weight:800;
+      background:linear-gradient(135deg, #0F5F9A 0%, #0d5285 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 2px 4px rgba(0,0,0,.08);
+      transition:transform .35s ease,opacity .35s ease;
     }
+    .section.in-view .title{transform:translateY(-2px); opacity:1;}
     .title::after{content:''; display:block; width:60px; height:4px; background:var(--aw-copper); margin:10px auto 0; border-radius:3px;}
 
     .grid{display:grid; gap:24px; margin-top:18px;}
@@ -61,35 +72,39 @@
     .cols-3{grid-template-columns:repeat(3,1fr)}
     @media(max-width:980px){.cols-2,.cols-3{grid-template-columns:1fr}}
 
-    .card{
-      background:var(--aw-panel); border:1px solid rgba(15,23,32,.08);
-      border-radius:var(--aw-radius); box-shadow:var(--shadow);
-      padding:24px; transition:all var(--transition);
-      color:inherit;
-    }
+    .card{background:var(--aw-panel); border:1px solid rgba(15,23,32,.08); border-radius:var(--aw-radius); box-shadow:var(--shadow); padding:24px; transition:all var(--transition); color:inherit;}
     .card:hover{transform:translateY(-2px)}
-    .pill{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:6px 12px; border-radius:999px; background:var(--aw-blue);
-      color:#fff; font:800 12px/1 "Inter",system-ui,-apple-system,Arial,sans-serif;
-      margin:0 0 10px 0;
-    }
+    .pill{display:inline-flex; align-items:center; justify-content:center; padding:6px 12px; border-radius:999px; background:var(--aw-blue); color:#fff; font:800 12px/1 "Inter",system-ui,-apple-system,Arial,sans-serif; margin:0 0 10px 0;}
     .list{margin:0;padding-left:18px}
     .muted{color:var(--aw-muted)}
     .small{font-size:13px;color:var(--aw-muted)}
-    .btn{
-      display:inline-block; padding:10px 14px; border-radius:10px; font-weight:800;
-      color:#fff; background:var(--aw-blue); box-shadow:var(--shadow); font-size:14px; transition:all var(--transition);
-    }
+    .btn{display:inline-block; padding:10px 14px; border-radius:10px; font-weight:800; color:#fff; background:var(--aw-blue); box-shadow:var(--shadow); font-size:14px; transition:all var(--transition);}
     .btn:hover{background:var(--aw-copper); transform:translateY(-2px);}
-    .btn.ghost{background:var(--aw-panel); color:var(--aw-blue); border:1px solid rgba(15,23,32,.08);}
+    .btn.ghost{background:var(--aw-panel); color:var(--aw-blue); border:1px solid rgba(15,23,32,.08);}    
     .dl{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
 
-    /* Anim */
+    /* ---------- Sommaire latéral (desktop) ---------- */
+    .toc{position:sticky; top:90px; align-self:start; background:var(--aw-panel); border:1px solid rgba(15,23,32,.08); border-radius:16px; padding:14px; box-shadow:var(--shadow)}
+    .toc h4{margin:0 0 8px 0; font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:var(--aw-muted)}
+    .toc a{display:block; padding:8px 10px; border-radius:10px; color:inherit}
+    .toc a.active{background:rgba(0,102,255,.08); color:var(--aw-blue); font-weight:700}
+
+    /* ---------- Bouton retour haut ---------- */
+    .to-top{position:fixed; right:16px; bottom:16px; z-index:50; opacity:0; visibility:hidden; transform:translateY(12px); transition:all .3s ease}
+    .to-top.show{opacity:1; visibility:visible; transform:none}
+
+    /* Animations */
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+    .reveal.is-visible{opacity:1;transform:none}
+
+    /* Layout pour sommaire + contenu */
+    .with-aside{display:grid; grid-template-columns:260px 1fr; gap:24px}
+    @media(max-width:1100px){.with-aside{grid-template-columns:1fr}}
   </style>
 </head>
 <body class="page-guides">
+  <a class="skip-link" href="#main">Aller au contenu</a>
 
   <!-- Header injecté -->
   <div id="header"></div>
@@ -100,31 +115,35 @@
     <div class="content">
       <h1 id="top">Guides & bonnes pratiques</h1>
       <p class="lead">Passe à l’action avec des check-lists prêtes à l’emploi : <b>RGPD côté site</b>, <b>Accessibilité (WCAG/RGAA)</b>, <b>Mentions & e-commerce</b>, <b>Cookies/CMP</b>.</p>
+      <div class="cta-row">
+        <a class="btn" href="#rgpd" target="_self">Voir RGPD ↓</a>
+        <a class="btn ghost" href="#mentions" target="_self">Mentions & e‑commerce</a>
+      </div>
     </div>
   </section>
 
-  <main>
+  <main id="main">
     <!-- Accès rapide -->
     <section class="section">
       <div class="container">
         <h2 class="title">Accès rapide</h2>
         <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:18px">
-          <a class="card" href="#rgpd">
+          <a class="card reveal" href="#rgpd" target="_self">
             <span class="pill">RGPD</span>
             <h3>RGPD côté site</h3>
             <p class="muted">Infos à afficher + preuves.</p>
           </a>
-          <a class="card" href="#a11y">
+          <a class="card reveal" href="#a11y" target="_self">
             <span class="pill">Accessibilité</span>
             <h3>WCAG / RGAA</h3>
             <p class="muted">Points essentiels à corriger.</p>
           </a>
-          <a class="card" href="#mentions">
+          <a class="card reveal" href="#mentions" target="_self">
             <span class="pill">Mentions</span>
-            <h3>Mentions & e-commerce</h3>
+            <h3>Mentions & e‑commerce</h3>
             <p class="muted">Obligations d’information.</p>
           </a>
-          <a class="card" href="#cookies">
+          <a class="card reveal" href="#cookies" target="_self">
             <span class="pill">Cookies</span>
             <h3>Cookies & CMP</h3>
             <p class="muted">Consentement & preuve.</p>
@@ -133,156 +152,168 @@
       </div>
     </section>
 
-    <!-- RGPD -->
-    <section id="rgpd" class="section alt">
-      <div class="container">
-        <h2 class="title">RGPD côté site — check-list</h2>
-        <div class="grid cols-2">
-          <article class="card">
-            <h3>Ce qu’il faut afficher</h3>
-            <ul class="list">
-              <li><b>Politique de confidentialité</b> accessible depuis toutes les pages (footer, header ou menu).</li>
-              <li><b>Finalités</b> de traitement clairement listées (contact, newsletter, analytics, paiement…).</li>
-              <li><b>Bases légales</b> correspondantes (consentement, contrat, intérêt légitime…).</li>
-              <li><b>Durées de conservation</b> par finalité (valeurs ou critères de détermination).</li>
-              <li><b>Droits des personnes</b> (accès, rectification, effacement, opposition, limitation, portabilité).</li>
-              <li><b>Contact</b> (DPO ou référent) + canal de demande (email/formulaire).</li>
-              <li><b>Transferts hors UE</b> (si applicable) et garanties.</li>
-              <li><b>Dernière mise à jour</b> de la politique.</li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>Formulaires & preuve</h3>
-            <ul class="list">
-              <li><b>Information au point de collecte</b> : court paragraphe + lien vers la politique.</li>
-              <li><b>Consentement</b> si nécessaire : case non cochée par défaut, texte précis, journalisation.</li>
-              <li><b>Preuve</b> : logs ou référence CMP, date/version de la politique, trace des MAJ.</li>
-              <li><b>Emails</b> : mention “se désinscrire” + lien fonctionnel, registre opt-in.</li>
-            </ul>
-            <div class="dl">
-              <a class="btn ghost" href="modeles.html">Modèles de clauses →</a>
-              <a class="btn" href="fonctionnalites.html#rgpd">Ce que l’outil vérifie →</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+    <!-- Zone avec sommaire latéral (scrollspy) -->
+    <section class="section alt">
+      <div class="container with-aside">
+        <aside class="toc">
+          <h4>Sommaire</h4>
+          <nav aria-label="Sommaire de la page">
+            <a href="#rgpd" data-spy>RGPD côté site</a>
+            <a href="#a11y" data-spy>Accessibilité (WCAG / RGAA)</a>
+            <a href="#mentions" data-spy>Mentions légales & e‑commerce</a>
+            <a href="#cookies" data-spy>Cookies & CMP</a>
+          </nav>
+        </aside>
 
-    <!-- Accessibilité -->
-    <section id="a11y" class="section">
-      <div class="container">
-        <h2 class="title">Accessibilité (WCAG / RGAA) — check-list</h2>
-        <div class="grid cols-3">
-          <article class="card">
-            <h3>Perceptible</h3>
-            <ul class="list">
-              <li><b>Textes alternatifs</b> pour les images porteuses d’info.</li>
-              <li><b>Contrastes</b> conformes (texte/fond, boutons, liens).</li>
-              <li><b>Hiérarchie sémantique</b> (h1→h2→h3), titres de pages pertinents.</li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>Utilisable</h3>
-            <ul class="list">
-              <li><b>Navigation clavier</b> complète (focus visible, ordre logique).</li>
-              <li><b>Composants</b> utilisables sans souris (menus, modales, carrousels).</li>
-              <li><b>Médias</b> avec sous-titres/transcriptions (si applicable).</li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>Compréhensible & robuste</h3>
-            <ul class="list">
-              <li><b>Libellés clairs</b> pour liens/boutons (“Télécharger le PDF” plutôt que “Cliquez ici”).</li>
-              <li><b>ARIA landmarks</b> (header, nav, main, footer) et rôles adaptés.</li>
-              <li><b>Déclaration d’accessibilité</b> + mécanisme de contact/médiation.</li>
-            </ul>
-            <div class="dl">
-              <a class="btn ghost" href="fonctionnalites.html#accessibilite">Vérifications automatiques →</a>
+        <div>
+          <!-- RGPD -->
+          <section id="rgpd" class="reveal" tabindex="-1">
+            <h2 class="title">RGPD côté site — check‑list</h2>
+            <div class="grid cols-2">
+              <article class="card">
+                <h3>Ce qu’il faut afficher</h3>
+                <ul class="list">
+                  <li><b>Politique de confidentialité</b> accessible depuis toutes les pages (footer, header ou menu).</li>
+                  <li><b>Finalités</b> de traitement clairement listées (contact, newsletter, analytics, paiement…).</li>
+                  <li><b>Bases légales</b> correspondantes (consentement, contrat, intérêt légitime…).</li>
+                  <li><b>Durées de conservation</b> par finalité (valeurs ou critères de détermination).</li>
+                  <li><b>Droits des personnes</b> (accès, rectification, effacement, opposition, limitation, portabilité).</li>
+                  <li><b>Contact</b> (DPO ou référent) + canal de demande (email/formulaire).</li>
+                  <li><b>Transferts hors UE</b> (si applicable) et garanties.</li>
+                  <li><b>Dernière mise à jour</b> de la politique.</li>
+                </ul>
+              </article>
+              <article class="card">
+                <h3>Formulaires & preuve</h3>
+                <ul class="list">
+                  <li><b>Information au point de collecte</b> : court paragraphe + lien vers la politique.</li>
+                  <li><b>Consentement</b> si nécessaire : case non cochée par défaut, texte précis, journalisation.</li>
+                  <li><b>Preuve</b> : logs ou référence CMP, date/version de la politique, trace des MAJ.</li>
+                  <li><b>Emails</b> : mention « se désinscrire » + lien fonctionnel, registre opt-in.</li>
+                </ul>
+                <div class="dl">
+                  <a class="btn ghost" href="modeles.html" target="_self">Modèles de clauses →</a>
+                  <a class="btn" href="fonctionnalites.html#rgpd" target="_self">Ce que l’outil vérifie →</a>
+                </div>
+              </article>
             </div>
-          </article>
-        </div>
-      </div>
-    </section>
+          </section>
 
-    <!-- Mentions & e-commerce -->
-    <section id="mentions" class="section alt">
-      <div class="container">
-        <h2 class="title">Mentions légales & e-commerce — check-list</h2>
-        <div class="grid cols-2">
-          <article class="card">
-            <h3>Identification & contact</h3>
-            <ul class="list">
-              <li><b>Éditeur</b> (raison sociale, adresse, RCS/SIREN, TVA intracommunautaire).</li>
-              <li><b>Hébergeur</b> (nom, adresse, téléphone ou email).</li>
-              <li><b>Contact</b> direct (email, formulaire, téléphone si prévu).</li>
-              <li><b>Propriété intellectuelle</b> (textes, images, marques).</li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>Vente en ligne</h3>
-            <ul class="list">
-              <li><b>CGV/CGU</b> accessibles, acceptation explicite.</li>
-              <li><b>Droit de rétractation</b> (délais, modalités, formulaire si B2C).</li>
-              <li><b>Médiation</b> à la consommation (si B2C, FR).</li>
-              <li><b>Prix</b> TTC/HT clairs, frais et délais de livraison (si applicable).</li>
-            </ul>
-            <div class="dl">
-              <a class="btn ghost" href="modeles.html">Modèles : mentions & CGV →</a>
-              <a class="btn" href="fonctionnalites.html#mentions">Ce que l’outil vérifie →</a>
+          <!-- Accessibilité -->
+          <section id="a11y" class="reveal" tabindex="-1">
+            <h2 class="title">Accessibilité (WCAG / RGAA) — check‑list</h2>
+            <div class="grid cols-3">
+              <article class="card">
+                <h3>Perceptible</h3>
+                <ul class="list">
+                  <li><b>Textes alternatifs</b> pour les images porteuses d’info.</li>
+                  <li><b>Contrastes</b> conformes (texte/fond, boutons, liens).</li>
+                  <li><b>Hiérarchie sémantique</b> (h1→h2→h3), titres de pages pertinents.</li>
+                </ul>
+              </article>
+              <article class="card">
+                <h3>Utilisable</h3>
+                <ul class="list">
+                  <li><b>Navigation clavier</b> complète (focus visible, ordre logique).</li>
+                  <li><b>Composants</b> utilisables sans souris (menus, modales, carrousels).</li>
+                  <li><b>Médias</b> avec sous-titres/transcriptions (si applicable).</li>
+                </ul>
+              </article>
+              <article class="card">
+                <h3>Compréhensible & robuste</h3>
+                <ul class="list">
+                  <li><b>Libellés clairs</b> pour liens/boutons (« Télécharger le PDF » plutôt que « Cliquez ici »).</li>
+                  <li><b>ARIA landmarks</b> (header, nav, main, footer) et rôles adaptés.</li>
+                  <li><b>Déclaration d’accessibilité</b> + mécanisme de contact/médiation.</li>
+                </ul>
+                <div class="dl">
+                  <a class="btn ghost" href="fonctionnalites.html#accessibilite" target="_self">Vérifications automatiques →</a>
+                </div>
+              </article>
             </div>
-          </article>
-        </div>
-      </div>
-    </section>
+          </section>
 
-    <!-- Cookies / CMP -->
-    <section id="cookies" class="section">
-      <div class="container">
-        <h2 class="title">Cookies & CMP — check-list</h2>
-        <div class="grid cols-3">
-          <article class="card">
-            <h3>Bandeau & choix</h3>
-            <ul class="list">
-              <li><b>Refus aussi simple</b> que l’acceptation (même niveau, même visibilité).</li>
-              <li><b>Continuer sans accepter</b> ou <b>Tout refuser</b> présent dès la 1ʳᵉ couche.</li>
-              <li><b>Preuve du consentement</b> (journal CMP, horodatage, version).</li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>Politique cookies</h3>
-            <ul class="list">
-              <li><b>Liste des cookies</b> (finalité, durée, tiers).</li>
-              <li><b>Retrait/modification</b> du consentement à tout moment.</li>
-              <li><b>Date de mise à jour</b> + versionnage.</li>
-            </ul>
-          </article>
-          <article class="card">
-            <h3>Mise en conformité technique</h3>
-            <ul class="list">
-              <li><b>Blocage par défaut</b> des tags non essentiels avant consentement.</li>
-              <li><b>Consistance</b> des choix d’une page à l’autre (bannières SPA, sous-domaines).</li>
-              <li><b>Trace</b> de la bannière et des changements d’état.</li>
-            </ul>
-            <div class="dl">
-              <a class="btn ghost" href="fonctionnalites.html#cookies">Contrôles automatiques →</a>
+          <!-- Mentions & e‑commerce -->
+          <section id="mentions" class="reveal" tabindex="-1">
+            <h2 class="title">Mentions légales & e‑commerce — check‑list</h2>
+            <div class="grid cols-2">
+              <article class="card">
+                <h3>Identification & contact</h3>
+                <ul class="list">
+                  <li><b>Éditeur</b> (raison sociale, adresse, RCS/SIREN, TVA intracommunautaire).</li>
+                  <li><b>Hébergeur</b> (nom, adresse, téléphone ou email).</li>
+                  <li><b>Contact</b> direct (email, formulaire, téléphone si prévu).</li>
+                  <li><b>Propriété intellectuelle</b> (textes, images, marques).</li>
+                </ul>
+              </article>
+              <article class="card">
+                <h3>Vente en ligne</h3>
+                <ul class="list">
+                  <li><b>CGV/CGU</b> accessibles, acceptation explicite.</li>
+                  <li><b>Droit de rétractation</b> (délais, modalités, formulaire si B2C).</li>
+                  <li><b>Médiation</b> à la consommation (si B2C, FR).</li>
+                  <li><b>Prix</b> TTC/HT clairs, frais et délais de livraison (si applicable).</li>
+                </ul>
+                <div class="dl">
+                  <a class="btn ghost" href="modeles.html" target="_self">Modèles : mentions & CGV →</a>
+                  <a class="btn" href="fonctionnalites.html#mentions" target="_self">Ce que l’outil vérifie →</a>
+                </div>
+              </article>
             </div>
-          </article>
+          </section>
+
+          <!-- Cookies / CMP -->
+          <section id="cookies" class="reveal" tabindex="-1">
+            <h2 class="title">Cookies & CMP — check‑list</h2>
+            <div class="grid cols-3">
+              <article class="card">
+                <h3>Bandeau & choix</h3>
+                <ul class="list">
+                  <li><b>Refus aussi simple</b> que l’acceptation (même niveau, même visibilité).</li>
+                  <li><b>Continuer sans accepter</b> ou <b>Tout refuser</b> présent dès la 1ʳᵉ couche.</li>
+                  <li><b>Preuve du consentement</b> (journal CMP, horodatage, version).</li>
+                </ul>
+              </article>
+              <article class="card">
+                <h3>Politique cookies</h3>
+                <ul class="list">
+                  <li><b>Liste des cookies</b> (finalité, durée, tiers).</li>
+                  <li><b>Retrait/modification</b> du consentement à tout moment.</li>
+                  <li><b>Date de mise à jour</b> + versionnage.</li>
+                </ul>
+              </article>
+              <article class="card">
+                <h3>Mise en conformité technique</h3>
+                <ul class="list">
+                  <li><b>Blocage par défaut</b> des tags non essentiels avant consentement.</li>
+                  <li><b>Consistance</b> des choix d’une page à l’autre (bannières SPA, sous-domaines).</li>
+                  <li><b>Trace</b> de la bannière et des changements d’état.</li>
+                </ul>
+                <div class="dl">
+                  <a class="btn ghost" href="fonctionnalites.html#cookies" target="_self">Contrôles automatiques →</a>
+                </div>
+              </article>
+            </div>
+          </section>
         </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <section class="section alt">
+    <section class="section">
       <div class="container" style="text-align:center">
         <h2 class="title" style="margin-bottom:10px">Besoin d’un plan d’actions priorisé ?</h2>
         <p class="lead">On transforme ton diagnostic en feuille de route avec priorités, exemples et modèles prêts à l’emploi.</p>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px">
-          <a class="btn" href="contact.html">Parler à un expert</a>
-          <a class="btn ghost" href="tarifs.html">Voir les offres</a>
+          <a class="btn" href="contact.html" target="_self">Parler à un expert</a>
+          <a class="btn ghost" href="tarifs.html" target="_self">Voir les offres</a>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- Bouton retour haut -->
+  <a class="btn to-top" id="toTop" href="#top" target="_self" aria-label="Revenir en haut">↑ Haut</a>
 
   <!-- Footer injecté -->
   <div id="footer"></div>
@@ -309,7 +340,47 @@
     init(); animate();
   </script>
 
-  <!-- ===== Loader header/footer + nav (priorité racine, fallback partials/) ===== -->
+  <!-- ===== JS : reveal + in-view + scrollspy + toTop ===== -->
+  <script>
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const ioReveal = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('is-visible'); });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => ioReveal.observe(el));
+
+    // In-view for title sections
+    const sections = document.querySelectorAll('.section');
+    const ioView = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in-view'); });
+    }, { threshold: 0.35 });
+    sections.forEach(s => ioView.observe(s));
+
+    // Scrollspy for TOC
+    const spyLinks = Array.from(document.querySelectorAll('[data-spy]'));
+    const targets = spyLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const id = '#' + e.target.id;
+        const link = spyLinks.find(a => a.getAttribute('href') === id);
+        if (!link) return;
+        if (e.isIntersecting) {
+          spyLinks.forEach(a => a.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+    targets.forEach(t => spy.observe(t));
+
+    // Back to top button
+    const toTop = document.getElementById('toTop');
+    const ioTop = new IntersectionObserver(([entry]) => {
+      if(entry.isIntersecting){ toTop.classList.remove('show'); } else { toTop.classList.add('show'); }
+    });
+    ioTop.observe(document.querySelector('.hero'));
+  </script>
+
+  <!-- ===== Loader header/footer + nav ===== -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
