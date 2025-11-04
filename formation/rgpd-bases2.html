@@ -67,6 +67,10 @@
     .btn.primary{background:var(--aw-copper);color:#fff;box-shadow:0 10px 30px rgba(255,138,61,.30)}
     .btn.primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(255,138,61,.40)}
 
+    /* Bouton sous la bulle (à l'extérieur) */
+    .cta-under-card{display:block;margin-top:12px}
+    .cta-under-card .btn{display:block;width:100%;max-width:520px;margin:0 auto}
+
     @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
   </style>
 </head>
@@ -86,7 +90,7 @@
     <div class="content">
       <h1 id="course-title">Titre formation</h1>
       <p id="course-pitch" class="lead">Résumé personnalisé selon l’origine (thématique / public).</p>
-      <!-- (Pastilles et “Revenir” retirés volontairement) -->
+      <!-- Pas de fil d’Ariane, pas de tags, pas de “Revenir” -->
     </div>
   </section>
 
@@ -101,19 +105,22 @@
         <ul id="course-objectives"></ul>
       </article>
 
-      <!-- Carte Infos pratiques avec le bouton à l’intérieur -->
-      <aside class="card" style="height:fit-content; padding-bottom:28px; text-align:center;">
-        <h2 style="margin:0 0 8px; text-align:left;">Infos pratiques</h2>
-        <ul class="note" id="practical-list" style="padding-left:18px;margin:8px 0 0;text-align:left;">
-          <li>Formats : atelier 2h, 1/2 journée, 1 journée</li>
-          <li>Modalités : présentiel ou distanciel</li>
-          <li>Financement : selon OPCO/plan interne</li>
-        </ul>
-        <p class="note" style="margin:14px 0 18px; text-align:left;">
-          Supports &amp; modèles fournis • Quiz &amp; attestation inclus
-        </p>
-        <a class="btn primary" href="../../index.html#contact">Demander un devis</a>
-      </aside>
+      <!-- Carte Infos pratiques -->
+      <div>
+        <aside class="card" style="height:fit-content;">
+          <h2 style="margin:0 0 8px;">Infos pratiques</h2>
+          <ul class="note" id="practical-list" style="padding-left:18px;margin:8px 0 0">
+            <li>Formats : atelier 2h, 1/2 journée, 1 journée</li>
+            <li>Modalités : présentiel ou distanciel</li>
+            <li>Financement : selon OPCO/plan interne</li>
+          </ul>
+          <p class="note" style="margin-top:12px">Supports &amp; modèles fournis • Quiz &amp; attestation inclus</p>
+        </aside>
+        <!-- Bouton positionné en dehors de la carte -->
+        <div class="cta-under-card">
+          <a class="btn primary" href="../../index.html#contact">Demander un devis</a>
+        </div>
+      </div>
     </div>
   </main>
 
