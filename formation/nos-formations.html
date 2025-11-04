@@ -25,7 +25,7 @@
     html{scroll-behavior:smooth}
     body{margin:0;font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;line-height:1.6;color:var(--aw-ink);background:var(--aw-bg);-webkit-font-smoothing:antialiased}
 
-    /* ===== HERO bleu ===== */
+    /* ----- HERO ----- */
     .hero{position:relative;min-height:46vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;
       background:
         radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
@@ -55,7 +55,7 @@
     @keyframes geoFloatDiamond{0%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1));opacity:.14}25%{transform:rotate(55deg) translate3d(18px,-30px,0) scale(var(--scale,1));opacity:.22}50%{transform:rotate(65deg) translate3d(-12px,-60px,0) scale(var(--scale,1));opacity:.2}75%{transform:rotate(55deg) translate3d(-28px,-30px,0) scale(var(--scale,1));opacity:.24}100%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1));opacity:.18}}
     @media (prefers-reduced-motion: reduce){ .hero-geo .g{ animation:none; opacity:.15 } }
 
-    /* Boutons génériques (utilisés en bas) */
+    /* ----- boutons ----- */
     .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;padding:14px 26px;border-radius:999px;text-decoration:none;transition:all var(--transition);border:1px solid transparent;box-shadow:0 8px 24px rgba(0,0,0,.10)}
     .btn.primary{background:var(--aw-copper);color:#fff;box-shadow:0 10px 30px rgba(255,138,61,.30)}
     .btn.primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(255,138,61,.40)}
@@ -65,6 +65,7 @@
     .section{max-width:var(--maxw);margin:0 auto;padding:80px 20px}
     .title-center{margin:6px 0 16px;text-align:center;font-size:clamp(26px,4.8vw,40px);font-weight:800}
     .subtitle-center{max-width:860px;margin:0 auto 18px;text-align:center;color:var(--aw-muted)}
+    .underline{width:80px;height:4px;border-radius:999px;background:var(--aw-copper);margin:10px auto 26px;opacity:.9}
 
     .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
     @media (max-width:1024px){ .grid-3{grid-template-columns:1fr 1fr} }
@@ -76,31 +77,12 @@
     .mega-list a:hover{background:rgba(27,136,255,.10)}
     .badge{display:inline-block;border-radius:999px;padding:6px 12px;font-weight:800;background:rgba(27,136,255,.10);border:1px solid rgba(27,136,255,.26);color:#0f3a6e;font-size:12px;margin:0 8px 8px 0}
 
-    .underline{width:80px;height:4px;border-radius:999px;background:var(--aw-copper);margin:10px auto 26px;opacity:.9}
-
-    /* ---------- FAQ ---------- */
-    .faq-list {
-      --faq-gap: 1.2rem;
-      max-width: 680px;
-      margin: 0 auto;
-      display: grid;
-      gap: var(--faq-gap);
-    }
-    .faq-list dt {
-      font-weight: 800;
-      font-size: 1.05rem;
-      color: var(--aw-copper);
-      margin-top: var(--faq-gap);
-    }
-    .faq-list dd {
-      margin: 0 0 0 1.2rem;
-      color: var(--aw-muted);
-    }
-    @media (max-width: 620px) {
-      .faq-list dd {
-        margin-left: 0;
-      }
-    }
+    /* ----- FAQ accordéon ----- */
+    .faq-q{max-width:680px;margin:0 auto 1.2rem;border:1px solid rgba(15,23,32,.08);border-radius:var(--aw-radius);background:var(--aw-panel);box-shadow:var(--shadow)}
+    .faq-q summary{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;font-weight:800;cursor:pointer;list-style:none}
+    .faq-q summary::after{content:"+";font-size:1.4rem;color:var(--aw-copper);transition:transform .2s}
+    .faq-q[open] summary::after{transform:rotate(45deg)}
+    .faq-a{padding:0 1.4rem 1.4rem;color:var(--aw-muted)}
 
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
   </style>
@@ -117,7 +99,6 @@
       <span class="g circle"></span><span class="g square"></span><span class="g triangle"></span><span class="g diamond"></span>
       <span class="g circle"></span><span class="g square"></span><span class="g triangle"></span><span class="g diamond"></span>
     </div>
-
     <div class="content">
       <h1 id="hero-title">Formations RGPD & IA : concrètes, opérationnelles</h1>
       <p class="lead">Petites cohortes, ateliers pratiques, supports & modèles fournis. Présentiel ou distanciel.</p>
@@ -128,7 +109,6 @@
   <section class="section" id="panorama" aria-labelledby="panorama-title">
     <h2 id="panorama-title" class="title-center">Choisissez par thématique, public ou format</h2>
     <div class="underline" aria-hidden="true"></div>
-
     <div class="grid-3">
       <article class="card" aria-labelledby="by-theme-title">
         <h4 id="by-theme-title" style="margin:0 0 8px;letter-spacing:.12em;text-transform:uppercase;color:#456;font-size:12px">Par thématique</h4>
@@ -141,7 +121,6 @@
           <li><a href="../formations-liste.html?theme=cyber">Cybersécurité de base</a></li>
         </ul>
       </article>
-
       <article class="card" aria-labelledby="by-audience-title">
         <h4 id="by-audience-title" style="margin:0 0 8px;letter-spacing:.12em;text-transform:uppercase;color:#456;font-size:12px">Par public</h4>
         <ul class="mega-list" role="list">
@@ -151,7 +130,6 @@
           <li><a href="../formations-liste.html?public=dev">Dev, Produit & Data</a></li>
         </ul>
       </article>
-
       <article class="card" aria-labelledby="by-format-title">
         <h4 id="by-format-title" style="margin:0 0 8px;letter-spacing:.12em;text-transform:uppercase;color:#456;font-size:12px">Formats & modalités</h4>
         <p style="margin:0 0 10px">
@@ -171,16 +149,20 @@
     <h2 id="faq-title" class="title-center">Questions fréquentes</h2>
     <div class="underline" aria-hidden="true"></div>
 
-    <dl class="faq-list">
-      <dt>Présentiel ou distanciel&nbsp;?</dt>
-      <dd>Au choix. Visio (Zoom&nbsp;/&nbsp;Meet) ou sur site.</dd>
+    <details class="faq-q">
+      <summary>Présentiel ou distanciel&nbsp;?</summary>
+      <p class="faq-a">Au choix. Visio (Zoom / Meet) ou sur site.</p>
+    </details>
 
-      <dt>Combien de personnes&nbsp;?</dt>
-      <dd>Idéal 6-12 personnes par cohorte pour garder l’interaction. Au-delà, on scinde par ateliers.</dd>
+    <details class="faq-q">
+      <summary>Combien de personnes&nbsp;?</summary>
+      <p class="faq-a">Idéal 6-12 personnes par cohorte pour garder l’interaction. Au-delà, on scinde par ateliers.</p>
+    </details>
 
-      <dt>Adaptation secteur&nbsp;?</dt>
-      <dd>Oui&nbsp;: exemples &amp; cas d’usage personnalisés (santé, SaaS, retail, public…) sans surcoût.</dd>
-    </dl>
+    <details class="faq-q">
+      <summary>Adaptation secteur&nbsp;?</summary>
+      <p class="faq-a">Oui : exemples & cas d’usage personnalisés (santé, SaaS, retail, public…) sans surcoût.</p>
+    </details>
   </section>
 
   <!-- ===== CONTACT (CTAs UNIQUEMENT ICI) ===== -->
