@@ -207,7 +207,7 @@
 
     .folder-label{ font-weight: 700; font-size: .92rem; text-align: center; }
 
-    /* ----------  DRAWER  ---------- */
+    /* ----------  DRAWER HORIZONTAL  ---------- */
     .folder-drawer{
       grid-column: 1 / -1;
       max-height: 0;
@@ -219,12 +219,15 @@
       margin: 0 8px;
       padding: 0 20px;
       display: flex;
-      flex-wrap: nowrap; /* ✅ HORIZONTAL */
+      flex-direction: row;      /* ✅ horizontal */
+      flex-wrap: nowrap;        /* ✅ pas de retour à la ligne */
       gap: 12px;
+      overflow-x: auto;         /* ✅ scroll si besoin */
+      -webkit-overflow-scrolling: touch;
       transition: max-height .35s ease, padding .35s ease;
     }
     .folder-drawer.open{
-      max-height: 300px;
+      max-height: 60px;         /* ✅ hauteur d’une seule ligne */
       padding: 16px 20px;
     }
 
@@ -240,7 +243,7 @@
       font-size: .87rem;
       text-decoration: none;
       transition: background .2s;
-      white-space: nowrap; /* ✅ pas de retour à la ligne */
+      white-space: nowrap; /* ✅ pas de coupure mot */
     }
     .folder-drawer a:hover{ background: rgba(0,102,255,.18); }
 
