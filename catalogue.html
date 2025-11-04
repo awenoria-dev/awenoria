@@ -1,54 +1,37 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Catalogue | Awenoria</title>
-  <meta name="description" content="Conformité RGPD & IA – édition 2025" />
-
-  <!-- Polices -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
-
-  <!-- Favicon -->
+  <title>Ressources — Awenoria</title>
+  <meta name="description" content="Guides, modèles, FAQ et dossier IA Act pour passer du diagnostic au plan d’actions : RGPD, accessibilité, mentions légales, cookies/CMP et IA.">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
-
-  <!-- CSS global -->
-  <link rel="stylesheet" href="./assets/awenoria.css?v=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- CSS globale -->
+  <link rel="stylesheet" href="assets/awenoria.css">
 
   <style>
-    /* ----------  VARIABLES  ---------- */
     :root{
-      --aw-ink:#0B0F1A;
-      --aw-blue:#0066FF;
-      --aw-copper:#FF8A3D;
-      --aw-muted:#6b7280;
-      --aw-panel:#FFFFFF;
-      --aw-bg:#F5F7FF;
-      --aw-radius:24px;
+      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
+      --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
       --shadow:0 25px 50px -12px rgba(0,0,0,.15);
-
-      --folder-blue:#0066FF;
-      --folder-copper:#FF8A3D;
-      --folder-radius:22px;
-      --folder-shadow:0 8px 24px rgba(0,0,0,.08);
-      --folder-shadow-hover:0 12px 32px rgba(0,0,0,.12);
+      --transition:.6s cubic-bezier(.22,1,.36,1);
     }
     @media (prefers-color-scheme:dark){
       :root{
-        --aw-ink:#F5F7FF;
-        --aw-blue:#3d8bff;
-        --aw-copper:#FF8A3D;
-        --aw-muted:#a1a9c0;
-        --aw-panel:#0B0F1A;
-        --aw-bg:#06080D;
-        --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+        --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
+        --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);
       }
     }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;line-height:1.7;color:var(--aw-ink);background:var(--aw-bg);-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;color:var(--aw-blue)}
+    img{max-width:100%;display:block}
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
-    /* ----------  HERO  ---------- */
+    /* ---------- Hero ---------- */
     .hero{
       position:relative; min-height:60vh; display:flex; align-items:center; justify-content:center;
       text-align:center; color:#fff; overflow:hidden;
@@ -56,494 +39,392 @@
         radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
         radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
         linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
-      border-bottom:4px solid #e8eefb;
     }
-    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none}
-    .hero .content{position:relative; z-index:1; max-width:900px; padding:0 20px}
-    .hero h1{
-      font-family:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
+    .hero .content{position:relative; z-index:2; max-width:800px; padding:0 20px; animation:fadeInUp 1s both;}
+    .hero h1{font-size:clamp(52px,7vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em;}
+    .hero .lead{font-size:1.4rem; font-weight:500; margin:24px auto 0; color:#e8f0ff;}
+
+    /* ---------- Sections ---------- */
+    .section{max-width:1200px; margin:0 auto; padding:100px 20px;}
+    .section.alt{background:var(--aw-bg);}
+    .title{
+      margin:0 0 10px; text-align:center; font-size:clamp(36px,5vw,48px);
+      color:#0F5F9A;             /* exactement la couleur de l’onglet */
       font-weight:800;
-      font-size:clamp(52px,7vw,72px);
-      line-height:1.05;
-      letter-spacing:-.02em;
-      margin:0;
     }
-    .hero .lead{font-size:1.2rem; font-weight:600; color:#eaf3ff; margin-top:10px}
+    .title::after{content:''; display:block; width:60px; height:4px; background:var(--aw-copper); margin:10px auto 0; border-radius:3px;}
+    .subtitle-center{font-size:1.2rem; color:var(--aw-muted); max-width:680px; margin:0 auto 56px; text-align:center;}
 
-    /* ----------  BASE  ---------- */
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--aw-ink); background:var(--aw-bg)}
-    .section{max-width:1200px; margin:0 auto; padding:80px 20px}
-    .title-center{margin:0 0 6px; text-align:center; font-weight:800; font-size:clamp(26px,3.8vw,40px)}
-    .subtitle-center{max-width:900px; margin:0 auto 22px; text-align:center; color:var(--aw-muted)}
-    .underline{width:84px; height:4px; border-radius:999px; background:var(--aw-copper); margin:12px auto 28px}
+    .grid{display:grid; gap:24px; margin-top:18px;}
+    .cols-2{grid-template-columns:repeat(2,1fr)}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    @media(max-width:980px){.cols-2,.cols-3{grid-template-columns:1fr}}
 
-    /* ----------  CARROUSELS  ---------- */
-    .ruban{position:relative; width:100%; overflow:hidden; margin:8px 0 28px; padding-block:2px}
-    .ruban-track{display:flex; gap:24px; position:absolute; top:0; left:0; will-change:transform; padding:2px 0}
-    .ruban-track[data-direction="right"]{animation:rubanRight 22s linear infinite}
-    .ruban-track[data-direction="left"]{animation:rubanLeft 22s linear infinite}
-    .ruban:hover .ruban-track{animation-play-state:paused}
-    @keyframes rubanRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-    @keyframes rubanLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-    @media (prefers-reduced-motion: reduce){.ruban-track{animation:none !important; position:relative}}
-
-    .ruban-card{
-      flex:0 0 auto;
-      width:clamp(260px, 28vw, 340px);
+    .card{
       background:var(--aw-panel); border:1px solid rgba(15,23,32,.08);
-      border-radius:20px; overflow:hidden; display:flex; flex-direction:column; position:relative; box-shadow:0 12px 28px rgba(0,0,0,.08);
+      border-radius:var(--aw-radius); box-shadow:var(--shadow);
+      padding:24px; transition:all var(--transition);
+      display:block; position:relative; color:inherit; text-align:left;
     }
-    .ruban-card .media{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden}
-    .ruban-card .media img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
-    .ruban-card figcaption{padding:16px 16px 18px}
-    .ruban-card h3{margin:0 0 6px; font-size:1.05rem; font-weight:800}
-    .ruban-card p{margin:0 0 14px; color:var(--aw-muted); font-size:.95rem}
+    .card:hover{transform:translateY(-4px); box-shadow:0 28px 56px rgba(0,0,0,.1); border-color:var(--aw-copper);}
 
-    .btn-soft{
-      display:inline-flex; align-items:center; justify-content:center;
-      background:rgba(0,102,255,.1); color:#0066ff; font-weight:800;
-      padding:10px 20px; border-radius:999px; text-decoration:none; transition:.2s;
-      white-space:nowrap;
+    /* ---------- Pills (correctif identique à la page Modèles) ---------- */
+    /* On neutralise toute règle globale qui gonfle les pastilles */
+    .grid .card > .pill,
+    .section .card > .pill{
+      display:inline-flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+      position:static !important;
+      width:auto !important; height:auto !important;
+      min-width:0 !important; min-height:0 !important;
+      max-width:fit-content !important; max-height:none !important;
+      padding:6px 12px !important;
+      margin:0 0 10px 0 !important;
+      border-radius:999px !important;
+      background:var(--aw-blue) !important;
+      color:#fff !important;
+      font:800 12px/1 "Inter",system-ui,-apple-system,Arial,sans-serif !important;
+      letter-spacing:0 !important;
+      text-transform:none !important;
+      transform:none !important;
+      box-shadow:none !important;
+      white-space:nowrap !important;
+      overflow:visible !important;
     }
-    .btn-soft:hover{background:rgba(0,102,255,.2); transform:translateY(-1px)}
+    .grid .card > .pill::before,
+    .grid .card > .pill::after,
+    .section .card > .pill::before,
+    .section .card > .pill::after{content:none !important;}
 
-    .badge{
-      position:absolute; top:10px; left:10px; font-size:.75rem; font-weight:800; padding:4px 8px;
-      border-radius:999px; backdrop-filter:blur(6px); color:#fff; z-index:2;
+    .muted{color:var(--aw-muted)}
+    .small{font-size:13px;color:var(--aw-muted)}
+    .btn{
+      display:inline-block; padding:10px 14px; border-radius:10px; font-weight:800;
+      color:#fff; background:var(--aw-blue); box-shadow:var(--shadow); font-size:14px; transition:all var(--transition);
     }
-    .badge[data-cat="conformite"], .badge[data-cat="rgpd"]{background:#ff4757}
-    .badge[data-cat="access"], .badge[data-cat="web"]{background:#3742fa}
-    .badge[data-cat="cyber"]{background:#2ed573}
-    .badge[data-cat="cookies"]{background:#ffa502}
-    .badge[data-cat="audit"]{background:#747d8c}
-    .badge[data-cat="ia"]{background:#a55eea}
+    .btn:hover{background:var(--aw-copper); transform:translateY(-2px);}
+    .btn.ghost{background:var(--aw-panel); color:var(--aw-blue); border:1px solid rgba(15,23,32,.08);}
+    .btn-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
+    .list{margin:0;padding-left:18px}
 
-    @media (max-width:900px){ .ruban-card{width:clamp(240px, 44vw, 300px)} }
-    @media (max-width:640px){
-      .ruban-card{width:min(86vw, 320px)}
-      .ruban-card h3{font-size:1rem}
-      .ruban-card p{font-size:.92rem}
-      .ruban-track{gap:16px}
-    }
-
-    /* ----------  HOVER CARDS ---------- */
-    .ruban-card{ position:relative }
-    .hover-card{
-      position:absolute; inset:auto auto 12px 12px;
-      width:min(360px, 86vw);
-      background:var(--aw-panel);
-      color:var(--aw-ink);
-      border:1px solid rgba(15,23,32,.08);
-      border-radius:16px;
-      box-shadow: var(--shadow);
-      padding:16px;
-      opacity:0; transform:translateY(6px);
-      pointer-events:none;
-      transition:opacity .18s ease, transform .18s ease;
-      z-index:5;
-    }
-    .ruban-card:hover .hover-card,
-    .ruban-card:focus-within .hover-card{ opacity:1; transform:translateY(0); pointer-events:auto }
-    .hover-pills{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px }
-    .hover-pill{ font-size:.78rem; font-weight:800; line-height:1; padding:6px 10px; border-radius:999px; background:rgba(0,102,255,.10); color:#0066FF; }
-    .hover-card h4{ margin:0 0 6px; font-size:1rem; font-weight:800 }
-    .hover-card p{ margin:0 0 10px; font-size:.92rem; color:var(--aw-ink) }
-    .hover-card ul{ margin:0 0 12px 18px; padding:0; color:var(--aw-muted); font-size:.92rem }
-    .hover-card li{ margin:4px 0 }
-    .hover-card .btn-soft{ font-size:.92rem; padding:10px 16px }
-    @media (max-width:640px){ .hover-card{ inset:auto 12px 12px 12px } }
-
-    /* ----------  FOLDER BOARD 2025  ---------- */
-    .folder-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:20px;
-      max-width:720px;
-      margin:40px auto 0;
-    }
-    .folder{
-      position:relative; display:flex; flex-direction:column; align-items:center; gap:10px;
-      background:rgba(255,255,255,.65); backdrop-filter:blur(12px);
-      border:1px solid rgba(0,0,0,.06); border-radius:var(--folder-radius);
-      padding:24px 12px; cursor:pointer; box-shadow:var(--folder-shadow);
-      transition:transform .22s cubic-bezier(.4,1.8,.6,1), box-shadow .22s ease;
-      color:var(--aw-ink); -webkit-tap-highlight-color:transparent;
-    }
-    .folder:hover{ transform:scale(1.05); box-shadow:var(--folder-shadow-hover) }
-    .folder:active{ transform:scale(.97) }
-    .folder-icon{
-      width:52px; height:52px; display:grid; place-items:center; border-radius:14px; font-size:1.8rem;
-      background:linear-gradient(135deg,var(--folder-blue),var(--folder-copper)); color:#fff; box-shadow:0 4px 12px rgba(0,102,255,.25);
-    }
-    .folder-label{ font-weight:700; font-size:.92rem; text-align:center }
-
-    /* ----------  DRAWER (fermé invisible, ouvert visible) ---------- */
-    .folder-drawer{
-      grid-column:1 / -1;
-      max-height:0;
-      overflow:hidden;
-      /* masque les "traits" quand c'est fermé */
-      border:0;
-      background:transparent;
-      border-radius:0 0 var(--folder-radius) var(--folder-radius);
-      margin:0 8px;
-      padding:0 20px;
-      display:flex; flex-direction:row; flex-wrap:nowrap; gap:12px;
-      overflow-x:auto; -webkit-overflow-scrolling:touch;
-      scrollbar-gutter:stable both-edges;
-      transition:max-height .35s ease, padding .35s ease, border-color .2s ease, background .2s ease;
-      box-sizing:border-box;
-      pointer-events:none;
-    }
-    .folder-drawer.open{
-      max-height:120px;           /* fallback si JS off */
-      padding:16px 20px 26px;
-      align-items:center;
-      border:1px solid rgba(0,0,0,.05);
-      background:rgba(255,255,255,.75);
-      pointer-events:auto;
-    }
-    .folder-drawer a{
-      display:inline-flex; align-items:center; height:38px; padding:0 16px;
-      border-radius:999px; background:rgba(0,102,255,.08); color:var(--folder-blue);
-      font-weight:700; font-size:.87rem; text-decoration:none; transition:background .2s; white-space:nowrap;
-    }
-    .folder-drawer a:hover{ background:rgba(0,102,255,.18) }
-    .folder-drawer::-webkit-scrollbar{ height:8px }
-    .folder-drawer::-webkit-scrollbar-thumb{ background:rgba(0,0,0,.25); border-radius:999px }
-
-    /* flèche indicateur */
-    .folder::after{
-      content:""; position:absolute; bottom:-8px; left:50%; transform:translateX(-50%) scaleY(0);
-      width:0; height:0; border-left:8px solid transparent; border-right:8px solid transparent; border-top:8px solid rgba(0,0,0,.08);
-      transition:transform .25s ease;
-    }
-    .folder.open::after{ transform:translateX(-50%) scaleY(1) }
-
-    @media (max-width:480px){
-      .folder-grid{ gap:12px }
-      .folder{ padding:18px 8px }
-      .folder-icon{ width:44px; height:44px; font-size:1.5rem }
-      .folder-label{ font-size:.8rem }
-    }
+    /* ---------- Animations ---------- */
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+    .reveal.is-visible{opacity:1;transform:none}
   </style>
+<base target="_blank">
 </head>
+<body class="page-ressources">
 
-<body class="page-magazine2">
-  <!-- Header injecté -->
+  <!-- Header injecté (mêmes includes que les autres pages) -->
   <div id="header"></div>
 
-  <!-- HERO -->
   <section class="hero">
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="content">
-      <h1>Catalogue</h1>
-      <p class="lead">Conformité RGPD & IA – édition 2025</p>
+      <h1>Ressources & documentation</h1>
+      <p class="lead">Tout pour transformer un diagnostic en plan d’actions : guides, modèles, FAQ, et notre nouveau dossier <b>IA Act</b>.</p>
     </div>
   </section>
 
-  <!-- SOMMAIRE + CARROUSELS -->
-  <section class="section">
-    <h2 class="title-center">Sommaire</h2>
-    <p class="subtitle-center">Une sélection d’articles, services et formations à ne pas manquer.</p>
-    <div class="underline"></div>
-
-    <!-- CARROUSEL SERVICES -->
-    <div class="ruban" aria-label="Tous nos services">
-      <div class="ruban-track" data-direction="right">
-        <figure class="ruban-card">
-          <span class="badge" data-cat="conformite">#Conformité</span>
-          <div class="media"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=60" alt=""></div>
-          <figcaption>
-            <h3>RGPD Live</h3>
-            <p>L’audit qui finit en standing ovation.</p>
-            <a class="btn-soft" href="./Nos-services.html#rgpd">Je prends ma place</a>
-          </figcaption>
-        </figure>
-
-        <figure class="ruban-card">
-          <span class="badge" data-cat="access">#Access</span>
-          <div class="media"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=60" alt=""></div>
-          <figcaption>
-            <h3>Accessibilité Show</h3>
-            <p>Devenez conforme en un solo.</p>
-            <a class="btn-soft" href="./Nos-services.html#access">Je prends ma place</a>
-          </figcaption>
-        </figure>
-
-        <figure class="ruban-card">
-          <span class="badge" data-cat="cyber">#Cyber</span>
-          <div class="media"><img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=800&q=60" alt=""></div>
-          <figcaption>
-            <h3>Cyber Night</h3>
-            <p>La crise devient scénario.</p>
-            <a class="btn-soft" href="./Nos-services.html#cyber">Je prends ma place</a>
-          </figcaption>
-        </figure>
-
-        <figure class="ruban-card">
-          <span class="badge" data-cat="cookies">#Cookies</span>
-          <div class="media"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=60" alt=""></div>
-          <figcaption>
-            <h3>Cookies Party</h3>
-            <p>Bandeau & CMP en rythme.</p>
-            <a class="btn-soft" href="./Nos-services.html#cookies">Je prends ma place</a>
-          </figcaption>
-        </figure>
-
-        <figure class="ruban-card">
-          <span class="badge" data-cat="audit">#Audit</span>
-          <div class="media"><img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=60" alt=""></div>
-          <figcaption>
-            <h3>Diagnostic Premiere</h3>
-            <p>Le grand écran de vos priorités.</p>
-            <a class="btn-soft" href="./Nos-services.html#diagnostic">Je prends ma place</a>
-          </figcaption>
-        </figure>
-
-        <figure class="ruban-card">
-          <span class="badge" data-cat="web">#Web</span>
-          <div class="media"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=60" alt=""></div>
-          <figcaption>
-            <h3>Legal Remix</h3>
-            <p>Mentions légales version hit.</p>
-            <a class="btn-soft" href="./Nos-services.html#web-legal">Je prends ma place</a>
-          </figcaption>
-        </figure>
+  <main>
+    <!-- 1. Accès rapide -->
+    <section class="section">
+      <div class="container">
+        <h2 class="title">Accès rapide</h2>
+        <div class="grid cols-3">
+          <a class="card reveal" href="#guides">
+            <span class="pill">Guides</span>
+            <h3>Bonnes pratiques web</h3>
+            <p class="muted">RGPD, cookies/CMP, accessibilité (WCAG/RGAA) et mentions légales : check-lists opérationnelles.</p>
+            <p class="btn-row"><span class="btn">Parcourir les guides →</span></p>
+          </a>
+          <a class="card reveal" href="#modeles">
+            <span class="pill">Modèles</span>
+            <h3>Modèles juridiques</h3>
+            <p class="muted">Politique de confidentialité, politique cookies, mentions légales, formulaires droits.</p>
+            <p class="btn-row"><span class="btn">Voir les modèles →</span></p>
+          </a>
+          <a class="card reveal" href="#iaact">
+            <span class="pill">IA Act</span>
+            <h3>Dossier thématique</h3>
+            <p class="muted">Obligations par rôle (fournisseur, déployeur, distributeur), matrices de risques et exemples.</p>
+            <p class="btn-row"><span class="btn">Ouvrir le dossier IA Act →</span></p>
+          </a>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- CARROUSEL FORMATIONS (extraits) -->
-    <div class="ruban" aria-label="Toutes nos formations">
-      <div class="ruban-track" data-direction="left">
-        <figure class="ruban-card">
-          <span class="badge" data-cat="rgpd">#RGPD</span>
-          <div class="media"><img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=800&q=60" alt=""></div>
-          <figcaption>
-            <h3>RGPD Express</h3>
-            <p>2 h chrono, 100 % live.</p>
-            <a class="btn-soft" href="./formation/rgpd-2h.html">Je réserve ma date</a>
-          </figcaption>
-          <div class="hover-card" role="dialog" aria-label="Fiche RGPD Express">
-            <div class="hover-pills">
-              <span class="hover-pill">1/2 journée</span><span class="hover-pill">Débutant à intermédiaire</span>
-              <span class="hover-pill">Présentiel</span><span class="hover-pill">Distanciel</span>
-            </div>
-            <h4>RGPD : les essentiels opérationnels</h4>
-            <p>Comprendre les obligations clés et savoir quoi faire demain matin.</p>
-            <ul>
-              <li>Bases légales &amp; minimisation</li><li>Registre : quoi, comment, preuves</li>
-              <li>Droits des personnes : process &amp; SLA</li><li>Plan d’action 90 jours</li>
+    <!-- 2. Guides & bonnes pratiques -->
+    <section id="guides" class="section alt">
+      <div class="container">
+        <h2 class="title">Guides & bonnes pratiques</h2>
+        <div class="grid cols-3">
+          <div class="card reveal">
+            <span class="pill">RGPD</span>
+            <h3>RGPD côté site</h3>
+            <ul class="list">
+              <li>Informer clairement : finalités, bases légales, durées, droits, contact</li>
+              <li>Mentions au point de collecte (formulaires)</li>
+              <li>Preuve du consentement et trace des mises à jour</li>
             </ul>
-            <a class="btn-soft" href="./formation/rgpd-2h.html" target="_blank" rel="noopener">Voir la fiche</a>
-          </div>
-        </figure>
-
-        <figure class="ruban-card">
-          <span class="badge" data-cat="ia">#IA</span>
-          <div class="media"><img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=800&q=60" alt=""></div>
-          <figcaption>
-            <h3>IA Act Day</h3>
-            <p>Le cadre européen en one-man-show.</p>
-            <a class="btn-soft" href="./formation/ia-act.html">Je réserve ma date</a>
-          </figcaption>
-          <div class="hover-card" role="dialog" aria-label="Fiche IA Act Day">
-            <div class="hover-pills">
-              <span class="hover-pill">1 journée</span><span class="hover-pill">Intermédiaire</span>
-              <span class="hover-pill">Présentiel</span><span class="hover-pill">Distanciel</span>
+            <div class="btn-row">
+              <a class="btn ghost" href="guides.html">Tous les guides →</a>
             </div>
-            <h4>IA Act (UE) : obligations &amp; documentation</h4>
-            <p>Qualifier les systèmes, comprendre les obligations et bâtir les preuves.</p>
-            <ul>
-              <li>Catégorisation des risques &amp; calendrier</li><li>Exigences produit &amp; gouvernance des données</li>
-              <li>Documentation technique &amp; registres</li><li>Plan de mise en conformité</li>
-            </ul>
-            <a class="btn-soft" href="./formation/ia-act.html" target="_blank" rel="noopener">Voir la fiche</a>
           </div>
-        </figure>
+          <div class="card reveal">
+            <span class="pill">Accessibilité</span>
+            <h3>Accessibilité (WCAG/RGAA)</h3>
+            <ul class="list">
+              <li>ALT, contrastes, sémantique, focus, navigation clavier</li>
+              <li>Déclaration d’accessibilité & plan d’amélioration</li>
+              <li>Bonnes pratiques UI & composants ARIA</li>
+            </ul>
+            <div class="btn-row">
+              <a class="btn ghost" href="guides.html">Exemples & check-lists →</a>
+            </div>
+          </div>
+          <div class="card reveal">
+            <span class="pill">E-commerce</span>
+            <h3>Mentions & e-commerce</h3>
+            <ul class="list">
+              <li>Identification : éditeur, hébergeur, RCS/SIREN/TVA</li>
+              <li>CGU/CGV, rétractation, médiation</li>
+              <li>Liens visibles + dates de MAJ</li>
+            </ul>
+            <div class="btn-row">
+              <a class="btn ghost" href="guides.html">Cas pratiques →</a>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==========  FOLDER BOARD 2025  ========== -->
-  <section id="folder-board" class="section">
-    <h2 class="title-center">Explorer</h2>
-    <p class="subtitle-center">Cliquez sur un dossier pour découvrir les rubriques.</p>
-    <div class="underline"></div>
-
-    <div class="folder-grid">
-      <!-- Boutons (rangée 1) -->
-      <button class="folder" aria-expanded="false" aria-controls="f-services">
-        <span class="folder-icon">🛠️</span><span class="folder-label">Nos Services</span>
-      </button>
-      <button class="folder" aria-expanded="false" aria-controls="f-formations">
-        <span class="folder-icon">🎓</span><span class="folder-label">Nos Formations</span>
-      </button>
-      <button class="folder" aria-expanded="false" aria-controls="f-audit">
-        <span class="folder-icon">🔍</span><span class="folder-label">Audit & Analyse</span>
-      </button>
-      <button class="folder" aria-expanded="false" aria-controls="f-atelier">
-        <span class="folder-icon">⚙️</span><span class="folder-label">Atelier 2 h RGPD</span>
-      </button>
-
-      <!-- Drawers (pleine largeur sous la rangée) -->
-      <div id="f-services" class="folder-drawer" role="region" aria-label="Liens - Services">
-        <a href="./Nos-services.html#audit" target="_blank" rel="noopener">Audit & Analyse</a>
-        <a href="./Nos-services.html#rgpd" target="_blank" rel="noopener">RGPD</a>
-        <a href="./Nos-services.html#ia-act" target="_blank" rel="noopener">IA Act</a>
-        <a href="./Nos-services.html#mentions" target="_blank" rel="noopener">Mentions légales</a>
-        <a href="./Nos-services.html#cookies" target="_blank" rel="noopener">Cookies</a>
-        <a href="./Nos-services.html#access" target="_blank" rel="noopener">Accessibilité</a>
+    <!-- 3. Modèles juridiques -->
+    <section id="modeles" class="section">
+      <div class="container">
+        <h2 class="title">Modèles juridiques</h2>
+        <div class="grid cols-3">
+          <a class="card reveal" href="modeles.html">
+            <span class="pill">Confidentialité</span>
+            <h3>Politique de confidentialité</h3>
+            <p class="muted">Structure recommandée et sections obligatoires (finalités, bases, durées, droits, contact, transferts).</p>
+            <p class="btn-row"><span class="btn">Ouvrir les modèles →</span></p>
+          </a>
+          <a class="card reveal" href="modeles.html">
+            <span class="pill">Cookies</span>
+            <h3>Politique cookies & CMP</h3>
+            <p class="muted">Modèle de politique cookies + exemples de libellés CMP (refus aussi simple, preuve du consentement).</p>
+            <p class="btn-row"><span class="btn">Télécharger →</span></p>
+          </a>
+          <a class="card reveal" href="modeles.html">
+            <span class="pill">E-commerce</span>
+            <h3>Mentions légales & CGV</h3>
+            <p class="muted">Mentions obligatoires, CGU/CGV et clauses pratiques pour services/vente en ligne.</p>
+            <p class="btn-row"><span class="btn">Parcourir →</span></p>
+          </a>
+        </div>
       </div>
+    </section>
 
-      <div id="f-formations" class="folder-drawer" role="region" aria-label="Liens - Formations">
-        <a href="./formations.html#rgpd" target="_blank" rel="noopener">RGPD</a>
-        <a href="./formations.html#cookies" target="_blank" rel="noopener">Cookies</a>
-        <a href="./formations.html#access" target="_blank" rel="noopener">Access</a>
-        <a href="./formations.html#cyber" target="_blank" rel="noopener">Cyber</a>
-        <a href="./formations.html#ia" target="_blank" rel="noopener">IA Act</a>
-      </div>
+    <!-- 4. Dossier IA Act -->
+    <section id="iaact" class="section alt">
+      <div class="container">
+        <h2 class="title">Dossier IA Act</h2>
+        <p class="subtitle-center">
+          L’IA Act (UE) introduit des obligations selon le niveau de risque et le rôle des acteurs. Ce dossier regroupe l’essentiel pour cadrer vos projets.
+        </p>
 
-      <div id="f-audit" class="folder-drawer" role="region" aria-label="Liens - Audit">
-        <a href="./audit.html#flash" target="_blank" rel="noopener">Audit flash</a>
-        <a href="./audit.html#complet" target="_blank" rel="noopener">Audit complet</a>
-      </div>
+        <div class="grid cols-3">
+          <a class="card reveal" href="#ia-bref">
+            <span class="pill">En bref</span>
+            <h3>IA Act : vue d’ensemble</h3>
+            <p class="muted">Approche par risques, principes, notions-clés (fournisseur, déployeur, distributeur).</p>
+            <p class="btn-row"><span class="btn ghost">Lire le résumé →</span></p>
+          </a>
+          <a class="card reveal" href="#ia-roles">
+            <span class="pill">Par rôle</span>
+            <h3>Obligations principales</h3>
+            <p class="muted">Fournisseurs, déployeurs, distributeurs : responsabilités et contrôles.</p>
+            <p class="btn-row"><span class="btn ghost">Voir par rôle →</span></p>
+          </a>
+          <a class="card reveal" href="#ia-kits">
+            <span class="pill">Outils</span>
+            <h3>Check-lists & matrices</h3>
+            <p class="muted">Qualification, contrôles pré-mise en circulation, surveillance post-commercialisation.</p>
+            <p class="btn-row"><span class="btn ghost">Accéder aux kits →</span></p>
+          </a>
+        </div>
 
-      <div id="f-atelier" class="folder-drawer" role="region" aria-label="Liens - Atelier">
-        <a href="./atelier.html#bases" target="_blank" rel="noopener">Bases RGPD</a>
-        <a href="./atelier.html#registre" target="_blank" rel="noopener">Registre</a>
-        <a href="./atelier.html#cookies" target="_blank" rel="noopener">Cookies</a>
-        <a href="./atelier.html#checklist" target="_blank" rel="noopener">Check-list</a>
+        <div class="grid cols-2" style="margin-top:18px">
+          <details id="ia-bref" class="card reveal">
+            <summary>IA Act en bref — ce qu’il faut retenir</summary>
+            <div class="muted" style="margin-top:10px">
+              <p><b>Approche par les risques.</b> Interdiction pour certains usages (inacceptables), exigences strictes pour les systèmes à <b>haut risque</b>, obligations de transparence pour <b>risque limité</b>, bonnes pratiques pour <b>risque minimal</b>.</p>
+              <p><b>Objectif.</b> Déployer une IA digne de confiance sans freiner l’innovation, en protégeant les droits fondamentaux.</p>
+              <p><b>Conséquence pratique.</b> Dès la phase de cadrage, qualifier votre système et organiser vos preuves (qui fait quoi, quand, comment).</p>
+            </div>
+          </details>
+
+          <details id="ia-roles" class="card reveal">
+            <summary>Obligations par rôle (fournisseur, déployeur, distributeur)</summary>
+            <div class="muted" style="margin-top:10px">
+              <p><b>Fournisseurs.</b> Système de gestion des risques, gouvernance des données, documentation technique complète, transparence, instructions d’utilisation, et <i>surveillance post-commercialisation</i>.</p>
+              <p><b>Déployeurs.</b> Vérifier les informations du fournisseur, qualifier l’usage réel, mettre en place la supervision humaine, informer les utilisateurs finaux et suivre les incidents.</p>
+              <p><b>Distributeurs/Intégrateurs.</b> Traçabilité, contrôles de conformité, étiquetage et information, gestion des versions/modèles et support aux clients.</p>
+            </div>
+          </details>
+
+          <details id="ia-kits" class="card reveal">
+            <summary>Check-lists & matrices prêtes à l’emploi</summary>
+            <div class="muted" style="margin-top:10px">
+              <ul class="list">
+                <li><b>Qualification & risque :</b> grille de qualification (usage, données, contexte), détermination du niveau de risque.</li>
+                <li><b>Avant mise en circulation :</b> contrôles documentaires, tests, transparence, consignes utilisateurs.</li>
+                <li><b>Après mise en circulation :</b> plan de surveillance, gestion des incidents, remontées et mises à jour.</li>
+              </ul>
+              <p><a class="btn" href="contact.html">Recevoir les check-lists</a></p>
+            </div>
+          </details>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- 5. Besoin d’un coup de main ? -->
+    <section class="section">
+      <div class="container" style="text-align:center">
+        <h2 class="title">Besoin d’un coup de main ?</h2>
+        <p class="subtitle-center">Explique-nous ton projet (fournisseur, déployeur ou distributeur) et on te propose un plan d’action.</p>
+        <div class="btn-row" style="justify-content:center">
+          <a class="btn" href="contact.html">Parler à un expert</a>
+          <a class="btn ghost" href="conformite.html#iaact">Voir nos offres IA Act</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FAQ -->
+    <section id="faq" class="section alt">
+      <div class="container">
+        <h2 class="title">FAQ</h2>
+        <div class="grid cols-2">
+          <a class="card reveal" href="faq.html">
+            <span class="pill">Questions fréquentes</span>
+            <h3>FAQ complète</h3>
+            <p class="muted">Couverture de l’audit, limites, compatibilité CMS, stockage des données, accompagnement.</p>
+            <p class="btn-row"><span class="btn">Lire la FAQ →</span></p>
+          </a>
+          <a class="card reveal" href="pourquoi-2026.html">
+            <span class="pill">2026</span>
+            <h3>Pourquoi maintenant ?</h3>
+            <p class="muted">Échéances 2025–2026 (accessibilité, information consommateurs, cadre européen). Anticiper évite les non-conformités.</p>
+            <p class="btn-row"><span class="btn ghost">Voir l’article →</span></p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- Nav flottante -->
-  <div class="nav">
-    <a href="#cover" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</a>
-    <a href="#services">Services</a>
-    <a href="#formations">Formations</a>
-    <a href="#audit">Audit</a>
-    <a href="#atelier">Atelier</a>
-  </div>
-
-  <!-- Canvas particules -->
+  <!-- ===== JS : canvas + reveal ===== -->
   <script>
-    (function(){
-      const cvs=document.getElementById('canvas'); if(!cvs) return;
-      const ctx=cvs.getContext('2d'); const hero=cvs.parentElement;
-      function resize(){ const r=hero.getBoundingClientRect(); cvs.width=r.width; cvs.height=r.height; }
-      let w,h; function upd(){ resize(); w=cvs.width; h=cvs.height; }
-      const P=[], CFG={n:70, speed:.35, r:2, link:120};
-      class Dot{
-        constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*CFG.speed; this.vy=(Math.random()-.5)*CFG.speed; }
-        step(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
-        draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,CFG.r,0,Math.PI*2); ctx.fillStyle='rgba(255,255,255,.25)'; ctx.fill(); }
-        links(){ for(const q of P){ const d=Math.hypot(this.x-q.x,this.y-q.y); if(d<CFG.link){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/CFG.link})`; ctx.stroke(); } } }
-      }
-      function init(){ upd(); P.length=0; for(let i=0;i<CFG.n;i++) P.push(new Dot()); }
-      function loop(){ ctx.clearRect(0,0,w,h); P.forEach(p=>{ p.step(); p.draw(); p.links(); }); requestAnimationFrame(loop); }
-      init(); loop(); addEventListener('resize', upd, {passive:true});
-    })();
+    // Hero canvas
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = innerWidth;
+    let h = canvas.height = innerHeight;
+    const particles = [];
+    const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
+    addEventListener('resize', () => { w = canvas.width = innerWidth; h = canvas.height = innerHeight; });
+    class Particle{
+      constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
+    }
+    function init(){ for(let i=0;i<opts.count;i++) particles.push(new Particle()); }
+    function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); }
+    init(); animate();
+
+    // Reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('is-visible'); });
+    }, { threshold: 0.2 });
+    reveals.forEach(el => io.observe(el));
   </script>
 
-  <!-- Injection header/footer + compat GitHub Pages -->
+  <!-- ===== Loader header/footer + nav (priorité racine, fallback partials/) ===== -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const headMount=document.getElementById("header");
-    const footMount=document.getElementById("footer");
-    if(!headMount && !footMount) return;
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
 
-    const isGh=/github\.io$/.test(location.hostname);
-    let base="/";
-    if(isGh){
-      const parts=location.pathname.split("/").filter(Boolean);
-      base=parts.length?`/${parts[0]}/`:"/";
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
     }
-    const candidates=(p)=>{ const clean=p.replace(/^\//,""); return [ base+clean, "./"+clean, "../"+clean ]; };
-    async function fetchAny(paths){
-      const queue=paths.flatMap(candidates);
-      for(const u of queue){ try{ const r=await fetch(u,{cache:"no-cache"}); if(r.ok) return r.text(); }catch(_){} }
-      throw new Error("Aucun chemin valide parmi: "+paths.join(", "));
+
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean ];
+    };
+
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
+      }
+      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
     }
-    function fixRootUrls(container){
-      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]').forEach(el=>{
-        const attr=el.hasAttribute("href")?"href":"src"; const val=el.getAttribute(attr);
-        if(/^\/\//.test(val)) return; el.setAttribute(attr, base + val.replace(/^\//,""));
-      });
+
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return;
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
+        });
     }
-    if(headMount){
-      fetchAny(["header.html","partials/header.html"])
-        .then(html=>{ headMount.innerHTML=html; fixRootUrls(headMount); return fetchAny(["assets/nav.js","nav.js"]); })
-        .then(code=>{ const s=document.createElement("script"); if(/\b(import|export)\b/.test(code)) s.type="module"; s.textContent=code; document.body.appendChild(s); })
-        .catch(()=>{ headMount.innerHTML="<!-- Header introuvable -->"; });
+
+    // HEADER
+    if (headMount) {
+      fetchAny(["header.html", "partials/header.html"])
+        .then(html => {
+          headMount.innerHTML = html;
+          fixRootUrls(headMount);
+          return fetchAny(["assets/nav.js", "nav.js"]);
+        })
+        .then(code => {
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+          console.log("[awenoria] header + nav chargés");
+        })
+        .catch(err => {
+          console.error("Header load error:", err);
+          headMount.innerHTML = "<!-- Header introuvable -->";
+        });
     }
-    if(footMount){
-      fetchAny(["footer.html","partials/footer.html"])
-        .then(html=>{ footMount.innerHTML=html; fixRootUrls(footMount); })
-        .catch(()=>{ footMount.innerHTML="<!-- Footer introuvable -->"; });
+
+    // FOOTER
+    if (footMount) {
+      fetchAny(["footer.html", "partials/footer.html"])
+        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+        .catch(err => {
+          console.error("Footer load error:", err);
+          footMount.innerHTML = "<!-- Footer introuvable -->";
+        });
     }
   });
-  </script>
-
-  <!-- Ajustement automatique des hauteurs des rubans -->
-  <script>
-    (function(){
-      function syncRubanHeights(){
-        document.querySelectorAll('.ruban').forEach(r=>{
-          const cards=r.querySelectorAll('.ruban-card'); let max=0;
-          cards.forEach(c=>{ max=Math.max(max, c.offsetHeight); });
-          r.style.height=(max+4)+'px';
-        });
-      }
-      const ro=new ResizeObserver(syncRubanHeights);
-      window.addEventListener('load', ()=>{ document.querySelectorAll('.ruban-card').forEach(el=>ro.observe(el)); syncRubanHeights(); }, {once:true});
-      window.addEventListener('resize', syncRubanHeights, {passive:true});
-      document.addEventListener('load', e=>{ if(e.target && e.target.tagName==='IMG') syncRubanHeights(); }, true);
-    })();
-  </script>
-
-  <!-- ----------  FOLDERS : clic + survol (desktop), anti-tronquage ---------- -->
-  <script>
-    function openDrawer(btn){
-      const id=btn.getAttribute('aria-controls');
-      const drawer=document.getElementById(id);
-      if(!drawer) return;
-      document.querySelectorAll('.folder').forEach(b=>{ b.classList.remove('open'); b.setAttribute('aria-expanded','false'); });
-      document.querySelectorAll('.folder-drawer').forEach(d=>{ d.classList.remove('open'); d.style.maxHeight=''; });
-
-      btn.classList.add('open'); btn.setAttribute('aria-expanded','true');
-      drawer.classList.add('open');
-
-      requestAnimationFrame(()=>{
-        const verticalPadding=16+26; // padding-top + padding-bottom en CSS .open
-        const contentHeight=drawer.scrollHeight + verticalPadding;
-        drawer.style.maxHeight=contentHeight+'px';
-      });
-    }
-    function closeAll(){
-      document.querySelectorAll('.folder').forEach(b=>{ b.classList.remove('open'); b.setAttribute('aria-expanded','false'); });
-      document.querySelectorAll('.folder-drawer').forEach(d=>{ d.classList.remove('open'); d.style.maxHeight=''; });
-    }
-    const buttons=document.querySelectorAll('.folder');
-    const grid=document.querySelector('.folder-grid');
-    buttons.forEach(btn=>{
-      btn.addEventListener('click', ()=>{ btn.classList.contains('open') ? closeAll() : openDrawer(btn); });
-      if(matchMedia('(hover: hover)').matches){
-        btn.addEventListener('mouseenter', ()=>openDrawer(btn));
-        btn.addEventListener('focus', ()=>openDrawer(btn));
-      }
-    });
-    if(matchMedia('(hover: hover)').matches && grid){ grid.addEventListener('mouseleave', closeAll); }
-    window.addEventListener('resize', ()=>{
-      const btn=document.querySelector('.folder.open'); if(!btn) return;
-      const drawer=document.getElementById(btn.getAttribute('aria-controls')); if(!drawer) return;
-      const verticalPadding=16+26; const contentHeight=drawer.scrollHeight + verticalPadding;
-      drawer.style.maxHeight=contentHeight+'px';
-    }, {passive:true});
   </script>
 </body>
 </html>
