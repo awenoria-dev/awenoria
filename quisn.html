@@ -60,13 +60,13 @@
     .hero-geo .triangle{ --s:64px; width:var(--s); height:var(--s); clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
       box-shadow:inset 0 0 0 3px rgba(255,255,255,.55); border-radius:8px; background:transparent; }
     .hero-geo .diamond{ border:3px solid rgba(255,255,255,.55); transform:rotate(45deg); animation-name:geoFloatDiamond; }
-    .hero-geo .g:nth-child(1){ left=6%;  top=12%;  --dur:22s; --scale:.9 }
-    .hero-geo .g:nth-child(2){ left=78%; top=18%;  --dur:26s; --scale=1.1 }
-    .hero-geo .g:nth-child(3){ left=16%; top=64%;  --dur:24s; --scale=.85 }
-    .hero-geo .g:nth-child(4){ left=88%; top=68%;  --dur:20s; --scale=.95 }
-    .hero-geo .g:nth-child(5){ left=44%; top=8%;   --dur:28s; --scale=.8 }
-    .hero-geo .g:nth-child(6){ left=54%; top=72%;  --dur:23s; --scale:1.0 }
-    .hero-geo .g:nth-child(7){ left=28%; top=36%;  --dur:25s; --scale:1.2 }
+    .hero-geo .g:nth-child(1){ left:6%;  top:12%;  --dur:22s; --scale:.9 }
+    .hero-geo .g:nth-child(2){ left:78%; top:18%;  --dur:26s; --scale=1.1 }
+    .hero-geo .g:nth-child(3){ left:16%; top:64%;  --dur:24s; --scale=.85 }
+    .hero-geo .g:nth-child(4){ left:88%; top:68%;  --dur:20s; --scale=.95 }
+    .hero-geo .g:nth-child(5){ left:44%; top:8%;   --dur:28s; --scale=.8 }
+    .hero-geo .g:nth-child(6){ left:54%; top:72%;  --dur:23s; --scale:1.0 }
+    .hero-geo .g:nth-child(7){ left:28%; top:36%;  --dur:25s; --scale:1.2 }
     .hero-geo .g:nth-child(8){ left=70%; top=44%;  --dur:27s; --scale=.9 }
     @keyframes geoFloat{
       0%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.12}
@@ -122,7 +122,7 @@
     /* Équipe */
     .team{ display:grid; grid-template-columns:repeat(3,1fr); gap:40px; }
     @media(max-width:1024px){ .team{ grid-template-columns:1fr 1fr } }
-    @media(max-width=620px){ .team{ grid-template-columns:1fr } }
+    @media(max-width:620px){ .team{ grid-template-columns:1fr } }
     .member{
       background:var(--aw-panel); border:1px solid rgba(15,23,32,.08); border-radius:var(--aw-radius);
       padding:40px 32px; text-align:center; transition:all var(--transition); box-shadow:var(--shadow); position:relative; overflow:hidden;
@@ -137,13 +137,13 @@
 
     /* Timeline courte */
     .timeline-wrapper{ position:relative; max-width:900px; margin:80px auto 0; padding:0 20px; }
-    .timeline-line{ position:absolute; left=20px; right=20px; top=32px; height=4px; background:rgba(15,95,154,.15); border-radius=4px; overflow=hidden; }
-    .timeline-line::after{ content:''; position:absolute; left=0; top=0; height=100%; width=0; background:var(--aw-copper); animation:drawLine 2s ease-out forwards; }
+    .timeline-line{ position:absolute; left:20px; right:20px; top:32px; height:4px; background:rgba(15,95,154,.15); border-radius:4px; overflow:hidden; }
+    .timeline-line::after{ content:''; position:absolute; left:0; top:0; height:100%; width:0; background:var(--aw-copper); animation:drawLine 2s ease-out forwards; }
     .timeline-steps{ display:flex; justify-content:space-between; position:relative; }
     .step{ flex:1; text-align:center; opacity:0; transform:translateY(50px); transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
     .step.reveal.is-visible{ opacity:1; transform:none; }
-    .step .dot{ width=64px; height=64px; border-radius=50%; background:var(--aw-panel); border=4px solid rgba(15,95,154,.15);
-      margin=0 auto 20px; display=grid; place-items=center; position:relative; z-index=2; }
+    .step .dot{ width:64px; height:64px; border-radius:50%; background:var(--aw-panel); border:4px solid rgba(15,95,154,.15);
+      margin:0 auto 20px; display:grid; place-items:center; position:relative; z-index:2; }
     .step .card{ background:var(--aw-panel); border:1px solid rgba(15,23,32,.08); border-radius:var(--aw-radius); padding:24px; box-shadow:var(--shadow); }
     @keyframes drawLine{ to{ width:100% } }
 
@@ -192,7 +192,7 @@
     </div>
   </section>
 
-  <!-- ===== MISSION (déplacée en position 1) ===== -->
+  <!-- ===== MISSION (position 1) ===== -->
   <section class="section">
     <h2 class="section-title">Notre mission</h2>
     <p class="subtitle-center">Nous démocratisons la conformité pour les TPE/PME, associations et indépendants avec un pré-diagnostic <strong>automatique</strong>, <strong>clair</strong> et <strong>respectueux des données</strong>.</p>
@@ -203,7 +203,7 @@
     </div>
   </section>
 
-  <!-- ===== PREUVE SOCIALE (déplacée en position 2) ===== -->
+  <!-- ===== ILS NOUS FONT DÉJÀ CONFIANCE (position 2) ===== -->
   <section class="section alt">
     <h2 class="section-title">Ils nous font déjà confiance</h2>
     <div class="testimonials cards">
@@ -218,7 +218,7 @@
     </ul>
   </section>
 
-  <!-- ===== HISTOIRE ===== -->
+  <!-- ===== HISTOIRE (frise identique à l'image) ===== -->
   <section id="histoire" class="section alt">
     <h2 class="section-title">Notre histoire en 4 étapes</h2>
     <div class="timeline-wrapper">
