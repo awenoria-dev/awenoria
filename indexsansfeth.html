@@ -20,9 +20,8 @@
   <link rel="stylesheet" href="assets/awenoria.css" />
 
   <style>
-    /* ====== AÉRATION ENTRE RUBRIQUES ====== */
-    section.section {
-      margin-bottom: 80px;
+    html {
+      scroll-behavior: smooth;
     }
 
     /* ====== Hero ====== */
@@ -578,6 +577,26 @@
       const halt = () => { stopped = true; clearTimeout(timer); };
       ['pointerdown','keydown','input','touchstart'].forEach(ev => {
         input.addEventListener(ev, halt, { once:true });
+      });
+    })();
+
+    // ====== FLUIDITÉ : APPARITION EN DOUCEUR DES SECTIONS ======
+    (function(){
+      const sections = document.querySelectorAll('section.section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      sections.forEach(sec => {
+        sec.style.opacity = '0';
+        sec.style.transform = 'translateY(30px)';
+        sec.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+        observer.observe(sec);
       });
     })();
   </script>
