@@ -2,11 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <title>IA Act (UE) : obligations & documentation – Awenoria</title>
-  <meta name="description" content="Qualifier les systèmes, comprendre les obligations par niveau de risque, préparer la doc et la gouvernance (IA Act UE). Présentiel ou distanciel, supports & attestation inclus." />
+  <title>RGPD : les essentiels opérationnels – Awenoria</title>
+  <meta name="description" content="Comprendre les obligations clés (base légale, registre, information, droits) et savoir quoi faire demain matin. Atelier ou journée, présentiel ou distanciel. Supports & attestation inclus." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Police -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -14,93 +12,103 @@
       --ink:#0b1730; --muted:#6b7a90; --panel:#fff; --bg:#f5f7ff;
       --blue:#0066ff; --copper:#ff8a3d; --radius:24px;
       --shadow:0 25px 50px -12px rgba(0,0,0,.15);
-      --elev:0 10px 24px rgba(0,0,0,.08);
+      --elev: 10px 24px rgba(0,0,0,.08);
       --trs:.6s cubic-bezier(.22,1,.36,1);
-      --max:1200px;
+      --maxw:1200px;
     }
-    @media (prefers-color-scheme: dark){
-      :root{ --ink:#eaf0ff; --muted:#a2aec4; --panel:#0d1424; --bg:#0a0f1c; --blue:#3d8bff; --copper:#ff9b59; --shadow:0 25px 50px -12px rgba(0,0,0,.45)}
+    @media (prefers-color-scheme:dark){
+      :root{ --ink:#f5f7ff; --muted:#a7b2c9; --panel:#0c1220; --bg:#0a0f1c; --blue:#3d8bff; --copper:#ff9c5a; --shadow:0 25px 50px -12px rgba(0,0,0,.45); --elev: 0 10px 24px rgba(0,0,0,.28); }
     }
-    *,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+    *,*::before,*::after{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{font-family:"Inter",system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
 
-    /* Header / Footer seront injectés */
-    .mount{min-height:1px}
+    /* Header/foot seront injectés */
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
 
     /* HERO */
-    .hero{position:relative;min-height:48vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;
+    .hero{position:relative;min-height:52vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;
       background:
-        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.14), transparent 60%),
         radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, #0033cc 0%, #0066ff 100%)}
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+      border-bottom:1px solid rgba(255,255,255,.18);
+    }
     .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-    .hero .geo{position:absolute;inset:0;pointer-events:none;z-index:1}
-    .hero .g{position:absolute;width:64px;height:64px;opacity:.18;filter:blur(.2px);animation:float var(--d,22s) cubic-bezier(.22,1,.36,1) infinite}
-    .g.circle{border-radius:50%;border:3px solid rgba(255,255,255,.65)}
-    .g.square{border:3px solid rgba(255,255,255,.5);border-radius:14px}
-    .g.tri{--s:64px;width:var(--s);height:var(--s);clip-path:polygon(50% 0,0 100%,100% 100%);box-shadow:inset 0 0 0 3px rgba(255,255,255,.55);border-radius:8px}
-    .g.dia{border:3px solid rgba(255,255,255,.55);transform:rotate(45deg)}
-    .g:nth-child(1){left:6%;top:12%}.g:nth-child(2){left:78%;top:18%}.g:nth-child(3){left:16%;top:64%}.g:nth-child(4){left:88%;top:68%}
-    .g:nth-child(5){left:44%;top:8%}.g:nth-child(6){left:54%;top:72%}.g:nth-child(7){left:28%;top:36%}.g:nth-child(8){left:70%;top:44%}
-    @keyframes float{0%{transform:translate(0) rotate(0deg)}25%{transform:translate(20px,-30px) rotate(6deg)}50%{transform:translate(-10px,-60px) rotate(12deg)}75%{transform:translate(-30px,-30px) rotate(6deg)}100%{transform:translate(0) rotate(0deg)}}
-    .hero .content{position:relative;z-index:2;max-width:920px;padding:0 20px}
-    .hero h1{font-size:clamp(40px,6.6vw,64px);line-height:1.06;font-weight:800;letter-spacing:-.02em}
-    .hero p{margin-top:14px;font-size:1.1rem;color:#e8f0ff}
+    .hero-geo{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+    .hero-geo .g{position:absolute;width:64px;height:64px;opacity:.18;filter:blur(.2px);animation:geoFloat var(--dur,18s) cubic-bezier(.22,1,.36,1) infinite}
+    .hero-geo .circle{border-radius:50%;border:3px solid rgba(255,255,255,.65)}
+    .hero-geo .square{border:3px solid rgba(255,255,255,.5);border-radius:14px}
+    .hero-geo .triangle{--s:64px;width:var(--s);height:var(--s);clip-path:polygon(50% 0%, 0% 100%, 100% 100%);box-shadow:inset 0 0 0 3px rgba(255,255,255,.55);border-radius:8px}
+    .hero-geo .diamond{border:3px solid rgba(255,255,255,.55);transform:rotate(45deg);animation-name:geoFloatDiamond}
+    .hero-geo .g:nth-child(1){left:6%;top:12%;--dur:22s;--scale:.9}
+    .hero-geo .g:nth-child(2){left:78%;top:18%;--dur:26s;--scale:1.1}
+    .hero-geo .g:nth-child(3){left:16%;top:64%;--dur:24s;--scale:.85}
+    .hero-geo .g:nth-child(4){left:88%;top:68%;--dur:20s;--scale:.95}
+    .hero-geo .g:nth-child(5){left:44%;top:8%;--dur:28s;--scale:.8}
+    .hero-geo .g:nth-child(6){left:54%;top:72%;--dur:23s;--scale:1.0}
+    .hero-geo .g:nth-child(7){left:28%;top:36%;--dur:25s;--scale:1.2}
+    .hero-geo .g:nth-child(8){left:70%;top:44%;--dur:27s;--scale:.9}
+    @keyframes geoFloat{0%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0)}25%{transform:translate3d(20px,-30px,0) scale(var(--scale,1)) rotate(6deg)}50%{transform:translate3d(-10px,-60px,0) scale(var(--scale,1)) rotate(12deg)}75%{transform:translate3d(-30px,-30px,0) scale(var(--scale,1)) rotate(6deg)}100%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0)}}
+    @keyframes geoFloatDiamond{0%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1))}25%{transform:rotate(55deg) translate3d(18px,-30px,0) scale(var(--scale,1))}50%{transform:rotate(65deg) translate3d(-12px,-60px,0) scale(var(--scale,1))}75%{transform:rotate(55deg) translate3d(-28px,-30px,0) scale(var(--scale,1))}100%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1))}}
+    @media (prefers-reduced-motion: reduce){ .hero-geo .g{ animation:none; opacity:.15 } }
 
-    /* SECTION */
-    .section{max-width:var(--max);margin:0 auto;padding:42px 20px 80px}
-    .grid{display:grid;grid-template-columns:2fr 1fr;gap:28px}
+    .hero .content{position:relative;z-index:2;max-width:960px;padding:0 20px}
+    .hero h1{font-size:clamp(40px,6vw,60px);line-height:1.05;font-weight:800;letter-spacing:-.02em;margin:0 0 10px}
+    .hero .lead{font-size:clamp(16px,1.6vw,18px);color:#eaf1ff;margin:0}
+
+    /* MAIN */
+    .section{max-width:var(--maxw);margin:0 auto;padding:56px 20px}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:24px}
     @media (max-width:980px){.grid{grid-template-columns:1fr}}
+    .card{background:var(--panel);border:1px solid rgba(15,23,32,.08);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+    .card h2{margin:0 0 10px}
+    .card ul{list-style:disc;padding-left:20px;margin:.25rem 0}
+    .card li{margin:.22rem 0}
 
-    .card{background:var(--panel);border:1px solid rgba(15,23,32,.08);border-radius:22px;padding:22px;box-shadow:var(--elev)}
-    .card h2{font-size:1.35rem;margin-bottom:8px}
-    .card ul{list-style:disc;padding-left:20px}
-    .card li{margin:.28rem 0}
-    .note{color:var(--muted);font-size:.95rem}
+    .info-cta-wrap{display:grid;gap:16px;align-content:start}
+    .cta-bar{display:flex;justify-content:center}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;padding:14px 26px;border-radius:999px;border:1px solid transparent;text-decoration:none;transition:all var(--trs)}
+    .btn.primary{background:var(--copper);color:#fff;box-shadow:0 10px 30px rgba(255,138,61,.30)}
+    .btn.primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(255,138,61,.40)}
 
-    /* CTA orange sous la bulle droite */
-    .aside{display:grid;gap:16px;height:fit-content;align-content:start}
-    .cta-wrap{display:block}
-    .cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:12px 22px;border-radius:9999px;
-      font-weight:800;font-size:16px;text-decoration:none;color:#fff;background:var(--copper);
-      box-shadow:0 8px 22px rgba(255,138,61,.28);border:1px solid rgba(255,255,255,.25);transition:transform .2s ease, box-shadow .2s ease}
-    .cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(255,138,61,.38)}
+    /* header/footer mounts */
+    #header,#footer{isolation:isolate}
   </style>
 </head>
-<body>
 
+<body>
   <!-- Header injecté -->
-  <div id="header" class="mount"></div>
+  <div id="header" aria-hidden="true"></div>
 
   <!-- HERO -->
-  <section class="hero" aria-label="En-tête de la formation">
-    <canvas id="hero-canvas" aria-hidden="true"></canvas>
-    <div class="geo" aria-hidden="true">
-      <span class="g circle"></span><span class="g square"></span><span class="g tri"></span><span class="g dia"></span>
-      <span class="g circle"></span><span class="g square"></span><span class="g tri"></span><span class="g dia"></span>
+  <section class="hero" aria-labelledby="title">
+    <canvas id="canvas" aria-hidden="true"></canvas>
+    <div class="hero-geo" aria-hidden="true">
+      <span class="g circle"></span><span class="g square"></span><span class="g triangle"></span><span class="g diamond"></span>
+      <span class="g circle"></span><span class="g square"></span><span class="g triangle"></span><span class="g diamond"></span>
     </div>
     <div class="content">
-      <h1>IA Act (UE) : obligations &amp; documentation</h1>
-      <p>Qualifier les systèmes, comprendre les obligations par niveau de risque, préparer la doc et la gouvernance.</p>
+      <h1 id="title">RGPD : les essentiels opérationnels</h1>
+      <p class="lead">Comprendre les obligations clés (base légale, registre, information, droits) et savoir quoi faire demain matin.</p>
     </div>
   </section>
 
   <!-- CONTENU -->
-  <main class="section" aria-label="Contenu de la fiche formation">
+  <main class="section" aria-label="Contenu">
     <div class="grid">
-      <!-- Colonne gauche : programme + objectifs -->
-      <article class="card" aria-labelledby="prog-title">
-        <h2 id="prog-title">Programme</h2>
+      <!-- Col principale -->
+      <article class="card">
+        <h2>Programme</h2>
         <ul>
-          <li>Cartographier les cas d’usage</li>
-          <li>Qualification du risque &amp; obligations</li>
-          <li>Dossier technique &amp; transparence</li>
-          <li>Plan de mise en conformité</li>
+          <li>Bases légales &amp; minimisation</li>
+          <li>Registre : quoi, comment, preuves</li>
+          <li>Droits des personnes : process &amp; SLA</li>
+          <li>Plan d’action 90 jours</li>
         </ul>
 
-        <h2 style="margin-top:18px" id="obj-title">Objectifs</h2>
-        <ul aria-labelledby="obj-title">
+        <h2 style="margin-top:16px">Objectifs</h2>
+        <ul>
           <li>Comprendre les obligations et le périmètre</li>
           <li>Savoir appliquer dans votre contexte</li>
           <li>Produire les premiers livrables utiles</li>
@@ -108,70 +116,55 @@
         </ul>
       </article>
 
-      <!-- Colonne droite : Infos pratiques + bouton orange SOUS la carte -->
-      <aside class="aside">
-        <div class="card" aria-labelledby="infos-title">
-          <h2 id="infos-title">Infos pratiques</h2>
-          <ul class="note" style="padding-left:18px;margin-top:8px">
-            <li>Formats : atelier 2h, 1/2 journée, 1 journée</li>
-            <li>Modalités : présentiel ou distanciel</li>
-            <li>Financement : selon OPCO/plan interne</li>
+      <!-- Col droite -->
+      <aside class="info-cta-wrap">
+        <div class="card">
+          <h2>Infos pratiques</h2>
+          <ul>
+            <li>Formats&nbsp;: atelier 2h, 1/2 journée, 1 journée</li>
+            <li>Modalités&nbsp;: présentiel ou distanciel</li>
+            <li>Financement&nbsp;: selon OPCO/plan interne</li>
           </ul>
-          <p class="note" style="margin-top:12px">Supports &amp; modèles fournis • Quiz &amp; attestation inclus</p>
+          <p style="color:var(--muted);margin-top:10px">Supports &amp; modèles fournis • Quiz &amp; attestation inclus</p>
         </div>
 
-        <!-- CTA sous la bulle -->
-        <div class="cta-wrap">
-          <a class="cta" href="../../index.html#contact">Demander un devis</a>
+        <!-- Bouton SOUS la bulle -->
+        <div class="cta-bar">
+          <a class="btn primary" href="../index.html#contact">Demander un devis</a>
         </div>
       </aside>
     </div>
   </main>
 
   <!-- Footer injecté -->
-  <div id="footer" class="mount"></div>
+  <div id="footer" aria-hidden="true"></div>
 
-  <!-- Particules (lignes/blobs) -->
+  <!-- Particules -->
   <script>
-    (() => {
-      const c = document.getElementById('hero-canvas'); if(!c) return;
-      const ctx = c.getContext('2d');
-      const S = { n: 60, r: 2, link: 120, v: .35 };
-      let W = c.width = innerWidth, H = c.height = Math.max(360, innerHeight * .52);
-      const P = [];
-      addEventListener('resize', () => { W = c.width = innerWidth; H = c.height = Math.max(360, innerHeight * .52) });
-      class Dot{
-        constructor(){ this.x=Math.random()*W; this.y=Math.random()*H; this.vx=(Math.random()-.5)*S.v; this.vy=(Math.random()-.5)*S.v }
-        step(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>W) this.vx*=-1; if(this.y<0||this.y>H) this.vy*=-1 }
-        draw(){
-          ctx.beginPath(); ctx.arc(this.x,this.y,S.r,0,Math.PI*2);
-          ctx.fillStyle='rgba(255,255,255,.28)'; ctx.fill();
-        }
-        links(){
-          for(const q of P){
-            const d=Math.hypot(this.x-q.x,this.y-q.y);
-            if(d<S.link){
-              ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(q.x,q.y);
-              ctx.strokeStyle=`rgba(255,255,255,${1-d/S.link})`; ctx.stroke();
-            }
-          }
-        }
-      }
-      for(let i=0;i<S.n;i++) P.push(new Dot());
-      (function loop(){
-        ctx.clearRect(0,0,W,H);
-        for(const p of P){ p.step(); p.draw(); p.links(); }
-        requestAnimationFrame(loop);
-      })();
-    })();
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = innerWidth;
+    let h = canvas.height = Math.max(380, innerHeight * .52);
+    const particles = [];
+    const opts = { count:60, speed:.35, radius:2, distance:120, color:'rgba(255,255,255,.28)' };
+    addEventListener('resize', () => { w = canvas.width = innerWidth; h = canvas.height = Math.max(380, innerHeight * .52); });
+    class Particle{
+      constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
+    }
+    (function init(){ for(let i=0;i<opts.count;i++) particles.push(new Particle()); })();
+    (function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); })();
   </script>
 
-  <!-- Injection header/footer + correction des chemins (GitHub Pages friendly) -->
+  <!-- Injection header/footer (depuis la racine, compatible GitHub Pages) -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const headMount = document.getElementById("header");
       const footMount = document.getElementById("footer");
 
+      // Base pour GitHub Pages: /<repo>/
       const isGh = /github\.io$/.test(location.hostname);
       let base = "/";
       if (isGh) {
@@ -181,38 +174,43 @@
 
       const candidates = (p) => {
         const clean = p.replace(/^\//, "");
-        return [ base+clean, "./"+clean, "../"+clean, "../../"+clean ];
+        return [
+          base + clean,                // /repo/header.html (GitHub Pages)
+          "/" + clean,                 // /header.html (root)
+          "./" + clean,                // ./header.html
+          "../" + clean,               // ../header.html
+          "../../" + clean,            // ../../header.html (2 niveaux)
+        ];
       };
 
-      async function fetchAny(paths){
-        const list = paths.flatMap(candidates);
-        for(const url of list){
-          try{ const r = await fetch(url, {cache:"no-cache"}); if(r.ok) return r.text(); }catch(_){}
+      async function fetchAny(paths) {
+        const queue = paths.flatMap(candidates);
+        for (const u of queue) {
+          try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); }
+          catch(_) {}
         }
-        throw new Error("Introuvable: "+paths.join(", "));
+        throw new Error("Introuvable: " + paths.join(", "));
       }
 
-      function fixRoot(container){
-        container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]').forEach(el=>{
-          const attr = el.hasAttribute("href") ? "href" : "src";
-          const v = el.getAttribute(attr); if(/^\/\//.test(v)) return;
-          el.setAttribute(attr, base + v.replace(/^\//,""));
-        });
+      function fixRootUrls(container) {
+        container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+          .forEach(el => {
+            const attr = el.hasAttribute("href") ? "href" : "src";
+            const val = el.getAttribute(attr);
+            if (/^\/\//.test(val)) return; // protocol-relative
+            el.setAttribute(attr, base + val.replace(/^\//, ""));
+          });
       }
 
-      if(headMount){
-        fetchAny(["header.html","partials/header.html"]).then(html=>{
-          headMount.innerHTML = html; fixRoot(headMount);
-          return fetchAny(["assets/nav.js","nav.js"]);
-        }).then(code=>{
-          const s=document.createElement("script"); if(/\b(import|export)\b/.test(code)) s.type="module";
-          s.textContent=code; document.body.appendChild(s);
-        }).catch(()=> headMount.innerHTML="");
+      if (headMount) {
+        fetchAny(["header.html", "partials/header.html"])
+          .then(html => { headMount.innerHTML = html; fixRootUrls(headMount); })
+          .catch(() => { headMount.innerHTML = "<!-- Header introuvable -->"; });
       }
-      if(footMount){
-        fetchAny(["footer.html","partials/footer.html"]).then(html=>{
-          footMount.innerHTML = html; fixRoot(footMount);
-        }).catch(()=> footMount.innerHTML="");
+      if (footMount) {
+        fetchAny(["footer.html", "partials/footer.html"])
+          .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+          .catch(() => { footMount.innerHTML = "<!-- Footer introuvable -->"; });
       }
     });
   </script>
