@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fiche formation – Awenoria</title>
   <meta name="description" content="Détail de la formation : objectifs, programme, durée, modalités. Présentiel / distanciel, supports et attestation inclus." />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Police -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -74,10 +74,23 @@
     @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
   </style>
 </head>
+<body>
 
-<body class="page-fiche">
-  <!-- Header injecté -->
-  <div id="header"></div>
+  <!-- Header (version existante du site, non modifiée ici) -->
+  <header class="navbar" role="banner">
+    <div class="nav-wrap">
+      <a class="brand" href="../index.html" aria-label="Aller à l'accueil">
+        <img class="brand-img" src="../images/logo.png" alt="Awenoria">
+      </a>
+      <nav class="nav-main" aria-label="Navigation principale">
+        <a href="../index.html#qui-sommes-nous">Qui sommes-nous ?</a>
+        <a href="../Nos-services.html">Nos services</a>
+        <a href="../nos-formations.html">Nos formations</a>
+        <a href="../index.html#blog">Blog</a>
+        <a href="../nos-formations.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
   <!-- HERO -->
   <section class="hero" aria-label="En-tête formation">
@@ -90,7 +103,7 @@
     <div class="content">
       <h1 id="course-title">Titre formation</h1>
       <p id="course-pitch" class="lead">Résumé personnalisé selon l’origine (thématique / public).</p>
-      <!-- Pas de fil d’Ariane, pas de tags, pas de “Revenir” -->
+      <!-- Pas de breadcrumbs, pas de tags, pas de “Revenir” -->
     </div>
   </section>
 
@@ -105,10 +118,10 @@
         <ul id="course-objectives"></ul>
       </article>
 
-      <!-- Carte Infos pratiques -->
+      <!-- Colonne droite : Infos + CTA sous la carte -->
       <div>
         <aside class="card" style="height:fit-content;">
-          <h2 style="margin:0 0 8px;">Infos pratiques</h2>
+          <h2 style="margin:0 0 8px">Infos pratiques</h2>
           <ul class="note" id="practical-list" style="padding-left:18px;margin:8px 0 0">
             <li>Formats : atelier 2h, 1/2 journée, 1 journée</li>
             <li>Modalités : présentiel ou distanciel</li>
@@ -116,18 +129,24 @@
           </ul>
           <p class="note" style="margin-top:12px">Supports &amp; modèles fournis • Quiz &amp; attestation inclus</p>
         </aside>
-        <!-- Bouton positionné en dehors de la carte -->
         <div class="cta-under-card">
-          <a class="btn primary" href="../../index.html#contact">Demander un devis</a>
+          <a class="btn primary" href="../index.html#contact">Demander un devis</a>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- Footer injecté -->
-  <div id="footer"></div>
+  <!-- Footer (version existante du site, non modifiée ici) -->
+  <footer class="cc-footer" role="contentinfo" style="background:#0a0a0a;color:#eaeaea;padding:28px 0 12px;border-top:1px solid rgba(255,255,255,.12)">
+    <div class="cc-container" style="max-width:var(--maxw);margin:0 auto;padding:0 20px">
+      <div class="cc-bottom" style="display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,.12);padding-top:12px">
+        <small>© 2025 Awenoria. Tous droits réservés.</small>
+        <small>Conformité, accessibilité, RGPD &amp; IA – France.</small>
+      </div>
+    </div>
+  </footer>
 
-  <!-- Particules -->
+  <!-- Fond animé -->
   <script>
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
@@ -146,136 +165,83 @@
     (function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); })();
   </script>
 
-  <!-- Données & logique : sans breadcrumbs/tags, avec fallback -->
+  <!-- Données : reprend la logique d’origine (COURSES + pitch by theme/public), mais sans breadcrumbs/tags -->
   <script type="module">
-    // Valeurs par défaut
-    const DEFAULT_TITLE = "IA Act (UE) : obligations & documentation";
-    const DEFAULT_PITCH = "Qualifier les systèmes, comprendre les obligations par niveau de risque, préparer la doc et la gouvernance.";
-    const DEFAULT_PROGRAM = [
-      "Cartographier les cas d’usage",
-      "Qualification du risque & obligations",
-      "Dossier technique & transparence",
-      "Plan de mise en conformité"
-    ];
-    const DEFAULT_OBJECTIVES = [
-      "Comprendre les obligations et le périmètre",
-      "Savoir appliquer dans votre contexte",
-      "Produire les premiers livrables utiles",
-      "Établir une feuille de route opérationnelle"
-    ];
+    import { COURSES } from "../js/courses-data.js";
+
+    const THEME_LABELS = {
+      "rgpd-essentiels":"RGPD – essentiels, registre, AIPD",
+      "ia-act":"IA Act – obligations & documentation",
+      "cookies":"Cookies & CMP",
+      "web-legal":"Mentions légales & conformité web",
+      "access":"Accessibilité (RGAA / EN 301 549)",
+      "cyber":"Cybersécurité de base"
+    };
+    const AUDIENCE_LABELS = {
+      dirigeants:"Dirigeants & responsables",
+      equipes:"Équipes opérationnelles",
+      dpo:"Référents / DPO",
+      dev:"Dev, Produit & Data"
+    };
+
+    const slug = location.pathname.split('/').pop().replace('.html','');
+    const params = new URLSearchParams(location.search);
+    const from = params.get('from');        // theme | public | catalogue
+    const theme = params.get('theme');      // ex: rgpd-essentiels
+    const audience = params.get('public');  // ex: dirigeants
 
     const titleEl = document.getElementById('course-title');
     const pitchEl = document.getElementById('course-pitch');
     const progEl  = document.getElementById('course-program');
     const objEl   = document.getElementById('course-objectives');
 
-    function setHead(t,d){document.title=t; const m=document.querySelector('meta[name="description"]'); if(m) m.setAttribute('content',d);}
-
-    async function hydrate(){
-      try{
-        const mod = await import("../../js/courses-data.js");
-        const COURSES = mod.COURSES || [];
-        const slug = location.pathname.split('/').pop().replace('.html','');
-        const params = new URLSearchParams(location.search);
-        const from = params.get('from');
-        const theme = params.get('theme');
-        const audience = params.get('public');
-
-        const course = COURSES.find(c => c.slug === slug);
-
-        const title = course?.title || DEFAULT_TITLE;
-        const summary = course?.summary || DEFAULT_PITCH;
-        const pitch =
-          (from==='public' && audience && course?.pitchByAudience?.[audience]) ? course.pitchByAudience[audience] :
-          (from==='theme'  && theme    && course?.pitchByTheme?.[theme])      ? course.pitchByTheme[theme] :
-          summary;
-
-        titleEl.textContent = title;
-        pitchEl.textContent = pitch;
-
-        const items = (course?.program||[]).map(li=>`<li>${li}</li>`).join('');
-        progEl.innerHTML = items ? `<ul>${items}</ul>` : `<ul>${DEFAULT_PROGRAM.map(li=>`<li>${li}</li>`).join('')}</ul>`;
-
-        objEl.innerHTML = (course?.objectives?.length ? course.objectives : DEFAULT_OBJECTIVES)
-          .map(o=>`<li>${o}</li>`).join('');
-
-        setHead(`${title} – Awenoria`, summary);
-
-      }catch(err){
-        console.warn("Fiche en mode fallback:", err);
-        titleEl.textContent = DEFAULT_TITLE;
-        pitchEl.textContent = DEFAULT_PITCH;
-        progEl.innerHTML = `<ul>${DEFAULT_PROGRAM.map(li=>`<li>${li}</li>`).join('')}</ul>`;
-        objEl.innerHTML  = DEFAULT_OBJECTIVES.map(o=>`<li>${o}</li>`).join('');
-        setHead(`${DEFAULT_TITLE} – Awenoria`, DEFAULT_PITCH);
-      }
-    }
-    hydrate();
-  </script>
-
-  <!-- Loader header/footer + assets (chemins robustes GH Pages) -->
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const headMount = document.getElementById("header");
-    const footMount = document.getElementById("footer");
-
-    const isGh = /github\.io$/.test(location.hostname);
-    let base = "/";
-    if (isGh) {
-      const parts = location.pathname.split("/").filter(Boolean);
-      base = parts.length ? `/${parts[0]}/` : "/";
+    function setHead(metaTitle, metaDesc){
+      document.title = metaTitle;
+      const m = document.querySelector('meta[name="description"]');
+      if(m) m.setAttribute('content', metaDesc);
     }
 
-    const ensureHeadAsset = (href, rel, attr = {}) => {
-      const l = document.createElement("link");
-      l.rel = rel; l.href = base + href.replace(/^\//, "");
-      Object.entries(attr).forEach(([k,v]) => l.setAttribute(k,v));
-      document.head.appendChild(l);
-    };
-    ensureHeadAsset("assets/awenoria.css", "stylesheet");
-    ensureHeadAsset("images/favicon-32.png", "icon", { sizes:"32x32", type:"image/png" });
-
-    const candidates = (p) => {
-      const clean = p.replace(/^\//, "");
-      return [ base + clean, "./" + clean, "../" + clean, "../../" + clean ];
-    };
-
-    async function fetchAny(paths) {
-      const queue = paths.flatMap(candidates);
-      for (const u of queue) { try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {} }
-      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+    function pickPitch(course){
+      if(from === 'public' && audience && course.pitchByAudience?.[audience]) return course.pitchByAudience[audience];
+      if(from === 'theme'  && theme    && course.pitchByTheme?.[theme])      return course.pitchByTheme[theme];
+      return course.summary || '';
     }
 
-    function fixRootUrls(container) {
-      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
-        .forEach(el => {
-          const attr = el.hasAttribute("href") ? "href" : "src";
-          const val = el.getAttribute(attr);
-          if (/^\/\//.test(val)) return;
-          el.setAttribute(attr, base + val.replace(/^\//, ""));
-        });
+    function renderNotFound(){
+      document.getElementById('content').innerHTML = `
+        <div class="card" style="max-width:var(--maxw);margin:0 auto;">
+          <h2>Formation introuvable</h2>
+          <p class="note" style="margin-top:8px">La fiche demandée n'existe pas.</p>
+        </div>`;
     }
 
-    if (headMount) {
-      fetchAny(["header.html", "partials/header.html"])
-        .then(html => {
-          headMount.innerHTML = html; fixRootUrls(headMount);
-          return fetchAny(["assets/nav.js", "nav.js"]);
-        })
-        .then(code => {
-          const s = document.createElement("script");
-          if (/\b(import|export)\b/.test(code)) s.type = "module";
-          s.textContent = code; document.body.appendChild(s);
-        })
-        .catch(() => { headMount.innerHTML = "<!-- Header introuvable -->"; });
-    }
+    try{
+      const course = COURSES.find(c => c.slug === slug);
+      if(!course){ renderNotFound(); throw new Error("Course not found"); }
 
-    if (footMount) {
-      fetchAny(["footer.html", "partials/footer.html"])
-        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
-        .catch(() => { footMount.innerHTML = "<!-- Footer introuvable -->"; });
+      titleEl.textContent = course.title;
+      pitchEl.textContent = pickPitch(course);
+
+      const items = (course.program || []).map(li=>`<li>${li}</li>`).join('');
+      progEl.innerHTML = items ? `<ul>${items}</ul>` : `<p class="note">Le programme détaillé sera fourni sur demande.</p>`;
+
+      const defaultObjectives = [
+        'Comprendre les obligations et le périmètre',
+        'Savoir appliquer dans votre contexte',
+        'Produire les premiers livrables utiles',
+        'Établir une feuille de route opérationnelle'
+      ];
+      objEl.innerHTML = (course.objectives?.length ? course.objectives : defaultObjectives)
+        .map(o=>`<li>${o}</li>`).join('');
+
+      const originLabel =
+        from === 'public' ? (AUDIENCE_LABELS[audience] || '') :
+        from === 'theme'  ? (THEME_LABELS[theme] || '') : 'Catalogue';
+
+      setHead(`${course.title} – Awenoria`, `${course.summary || ''} ${originLabel ? ' • Contexte : ' + originLabel : ''}`);
+    }catch(e){
+      console.warn(e);
     }
-  });
   </script>
 </body>
 </html>
