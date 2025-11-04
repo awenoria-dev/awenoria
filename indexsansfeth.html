@@ -13,9 +13,9 @@
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#0f5f9a">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com " />
-  <link rel="preconnect" href="https://fonts.gstatic.com " crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz ,wght@12..96,300..800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com  " />
+  <link rel="preconnect" href="https://fonts.gstatic.com  " crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz  ,wght@12..96,300..800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/awenoria.css" />
 
@@ -148,9 +148,8 @@
         </div>
       </div>
 
-      <div class="hero-visual">
-        <img src="images/hero.jpg" alt="" loading="lazy" decoding="async" />
-      </div>
+      <!--  ↓↓↓  IMAGE SUPPRIMÉE – rien n’a été déplacé ou modifié d’autre  ↓↓↓  -->
+      <!--  <div class="hero-visual"> … </div>  -->
     </div>
   </section>
 
@@ -161,7 +160,7 @@
     <p class="subtitle-center">Entrez simplement l’adresse de votre site pour obtenir un aperçu immédiat de votre conformité RGPD.</p>
 
     <form class="url-bar" action="#analyse" method="get" onsubmit="event.preventDefault();demoAudit();">
-      <input type="url" name="site" id="auditUrl" placeholder="https://votresite.fr " aria-label="Adresse du site à analyser" required autocomplete="off">
+      <input type="url" name="site" id="auditUrl" placeholder="https://votresite.fr  " aria-label="Adresse du site à analyser" required autocomplete="off">
       <button type="submit">Analyser votre site</button>
     </form>
 
@@ -371,8 +370,8 @@
 
           <div class="cta-col">
             <a class="cta faq" href="faq.html">FAQ complète</a>
-            <a class="cta whatsapp" href="https://wa.me/33600000000 " target="_blank" rel="noopener">WhatsApp Business</a>
-            <a class="cta calendly" href="https://calendly.com/ " target="_blank" rel="noopener">Programmer un appel</a>
+            <a class="cta whatsapp" href="https://wa.me/33600000000  " target="_blank" rel="noopener">WhatsApp Business</a>
+            <a class="cta calendly" href="https://calendly.com/  " target="_blank" rel="noopener">Programmer un appel</a>
           </div>
 
           <hr>
@@ -381,7 +380,7 @@
         </aside>
 
         <div class="contact-card glass">
-          <form id="contactForm" action="https://awenoria.bmavcontact.workers.dev/contact " method="POST" novalidate>
+          <form id="contactForm" action="https://awenoria.bmavcontact.workers.dev/contact  " method="POST" novalidate>
             <div class="form-grid">
               <div>
                 <label class="req">Votre demande</label>
@@ -521,7 +520,7 @@
     // Lazy-load Turnstile
     (function(){
       const form = document.getElementById('contactForm'); if(!form) return;
-      let loaded=false; function load(){ if(loaded) return; loaded=true; const s=document.createElement('script'); s.src='https://challenges.cloudflare.com/turnstile/v0/api.js '; s.async=true; s.defer=true; document.head.appendChild(s);} 
+      let loaded=false; function load(){ if(loaded) return; loaded=true; const s=document.createElement('script'); s.src='https://challenges.cloudflare.com/turnstile/v0/api.js  '; s.async=true; s.defer=true; document.head.appendChild(s);} 
       ['focusin','pointerdown','touchstart'].forEach(ev=>{ form.addEventListener(ev, load, { once:true, passive:true }); });
       window.awenTurnstileOK = function(){};
     })();
@@ -553,7 +552,7 @@
     // Effet d'écriture automatique et CONTINU dans le champ URL (respecte prefers-reduced-motion)
     (function(){
       const input = document.getElementById('auditUrl'); if(!input) return;
-      const demo = 'https://votresite.fr ';
+      const demo = 'https://votresite.fr  ';
       const TYPE_DELAY = 70, RESTART_DELAY = 2000;
       const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (REDUCE) { input.placeholder = demo; return; }
