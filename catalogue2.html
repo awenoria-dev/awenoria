@@ -122,57 +122,6 @@
       .ruban-track{gap:16px}
     }
 
-    /* ----------  BULLES EDITORIALES  ---------- */
-    .bubbles .bubble-grid{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 60px;
-      justify-content:center;
-      margin: 60px 0 32px;
-    }
-    .bubble{
-      position:relative;
-      width: 280px;
-      height: 280px;
-      border-radius:50%;
-      background: rgba(0,102,255,.12);
-      color: #0066FF;
-      box-shadow: 0 12px 28px rgba(0,102,255,.08);
-      cursor: default;
-      transition: none;
-    }
-    .bubble:hover{transform: none}
-    .bubble .front,
-    .bubble .back{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding: 32px;
-      border-radius:inherit;
-      transition:opacity .18s ease-out;
-    }
-    .bubble .front{font-weight:800; font-size:1.1rem; color:var(--aw-ink); letter-spacing:-.01em}
-    .bubble .back{flex-direction:column; gap: 12px; opacity:0; pointer-events:none; background: #0066FF; color:#fff}
-    .bubble:hover .back, .bubble:focus-visible .back{opacity:1; pointer-events:auto}
-    .bubble:hover .front, .bubble:focus-visible .front{opacity:0}
-    .bubble .back a{color:#fff; font-weight:600; text-decoration:none; padding: 8px 16px; border-radius:999px; background:rgba(255,255,255,.18); transition:background .2s; font-size: 1rem; white-space: nowrap}
-    .bubble .back a:hover{background:rgba(255,255,255,.3)}
-
-    /* ----------  TITRES SECTIONS  ---------- */
-    .section h2, .editorial.bubbles h2 { color: #0066FF; font-weight: 800; font-size: clamp(26px, 3.8vw, 40px); text-align: center; margin: 0 auto 24px }
-
-    /* ----------  CTAs CAPSULES  ---------- */
-    .editorial-cta{ text-align:center; margin-top:32px }
-    .cta-capsule{ display:inline-flex; align-items:center; justify-content:center; height:52px; padding:0 32px; border-radius:999px; background:var(--aw-copper); color:#fff; font-weight:800; text-decoration:none; box-shadow:0 12px 28px rgba(255,138,61,.28); transition:.25s }
-    .cta-capsule:hover{ transform:translateY(-2px); box-shadow:0 18px 36px rgba(255,138,61,.35) }
-
-    /* ----------  NAV FLOTTANTE  ---------- */
-    .nav{position:fixed; bottom:18px; left:50%; transform:translateX(-50%); display:flex; gap:10px; z-index:20}
-    .nav a{background:var(--aw-panel); color:#0033cc; padding:.55rem 1rem; border-radius:999px; text-decoration:none; font-weight:800; box-shadow:0 10px 24px rgba(0,0,0,.15); border:1px solid rgba(15,23,32,.06)}
-
     /* ----------  HOVER CARDS (fiches au survol) ---------- */
     .ruban-card{ position:relative } /* s'assure du contexte de position */
 
@@ -207,6 +156,64 @@
     @media (max-width:640px){
       .hover-card{ inset:auto 12px 12px 12px } /* centrée bas sur mobile */
     }
+
+    /* ----------  FOLDER BOARD  ---------- */
+    .folder-grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 680px;
+      margin: 40px auto 0;
+    }
+    @media (min-width: 640px){ .folder-grid{ grid-template-columns: repeat(4, 1fr); } }
+
+    .folder{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      background: var(--aw-panel);
+      border: 1px solid rgba(15,23,32,.08);
+      border-radius: 20px;
+      padding: 24px 12px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,.06);
+      transition: transform .18s ease, box-shadow .18s ease;
+      font: inherit;
+      color: inherit;
+    }
+    .folder:hover{ transform: translateY(-3px); box-shadow: 0 14px 32px rgba(0,0,0,.1); }
+    .folder-icon{ font-size: 2.2rem; }
+    .folder-label{ font-weight: 700; font-size: .95rem; }
+
+    /* drawer */
+    .folder-drawer{
+      display: none;
+      grid-column: 1 / -1;
+      background: var(--aw-panel);
+      border: 1px solid rgba(15,23,32,.08);
+      border-radius: 16px;
+      padding: 20px 24px;
+      box-shadow: var(--shadow);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .folder-drawer.open{ display: flex; }
+
+    .folder-drawer a{
+      display: inline-flex;
+      align-items: center;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: rgba(0,102,255,.1);
+      color: #0066ff;
+      font-weight: 700;
+      font-size: .92rem;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .folder-drawer a:hover{ background: rgba(0,102,255,.2); }
   </style>
 </head>
 
@@ -477,123 +484,62 @@
     </div>
   </section>
 
-  <!-- ==========  NOS SERVICES  (BULLES) ========== -->
-  <section id="services" class="section editorial bubbles">
-    <h2>Nos Services</h2>
-    <div class="bubble-grid">
-      <div class="bubble" tabindex="0">
-        <span class="front">Conseil & conformité</span>
-        <span class="back">
-          <a href="./Nos-services.html#audit">Audit & Analyse</a>
-          <a href="./Nos-services.html#rgpd">RGPD</a>
-          <a href="./Nos-services.html#ia-act">IA Act</a>
-        </span>
-      </div>
-      <div class="bubble" tabindex="0">
-        <span class="front">Web & légal</span>
-        <span class="back">
-          <a href="./Nos-services.html#mentions">Mentions</a>
-          <a href="./Nos-services.html#cookies">Cookies</a>
-          <a href="./Nos-services.html#access">Access</a>
-        </span>
-      </div>
-      <div class="bubble" tabindex="0">
-        <span class="front">Formats & modalités</span>
-        <span class="back">
-          <a href="./Nos-services.html#atelier-2h">Atelier 2h</a>
-          <a href="./Nos-services.html#1-2j">½j</a>
-          <a href="./Nos-services.html#distanciel">Présentiel ou distanciel</a>
-        </span>
-      </div>
-    </div>
-    <p class="editorial-cta"><a href="mailto:hello@awenoria.fr?subject=Devis Services" class="cta-capsule">Demander un devis</a></p>
-  </section>
+  <!-- ==========  FOLDER BOARD  ========== -->
+  <section id="folder-board" class="section">
+    <h2 class="title-center">Explorer</h2>
+    <p class="subtitle-center">Cliquez sur un dossier pour découvrir les rubriques.</p>
+    <div class="underline"></div>
 
-  <!-- ==========  NOS FORMATIONS  (BULLES) ========== -->
-  <section id="formations" class="section editorial bubbles">
-    <h2>Nos Formations</h2>
-    <div class="bubble-grid">
-      <div class="bubble" tabindex="0">
-        <span class="front">Par thématique</span>
-        <span class="back">
-          <a href="./formations.html#rgpd">RGPD</a>
-          <a href="./formations.html#cookies">Cookies</a>
-          <a href="./formations.html#access">Access</a>
-          <a href="./formations.html#cyber">Cyber</a>
-          <a href="./formations.html#ia">IA Act</a>
-        </span>
+    <div class="folder-grid">
+      <!-- DOSSIER 1 -->
+      <button class="folder" aria-expanded="false" aria-controls="f-services">
+        <span class="folder-icon">📁</span>
+        <span class="folder-label">Nos Services</span>
+      </button>
+      <div id="f-services" class="folder-drawer">
+        <a href="./Nos-services.html#audit" target="_blank">Audit & Analyse</a>
+        <a href="./Nos-services.html#rgpd" target="_blank">RGPD</a>
+        <a href="./Nos-services.html#ia-act" target="_blank">IA Act</a>
+        <a href="./Nos-services.html#mentions" target="_blank">Mentions légales</a>
+        <a href="./Nos-services.html#cookies" target="_blank">Cookies</a>
+        <a href="./Nos-services.html#access" target="_blank">Accessibilité</a>
       </div>
-      <div class="bubble" tabindex="0">
-        <span class="front">Par public</span>
-        <span class="back">
-          <a href="./formations.html#dirigeants">Dirigeants</a>
-          <a href="./formations.html#dpo">DPO</a>
-          <a href="./formations.html#devs">Devs</a>
-          <a href="./formations.html#ops">Ops</a>
-        </span>
-      </div>
-      <div class="bubble" tabindex="0">
-        <span class="front">Formats & modalités</span>
-        <span class="back">
-          <a href="./formations.html#2h">2h</a>
-          <a href="./formations.html#1j">1j</a>
-          <a href="./formations.html#2j">2j</a>
-          <a href="./formations.html#distanciel">Présentiel ou distanciel</a>
-        </span>
-      </div>
-    </div>
-    <p class="editorial-cta"><a href="mailto:hello@awenoria.fr?subject=Programme Formations" class="cta-capsule">Demander un programme</a></p>
-  </section>
 
-  <!-- ==========  AUDIT & ANALYSE  (BULLES) ========== -->
-  <section id="audit" class="section editorial bubbles">
-    <h2>Audit & Analyse</h2>
-    <div class="bubble-grid">
-      <div class="bubble" tabindex="0">
-        <span class="front">Audit flash</span>
-        <span class="back">
-          <a href="./audit.html#flash">½ journée</a>
-          <a href="./audit.html#priorites">Priorités clés</a>
-          <a href="./audit.html#rapide">Rapide & efficace</a>
-        </span>
+      <!-- DOSSIER 2 -->
+      <button class="folder" aria-expanded="false" aria-controls="f-formations">
+        <span class="folder-icon">📁</span>
+        <span class="folder-label">Nos Formations</span>
+      </button>
+      <div id="f-formations" class="folder-drawer">
+        <a href="./formations.html#rgpd" target="_blank">RGPD</a>
+        <a href="./formations.html#cookies" target="_blank">Cookies</a>
+        <a href="./formations.html#access" target="_blank">Access</a>
+        <a href="./formations.html#cyber" target="_blank">Cyber</a>
+        <a href="./formations.html#ia" target="_blank">IA Act</a>
       </div>
-      <div class="bubble" tabindex="0">
-        <span class="front">Audit complet</span>
-        <span class="back">
-          <a href="./audit.html#complet">Sur-mesure</a>
-          <a href="./audit.html#rapport">Rapport complet</a>
-          <a href="./audit.html#planning">Planning action</a>
-          <a href="./audit.html#modeles">Modèles clés</a>
-        </span>
-      </div>
-    </div>
-    <p class="editorial-cta"><a href="mailto:hello@awenoria.fr?subject=Devis Audit&Analyse" class="cta-capsule">Demander un devis</a></p>
-  </section>
 
-  <!-- ==========  ATELIER 2 H RGPD  (BULLES) ========== -->
-  <section id="atelier" class="section editorial bubbles">
-    <h2>Atelier 2 h RGPD</h2>
-    <div class="bubble-grid">
-      <div class="bubble" tabindex="0">
-        <span class="front">Contenu</span>
-        <span class="back">
-          <a href="./atelier.html#bases">Bases RGPD</a>
-          <a href="./atelier.html#registre">Registre</a>
-          <a href="./atelier.html#cookies">Cookies</a>
-          <a href="./atelier.html#checklist">Check-list</a>
-        </span>
+      <!-- DOSSIER 3 -->
+      <button class="folder" aria-expanded="false" aria-controls="f-audit">
+        <span class="folder-icon">📁</span>
+        <span class="folder-label">Audit & Analyse</span>
+      </button>
+      <div id="f-audit" class="folder-drawer">
+        <a href="./audit.html#flash" target="_blank">Audit flash</a>
+        <a href="./audit.html#complet" target="_blank">Audit complet</a>
       </div>
-      <div class="bubble" tabindex="0">
-        <span class="front">Modalités</span>
-        <span class="back">
-          <a href="./atelier.html#paris">Présentiel (Paris)</a>
-          <a href="./atelier.html#distanciel">Distanciel</a>
-          <a href="./atelier.html#supports">Supports</a>
-          <a href="./atelier.html#questionnaire">Q-pre/post</a>
-        </span>
+
+      <!-- DOSSIER 4 -->
+      <button class="folder" aria-expanded="false" aria-controls="f-atelier">
+        <span class="folder-icon">📁</span>
+        <span class="folder-label">Atelier 2 h RGPD</span>
+      </button>
+      <div id="f-atelier" class="folder-drawer">
+        <a href="./atelier.html#bases" target="_blank">Bases RGPD</a>
+        <a href="./atelier.html#registre" target="_blank">Registre</a>
+        <a href="./atelier.html#cookies" target="_blank">Cookies</a>
+        <a href="./atelier.html#checklist" target="_blank">Check-list</a>
       </div>
     </div>
-    <p class="editorial-cta"><a href="mailto:hello@awenoria.fr?subject=Programme Atelier 2h RGPD" class="cta-capsule">Demander un programme</a></p>
   </section>
 
   <!-- Footer injecté -->
@@ -714,6 +660,24 @@
         if(e.target && e.target.tagName === 'IMG') syncRubanHeights();
       }, true);
     })();
+  </script>
+
+  <!-- ----------  FOLDER TOGGLE  ---------- -->
+  <script>
+  document.querySelectorAll('.folder').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const drawer = document.getElementById(btn.getAttribute('aria-controls'));
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      // fermer tous
+      document.querySelectorAll('.folder').forEach(b => b.setAttribute('aria-expanded', 'false'));
+      document.querySelectorAll('.folder-drawer').forEach(d => d.classList.remove('open'));
+      // ouvrir ou fermer celui-ci
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        drawer.classList.add('open');
+      }
+    });
+  });
   </script>
 </body>
 </html>
