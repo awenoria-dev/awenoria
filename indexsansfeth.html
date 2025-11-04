@@ -6,7 +6,6 @@
   <title>Accueil – Awenoria</title>
   <meta name="description" content="Awenoria – conformité RGPD & IA rendue simple, humaine et accessible. Audits automatisés, accompagnement expert, formations. Scan URL gratuit." />
 
-  <!-- Favicon / PWA (ajuste les chemins si besoin) -->
   <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <link rel="shortcut icon" href="favicon.ico">
@@ -14,16 +13,18 @@
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#0f5f9a">
 
-  <!-- Police (optionnel si déjà dans ta CSS) -->
   <link rel="preconnect" href="https://fonts.googleapis.com " />
   <link rel="preconnect" href="https://fonts.gstatic.com " crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:opsz ,wght@12..96,300..800&display=swap" rel="stylesheet" />
 
-  <!-- CSS globale -->
   <link rel="stylesheet" href="assets/awenoria.css" />
 
-  <!-- Styles spécifiques à la page Accueil (contenu, pas header/footer) -->
   <style>
+    /* ====== AÉRATION ENTRE RUBRIQUES ====== */
+    section.section {
+      margin-bottom: 80px;
+    }
+
     /* ====== Hero ====== */
     .hero-intro{
       position:relative; isolation:isolate;
@@ -122,7 +123,6 @@
     #contact .btn .spinner{display:none;width:16px;height:16px;border:2px solid rgba(15,23,32,.25);border-top-color:#0f5f9a;border-radius:50%;animation:spin .8s linear infinite}
     #contact .btn.loading .spinner{display:inline-block}
     @keyframes spin{to{transform:rotate(360deg)}}
-    /* caret typing utilises .type-on-view déjà définie dans awenoria.css */
   </style>
 </head>
 <body>
@@ -433,7 +433,6 @@
 
             <p class="note">Les données collectées sont indispensables au traitement de votre demande. Pour en savoir plus, consultez notre <a href="politique-de-confidentialite.html">Politique de confidentialité</a>.</p>
 
-            <!-- honeypots -->
             <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
             <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;top:-9999px">
 
@@ -459,12 +458,7 @@
     </div>
   </section>
 
-  <!-- ============== SCRIPTS ============== -->
-
-  <!-- Loader header/footer + nav (utilise assets/includes.js existant) -->
   <script src="assets/includes.js" defer></script>
-
-  <!-- Démo d’audit + effets spécifiques à la page -->
   <script>
     const qs=(s,el=document)=>el.querySelector(s);
 
