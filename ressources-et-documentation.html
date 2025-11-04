@@ -8,7 +8,6 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- CSS globale -->
   <link rel="stylesheet" href="assets/awenoria.css">
 
   <style>
@@ -48,12 +47,31 @@
     /* ---------- Sections ---------- */
     .section{max-width:1200px; margin:0 auto; padding:100px 20px;}
     .section.alt{background:var(--aw-bg);}
+
+    /* ---------- Titres : même couleur #0F5F9A, rendu plus beau ---------- */
     .title{
-      margin:0 0 10px; text-align:center; font-size:clamp(36px,5vw,48px);
-      color:#0F5F9A;             /* exactement la couleur de l’onglet */
+      margin:0 auto 10px;
+      text-align:center;
+      font-size:clamp(36px,5vw,48px);
       font-weight:800;
+      /* dégradé subtil sur la même teinte */
+      background:linear-gradient(135deg, #0F5F9A 0%, #0d5285 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      /* ombre portée discrète */
+      text-shadow:0 2px 4px rgba(0,0,0,.08);
+      /* animation légère */
+      transition:transform .35s ease,opacity .35s ease;
     }
-    .title::after{content:''; display:block; width:60px; height:4px; background:var(--aw-copper); margin:10px auto 0; border-radius:3px;}
+    .section.in-view .title{
+      transform:translateY(-2px);
+      opacity:1;
+    }
+    .title::after{
+      content:''; display:block; width:60px; height:4px; background:var(--aw-copper);
+      margin:10px auto 0; border-radius:3px;
+    }
     .subtitle-center{font-size:1.2rem; color:var(--aw-muted); max-width:680px; margin:0 auto 56px; text-align:center;}
 
     .grid{display:grid; gap:24px; margin-top:18px;}
@@ -70,7 +88,6 @@
     .card:hover{transform:translateY(-4px); box-shadow:0 28px 56px rgba(0,0,0,.1); border-color:var(--aw-copper);}
 
     /* ---------- Pills (correctif identique à la page Modèles) ---------- */
-    /* On neutralise toute règle globale qui gonfle les pastilles */
     .grid .card > .pill,
     .section .card > .pill{
       display:inline-flex !important;
@@ -114,7 +131,7 @@
     .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
     .reveal.is-visible{opacity:1;transform:none}
   </style>
-<base target="_blank">
+  <base target="_blank">
 </head>
 <body class="page-ressources">
 
@@ -329,9 +346,9 @@
   <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- ===== JS : canvas + reveal ===== -->
+  <!-- ===== JS : canvas + reveal + in-view ===== -->
   <script>
-    // Hero canvas
+    /* ---------- Hero canvas ---------- */
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     let w = canvas.width = innerWidth;
@@ -349,15 +366,22 @@
     function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); }
     init(); animate();
 
-    // Reveal
+    /* ---------- Reveal ---------- */
     const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(entries => {
+    const ioReveal = new IntersectionObserver(entries => {
       entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('is-visible'); });
     }, { threshold: 0.2 });
-    reveals.forEach(el => io.observe(el));
+    reveals.forEach(el => ioReveal.observe(el));
+
+    /* ---------- in-view pour titres ---------- */
+    const sections = document.querySelectorAll('.section');
+    const ioView = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in-view'); });
+    }, { threshold: 0.4 });
+    sections.forEach(s => ioView.observe(s));
   </script>
 
-  <!-- ===== Loader header/footer + nav (priorité racine, fallback partials/) ===== -->
+  <!-- ===== Loader header/footer + nav ===== -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
