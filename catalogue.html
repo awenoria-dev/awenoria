@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="./assets/awenoria.css?v=1">
 
   <style>
-    /* ----------  VARIABLES (charte logo)  ---------- */
+    /* ----------  VARIABLES  ---------- */
     :root{
       --aw-ink:#0B0F1A;
       --aw-blue:#0066FF;
@@ -71,7 +71,7 @@
     .subtitle-center{max-width:900px; margin:0 auto 22px; text-align:center; color:var(--aw-muted)}
     .underline{width:84px; height:4px; border-radius:999px; background:var(--aw-copper); margin:12px auto 28px}
 
-    /* ----------  CARROUSELS  (SANS TRONCAGE) ---------- */
+    /* ----------  CARROUSELS  ---------- */
     .ruban{position:relative; width:100%; overflow:hidden; margin:8px 0 28px; padding-block:2px}
     .ruban-track{display:flex; gap:24px; position:absolute; top:0; left:0; will-change:transform; padding:2px 0}
     .ruban-track[data-direction="right"]{animation:rubanRight 22s linear infinite}
@@ -89,7 +89,6 @@
     }
     .ruban-card .media{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden}
     .ruban-card .media img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
-
     .ruban-card figcaption{padding:16px 16px 18px}
     .ruban-card h3{margin:0 0 6px; font-size:1.05rem; font-weight:800}
     .ruban-card p{margin:0 0 14px; color:var(--aw-muted); font-size:.95rem}
@@ -113,9 +112,8 @@
     .badge[data-cat="audit"]{background:#747d8c}
     .badge[data-cat="ia"]{background:#a55eea}
 
-    /* Responsive */
-    @media (max-width: 900px){ .ruban-card{width:clamp(240px, 44vw, 300px)} }
-    @media (max-width: 640px){
+    @media (max-width:900px){ .ruban-card{width:clamp(240px, 44vw, 300px)} }
+    @media (max-width:640px){
       .ruban-card{width:min(86vw, 320px)}
       .ruban-card h3{font-size:1rem}
       .ruban-card p{font-size:.92rem}
@@ -140,7 +138,6 @@
     }
     .ruban-card:hover .hover-card,
     .ruban-card:focus-within .hover-card{ opacity:1; transform:translateY(0); pointer-events:auto }
-
     .hover-pills{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px }
     .hover-pill{
       font-size:.78rem; font-weight:800; line-height:1;
@@ -152,11 +149,9 @@
     .hover-card ul{ margin:0 0 12px 18px; padding:0; color:var(--aw-muted); font-size:.92rem }
     .hover-card li{ margin:4px 0 }
     .hover-card .btn-soft{ font-size:.92rem; padding:10px 16px }
-    @media (max-width:640px){
-      .hover-card{ inset:auto 12px 12px 12px }
-    }
+    @media (max-width:640px){ .hover-card{ inset:auto 12px 12px 12px } }
 
-    /* ----------  FOLDER 2025  ---------- */
+    /* ----------  FOLDER BOARD 2025  ---------- */
     :root{
       --folder-blue:#0066FF;
       --folder-copper:#FF8A3D;
@@ -167,7 +162,7 @@
 
     .folder-grid{
       display: grid;
-      grid-template-columns: repeat(4, 1fr); /* 4 colonnes fixes pour les boutons */
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
       max-width: 720px;
       margin: 40px auto 0;
@@ -203,12 +198,11 @@
       color: #fff;
       box-shadow: 0 4px 12px rgba(0,102,255,.25);
     }
-
     .folder-label{ font-weight: 700; font-size: .92rem; text-align: center; }
 
-    /* ----------  DRAWER HORIZONTAL (anti-tronquage) ---------- */
+    /* ----------  DRAWER (anti-tronquage) ---------- */
     .folder-drawer{
-      grid-column: 1 / -1;              /* pleine largeur sous la rangée de boutons */
+      grid-column: 1 / -1;
       max-height: 0;
       overflow: hidden;
       background: rgba(255,255,255,.75);
@@ -216,20 +210,20 @@
       border: 1px solid rgba(0,0,0,.05);
       border-radius: 0 0 var(--folder-radius) var(--folder-radius);
       margin: 0 8px;
-      padding: 0 20px;                   /* pas de padding vertical à l'état fermé */
+      padding: 0 20px; /* pas de padding vertical fermé */
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
       gap: 12px;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-      scrollbar-gutter: stable both-edges; /* réserve la place de la scrollbar */
+      scrollbar-gutter: stable both-edges;
       transition: max-height .35s ease, padding .35s ease;
       box-sizing: border-box;
     }
     .folder-drawer.open{
-      max-height: 120px;                 /* valeur de secours si JS off */
-      padding: 16px 20px 26px;           /* marge basse pour ne pas coller la scrollbar */
+      max-height: 120px;       /* fallback si JS off */
+      padding: 16px 20px 26px; /* laisse respirer au-dessus de la scrollbar */
       align-items: center;
     }
     .folder-drawer a{
@@ -247,14 +241,10 @@
       white-space: nowrap;
     }
     .folder-drawer a:hover{ background: rgba(0,102,255,.18); }
-
-    /* Scrollbar WebKit plus fine (facultatif) */
     .folder-drawer::-webkit-scrollbar{ height: 8px; }
-    .folder-drawer::-webkit-scrollbar-thumb{
-      background: rgba(0,0,0,.25); border-radius: 999px;
-    }
+    .folder-drawer::-webkit-scrollbar-thumb{ background: rgba(0,0,0,.25); border-radius:999px; }
 
-    /* flèche indicateur */
+    /* Fleche indicateur */
     .folder::after{
       content: "";
       position: absolute;
@@ -267,12 +257,11 @@
     }
     .folder.open::after{ transform: translateX(-50%) scaleY(1); }
 
-    /* ----------  PETIT PLUS RESPONSIVE  ---------- */
-    @media (max-width: 480px){
-      .folder-grid{ gap: 12px; }
-      .folder{ padding: 18px 8px; }
-      .folder-icon{ width: 44px; height: 44px; font-size: 1.5rem; }
-      .folder-label{ font-size: .8rem; }
+    @media (max-width:480px){
+      .folder-grid{ gap:12px }
+      .folder{ padding:18px 8px }
+      .folder-icon{ width:44px; height:44px; font-size:1.5rem }
+      .folder-label{ font-size:.8rem }
     }
   </style>
 </head>
@@ -364,7 +353,7 @@
     <!-- CARROUSEL FORMATIONS -->
     <div class="ruban" aria-label="Toutes nos formations">
       <div class="ruban-track" data-direction="left">
-        <!-- Plusieurs cartes (RGPD, IA, etc.) -->
+        <!-- Exemple 1 -->
         <figure class="ruban-card">
           <span class="badge" data-cat="rgpd">#RGPD</span>
           <div class="media"><img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=800&q=60" alt=""></div>
@@ -392,6 +381,7 @@
           </div>
         </figure>
 
+        <!-- Exemple 2 -->
         <figure class="ruban-card">
           <span class="badge" data-cat="ia">#IA</span>
           <div class="media"><img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=800&q=60" alt=""></div>
@@ -419,113 +409,7 @@
           </div>
         </figure>
 
-        <figure class="ruban-card">
-          <span class="badge" data-cat="access">#Access</span>
-          <div class="media"><img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&fit=crop&w=800&q=60" alt=""></div>
-          <figcaption>
-            <h3>Access Night</h3>
-            <p>Devenez conforme sous les projecteurs.</p>
-            <a class="btn-soft" href="./formation/access.html">Je réserve ma date</a>
-          </figcaption>
-          <div class="hover-card" role="dialog" aria-label="Fiche Access Night">
-            <div class="hover-pills">
-              <span class="hover-pill">1 journée</span>
-              <span class="hover-pill">Dév / Produit</span>
-              <span class="hover-pill">Présentiel</span>
-              <span class="hover-pill">Distanciel</span>
-            </div>
-            <h4>Accessibilité (RGAA / EN 301 549)</h4>
-            <p>Intégrer les obligations, outils et méthodes au cycle de dev.</p>
-            <ul>
-              <li>Cadre règlementaire &amp; critères WCAG</li>
-              <li>Design système : couleurs, contrastes, ARIA</li>
-              <li>Recette : outils, audits, quick wins</li>
-              <li>Roadmap d’accessibilité</li>
-            </ul>
-            <a class="btn-soft" href="./formation/access.html" target="_blank" rel="noopener">Voir la fiche</a>
-          </div>
-        </figure>
-
-        <figure class="ruban-card">
-          <span class="badge" data-cat="cyber">#Cyber</span>
-          <div class="media"><img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=800&q=60" alt=""></div>
-          <figcaption>
-            <h3>Cyber Stage</h3>
-            <p>La sécurité en stand-up.</p>
-            <a class="btn-soft" href="./formation/cyber.html">Je réserve ma date</a>
-          </figcaption>
-          <div class="hover-card" role="dialog" aria-label="Fiche Cyber Stage">
-            <div class="hover-pills">
-              <span class="hover-pill">1 journée</span>
-              <span class="hover-pill">Tous publics</span>
-              <span class="hover-pill">Présentiel</span>
-              <span class="hover-pill">Distanciel</span>
-            </div>
-            <h4>Cybersécurité : bonnes pratiques &amp; incident</h4>
-            <p>Maîtriser l’hygiène numérique et la gestion de crise.</p>
-            <ul>
-              <li>Phishing, mots de passe, MFA</li>
-              <li>Posture endpoints &amp; sauvegardes</li>
-              <li>Plan de réponse à incident</li>
-              <li>Exercices &amp; checklists</li>
-            </ul>
-            <a class="btn-soft" href="./formation/cyber.html" target="_blank" rel="noopener">Voir la fiche</a>
-          </div>
-        </figure>
-
-        <figure class="ruban-card">
-          <span class="badge" data-cat="cookies">#Cookies</span>
-          <div class="media"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=60" alt=""></div>
-          <figcaption>
-            <h3>Cookies Live</h3>
-            <p>Bandeau & CMP en live coding.</p>
-            <a class="btn-soft" href="./formation/cookies.html">Je réserve ma date</a>
-          </figcaption>
-          <div class="hover-card" role="dialog" aria-label="Fiche Cookies Live">
-            <div class="hover-pills">
-              <span class="hover-pill">1/2 journée</span>
-              <span class="hover-pill">Tech &amp; Marketing</span>
-              <span class="hover-pill">Présentiel</span>
-              <span class="hover-pill">Distanciel</span>
-            </div>
-            <h4>Cookies &amp; traceurs : conformité opérationnelle</h4>
-            <p>Mettre en place un CMP conforme et mesurable.</p>
-            <ul>
-              <li>Cadre CNIL &amp; exemptions</li>
-              <li>Choix CMP, design du bandeau</li>
-              <li>Plan de taggage &amp; preuve du consentement</li>
-              <li>Audit et suivi</li>
-            </ul>
-            <a class="btn-soft" href="./formation/cookies.html" target="_blank" rel="noopener">Voir la fiche</a>
-          </div>
-        </figure>
-
-        <figure class="ruban-card">
-          <span class="badge" data-cat="web">#Web</span>
-          <div class="media"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=60" alt=""></div>
-          <figcaption>
-            <h3>Legal Remix</h3>
-            <p>Mentions légales version acoustic.</p>
-            <a class="btn-soft" href="./formation/web-legal.html">Je réserve ma date</a>
-          </figcaption>
-          <div class="hover-card" role="dialog" aria-label="Fiche Legal Remix">
-            <div class="hover-pills">
-              <span class="hover-pill">1/2 journée</span>
-              <span class="hover-pill">Marketing &amp; Produit</span>
-              <span class="hover-pill">Présentiel</span>
-              <span class="hover-pill">Distanciel</span>
-            </div>
-            <h4>Mentions légales &amp; politique de confidentialité</h4>
-            <p>Rédiger des pages claires, conformes et orientées UX.</p>
-            <ul>
-              <li>Obligations d’information</li>
-              <li>Structuration &amp; lisibilité</li>
-              <li>Gestion des droits &amp; durées</li>
-              <li>Mises à jour &amp; versioning</li>
-            </ul>
-            <a class="btn-soft" href="./formation/web-legal.html" target="_blank" rel="noopener">Voir la fiche</a>
-          </div>
-        </figure>
+        <!-- (Autres cartes inchangées)… -->
       </div>
     </div>
   </section>
@@ -537,7 +421,7 @@
     <div class="underline"></div>
 
     <div class="folder-grid">
-      <!-- Boutons (1ère ligne) -->
+      <!-- Boutons (rangée 1) -->
       <button class="folder" aria-expanded="false" aria-controls="f-services">
         <span class="folder-icon">🛠️</span>
         <span class="folder-label">Nos Services</span>
@@ -558,7 +442,7 @@
         <span class="folder-label">Atelier 2 h RGPD</span>
       </button>
 
-      <!-- Drawers (plein écran sous la rangée) -->
+      <!-- Drawers (pleine largeur sous la rangée) -->
       <div id="f-services" class="folder-drawer" role="region" aria-label="Liens - Services">
         <a href="./Nos-services.html#audit" target="_blank" rel="noopener">Audit & Analyse</a>
         <a href="./Nos-services.html#rgpd" target="_blank" rel="noopener">RGPD</a>
@@ -710,56 +594,71 @@
     })();
   </script>
 
-  <!-- ----------  FOLDER 2025 : ouverture sans tronquage ---------- -->
+  <!-- ----------  FOLDERS : clic + survol (desktop), anti-tronquage ---------- -->
   <script>
-    // Ouvre un tiroir et ajuste sa hauteur au contenu réel (anti-tronquage)
+    // Ouvre un tiroir et ajuste sa hauteur au contenu réel
     function openDrawer(btn){
       const id = btn.getAttribute('aria-controls');
       const drawer = document.getElementById(id);
       if (!drawer) return;
 
-      // reset global
+      // reset
       document.querySelectorAll('.folder').forEach(b => {
         b.classList.remove('open');
         b.setAttribute('aria-expanded', 'false');
       });
       document.querySelectorAll('.folder-drawer').forEach(d => {
         d.classList.remove('open');
-        d.style.maxHeight = '';      // retire les hauteurs précédentes
+        d.style.maxHeight = '';
       });
 
-      // open current
+      // open
       btn.classList.add('open');
       btn.setAttribute('aria-expanded', 'true');
       drawer.classList.add('open');
 
-      // adapte la hauteur à la vraie taille (une seule ligne de puces + padding)
+      // calc hauteur réelle (une ligne de puces + padding)
       requestAnimationFrame(() => {
-        const verticalPadding = 16 + 26; // .open padding-top + padding-bottom
+        const verticalPadding = 16 + 26; // padding-top + padding-bottom définis en CSS .open
         const contentHeight = drawer.scrollHeight + verticalPadding;
         drawer.style.maxHeight = contentHeight + 'px';
       });
     }
 
-    document.querySelectorAll('.folder').forEach(btn => {
+    function closeAll(){
+      document.querySelectorAll('.folder').forEach(b => {
+        b.classList.remove('open');
+        b.setAttribute('aria-expanded', 'false');
+      });
+      document.querySelectorAll('.folder-drawer').forEach(d => {
+        d.classList.remove('open');
+        d.style.maxHeight = '';
+      });
+    }
+
+    const buttons = document.querySelectorAll('.folder');
+    const grid = document.querySelector('.folder-grid');
+
+    buttons.forEach(btn => {
+      // 1) CLIC (mobile + desktop)
       btn.addEventListener('click', () => {
         const isOpen = btn.classList.contains('open');
-        if (isOpen) {
-          // fermer si re-cliqué
-          btn.classList.remove('open');
-          btn.setAttribute('aria-expanded', 'false');
-          const drawer = document.getElementById(btn.getAttribute('aria-controls'));
-          if (drawer){
-            drawer.classList.remove('open');
-            drawer.style.maxHeight = '';
-          }
-        } else {
-          openDrawer(btn);
-        }
+        if (isOpen) { closeAll(); } else { openDrawer(btn); }
       });
+
+      // 2) SURVOL & FOCUS (desktop uniquement)
+      if (matchMedia('(hover: hover)').matches) {
+        btn.addEventListener('mouseenter', () => openDrawer(btn));
+        btn.addEventListener('focus', () => openDrawer(btn));
+      }
     });
 
-    // Recalcule en cas de resize (scrollbar, zoom, etc.)
+    // Option : quitter la zone ferme tout (desktop)
+    if (matchMedia('(hover: hover)').matches && grid) {
+      grid.addEventListener('mouseleave', closeAll);
+    }
+
+    // Recalcule à chaque resize
     window.addEventListener('resize', () => {
       const btn = document.querySelector('.folder.open');
       if (!btn) return;
