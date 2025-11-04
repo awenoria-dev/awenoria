@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Awenoria — Pourquoi maintenant ? (2026)</title>
+  <title>Awenoria — Pourquoi maintenant ? 2026</title>
   <meta name="description" content="Comprendre pourquoi renforcer la conformité de votre site dès maintenant : contexte européen et français, jalons 2025–2026, priorités RGPD, accessibilité et mentions légales.">
 
   <!-- Favicon + police -->
@@ -14,15 +14,18 @@
 
   <style>
     :root{
-      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
+      --aw-ink:#0F5F9A;              /* ← logo colour */
+      --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
       --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
-      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+      --shadow:0 25px 50px -12px rgba(15,95,154,.15);   /* tinted with logo */
       --transition:.6s cubic-bezier(.22,1,.36,1);
     }
     @media (prefers-color-scheme:dark){
       :root{
-        --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
-        --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+        --aw-ink:#c7e2ff;            /* light tint for dark mode */
+        --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
+        --aw-panel:#0b0f1a; --aw-bg:#0a0d14;
+        --shadow:0 25px 50px -12px rgba(15,95,154,.25);
       }
     }
 
@@ -54,7 +57,7 @@
     .section{padding:72px 0}
     .section.alt{background:var(--aw-panel)}
 
-    /* ---------- Titres : inchangés (déjà OK) ---------- */
+    /* ---------- Titres : couleur logo #0F5F9A + effets ---------- */
     h2{
       margin:0 0 12px;
       font-size:clamp(26px,3.5vw,32px);
@@ -76,34 +79,34 @@
 
     /* ---------- Cards (style harmonisé) ---------- */
     .card{
-      background:var(--aw-panel); border:1px solid rgba(15,23,32,.08);
+      background:var(--aw-panel); border:1px solid rgba(15,95,154,.12);
       border-radius:var(--aw-radius); box-shadow:var(--shadow);
       padding:24px; transition:all var(--transition);
       display:block; position:relative; color:inherit; text-align:left;
     }
-    .card:hover{transform:translateY(-4px); box-shadow:0 28px 56px rgba(0,0,0,.1); border-color:var(--aw-copper);}
+    .card:hover{transform:translateY(-4px); box-shadow:0 28px 56px rgba(15,95,154,.15); border-color:var(--aw-copper);}
 
-    /* ---------- Badges ---------- */
-    .badge{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:999px;background:#0f2746;color:#fff;font-weight:800;font-size:12px;margin-bottom:12px}
+    /* ---------- Badges (logo colour) ---------- */
+    .badge{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:999px;background:#0F5F9A;color:#fff;font-weight:800;font-size:12px;margin-bottom:12px}
 
     /* ---------- Timeline ---------- */
     .timeline{position:relative;margin-top:8px}
-    .timeline::before{content:"";position:absolute;left:12px;top:0;bottom:0;width:2px;background:#dfe8f0}
+    .timeline::before{content:"";position:absolute;left:12px;top:0;bottom:0;width:2px;background:rgba(15,95,154,.25)}
     .milestone{position:relative;padding-left:36px;margin:14px 0}
-    .milestone::before{content:"";position:absolute;left:6px;top:6px;width:12px;height:12px;border-radius:50%;background:#0f2746}
-    .milestone h3{margin:0 0 4px;font-size:18px;color:#0f2746}
+    .milestone::before{content:"";position:absolute;left:6px;top:6px;width:12px;height:12px;border-radius:50%;background:#0F5F9A}
+    .milestone h3{margin:0 0 4px;font-size:18px;color:#0F5F9A}
     .milestone p{margin:0;color:var(--aw-muted)}
 
-    /* ---------- Boutons (style harmonisé) ---------- */
+    /* ---------- Boutons (logo colour base) ---------- */
     .btn{
       display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;
-      padding:14px 18px;border-radius:12px;color:#fff;background:#0f2746;
+      padding:14px 18px;border-radius:12px;color:#fff;background:#0F5F9A;
       box-shadow:var(--shadow);transition:background .18s, transform .08s, filter .18s;
       border:none;cursor:pointer;
     }
     .btn:hover{background:var(--aw-copper);filter:brightness(1.02)}
-    .btn.secondary{background:var(--aw-panel);color:#0f2746;border:1px solid rgba(15,23,32,.12)}
-    .btn.secondary:hover{border-color:#d5e7f4;color:var(--aw-copper)}
+    .btn.secondary{background:var(--aw-panel);color:#0F5F9A;border:1px solid rgba(15,95,154,.25)}
+    .btn.secondary:hover{border-color:var(--aw-copper);color:var(--aw-copper)}
 
     /* ---------- Animations ---------- */
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
@@ -120,7 +123,7 @@
   <section class="hero">
     <canvas id="heroCanvas" aria-hidden="true"></canvas>
     <div class="content">
-      <h1>Pourquoi maintenant ? (2026)</h1>
+      <h1>Pourquoi maintenant ? 2026</h1>
       <p class="lead">Le cadre européen et français se renforce sur trois axes : <b>protection des données</b>, <b>accessibilité numérique</b> et <b>information des consommateurs</b>. Anticiper en 2025–2026 évite des non-conformités et améliore l’expérience utilisateur.</p>
     </div>
   </section>
@@ -160,7 +163,7 @@
             </div>
           </div>
         </div>
-        <div class="card reveal" style="margin-top:24px;background:var(--aw-bg);border-style:dashed;border-color:#d5e7f4">
+        <div class="card reveal" style="margin-top:24px;background:var(--aw-bg);border-style:dashed;border-color:#a1a9c0">
           <p class="lead-txt" style="margin:0"><b>Info&nbsp;:</b> ces repères sont génériques et ne remplacent pas vos obligations sectorielles spécifiques. Adaptez-les à votre contexte.</p>
         </div>
       </div>
