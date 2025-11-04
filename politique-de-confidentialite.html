@@ -8,26 +8,31 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- CSS globale -->
   <link rel="stylesheet" href="assets/awenoria.css">
 
   <style>
     :root{
-      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
+      --aw-ink:#0F5F9A;              /* ← logo colour */
+      --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
       --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
-      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+      --shadow:0 25px 50px -12px rgba(15,95,154,.15);   /* tinted with logo */
       --transition:.6s cubic-bezier(.22,1,.36,1);
     }
     @media (prefers-color-scheme:dark){
       :root{
-        --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
-        --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+        --aw-ink:#c7e2ff;            /* light tint for dark mode */
+        --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
+        --aw-panel:#0b0f1a; --aw-bg:#0a0d14;
+        --shadow:0 25px 50px -12px rgba(15,95,154,.25);
       }
     }
+
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;line-height:1.7;color:var(--aw-ink);background:var(--aw-bg);-webkit-font-smoothing:antialiased;}
+    body{
+      font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;
+      line-height:1.7; color:var(--aw-ink); background:var(--aw-bg); -webkit-font-smoothing:antialiased;
+    }
     a{text-decoration:none;color:var(--aw-blue)}
     img{max-width:100%;display:block}
     .container{max-width:1200px;margin:0 auto;padding:0 20px}
@@ -57,29 +62,30 @@
     @media(max-width:980px){.grid{grid-template-columns:1fr}}
 
     .card{
-      background:var(--aw-panel); border:1px solid rgba(15,23,32,.08);
+      background:var(--aw-panel); border:1px solid rgba(15,95,154,.12);
       border-radius:var(--aw-radius); box-shadow:var(--shadow);
       padding:24px; transition:all var(--transition);
     }
-    .card:hover{transform:translateY(-2px)}
+    .card:hover{transform:translateY(-4px); box-shadow:0 28px 56px rgba(15,95,154,.15); border-color:var(--aw-copper);}
 
     .muted{color:var(--aw-muted)}
-    h2{margin:18px 0 8px; font-size:22px}
-    h3{margin:16px 0 8px; font-size:18px}
+    h2{margin:18px 0 8px; font-size:22px; color:#0F5F9A}
+    h3{margin:16px 0 8px; font-size:18px; color:#0F5F9A}
 
     /* Table */
     table{width:100%; border-collapse:collapse; margin-top:6px}
-    th,td{padding:12px; border:1px solid rgba(15,23,32,.08); text-align:left; vertical-align:top}
-    th{background:#f9fbff; font-weight:800}
+    th,td{padding:12px; border:1px solid rgba(15,95,154,.12); text-align:left; vertical-align:top}
+    th{background:#f9fbff; font-weight:800; color:#0F5F9A}
 
     /* Boutons */
     .btn{
-      display:inline-block; padding:10px 14px; border-radius:12px; font-weight:800;
-      color:#fff; background:var(--aw-blue); border:none; cursor:pointer; transition:all var(--transition);
+      display:inline-flex; align-items:center; justify-content:center; padding:10px 14px; border-radius:12px; font-weight:800;
+      color:#fff; background:#0F5F9A; border:none; cursor:pointer; transition:all var(--transition);
       box-shadow:var(--shadow);
     }
     .btn:hover{background:var(--aw-copper); transform:translateY(-2px);}
-    .btn.ghost{background:var(--aw-panel); color:var(--aw-blue); border:1px solid rgba(15,23,32,.08);}
+    .btn.ghost{background:var(--aw-panel); color:#0F5F9A; border:1px solid rgba(15,95,154,.12);}
+    .btn.ghost:hover{border-color:var(--aw-copper); color:var(--aw-copper);}
 
     /* Anim */
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
@@ -171,7 +177,7 @@
           <p>Vous disposez des droits d’<b>accès</b>, <b>rectification</b>, <b>effacement</b>, <b>limitation</b>, <b>opposition</b> et <b>portabilité</b>, ainsi que du droit de définir des <b>directives post-mortem</b>.<br>
           Pour l’emailing/prospection fondé sur le consentement, vous pouvez retirer votre consentement à tout moment.</p>
           <p>Exercer vos droits : <a href="mailto:vosdroits@dpo101.fr">vosdroits@dpo101.fr</a> (objet : « Droit des personnes »). Une vérification d’identité peut être nécessaire.</p>
-          <p>Réclamation : <b>CNIL</b> — <a href="https://www.cnil.fr">cnil.fr</a>, 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07.</p>
+          <p>Réclamation : <b>CNIL</b> — <a href="https://www.cnil.fr ">cnil.fr</a>, 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07.</p>
 
           <h2>7) Sécurité</h2>
           <p>Mesures techniques et organisationnelles proportionnées : HTTPS, contrôles d’accès, journalisation sécurité, conservation limitée, revues régulières.</p>
@@ -212,7 +218,7 @@
     // Année + date de MAJ
     document.addEventListener('DOMContentLoaded', () => {
       const y = new Date().getFullYear();
-      // Le footer injecté contient déjà l'année — on laisse au footer sa propre logique si besoin.
+      // Le footer injecté contient déjà l’année — on laisse au footer sa propre logique si besoin.
       const lu = document.getElementById('lastUpdate');
       if (lu) lu.textContent = '2025-10-15';
     });
@@ -238,7 +244,7 @@
     init(); animate();
   </script>
 
-  <!-- ===== Loader header/footer + nav (priorité racine, fallback partials/) ===== -->
+  <!-- ===== Loader header/footer + nav ===== -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
