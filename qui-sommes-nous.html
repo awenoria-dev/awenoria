@@ -5,7 +5,7 @@
   <title>Qui sommes-nous – Awenoria</title>
   <meta name="description" content="La conformité enfin désirable : découvrez comment Awenoria transforme RGPD & accessibilité en atout business.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="canonical" href="https://awenoria.com/qui-sommes-nous.html">
+  <link rel="canonical" href="https://awenoria.com/qui-sommes-nous.html ">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
 
   <!-- Polices -->
@@ -61,7 +61,7 @@
       box-shadow:inset 0 0 0 3px rgba(255,255,255,.55); border-radius:8px; background:transparent; }
     .hero-geo .diamond{ border:3px solid rgba(255,255,255,.55); transform:rotate(45deg); animation-name:geoFloatDiamond; }
     .hero-geo .g:nth-child(1){ left:6%;  top:12%;  --dur:22s; --scale:.9 }
-    .hero-geo .g:nth-child(2){ left:78%; top:18%;  --dur:26s; --scale:1.1 }
+    .hero-geo .g:nth-child(2){ left:78%; top:18%;  --dur:26s; --scale=1.1 }
     .hero-geo .g:nth-child(3){ left:16%; top:64%;  --dur:24s; --scale:.85 }
     .hero-geo .g:nth-child(4){ left:88%; top:68%;  --dur:20s; --scale:.95 }
     .hero-geo .g:nth-child(5){ left:44%; top:8%;   --dur:28s; --scale:.8 }
@@ -96,7 +96,27 @@
     /* Sections génériques */
     .section{ max-width:1200px; margin:0 auto; padding:100px 20px; }
     .section.alt{ background:var(--aw-bg); }
-    .section-title{ font-size:clamp(36px,5vw,48px); font-weight:800; text-align:center; margin-bottom:16px; color:var(--aw-ink); }
+
+    /* ---------- Titres : même couleur #0F5F9A, rendu plus beau ---------- */
+    .section-title{
+      margin:0 auto 16px;
+      text-align:center;
+      font-size:clamp(36px,5vw,48px);
+      font-weight:800;
+      /* dégradé subtil sur la même teinte */
+      background:linear-gradient(135deg, #0F5F9A 0%, #0d5285 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      /* ombre portée discrète */
+      text-shadow:0 2px 4px rgba(0,0,0,.08);
+      /* animation légère */
+      transition:transform .35s ease,opacity .35s ease;
+    }
+    .section.in-view .section-title{
+      transform:translateY(-2px);
+      opacity:1;
+    }
     .subtitle-center{ font-size:1.2rem; color:var(--aw-muted); max-width:680px; margin:0 auto 56px; text-align:center; }
 
     /* Équipe */
@@ -238,16 +258,23 @@
   <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- ===== JS : canvas particules + reveal ===== -->
+  <!-- ===== JS : canvas particules + reveal + in-view ===== -->
   <script>
-    // Reveal
+    /* ---------- Reveal ---------- */
     const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+    const ioReveal = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); ioReveal.unobserve(e.target); } });
     }, { threshold: .2 });
-    reveals.forEach(el => io.observe(el));
+    reveals.forEach(el => ioReveal.observe(el));
 
-    // Particules hero (canvas)
+    /* ---------- in-view pour titres ---------- */
+    const sections = document.querySelectorAll('.section');
+    const ioView = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in-view'); });
+    }, { threshold: 0.4 });
+    sections.forEach(s => ioView.observe(s));
+
+    /* ---------- Particules hero (canvas) ---------- */
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     let w = canvas.width = innerWidth;
@@ -265,7 +292,7 @@
     (function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); })();
   </script>
 
-  <!-- ===== Loader header/footer + nav (priorité racine, fallback partials/) ===== -->
+  <!-- ===== Loader header/footer + nav ===== -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
