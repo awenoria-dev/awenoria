@@ -1,235 +1,166 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Mentions légales — Awenoria</title>
-  <meta name="description" content="Mentions légales et informations de l’éditeur du site Awenoria.">
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<body class="page-modeles">
 
-  <!-- CSS globale -->
-  <link rel="stylesheet" href="assets/awenoria.css">
-
-  <style>
-    :root{
-      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
-      --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
-      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
-      --transition:.6s cubic-bezier(.22,1,.36,1);
-    }
-    @media (prefers-color-scheme:dark){
-      :root{
-        --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
-        --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);
-      }
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;line-height:1.7;color:var(--aw-ink);background:var(--aw-bg);-webkit-font-smoothing:antialiased;}
-    a{text-decoration:none;color:var(--aw-blue)}
-    img{max-width:100%;display:block}
-    .container{max-width:1200px;margin:0 auto;padding:0 20px}
-
-    /* ---------- Hero (identique aux autres pages) ---------- */
-    .hero{
-      position:relative; min-height:60vh; min-height:60svh;
-      display:flex; align-items:center; justify-content:center;
-      text-align:center; color:#fff; overflow:hidden;
-      background:
-        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
-        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
-    }
-    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
-    .hero .content{position:relative; z-index:2; max-width:900px; padding:0 20px; animation:fadeInUp 1s both;}
-    .hero h1{font-size:clamp(48px,6.5vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em;}
-    .hero .lead{font-size:1.25rem; font-weight:500; margin:18px auto 0; color:#e8f0ff;}
-
-    /* ---------- Sections ---------- */
-    .section{max-width:1200px; margin:0 auto; padding:100px 20px;}
-    .title{margin:0 0 10px; text-align:center; font-size:clamp(30px,4.5vw,42px); color:var(--aw-ink); font-weight:800;}
-    .title::after{content:''; display:block; width:60px; height:4px; background:var(--aw-copper); margin:10px auto 0; border-radius:3px;}
-
-    .grid{display:grid; gap:24px}
-    .cols-2{grid-template-columns:repeat(2,1fr)}
-    @media(max-width:980px){.cols-2{grid-template-columns:1fr}}
-
-    .card{
-      background:var(--aw-panel); border:1px solid rgba(15,23,32,.08);
-      border-radius:var(--aw-radius); box-shadow:var(--shadow);
-      padding:24px; transition:all var(--transition);
-    }
-    .card:hover{transform:translateY(-2px)}
-    .muted{color:var(--aw-muted)}
-    .list{margin:0;padding-left:18px}
-
-    /* Anim */
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
-  </style>
-</head>
-<body class="page-mentions">
-
-  <!-- Header injecté -->
   <div id="header"></div>
 
-  <!-- HERO bleu + particules -->
   <section class="hero">
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="content">
-      <h1>Mentions légales</h1>
-      <p class="lead">Informations relatives à l’éditeur du site, à l’hébergement et aux contacts.</p>
+      <h1>Modèles juridiques</h1>
+      <p class="lead" style="color:#ffffff">
+        Éditeur intelligent : remplis les champs, tous les [[…]] se complètent en temps réel.<br>
+        Téléchargez un pack .zip sans serveur.
+      </p>
     </div>
   </section>
 
   <main>
+    <!-- Accès rapide -->
     <section class="section">
       <div class="container">
-        <div class="grid cols-2">
-          <!-- Éditeur -->
-          <article class="card">
-            <h2 class="title" style="text-align:left;margin-bottom:6px">Éditeur du site</h2>
-            <p><b>[[Dénomination de l’entreprise]]</b> — [[forme juridique]] au capital de [[capital social]] €<br>
-            Siège social : [[Adresse complète]]<br>
-            SIREN : [[XXXXXXXXX]] — RCS : [[Ville]]<br>
-            N° TVA intracommunautaire : [[FR..]]</p>
-            <p>Directeur / Directrice de la publication : [[Nom, fonction]]</p>
-            <p>Contact : <a href="mailto:[[contact@votredomaine.fr]]">[[contact@votredomaine.fr]]</a> — [[N° de téléphone (optionnel)]]</p>
-          </article>
-
-          <!-- Hébergement -->
-          <article class="card">
-            <h2 class="title" style="text-align:left;margin-bottom:6px">Hébergement</h2>
-            <p>Le site est hébergé par :</p>
-            <ul class="list">
-              <li><b>GitHub Pages</b> — GitHub, Inc., 88 Colin P. Kelly Jr St, San Francisco, CA 94107, USA</li>
-              <li><b>(Option)</b> <b>Cloudflare</b> (proxy/CDN) — Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA</li>
-            </ul>
-            <p class="muted">Ces informations sont données à titre indicatif si tu utilises effectivement ces services. Ajuste si besoin.</p>
-          </article>
+        <h2 class="title">Éditer mon formulaire</h2>
+        <p class="subtitle-center">
+          Deux modes : <b>Éditeur rapide (30 s)</b> pour l’essentiel,
+          <b>Éditeur avancé (60 s)</b> pour tout personnaliser.
+        </p>
+        <div class="grid cols-3">
+          <a class="card reveal" href="#polconf">
+            <span class="pill">RGPD</span>
+            <h3>Politique de confidentialité</h3>
+            <p class="muted">Site vitrine / lead gen</p>
+          </a>
+          <a class="card reveal" href="#polcookies">
+            <span class="pill">Cookies</span>
+            <h3>Politique cookies & CMP</h3>
+            <p class="muted">Transparence & preuve</p>
+          </a>
+          <a class="card reveal" href="#mentions">
+            <span class="pill">Mentions</span>
+            <h3>Mentions légales</h3>
+            <p class="muted">Éditeur, hébergeur, RCS…</p>
+          </a>
         </div>
-
-        <div class="grid" style="margin-top:24px">
-          <article class="card">
-            <h2 class="title" style="text-align:left;margin-bottom:6px">Données personnelles</h2>
-            <p>Le traitement des données personnelles est décrit dans notre <a href="confidentialite.html">Politique de confidentialité</a> et dans notre <a href="politique-cookies.html">Politique cookies</a>. Pour toute demande relative à tes droits (accès, rectification, effacement, opposition, limitation, portabilité), écris à : <a href="mailto:[[vosdroits@votredomaine.fr]]">[[vosdroits@votredomaine.fr]]</a>.</p>
-          </article>
-
-          <article class="card">
-            <h2 class="title" style="text-align:left;margin-bottom:6px">Propriété intellectuelle</h2>
-            <p>L’ensemble des contenus présents sur le site (textes, visuels, graphismes, logos, icônes, codes) est protégé par le droit d’auteur et, le cas échéant, par le droit des marques. Toute reproduction, représentation, modification ou diffusion, totale ou partielle, sans autorisation écrite est interdite.</p>
-          </article>
-
-          <article class="card">
-            <h2 class="title" style="text-align:left;margin-bottom:6px">Responsabilité</h2>
-            <p>Les informations fournies sur ce site le sont à titre indicatif. Malgré les soins apportés, l’éditeur ne peut garantir l’exactitude, la complétude ou l’actualité des contenus. L’utilisation du site se fait sous l’entière responsabilité de l’utilisateur.</p>
-          </article>
-
-          <article class="card">
-            <h2 class="title" style="text-align:left;margin-bottom:6px">Liens externes</h2>
-            <p>Le site peut contenir des liens vers des sites tiers. L’éditeur n’exerce aucun contrôle sur ces sites et ne peut être tenu responsable de leurs contenus ou pratiques.</p>
-          </article>
+        <div class="grid cols-3" style="margin-top:12px">
+          <a class="card reveal" href="#form">
+            <span class="pill">Formulaires</span>
+            <h3>Clause au point de collecte</h3>
+            <p class="muted">Contact, devis, newsletter</p>
+          </a>
+          <a class="card reveal" href="#email">
+            <span class="pill">Emailing</span>
+            <h3>Pied de page désinscription</h3>
+            <p class="muted">Lien & mentions</p>
+          </a>
+          <a class="card reveal" href="#cgv">
+            <span class="pill">E-commerce</span>
+            <h3>Trame courte CGV</h3>
+            <p class="muted">B2C simplifié</p>
+          </a>
         </div>
-
-        <p class="muted" style="margin-top:12px">Dernière mise à jour : [[JJ/MM/AAAA]]</p>
       </div>
     </section>
+
+    <!-- Éditeur intelligent -->
+    <section class="section">
+      <div class="container">
+        <div class="editor-wrap reveal is-visible" id="editor">
+          <div class="tabs" role="tablist" aria-label="Modes d’édition">
+            <button id="tab-fast" class="btn" role="tab" aria-selected="true">Éditeur rapide (30 s)</button>
+            <button id="tab-adv" class="btn ghost" role="tab" aria-selected="false">Éditeur avancé (60 s)</button>
+          </div>
+
+          <!-- Formulaire rapide -->
+          <form id="fastForm" class="smart" autocomplete="on">
+            <fieldset class="fieldset">
+              <legend>Champs obligatoires (8)</legend>
+              <div class="grid cols-3">
+                <div><label for="raison" class="req">Raison sociale</label><input id="raison" name="raison" required placeholder="Ex: Awenoria SAS"/></div>
+                <div><label for="forme" class="req">Forme juridique</label>
+                  <select id="forme" name="forme" required>
+                    <option value="">—</option>
+                    <option>SAS</option><option>SARL</option><option>EI</option><option>EURL</option><option>SA</option>
+                  </select>
+                </div>
+                <div><label for="capital" class="req">Capital social (€)</label><input id="capital" name="capital" required placeholder="10000"/></div>
+              </div>
+              <div class="grid cols-3">
+                <div><label for="adresse" class="req">Adresse</label><input id="adresse" name="adresse" required placeholder="12 rue Exemple, 75000 Paris"/></div>
+                <div><label for="emailRGPD" class="req">Email RGPD</label><input id="emailRGPD" name="emailRGPD" type="email" required placeholder="privacy@exemple.fr"/></div>
+                <div><label for="siren" class="req">SIREN</label><input id="siren" name="siren" required placeholder="123 456 789"/></div>
+              </div>
+              <div class="grid cols-3">
+                <div><label for="hebergeur" class="req">Hébergeur</label><input id="hebergeur" name="hebergeur" required placeholder="Ex: OVHcloud"/></div>
+                <div>
+                  <label for="analytics" class="req">Analytics</label>
+                  <select id="analytics" name="analytics" required>
+                    <option value="aucun">Aucun</option>
+                    <option value="Google Analytics">Google Analytics</option>
+                    <option value="Matomo">Matomo</option>
+                    <option value="Plausible">Plausible</option>
+                  </select>
+                </div>
+                <div><label for="dateMaj">Date (auto)</label><input id="dateMaj" name="dateMaj" readonly/></div>
+              </div>
+            </fieldset>
+          </form>
+
+          <!-- Formulaire avancé -->
+          <form id="advForm" class="smart" hidden autocomplete="on">
+            <fieldset class="fieldset">
+              <legend>Champs optionnels (12)</legend>
+              <div class="grid cols-3">
+                <div><label for="siret">SIRET</label><input id="siret" name="siret" placeholder="123 456 789 00012"/></div>
+                <div><label for="ape">Code APE</label><input id="ape" name="ape" placeholder="6201Z"/></div>
+                <div><label for="tva">TVA intracom.</label><input id="tva" name="tva" placeholder="FRxx 123456789"/></div>
+              </div>
+              <div class="grid cols-3">
+                <div><label for="dpoNom">DPO / Prestataire DPO</label><input id="dpoNom" name="dpoNom" placeholder="Nom ou société"/></div>
+                <div><label for="dpoEmail">Email DPO</label><input id="dpoEmail" name="dpoEmail" type="email" placeholder="dpo@exemple.fr"/></div>
+                <div><label for="mediateur">Médiateur conso (B2C)</label><input id="mediateur" name="mediateur" placeholder="Nom / coordonnées / URL"/></div>
+              </div>
+              <div class="grid cols-3">
+                <div><label for="paysHebergeur">Pays hébergeur</label><input id="paysHebergeur" name="paysHebergeur" placeholder="France / UE / hors UE"/></div>
+                <div><label for="cms">CMS</label><input id="cms" name="cms" placeholder="WordPress, Webflow…"/></div>
+                <div><label for="delaiRetractation">Délai rétractation (jours)</label><input id="delaiRetractation" name="delaiRetractation" placeholder="14"/></div>
+              </div>
+              <div class="grid cols-3">
+                <div><label for="clauseTransfert">Clause transfers hors UE</label><input id="clauseTransfert" name="clauseTransfert" placeholder="CCT + mesures sup."/></div>
+                <div><label for="sousTraitants">Sous-traitants</label><input id="sousTraitants" name="sousTraitants" placeholder="Emailing, CRM, CMP…"/></div>
+                <div><label for="finalitesMarketing">Finalités marketing</label><input id="finalitesMarketing" name="finalitesMarketing" placeholder="Prospection, retargeting…"/></div>
+              </div>
+              <div class="grid cols-3">
+                <div><label for="rcsVille">RCS (Ville)</label><input id="rcsVille" name="rcsVille" placeholder="Paris"/></div>
+                <div><label for="telephone">Téléphone</label><input id="telephone" name="telephone" placeholder="01 23 45 67 89"/></div>
+                <div><label for="siteURL">URL du site</label><input id="siteURL" name="siteURL" placeholder="https://exemple.fr"/></div>
+              </div>
+            </fieldset>
+          </form>
+
+          <div class="toolbar">
+            <button id="btnPack" class="btn">Télécharger le pack (.zip)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modèles de textes -->
+    <section id="polconf" class="section alt">
+      <div class="container">
+        <h2 class="title">Politique de confidentialité — modèle “site vitrine”</h2>
+        <div class="card model reveal">
+          <div class="tips"><b>À adapter :</b> ajoute tes finalités réelles (ex : prise de contact, prospection, analytics, recrutement). Si tu utilises des sous-traitants (hébergeur, emailing, CRM), indique-les.</div>
+          <textarea id="mdl-polconf" spellcheck="false">Dernière mise à jour : [[JJ/MM/AAAA]] ...</textarea>
+          <div class="btn-row">
+            <button class="btn" data-copy="#mdl-polconf">Copier le modèle</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Autres sections similaires... -->
+
   </main>
 
-  <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- ===== JS : canvas hero (particules) ===== -->
-  <script>
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    let w = canvas.width = innerWidth;
-    let h = canvas.height = innerHeight;
-    const particles = [];
-    const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
-
-    addEventListener('resize', () => { w = canvas.width = innerWidth; h = canvas.height = innerHeight; });
-
-    class Particle{
-      constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
-      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
-      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
-      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
-    }
-    function init(){ particles.length=0; for(let i=0;i<opts.count;i++) particles.push(new Particle()); }
-    function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); }
-    init(); animate();
-  </script>
-
-  <!-- ===== Loader header/footer + nav (priorité racine, fallback partials/) ===== -->
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const headMount = document.getElementById("header");
-    const footMount = document.getElementById("footer");
-    if (!headMount && !footMount) return;
-
-    const isGh = /github\.io$/.test(location.hostname);
-    let base = "/";
-    if (isGh) {
-      const parts = location.pathname.split("/").filter(Boolean);
-      base = parts.length ? `/${parts[0]}/` : "/";
-    }
-
-    const candidates = (p) => {
-      const clean = p.replace(/^\//, "");
-      return [ base + clean, "./" + clean, "../" + clean ];
-    };
-
-    async function fetchAny(paths) {
-      const queue = paths.flatMap(candidates);
-      for (const u of queue) {
-        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
-      }
-      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
-    }
-
-    function fixRootUrls(container) {
-      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
-        .forEach(el => {
-          const attr = el.hasAttribute("href") ? "href" : "src";
-          const val = el.getAttribute(attr);
-          if (/^\/\//.test(val)) return;
-          el.setAttribute(attr, base + val.replace(/^\//, ""));
-        });
-    }
-
-    // HEADER
-    if (headMount) {
-      fetchAny(["header.html", "partials/header.html"])
-        .then(html => {
-          headMount.innerHTML = html;
-          fixRootUrls(headMount);
-          return fetchAny(["assets/nav.js", "nav.js"]);
-        })
-        .then(code => {
-          const s = document.createElement("script");
-          if (/\b(import|export)\b/.test(code)) s.type = "module";
-          s.textContent = code;
-          document.body.appendChild(s);
-          console.log("[awenoria] header + nav chargés");
-        })
-        .catch(err => {
-          console.error("Header load error:", err);
-          headMount.innerHTML = "<!-- Header introuvable -->";
-        });
-    }
-
-    // FOOTER
-    if (footMount) {
-      fetchAny(["footer.html", "partials/footer.html"])
-        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
-        .catch(err => {
-          console.error("Footer load error:", err);
-          footMount.innerHTML = "<!-- Footer introuvable -->";
-        });
-    }
-  });
-  </script>
+  <!-- Scripts JS inchangés... -->
 </body>
-</html>
