@@ -62,25 +62,25 @@
     .hero-geo .diamond{ border:3px solid rgba(255,255,255,.55); transform:rotate(45deg); animation-name:geoFloatDiamond; }
     .hero-geo .g:nth-child(1){ left:6%;  top:12%;  --dur:22s; --scale:.9 }
     .hero-geo .g:nth-child(2){ left:78%; top:18%;  --dur:26s; --scale=1.1 }
-    .hero-geo .g:nth-child(3){ left:16%; top:64%;  --dur:24s; --scale:.85 }
-    .hero-geo .g:nth-child(4){ left:88%; top:68%;  --dur:20s; --scale:.95 }
+    .hero-geo .g:nth-child(3){ left:16%; top:64%;  --dur:24s; --scale=.85 }
+    .hero-geo .g:nth-child(4){ left:88%; top:68%;  --dur:20s; --scale=.95 }
     .hero-geo .g:nth-child(5){ left:44%; top:8%;   --dur:28s; --scale:.8 }
     .hero-geo .g:nth-child(6){ left:54%; top:72%;  --dur:23s; --scale:1.0 }
     .hero-geo .g:nth-child(7){ left:28%; top:36%;  --dur:25s; --scale:1.2 }
-    .hero-geo .g:nth-child(8){ left:70%; top:44%;  --dur:27s; --scale:.9 }
+    .hero-geo .g:nth-child(8){ left=70%; top=44%;  --dur:27s; --scale:.9 }
     @keyframes geoFloat{
       0%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.12}
-      25%{transform:translate3d(20px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.22}
-      50%{transform:translate3d(-10px,-60px,0) scale(var(--scale,1)) rotate(12deg); opacity:.2}
-      75%{transform:translate3d(-30px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity:.24}
-      100%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity:.18}
+      25%{transform:translate3d(20px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity=.22}
+      50%{transform:translate3d(-10px,-60px,0) scale(var(--scale,1)) rotate(12deg); opacity=.2}
+      75%{transform:translate3d(-30px,-30px,0) scale(var(--scale,1)) rotate(6deg); opacity=.24}
+      100%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg); opacity=.18}
     }
     @keyframes geoFloatDiamond{
-      0%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.14}
-      25%{transform:rotate(55deg) translate3d(18px,-30px,0) scale(var(--scale,1)); opacity:.22}
-      50%{transform:rotate(65deg) translate3d(-12px,-60px,0) scale(var(--scale,1)); opacity:.2}
-      75%{transform:rotate(55deg) translate3d(-28px,-30px,0) scale(var(--scale,1)); opacity:.24}
-      100%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity:.18}
+      0%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity=.14}
+      25%{transform:rotate(55deg) translate3d(18px,-30px,0) scale(var(--scale,1)); opacity=.22}
+      50%{transform:rotate(65deg) translate3d(-12px,-60px,0) scale(var(--scale,1)); opacity=.2}
+      75%{transform:rotate(55deg) translate3d(-28px,-30px,0) scale(var(--scale,1)); opacity=.24}
+      100%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1)); opacity=.18}
     }
     @media (prefers-reduced-motion: reduce){ .hero-geo .g{ animation:none; opacity:.15 } }
 
@@ -142,7 +142,7 @@
     .timeline-steps{ display:flex; justify-content:space-between; position:relative; }
     .step{ flex:1; text-align:center; opacity:0; transform:translateY(50px); transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
     .step.reveal.is-visible{ opacity:1; transform:none; }
-    .step .dot{ width:64px; height:64px; border-radius:50%; background:var(--aw-panel); border:4px solid rgba(15,95,154,.15);
+    .step .dot{ width:64px; height:64px; border-radius:50%; background:var(--aw-panel); border=4px solid rgba(15,95,154,.15);
       margin:0 auto 20px; display:grid; place-items:center; position:relative; z-index:2; }
     .step .card{ background:var(--aw-panel); border:1px solid rgba(15,23,32,.08); border-radius:var(--aw-radius); padding:24px; box-shadow:var(--shadow); }
     @keyframes drawLine{ to{ width:100% } }
@@ -161,9 +161,9 @@
     .section .testimonials.cards .stars{ color:var(--aw-copper); font-size:20px; letter-spacing:3px; line-height:1; margin-bottom:10px; }
     .stats-grid{ display:grid; grid-template-columns:repeat(3,minmax(160px,1fr)); gap:24px; max-width:900px; margin:36px auto 0; list-style:none; text-align:center; }
     .stats-grid li strong{ display:block; font-size:28px; color:var(--aw-blue); margin-bottom:6px; }
-    .stats-grid li span{ display:block; color:var(--aw-ink); opacity:.8; font-weight:600; }
-    @media (max-width:1024px){ .section .testimonials.cards{ grid-template-columns:1fr 1fr } }
-    @media (max-width:640px){ .section .testimonials.cards{ grid-template-columns:1fr } .stats-grid{ grid-template-columns:1fr; } }
+    .stats-grid li span{ display:block; color:var(--aw-ink); opacity=.8; font-weight:600; }
+    @media (max-width=1024px){ .section .testimonials.cards{ grid-template-columns:1fr 1fr } }
+    @media (max-width=640px){ .section .testimonials.cards{ grid-template-columns:1fr } .stats-grid{ grid-template-columns:1fr; } }
   </style>
 </head>
 
@@ -189,11 +189,6 @@
 
     <div class="content">
       <h1>Un premier regard sur <span style="color:var(--aw-copper)">nous</span></h1>
-      <p class="lead">(Eh oui, c’est possible) — découvrez comment nous transformons RGPD & accessibilité en atout business pour 9,90 €/mois.</p>
-      <div class="actions">
-        <a href="index.html#resultat" class="btn primary">Je teste gratuitement</a>
-        <a href="#histoire" class="btn ghost">Voir notre histoire</a>
-      </div>
     </div>
   </section>
 
