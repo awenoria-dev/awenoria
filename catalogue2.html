@@ -122,9 +122,8 @@
       .ruban-track{gap:16px}
     }
 
-    /* ----------  HOVER CARDS (fiches au survol) ---------- */
+    /* ----------  HOVER CARDS ---------- */
     .ruban-card{ position:relative }
-
     .hover-card{
       position:absolute; inset:auto auto 12px 12px;
       width:min(360px, 86vw);
@@ -168,7 +167,7 @@
 
     .folder-grid{
       display: grid;
-      grid-template-columns: repeat(4, 1fr); /* ✅ 4 colonnes fixes pour les boutons */
+      grid-template-columns: repeat(4, 1fr); /* 4 colonnes fixes pour les boutons */
       gap: 20px;
       max-width: 720px;
       margin: 40px auto 0;
@@ -207,9 +206,9 @@
 
     .folder-label{ font-weight: 700; font-size: .92rem; text-align: center; }
 
-    /* ----------  DRAWER HORIZONTAL (ligne suivante) ---------- */
+    /* ----------  DRAWER HORIZONTAL (anti-tronquage) ---------- */
     .folder-drawer{
-      grid-column: 1 / -1;        /* ✅ s’étend sur toute la largeur, en-dessous de la rangée de boutons */
+      grid-column: 1 / -1;              /* pleine largeur sous la rangée de boutons */
       max-height: 0;
       overflow: hidden;
       background: rgba(255,255,255,.75);
@@ -217,20 +216,22 @@
       border: 1px solid rgba(0,0,0,.05);
       border-radius: 0 0 var(--folder-radius) var(--folder-radius);
       margin: 0 8px;
-      padding: 0 20px;
+      padding: 0 20px;                   /* pas de padding vertical à l'état fermé */
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
       gap: 12px;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
+      scrollbar-gutter: stable both-edges; /* réserve la place de la scrollbar */
       transition: max-height .35s ease, padding .35s ease;
+      box-sizing: border-box;
     }
     .folder-drawer.open{
-      max-height: 60px;           /* ✅ une seule ligne visible */
-      padding: 16px 20px;
+      max-height: 120px;                 /* valeur de secours si JS off */
+      padding: 16px 20px 26px;           /* marge basse pour ne pas coller la scrollbar */
+      align-items: center;
     }
-
     .folder-drawer a{
       display: inline-flex;
       align-items: center;
@@ -246,6 +247,12 @@
       white-space: nowrap;
     }
     .folder-drawer a:hover{ background: rgba(0,102,255,.18); }
+
+    /* Scrollbar WebKit plus fine (facultatif) */
+    .folder-drawer::-webkit-scrollbar{ height: 8px; }
+    .folder-drawer::-webkit-scrollbar-thumb{
+      background: rgba(0,0,0,.25); border-radius: 999px;
+    }
 
     /* flèche indicateur */
     .folder::after{
@@ -357,7 +364,7 @@
     <!-- CARROUSEL FORMATIONS -->
     <div class="ruban" aria-label="Toutes nos formations">
       <div class="ruban-track" data-direction="left">
-        <!-- RGPD Express -->
+        <!-- Plusieurs cartes (RGPD, IA, etc.) -->
         <figure class="ruban-card">
           <span class="badge" data-cat="rgpd">#RGPD</span>
           <div class="media"><img src="https://images.unsplash.com/photo-1584697964199-7383c60b4e9c?auto=format&fit=crop&w=800&q=60" alt=""></div>
@@ -366,7 +373,6 @@
             <p>2 h chrono, 100 % live.</p>
             <a class="btn-soft" href="./formation/rgpd-2h.html">Je réserve ma date</a>
           </figcaption>
-
           <div class="hover-card" role="dialog" aria-label="Fiche RGPD Express">
             <div class="hover-pills">
               <span class="hover-pill">1/2 journée</span>
@@ -386,7 +392,6 @@
           </div>
         </figure>
 
-        <!-- IA Act Day -->
         <figure class="ruban-card">
           <span class="badge" data-cat="ia">#IA</span>
           <div class="media"><img src="https://images.unsplash.com/photo-1620712943543-2858200f9251?auto=format&fit=crop&w=800&q=60" alt=""></div>
@@ -395,7 +400,6 @@
             <p>Le cadre européen en one-man-show.</p>
             <a class="btn-soft" href="./formation/ia-act.html">Je réserve ma date</a>
           </figcaption>
-
           <div class="hover-card" role="dialog" aria-label="Fiche IA Act Day">
             <div class="hover-pills">
               <span class="hover-pill">1 journée</span>
@@ -415,7 +419,6 @@
           </div>
         </figure>
 
-        <!-- Access Night -->
         <figure class="ruban-card">
           <span class="badge" data-cat="access">#Access</span>
           <div class="media"><img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?auto=format&fit=crop&w=800&q=60" alt=""></div>
@@ -424,7 +427,6 @@
             <p>Devenez conforme sous les projecteurs.</p>
             <a class="btn-soft" href="./formation/access.html">Je réserve ma date</a>
           </figcaption>
-
           <div class="hover-card" role="dialog" aria-label="Fiche Access Night">
             <div class="hover-pills">
               <span class="hover-pill">1 journée</span>
@@ -444,7 +446,6 @@
           </div>
         </figure>
 
-        <!-- Cyber Stage -->
         <figure class="ruban-card">
           <span class="badge" data-cat="cyber">#Cyber</span>
           <div class="media"><img src="https://images.unsplash.com/photo-1526628953301-b3c68916b7d5?auto=format&fit=crop&w=800&q=60" alt=""></div>
@@ -453,7 +454,6 @@
             <p>La sécurité en stand-up.</p>
             <a class="btn-soft" href="./formation/cyber.html">Je réserve ma date</a>
           </figcaption>
-
           <div class="hover-card" role="dialog" aria-label="Fiche Cyber Stage">
             <div class="hover-pills">
               <span class="hover-pill">1 journée</span>
@@ -473,7 +473,6 @@
           </div>
         </figure>
 
-        <!-- Cookies Live -->
         <figure class="ruban-card">
           <span class="badge" data-cat="cookies">#Cookies</span>
           <div class="media"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=60" alt=""></div>
@@ -482,7 +481,6 @@
             <p>Bandeau & CMP en live coding.</p>
             <a class="btn-soft" href="./formation/cookies.html">Je réserve ma date</a>
           </figcaption>
-
           <div class="hover-card" role="dialog" aria-label="Fiche Cookies Live">
             <div class="hover-pills">
               <span class="hover-pill">1/2 journée</span>
@@ -502,7 +500,6 @@
           </div>
         </figure>
 
-        <!-- Legal Remix (web) -->
         <figure class="ruban-card">
           <span class="badge" data-cat="web">#Web</span>
           <div class="media"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=60" alt=""></div>
@@ -511,7 +508,6 @@
             <p>Mentions légales version acoustic.</p>
             <a class="btn-soft" href="./formation/web-legal.html">Je réserve ma date</a>
           </figcaption>
-
           <div class="hover-card" role="dialog" aria-label="Fiche Legal Remix">
             <div class="hover-pills">
               <span class="hover-pill">1/2 journée</span>
@@ -540,8 +536,8 @@
     <p class="subtitle-center">Cliquez sur un dossier pour découvrir les rubriques.</p>
     <div class="underline"></div>
 
-    <!-- ✅ Ligne 1 : 4 boutons alignés horizontalement -->
     <div class="folder-grid">
+      <!-- Boutons (1ère ligne) -->
       <button class="folder" aria-expanded="false" aria-controls="f-services">
         <span class="folder-icon">🛠️</span>
         <span class="folder-label">Nos Services</span>
@@ -562,7 +558,7 @@
         <span class="folder-label">Atelier 2 h RGPD</span>
       </button>
 
-      <!-- ✅ Lignes suivantes : drawers pleine largeur -->
+      <!-- Drawers (plein écran sous la rangée) -->
       <div id="f-services" class="folder-drawer" role="region" aria-label="Liens - Services">
         <a href="./Nos-services.html#audit" target="_blank" rel="noopener">Audit & Analyse</a>
         <a href="./Nos-services.html#rgpd" target="_blank" rel="noopener">RGPD</a>
@@ -714,26 +710,65 @@
     })();
   </script>
 
-  <!-- ----------  FOLDER 2025  ---------- -->
+  <!-- ----------  FOLDER 2025 : ouverture sans tronquage ---------- -->
   <script>
-  document.querySelectorAll('.folder').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const drawer = document.getElementById(btn.getAttribute('aria-controls'));
-      const isOpen = btn.classList.contains('open');
-      // reset
+    // Ouvre un tiroir et ajuste sa hauteur au contenu réel (anti-tronquage)
+    function openDrawer(btn){
+      const id = btn.getAttribute('aria-controls');
+      const drawer = document.getElementById(id);
+      if (!drawer) return;
+
+      // reset global
       document.querySelectorAll('.folder').forEach(b => {
         b.classList.remove('open');
         b.setAttribute('aria-expanded', 'false');
       });
-      document.querySelectorAll('.folder-drawer').forEach(d => d.classList.remove('open'));
-      // toggle
-      if (!isOpen) {
-        btn.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-        if (drawer) drawer.classList.add('open');
-      }
+      document.querySelectorAll('.folder-drawer').forEach(d => {
+        d.classList.remove('open');
+        d.style.maxHeight = '';      // retire les hauteurs précédentes
+      });
+
+      // open current
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      drawer.classList.add('open');
+
+      // adapte la hauteur à la vraie taille (une seule ligne de puces + padding)
+      requestAnimationFrame(() => {
+        const verticalPadding = 16 + 26; // .open padding-top + padding-bottom
+        const contentHeight = drawer.scrollHeight + verticalPadding;
+        drawer.style.maxHeight = contentHeight + 'px';
+      });
+    }
+
+    document.querySelectorAll('.folder').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isOpen = btn.classList.contains('open');
+        if (isOpen) {
+          // fermer si re-cliqué
+          btn.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          const drawer = document.getElementById(btn.getAttribute('aria-controls'));
+          if (drawer){
+            drawer.classList.remove('open');
+            drawer.style.maxHeight = '';
+          }
+        } else {
+          openDrawer(btn);
+        }
+      });
     });
-  });
+
+    // Recalcule en cas de resize (scrollbar, zoom, etc.)
+    window.addEventListener('resize', () => {
+      const btn = document.querySelector('.folder.open');
+      if (!btn) return;
+      const drawer = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!drawer) return;
+      const verticalPadding = 16 + 26;
+      const contentHeight = drawer.scrollHeight + verticalPadding;
+      drawer.style.maxHeight = contentHeight + 'px';
+    }, { passive:true });
   </script>
 </body>
 </html>
