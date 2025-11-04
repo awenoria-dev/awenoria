@@ -1,378 +1,148 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Modèles juridiques - Awenoria</title>
-  <meta name="description" content="Modèles juridiques prêts à l’emploi avec éditeur intelligent : politique de confidentialité, mentions légales, CGV, clauses RGPD.">
-  <link rel="icon" type="image/png" href="images/favicon-32.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Modèles juridiques — Awenoria (Éditeur intelligent)</title>
+  <meta name="description" content="Modèles prêts à l’emploi avec éditeur rapide et avancé : politique de confidentialité, cookies, mentions légales, clauses, emailing, CGV.">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/awenoria.css">
+
   <style>
-    :root {
-      --aw-orange: #ff5c00;
-      --aw-orange-hover: #ff8a3d;
-      --aw-bg: #f9fafb;
-      --aw-panel: #ffffff;
-      --aw-ink: #1f2937;
-      --aw-muted: #6b7280;
-      --aw-radius: 20px;
-      --shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
-      --transition: 0.4s ease;
+    :root{
+      --aw-ink:#9A9EA6;              /* texte général (gris foncé sans noir) */
+      --aw-blue:#0066ff;             /* bleu ciel pour bulles (comme avant) */
+      --aw-blue-hover:#3d8bff;       /* survol : bleu plus soutenu */
+      --aw-copper:#ff5c00; --aw-muted:#6b7280;
+      --aw-panel:#ffffff; --aw-bg:#f5f7ff;     /* fond clair */
+      --aw-radius:24px;
+      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+      --transition:.6s cubic-bezier(.22,1,.36,1);
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: "Inter", sans-serif;
-      background: var(--aw-bg);
-      color: var(--aw-ink);
-      line-height: 1.6;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, var(--aw-orange) 0%, var(--aw-orange-hover) 100%);
-      color: white;
-      padding: 80px 20px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 16px;
-    }
-
-    .hero .lead {
-      font-size: 1.25rem;
-      font-weight: 500;
-    }
-
-    .section {
-      padding: 80px 0;
-    }
-
-    .title {
-      font-size: 2.25rem;
-      font-weight: 800;
-      text-align: center;
-      margin-bottom: 16px;
-      color: var(--aw-ink);
-    }
-
-    .subtitle-center {
-      text-align: center;
-      color: var(--aw-muted);
-      margin-bottom: 48px;
-    }
-
-    .grid {
-      display: grid;
-      gap: 24px;
-    }
-
-    .cols-3 {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-
-    .card {
-      background: var(--aw-panel);
-      border: 1px solid #e5e7eb;
-      border-radius: var(--aw-radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .card:hover {
-      border-color: var(--aw-orange);
-      box-shadow: 0 28px 56px rgba(255, 92, 0, 0.15);
-      transform: translateY(-4px);
-    }
-
-    .pill {
-      display: inline-block;
-      background: var(--aw-orange);
-      color: white;
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: var(--aw-orange);
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      text-decoration: none;
-    }
-
-    .btn:hover {
-      background: var(--aw-orange-hover);
-      transform: translateY(-2px);
-    }
-
-    .btn.ghost {
-      background: transparent;
-      color: var(--aw-orange);
-      border: 1px solid var(--aw-orange);
-    }
-
-    .btn.ghost:hover {
-      background: var(--aw-orange);
-      color: white;
-    }
-
-    .model textarea {
-      width: 100%;
-      min-height: 300px;
-      padding: 16px;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      font-family: ui-monospace, monospace;
-      font-size: 14px;
-      resize: vertical;
-      background: var(--aw-bg);
-      color: var(--aw-ink);
-    }
-
-    .model .tips {
-      font-size: 13px;
-      color: var(--aw-muted);
-      margin-bottom: 12px;
-    }
-
-    .toolbar {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 16px;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2rem;
+    @media (prefers-color-scheme:dark){
+      :root{
+        --aw-ink:#9A9EA6;
+        --aw-blue:#0066ff;
+        --aw-blue-hover:#3d8bff;
+        --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
+        --aw-panel:#0b0f1a; --aw-bg:#0a0d14;
+        --shadow:0 25px 50px -12px rgba(0,0,0,.45);
       }
     }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;
+      line-height:1.7; color:var(--aw-ink); background:var(--aw-bg); -webkit-font-smoothing:antialiased;
+    }
+    a{text-decoration:none;color:var(--aw-blue)}
+    img{max-width:100%;display:block}
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+    /* ---------- Hero (identique aux autres pages) ---------- */
+    .hero{
+      position:relative; min-height:60vh; min-height:60svh;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff; overflow:hidden;
+      background:
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+    }
+    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
+    .hero .content{position:relative; z-index:2; max-width:800px; padding:0 20px; animation:fadeInUp 1s both;}
+    .hero h1{font-size:clamp(52px,7vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em;}
+    .hero .lead{font-size:1.4rem; font-weight:500; margin:24px auto 0; color:#e8f0ff;}
+
+    /* ---------- Sections ---------- */
+    .section{max-width:1200px; margin:0 auto; padding:100px 20px;}
+    .alt{background:var(--aw-bg);}
+    .title{margin:0 0 10px; text-align:center; font-size:clamp(36px,5vw,48px); font-weight:800; background:linear-gradient(135deg,#0F5F9A 0%,#0d5285 100%); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 2px 4px rgba(0,0,0,.08); transition:transform .35s ease,opacity .35s ease;}
+    .section.in-view .title{transform:translateY(-2px); opacity:1;}
+    .subtitle-center{font-size:1.2rem; color:var(--aw-muted); max-width:820px; margin:0 auto 56px; text-align:center;}
+    .grid{display:grid; gap:24px; margin-top:18px;}
+    .cols-2{grid-template-columns:repeat(2,1fr)} .cols-3{grid-template-columns:repeat(3,1fr)}
+    @media(max-width:980px){.cols-2,.cols-3{grid-template-columns:1fr}}
+
+    .card{background:var(--aw-panel); border:1px solid rgba(15,95,154,.12); border-radius:var(--aw-radius); box-shadow:var(--shadow); padding:24px; transition:all var(--transition); display:block; position:relative; color:inherit; text-align:left;}
+    .card:hover{transform:translateY(-4px); box-shadow:0 28px 56px rgba(15,95,154,.15); border-color:var(--aw-copper);}
+
+    .pill{display:inline-flex; align-items:center; justify-content:center; padding:6px 12px; margin:0 0 10px; border-radius:999px; background:#0066ff; color:#fff; font:800 12px/1 "Inter",system-ui,-apple-system,Arial,sans-serif;}
+
+    .muted{color:var(--aw-muted)} .small{font-size:13px; color:var(--aw-muted);}
+    .btn{display:inline-flex; align-items:center; justify-content:center; padding:10px 14px; border-radius:12px; font-weight:800; color:#fff; background:var(--aw-blue); border:none; cursor:pointer; transition:all var(--transition); box-shadow:var(--shadow);}
+    .btn:hover{background:var(--aw-copper); transform:translateY(-2px);}
+    .btn.ghost{background:var(--aw-panel); color:var(--aw-blue); border:1px solid rgba(15,95,154,.12);}
+    .btn-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
+
+    .model{display:flex; flex-direction:column; gap:10px;}
+    .model textarea{width:100%; min-height:320px; resize:vertical; padding:14px; border:1px solid rgba(15,95,154,.12); border-radius:12px; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size:14px; line-height:1.55; background:var(--aw-bg); color:var(--aw-ink); transition:all var(--transition);}
+    .model textarea:focus{outline:none; border-color:var(--aw-copper); box-shadow:0 0 0 3px rgba(255,138,61,.2);}
+    .model .tips{background:var(--aw-bg); border:1px solid rgba(15,95,154,.12); border-radius:12px; padding:10px; font-size:13px; color:var(--aw-muted);}
+
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}} .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)} .reveal.is-visible{opacity:1;transform:none}
+
+    /* Éditeur intelligent */
+    .editor-wrap{position:sticky;top:0;z-index:5;background:linear-gradient(180deg, rgba(245,247,255,.96), rgba(245,247,255,.92) 60%, transparent);backdrop-filter:saturate(1.2) blur(6px);padding:18px 14px;border:1px solid rgba(15,23,32,.06);border-radius:16px;margin-bottom:24px;}
+    .tabs{display:flex;gap:10px;justify-content:center;margin-bottom:12px;}
+    .tabs .btn{padding:10px 16px;}
+    form.smart{display:grid;gap:12px;}
+    form.smart .grid{gap:12px;}
+    form.smart label{font-size:12px;color:var(--aw-muted);}
+    form.smart input,form.smart select,form.smart textarea{width:100%;padding:10px 12px;border:1px solid rgba(15,23,32,.1);border-radius:12px;background:var(--aw-panel);font:500 14px/1.4 "Inter";color:var(--aw-ink);}
+    .fieldset{border:1px dashed rgba(15,23,32,.15);border-radius:14px;padding:12px;}
+    .fieldset legend{font-weight:800;font-size:12px;color:var(--aw-muted);padding:0 6px;}
+    .req::after{content:' *';color:var(--aw-copper);}
+    .hint{font-size:12px;color:var(--aw-muted);}
+    .toolbar{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;margin-top:8px;}
   </style>
 </head>
 <body class="page-modeles">
 
   <div id="header"></div>
-
-  <section class="hero">
+@@ -108,7 +6,7 @@
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="content">
       <h1>Modèles juridiques</h1>
-      <p class="lead">Éditeur intelligent : remplis les champs, tous les [[…]] se complètent en temps réel.<br>Téléchargez un pack .zip sans serveur.</p>
+      <p class="lead" style="color:#FF5C00">Deux modes : Éditeur rapide (30 s) pour l’essentiel, Éditeur avancé (60 s) pour tout personnaliser.</p>
+      <p class="lead" style="color:#ffffff">Éditeur intelligent : remplis les champs, tous les [[…]] se complètent en temps réel. Téléchargez un pack .zip sans serveur.</p>
     </div>
   </section>
 
-  <main>
-    <section class="section">
-      <div class="container">
-        <h2 class="title">Éditer mon formulaire</h2>
-        <p class="subtitle-center">Deux modes : <b>Éditeur rapide (30 s)</b> pour l’essentiel, <b>Éditeur avancé (60 s)</b> pour tout personnaliser.</p>
-        <div class="grid cols-3">
-          <a class="card reveal" href="#polconf"><span class="pill">RGPD</span><h3>Politique de confidentialité</h3><p class="muted">Site vitrine / lead gen</p></a>
-          <a class="card reveal" href="#polcookies"><span class="pill">Cookies</span><h3>Politique cookies & CMP</h3><p class="muted">Transparence & preuve</p></a>
-          <a class="card reveal" href="#mentions"><span class="pill">Mentions</span><h3>Mentions légales</h3><p class="muted">Éditeur, hébergeur, RCS…</p></a>
-        </div>
-        <div class="grid cols-3" style="margin-top:12px">
-          <a class="card reveal" href="#form"><span class="pill">Formulaires</span><h3>Clause au point de collecte</h3><p class="muted">Contact, devis, newsletter</p></a>
-          <a class="card reveal" href="#email"><span class="pill">Emailing</span><h3>Pied de page désinscription</h3><p class="muted">Lien & mentions</p></a>
-          <a class="card reveal" href="#cgv"><span class="pill">E-commerce</span><h3>Trame courte CGV</h3><p class="muted">B2C simplifié</p></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="editor-wrap reveal is-visible" id="editor">
-          <div class="tabs" role="tablist" aria-label="Modes d’édition">
-            <button id="tab-fast" class="btn" role="tab" aria-selected="true">Éditeur rapide (30 s)</button>
-            <button id="tab-adv" class="btn ghost" role="tab" aria-selected="false">Éditeur avancé (60 s)</button>
-          </div>
-
-          <form id="fastForm" class="smart" autocomplete="on">
-            <fieldset class="fieldset">
-              <legend>Champs obligatoires (8)</legend>
-              <div class="grid cols-3">
-                <div><label for="raison" class="req">Raison sociale</label><input id="raison" name="raison" required placeholder="Ex: Awenoria SAS"/></div>
-                <div><label for="forme" class="req">Forme juridique</label>
-                  <select id="forme" name="forme" required>
-                    <option value="">—</option>
-                    <option>SAS</option><option>SARL</option><option>EI</option><option>EURL</option><option>SA</option>
-                  </select>
-                </div>
-                <div><label for="capital" class="req">Capital social (€)</label><input id="capital" name="capital" required placeholder="10000"/></div>
-              </div>
-              <div class="grid cols-3">
-                <div><label for="adresse" class="req">Adresse</label><input id="adresse" name="adresse" required placeholder="12 rue Exemple, 75000 Paris"/></div>
-                <div><label for="emailRGPD" class="req">Email RGPD</label><input id="emailRGPD" name="emailRGPD" type="email" required placeholder="privacy@exemple.fr"/></div>
-                <div><label for="siren" class="req">SIREN</label><input id="siren" name="siren" required placeholder="123 456 789"/></div>
-              </div>
-              <div class="grid cols-3">
-                <div><label for="hebergeur" class="req">Hébergeur</label><input id="hebergeur" name="hebergeur" required placeholder="Ex: OVHcloud"/></div>
-                <div>
-                  <label for="analytics" class="req">Analytics</label>
-                  <select id="analytics" name="analytics" required>
-                    <option value="aucun">Aucun</option>
-                    <option value="Google Analytics">Google Analytics</option>
-                    <option value="Matomo">Matomo</option>
-                    <option value="Plausible">Plausible</option>
-                  </select>
-                </div>
-                <div><label for="dateMaj">Date (auto)</label><input id="dateMaj" name="dateMaj" readonly/></div>
-              </div>
-            </fieldset>
-          </form>
-
-          <form id="advForm" class="smart" hidden autocomplete="on">
-            <fieldset class="fieldset">
-              <legend>Champs optionnels (12)</legend>
-              <div class="grid cols-3">
-                <div><label for="siret">SIRET</label><input id="siret" name="siret" placeholder="123 456 789 00012"/></div>
-                <div><label for="ape">Code APE</label><input id="ape" name="ape" placeholder="6201Z"/></div>
-                <div><label for="tva">TVA intracom.</label><input id="tva" name="tva" placeholder="FRxx 123456789"/></div>
-              </div>
-              <div class="grid cols-3">
-                <div><label for="dpoNom">DPO / Prestataire DPO</label><input id="dpoNom" name="dpoNom" placeholder="Nom ou société"/></div>
-                <div><label for="dpoEmail">Email DPO</label><input id="dpoEmail" name="dpoEmail" type="email" placeholder="dpo@exemple.fr"/></div>
-                <div><label for="mediateur">Médiateur conso (B2C)</label><input id="mediateur" name="mediateur" placeholder="Nom / coordonnées / URL"/></div>
-              </div>
-              <div class="grid cols-3">
-                <div><label for="paysHebergeur">Pays hébergeur</label><input id="paysHebergeur" name="paysHebergeur" placeholder="France / UE / hors UE"/></div>
-                <div><label for="cms">CMS</label><input id="cms" name="cms" placeholder="WordPress, Webflow…"/></div>
-                <div><label for="delaiRetractation">Délai rétractation (jours)</label><input id="delaiRetractation" name="delaiRetractation" placeholder="14"/></div>
-              </div>
-              <div class="grid cols-3">
-                <div><label for="clauseTransfert">Clause transfers hors UE</label><input id="clauseTransfert" name="clauseTransfert" placeholder="CCT + mesures sup."/></div>
-                <div><label for="sousTraitants">Sous-traitants</label><input id="sousTraitants" name="sousTraitants" placeholder="Emailing, CRM, CMP…"/></div>
-                <div><label for="finalitesMarketing">Finalités marketing</label><input id="finalitesMarketing" name="finalitesMarketing" placeholder="Prospection, retargeting…"/></div>
-              </div>
+@@ -200,7 +98,7 @@ <h2 class="title">Editer mon formulaire</h2>
               <div class="grid cols-3">
                 <div><label for="rcsVille">RCS (Ville)</label><input id="rcsVille" name="rcsVille" placeholder="Paris"/></div>
                 <div><label for="telephone">Téléphone</label><input id="telephone" name="telephone" placeholder="01 23 45 67 89"/></div>
-                <div><label for="siteURL">URL du site</label><input id="siteURL" name="siteURL" placeholder="https://exemple.fr"/></div>
+                <div><label for="siteURL">URL du site</label><input id="siteURL" name="siteURL" placeholder="https://exemple.fr "/></div>
+                <div><label for="siteURL">URL du site</label><input id="siteURL" name="siteURL" placeholder="https://exemple.fr  "/></div>
               </div>
             </fieldset>
           </form>
+@@ -399,7 +297,7 @@ <h2 class="title">Trame courte CGV (B2C) — modèle</h2>
+Conformité et vices cachés selon le Code de la consommation / Code civil. Contact SAV : [[email/tél]].
 
-          <div class="toolbar">
-            <button id="btnPack" class="btn">Télécharger le pack (.zip)</button>
-          </div>
-        </div>
-      </div>
-    </section>
+7) Médiation à la consommation
+Après démarche préalable auprès de [[Raison sociale]], vous pouvez saisir gratuitement le médiateur [[Nom / coordonnées / URL]].
+Après démarche préalable auprès de [[Raison sociale]], vous pouvez saisir gratuitement le médiateur : [[Nom / coordonnées / site du médiateur]].
 
-    <!-- Modèles de textes -->
-    <section id="polconf" class="section alt">
-      <div class="container">
-        <h2 class="title">Politique de confidentialité — modèle “site vitrine”</h2>
-        <div class="card model reveal">
-          <div class="tips"><b>À adapter :</b> ajoute tes finalités réelles (ex : prise de contact, prospection, analytics, recrutement). Si tu utilises des sous-traitants (hébergeur, emailing, CRM), indique-les.</div>
-          <textarea id="mdl-polconf" spellcheck="false">Dernière mise à jour : [[JJ/MM/AAAA]]
-1) Responsable de traitement
-[[Raison sociale]], [[forme juridique]], [[adresse]], [[RCS/SIREN]], [[TVA]].
-Contact : [[email RGPD]] | [[adresse]].
-Délégué à la Protection des Données (le cas échéant) : [[nom DPO / prestataire DPO]] – [[email DPO]].
-2) Finalités & bases légales
-• Prise de contact / demandes (base légale : exécution de mesures précontractuelles).
-• Prospection par email (base légale : consentement ou intérêt légitime conformément à l’art. 13(2) ePrivacy/LCEN).
-• Analytics / mesure d’audience (base légale : consentement lorsque le traceur n’est pas strictement nécessaire) [[outil analytics]].
-• Recrutement (base légale : intérêt légitime et/ou mesures précontractuelles).
-• Gestion des cookies et consentements (base légale : obligation légale / consentement).
-3) Données traitées & durées de conservation
-• Formulaire de contact : identité, coordonnées, message – conservation : [[durée]], puis archivage légal si applicable.
-• Prospection : email, préférences – conservation : [[durée]] après dernier contact ou jusqu’au retrait du consentement.
-• Analytics : identifiants de cookies, logs – conservation : [[durée]].
-• Candidatures : CV, LM, échanges – conservation : [[durée]] après dernier contact.
-4) Destinataires & sous-traitants
-Données accessibles en interne aux personnes habilitées. Sous-traitants : [[hébergeur]], [[outil emailing/CMP/CRM]], situés [[UE/hors UE avec garanties]].
-5) Transferts hors UE
-En cas de transferts, application des garanties appropriées (clauses contractuelles types, mesures complémentaires). Informations : [[lien ou contact]].
-6) Droits des personnes
-Accès, rectification, effacement, limitation, opposition, portabilité. Retrait du consentement à tout moment. Exercer vos droits : [[email RGPD / formulaire]]. Réclamation : CNIL (cnil.fr).
-7) Sécurité
-Mesures techniques et organisationnelles proportionnées (contrôles d’accès, chiffrement en transit, journalisation des accès administrateurs).
-8) Cookies
-Voir notre politique cookies : [[/politique-cookies]] ; paramétrage via le bandeau et le centre de préférences.
-9) Contact
-Pour toute question : [[email RGPD]] – [[adresse]].</textarea>
-          <div class="btn-row">
-            <button class="btn" data-copy="#mdl-polconf">Copier le modèle</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Autres modèles ici... -->
-
-  </main>
-
+8) Données personnelles
+Voir Politique de confidentialité : [[URL]]. Finalités : gestion de commande, livraison, facturation.
+@@ -427,8 +325,8 @@ <h2 class="title reveal">Besoin d’une relecture experte ?</h2>
   <div id="footer"></div>
 
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <!-- JS libs pour le zip côté client (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js " integrity="sha512-3nN3zH1b6oKQxU5T2V3sEHu1Jr8m+Jrj7v+0d6oL3gU5kN1f8x7c8xwqH5h9E3u0cJ1o8l0h1e4k8q4f0rQ0xA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js " integrity="sha512-v2Z3Hq52y3xwYvF9x6qgk2m3Qn2w7vYc7k2QdJ7Jw2F3sK3dU8S9sZ9gYw1lYqVZk5v5JwQvH2u2QjZk1K0pQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js  " integrity="sha512-3nN3zH1b6oKQxU5T2V3sEHu1Jr8m+Jrj7v+0d6oL3gU5kN1f8x7c8xwqH5h9E3u0cJ1o8l0h1e4k8q4f0rQ0xA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js  " integrity="sha512-v2Z3Hq52y3xwYvF9x6qgk2m3Qn2w7vYc7k2QdJ7Jw2F3sK3dU8S9sZ9gYw1lYqVZk5v5JwQvH2u2QjZk1K0pQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- ===== JS : canvas + reveal + copier + éditeur intelligent + zip ===== -->
   <script>
-    // Reveal on scroll
-    const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('is-visible');
-      });
-    }, { threshold: 0.2 });
-    reveals.forEach(el => io.observe(el));
-
-    // Copy to clipboard
-    document.addEventListener('click', async (e) => {
-      const btn = e.target.closest('button[data-copy]');
-      if (!btn) return;
-      const sel = btn.getAttribute('data-copy');
-      const ta = document.querySelector(sel);
-      if (!ta) return;
-      try {
-        await navigator.clipboard.writeText(ta.value);
-        btn.textContent = 'Copié ✓';
-        setTimeout(() => btn.textContent = 'Copier le modèle', 1500);
-      } catch {
-        ta.select();
-        document.execCommand('copy');
-        btn.textContent = 'Copié ✓';
-        setTimeout(() => btn.textContent = 'Copier le modèle', 1500);
-      }
-    });
+@@ -630,4 +528,3 @@ <h2 class="title reveal">Besoin d’une relecture experte ?</h2>
+  });
   </script>
-
 </body>
 </html>
