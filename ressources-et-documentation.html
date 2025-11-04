@@ -9,6 +9,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/awenoria.css">
+  <base target="_blank">
 
   <style>
     :root{
@@ -30,7 +31,11 @@
     img{max-width:100%;display:block}
     .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
-    /* ---------- Hero ---------- */
+    /* Skip link */
+    .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{left:10px;top:10px;width:auto;height:auto;z-index:1000;background:#000;color:#fff;padding:8px 10px;border-radius:8px}
+
+    /* Hero */
     .hero{
       position:relative; min-height:60vh; display:flex; align-items:center; justify-content:center;
       text-align:center; color:#fff; overflow:hidden;
@@ -43,99 +48,71 @@
     .hero .content{position:relative; z-index:2; max-width:800px; padding:0 20px; animation:fadeInUp 1s both;}
     .hero h1{font-size:clamp(52px,7vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em;}
     .hero .lead{font-size:1.4rem; font-weight:500; margin:24px auto 0; color:#e8f0ff;}
+    .hero .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
 
-    /* ---------- Sections ---------- */
+    /* Sections */
     .section{max-width:1200px; margin:0 auto; padding:100px 20px;}
     .section.alt{background:var(--aw-bg);}
 
-    /* ---------- Titres : même couleur #0F5F9A, rendu plus beau ---------- */
+    /* Titres */
     .title{
-      margin:0 auto 10px;
-      text-align:center;
-      font-size:clamp(36px,5vw,48px);
-      font-weight:800;
-      /* dégradé subtil sur la même teinte */
-      background:linear-gradient(135deg, #0F5F9A 0%, #0d5285 100%);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-      /* ombre portée discrète */
-      text-shadow:0 2px 4px rgba(0,0,0,.08);
-      /* animation légère */
+      margin:0 auto 10px; text-align:center; font-size:clamp(36px,5vw,48px);
+      font-weight:800; background:linear-gradient(135deg, #0F5F9A 0%, #0d5285 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 2px 4px rgba(0,0,0,.08);
       transition:transform .35s ease,opacity .35s ease;
     }
-    .section.in-view .title{
-      transform:translateY(-2px);
-      opacity:1;
-    }
-    .title::after{
-      content:''; display:block; width:60px; height:4px; background:var(--aw-copper);
-      margin:10px auto 0; border-radius:3px;
-    }
+    .section.in-view .title{transform:translateY(-2px); opacity:1;}
+    .title::after{content:''; display:block; width:60px; height:4px; background:var(--aw-copper); margin:10px auto 0; border-radius:3px;}
     .subtitle-center{font-size:1.2rem; color:var(--aw-muted); max-width:680px; margin:0 auto 56px; text-align:center;}
 
-    .grid{display:grid; gap:24px; margin-top:18px;}
+    .grid{display:grid; gap:24px; margin-top:18px}
     .cols-2{grid-template-columns:repeat(2,1fr)}
     .cols-3{grid-template-columns:repeat(3,1fr)}
     @media(max-width:980px){.cols-2,.cols-3{grid-template-columns:1fr}}
 
-    .card{
-      background:var(--aw-panel); border:1px solid rgba(15,23,32,.08);
+    .card{background:var(--aw-panel); border:1px solid rgba(15,23,32,.08);
       border-radius:var(--aw-radius); box-shadow:var(--shadow);
       padding:24px; transition:all var(--transition);
-      display:block; position:relative; color:inherit; text-align:left;
-    }
+      display:block; position:relative; color:inherit; text-align:left;}
     .card:hover{transform:translateY(-4px); box-shadow:0 28px 56px rgba(0,0,0,.1); border-color:var(--aw-copper);}
 
-    /* ---------- Pills (correctif identique à la page Modèles) ---------- */
-    .grid .card > .pill,
-    .section .card > .pill{
-      display:inline-flex !important;
-      align-items:center !important;
-      justify-content:center !important;
-      position:static !important;
-      width:auto !important; height:auto !important;
-      min-width:0 !important; min-height:0 !important;
-      max-width:fit-content !important; max-height:none !important;
-      padding:6px 12px !important;
-      margin:0 0 10px 0 !important;
-      border-radius:999px !important;
-      background:var(--aw-blue) !important;
-      color:#fff !important;
-      font:800 12px/1 "Inter",system-ui,-apple-system,Arial,sans-serif !important;
-      letter-spacing:0 !important;
-      text-transform:none !important;
-      transform:none !important;
-      box-shadow:none !important;
-      white-space:nowrap !important;
-      overflow:visible !important;
-    }
-    .grid .card > .pill::before,
-    .grid .card > .pill::after,
-    .section .card > .pill::before,
-    .section .card > .pill::after{content:none !important;}
-
+    .pill{display:inline-flex; align-items:center; justify-content:center; padding:6px 12px; border-radius:999px; background:var(--aw-blue); color:#fff; font:800 12px/1 "Inter",system-ui,-apple-system,Arial,sans-serif; margin:0 0 10px 0;}
     .muted{color:var(--aw-muted)}
     .small{font-size:13px;color:var(--aw-muted)}
-    .btn{
-      display:inline-block; padding:10px 14px; border-radius:10px; font-weight:800;
-      color:#fff; background:var(--aw-blue); box-shadow:var(--shadow); font-size:14px; transition:all var(--transition);
-    }
+    .btn{display:inline-block; padding:10px 14px; border-radius:10px; font-weight:800; color:#fff; background:var(--aw-blue); box-shadow:var(--shadow); font-size:14px; transition:all var(--transition);}
     .btn:hover{background:var(--aw-copper); transform:translateY(-2px);}
-    .btn.ghost{background:var(--aw-panel); color:var(--aw-blue); border:1px solid rgba(15,23,32,.08);}
+    .btn.ghost{background:var(--aw-panel); color:var(--aw-blue); border:1px solid rgba(15,23,32,.08);}    
     .btn-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
     .list{margin:0;padding-left:18px}
 
-    /* ---------- Animations ---------- */
+    /* Anim */
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
     .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
     .reveal.is-visible{opacity:1;transform:none}
+
+    /* Sommaire + filtre */
+    .with-aside{display:grid; grid-template-columns:260px 1fr; gap:24px}
+    @media(max-width:1100px){.with-aside{grid-template-columns:1fr}}
+    .toc{position:sticky; top:90px; align-self:start; background:var(--aw-panel); border:1px solid rgba(15,23,32,.08); border-radius:16px; padding:14px; box-shadow:var(--shadow)}
+    .toc h4{margin:0 0 8px 0; font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:var(--aw-muted)}
+    .toc a{display:block; padding:8px 10px; border-radius:10px; color:inherit}
+    .toc a.active{background:rgba(0,102,255,.08); color:var(--aw-blue); font-weight:700}
+
+    .filterbar{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:12px 0 0}
+    .filterbar input[type="search"]{flex:1; min-width:220px; padding:10px 12px; border-radius:12px; border:1px solid rgba(15,23,32,.12)}
+    .chips{display:flex; gap:8px; flex-wrap:wrap}
+    .chip{padding:6px 10px; border-radius:999px; border:1px solid rgba(15,23,32,.12); cursor:pointer; user-select:none}
+    .chip[aria-pressed="true"]{background:rgba(0,102,255,.08); border-color:var(--aw-blue); color:var(--aw-blue); font-weight:700}
+
+    /* Back to top */
+    .to-top{position:fixed; right:16px; bottom:16px; z-index:50; opacity:0; visibility:hidden; transform:translateY(12px); transition:all .3s ease}
+    .to-top.show{opacity:1; visibility:visible; transform:none}
   </style>
-  <base target="_blank">
 </head>
 <body class="page-ressources">
+  <a class="skip-link" href="#main">Aller au contenu</a>
 
-  <!-- Header injecté (mêmes includes que les autres pages) -->
+  <!-- Header injecté -->
   <div id="header"></div>
 
   <section class="hero">
@@ -143,245 +120,313 @@
     <div class="content">
       <h1>Ressources & documentation</h1>
       <p class="lead">Tout pour transformer un diagnostic en plan d’actions : guides, modèles, FAQ, et notre nouveau dossier <b>IA Act</b>.</p>
+      <div class="cta-row">
+        <a class="btn" href="#guides" target="_self">Voir les guides ↓</a>
+        <a class="btn ghost" href="#modeles" target="_self">Modèles juridiques</a>
+      </div>
     </div>
   </section>
 
-  <main>
-    <!-- 1. Accès rapide -->
+  <main id="main">
+    <!-- Accès rapide avec filtre -->
     <section class="section">
       <div class="container">
         <h2 class="title">Accès rapide</h2>
         <div class="grid cols-3">
-          <a class="card reveal" href="#guides">
+          <a class="card reveal filter-item" data-tags="guides bonnes pratiques rgpd cookies accessibilité mentions" href="#guides" target="_self">
             <span class="pill">Guides</span>
             <h3>Bonnes pratiques web</h3>
             <p class="muted">RGPD, cookies/CMP, accessibilité (WCAG/RGAA) et mentions légales : check-lists opérationnelles.</p>
             <p class="btn-row"><span class="btn">Parcourir les guides →</span></p>
           </a>
-          <a class="card reveal" href="#modeles">
+          <a class="card reveal filter-item" data-tags="modèles juridiques confidentialité cookies cgv mentions" href="#modeles" target="_self">
             <span class="pill">Modèles</span>
             <h3>Modèles juridiques</h3>
             <p class="muted">Politique de confidentialité, politique cookies, mentions légales, formulaires droits.</p>
             <p class="btn-row"><span class="btn">Voir les modèles →</span></p>
           </a>
-          <a class="card reveal" href="#iaact">
+          <a class="card reveal filter-item" data-tags="ia act dossier risques obligations fournisseurs déployeurs" href="#iaact" target="_self">
             <span class="pill">IA Act</span>
             <h3>Dossier thématique</h3>
             <p class="muted">Obligations par rôle (fournisseur, déployeur, distributeur), matrices de risques et exemples.</p>
             <p class="btn-row"><span class="btn">Ouvrir le dossier IA Act →</span></p>
           </a>
         </div>
-      </div>
-    </section>
 
-    <!-- 2. Guides & bonnes pratiques -->
-    <section id="guides" class="section alt">
-      <div class="container">
-        <h2 class="title">Guides & bonnes pratiques</h2>
-        <div class="grid cols-3">
-          <div class="card reveal">
-            <span class="pill">RGPD</span>
-            <h3>RGPD côté site</h3>
-            <ul class="list">
-              <li>Informer clairement : finalités, bases légales, durées, droits, contact</li>
-              <li>Mentions au point de collecte (formulaires)</li>
-              <li>Preuve du consentement et trace des mises à jour</li>
-            </ul>
-            <div class="btn-row">
-              <a class="btn ghost" href="guides.html">Tous les guides →</a>
-            </div>
+        <!-- Barre de filtre -->
+        <div class="filterbar" role="search">
+          <input id="filterInput" type="search" placeholder="Filtrer les cartes (ex. RGPD, cookies, modèles)" aria-label="Filtrer les cartes"/>
+          <div class="chips" aria-label="Raccourcis de filtre">
+            <button class="chip" data-chip="rgpd" aria-pressed="false" type="button">RGPD</button>
+            <button class="chip" data-chip="cookies" aria-pressed="false" type="button">Cookies</button>
+            <button class="chip" data-chip="accessibilité" aria-pressed="false" type="button">Accessibilité</button>
+            <button class="chip" data-chip="mentions" aria-pressed="false" type="button">Mentions</button>
+            <button class="chip" data-chip="modèles" aria-pressed="false" type="button">Modèles</button>
+            <button class="chip" data-chip="ia act" aria-pressed="false" type="button">IA Act</button>
           </div>
-          <div class="card reveal">
-            <span class="pill">Accessibilité</span>
-            <h3>Accessibilité (WCAG/RGAA)</h3>
-            <ul class="list">
-              <li>ALT, contrastes, sémantique, focus, navigation clavier</li>
-              <li>Déclaration d’accessibilité & plan d’amélioration</li>
-              <li>Bonnes pratiques UI & composants ARIA</li>
-            </ul>
-            <div class="btn-row">
-              <a class="btn ghost" href="guides.html">Exemples & check-lists →</a>
-            </div>
-          </div>
-          <div class="card reveal">
-            <span class="pill">E-commerce</span>
-            <h3>Mentions & e-commerce</h3>
-            <ul class="list">
-              <li>Identification : éditeur, hébergeur, RCS/SIREN/TVA</li>
-              <li>CGU/CGV, rétractation, médiation</li>
-              <li>Liens visibles + dates de MAJ</li>
-            </ul>
-            <div class="btn-row">
-              <a class="btn ghost" href="guides.html">Cas pratiques →</a>
-            </div>
-          </div>
+          <span id="filterCount" class="small" aria-live="polite" style="margin-left:auto"></span>
         </div>
       </div>
     </section>
 
-    <!-- 3. Modèles juridiques -->
-    <section id="modeles" class="section">
-      <div class="container">
-        <h2 class="title">Modèles juridiques</h2>
-        <div class="grid cols-3">
-          <a class="card reveal" href="modeles.html">
-            <span class="pill">Confidentialité</span>
-            <h3>Politique de confidentialité</h3>
-            <p class="muted">Structure recommandée et sections obligatoires (finalités, bases, durées, droits, contact, transferts).</p>
-            <p class="btn-row"><span class="btn">Ouvrir les modèles →</span></p>
-          </a>
-          <a class="card reveal" href="modeles.html">
-            <span class="pill">Cookies</span>
-            <h3>Politique cookies & CMP</h3>
-            <p class="muted">Modèle de politique cookies + exemples de libellés CMP (refus aussi simple, preuve du consentement).</p>
-            <p class="btn-row"><span class="btn">Télécharger →</span></p>
-          </a>
-          <a class="card reveal" href="modeles.html">
-            <span class="pill">E-commerce</span>
-            <h3>Mentions légales & CGV</h3>
-            <p class="muted">Mentions obligatoires, CGU/CGV et clauses pratiques pour services/vente en ligne.</p>
-            <p class="btn-row"><span class="btn">Parcourir →</span></p>
-          </a>
-        </div>
-      </div>
-    </section>
+    <!-- Section avec sommaire latéral -->
+    <section class="section alt">
+      <div class="container with-aside">
+        <aside class="toc">
+          <h4>Sommaire</h4>
+          <nav aria-label="Sommaire de la page">
+            <a href="#guides" data-spy>Guides & bonnes pratiques</a>
+            <a href="#modeles" data-spy>Modèles juridiques</a>
+            <a href="#iaact" data-spy>Dossier IA Act</a>
+            <a href="#faq" data-spy>FAQ</a>
+          </nav>
+          <div class="small" style="margin-top:10px">Dernière mise à jour : <time id="lastUpdated">—</time></div>
+        </aside>
 
-    <!-- 4. Dossier IA Act -->
-    <section id="iaact" class="section alt">
-      <div class="container">
-        <h2 class="title">Dossier IA Act</h2>
-        <p class="subtitle-center">
-          L’IA Act (UE) introduit des obligations selon le niveau de risque et le rôle des acteurs. Ce dossier regroupe l’essentiel pour cadrer vos projets.
-        </p>
-
-        <div class="grid cols-3">
-          <a class="card reveal" href="#ia-bref">
-            <span class="pill">En bref</span>
-            <h3>IA Act : vue d’ensemble</h3>
-            <p class="muted">Approche par risques, principes, notions-clés (fournisseur, déployeur, distributeur).</p>
-            <p class="btn-row"><span class="btn ghost">Lire le résumé →</span></p>
-          </a>
-          <a class="card reveal" href="#ia-roles">
-            <span class="pill">Par rôle</span>
-            <h3>Obligations principales</h3>
-            <p class="muted">Fournisseurs, déployeurs, distributeurs : responsabilités et contrôles.</p>
-            <p class="btn-row"><span class="btn ghost">Voir par rôle →</span></p>
-          </a>
-          <a class="card reveal" href="#ia-kits">
-            <span class="pill">Outils</span>
-            <h3>Check-lists & matrices</h3>
-            <p class="muted">Qualification, contrôles pré-mise en circulation, surveillance post-commercialisation.</p>
-            <p class="btn-row"><span class="btn ghost">Accéder aux kits →</span></p>
-          </a>
-        </div>
-
-        <div class="grid cols-2" style="margin-top:18px">
-          <details id="ia-bref" class="card reveal">
-            <summary>IA Act en bref — ce qu’il faut retenir</summary>
-            <div class="muted" style="margin-top:10px">
-              <p><b>Approche par les risques.</b> Interdiction pour certains usages (inacceptables), exigences strictes pour les systèmes à <b>haut risque</b>, obligations de transparence pour <b>risque limité</b>, bonnes pratiques pour <b>risque minimal</b>.</p>
-              <p><b>Objectif.</b> Déployer une IA digne de confiance sans freiner l’innovation, en protégeant les droits fondamentaux.</p>
-              <p><b>Conséquence pratique.</b> Dès la phase de cadrage, qualifier votre système et organiser vos preuves (qui fait quoi, quand, comment).</p>
+        <div>
+          <!-- 2. Guides & bonnes pratiques -->
+          <section id="guides" class="section alt reveal" style="padding-top:0" tabindex="-1">
+            <h2 class="title">Guides & bonnes pratiques</h2>
+            <div class="grid cols-3">
+              <div class="card reveal filter-item" data-tags="rgpd confidentialité cookies formulaires">
+                <span class="pill">RGPD</span>
+                <h3>RGPD côté site</h3>
+                <ul class="list">
+                  <li>Informer clairement : finalités, bases légales, durées, droits, contact</li>
+                  <li>Mentions au point de collecte (formulaires)</li>
+                  <li>Preuve du consentement et trace des mises à jour</li>
+                </ul>
+                <div class="btn-row">
+                  <a class="btn ghost" href="guides.html" target="_self">Tous les guides →</a>
+                </div>
+              </div>
+              <div class="card reveal filter-item" data-tags="accessibilité wcag rgaa aria contrastes">
+                <span class="pill">Accessibilité</span>
+                <h3>Accessibilité (WCAG/RGAA)</h3>
+                <ul class="list">
+                  <li>ALT, contrastes, sémantique, focus, navigation clavier</li>
+                  <li>Déclaration d’accessibilité & plan d’amélioration</li>
+                  <li>Bonnes pratiques UI & composants ARIA</li>
+                </ul>
+                <div class="btn-row">
+                  <a class="btn ghost" href="guides.html" target="_self">Exemples & check-lists →</a>
+                </div>
+              </div>
+              <div class="card reveal filter-item" data-tags="ecommerce mentions légales cgv cgu médiation">
+                <span class="pill">E-commerce</span>
+                <h3>Mentions & e-commerce</h3>
+                <ul class="list">
+                  <li>Identification : éditeur, hébergeur, RCS/SIREN/TVA</li>
+                  <li>CGU/CGV, rétractation, médiation</li>
+                  <li>Liens visibles + dates de MAJ</li>
+                </ul>
+                <div class="btn-row">
+                  <a class="btn ghost" href="guides.html" target="_self">Cas pratiques →</a>
+                </div>
+              </div>
             </div>
-          </details>
+          </section>
 
-          <details id="ia-roles" class="card reveal">
-            <summary>Obligations par rôle (fournisseur, déployeur, distributeur)</summary>
-            <div class="muted" style="margin-top:10px">
-              <p><b>Fournisseurs.</b> Système de gestion des risques, gouvernance des données, documentation technique complète, transparence, instructions d’utilisation, et <i>surveillance post-commercialisation</i>.</p>
-              <p><b>Déployeurs.</b> Vérifier les informations du fournisseur, qualifier l’usage réel, mettre en place la supervision humaine, informer les utilisateurs finaux et suivre les incidents.</p>
-              <p><b>Distributeurs/Intégrateurs.</b> Traçabilité, contrôles de conformité, étiquetage et information, gestion des versions/modèles et support aux clients.</p>
+          <!-- 3. Modèles juridiques -->
+          <section id="modeles" class="section reveal" tabindex="-1">
+            <h2 class="title">Modèles juridiques</h2>
+            <div class="grid cols-3">
+              <a class="card reveal filter-item" data-tags="modèles politique confidentialité" href="modeles.html" target="_self">
+                <span class="pill">Confidentialité</span>
+                <h3>Politique de confidentialité</h3>
+                <p class="muted">Structure recommandée et sections obligatoires (finalités, bases, durées, droits, contact, transferts).</p>
+                <p class="btn-row"><span class="btn">Ouvrir les modèles →</span></p>
+              </a>
+              <a class="card reveal filter-item" data-tags="modèles cookies cmp consentement" href="modeles.html" target="_self">
+                <span class="pill">Cookies</span>
+                <h3>Politique cookies & CMP</h3>
+                <p class="muted">Modèle de politique cookies + exemples de libellés CMP (refus aussi simple, preuve du consentement).</p>
+                <p class="btn-row"><span class="btn">Télécharger →</span></p>
+              </a>
+              <a class="card reveal filter-item" data-tags="modèles mentions cgv ecommerce" href="modeles.html" target="_self">
+                <span class="pill">E-commerce</span>
+                <h3>Mentions légales & CGV</h3>
+                <p class="muted">Mentions obligatoires, CGU/CGV et clauses pratiques pour services/vente en ligne.</p>
+                <p class="btn-row"><span class="btn">Parcourir →</span></p>
+              </a>
             </div>
-          </details>
+          </section>
 
-          <details id="ia-kits" class="card reveal">
-            <summary>Check-lists & matrices prêtes à l’emploi</summary>
-            <div class="muted" style="margin-top:10px">
-              <ul class="list">
-                <li><b>Qualification & risque :</b> grille de qualification (usage, données, contexte), détermination du niveau de risque.</li>
-                <li><b>Avant mise en circulation :</b> contrôles documentaires, tests, transparence, consignes utilisateurs.</li>
-                <li><b>Après mise en circulation :</b> plan de surveillance, gestion des incidents, remontées et mises à jour.</li>
-              </ul>
-              <p><a class="btn" href="contact.html">Recevoir les check-lists</a></p>
+          <!-- 4. Dossier IA Act -->
+          <section id="iaact" class="section alt reveal" tabindex="-1">
+            <h2 class="title">Dossier IA Act</h2>
+            <p class="subtitle-center">
+              L’IA Act (UE) introduit des obligations selon le niveau de risque et le rôle des acteurs. Ce dossier regroupe l’essentiel pour cadrer vos projets.
+            </p>
+
+            <div class="grid cols-3">
+              <a class="card reveal filter-item" data-tags="ia act vue d'ensemble risques" href="#ia-bref" target="_self">
+                <span class="pill">En bref</span>
+                <h3>IA Act : vue d’ensemble</h3>
+                <p class="muted">Approche par risques, principes, notions-clés (fournisseur, déployeur, distributeur).</p>
+                <p class="btn-row"><span class="btn ghost">Lire le résumé →</span></p>
+              </a>
+              <a class="card reveal filter-item" data-tags="ia act obligations rôles" href="#ia-roles" target="_self">
+                <span class="pill">Par rôle</span>
+                <h3>Obligations principales</h3>
+                <p class="muted">Fournisseurs, déployeurs, distributeurs : responsabilités et contrôles.</p>
+                <p class="btn-row"><span class="btn ghost">Voir par rôle →</span></p>
+              </a>
+              <a class="card reveal filter-item" data-tags="ia act checklists matrices" href="#ia-kits" target="_self">
+                <span class="pill">Outils</span>
+                <h3>Check-lists & matrices</h3>
+                <p class="muted">Qualification, contrôles pré-mise en circulation, surveillance post-commercialisation.</p>
+                <p class="btn-row"><span class="btn ghost">Accéder aux kits →</span></p>
+              </a>
             </div>
-          </details>
-        </div>
-      </div>
-    </section>
 
-    <!-- 5. Besoin d’un coup de main ? -->
-    <section class="section">
-      <div class="container" style="text-align:center">
-        <h2 class="title">Besoin d’un coup de main ?</h2>
-        <p class="subtitle-center">Explique-nous ton projet (fournisseur, déployeur ou distributeur) et on te propose un plan d’action.</p>
-        <div class="btn-row" style="justify-content:center">
-          <a class="btn" href="contact.html">Parler à un expert</a>
-          <a class="btn ghost" href="conformite.html#iaact">Voir nos offres IA Act</a>
-        </div>
-      </div>
-    </section>
+            <div class="grid cols-2" style="margin-top:18px">
+              <details id="ia-bref" class="card reveal">
+                <summary>IA Act en bref — ce qu’il faut retenir</summary>
+                <div class="muted" style="margin-top:10px">
+                  <p><b>Approche par les risques.</b> Interdiction pour certains usages (inacceptables), exigences strictes pour les systèmes à <b>haut risque</b>, obligations de transparence pour <b>risque limité</b>, bonnes pratiques pour <b>risque minimal</b>.</p>
+                  <p><b>Objectif.</b> Déployer une IA digne de confiance sans freiner l’innovation, en protégeant les droits fondamentaux.</p>
+                  <p><b>Conséquence pratique.</b> Dès la phase de cadrage, qualifier votre système et organiser vos preuves (qui fait quoi, quand, comment).</p>
+                </div>
+              </details>
 
-    <!-- 6. FAQ -->
-    <section id="faq" class="section alt">
-      <div class="container">
-        <h2 class="title">FAQ</h2>
-        <div class="grid cols-2">
-          <a class="card reveal" href="faq.html">
-            <span class="pill">Questions fréquentes</span>
-            <h3>FAQ complète</h3>
-            <p class="muted">Couverture de l’audit, limites, compatibilité CMS, stockage des données, accompagnement.</p>
-            <p class="btn-row"><span class="btn">Lire la FAQ →</span></p>
-          </a>
-          <a class="card reveal" href="pourquoi-2026.html">
-            <span class="pill">2026</span>
-            <h3>Pourquoi maintenant ?</h3>
-            <p class="muted">Échéances 2025–2026 (accessibilité, information consommateurs, cadre européen). Anticiper évite les non-conformités.</p>
-            <p class="btn-row"><span class="btn ghost">Voir l’article →</span></p>
-          </a>
+              <details id="ia-roles" class="card reveal">
+                <summary>Obligations par rôle (fournisseur, déployeur, distributeur)</summary>
+                <div class="muted" style="margin-top:10px">
+                  <p><b>Fournisseurs.</b> Système de gestion des risques, gouvernance des données, documentation technique complète, transparence, instructions d’utilisation, et <i>surveillance post-commercialisation</i>.</p>
+                  <p><b>Déployeurs.</b> Vérifier les informations du fournisseur, qualifier l’usage réel, mettre en place la supervision humaine, informer les utilisateurs finaux et suivre les incidents.</p>
+                  <p><b>Distributeurs/Intégrateurs.</b> Traçabilité, contrôles de conformité, étiquetage et information, gestion des versions/modèles et support aux clients.</p>
+                </div>
+              </details>
+
+              <details id="ia-kits" class="card reveal">
+                <summary>Check-lists & matrices prêtes à l’emploi</summary>
+                <div class="muted" style="margin-top:10px">
+                  <ul class="list">
+                    <li><b>Qualification & risque :</b> grille de qualification (usage, données, contexte), détermination du niveau de risque.</li>
+                    <li><b>Avant mise en circulation :</b> contrôles documentaires, tests, transparence, consignes utilisateurs.</li>
+                    <li><b>Après mise en circulation :</b> plan de surveillance, gestion des incidents, remontées et mises à jour.</li>
+                  </ul>
+                  <p><a class="btn" href="contact.html" target="_self">Recevoir les check-lists</a></p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- 6. FAQ -->
+          <section id="faq" class="section reveal" tabindex="-1">
+            <h2 class="title">FAQ</h2>
+            <div class="grid cols-2">
+              <a class="card reveal filter-item" data-tags="faq questions audit cms stockage support" href="faq.html" target="_self">
+                <span class="pill">Questions fréquentes</span>
+                <h3>FAQ complète</h3>
+                <p class="muted">Couverture de l’audit, limites, compatibilité CMS, stockage des données, accompagnement.</p>
+                <p class="btn-row"><span class="btn">Lire la FAQ →</span></p>
+              </a>
+              <a class="card reveal filter-item" data-tags="2026 échéances accessibilité information consommateurs europe" href="pourquoi-2026.html" target="_self">
+                <span class="pill">2026</span>
+                <h3>Pourquoi maintenant ?</h3>
+                <p class="muted">Échéances 2025–2026 (accessibilité, information consommateurs, cadre européen). Anticiper évite les non-conformités.</p>
+                <p class="btn-row"><span class="btn ghost">Voir l’article →</span></p>
+              </a>
+            </div>
+          </section>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Bouton retour haut -->
+  <a class="btn to-top" id="toTop" href="#top" target="_self" aria-label="Revenir en haut">↑ Haut</a>
+
   <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- ===== JS : canvas + reveal + in-view ===== -->
+  <!-- JS: canvas + reveal + in-view + scrollspy + filter + date + toTop -->
   <script>
-    /* ---------- Hero canvas ---------- */
+    /* Canvas */
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
-    let w = canvas.width = innerWidth;
-    let h = canvas.height = innerHeight;
-    const particles = [];
-    const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
+    let w = canvas.width = innerWidth; let h = canvas.height = innerHeight;
+    const particles = []; const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
     addEventListener('resize', () => { w = canvas.width = innerWidth; h = canvas.height = innerHeight; });
-    class Particle{
-      constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+    class Particle{ constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
       update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
       draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
-      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
-    }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); } }
     function init(){ for(let i=0;i<opts.count;i++) particles.push(new Particle()); }
     function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); }
     init(); animate();
 
-    /* ---------- Reveal ---------- */
+    /* Reveal & in-view */
     const reveals = document.querySelectorAll('.reveal');
-    const ioReveal = new IntersectionObserver(entries => {
-      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('is-visible'); });
-    }, { threshold: 0.2 });
+    const ioReveal = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('is-visible'); }); }, { threshold: 0.2 });
     reveals.forEach(el => ioReveal.observe(el));
-
-    /* ---------- in-view pour titres ---------- */
     const sections = document.querySelectorAll('.section');
-    const ioView = new IntersectionObserver(entries => {
-      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in-view'); });
-    }, { threshold: 0.4 });
+    const ioView = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in-view'); }); }, { threshold: 0.4 });
     sections.forEach(s => ioView.observe(s));
+
+    /* Scrollspy */
+    const spyLinks = Array.from(document.querySelectorAll('[data-spy]'));
+    const targets = spyLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const id = '#' + e.target.id;
+        const link = spyLinks.find(a => a.getAttribute('href') === id);
+        if (!link) return;
+        if (e.isIntersecting) {
+          spyLinks.forEach(a => a.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+    targets.forEach(t => spy.observe(t));
+
+    /* Filter */
+    const filterInput = document.getElementById('filterInput');
+    const chips = document.querySelectorAll('.chip');
+    const items = document.querySelectorAll('.filter-item');
+    const counter = document.getElementById('filterCount');
+    let activeTags = new Set();
+    function applyFilter(){
+      const q = (filterInput?.value || '').toLowerCase().trim();
+      let shown = 0;
+      items.forEach(el => {
+        const hay = (el.textContent + ' ' + (el.getAttribute('data-tags')||'')).toLowerCase();
+        const tagMatch = activeTags.size ? [...activeTags].every(t => hay.includes(t)) : true;
+        const qMatch = q ? hay.includes(q) : true;
+        const visible = tagMatch && qMatch;
+        el.style.display = visible ? '' : 'none';
+        if(visible) shown++;
+      });
+      if(counter) counter.textContent = `${shown} carte${shown>1?'s':''} visible${shown>1?'s':''}`;
+    }
+    filterInput?.addEventListener('input', () => { window.clearTimeout(applyFilter._t); applyFilter._t = setTimeout(applyFilter, 150); });
+    chips.forEach(ch => ch.addEventListener('click', () => {
+      const val = (ch.dataset.chip||'').toLowerCase();
+      const pressed = ch.getAttribute('aria-pressed') === 'true';
+      ch.setAttribute('aria-pressed', String(!pressed));
+      if(!pressed) activeTags.add(val); else activeTags.delete(val);
+      applyFilter();
+    }));
+    applyFilter();
+
+    /* Last updated */
+    const last = new Date(document.lastModified);
+    const fmt = last.toLocaleDateString('fr-FR', { year:'numeric', month:'long', day:'2-digit' });
+    const lastNode = document.getElementById('lastUpdated');
+    if(lastNode){ lastNode.textContent = fmt; lastNode.setAttribute('datetime', last.toISOString()); }
+    const meta = document.createElement('meta'); meta.setAttribute('property','article:modified_time'); meta.setAttribute('content', last.toISOString()); document.head.appendChild(meta);
+    const ld = { '@context':'https://schema.org', '@type':'WebPage', name:'Ressources — Awenoria', url: location.href, dateModified: last.toISOString() };
+    const ldScript = document.createElement('script'); ldScript.type = 'application/ld+json'; ldScript.textContent = JSON.stringify(ld); document.head.appendChild(ldScript);
+
+    /* Back to top */
+    const toTop = document.getElementById('toTop');
+    const ioTop = new IntersectionObserver(([entry]) => { if(entry.isIntersecting){ toTop.classList.remove('show'); } else { toTop.classList.add('show'); } });
+    ioTop.observe(document.querySelector('.hero'));
   </script>
 
-  <!-- ===== Loader header/footer + nav ===== -->
+  <!-- Loader header/footer + nav -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
@@ -450,5 +495,8 @@
     }
   });
   </script>
+
+  <!-- Back to top button -->
+  <a class="btn to-top" id="toTop" href="#top" target="_self" aria-label="Revenir en haut">↑ Haut</a>
 </body>
 </html>
