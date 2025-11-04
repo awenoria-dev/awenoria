@@ -7,12 +7,12 @@
   <meta name="description" content="Politique de protection des données d'Awenoria : finalités, bases légales, destinataires, durées de conservation, transferts, droits RGPD et contact DPO.">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400  ;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/awenoria.css">
 
   <style>
     :root{
-      --aw-ink:#DCDDE1;              /* texte général */
+      --aw-ink:#9DA1A8;              /* texte général */
       --aw-blue:#7fbfff;             /* bleu clair au repos (comme avant) */
       --aw-blue-hover:#3d8bff;       /* survol : bleu plus soutenu */
       --aw-copper:#ff5c00; --aw-muted:#a1a9c0;
@@ -23,7 +23,7 @@
     }
     @media (prefers-color-scheme:dark){
       :root{
-        --aw-ink:#DCDDE1;
+        --aw-ink:#9DA1A8;
         --aw-blue:#7fbfff;
         --aw-blue-hover:#3d8bff;
         --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
@@ -79,7 +79,7 @@
     h3{margin:16px 0 8px; font-size:18px; background:linear-gradient(135deg,#0F5F9A 0%,#0d5285 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 
     /* Table (héritage minimal si utilisé ailleurs) */
-    table{width:100%; border-collapse:collapse; margin-top:6px;color:#DCDDE1}
+    table{width:100%; border-collapse:collapse; margin-top:6px;color:#9DA1A8}
     th,td{padding:12px; border:1px solid rgba(15,95,154,.12); text-align:left; vertical-align:top}
     th{background:#f9fbff; font-weight:800; color:#0F5F9A}
 
@@ -201,13 +201,13 @@
         <!-- Colonne principale -->
         <article class="card">
           <h2>1) Responsable de traitement</h2>
-          <p style="color:#DCDDE1">L’<b>éditeur du site Awenoria</b> (voir <a href="mentions.html">Mentions légales</a>) est responsable des traitements décrits ci-dessous.<br>
+          <p style="color:#9DA1A8">L'<b>éditeur du site Awenoria</b> (voir <a href="mentions.html">Mentions légales</a>) est responsable des traitements décrits ci-dessous.<br>
           Contact confidentialité / DPO : <a href="mailto:vosdroits@dpoawenoria.fr">vosdroits@dpoawenoria.fr</a> (objet : « Droit des personnes »).<br>
           Contact général : <a href="mailto:contact@dpoawenoria.fr">contact@dpoawenoria.fr</a>.</p>
 
           <h2>2) Quelles données, pourquoi et sur quelle base ?</h2>
 
-          <!-- Bouton d’ouverture de la modale -->
+          <!-- Bouton d'ouverture de la modale -->
           <button class="btn" id="openTableBtn" aria-haspopup="dialog" aria-controls="tableModal">
             Afficher le tableau
           </button>
@@ -234,33 +234,33 @@
               <tbody>
                 <tr>
                   <td><b>Diagnostic automatique</b> de pages publiques (audit RGPD / accessibilité / mentions / cookies)</td>
-                  <td>URL saisie, logs techniques nécessaires au fonctionnement ; par défaut, l’analyse s’effectue <b>localement dans votre navigateur</b>. Si vous activez des options (ex : export PDF côté service), des métadonnées minimales peuvent transiter (URL, horodatage, scores).</td>
+                  <td>URL saisie, logs techniques nécessaires au fonctionnement ; par défaut, l'analyse s'effectue <b>localement dans votre navigateur</b>. Si vous activez des options (ex : export PDF côté service), des métadonnées minimales peuvent transiter (URL, horodatage, scores).</td>
                   <td>Intérêt légitime (art. 6-1 f) : fournir un outil de diagnostic fiable et sécurisé.</td>
-                  <td><b>Local</b> : pas de stockage par nos soins.<br><b>Serveur (option)</b> : métadonnées d’audit ≤ 6 mois.</td>
+                  <td><b>Local</b> : pas de stockage par nos soins.<br><b>Serveur (option)</b> : métadonnées d'audit ≤ 6 mois.</td>
                 </tr>
                 <tr>
                   <td><b>Formulaire de contact</b> et suivi des demandes</td>
                   <td>Identité, société, email, téléphone, contenu du message</td>
                   <td>Intérêt légitime (répondre à vos demandes)</td>
-                  <td>Jusqu’à 3 ans après le dernier échange, puis archivage légal si nécessaire</td>
+                  <td>Jusqu'à 3 ans après le dernier échange, puis archivage légal si nécessaire</td>
                 </tr>
                 <tr>
                   <td><b>Prospection B2B</b> (avec votre accord)</td>
                   <td>Nom, email professionnel, préférences</td>
                   <td>Consentement (art. 6-1 a)</td>
-                  <td>Jusqu’au retrait du consentement ou 3 ans d’inactivité</td>
+                  <td>Jusqu'au retrait du consentement ou 3 ans d'inactivité</td>
                 </tr>
                 <tr>
-                  <td><b>Mesure d’audience</b></td>
+                  <td><b>Mesure d'audience</b></td>
                   <td>Identifiants de cookies/traceurs, pages vues, événements agrégés/anonymisés</td>
                   <td>Consentement (sauf mesure strictement nécessaire / ex. exemptée)</td>
-                  <td>Jusqu’à 13 mois (statistiques), choix de consentement : 6 mois</td>
+                  <td>Jusqu'à 13 mois (statistiques), choix de consentement : 6 mois</td>
                 </tr>
                 <tr>
                   <td><b>Sécurité / logs</b></td>
                   <td>Logs techniques (IP, user-agent, événements sécurité)</td>
                   <td>Intérêt légitime (sécuriser le service)</td>
-                  <td>Jusqu’à 6 mois (sauf événement nécessitant conservation plus longue)</td>
+                  <td>Jusqu'à 6 mois (sauf événement nécessitant conservation plus longue)</td>
                 </tr>
                 <tr>
                   <td><b>Preuve du consentement cookies</b></td>
@@ -273,49 +273,49 @@
           </template>
 
           <h2>3) Origine des données</h2>
-          <p style="color:#DCDDE1">Les données proviennent directement de vous (saisie formulaire, préférences cookies) et de votre activité sur le site (logs techniques, mesures d’audience anonymisées le cas échéant).</p>
+          <p style="color:#9DA1A8">Les données proviennent directement de vous (saisie formulaire, préférences cookies) et de votre activité sur le site (logs techniques, mesures d'audience anonymisées le cas échéant).</p>
 
           <h2>4) Destinataires</h2>
-          <ul style="color:#DCDDE1">
+          <ul style="color:#9DA1A8">
             <li>Équipe Awenoria et personnes habilitées à traiter les demandes.</li>
-            <li>Hébergeurs et prestataires techniques (ex. hébergement du site / CDN, solutions d’analytique si activées).</li>
-            <li>Le cas échéant, sous-traitants impliqués dans l’exécution de nos services (contrats, confidentialité et sécurité à l’appui).</li>
+            <li>Hébergeurs et prestataires techniques (ex. hébergement du site / CDN, solutions d'analytique si activées).</li>
+            <li>Le cas échéant, sous-traitants impliqués dans l'exécution de nos services (contrats, confidentialité et sécurité à l'appui).</li>
           </ul>
 
           <h2>5) Transferts hors UE</h2>
-          <p style="color:#DCDDE1">Certaines solutions peuvent être situées hors UE. Dans ce cas, nous appliquons un <b>mécanisme de transfert</b> adéquat (décision d’adéquation, clauses contractuelles types), assorti de garanties appropriées.</p>
+          <p style="color:#9DA1A8">Certaines solutions peuvent être situées hors UE. Dans ce cas, nous appliquons un <b>mécanisme de transfert</b> adéquat (décision d'adéquation, clauses contractuelles types), assorti de garanties appropriées.</p>
 
           <h2>6) Vos droits</h2>
-          <p style="color:#DCDDE1">Vous disposez des droits d’<b>accès</b>, <b>rectification</b>, <b>effacement</b>, <b>limitation</b>, <b>opposition</b> et <b>portabilité</b>, ainsi que du droit de définir des <b>directives post-mortem</b>.<br>
-          Pour l’emailing/prospection fondé sur le consentement, vous pouvez retirer votre consentement à tout moment.</p>
-          <p style="color:#DCDDE1">Exercer vos droits : <a href="mailto:vosdroits@dpoawenoria.fr">vosdroits@dpoawenoria.fr</a> (objet : « Droit des personnes »). Une vérification d’identité peut être nécessaire.</p>
-          <p style="color:#DCDDE1">Réclamation : <b>CNIL</b> — <a href="https://www.cnil.fr ">cnil.fr</a>, 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07.</p>
+          <p style="color:#9DA1A8">Vous disposez des droits d'<b>accès</b>, <b>rectification</b>, <b>effacement</b>, <b>limitation</b>, <b>opposition</b> et <b>portabilité</b>, ainsi que du droit de définir des <b>directives post-mortem</b>.<br>
+          Pour l'emailing/prospection fondé sur le consentement, vous pouvez retirer votre consentement à tout moment.</p>
+          <p style="color:#9DA1A8">Exercer vos droits : <a href="mailto:vosdroits@dpoawenoria.fr">vosdroits@dpoawenoria.fr</a> (objet : « Droit des personnes »). Une vérification d'identité peut être nécessaire.</p>
+          <p style="color:#9DA1A8">Réclamation : <b>CNIL</b> — <a href="https://www.cnil.fr   ">cnil.fr</a>, 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07.</p>
 
           <h2>7) Sécurité</h2>
-          <p style="color:#DCDDE1">Mesures techniques et organisationnelles proportionnées : HTTPS, contrôles d’accès, journalisation sécurité, conservation limitée, revues régulières.</p>
+          <p style="color:#9DA1A8">Mesures techniques et organisationnelles proportionnées : HTTPS, contrôles d'accès, journalisation sécurité, conservation limitée, revues régulières.</p>
 
           <h2>8) Cookies & traceurs</h2>
-          <p style="color:#DCDDE1">Voir notre <a href="politique-cookies.html">Politique cookies</a> pour les catégories, durées et la gestion des choix.<br>
+          <p style="color:#9DA1A8">Voir notre <a href="politique-cookies.html">Politique cookies</a> pour les catégories, durées et la gestion des choix.<br>
             Vous pouvez <b>modifier vos préférences</b> à tout moment :
             <button class="btn" onclick="(window.AwenoriaConsent||{}).open?.()">Gérer mes cookies</button>
           </p>
 
-          <p class="muted" style="color:#DCDDE1">Dernière mise à jour : <span id="lastUpdate">—</span></p>
+          <p class="muted" style="color:#9DA1A8">Dernière mise à jour : <span id="lastUpdate">—</span></p>
         </article>
 
         <!-- Colonne latérale -->
         <aside class="card">
           <h3 style="color:#0F5F9A">Raccourcis utiles</h3>
           <p><a class="btn" href="#" onclick="(window.AwenoriaConsent||{}).open?.();return false;">Gérer mes cookies</a></p>
-          <p><a href="politique-cookies.html" style="color:#DCDDE1">Politique cookies</a></p>
-          <p><a href="mentions.html" style="color:#DCDDE1">Mentions légales</a></p>
-          <p><a href="contact.html" style="color:#DCDDE1">Contact</a></p>
+          <p><a href="politique-cookies.html" style="color:#9DA1A8">Politique cookies</a></p>
+          <p><a href="mentions.html" style="color:#9DA1A8">Mentions légales</a></p>
+          <p><a href="contact.html" style="color:#9DA1A8">Contact</a></p>
 
           <h3 style="margin-top:18px;color:#0F5F9A">Rappels pratiques</h3>
-          <ul style="color:#DCDDE1">
+          <ul style="color:#9DA1A8">
             <li>Analyse par défaut <b>locale</b> (navigateur).</li>
             <li>Options serveur (ex. export PDF) : métadonnées minimales.</li>
-            <li>Refus aussi simple que l’acceptation (cookies).</li>
+            <li>Refus aussi simple que l'acceptation (cookies).</li>
           </ul>
 
           <!-- Lien optionnel pour ouvrir la modale depuis l'aside -->
