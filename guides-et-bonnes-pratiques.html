@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+
   <!-- CSS globale -->
   <link rel="stylesheet" href="assets/awenoria.css">
   <base target="_blank">
@@ -89,18 +89,25 @@
     .toc a{display:block; padding:8px 10px; border-radius:10px; color:inherit}
     .toc a.active{background:rgba(0,102,255,.08); color:var(--aw-blue); font-weight:700}
 
+    /* ---------- Barre de filtre ---------- */
+    .filterbar{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:12px 0 0}
+    .filterbar input[type="search"]{flex:1; min-width:220px; padding:10px 12px; border-radius:12px; border:1px solid rgba(15,23,32,.12)}
+    .chips{display:flex; gap:8px; flex-wrap:wrap}
+    .chip{padding:6px 10px; border-radius:999px; border:1px solid rgba(15,23,32,.12); cursor:pointer; user-select:none}
+    .chip[aria-pressed="true"]{background:rgba(0,102,255,.08); border-color:var(--aw-blue); color:var(--aw-blue); font-weight:700}
+
     /* ---------- Bouton retour haut ---------- */
     .to-top{position:fixed; right:16px; bottom:16px; z-index:50; opacity:0; visibility:hidden; transform:translateY(12px); transition:all .3s ease}
     .to-top.show{opacity:1; visibility:visible; transform:none}
+
+    /* Layout pour sommaire + contenu */
+    .with-aside{display:grid; grid-template-columns:260px 1fr; gap:24px}
+    @media(max-width:1100px){.with-aside{grid-template-columns:1fr}}
 
     /* Animations */
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
     .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
     .reveal.is-visible{opacity:1;transform:none}
-
-    /* Layout pour sommaire + contenu */
-    .with-aside{display:grid; grid-template-columns:260px 1fr; gap:24px}
-    @media(max-width:1100px){.with-aside{grid-template-columns:1fr}}
   </style>
 </head>
 <body class="page-guides">
@@ -128,26 +135,39 @@
       <div class="container">
         <h2 class="title">Accès rapide</h2>
         <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:18px">
-          <a class="card reveal" href="#rgpd" target="_self">
+          <a class="card reveal filter-item" data-tags="rgpd confidentialité données" href="#rgpd" target="_self">
             <span class="pill">RGPD</span>
             <h3>RGPD côté site</h3>
             <p class="muted">Infos à afficher + preuves.</p>
           </a>
-          <a class="card reveal" href="#a11y" target="_self">
+          <a class="card reveal filter-item" data-tags="accessibilité a11y wcag rgaa" href="#a11y" target="_self">
             <span class="pill">Accessibilité</span>
             <h3>WCAG / RGAA</h3>
             <p class="muted">Points essentiels à corriger.</p>
           </a>
-          <a class="card reveal" href="#mentions" target="_self">
+          <a class="card reveal filter-item" data-tags="mentions légales ecommerce cgv cgu" href="#mentions" target="_self">
             <span class="pill">Mentions</span>
             <h3>Mentions & e‑commerce</h3>
             <p class="muted">Obligations d’information.</p>
           </a>
-          <a class="card reveal" href="#cookies" target="_self">
+          <a class="card reveal filter-item" data-tags="cookies cmp consentement" href="#cookies" target="_self">
             <span class="pill">Cookies</span>
             <h3>Cookies & CMP</h3>
             <p class="muted">Consentement & preuve.</p>
           </a>
+        </div>
+
+        <!-- Barre de filtre -->
+        <div class="filterbar" role="search">
+          <input id="filterInput" type="search" placeholder="Filtrer par mots-clés (ex. RGPD, cookies, accessibilité)" aria-label="Filtrer les guides"/>
+          <div class="chips" aria-label="Raccourcis de filtre">
+            <button class="chip" data-chip="rgpd" aria-pressed="false" type="button">RGPD</button>
+            <button class="chip" data-chip="accessibilité" aria-pressed="false" type="button">Accessibilité</button>
+            <button class="chip" data-chip="mentions" aria-pressed="false" type="button">Mentions</button>
+            <button class="chip" data-chip="cookies" aria-pressed="false" type="button">Cookies</button>
+            <button class="chip" data-chip="ecommerce" aria-pressed="false" type="button">E‑commerce</button>
+          </div>
+          <span id="filterCount" class="small" aria-live="polite" style="margin-left:auto"></span>
         </div>
       </div>
     </section>
@@ -163,34 +183,41 @@
             <a href="#mentions" data-spy>Mentions légales & e‑commerce</a>
             <a href="#cookies" data-spy>Cookies & CMP</a>
           </nav>
+          <div class="small" style="margin-top:10px">Dernière mise à jour : <time id="lastUpdated">—</time></div>
         </aside>
 
         <div>
           <!-- RGPD -->
-          <section id="rgpd" class="reveal" tabindex="-1">
+          <section id="rgpd" class="reveal filter-scope" tabindex="-1">
             <h2 class="title">RGPD côté site — check‑list</h2>
             <div class="grid cols-2">
-              <article class="card">
+              <article class="card filter-item" data-tags="rgpd confidentialité finalités bases légales durées droits dpo transferts">
                 <h3>Ce qu’il faut afficher</h3>
-                <ul class="list">
-                  <li><b>Politique de confidentialité</b> accessible depuis toutes les pages (footer, header ou menu).</li>
-                  <li><b>Finalités</b> de traitement clairement listées (contact, newsletter, analytics, paiement…).</li>
-                  <li><b>Bases légales</b> correspondantes (consentement, contrat, intérêt légitime…).</li>
-                  <li><b>Durées de conservation</b> par finalité (valeurs ou critères de détermination).</li>
-                  <li><b>Droits des personnes</b> (accès, rectification, effacement, opposition, limitation, portabilité).</li>
-                  <li><b>Contact</b> (DPO ou référent) + canal de demande (email/formulaire).</li>
-                  <li><b>Transferts hors UE</b> (si applicable) et garanties.</li>
-                  <li><b>Dernière mise à jour</b> de la politique.</li>
-                </ul>
+                <details>
+                  <summary>Voir la liste</summary>
+                  <ul class="list">
+                    <li><b>Politique de confidentialité</b> accessible depuis toutes les pages (footer, header ou menu).</li>
+                    <li><b>Finalités</b> de traitement clairement listées (contact, newsletter, analytics, paiement…).</li>
+                    <li><b>Bases légales</b> correspondantes (consentement, contrat, intérêt légitime…).</li>
+                    <li><b>Durées de conservation</b> par finalité (valeurs ou critères de détermination).</li>
+                    <li><b>Droits des personnes</b> (accès, rectification, effacement, opposition, limitation, portabilité).</li>
+                    <li><b>Contact</b> (DPO ou référent) + canal de demande (email/formulaire).</li>
+                    <li><b>Transferts hors UE</b> (si applicable) et garanties.</li>
+                    <li><b>Dernière mise à jour</b> de la politique.</li>
+                  </ul>
+                </details>
               </article>
-              <article class="card">
+              <article class="card filter-item" data-tags="rgpd formulaire consentement preuve journalisation opt-in email cmp">
                 <h3>Formulaires & preuve</h3>
-                <ul class="list">
-                  <li><b>Information au point de collecte</b> : court paragraphe + lien vers la politique.</li>
-                  <li><b>Consentement</b> si nécessaire : case non cochée par défaut, texte précis, journalisation.</li>
-                  <li><b>Preuve</b> : logs ou référence CMP, date/version de la politique, trace des MAJ.</li>
-                  <li><b>Emails</b> : mention « se désinscrire » + lien fonctionnel, registre opt-in.</li>
-                </ul>
+                <details>
+                  <summary>Voir la liste</summary>
+                  <ul class="list">
+                    <li><b>Information au point de collecte</b> : court paragraphe + lien vers la politique.</li>
+                    <li><b>Consentement</b> si nécessaire : case non cochée par défaut, texte précis, journalisation.</li>
+                    <li><b>Preuve</b> : logs ou référence CMP, date/version de la politique, trace des MAJ.</li>
+                    <li><b>Emails</b> : mention « se désinscrire » + lien fonctionnel, registre opt-in.</li>
+                  </ul>
+                </details>
                 <div class="dl">
                   <a class="btn ghost" href="modeles.html" target="_self">Modèles de clauses →</a>
                   <a class="btn" href="fonctionnalites.html#rgpd" target="_self">Ce que l’outil vérifie →</a>
@@ -200,32 +227,41 @@
           </section>
 
           <!-- Accessibilité -->
-          <section id="a11y" class="reveal" tabindex="-1">
+          <section id="a11y" class="reveal filter-scope" tabindex="-1">
             <h2 class="title">Accessibilité (WCAG / RGAA) — check‑list</h2>
             <div class="grid cols-3">
-              <article class="card">
+              <article class="card filter-item" data-tags="accessibilité perceptible alt contrastes titres sémantique">
                 <h3>Perceptible</h3>
-                <ul class="list">
-                  <li><b>Textes alternatifs</b> pour les images porteuses d’info.</li>
-                  <li><b>Contrastes</b> conformes (texte/fond, boutons, liens).</li>
-                  <li><b>Hiérarchie sémantique</b> (h1→h2→h3), titres de pages pertinents.</li>
-                </ul>
+                <details>
+                  <summary>Voir la liste</summary>
+                  <ul class="list">
+                    <li><b>Textes alternatifs</b> pour les images porteuses d’info.</li>
+                    <li><b>Contrastes</b> conformes (texte/fond, boutons, liens).</li>
+                    <li><b>Hiérarchie sémantique</b> (h1→h2→h3), titres de pages pertinents.</li>
+                  </ul>
+                </details>
               </article>
-              <article class="card">
+              <article class="card filter-item" data-tags="accessibilité utilisable clavier focus modales carrousels médias">
                 <h3>Utilisable</h3>
-                <ul class="list">
-                  <li><b>Navigation clavier</b> complète (focus visible, ordre logique).</li>
-                  <li><b>Composants</b> utilisables sans souris (menus, modales, carrousels).</li>
-                  <li><b>Médias</b> avec sous-titres/transcriptions (si applicable).</li>
-                </ul>
+                <details>
+                  <summary>Voir la liste</summary>
+                  <ul class="list">
+                    <li><b>Navigation clavier</b> complète (focus visible, ordre logique).</li>
+                    <li><b>Composants</b> utilisables sans souris (menus, modales, carrousels).</li>
+                    <li><b>Médias</b> avec sous-titres/transcriptions (si applicable).</li>
+                  </ul>
+                </details>
               </article>
-              <article class="card">
+              <article class="card filter-item" data-tags="accessibilité compréhensible robuste aria landmarks déclaration médiation">
                 <h3>Compréhensible & robuste</h3>
-                <ul class="list">
-                  <li><b>Libellés clairs</b> pour liens/boutons (« Télécharger le PDF » plutôt que « Cliquez ici »).</li>
-                  <li><b>ARIA landmarks</b> (header, nav, main, footer) et rôles adaptés.</li>
-                  <li><b>Déclaration d’accessibilité</b> + mécanisme de contact/médiation.</li>
-                </ul>
+                <details>
+                  <summary>Voir la liste</summary>
+                  <ul class="list">
+                    <li><b>Libellés clairs</b> pour liens/boutons (« Télécharger le PDF » plutôt que « Cliquez ici »).</li>
+                    <li><b>ARIA landmarks</b> (header, nav, main, footer) et rôles adaptés.</li>
+                    <li><b>Déclaration d’accessibilité</b> + mécanisme de contact/médiation.</li>
+                  </ul>
+                </details>
                 <div class="dl">
                   <a class="btn ghost" href="fonctionnalites.html#accessibilite" target="_self">Vérifications automatiques →</a>
                 </div>
@@ -234,26 +270,32 @@
           </section>
 
           <!-- Mentions & e‑commerce -->
-          <section id="mentions" class="reveal" tabindex="-1">
+          <section id="mentions" class="reveal filter-scope" tabindex="-1">
             <h2 class="title">Mentions légales & e‑commerce — check‑list</h2>
             <div class="grid cols-2">
-              <article class="card">
+              <article class="card filter-item" data-tags="mentions légales éditeur hébergeur contact propriété intellectuelle">
                 <h3>Identification & contact</h3>
-                <ul class="list">
-                  <li><b>Éditeur</b> (raison sociale, adresse, RCS/SIREN, TVA intracommunautaire).</li>
-                  <li><b>Hébergeur</b> (nom, adresse, téléphone ou email).</li>
-                  <li><b>Contact</b> direct (email, formulaire, téléphone si prévu).</li>
-                  <li><b>Propriété intellectuelle</b> (textes, images, marques).</li>
-                </ul>
+                <details>
+                  <summary>Voir la liste</summary>
+                  <ul class="list">
+                    <li><b>Éditeur</b> (raison sociale, adresse, RCS/SIREN, TVA intracommunautaire).</li>
+                    <li><b>Hébergeur</b> (nom, adresse, téléphone ou email).</li>
+                    <li><b>Contact</b> direct (email, formulaire, téléphone si prévu).</li>
+                    <li><b>Propriété intellectuelle</b> (textes, images, marques).</li>
+                  </ul>
+                </details>
               </article>
-              <article class="card">
+              <article class="card filter-item" data-tags="ecommerce cgv cgu rétractation médiation prix ttc livraison">
                 <h3>Vente en ligne</h3>
-                <ul class="list">
-                  <li><b>CGV/CGU</b> accessibles, acceptation explicite.</li>
-                  <li><b>Droit de rétractation</b> (délais, modalités, formulaire si B2C).</li>
-                  <li><b>Médiation</b> à la consommation (si B2C, FR).</li>
-                  <li><b>Prix</b> TTC/HT clairs, frais et délais de livraison (si applicable).</li>
-                </ul>
+                <details>
+                  <summary>Voir la liste</summary>
+                  <ul class="list">
+                    <li><b>CGV/CGU</b> accessibles, acceptation explicite.</li>
+                    <li><b>Droit de rétractation</b> (délais, modalités, formulaire si B2C).</li>
+                    <li><b>Médiation</b> à la consommation (si B2C, FR).</li>
+                    <li><b>Prix</b> TTC/HT clairs, frais et délais de livraison (si applicable).</li>
+                  </ul>
+                </details>
                 <div class="dl">
                   <a class="btn ghost" href="modeles.html" target="_self">Modèles : mentions & CGV →</a>
                   <a class="btn" href="fonctionnalites.html#mentions" target="_self">Ce que l’outil vérifie →</a>
@@ -263,32 +305,41 @@
           </section>
 
           <!-- Cookies / CMP -->
-          <section id="cookies" class="reveal" tabindex="-1">
+          <section id="cookies" class="reveal filter-scope" tabindex="-1">
             <h2 class="title">Cookies & CMP — check‑list</h2>
             <div class="grid cols-3">
-              <article class="card">
+              <article class="card filter-item" data-tags="cookies cmp bandeau refus accepter preuve consentement">
                 <h3>Bandeau & choix</h3>
-                <ul class="list">
-                  <li><b>Refus aussi simple</b> que l’acceptation (même niveau, même visibilité).</li>
-                  <li><b>Continuer sans accepter</b> ou <b>Tout refuser</b> présent dès la 1ʳᵉ couche.</li>
-                  <li><b>Preuve du consentement</b> (journal CMP, horodatage, version).</li>
-                </ul>
+                <details>
+                  <summary>Voir la liste</summary>
+                  <ul class="list">
+                    <li><b>Refus aussi simple</b> que l’acceptation (même niveau, même visibilité).</li>
+                    <li><b>Continuer sans accepter</b> ou <b>Tout refuser</b> présent dès la 1ʳᵉ couche.</li>
+                    <li><b>Preuve du consentement</b> (journal CMP, horodatage, version).</li>
+                  </ul>
+                </details>
               </article>
-              <article class="card">
+              <article class="card filter-item" data-tags="cookies politique liste retrait modification versionnage">
                 <h3>Politique cookies</h3>
-                <ul class="list">
-                  <li><b>Liste des cookies</b> (finalité, durée, tiers).</li>
-                  <li><b>Retrait/modification</b> du consentement à tout moment.</li>
-                  <li><b>Date de mise à jour</b> + versionnage.</li>
-                </ul>
+                <details>
+                  <summary>Voir la liste</summary>
+                  <ul class="list">
+                    <li><b>Liste des cookies</b> (finalité, durée, tiers).</li>
+                    <li><b>Retrait/modification</b> du consentement à tout moment.</li>
+                    <li><b>Date de mise à jour</b> + versionnage.</li>
+                  </ul>
+                </details>
               </article>
-              <article class="card">
+              <article class="card filter-item" data-tags="cookies technique blocage tags spa sous-domaines trace bannière">
                 <h3>Mise en conformité technique</h3>
-                <ul class="list">
-                  <li><b>Blocage par défaut</b> des tags non essentiels avant consentement.</li>
-                  <li><b>Consistance</b> des choix d’une page à l’autre (bannières SPA, sous-domaines).</li>
-                  <li><b>Trace</b> de la bannière et des changements d’état.</li>
-                </ul>
+                <details>
+                  <summary>Voir la liste</summary>
+                  <ul class="list">
+                    <li><b>Blocage par défaut</b> des tags non essentiels avant consentement.</li>
+                    <li><b>Consistance</b> des choix d’une page à l’autre (bannières SPA, sous-domaines).</li>
+                    <li><b>Trace</b> de la bannière et des changements d’état.</li>
+                  </ul>
+                </details>
                 <div class="dl">
                   <a class="btn ghost" href="fonctionnalites.html#cookies" target="_self">Contrôles automatiques →</a>
                 </div>
@@ -340,7 +391,7 @@
     init(); animate();
   </script>
 
-  <!-- ===== JS : reveal + in-view + scrollspy + toTop ===== -->
+  <!-- ===== JS : reveal + in-view + scrollspy + toTop + accordéons + filtre + date ===== -->
   <script>
     // Reveal on scroll
     const reveals = document.querySelectorAll('.reveal');
@@ -378,6 +429,68 @@
       if(entry.isIntersecting){ toTop.classList.remove('show'); } else { toTop.classList.add('show'); }
     });
     ioTop.observe(document.querySelector('.hero'));
+
+    // Accordéons: ouvrir par défaut sur desktop, repliés sur mobile
+    function setDetailsDefault(){
+      const wide = matchMedia('(min-width: 981px)').matches;
+      document.querySelectorAll('details').forEach(d => { d.open = wide; });
+    }
+    setDetailsDefault();
+    addEventListener('resize', setDetailsDefault);
+
+    // Filtre
+    const filterInput = document.getElementById('filterInput');
+    const chips = document.querySelectorAll('.chip');
+    const items = document.querySelectorAll('.filter-item');
+    const counter = document.getElementById('filterCount');
+
+    let activeTags = new Set();
+    function applyFilter(){
+      const q = (filterInput.value || '').toLowerCase().trim();
+      let shown = 0;
+      items.forEach(el => {
+        const hay = (el.textContent + ' ' + (el.getAttribute('data-tags')||'')).toLowerCase();
+        const tagMatch = activeTags.size ? [...activeTags].every(t => hay.includes(t)) : true;
+        const qMatch = q ? hay.includes(q) : true;
+        const visible = tagMatch && qMatch;
+        el.style.display = visible ? '' : 'none';
+        if(visible) shown++;
+      });
+      counter.textContent = `${shown} élément${shown>1?'s':''} visible${shown>1?'s':''}`;
+    }
+    filterInput?.addEventListener('input', () => { window.clearTimeout(applyFilter._t); applyFilter._t = setTimeout(applyFilter, 150); });
+    chips.forEach(ch => ch.addEventListener('click', () => {
+      const val = (ch.dataset.chip||'').toLowerCase();
+      const pressed = ch.getAttribute('aria-pressed') === 'true';
+      ch.setAttribute('aria-pressed', String(!pressed));
+      if(!pressed) activeTags.add(val); else activeTags.delete(val);
+      applyFilter();
+    }));
+    applyFilter();
+
+    // Dernière mise à jour (date du build / lastModified)
+    const last = new Date(document.lastModified);
+    const fmt = last.toLocaleDateString('fr-FR', { year:'numeric', month:'long', day:'2-digit' });
+    const lastNode = document.getElementById('lastUpdated');
+    if(lastNode){ lastNode.textContent = fmt; lastNode.setAttribute('datetime', last.toISOString()); }
+
+    // Meta + JSON-LD dynamiques (dateModified)
+    const meta = document.createElement('meta');
+    meta.setAttribute('property','article:modified_time');
+    meta.setAttribute('content', last.toISOString());
+    document.head.appendChild(meta);
+
+    const ld = {
+      '@context':'https://schema.org',
+      '@type':'WebPage',
+      'name':'Guides & bonnes pratiques — Awenoria',
+      'url': location.href,
+      'dateModified': last.toISOString()
+    };
+    const ldScript = document.createElement('script');
+    ldScript.type = 'application/ld+json';
+    ldScript.textContent = JSON.stringify(ld);
+    document.head.appendChild(ldScript);
   </script>
 
   <!-- ===== Loader header/footer + nav ===== -->
@@ -427,7 +540,7 @@
         })
         .then(code => {
           const s = document.createElement("script");
-          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          if (/(import|export)/.test(code)) s.type = "module";
           s.textContent = code;
           document.body.appendChild(s);
           console.log("[awenoria] header + nav chargés");
