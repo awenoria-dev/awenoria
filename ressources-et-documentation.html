@@ -48,7 +48,6 @@
     .hero .content{position:relative; z-index:2; max-width:800px; padding:0 20px; animation:fadeInUp 1s both;}
     .hero h1{font-size:clamp(52px,7vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em;}
     .hero .lead{font-size:1.4rem; font-weight:500; margin:24px auto 0; color:#e8f0ff;}
-    .hero .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
 
     /* Sections */
     .section{max-width:1200px; margin:0 auto; padding:100px 20px;}
@@ -61,6 +60,7 @@
       -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 2px 4px rgba(0,0,0,.08);
       transition:transform .35s ease,opacity .35s ease;
     }
+    .title .amp{color:var(--aw-copper)}
     .section.in-view .title{transform:translateY(-2px); opacity:1;}
     .title::after{content:''; display:block; width:60px; height:4px; background:var(--aw-copper); margin:10px auto 0; border-radius:3px;}
     .subtitle-center{font-size:1.2rem; color:var(--aw-muted); max-width:680px; margin:0 auto 56px; text-align:center;}
@@ -120,10 +120,7 @@
     <div class="content">
       <h1>Ressources & documentation</h1>
       <p class="lead">Tout pour transformer un diagnostic en plan d’actions : guides, modèles, FAQ, et notre nouveau dossier <b>IA Act</b>.</p>
-      <div class="cta-row">
-        <a class="btn" href="#guides" target="_self">Voir les guides ↓</a>
-        <a class="btn ghost" href="#modeles" target="_self">Modèles juridiques</a>
-      </div>
+      <!-- Boutons supprimés -->
     </div>
   </section>
 
@@ -132,6 +129,21 @@
     <section class="section">
       <div class="container">
         <h2 class="title">Accès rapide</h2>
+
+        <!-- Barre de filtre déplacée au-dessus des trois bulles -->
+        <div class="filterbar" role="search">
+          <input id="filterInput" type="search" placeholder="Filtrer les cartes (ex. RGPD, cookies, modèles)" aria-label="Filtrer les cartes"/>
+          <div class="chips" aria-label="Raccourcis de filtre">
+            <button class="chip" data-chip="rgpd" aria-pressed="false" type="button">RGPD</button>
+            <button class="chip" data-chip="cookies" aria-pressed="false" type="button">Cookies</button>
+            <button class="chip" data-chip="accessibilité" aria-pressed="false" type="button">Accessibilité</button>
+            <button class="chip" data-chip="mentions" aria-pressed="false" type="button">Mentions</button>
+            <button class="chip" data-chip="modèles" aria-pressed="false" type="button">Modèles</button>
+            <button class="chip" data-chip="ia act" aria-pressed="false" type="button">IA Act</button>
+          </div>
+          <!-- compteur supprimé -->
+        </div>
+
         <div class="grid cols-3">
           <a class="card reveal filter-item" data-tags="guides bonnes pratiques rgpd cookies accessibilité mentions" href="#guides" target="_self">
             <span class="pill">Guides</span>
@@ -151,20 +163,6 @@
             <p class="muted">Obligations par rôle (fournisseur, déployeur, distributeur), matrices de risques et exemples.</p>
             <p class="btn-row"><span class="btn">Ouvrir le dossier IA Act →</span></p>
           </a>
-        </div>
-
-        <!-- Barre de filtre -->
-        <div class="filterbar" role="search">
-          <input id="filterInput" type="search" placeholder="Filtrer les cartes (ex. RGPD, cookies, modèles)" aria-label="Filtrer les cartes"/>
-          <div class="chips" aria-label="Raccourcis de filtre">
-            <button class="chip" data-chip="rgpd" aria-pressed="false" type="button">RGPD</button>
-            <button class="chip" data-chip="cookies" aria-pressed="false" type="button">Cookies</button>
-            <button class="chip" data-chip="accessibilité" aria-pressed="false" type="button">Accessibilité</button>
-            <button class="chip" data-chip="mentions" aria-pressed="false" type="button">Mentions</button>
-            <button class="chip" data-chip="modèles" aria-pressed="false" type="button">Modèles</button>
-            <button class="chip" data-chip="ia act" aria-pressed="false" type="button">IA Act</button>
-          </div>
-          <span id="filterCount" class="small" aria-live="polite" style="margin-left:auto"></span>
         </div>
       </div>
     </section>
@@ -186,7 +184,7 @@
         <div>
           <!-- 2. Guides & bonnes pratiques -->
           <section id="guides" class="section alt reveal" style="padding-top:0" tabindex="-1">
-            <h2 class="title">Guides & bonnes pratiques</h2>
+            <h2 class="title">Guides <span class="amp">&</span> bonnes pratiques</h2>
             <div class="grid cols-3">
               <div class="card reveal filter-item" data-tags="rgpd confidentialité cookies formulaires">
                 <span class="pill">RGPD</span>
