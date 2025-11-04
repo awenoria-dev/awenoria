@@ -123,10 +123,10 @@
     }
 
     /* ----------  HOVER CARDS (fiches au survol) ---------- */
-    .ruban-card{ position:relative } /* s'assure du contexte de position */
+    .ruban-card{ position:relative }
 
     .hover-card{
-      position:absolute; inset:auto auto 12px 12px; /* bas-gauche */
+      position:absolute; inset:auto auto 12px 12px;
       width:min(360px, 86vw);
       background:var(--aw-panel);
       color:var(--aw-ink);
@@ -154,7 +154,7 @@
     .hover-card li{ margin:4px 0 }
     .hover-card .btn-soft{ font-size:.92rem; padding:10px 16px }
     @media (max-width:640px){
-      .hover-card{ inset:auto 12px 12px 12px } /* centrée bas sur mobile */
+      .hover-card{ inset:auto 12px 12px 12px }
     }
 
     /* ----------  FOLDER 2025  ---------- */
@@ -168,7 +168,7 @@
 
     .folder-grid{
       display: grid;
-      grid-template-columns: repeat(4, 1fr); /* ✅ TOUJOURS 4 COLONNES */
+      grid-template-columns: repeat(4, 1fr); /* ✅ 4 colonnes fixes pour les boutons */
       gap: 20px;
       max-width: 720px;
       margin: 40px auto 0;
@@ -207,9 +207,9 @@
 
     .folder-label{ font-weight: 700; font-size: .92rem; text-align: center; }
 
-    /* ----------  DRAWER HORIZONTAL  ---------- */
+    /* ----------  DRAWER HORIZONTAL (ligne suivante) ---------- */
     .folder-drawer{
-      grid-column: 1 / -1;
+      grid-column: 1 / -1;        /* ✅ s’étend sur toute la largeur, en-dessous de la rangée de boutons */
       max-height: 0;
       overflow: hidden;
       background: rgba(255,255,255,.75);
@@ -219,15 +219,15 @@
       margin: 0 8px;
       padding: 0 20px;
       display: flex;
-      flex-direction: row;      /* ✅ horizontal */
-      flex-wrap: nowrap;        /* ✅ pas de retour à la ligne */
+      flex-direction: row;
+      flex-wrap: nowrap;
       gap: 12px;
-      overflow-x: auto;         /* ✅ scroll si besoin */
+      overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       transition: max-height .35s ease, padding .35s ease;
     }
     .folder-drawer.open{
-      max-height: 60px;         /* ✅ hauteur d’une seule ligne */
+      max-height: 60px;           /* ✅ une seule ligne visible */
       padding: 16px 20px;
     }
 
@@ -243,7 +243,7 @@
       font-size: .87rem;
       text-decoration: none;
       transition: background .2s;
-      white-space: nowrap; /* ✅ pas de coupure mot */
+      white-space: nowrap;
     }
     .folder-drawer a:hover{ background: rgba(0,102,255,.18); }
 
@@ -367,7 +367,6 @@
             <a class="btn-soft" href="./formation/rgpd-2h.html">Je réserve ma date</a>
           </figcaption>
 
-          <!-- HOVER CARD -->
           <div class="hover-card" role="dialog" aria-label="Fiche RGPD Express">
             <div class="hover-pills">
               <span class="hover-pill">1/2 journée</span>
@@ -397,7 +396,6 @@
             <a class="btn-soft" href="./formation/ia-act.html">Je réserve ma date</a>
           </figcaption>
 
-        <!-- HOVER CARD -->
           <div class="hover-card" role="dialog" aria-label="Fiche IA Act Day">
             <div class="hover-pills">
               <span class="hover-pill">1 journée</span>
@@ -532,7 +530,6 @@
             <a class="btn-soft" href="./formation/web-legal.html" target="_blank" rel="noopener">Voir la fiche</a>
           </div>
         </figure>
-
       </div>
     </div>
   </section>
@@ -543,54 +540,56 @@
     <p class="subtitle-center">Cliquez sur un dossier pour découvrir les rubriques.</p>
     <div class="underline"></div>
 
+    <!-- ✅ Ligne 1 : 4 boutons alignés horizontalement -->
     <div class="folder-grid">
-      <!-- Services -->
       <button class="folder" aria-expanded="false" aria-controls="f-services">
         <span class="folder-icon">🛠️</span>
         <span class="folder-label">Nos Services</span>
       </button>
-      <div id="f-services" class="folder-drawer">
-        <a href="./Nos-services.html#audit" target="_blank">Audit & Analyse</a>
-        <a href="./Nos-services.html#rgpd" target="_blank">RGPD</a>
-        <a href="./Nos-services.html#ia-act" target="_blank">IA Act</a>
-        <a href="./Nos-services.html#mentions" target="_blank">Mentions légales</a>
-        <a href="./Nos-services.html#cookies" target="_blank">Cookies</a>
-        <a href="./Nos-services.html#access" target="_blank">Accessibilité</a>
-      </div>
 
-      <!-- Formations -->
       <button class="folder" aria-expanded="false" aria-controls="f-formations">
         <span class="folder-icon">🎓</span>
         <span class="folder-label">Nos Formations</span>
       </button>
-      <div id="f-formations" class="folder-drawer">
-        <a href="./formations.html#rgpd" target="_blank">RGPD</a>
-        <a href="./formations.html#cookies" target="_blank">Cookies</a>
-        <a href="./formations.html#access" target="_blank">Access</a>
-        <a href="./formations.html#cyber" target="_blank">Cyber</a>
-        <a href="./formations.html#ia" target="_blank">IA Act</a>
-      </div>
 
-      <!-- Audit -->
       <button class="folder" aria-expanded="false" aria-controls="f-audit">
         <span class="folder-icon">🔍</span>
         <span class="folder-label">Audit & Analyse</span>
       </button>
-      <div id="f-audit" class="folder-drawer">
-        <a href="./audit.html#flash" target="_blank">Audit flash</a>
-        <a href="./audit.html#complet" target="_blank">Audit complet</a>
-      </div>
 
-      <!-- Atelier -->
       <button class="folder" aria-expanded="false" aria-controls="f-atelier">
         <span class="folder-icon">⚙️</span>
         <span class="folder-label">Atelier 2 h RGPD</span>
       </button>
-      <div id="f-atelier" class="folder-drawer">
-        <a href="./atelier.html#bases" target="_blank">Bases RGPD</a>
-        <a href="./atelier.html#registre" target="_blank">Registre</a>
-        <a href="./atelier.html#cookies" target="_blank">Cookies</a>
-        <a href="./atelier.html#checklist" target="_blank">Check-list</a>
+
+      <!-- ✅ Lignes suivantes : drawers pleine largeur -->
+      <div id="f-services" class="folder-drawer" role="region" aria-label="Liens - Services">
+        <a href="./Nos-services.html#audit" target="_blank" rel="noopener">Audit & Analyse</a>
+        <a href="./Nos-services.html#rgpd" target="_blank" rel="noopener">RGPD</a>
+        <a href="./Nos-services.html#ia-act" target="_blank" rel="noopener">IA Act</a>
+        <a href="./Nos-services.html#mentions" target="_blank" rel="noopener">Mentions légales</a>
+        <a href="./Nos-services.html#cookies" target="_blank" rel="noopener">Cookies</a>
+        <a href="./Nos-services.html#access" target="_blank" rel="noopener">Accessibilité</a>
+      </div>
+
+      <div id="f-formations" class="folder-drawer" role="region" aria-label="Liens - Formations">
+        <a href="./formations.html#rgpd" target="_blank" rel="noopener">RGPD</a>
+        <a href="./formations.html#cookies" target="_blank" rel="noopener">Cookies</a>
+        <a href="./formations.html#access" target="_blank" rel="noopener">Access</a>
+        <a href="./formations.html#cyber" target="_blank" rel="noopener">Cyber</a>
+        <a href="./formations.html#ia" target="_blank" rel="noopener">IA Act</a>
+      </div>
+
+      <div id="f-audit" class="folder-drawer" role="region" aria-label="Liens - Audit">
+        <a href="./audit.html#flash" target="_blank" rel="noopener">Audit flash</a>
+        <a href="./audit.html#complet" target="_blank" rel="noopener">Audit complet</a>
+      </div>
+
+      <div id="f-atelier" class="folder-drawer" role="region" aria-label="Liens - Atelier">
+        <a href="./atelier.html#bases" target="_blank" rel="noopener">Bases RGPD</a>
+        <a href="./atelier.html#registre" target="_blank" rel="noopener">Registre</a>
+        <a href="./atelier.html#cookies" target="_blank" rel="noopener">Cookies</a>
+        <a href="./atelier.html#checklist" target="_blank" rel="noopener">Check-list</a>
       </div>
     </div>
   </section>
@@ -692,7 +691,7 @@
   });
   </script>
 
-  <!-- Ajustement automatique des hauteurs des rubans pour éviter tout troncage -->
+  <!-- Ajustement automatique des hauteurs des rubans -->
   <script>
     (function(){
       function syncRubanHeights(){
@@ -731,7 +730,7 @@
       if (!isOpen) {
         btn.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
-        drawer.classList.add('open');
+        if (drawer) drawer.classList.add('open');
       }
     });
   });
