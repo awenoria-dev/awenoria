@@ -157,63 +157,105 @@
       .hover-card{ inset:auto 12px 12px 12px } /* centrée bas sur mobile */
     }
 
-    /* ----------  FOLDER BOARD  ---------- */
+    /* ----------  FOLDER 2025  ---------- */
+    :root{
+      --folder-blue:#0066FF;
+      --folder-copper:#FF8A3D;
+      --folder-radius:22px;
+      --folder-shadow:0 8px 24px rgba(0,0,0,.08);
+      --folder-shadow-hover:0 12px 32px rgba(0,0,0,.12);
+    }
+
     .folder-grid{
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      max-width: 680px;
+      gap: 20px;
+      max-width: 720px;
       margin: 40px auto 0;
     }
     @media (min-width: 640px){ .folder-grid{ grid-template-columns: repeat(4, 1fr); } }
 
     .folder{
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
-      background: var(--aw-panel);
-      border: 1px solid rgba(15,23,32,.08);
-      border-radius: 20px;
+      gap: 10px;
+      background: rgba(255,255,255,.65);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: var(--folder-radius);
       padding: 24px 12px;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(0,0,0,.06);
-      transition: transform .18s ease, box-shadow .18s ease;
+      box-shadow: var(--folder-shadow);
+      transition: transform .22s cubic-bezier(.4,1.8,.6,1), box-shadow .22s ease;
       font: inherit;
-      color: inherit;
+      color: var(--aw-ink);
+      -webkit-tap-highlight-color: transparent;
     }
-    .folder:hover{ transform: translateY(-3px); box-shadow: 0 14px 32px rgba(0,0,0,.1); }
-    .folder-icon{ font-size: 2.2rem; }
-    .folder-label{ font-weight: 700; font-size: .95rem; }
+    .folder:hover{ transform: scale(1.05); box-shadow: var(--folder-shadow-hover); }
+    .folder:active{ transform: scale(.97); }
 
-    /* drawer */
-    .folder-drawer{
-      display: none;
-      grid-column: 1 / -1;
-      background: var(--aw-panel);
-      border: 1px solid rgba(15,23,32,.08);
-      border-radius: 16px;
-      padding: 20px 24px;
-      box-shadow: var(--shadow);
-      gap: 12px;
-      flex-wrap: wrap;
+    .folder-icon{
+      width: 52px; height: 52px;
+      display: grid; place-items: center;
+      border-radius: 14px;
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, var(--folder-blue), var(--folder-copper));
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0,102,255,.25);
     }
-    .folder-drawer.open{ display: flex; }
+
+    .folder-label{ font-weight: 700; font-size: .92rem; text-align: center; }
+
+    /* ----------  DRAWER  ---------- */
+    .folder-drawer{
+      grid-column: 1 / -1;
+      max-height: 0;
+      overflow: hidden;
+      background: rgba(255,255,255,.75);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(0,0,0,.05);
+      border-radius: 0 0 var(--folder-radius) var(--folder-radius);
+      margin: 0 8px;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      transition: max-height .35s ease, padding .35s ease;
+    }
+    .folder-drawer.open{
+      max-height: 300px;
+      padding: 16px 20px;
+    }
 
     .folder-drawer a{
       display: inline-flex;
       align-items: center;
-      height: 40px;
-      padding: 0 18px;
+      height: 38px;
+      padding: 0 16px;
       border-radius: 999px;
-      background: rgba(0,102,255,.1);
-      color: #0066ff;
+      background: rgba(0,102,255,.08);
+      color: var(--folder-blue);
       font-weight: 700;
-      font-size: .92rem;
+      font-size: .87rem;
       text-decoration: none;
       transition: background .2s;
     }
-    .folder-drawer a:hover{ background: rgba(0,102,255,.2); }
+    .folder-drawer a:hover{ background: rgba(0,102,255,.18); }
+
+    /* flèche indicateur */
+    .folder::after{
+      content: "";
+      position: absolute;
+      bottom: -8px; left: 50%; transform: translateX(-50%) scaleY(0);
+      width: 0; height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 8px solid rgba(0,0,0,.08);
+      transition: transform .25s ease;
+    }
+    .folder.open::after{ transform: translateX(-50%) scaleY(1); }
   </style>
 </head>
 
@@ -484,16 +526,16 @@
     </div>
   </section>
 
-  <!-- ==========  FOLDER BOARD  ========== -->
+  <!-- ==========  FOLDER BOARD 2025  ========== -->
   <section id="folder-board" class="section">
     <h2 class="title-center">Explorer</h2>
     <p class="subtitle-center">Cliquez sur un dossier pour découvrir les rubriques.</p>
     <div class="underline"></div>
 
     <div class="folder-grid">
-      <!-- DOSSIER 1 -->
+      <!-- Services -->
       <button class="folder" aria-expanded="false" aria-controls="f-services">
-        <span class="folder-icon">📁</span>
+        <span class="folder-icon">🛠️</span>
         <span class="folder-label">Nos Services</span>
       </button>
       <div id="f-services" class="folder-drawer">
@@ -505,9 +547,9 @@
         <a href="./Nos-services.html#access" target="_blank">Accessibilité</a>
       </div>
 
-      <!-- DOSSIER 2 -->
+      <!-- Formations -->
       <button class="folder" aria-expanded="false" aria-controls="f-formations">
-        <span class="folder-icon">📁</span>
+        <span class="folder-icon">🎓</span>
         <span class="folder-label">Nos Formations</span>
       </button>
       <div id="f-formations" class="folder-drawer">
@@ -518,9 +560,9 @@
         <a href="./formations.html#ia" target="_blank">IA Act</a>
       </div>
 
-      <!-- DOSSIER 3 -->
+      <!-- Audit -->
       <button class="folder" aria-expanded="false" aria-controls="f-audit">
-        <span class="folder-icon">📁</span>
+        <span class="folder-icon">🔍</span>
         <span class="folder-label">Audit & Analyse</span>
       </button>
       <div id="f-audit" class="folder-drawer">
@@ -528,9 +570,9 @@
         <a href="./audit.html#complet" target="_blank">Audit complet</a>
       </div>
 
-      <!-- DOSSIER 4 -->
+      <!-- Atelier -->
       <button class="folder" aria-expanded="false" aria-controls="f-atelier">
-        <span class="folder-icon">📁</span>
+        <span class="folder-icon">⚙️</span>
         <span class="folder-label">Atelier 2 h RGPD</span>
       </button>
       <div id="f-atelier" class="folder-drawer">
@@ -662,17 +704,21 @@
     })();
   </script>
 
-  <!-- ----------  FOLDER TOGGLE  ---------- -->
+  <!-- ----------  FOLDER 2025  ---------- -->
   <script>
   document.querySelectorAll('.folder').forEach(btn => {
     btn.addEventListener('click', () => {
       const drawer = document.getElementById(btn.getAttribute('aria-controls'));
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-      // fermer tous
-      document.querySelectorAll('.folder').forEach(b => b.setAttribute('aria-expanded', 'false'));
+      const isOpen = btn.classList.contains('open');
+      // reset
+      document.querySelectorAll('.folder').forEach(b => {
+        b.classList.remove('open');
+        b.setAttribute('aria-expanded', 'false');
+      });
       document.querySelectorAll('.folder-drawer').forEach(d => d.classList.remove('open'));
-      // ouvrir ou fermer celui-ci
+      // toggle
       if (!isOpen) {
+        btn.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
         drawer.classList.add('open');
       }
