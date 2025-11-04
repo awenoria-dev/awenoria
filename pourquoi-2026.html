@@ -55,7 +55,26 @@
     /* ---------- Sections ---------- */
     .section{padding:72px 0}
     .section.alt{background:var(--aw-panel)}
-    h2{margin:0 0 12px; font-size:clamp(26px,3.5vw,32px); color:#0f2746}
+
+    /* ---------- Titres : couleur logo #0F5F9A + effets ---------- */
+    h2{
+      margin:0 0 12px;
+      font-size:clamp(26px,3.5vw,32px);
+      font-weight:800;
+      /* dégradé subtil sur la même teinte */
+      background:linear-gradient(135deg, #0F5F9A 0%, #0d5285 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      /* ombre portée discrète */
+      text-shadow:0 2px 4px rgba(0,0,0,.08);
+      /* animation légère */
+      transition:transform .35s ease,opacity .35s ease;
+    }
+    .section.in-view h2{
+      transform:translateY(-2px);
+      opacity:1;
+    }
     .lead-txt{color:var(--aw-muted); max-width:900px}
 
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -249,7 +268,7 @@
     })();
   </script>
 
-  <!-- ===== Loader header/footer + nav (priorité racine, fallback partials/) ===== -->
+  <!-- ===== Loader header/footer + nav ===== -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
