@@ -4,68 +4,104 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Modèles juridiques — Awenoria (Éditeur intelligent)</title>
-  <meta name="description" content="Modèles prêts à l’emploi avec éditeur rapide et avancé : politique de confidentialité, cookies, mentions légales, clauses, emailing, CGV."/>
+  <meta name="description" content="Modèles prêts à l’emploi avec éditeur rapide et avancé : politique de confidentialité, cookies, mentions légales, clauses, emailing, CGV.">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/awenoria.css">
 
   <style>
-    :root{ --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280; --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px; --shadow:0 25px 50px -12px rgba(0,0,0,.15); --transition:.6s cubic-bezier(.22,1,.36,1)}
-    @media (prefers-color-scheme:dark){ :root{ --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0; --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45); } }
+    :root{
+      --aw-ink:#9A9EA6;              /* texte général (gris foncé sans noir) */
+      --aw-blue:#7fbfff;             /* bleu clair au repos (comme avant) */
+      --aw-blue-hover:#3d8bff;       /* survol : bleu plus soutenu */
+      --aw-copper:#ff5c00; --aw-muted:#6b7280;
+      --aw-panel:#ffffff; --aw-bg:#f5f7ff;     /* fond clair */
+      --aw-radius:24px;
+      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+      --transition:.6s cubic-bezier(.22,1,.36,1);
+    }
+    @media (prefers-color-scheme:dark){
+      :root{
+        --aw-ink:#9A9EA6;
+        --aw-blue:#7fbfff;
+        --aw-blue-hover:#3d8bff;
+        --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
+        --aw-panel:#0b0f1a; --aw-bg:#0a0d14;
+        --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+      }
+    }
+
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;line-height:1.7;color:var(--aw-ink);background:var(--aw-bg);-webkit-font-smoothing:antialiased}
-    a{text-decoration:none;color:var(--aw-blue)} img{max-width:100%;display:block} .container{max-width:1200px;margin:0 auto;padding:0 20px}
+    body{
+      font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;
+      line-height:1.7; color:var(--aw-ink); background:var(--aw-bg); -webkit-font-smoothing:antialiased;
+    }
+    a{text-decoration:none;color:var(--aw-blue)}
+    img{max-width:100%;display:block}
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
-    .hero{position:relative;min-height:60vh;min-height:60svh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;background:radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),linear-gradient(180deg, #0033cc 0%, #0066ff 100%)}
-    .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-    .hero .content{position:relative;z-index:2;max-width:800px;padding:0 20px;animation:fadeInUp 1s both}
-    .hero h1{font-size:clamp(52px,7vw,72px);font-weight:800;line-height:1.05;letter-spacing:-.02em}
-    .hero .lead{font-size:1.4rem;font-weight:500;margin:24px auto 0;color:#e8f0ff}
+    /* ---------- Hero (identique aux autres pages) ---------- */
+    .hero{
+      position:relative; min-height:60vh; min-height:60svh;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff; overflow:hidden;
+      background:
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
+        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+    }
+    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
+    .hero .content{position:relative; z-index:2; max-width:800px; padding:0 20px; animation:fadeInUp 1s both;}
+    .hero h1{font-size:clamp(52px,7vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em;}
+    .hero .lead{font-size:1.4rem; font-weight:500; margin:24px auto 0; color:#e8f0ff;}
 
-    .section{max-width:1200px;margin:0 auto;padding:100px 20px}
-    .alt{background:var(--aw-bg)}
-    .title{margin:0 0 10px;text-align:center;font-size:clamp(36px,5vw,48px);color:var(--aw-ink);font-weight:800}
-    .title::after{content:'';display:block;width:60px;height:4px;background:var(--aw-copper);margin:10px auto 0;border-radius:3px}
-    .subtitle-center{font-size:1.2rem;color:var(--aw-muted);max-width:820px;margin:0 auto 56px;text-align:center}
-    .grid{display:grid;gap:24px;margin-top:18px}
+    /* ---------- Sections ---------- */
+    .section{max-width:1200px; margin:0 auto; padding:100px 20px;}
+    .alt{background:var(--aw-bg);}
+    .title{margin:0 0 10px; text-align:center; font-size:clamp(36px,5vw,48px); font-weight:800; background:linear-gradient(135deg,#0F5F9A 0%,#0d5285 100%); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 2px 4px rgba(0,0,0,.08); transition:transform .35s ease,opacity .35s ease;}
+    .section.in-view .title{transform:translateY(-2px); opacity:1;}
+    .subtitle-center{font-size:1.2rem; color:var(--aw-muted); max-width:820px; margin:0 auto 56px; text-align:center;}
+    .grid{display:grid; gap:24px; margin-top:18px;}
     .cols-2{grid-template-columns:repeat(2,1fr)} .cols-3{grid-template-columns:repeat(3,1fr)}
     @media(max-width:980px){.cols-2,.cols-3{grid-template-columns:1fr}}
 
-    .card{background:var(--aw-panel);border:1px solid rgba(15,23,32,.08);border-radius:var(--aw-radius);box-shadow:var(--shadow);padding:24px;transition:all var(--transition);display:block;position:relative;color:inherit;text-align:left}
-    .card:hover{transform:translateY(-4px);box-shadow:0 28px 56px rgba(0,0,0,.1);border-color:var(--aw-copper)}
+    .card{background:var(--aw-panel); border:1px solid rgba(15,95,154,.12); border-radius:var(--aw-radius); box-shadow:var(--shadow); padding:24px; transition:all var(--transition); display:block; position:relative; color:inherit; text-align:left;}
+    .card:hover{transform:translateY(-4px); box-shadow:0 28px 56px rgba(15,95,154,.15); border-color:var(--aw-copper);}
 
-    .pill{display:inline-flex;align-items:center;justify-content:center;padding:6px 12px;margin:0 0 10px;border-radius:999px;background:var(--aw-blue);color:#fff;font:800 12px/1 "Inter",system-ui,-apple-system,Arial,sans-serif}
+    .pill{display:inline-flex; align-items:center; justify-content:center; padding:6px 12px; margin:0 0 10px; border-radius:999px; background:#0F5F9A; color:#fff; font:800 12px/1 "Inter",system-ui,-apple-system,Arial,sans-serif;}
 
-    .muted{color:var(--aw-muted)} .small{font-size:13px;color:var(--aw-muted)}
-    .btn{display:inline-block;padding:10px 14px;border-radius:10px;font-weight:800;color:#fff;background:var(--aw-blue);box-shadow:var(--shadow);font-size:14px;transition:all var(--transition);border:none;cursor:pointer}
-    .btn:hover{background:var(--aw-copper);transform:translateY(-2px)} .btn.ghost{background:var(--aw-panel);color:var(--aw-blue);border:1px solid rgba(15,23,32,.08)}
-    .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .muted{color:var(--aw-muted)} .small{font-size:13px; color:var(--aw-muted);}
+    .btn{display:inline-flex; align-items:center; justify-content:center; padding:10px 14px; border-radius:12px; font-weight:800; color:#fff; background:var(--aw-blue); border:none; cursor:pointer; transition:all var(--transition); box-shadow:var(--shadow);}
+    .btn:hover{background:var(--aw-copper); transform:translateY(-2px);}
+    .btn.ghost{background:var(--aw-panel); color:var(--aw-blue); border:1px solid rgba(15,95,154,.12);}
+    .btn-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
 
-    .model{display:flex;flex-direction:column;gap:10px}
-    .model textarea{width:100%;min-height:320px;resize:vertical;padding:14px;border:1px solid rgba(15,23,32,.08);border-radius:12px;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;font-size:14px;line-height:1.55;background:var(--aw-bg);color:var(--aw-ink);transition:all var(--transition)}
-    .model textarea:focus{outline:none;border-color:var(--aw-copper);box-shadow:0 0 0 3px rgba(255,138,61,.2)}
-    .model .tips{background:var(--aw-bg);border:1px solid rgba(15,23,32,.08);border-radius:12px;padding:10px;font-size:13px;color:var(--aw-muted)}
+    .model{display:flex; flex-direction:column; gap:10px;}
+    .model textarea{width:100%; min-height:320px; resize:vertical; padding:14px; border:1px solid rgba(15,95,154,.12); border-radius:12px; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size:14px; line-height:1.55; background:var(--aw-bg); color:var(--aw-ink); transition:all var(--transition);}
+    .model textarea:focus{outline:none; border-color:var(--aw-copper); box-shadow:0 0 0 3px rgba(255,138,61,.2);}
+    .model .tips{background:var(--aw-bg); border:1px solid rgba(15,95,154,.12); border-radius:12px; padding:10px; font-size:13px; color:var(--aw-muted);}
 
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}} .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)} .reveal.is-visible{opacity:1;transform:none}
 
     /* Éditeur intelligent */
-    .editor-wrap{position:sticky;top:0;z-index:5;background:linear-gradient(180deg, rgba(245,247,255,.96), rgba(245,247,255,.92) 60%, transparent);backdrop-filter:saturate(1.2) blur(6px);padding:18px 14px;border:1px solid rgba(15,23,32,.06);border-radius:16px;margin-bottom:24px}
-    .tabs{display:flex;gap:10px;justify-content:center;margin-bottom:12px}
-    .tabs .btn{padding:10px 16px}
-    form.smart{display:grid;gap:12px}
-    form.smart .grid{gap:12px}
-    form.smart label{font-size:12px;color:var(--aw-muted)}
-    form.smart input,form.smart select,form.smart textarea{width:100%;padding:10px 12px;border:1px solid rgba(15,23,32,.1);border-radius:12px;background:var(--aw-panel);font:500 14px/1.4 "Inter"}
-    .fieldset{border:1px dashed rgba(15,23,32,.15);border-radius:14px;padding:12px}
-    .fieldset legend{font-weight:800;font-size:12px;color:var(--aw-muted);padding:0 6px}
-    .req::after{content:' *';color:var(--aw-copper)}
-    .hint{font-size:12px;color:var(--aw-muted)}
-    .toolbar{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;margin-top:8px}
+    .editor-wrap{position:sticky;top:0;z-index:5;background:linear-gradient(180deg, rgba(245,247,255,.96), rgba(245,247,255,.92) 60%, transparent);backdrop-filter:saturate(1.2) blur(6px);padding:18px 14px;border:1px solid rgba(15,23,32,.06);border-radius:16px;margin-bottom:24px;}
+    .tabs{display:flex;gap:10px;justify-content:center;margin-bottom:12px;}
+    .tabs .btn{padding:10px 16px;}
+    form.smart{display:grid;gap:12px;}
+    form.smart .grid{gap:12px;}
+    form.smart label{font-size:12px;color:var(--aw-muted);}
+    form.smart input,form.smart select,form.smart textarea{width:100%;padding:10px 12px;border:1px solid rgba(15,23,32,.1);border-radius:12px;background:var(--aw-panel);font:500 14px/1.4 "Inter";color:var(--aw-ink);}
+    .fieldset{border:1px dashed rgba(15,23,32,.15);border-radius:14px;padding:12px;}
+    .fieldset legend{font-weight:800;font-size:12px;color:var(--aw-muted);padding:0 6px;}
+    .req::after{content:' *';color:var(--aw-copper);}
+    .hint{font-size:12px;color:var(--aw-muted);}
+    .toolbar{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;margin-top:8px;}
   </style>
 </head>
 <body class="page-modeles">
+
   <div id="header"></div>
 
   <section class="hero">
@@ -133,10 +169,7 @@
                     <option value="Plausible">Plausible</option>
                   </select>
                 </div>
-                <div>
-                  <label for="dateMaj">Date (auto)</label>
-                  <input id="dateMaj" name="dateMaj" readonly/>
-                </div>
+                <div><label for="dateMaj">Date (auto)</label><input id="dateMaj" name="dateMaj" readonly/></div>
               </div>
             </fieldset>
           </form>
@@ -167,7 +200,7 @@
               <div class="grid cols-3">
                 <div><label for="rcsVille">RCS (Ville)</label><input id="rcsVille" name="rcsVille" placeholder="Paris"/></div>
                 <div><label for="telephone">Téléphone</label><input id="telephone" name="telephone" placeholder="01 23 45 67 89"/></div>
-                <div><label for="siteURL">URL du site</label><input id="siteURL" name="siteURL" placeholder="https://exemple.fr"/></div>
+                <div><label for="siteURL">URL du site</label><input id="siteURL" name="siteURL" placeholder="https://exemple.fr "/></div>
               </div>
             </fieldset>
           </form>
@@ -184,8 +217,8 @@
       <div class="container">
         <h2 class="title">Politique de confidentialité — modèle “site vitrine”</h2>
         <div class="card model reveal">
-          <div class="tips"><b>À adapter :</b> ajoute tes finalités réelles (ex : prise de contact, prospection, analytics, recrutement). Si tu utilises des sous-traitants (hébergeur, emailing, CRM), indique-les.</div>
-<textarea id="mdl-polconf" spellcheck="false">Dernière mise à jour : [[JJ/MM/AAAA]]
+          <div class="tips" style="color:#9A9EA6"><b>À adapter :</b> ajoute tes finalités réelles (ex : prise de contact, prospection, analytics, recrutement). Si tu utilises des sous-traitants (hébergeur, emailing, CRM), indique-les.</div>
+<textarea id="mdl-polconf" spellcheck="false" style="color:#9A9EA6">Dernière mise à jour : [[JJ/MM/AAAA]]
 
 1) Responsable de traitement
 [[Raison sociale]], [[forme juridique]], [[adresse]], [[RCS/SIREN]], [[TVA]].
@@ -234,8 +267,8 @@ Pour toute question : [[email RGPD]] – [[adresse]].
       <div class="container">
         <h2 class="title">Politique cookies & CMP — modèle</h2>
         <div class="card model reveal">
-          <div class="tips"><b>À adapter :</b> complète la <u>liste des cookies</u> (finalité, durée, tiers), précise la <u>preuve du consentement</u> (journal CMP), et le <u>retour sur décision</u> (lien “gérer mes cookies”).</div>
-<textarea id="mdl-cookies" spellcheck="false">Dernière mise à jour : [[JJ/MM/AAAA]]
+          <div class="tips" style="color:#9A9EA6"><b>À adapter :</b> complète la <u>liste des cookies</u> (finalité, durée, tiers), précise la <u>preuve du consentement</u> (journal CMP), et le <u>retour sur décision</u> (lien “gérer mes cookies”).</div>
+<textarea id="mdl-cookies" spellcheck="false" style="color:#9A9EA6">Dernière mise à jour : [[JJ/MM/AAAA]]
 
 1) Qu’est-ce qu’un cookie ?
 Fichier déposé sur votre terminal pour permettre le fonctionnement du site, mesurer l’audience ou personnaliser le contenu.
@@ -274,8 +307,8 @@ Pour exercer vos droits : [[email RGPD]]. Réclamation : CNIL (cnil.fr).
       <div class="container">
         <h2 class="title">Mentions légales — modèle</h2>
         <div class="card model reveal">
-          <div class="tips"><b>À adapter :</b> veille à l’exactitude des identifiants (RCS/SIREN/TVA). Ajoute la médiation (B2C), et la propriété intellectuelle si tu as des marques/visuels spécifiques.</div>
-<textarea id="mdl-mentions" spellcheck="false">Éditeur
+          <div class="tips" style="color:#9A9EA6"><b>À adapter :</b> veille à l’exactitude des identifiants (RCS/SIREN/TVA). Ajoute la médiation (B2C), et la propriété intellectuelle si tu as des marques/visuels spécifiques.</div>
+<textarea id="mdl-mentions" spellcheck="false" style="color:#9A9EA6">Éditeur
 [[Raison sociale]] [[forme juridique]] au capital de [[montant]] €, [[adresse complète]].
 RCS [[ville]] [[numéro RCS]] — SIREN [[numéro]] — TVA [[n° intracom]].
 Contact : [[email]] / [[téléphone]].
@@ -311,18 +344,18 @@ Photos/illustrations : [[banque d’images / crédits]].
         <h2 class="title">Clauses au point de collecte — modèles</h2>
         <div class="grid cols-2">
           <div class="card model reveal"><span class="pill">Contact / Devis</span>
-<textarea id="mdl-form-contact" spellcheck="false">Le responsable de traitement est [[Raison sociale]]. Vos données sont utilisées pour traiter votre demande et vous répondre (base légale : mesures précontractuelles). En savoir plus sur vos droits et nos durées de conservation : [[lien Politique de confidentialité]]. Contact RGPD : [[email RGPD]].
+<textarea id="mdl-form-contact" spellcheck="false" style="color:#9A9EA6">Le responsable de traitement est [[Raison sociale]]. Vos données sont utilisées pour traiter votre demande et vous répondre (base légale : mesures précontractuelles). En savoir plus sur vos droits et nos durées de conservation : [[lien Politique de confidentialité]]. Contact RGPD : [[email RGPD]].
 </textarea>
             <div class="btn-row"><button class="btn" data-copy="#mdl-form-contact">Copier</button></div>
           </div>
           <div class="card model reveal"><span class="pill">Newsletter (consentement)</span>
-<textarea id="mdl-form-news" spellcheck="false">En cochant cette case, j’accepte de recevoir les actualités de [[Raison sociale]]. Vous pouvez retirer votre consentement à tout moment via le lien de désinscription. Informations sur le traitement et vos droits : [[lien Politique de confidentialité]].
+<textarea id="mdl-form-news" spellcheck="false" style="color:#9A9EA6">En cochant cette case, j’accepte de recevoir les actualités de [[Raison sociale]]. Vous pouvez retirer votre consentement à tout moment via le lien de désinscription. Informations sur le traitement et vos droits : [[lien Politique de confidentialité]].
 </textarea>
             <div class="btn-row"><button class="btn" data-copy="#mdl-form-news">Copier</button></div>
           </div>
         </div>
         <div class="card model reveal" style="margin-top:18px"><span class="pill">Recrutement</span>
-<textarea id="mdl-form-jobs" spellcheck="false">Le responsable de traitement est [[Raison sociale]]. Vos données sont traitées pour l’étude de votre candidature (base légale : intérêt légitime/mesures précontractuelles). Conservation : [[durée]] après le dernier contact. En savoir plus et exercer vos droits : [[email RGPD]] / [[lien Politique]].
+<textarea id="mdl-form-jobs" spellcheck="false" style="color:#9A9EA6">Le responsable de traitement est [[Raison sociale]]. Vos données sont traitées pour l’étude de votre candidature (base légale : intérêt légitime/mesures précontractuelles). Conservation : [[durée]] après le dernier contact. En savoir plus et exercer vos droits : [[email RGPD]] / [[lien Politique]].
 </textarea>
           <div class="btn-row"><button class="btn" data-copy="#mdl-form-jobs">Copier</button></div>
         </div>
@@ -333,8 +366,8 @@ Photos/illustrations : [[banque d’images / crédits]].
       <div class="container">
         <h2 class="title">Emailing — pied de page désinscription</h2>
         <div class="card model reveal">
-          <div class="tips"><b>Note :</b> le lien de désinscription doit fonctionner sans friction (un clic). Conserve la <u>preuve d’opt-in</u> et la date d’inscription.</div>
-<textarea id="mdl-email" spellcheck="false">Vous recevez cet email de la part de [[Raison sociale]] car vous avez consenti à recevoir nos communications. Pour ne plus recevoir nos emails : [[Lien de désinscription]].
+          <div class="tips" style="color:#9A9EA6"><b>Note :</b> le lien de désinscription doit fonctionner sans friction (un clic). Conserve la <u>preuve d’opt-in</u> et la date d’inscription.</div>
+<textarea id="mdl-email" spellcheck="false" style="color:#9A9EA6">Vous recevez cet email de la part de [[Raison sociale]] car vous avez consenti à recevoir nos communications. Pour ne plus recevoir nos emails : [[Lien de désinscription]].
 Politique de confidentialité : [[URL]]. Contact RGPD : [[email RGPD]].
 </textarea>
           <div class="btn-row"><button class="btn" data-copy="#mdl-email">Copier le modèle</button></div>
@@ -346,8 +379,8 @@ Politique de confidentialité : [[URL]]. Contact RGPD : [[email RGPD]].
       <div class="container">
         <h2 class="title">Trame courte CGV (B2C) — modèle</h2>
         <div class="card model reveal">
-          <div class="tips"><b>À adapter avec précaution :</b> cette trame est volontairement synthétique (information précontractuelle). Pour un e-commerce complet (livraison, garanties légales, médiation, droit applicable…), complète chaque section selon tes produits/services.</div>
-<textarea id="mdl-cgv" spellcheck="false">1) Identité du vendeur
+          <div class="tips" style="color:#9A9EA6"><b>À adapter avec précaution :</b> cette trame est volontairement synthétique (information précontractuelle). Pour un e-commerce complet (livraison, garanties légales, médiation, droit applicable…), complète chaque section selon tes produits/services.</div>
+<textarea id="mdl-cgv" spellcheck="false" style="color:#9A9EA6">1) Identité du vendeur
 [[Raison sociale]], [[forme juridique]], [[adresse]], [[RCS/SIREN]], [[TVA]], contact : [[email/tél]].
 
 2) Produits & prix
@@ -394,8 +427,8 @@ Droit français. Tribunaux compétents selon le droit commun.
   <div id="footer"></div>
 
   <!-- JS libs pour le zip côté client (CDN) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" integrity="sha512-3nN3zH1b6oKQxU5T2V3sEHu1Jr8m+Jrj7v+0d6oL3gU5kN1f8x7c8xwqH5h9E3u0cJ1o8l0h1e4k8q4f0rQ0xA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" integrity="sha512-v2Z3Hq52y3xwYvF9x6qgk2m3Qn2w7vYc7k2QdJ7Jw2F3sK3dU8S9sZ9gYw1lYqVZk5v5JwQvH2u2QjZk1K0pQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js " integrity="sha512-3nN3zH1b6oKQxU5T2V3sEHu1Jr8m+Jrj7v+0d6oL3gU5kN1f8x7c8xwqH5h9E3u0cJ1o8l0h1e4k8q4f0rQ0xA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js " integrity="sha512-v2Z3Hq52y3xwYvF9x6qgk2m3Qn2w7vYc7k2QdJ7Jw2F3sK3dU8S9sZ9gYw1lYqVZk5v5JwQvH2u2QjZk1K0pQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- ===== JS : canvas + reveal + copier + éditeur intelligent + zip ===== -->
   <script>
@@ -406,6 +439,13 @@ Droit français. Tribunaux compétents selon le droit commun.
 
     // ===== Reveal on scroll
     const reveals = document.querySelectorAll('.reveal'); const io = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('is-visible'); }); }, { threshold: 0.2 }); reveals.forEach(el => io.observe(el));
+
+    // ===== in-view pour titres
+    const sections = document.querySelectorAll('.section');
+    const ioView = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in-view'); });
+    }, { threshold: 0.4 });
+    sections.forEach(s => ioView.observe(s));
 
     // ===== Copier le contenu des textarea
     document.addEventListener('click', async (e) => {
@@ -455,7 +495,6 @@ Droit français. Tribunaux compétents selon le droit commun.
       return data;
     }
 
-    // Mappage token => valeur
     function tokenMapFromData(data){
       return {
         'JJ/MM/AAAA': data.JJMMYYYY,
