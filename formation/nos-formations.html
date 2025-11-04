@@ -55,7 +55,7 @@
     @keyframes geoFloatDiamond{0%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1));opacity:.14}25%{transform:rotate(55deg) translate3d(18px,-30px,0) scale(var(--scale,1));opacity:.22}50%{transform:rotate(65deg) translate3d(-12px,-60px,0) scale(var(--scale,1));opacity:.2}75%{transform:rotate(55deg) translate3d(-28px,-30px,0) scale(var(--scale,1));opacity:.24}100%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1));opacity:.18}}
     @media (prefers-reduced-motion: reduce){ .hero-geo .g{ animation:none; opacity:.15 } }
 
-    /* Boutons génériques (utilisés en bas seulement) */
+    /* Boutons génériques (utilisés en bas) */
     .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;padding:14px 26px;border-radius:999px;text-decoration:none;transition:all var(--transition);border:1px solid transparent;box-shadow:0 8px 24px rgba(0,0,0,.10)}
     .btn.primary{background:var(--aw-copper);color:#fff;box-shadow:0 10px 30px rgba(255,138,61,.30)}
     .btn.primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(255,138,61,.40)}
@@ -78,6 +78,30 @@
 
     .underline{width:80px;height:4px;border-radius:999px;background:var(--aw-copper);margin:10px auto 26px;opacity:.9}
 
+    /* ---------- FAQ ---------- */
+    .faq-list {
+      --faq-gap: 1.2rem;
+      max-width: 680px;
+      margin: 0 auto;
+      display: grid;
+      gap: var(--faq-gap);
+    }
+    .faq-list dt {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--aw-copper);
+      margin-top: var(--faq-gap);
+    }
+    .faq-list dd {
+      margin: 0 0 0 1.2rem;
+      color: var(--aw-muted);
+    }
+    @media (max-width: 620px) {
+      .faq-list dd {
+        margin-left: 0;
+      }
+    }
+
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
   </style>
 </head>
@@ -97,7 +121,6 @@
     <div class="content">
       <h1 id="hero-title">Formations RGPD & IA : concrètes, opérationnelles</h1>
       <p class="lead">Petites cohortes, ateliers pratiques, supports & modèles fournis. Présentiel ou distanciel.</p>
-      <!-- Intention : aucun bouton en haut (exigence) -->
     </div>
   </section>
 
@@ -141,6 +164,23 @@
         <p style="color:var(--aw-muted)">Supports fournis, quiz & attestation inclus.</p>
       </article>
     </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="section" aria-labelledby="faq-title">
+    <h2 id="faq-title" class="title-center">Questions fréquentes</h2>
+    <div class="underline" aria-hidden="true"></div>
+
+    <dl class="faq-list">
+      <dt>Présentiel ou distanciel&nbsp;?</dt>
+      <dd>Au choix. Visio (Zoom&nbsp;/&nbsp;Meet) ou sur site.</dd>
+
+      <dt>Combien de personnes&nbsp;?</dt>
+      <dd>Idéal 6-12 personnes par cohorte pour garder l’interaction. Au-delà, on scinde par ateliers.</dd>
+
+      <dt>Adaptation secteur&nbsp;?</dt>
+      <dd>Oui&nbsp;: exemples &amp; cas d’usage personnalisés (santé, SaaS, retail, public…) sans surcoût.</dd>
+    </dl>
   </section>
 
   <!-- ===== CONTACT (CTAs UNIQUEMENT ICI) ===== -->
