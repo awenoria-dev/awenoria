@@ -2,134 +2,103 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <title>RGPD : les essentiels opérationnels – Awenoria</title>
-  <meta name="description" content="Comprendre les obligations clés (base légale, registre, information, droits) et savoir quoi faire demain matin. Atelier ou journée, présentiel ou distanciel. Supports & attestation inclus." />
+  <title>Fiche formation – Awenoria</title>
+  <meta name="description" content="Détail de la formation : objectifs, programme, durée, modalités. Présentiel / distanciel, supports et attestation inclus." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --ink:#0b1730; --muted:#6b7a90; --panel:#fff; --bg:#f5f7ff;
-      --blue:#0066ff; --copper:#ff8a3d; --radius:24px;
-      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
-      --elev: 10px 24px rgba(0,0,0,.08);
-      --trs:.6s cubic-bezier(.22,1,.36,1);
-      --maxw:1200px;
+      --ink:#0b1730; --blue:#0066ff; --copper:#ff8a3d; --muted:#6b7c90;
+      --panel:#fff; --bg:#f5f7ff; --radius:24px; --shadow:0 25px 50px -12px rgba(0,0,0,.15);
     }
     @media (prefers-color-scheme:dark){
-      :root{ --ink:#f5f7ff; --muted:#a7b2c9; --panel:#0c1220; --bg:#0a0f1c; --blue:#3d8bff; --copper:#ff9c5a; --shadow:0 25px 50px -12px rgba(0,0,0,.45); --elev: 0 10px 24px rgba(0,0,0,.28); }
+      :root{ --ink:#f5f7ff; --blue:#3d8bff; --copper:#ff9f5f; --muted:#a1b0c7; --panel:#0c111c; --bg:#0a0f18; }
     }
-    *,*::before,*::after{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
-
-    /* Header/foot seront injectés */
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
 
     /* HERO */
-    .hero{position:relative;min-height:52vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;
+    .hero{position:relative;min-height:44vh;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden;
       background:
-        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.14), transparent 60%),
+        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
         radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
-      border-bottom:1px solid rgba(255,255,255,.18);
-    }
-    .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-    .hero-geo{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
-    .hero-geo .g{position:absolute;width:64px;height:64px;opacity:.18;filter:blur(.2px);animation:geoFloat var(--dur,18s) cubic-bezier(.22,1,.36,1) infinite}
-    .hero-geo .circle{border-radius:50%;border:3px solid rgba(255,255,255,.65)}
-    .hero-geo .square{border:3px solid rgba(255,255,255,.5);border-radius:14px}
-    .hero-geo .triangle{--s:64px;width:var(--s);height:var(--s);clip-path:polygon(50% 0%, 0% 100%, 100% 100%);box-shadow:inset 0 0 0 3px rgba(255,255,255,.55);border-radius:8px}
-    .hero-geo .diamond{border:3px solid rgba(255,255,255,.55);transform:rotate(45deg);animation-name:geoFloatDiamond}
-    .hero-geo .g:nth-child(1){left:6%;top:12%;--dur:22s;--scale:.9}
-    .hero-geo .g:nth-child(2){left:78%;top:18%;--dur:26s;--scale:1.1}
-    .hero-geo .g:nth-child(3){left:16%;top:64%;--dur:24s;--scale:.85}
-    .hero-geo .g:nth-child(4){left:88%;top:68%;--dur:20s;--scale:.95}
-    .hero-geo .g:nth-child(5){left:44%;top:8%;--dur:28s;--scale:.8}
-    .hero-geo .g:nth-child(6){left:54%;top:72%;--dur:23s;--scale:1.0}
-    .hero-geo .g:nth-child(7){left:28%;top:36%;--dur:25s;--scale:1.2}
-    .hero-geo .g:nth-child(8){left:70%;top:44%;--dur:27s;--scale:.9}
-    @keyframes geoFloat{0%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0)}25%{transform:translate3d(20px,-30px,0) scale(var(--scale,1)) rotate(6deg)}50%{transform:translate3d(-10px,-60px,0) scale(var(--scale,1)) rotate(12deg)}75%{transform:translate3d(-30px,-30px,0) scale(var(--scale,1)) rotate(6deg)}100%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0)}}
-    @keyframes geoFloatDiamond{0%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1))}25%{transform:rotate(55deg) translate3d(18px,-30px,0) scale(var(--scale,1))}50%{transform:rotate(65deg) translate3d(-12px,-60px,0) scale(var(--scale,1))}75%{transform:rotate(55deg) translate3d(-28px,-30px,0) scale(var(--scale,1))}100%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1))}}
-    @media (prefers-reduced-motion: reduce){ .hero-geo .g{ animation:none; opacity:.15 } }
+        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);}
+    .hero canvas{position:absolute;inset:0;width:100%;height:100%}
+    .hero-inner{position:relative;z-index:1;max-width:1000px;padding:0 20px}
+    .hero h1{font-size:clamp(40px,6vw,64px);font-weight:800;letter-spacing:-.02em;line-height:1.05}
+    .hero p{margin-top:10px;font-size:18px;color:#e6f0ff}
 
-    .hero .content{position:relative;z-index:2;max-width:960px;padding:0 20px}
-    .hero h1{font-size:clamp(40px,6vw,60px);line-height:1.05;font-weight:800;letter-spacing:-.02em;margin:0 0 10px}
-    .hero .lead{font-size:clamp(16px,1.6vw,18px);color:#eaf1ff;margin:0}
-
-    /* MAIN */
-    .section{max-width:var(--maxw);margin:0 auto;padding:56px 20px}
+    /* PAGE */
+    .section{max-width:1200px;margin:-40px auto 80px;padding:0 20px;position:relative;z-index:2}
     .grid{display:grid;grid-template-columns:2fr 1fr;gap:24px}
     @media (max-width:980px){.grid{grid-template-columns:1fr}}
-    .card{background:var(--panel);border:1px solid rgba(15,23,32,.08);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
-    .card h2{margin:0 0 10px}
-    .card ul{list-style:disc;padding-left:20px;margin:.25rem 0}
-    .card li{margin:.22rem 0}
+    .card{background:var(--panel);border:1px solid rgba(15,23,42,.08);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px}
+    .card h2{margin:0 0 12px}
+    .program ul{list-style:disc;padding-left:20px}
+    .program li{margin:.22rem 0}
+    .meta{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}
+    .tag{border:1px solid rgba(15,23,42,.12);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;background:rgba(27,136,255,.06)}
+    .note{color:var(--muted);font-size:14px}
 
-    .info-cta-wrap{display:grid;gap:16px;align-content:start}
-    .cta-bar{display:flex;justify-content:center}
-    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;padding:14px 26px;border-radius:999px;border:1px solid transparent;text-decoration:none;transition:all var(--trs)}
+    /* Colonne droite + CTA large aligné à la bulle au-dessus */
+    .cta-col{display:grid;grid-template-rows:auto auto;gap:14px;align-content:start}
+    .cta-wide{ /* ce conteneur prend la même largeur que la carte juste au-dessus */
+      background:transparent;border-radius:999px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;border-radius:999px;
+      padding:14px 24px;text-decoration:none;border:1px solid transparent}
     .btn.primary{background:var(--copper);color:#fff;box-shadow:0 10px 30px rgba(255,138,61,.30)}
-    .btn.primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(255,138,61,.40)}
+    .btn.primary:hover{transform:translateY(-2px)}
+    .btn.ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.45)}
 
-    /* header/footer mounts */
-    #header,#footer{isolation:isolate}
+    /* On force le bouton à faire exactement la largeur de la carte précédente */
+    .cta-col .card + .cta-wide .btn{display:block;width:100%}
+
+    /* Fil d’Ariane masqué dans ce design (on garde seulement le hero) */
+    .breadcrumbs{display:none}
   </style>
 </head>
-
 <body>
+
   <!-- Header injecté -->
-  <div id="header" aria-hidden="true"></div>
+  <div id="header"></div>
 
   <!-- HERO -->
-  <section class="hero" aria-labelledby="title">
-    <canvas id="canvas" aria-hidden="true"></canvas>
-    <div class="hero-geo" aria-hidden="true">
-      <span class="g circle"></span><span class="g square"></span><span class="g triangle"></span><span class="g diamond"></span>
-      <span class="g circle"></span><span class="g square"></span><span class="g triangle"></span><span class="g diamond"></span>
-    </div>
-    <div class="content">
-      <h1 id="title">RGPD : les essentiels opérationnels</h1>
-      <p class="lead">Comprendre les obligations clés (base légale, registre, information, droits) et savoir quoi faire demain matin.</p>
+  <section class="hero" aria-label="En-tête visuel">
+    <canvas id="heroFx" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <h1 id="course-title">Titre formation</h1>
+      <p id="course-pitch">Résumé personnalisé selon l’origine (thématique / public).</p>
+      <div id="course-meta" class="meta"></div>
     </div>
   </section>
 
   <!-- CONTENU -->
-  <main class="section" aria-label="Contenu">
+  <main class="section" id="content" aria-label="Contenu">
     <div class="grid">
-      <!-- Col principale -->
+      <!-- Colonne gauche -->
       <article class="card">
         <h2>Programme</h2>
-        <ul>
-          <li>Bases légales &amp; minimisation</li>
-          <li>Registre : quoi, comment, preuves</li>
-          <li>Droits des personnes : process &amp; SLA</li>
-          <li>Plan d’action 90 jours</li>
-        </ul>
+        <div id="course-program" class="program"></div>
 
         <h2 style="margin-top:16px">Objectifs</h2>
-        <ul>
-          <li>Comprendre les obligations et le périmètre</li>
-          <li>Savoir appliquer dans votre contexte</li>
-          <li>Produire les premiers livrables utiles</li>
-          <li>Établir une feuille de route opérationnelle</li>
-        </ul>
+        <ul id="course-objectives"></ul>
       </article>
 
-      <!-- Col droite -->
-      <aside class="info-cta-wrap">
+      <!-- Colonne droite -->
+      <aside class="cta-col">
         <div class="card">
-          <h2>Infos pratiques</h2>
-          <ul>
-            <li>Formats&nbsp;: atelier 2h, 1/2 journée, 1 journée</li>
-            <li>Modalités&nbsp;: présentiel ou distanciel</li>
-            <li>Financement&nbsp;: selon OPCO/plan interne</li>
+          <h2 style="margin:0 0 8px">Infos pratiques</h2>
+          <ul class="note" id="practical-list" style="padding-left:18px;margin:8px 0 0">
+            <li>Formats : atelier 2h, 1/2 journée, 1 journée</li>
+            <li>Modalités : présentiel ou distanciel</li>
+            <li>Financement : selon OPCO/plan interne</li>
           </ul>
-          <p style="color:var(--muted);margin-top:10px">Supports &amp; modèles fournis • Quiz &amp; attestation inclus</p>
+          <p class="note" style="margin-top:12px">Supports & modèles fournis • Quiz & attestation inclus</p>
         </div>
 
-        <!-- Bouton SOUS la bulle -->
-        <div class="cta-bar">
+        <!-- Bouton en dehors de la bulle, même largeur -->
+        <div class="cta-wide">
           <a class="btn primary" href="../index.html#contact">Demander un devis</a>
         </div>
       </aside>
@@ -137,80 +106,141 @@
   </main>
 
   <!-- Footer injecté -->
-  <div id="footer" aria-hidden="true"></div>
+  <div id="footer"></div>
 
-  <!-- Particules -->
+  <!-- Petit fond animé -->
   <script>
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    let w = canvas.width = innerWidth;
-    let h = canvas.height = Math.max(380, innerHeight * .52);
-    const particles = [];
-    const opts = { count:60, speed:.35, radius:2, distance:120, color:'rgba(255,255,255,.28)' };
-    addEventListener('resize', () => { w = canvas.width = innerWidth; h = canvas.height = Math.max(380, innerHeight * .52); });
-    class Particle{
-      constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
-      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
-      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
-      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
-    }
-    (function init(){ for(let i=0;i<opts.count;i++) particles.push(new Particle()); })();
-    (function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); })();
+    (function(){
+      const c=document.getElementById('heroFx'); if(!c) return;
+      const ctx=c.getContext('2d'); let w,h; const P=[]; const N=60, R=2, D=120;
+      function size(){ w=c.width=innerWidth; h=c.height=innerHeight*.55 }
+      function add(){ for(let i=0;i<N;i++) P.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}) }
+      function draw(){
+        ctx.clearRect(0,0,w,h);
+        for(const p of P){
+          p.x+=p.vx; p.y+=p.vy;
+          if(p.x<0||p.x>w) p.vx*=-1; if(p.y<0||p.y>h) p.vy*=-1;
+          ctx.beginPath(); ctx.arc(p.x,p.y,R,0,Math.PI*2); ctx.fillStyle='rgba(255,255,255,.25)'; ctx.fill();
+        }
+        for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){
+          const a=P[i],b=P[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+          if(d<D){ ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+            ctx.strokeStyle=`rgba(255,255,255,${1-d/D})`; ctx.stroke(); }
+        }
+        requestAnimationFrame(draw);
+      }
+      addEventListener('resize', size); size(); add(); draw();
+    })();
   </script>
 
-  <!-- Injection header/footer (depuis la racine, compatible GitHub Pages) -->
+  <!-- Données dynamiques (même logique que tes autres fiches) -->
+  <script type="module">
+    const DEFAULT_TITLE="Titre formation";
+    const DEFAULT_PITCH="Résumé personnalisé selon l’origine (thématique / public).";
+    const DEFAULT_TAGS=['1/2 journée','Intermédiaire','Distanciel','Présentiel'];
+    const DEFAULT_PROGRAM=[
+      "Base légale & minimisation",
+      "Registre : quoi, comment, preuves",
+      "Droits des personnes : process & SLA",
+      "Plan d’action 90 jours"
+    ];
+    const DEFAULT_OBJECTIVES=[
+      "Comprendre les obligations et le périmètre",
+      "Savoir appliquer dans votre contexte",
+      "Produire les premiers livrables utiles",
+      "Établir une feuille de route opérationnelle"
+    ];
+
+    const titleEl = document.getElementById('course-title');
+    const pitchEl = document.getElementById('course-pitch');
+    const metaEl  = document.getElementById('course-meta');
+    const progEl  = document.getElementById('course-program');
+    const objEl   = document.getElementById('course-objectives');
+
+    try{
+      const mod = await import("../js/courses-data.js");
+      const COURSES = mod.COURSES||[];
+      const slug = location.pathname.split('/').pop().replace('.html','');
+      const params=new URLSearchParams(location.search);
+      const from=params.get('from'), theme=params.get('theme'), audience=params.get('public');
+
+      const THEME_LABELS={ "rgpd-essentiels":"RGPD – essentiels, registre, AIPD","ia-act":"IA Act – obligations & documentation","cookies":"Cookies & CMP","web-legal":"Mentions légales & conformité web","access":"Accessibilité (RGAA / EN 301 549)","cyber":"Cybersécurité de base" };
+      const AUDIENCE_LABELS={ dirigeants:"Dirigeants & responsables",equipes:"Équipes opérationnelles",dpo:"Référents / DPO",dev:"Dev, Produit & Data" };
+
+      const course=COURSES.find(c=>c.slug===slug);
+
+      const title=course?.title||DEFAULT_TITLE;
+      const summary=course?.summary||DEFAULT_PITCH;
+      const pitch=(from==='public'&&audience&&course?.pitchByAudience?.[audience])?course.pitchByAudience[audience]:(from==='theme'&&theme&&course?.pitchByTheme?.[theme])?course.pitchByTheme[theme]:summary;
+
+      titleEl.textContent=title; pitchEl.textContent=pitch;
+
+      const dur=course?.duration?`<span class="tag">${course.duration}</span>`:''; 
+      const lvl=course?.level?`<span class="tag">${course.level}</span>`:''; 
+      const mods=(course?.modalities||[]).map(m=>`<span class="tag">${m}</span>`).join('');
+      metaEl.innerHTML=(dur||lvl||mods)?(dur+lvl+mods):DEFAULT_TAGS.map(t=>`<span class="tag">${t}</span>`).join('');
+
+      const items=(course?.program||DEFAULT_PROGRAM).map(li=>`<li>${li}</li>`).join('');
+      progEl.innerHTML=`<ul>${items}</ul>`;
+      objEl.innerHTML=(course?.objectives||DEFAULT_OBJECTIVES).map(o=>`<li>${o}</li>`).join('');
+
+      document.title=`${title} – Awenoria`;
+    }catch(e){
+      // Fallback
+      titleEl.textContent=DEFAULT_TITLE;
+      pitchEl.textContent=DEFAULT_PITCH;
+      metaEl.innerHTML=DEFAULT_TAGS.map(t=>`<span class="tag">${t}</span>`).join('');
+      progEl.innerHTML=`<ul>${DEFAULT_PROGRAM.map(li=>`<li>${li}</li>`).join('')}</ul>`;
+      objEl.innerHTML=DEFAULT_OBJECTIVES.map(o=>`<li>${o}</li>`).join('');
+    }
+  </script>
+
+  <!-- CHARGEUR header/footer (corrigé et robuste) -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const headMount = document.getElementById("header");
       const footMount = document.getElementById("footer");
+      if(!headMount && !footMount) return;
 
-      // Base pour GitHub Pages: /<repo>/
-      const isGh = /github\.io$/.test(location.hostname);
-      let base = "/";
-      if (isGh) {
-        const parts = location.pathname.split("/").filter(Boolean);
-        base = parts.length ? `/${parts[0]}/` : "/";
-      }
+      // Détection base : GitHub Pages (projet) ou domaine racine
+      const isGh = /github\.io$/i.test(location.hostname);
+      const base = isGh ? `/${location.pathname.split('/').filter(Boolean)[0]}/` : `/`;
 
-      const candidates = (p) => {
-        const clean = p.replace(/^\//, "");
-        return [
-          base + clean,                // /repo/header.html (GitHub Pages)
-          "/" + clean,                 // /header.html (root)
-          "./" + clean,                // ./header.html
-          "../" + clean,               // ../header.html
-          "../../" + clean,            // ../../header.html (2 niveaux)
-        ];
+      const tries = (p) => {
+        const clean = p.replace(/^\//,'');
+        // on teste absolu base + relatif multi-niveaux
+        return [ base+clean, './'+clean, '../'+clean, '../../'+clean, '/'+clean ];
       };
 
-      async function fetchAny(paths) {
-        const queue = paths.flatMap(candidates);
-        for (const u of queue) {
-          try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); }
-          catch(_) {}
+      async function fetchAny(paths){
+        const queue = paths.flatMap(tries);
+        for(const url of queue){
+          try{ const r = await fetch(url, {cache:'no-cache'}); if(r.ok) return r.text(); }catch(_){}
         }
-        throw new Error("Introuvable: " + paths.join(", "));
+        throw new Error("Introuvable: "+paths.join(", "));
       }
 
-      function fixRootUrls(container) {
-        container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
-          .forEach(el => {
-            const attr = el.hasAttribute("href") ? "href" : "src";
-            const val = el.getAttribute(attr);
-            if (/^\/\//.test(val)) return; // protocol-relative
-            el.setAttribute(attr, base + val.replace(/^\//, ""));
-          });
+      // Corrige les URLs relatives à l’intérieur des fragments injectés
+      function fixUrls(container){
+        container.querySelectorAll('a[href], img[src], link[href], script[src]').forEach(el=>{
+          const attr = el.hasAttribute('href') ? 'href' : 'src';
+          const v = el.getAttribute(attr);
+          if(!v || /^(https?:)?\/\//i.test(v) || v.startsWith('#') || v.startsWith('mailto:') || v.startsWith('tel:')) return;
+          // Si le lien est déjà relatif simple, on le prefixe par la base quand on est sur GH Pages
+          el.setAttribute(attr, (isGh ? base : '/') + v.replace(/^\//,''));
+        });
       }
 
-      if (headMount) {
-        fetchAny(["header.html", "partials/header.html"])
-          .then(html => { headMount.innerHTML = html; fixRootUrls(headMount); })
-          .catch(() => { headMount.innerHTML = "<!-- Header introuvable -->"; });
+      if(headMount){
+        fetchAny(['partials/header.html','header.html'])
+          .then(html=>{ headMount.innerHTML=html; fixUrls(headMount); })
+          .catch(()=> headMount.innerHTML='<!-- header introuvable -->');
       }
-      if (footMount) {
-        fetchAny(["footer.html", "partials/footer.html"])
-          .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
-          .catch(() => { footMount.innerHTML = "<!-- Footer introuvable -->"; });
+
+      if(footMount){
+        fetchAny(['partials/footer.html','footer.html'])
+          .then(html=>{ footMount.innerHTML=html; fixUrls(footMount); })
+          .catch(()=> footMount.innerHTML='<!-- footer introuvable -->');
       }
     });
   </script>
