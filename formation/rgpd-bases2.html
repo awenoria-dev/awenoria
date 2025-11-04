@@ -5,7 +5,18 @@
   <title>Fiche formation – Awenoria</title>
   <meta name="description" content="Détail de la formation : objectifs, programme, durée, modalités. Présentiel / distanciel, supports et attestation inclus." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Polices (comme Catalogue) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Manrope:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+
+  <!-- Favicons (chemins depuis /formation/) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16.png">
+
+  <!-- CSS global Awenoria (indispensable pour header/footer/nav) -->
+  <link rel="stylesheet" href="../assets/awenoria.css?v=1">
 
   <style>
     :root{
@@ -19,14 +30,14 @@
     body{font-family:Inter,system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
 
     /* HERO */
-    .hero{position:relative;min-height:44vh;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden;
+    .hero{position:relative;min-height:60vh;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden;
       background:
         radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
         radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
         linear-gradient(180deg, #0033cc 0%, #0066ff 100%);}
     .hero canvas{position:absolute;inset:0;width:100%;height:100%}
     .hero-inner{position:relative;z-index:1;max-width:1000px;padding:0 20px}
-    .hero h1{font-size:clamp(40px,6vw,64px);font-weight:800;letter-spacing:-.02em;line-height:1.05}
+    .hero h1{font-family:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:clamp(40px,6vw,64px);font-weight:800;letter-spacing:-.02em;line-height:1.05}
     .hero p{margin-top:10px;font-size:18px;color:#e6f0ff}
 
     /* PAGE */
@@ -41,16 +52,11 @@
     .tag{border:1px solid rgba(15,23,42,.12);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;background:rgba(27,136,255,.06)}
     .note{color:var(--muted);font-size:14px}
 
-    /* Colonne droite + CTA large aligné à la bulle au-dessus */
     .cta-col{display:grid;grid-template-rows:auto auto;gap:14px;align-content:start}
     .cta-wide{background:transparent;border-radius:999px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;border-radius:999px;
-      padding:14px 24px;text-decoration:none;border:1px solid transparent}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;border-radius:999px;padding:14px 24px;text-decoration:none;border:1px solid transparent}
     .btn.primary{background:var(--copper);color:#fff;box-shadow:0 10px 30px rgba(255,138,61,.30)}
     .btn.primary:hover{transform:translateY(-2px)}
-    .btn.ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.45)}
-
-    .cta-col .card + .cta-wide .btn{display:block;width:100%}
     .breadcrumbs{display:none}
   </style>
 </head>
@@ -72,7 +78,6 @@
   <!-- CONTENU -->
   <main class="section" id="content" aria-label="Contenu">
     <div class="grid">
-      <!-- Colonne gauche -->
       <article class="card">
         <h2>Programme</h2>
         <div id="course-program" class="program"></div>
@@ -81,7 +86,6 @@
         <ul id="course-objectives"></ul>
       </article>
 
-      <!-- Colonne droite -->
       <aside class="cta-col">
         <div class="card">
           <h2 style="margin:0 0 8px">Infos pratiques</h2>
@@ -92,8 +96,6 @@
           </ul>
           <p class="note" style="margin-top:12px">Supports & modèles fournis • Quiz & attestation inclus</p>
         </div>
-
-        <!-- Bouton en dehors de la bulle, même largeur -->
         <div class="cta-wide">
           <a class="btn primary" href="../index.html#contact">Demander un devis</a>
         </div>
@@ -104,7 +106,7 @@
   <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- Petit fond animé -->
+  <!-- Fond animé -->
   <script>
     (function(){
       const c=document.getElementById('heroFx'); if(!c) return;
@@ -129,7 +131,7 @@
     })();
   </script>
 
-  <!-- Données dynamiques -->
+  <!-- Données dynamiques (identique à ta version) -->
   <script type="module">
     const DEFAULT_TITLE="Titre formation";
     const DEFAULT_PITCH="Résumé personnalisé selon l’origine (thématique / public).";
@@ -187,14 +189,13 @@
     }
   </script>
 
-  <!-- Injection header/footer + compat GitHub Pages (identique au Catalogue) -->
+  <!-- Injection header/footer + compat GitHub Pages (identique Catalogue) -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
     const footMount = document.getElementById("footer");
     if (!headMount && !footMount) return;
 
-    // Détection GitHub Pages projet
     const isGh = /github\.io$/.test(location.hostname);
     let base = "/";
     if (isGh) {
@@ -202,13 +203,10 @@
       base = parts.length ? `/${parts[0]}/` : "/";
     }
 
-    // Génère une liste d’URL candidates (base + relatifs)
     const candidates = (p) => {
       const clean = p.replace(/^\//, "");
       return [ base + clean, "./" + clean, "../" + clean ];
     };
-
-    // Récupère le premier chemin qui répond OK
     async function fetchAny(paths) {
       const queue = paths.flatMap(candidates);
       for (const u of queue) {
@@ -216,14 +214,12 @@
       }
       throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
     }
-
-    // Corrige uniquement les URLs qui commencent par "/" à l’intérieur du fragment
     function fixRootUrls(container) {
       container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
         .forEach(el => {
           const attr = el.hasAttribute("href") ? "href" : "src";
           const val = el.getAttribute(attr);
-          if (/^\/\//.test(val)) return; // garde //cdn
+          if (/^\/\//.test(val)) return;
           el.setAttribute(attr, base + val.replace(/^\//, ""));
         });
     }
@@ -234,7 +230,6 @@
         .then(html => {
           headMount.innerHTML = html;
           fixRootUrls(headMount);
-          // charge nav.js si présent (assets/nav.js puis nav.js)
           return fetchAny(["assets/nav.js", "nav.js"]);
         })
         .then(code => {
