@@ -2,9 +2,11 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <title>RGPD : les essentiels opérationnels – Awenoria</title>
-  <meta name="description" content="Comprendre les obligations clés (base légale, registre, information, droits) et savoir quoi faire demain matin. Formats courts, présentiel ou distanciel, supports & attestation inclus." />
+  <title>Fiche formation – Awenoria</title>
+  <meta name="description" content="Détail de la formation : objectifs, programme, durée, modalités. Présentiel / distanciel, supports et attestation inclus." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Police -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -13,10 +15,10 @@
       --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
       --shadow:0 25px 50px -12px rgba(0,0,0,.15);
       --transition:.6s cubic-bezier(.22,1,.36,1);
-      --max:1200px;
+      --maxw:1200px;
     }
     @media (prefers-color-scheme:dark){
-      :root{ --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0; --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45); }
+      :root{ --aw-ink:#eaf1ff; --aw-blue:#3d8bff; --aw-copper:#ff9d57; --aw-muted:#a5afc7; --aw-panel:#0b0f1a; --aw-bg:#090d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45) }
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
@@ -29,49 +31,43 @@
         radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
         linear-gradient(180deg, #0033cc 0%, #0066ff 100%);}
     .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-    .hero .content{position:relative;z-index:2;max-width:950px;padding:0 20px;animation:fadeInUp 1s both}
+    .hero .content{position:relative;z-index:2;max-width:900px;padding:0 20px;animation:fadeInUp 1s both}
     .hero h1{font-size:clamp(42px,6vw,64px);font-weight:800;line-height:1.05;letter-spacing:-.02em}
-    .hero .lead{font-size:1.15rem;font-weight:600;margin:18px auto 0;color:#e8f0ff}
+    .hero .lead{font-size:1.15rem;font-weight:600;margin:16px auto 0;color:#e8f0ff;opacity:.95}
 
     .hero-geo{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
     .hero-geo .g{position:absolute;width:64px;height:64px;opacity:.18;filter:blur(.2px);animation:geoFloat var(--dur,18s) cubic-bezier(.22,1,.36,1) infinite}
-    .hero-geo .circle{border-radius:50%;border:3px solid rgba(255,255,255,.65)}
-    .hero-geo .square{border:3px solid rgba(255,255,255,.5);border-radius:14px}
-    .hero-geo .triangle{--s:64px;width:var(--s);height:var(--s);clip-path:polygon(50% 0%, 0% 100%, 100% 100%);box-shadow:inset 0 0 0 3px rgba(255,255,255,.55);border-radius:8px;background:transparent}
-    .hero-geo .diamond{border:3px solid rgba(255,255,255,.55);transform:rotate(45deg);animation-name:geoFloatDiamond}
+    .circle{border-radius:50%;border:3px solid rgba(255,255,255,.65)}
+    .square{border:3px solid rgba(255,255,255,.5);border-radius:14px}
+    .triangle{--s:64px;width:var(--s);height:var(--s);clip-path:polygon(50% 0%, 0% 100%, 100% 100%);box-shadow:inset 0 0 0 3px rgba(255,255,255,.55);border-radius:8px}
+    .diamond{border:3px solid rgba(255,255,255,.55);transform:rotate(45deg);animation-name:geoFloatDiamond}
     .hero-geo .g:nth-child(1){left:6%;top:12%;--dur:22s;--scale:.9}
     .hero-geo .g:nth-child(2){left:78%;top:18%;--dur:26s;--scale:1.1}
     .hero-geo .g:nth-child(3){left:16%;top:64%;--dur:24s;--scale:.85}
     .hero-geo .g:nth-child(4){left:88%;top:68%;--dur:20s;--scale:.95}
     .hero-geo .g:nth-child(5){left:44%;top:8%;--dur:28s;--scale:.8}
-    .hero-geo .g:nth-child(6){left:54%;top:72%;--dur:23s;--scale:1.0}
+    .hero-geo .g:nth-child(6){left:54%;top:72%;--dur:23s;--scale:1}
     .hero-geo .g:nth-child(7){left:28%;top:36%;--dur:25s;--scale:1.2}
     .hero-geo .g:nth-child(8){left:70%;top:44%;--dur:27s;--scale:.9}
+    @keyframes geoFloat{0%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0)}25%{transform:translate3d(20px,-30px,0) scale(var(--scale,1)) rotate(6deg)}50%{transform:translate3d(-10px,-60px,0) scale(var(--scale,1)) rotate(12deg)}75%{transform:translate3d(-30px,-30px,0) scale(var(--scale,1)) rotate(6deg)}100%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0)}}
+    @keyframes geoFloatDiamond{0%{transform:rotate(45deg)}50%{transform:rotate(65deg) translate3d(-6px,-8px,0)}100%{transform:rotate(45deg)}}
+    @media (prefers-reduced-motion: reduce){ .hero-geo .g{ animation:none; opacity:.15 } }
 
-    @keyframes geoFloat{0%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg);opacity:.12}25%{transform:translate3d(20px,-30px,0) scale(var(--scale,1)) rotate(6deg);opacity:.22}50%{transform:translate3d(-10px,-60px,0) scale(var(--scale,1)) rotate(12deg);opacity:.2}75%{transform:translate3d(-30px,-30px,0) scale(var(--scale,1)) rotate(6deg);opacity:.24}100%{transform:translate3d(0,0,0) scale(var(--scale,1)) rotate(0deg);opacity:.18}}
-    @keyframes geoFloatDiamond{0%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1));opacity:.14}25%{transform:rotate(55deg) translate3d(18px,-30px,0) scale(var(--scale,1));opacity:.22}50%{transform:rotate(65deg) translate3d(-12px,-60px,0) scale(var(--scale,1));opacity:.2}75%{transform:rotate(55deg) translate3d(-28px,-30px,0) scale(var(--scale,1));opacity:.24}100%{transform:rotate(45deg) translate3d(0,0,0) scale(var(--scale,1));opacity:.18}}
-    @media (prefers-reduced-motion: reduce){ .hero-geo .g{animation:none;opacity:.15} }
-
-    /* LAYOUT */
-    .section{max-width:var(--max);margin:0 auto;padding:64px 20px}
-    .grid{display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:start}
+    /* SECTION */
+    .section{max-width:var(--maxw);margin:0 auto;padding:60px 20px}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:24px}
     @media (max-width:980px){.grid{grid-template-columns:1fr}}
-
     .card{background:var(--aw-panel);border:1px solid rgba(15,23,32,.08);border-radius:var(--aw-radius);padding:24px;box-shadow:var(--shadow)}
-    .card h2{margin:0 0 10px}
-
-    /* Lists visibles même si styles globaux */
+    .card h2{margin:0 0 12px}
     .card ul{list-style:disc;padding-left:20px;margin:.25rem 0}
     .card li{margin:.22rem 0}
-
     .note{color:var(--aw-muted);font-size:14px}
 
-    /* CTA global sous le bloc de droite */
-    .cta-wrap{display:flex;justify-content:flex-end;margin-top:16px}
-    .cta{display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;padding:16px 30px;border-radius:999px;text-decoration:none;border:1px solid transparent;background:var(--aw-copper);color:#fff;box-shadow:0 10px 30px rgba(255,138,61,.30)}
-    .cta:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(255,138,61,.40);transition:all .25s ease}
+    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;padding:14px 26px;border-radius:999px;text-decoration:none;transition:all var(--transition);border:1px solid transparent;box-shadow:0 8px 24px rgba(0,0,0,.10)}
+    .btn.primary{background:var(--aw-copper);color:#fff;box-shadow:0 10px 30px rgba(255,138,61,.30)}
+    .btn.primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(255,138,61,.40)}
 
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
   </style>
 </head>
 
@@ -80,7 +76,7 @@
   <div id="header"></div>
 
   <!-- HERO -->
-  <section class="hero" aria-labelledby="title">
+  <section class="hero" aria-label="En-tête formation">
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="hero-geo" aria-hidden="true">
       <span class="g circle"></span><span class="g square"></span><span class="g triangle"></span><span class="g diamond"></span>
@@ -88,55 +84,43 @@
     </div>
 
     <div class="content">
-      <h1 id="title">RGPD : les essentiels opérationnels</h1>
-      <p class="lead">Comprendre les obligations clés (base légale, registre, information, droits) et savoir quoi faire demain matin.</p>
+      <h1 id="course-title">Titre formation</h1>
+      <p id="course-pitch" class="lead">Résumé personnalisé selon l’origine (thématique / public).</p>
+      <!-- (Pastilles et “Revenir” retirés volontairement) -->
     </div>
   </section>
 
   <!-- CONTENU -->
-  <main class="section" aria-label="Contenu">
+  <main class="section" id="content" aria-label="Contenu et actions">
     <div class="grid">
-      <!-- Colonne gauche -->
       <article class="card">
         <h2>Programme</h2>
-        <ul>
-          <li>Bases légales &amp; minimisation</li>
-          <li>Registre : quoi, comment, preuves</li>
-          <li>Droits des personnes : process &amp; SLA</li>
-          <li>Plan d’action 90 jours</li>
-        </ul>
+        <div id="course-program" class="program"></div>
 
         <h2 style="margin-top:16px">Objectifs</h2>
-        <ul>
-          <li>Comprendre les obligations et le périmètre</li>
-          <li>Savoir appliquer dans votre contexte</li>
-          <li>Produire les premiers livrables utiles</li>
-          <li>Établir une feuille de route opérationnelle</li>
-        </ul>
+        <ul id="course-objectives"></ul>
       </article>
 
-      <!-- Colonne droite -->
-      <aside class="card" style="height:fit-content">
-        <h2 style="margin:0 0 8px">Infos pratiques</h2>
-        <ul class="note" style="padding-left:18px;margin:8px 0 0">
+      <!-- Carte Infos pratiques avec le bouton à l’intérieur -->
+      <aside class="card" style="height:fit-content; padding-bottom:28px; text-align:center;">
+        <h2 style="margin:0 0 8px; text-align:left;">Infos pratiques</h2>
+        <ul class="note" id="practical-list" style="padding-left:18px;margin:8px 0 0;text-align:left;">
           <li>Formats : atelier 2h, 1/2 journée, 1 journée</li>
           <li>Modalités : présentiel ou distanciel</li>
           <li>Financement : selon OPCO/plan interne</li>
         </ul>
-        <p class="note" style="margin-top:12px">Supports &amp; modèles fournis • Quiz &amp; attestation inclus</p>
+        <p class="note" style="margin:14px 0 18px; text-align:left;">
+          Supports &amp; modèles fournis • Quiz &amp; attestation inclus
+        </p>
+        <a class="btn primary" href="../../index.html#contact">Demander un devis</a>
       </aside>
-    </div>
-
-    <!-- CTA global sous la bulle de droite -->
-    <div class="cta-wrap">
-      <a class="cta" href="../../index.html#contact">Demander un devis</a>
     </div>
   </main>
 
   <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- Particules du hero -->
+  <!-- Particules -->
   <script>
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
@@ -155,11 +139,79 @@
     (function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); })();
   </script>
 
-  <!-- Loader header/footer + CSS global (mêmes règles que tes autres pages) -->
+  <!-- Données & logique : sans breadcrumbs/tags, avec fallback -->
+  <script type="module">
+    // Valeurs par défaut
+    const DEFAULT_TITLE = "IA Act (UE) : obligations & documentation";
+    const DEFAULT_PITCH = "Qualifier les systèmes, comprendre les obligations par niveau de risque, préparer la doc et la gouvernance.";
+    const DEFAULT_PROGRAM = [
+      "Cartographier les cas d’usage",
+      "Qualification du risque & obligations",
+      "Dossier technique & transparence",
+      "Plan de mise en conformité"
+    ];
+    const DEFAULT_OBJECTIVES = [
+      "Comprendre les obligations et le périmètre",
+      "Savoir appliquer dans votre contexte",
+      "Produire les premiers livrables utiles",
+      "Établir une feuille de route opérationnelle"
+    ];
+
+    const titleEl = document.getElementById('course-title');
+    const pitchEl = document.getElementById('course-pitch');
+    const progEl  = document.getElementById('course-program');
+    const objEl   = document.getElementById('course-objectives');
+
+    function setHead(t,d){document.title=t; const m=document.querySelector('meta[name="description"]'); if(m) m.setAttribute('content',d);}
+
+    async function hydrate(){
+      try{
+        const mod = await import("../../js/courses-data.js");
+        const COURSES = mod.COURSES || [];
+        const slug = location.pathname.split('/').pop().replace('.html','');
+        const params = new URLSearchParams(location.search);
+        const from = params.get('from');
+        const theme = params.get('theme');
+        const audience = params.get('public');
+
+        const course = COURSES.find(c => c.slug === slug);
+
+        const title = course?.title || DEFAULT_TITLE;
+        const summary = course?.summary || DEFAULT_PITCH;
+        const pitch =
+          (from==='public' && audience && course?.pitchByAudience?.[audience]) ? course.pitchByAudience[audience] :
+          (from==='theme'  && theme    && course?.pitchByTheme?.[theme])      ? course.pitchByTheme[theme] :
+          summary;
+
+        titleEl.textContent = title;
+        pitchEl.textContent = pitch;
+
+        const items = (course?.program||[]).map(li=>`<li>${li}</li>`).join('');
+        progEl.innerHTML = items ? `<ul>${items}</ul>` : `<ul>${DEFAULT_PROGRAM.map(li=>`<li>${li}</li>`).join('')}</ul>`;
+
+        objEl.innerHTML = (course?.objectives?.length ? course.objectives : DEFAULT_OBJECTIVES)
+          .map(o=>`<li>${o}</li>`).join('');
+
+        setHead(`${title} – Awenoria`, summary);
+
+      }catch(err){
+        console.warn("Fiche en mode fallback:", err);
+        titleEl.textContent = DEFAULT_TITLE;
+        pitchEl.textContent = DEFAULT_PITCH;
+        progEl.innerHTML = `<ul>${DEFAULT_PROGRAM.map(li=>`<li>${li}</li>`).join('')}</ul>`;
+        objEl.innerHTML  = DEFAULT_OBJECTIVES.map(o=>`<li>${o}</li>`).join('');
+        setHead(`${DEFAULT_TITLE} – Awenoria`, DEFAULT_PITCH);
+      }
+    }
+    hydrate();
+  </script>
+
+  <!-- Loader header/footer + assets (chemins robustes GH Pages) -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header");
     const footMount = document.getElementById("footer");
+
     const isGh = /github\.io$/.test(location.hostname);
     let base = "/";
     if (isGh) {
@@ -180,11 +232,13 @@
       const clean = p.replace(/^\//, "");
       return [ base + clean, "./" + clean, "../" + clean, "../../" + clean ];
     };
+
     async function fetchAny(paths) {
       const queue = paths.flatMap(candidates);
       for (const u of queue) { try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {} }
       throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
     }
+
     function fixRootUrls(container) {
       container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
         .forEach(el => {
@@ -208,6 +262,7 @@
         })
         .catch(() => { headMount.innerHTML = "<!-- Header introuvable -->"; });
     }
+
     if (footMount) {
       fetchAny(["footer.html", "partials/footer.html"])
         .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
