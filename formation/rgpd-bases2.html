@@ -43,18 +43,14 @@
 
     /* Colonne droite + CTA large aligné à la bulle au-dessus */
     .cta-col{display:grid;grid-template-rows:auto auto;gap:14px;align-content:start}
-    .cta-wide{ /* ce conteneur prend la même largeur que la carte juste au-dessus */
-      background:transparent;border-radius:999px}
+    .cta-wide{background:transparent;border-radius:999px}
     .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;border-radius:999px;
       padding:14px 24px;text-decoration:none;border:1px solid transparent}
     .btn.primary{background:var(--copper);color:#fff;box-shadow:0 10px 30px rgba(255,138,61,.30)}
     .btn.primary:hover{transform:translateY(-2px)}
     .btn.ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.45)}
 
-    /* On force le bouton à faire exactement la largeur de la carte précédente */
     .cta-col .card + .cta-wide .btn{display:block;width:100%}
-
-    /* Fil d’Ariane masqué dans ce design (on garde seulement le hero) */
     .breadcrumbs{display:none}
   </style>
 </head>
@@ -133,7 +129,7 @@
     })();
   </script>
 
-  <!-- Données dynamiques (même logique que tes autres fiches) -->
+  <!-- Données dynamiques -->
   <script type="module">
     const DEFAULT_TITLE="Titre formation";
     const DEFAULT_PITCH="Résumé personnalisé selon l’origine (thématique / public).";
@@ -164,9 +160,6 @@
       const params=new URLSearchParams(location.search);
       const from=params.get('from'), theme=params.get('theme'), audience=params.get('public');
 
-      const THEME_LABELS={ "rgpd-essentiels":"RGPD – essentiels, registre, AIPD","ia-act":"IA Act – obligations & documentation","cookies":"Cookies & CMP","web-legal":"Mentions légales & conformité web","access":"Accessibilité (RGAA / EN 301 549)","cyber":"Cybersécurité de base" };
-      const AUDIENCE_LABELS={ dirigeants:"Dirigeants & responsables",equipes:"Équipes opérationnelles",dpo:"Référents / DPO",dev:"Dev, Produit & Data" };
-
       const course=COURSES.find(c=>c.slug===slug);
 
       const title=course?.title||DEFAULT_TITLE;
@@ -186,7 +179,6 @@
 
       document.title=`${title} – Awenoria`;
     }catch(e){
-      // Fallback
       titleEl.textContent=DEFAULT_TITLE;
       pitchEl.textContent=DEFAULT_PITCH;
       metaEl.innerHTML=DEFAULT_TAGS.map(t=>`<span class="tag">${t}</span>`).join('');
@@ -195,54 +187,72 @@
     }
   </script>
 
-  <!-- CHARGEUR header/footer (corrigé et robuste) -->
+  <!-- Injection header/footer + compat GitHub Pages (identique au Catalogue) -->
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const headMount = document.getElementById("header");
-      const footMount = document.getElementById("footer");
-      if(!headMount && !footMount) return;
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header");
+    const footMount = document.getElementById("footer");
+    if (!headMount && !footMount) return;
 
-      // Détection base : GitHub Pages (projet) ou domaine racine
-      const isGh = /github\.io$/i.test(location.hostname);
-      const base = isGh ? `/${location.pathname.split('/').filter(Boolean)[0]}/` : `/`;
+    // Détection GitHub Pages projet
+    const isGh = /github\.io$/.test(location.hostname);
+    let base = "/";
+    if (isGh) {
+      const parts = location.pathname.split("/").filter(Boolean);
+      base = parts.length ? `/${parts[0]}/` : "/";
+    }
 
-      const tries = (p) => {
-        const clean = p.replace(/^\//,'');
-        // on teste absolu base + relatif multi-niveaux
-        return [ base+clean, './'+clean, '../'+clean, '../../'+clean, '/'+clean ];
-      };
+    // Génère une liste d’URL candidates (base + relatifs)
+    const candidates = (p) => {
+      const clean = p.replace(/^\//, "");
+      return [ base + clean, "./" + clean, "../" + clean ];
+    };
 
-      async function fetchAny(paths){
-        const queue = paths.flatMap(tries);
-        for(const url of queue){
-          try{ const r = await fetch(url, {cache:'no-cache'}); if(r.ok) return r.text(); }catch(_){}
-        }
-        throw new Error("Introuvable: "+paths.join(", "));
+    // Récupère le premier chemin qui répond OK
+    async function fetchAny(paths) {
+      const queue = paths.flatMap(candidates);
+      for (const u of queue) {
+        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
       }
+      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
+    }
 
-      // Corrige les URLs relatives à l’intérieur des fragments injectés
-      function fixUrls(container){
-        container.querySelectorAll('a[href], img[src], link[href], script[src]').forEach(el=>{
-          const attr = el.hasAttribute('href') ? 'href' : 'src';
-          const v = el.getAttribute(attr);
-          if(!v || /^(https?:)?\/\//i.test(v) || v.startsWith('#') || v.startsWith('mailto:') || v.startsWith('tel:')) return;
-          // Si le lien est déjà relatif simple, on le prefixe par la base quand on est sur GH Pages
-          el.setAttribute(attr, (isGh ? base : '/') + v.replace(/^\//,''));
+    // Corrige uniquement les URLs qui commencent par "/" à l’intérieur du fragment
+    function fixRootUrls(container) {
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
+        .forEach(el => {
+          const attr = el.hasAttribute("href") ? "href" : "src";
+          const val = el.getAttribute(attr);
+          if (/^\/\//.test(val)) return; // garde //cdn
+          el.setAttribute(attr, base + val.replace(/^\//, ""));
         });
-      }
+    }
 
-      if(headMount){
-        fetchAny(['partials/header.html','header.html'])
-          .then(html=>{ headMount.innerHTML=html; fixUrls(headMount); })
-          .catch(()=> headMount.innerHTML='<!-- header introuvable -->');
-      }
+    // HEADER
+    if (headMount) {
+      fetchAny(["header.html", "partials/header.html"])
+        .then(html => {
+          headMount.innerHTML = html;
+          fixRootUrls(headMount);
+          // charge nav.js si présent (assets/nav.js puis nav.js)
+          return fetchAny(["assets/nav.js", "nav.js"]);
+        })
+        .then(code => {
+          const s = document.createElement("script");
+          if (/\b(import|export)\b/.test(code)) s.type = "module";
+          s.textContent = code;
+          document.body.appendChild(s);
+        })
+        .catch(() => { headMount.innerHTML = "<!-- Header introuvable -->"; });
+    }
 
-      if(footMount){
-        fetchAny(['partials/footer.html','footer.html'])
-          .then(html=>{ footMount.innerHTML=html; fixUrls(footMount); })
-          .catch(()=> footMount.innerHTML='<!-- footer introuvable -->');
-      }
-    });
+    // FOOTER
+    if (footMount) {
+      fetchAny(["footer.html", "partials/footer.html"])
+        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
+        .catch(() => { footMount.innerHTML = "<!-- Footer introuvable -->"; });
+    }
+  });
   </script>
 </body>
 </html>
