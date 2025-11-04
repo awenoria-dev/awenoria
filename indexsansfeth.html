@@ -580,7 +580,7 @@
       });
     })();
 
-    // ====== FLUIDITÉ : APPARITION EN DOUCEUR DES SECTIONS ======
+    // ====== FLUIDITÉ : APPARITION EN DOUCEUR DES SECTIONS (PERMANENT) ======
     (function(){
       const sections = document.querySelectorAll('section.section');
       const observer = new IntersectionObserver((entries) => {
@@ -588,6 +588,9 @@
           if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
+          } else {
+            entry.target.style.opacity = '0';
+            entry.target.style.transform = 'translateY(30px)';
           }
         });
       }, { threshold: 0.1 });
