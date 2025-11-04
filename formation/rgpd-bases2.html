@@ -46,7 +46,6 @@
     /* PAGE (espacement corrigé pour que les bulles soient sous le hero) */
     .section{
       max-width:1200px;
-      /* AVANT: margin:-40px auto 80px; -> tirait les cartes vers le hero */
       margin:clamp(56px, 7vh, 96px) auto clamp(90px, 10vh, 140px);
       padding:0 20px;
       position:relative;
@@ -59,8 +58,6 @@
     .card h2{margin:0 0 12px}
     .program ul{list-style:disc;padding-left:20px}
     .program li{margin:.22rem 0}
-    .meta{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}
-    .tag{border:1px solid rgba(15,23,42,.12);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800;background:rgba(27,136,255,.06)}
     .note{color:var(--muted);font-size:14px}
 
     .cta-col{display:grid;grid-template-rows:auto auto;gap:14px;align-content:start}
@@ -68,7 +65,6 @@
     .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;border-radius:999px;padding:14px 24px;text-decoration:none;border:1px solid transparent}
     .btn.primary{background:var(--copper);color:#fff;box-shadow:0 10px 30px rgba(255,138,61,.30)}
     .btn.primary:hover{transform:translateY(-2px)}
-    /* CTA pleine largeur sous la bulle de droite */
     .cta-col .card + .cta-wide .btn{display:block;width:100%}
     .breadcrumbs{display:none}
   </style>
@@ -82,9 +78,9 @@
   <section class="hero" aria-label="En-tête visuel">
     <canvas id="heroFx" aria-hidden="true"></canvas>
     <div class="hero-inner">
-      <h1 id="course-title">Titre formation</h1>
-      <p id="course-pitch">Résumé personnalisé selon l’origine (thématique / public).</p>
-      <div id="course-meta" class="meta"></div>
+      <h1 id="course-title">RGPD : les essentiels opérationnels</h1>
+      <p id="course-pitch">Comprendre les obligations clés (base légale, registre, information, droits) et savoir quoi faire demain matin.</p>
+      <!-- meta/pastilles supprimées -->
     </div>
   </section>
 
@@ -144,18 +140,19 @@
     })();
   </script>
 
-  <!-- Données dynamiques -->
+  <!-- Données dynamiques (titre & pitch forcés) -->
   <script type="module">
-    const DEFAULT_TITLE="Titre formation";
-    const DEFAULT_PITCH="Résumé personnalisé selon l’origine (thématique / public).";
-    const DEFAULT_TAGS=['1/2 journée','Intermédiaire','Distanciel','Présentiel'];
-    const DEFAULT_PROGRAM=[
+    // Titres fixes demandés
+    const FIXED_TITLE = "RGPD : les essentiels opérationnels";
+    const FIXED_PITCH = "Comprendre les obligations clés (base légale, registre, information, droits) et savoir quoi faire demain matin.";
+
+    const DEFAULT_PROGRAM = [
       "Base légale & minimisation",
       "Registre : quoi, comment, preuves",
       "Droits des personnes : process & SLA",
       "Plan d’action 90 jours"
     ];
-    const DEFAULT_OBJECTIVES=[
+    const DEFAULT_OBJECTIVES = [
       "Comprendre les obligations et le périmètre",
       "Savoir appliquer dans votre contexte",
       "Produire les premiers livrables utiles",
@@ -164,42 +161,27 @@
 
     const titleEl = document.getElementById('course-title');
     const pitchEl = document.getElementById('course-pitch');
-    const metaEl  = document.getElementById('course-meta');
     const progEl  = document.getElementById('course-program');
     const objEl   = document.getElementById('course-objectives');
 
+    // On tente de charger les données pour le programme/obj., mais on n'écrase pas le titre/pitch
+    let course = null;
     try{
       const mod = await import("../js/courses-data.js");
       const COURSES = mod.COURSES||[];
       const slug = location.pathname.split('/').pop().replace('.html','');
-      const params=new URLSearchParams(location.search);
-      const from=params.get('from'), theme=params.get('theme'), audience=params.get('public');
+      course = COURSES.find(c=>c.slug===slug) || null;
+    }catch(e){/* silencieux */ }
 
-      const course=COURSES.find(c=>c.slug===slug);
+    // Titre & pitch : toujours les valeurs fixées
+    titleEl.textContent = FIXED_TITLE;
+    pitchEl.textContent = FIXED_PITCH;
+    document.title = `${FIXED_TITLE} – Awenoria`;
 
-      const title=course?.title||DEFAULT_TITLE;
-      const summary=course?.summary||DEFAULT_PITCH;
-      const pitch=(from==='public'&&audience&&course?.pitchByAudience?.[audience])?course.pitchByAudience[audience]:(from==='theme'&&theme&&course?.pitchByTheme?.[theme])?course.pitchByTheme[theme]:summary;
-
-      titleEl.textContent=title; pitchEl.textContent=pitch;
-
-      const dur=course?.duration?`<span class="tag">${course.duration}</span>`:''; 
-      const lvl=course?.level?`<span class="tag">${course.level}</span>`:''; 
-      const mods=(course?.modalities||[]).map(m=>`<span class="tag">${m}</span>`).join('');
-      metaEl.innerHTML=(dur||lvl||mods)?(dur+lvl+mods):DEFAULT_TAGS.map(t=>`<span class="tag">${t}</span>`).join('');
-
-      const items=(course?.program||DEFAULT_PROGRAM).map(li=>`<li>${li}</li>`).join('');
-      progEl.innerHTML=`<ul>${items}</ul>`;
-      objEl.innerHTML=(course?.objectives||DEFAULT_OBJECTIVES).map(o=>`<li>${o}</li>`).join('');
-
-      document.title=`${title} – Awenoria`;
-    }catch(e){
-      titleEl.textContent=DEFAULT_TITLE;
-      pitchEl.textContent=DEFAULT_PITCH;
-      metaEl.innerHTML=DEFAULT_TAGS.map(t=>`<span class="tag">${t}</span>`).join('');
-      progEl.innerHTML=`<ul>${DEFAULT_PROGRAM.map(li=>`<li>${li}</li>`).join('')}</ul>`;
-      objEl.innerHTML=DEFAULT_OBJECTIVES.map(o=>`<li>${o}</li>`).join('');
-    }
+    // Programme & objectifs : depuis course si dispo, sinon defaults
+    const items=(course?.program?.length?course.program:DEFAULT_PROGRAM).map(li=>`<li>${li}</li>`).join('');
+    progEl.innerHTML=`<ul>${items}</ul>`;
+    objEl.innerHTML=(course?.objectives?.length?course.objectives:DEFAULT_OBJECTIVES).map(o=>`<li>${o}</li>`).join('');
   </script>
 
   <!-- Injection header/footer + compat GitHub Pages (identique Catalogue) -->
