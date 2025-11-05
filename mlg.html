@@ -57,7 +57,7 @@
       transition:all var(--transition);
       color:inherit
     }
-    /* SURVOL : contour orangé comme sur la page "Ressources" */
+    /* SURVOL : contour orangé (aligné avec la page Ressources) */
     .card:hover{
       transform:translateY(-2px);
       border-color:var(--aw-copper);
@@ -94,6 +94,20 @@
     /* Utilitaires centrage dernière section */
     .center{ text-align:center }
     .center-narrow{ max-width:900px; margin:0 auto }
+
+    /* ====== SOUFFLE entre rubriques (comme la page Ressources) ====== */
+    /* Ajoute un espace généreux entre les sections de contenu à droite du sommaire */
+    .with-aside > div > section + section{
+      margin-top:100px; /* ajuste 80–120px si besoin */
+    }
+    /* Aère un peu le bas de chaque rubrique */
+    .with-aside > div > section{
+      padding-bottom:24px;
+    }
+    /* Un peu plus d’espace sous chaque titre */
+    .with-aside > div > section .title{
+      margin-bottom:24px;
+    }
   </style>
 </head>
 <body class="page-mentions">
@@ -105,11 +119,6 @@
     <div class="content">
       <h1>Mentions légales</h1>
       <p class="lead">Tout ce qu’un <b>site</b> ou une <b>boutique en ligne</b> doit afficher : contenu obligatoire, exemples prêts à l’emploi et erreurs fréquentes à éviter.</p>
-      <!-- Boutons supprimés à votre demande -->
-      <!-- <div class="cta-row">
-        <a class="btn" href="#obligatoires" target="_self">Voir le contenu obligatoire ↓</a>
-        <a class="btn ghost" href="modeles.html" target="_self">Ouvrir les modèles</a>
-      </div> -->
     </div>
   </section>
 
