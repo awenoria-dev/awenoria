@@ -8,14 +8,12 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- CSS globale -->
   <link rel="stylesheet" href="assets/awenoria.css">
   <base target="_blank">
 
   <style>
     :root{
-      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
+      --aw-ink:#0D5488; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
       --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
       --shadow:0 25px 50px -12px rgba(0,0,0,.15);
       --transition:.6s cubic-bezier(.22,1,.36,1);
@@ -33,118 +31,134 @@
     img{max-width:100%;display:block}
     .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
-    /* Skip link */
     .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
     .skip-link:focus{left:10px;top:10px;width:auto;height:auto;z-index:1000;background:#000;color:#fff;padding:8px 10px;border-radius:8px}
 
-    /* Hero */
     .hero{
-      position:relative; min-height:60vh; min-height:60svh;
-      display:flex; align-items:center; justify-content:center;
-      text-align:center; color:#fff; overflow:hidden;
-      background:
-        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
-        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
+      position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;
+      text-align:center;color:#fff;overflow:hidden;
+      background:radial-gradient(140% 150% at 10% -20%,rgba(255,255,255,.15),transparent 60%),
+                 radial-gradient(120% 120% at 120% 10%,rgba(255,255,255,.10),transparent 60%),
+                 linear-gradient(180deg,#0033cc 0%,#0066ff 100%);
     }
-    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
-    .hero .content{position:relative; z-index:2; max-width:900px; padding:0 20px; animation:fadeInUp 1s both;}
-    .hero h1{font-size:clamp(48px,6.5vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em;}
-    .hero .lead{font-size:1.25rem; font-weight:500; margin:18px auto 0; color:#e8f0ff;}
-    .hero .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+    .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
+    .hero .content{position:relative;z-index:2;max-width:900px;padding:0 20px;animation:fadeInUp 1s both;}
+    .hero h1{font-size:clamp(48px,6.5vw,72px);font-weight:800;line-height:1.05;letter-spacing:-.02em;}
+    .hero .lead{font-size:1.25rem;font-weight:500;margin:18px auto 0;color:#e8f0ff;}
 
-    /* Sections */
-    .section{max-width:1200px; margin:0 auto; padding:120px 20px;}
+    .section{max-width:1200px;margin:0 auto;padding:120px 20px;}
     .section.alt{background:var(--aw-bg);}
-
-    /* Titres */
+    .section.in-view .title{transform:translateY(-2px);opacity:1;}
     .title{
-      margin:0 auto 10px; text-align:center; font-size:clamp(36px,5vw,48px); font-weight:800;
-      background:linear-gradient(135deg, #0F5F9A 0%, #0d5285 100%);
-      -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 2px 4px rgba(0,0,0,.08);
+      margin:0 auto 10px;text-align:center;font-size:clamp(36px,5vw,48px);font-weight:800;
+      background:linear-gradient(135deg,#0F5F9A 0%,#0d5285 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 4px rgba(0,0,0,.08);
       transition:transform .35s ease,opacity .35s ease;
     }
-    .section.in-view .title{transform:translateY(-2px); opacity:1;}
-    .title::after{content:''; display:block; width:60px; height:4px; background:var(--aw-copper); margin:10px auto 0; border-radius:3px;}
+    .title::after{content:'';display:block;width:60px;height:4px;background:var(--aw-copper);margin:10px auto 0;border-radius:3px;}
 
-    .grid{display:grid; gap:24px; margin-top:18px;}
+    .grid{display:grid;gap:24px;margin-top:18px;}
     .cols-2{grid-template-columns:repeat(2,1fr)}
     .cols-3{grid-template-columns:repeat(3,1fr)}
     @media(max-width:980px){.cols-2,.cols-3{grid-template-columns:1fr}}
 
-    .card{background:var(--aw-panel); border:1px solid rgba(15,23,32,.08); border-radius:var(--aw-radius); box-shadow:var(--shadow); padding:24px; transition:all var(--transition); color:inherit;}
+    .card{background:var(--aw-panel);border:1px solid rgba(15,23,32,.08);border-radius:var(--aw-radius);box-shadow:var(--shadow);padding:24px;transition:all var(--transition);color:inherit;}
     .card:hover{transform:translateY(-2px)}
-    .pill{display:inline-flex; align-items:center; justify-content:center; padding:6px 12px; border-radius:999px; background:var(--aw-blue); color:#fff; font:800 12px/1 "Inter",system-ui,-apple-system,Arial,sans-serif; margin:0 0 10px 0;}
+    .pill{display:inline-flex;align-items:center;justify-content:center;padding:6px 12px;border-radius:999px;background:var(--aw-blue);color:#fff;font:800 12px/1 "Inter",system-ui,-apple-system,Arial,sans-serif;margin:0 0 10px 0;}
     .list{margin:0;padding-left:18px}
     .muted{color:var(--aw-muted)}
     .small{font-size:13px;color:var(--aw-muted)}
-    .btn{display:inline-block; padding:10px 14px; border-radius:10px; font-weight:800; color:#fff; background:var(--aw-blue); box-shadow:var(--shadow); font-size:14px; transition:all var(--transition);}
-    .btn:hover{background:var(--aw-copper); transform:translateY(-2px);}
-    .btn.ghost{background:var(--aw-panel); color:var(--aw-blue); border:1px solid rgba(15,23,32,.08);}    
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;font-weight:800;color:#fff;background:var(--aw-blue);box-shadow:var(--shadow);font-size:14px;transition:all var(--transition);}
+    .btn:hover{background:var(--aw-copper);transform:translateY(-2px);}
+    .btn.ghost{background:var(--aw-panel);color:var(--aw-blue);border:1px solid rgba(15,23,32,.08);}
     .dl{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
     .btn-row{display:flex;gap:12px;flex-wrap:wrap}
 
-    /* Sommaire + contenu */
-    .with-aside{display:grid; grid-template-columns:260px 1fr; gap:24px}
+    .with-aside{display:grid;grid-template-columns:260px 1fr;gap:24px}
     @media(max-width:1100px){.with-aside{grid-template-columns:1fr}}
-    /* Souffle homogène (colonne de droite) */
-    .with-aside > div > section + section{ margin-top:100px; }
+    .with-aside > div > section + section{margin-top:100px;}
     .with-aside > div > section{ padding-bottom:24px; }
     .with-aside > div > section .title{ margin-bottom:24px; }
 
-    /* TOC */
-    .toc{position:sticky; top:90px; align-self:start; background:var(--aw-panel); border:1px solid rgba(15,23,32,.08); border-radius:16px; padding:14px; box-shadow:var(--shadow)}
-    .toc h4{margin:0 0 8px 0; font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:var(--aw-muted)}
-    .toc a{display:block; padding:8px 10px; border-radius:10px; color:inherit}
-    .toc a.active{background:rgba(0,102,255,.08); color:var(--aw-blue); font-weight:700}
+    .toc{position:sticky;top:90px;align-self:start;background:var(--aw-panel);border:1px solid rgba(15,23,32,.08);border-radius:16px;padding:14px;box-shadow:var(--shadow);}
+    .toc h4{margin:0 0 8px;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--aw-muted);}
+    .toc a{display:block;padding:8px 10px;border-radius:10px;color:inherit;}
+    .toc a.active{background:rgba(0,102,255,.08);color:var(--aw-blue);font-weight:700;}
 
-    /* Filtre (input au-dessus des chips) */
-    .filterbar{display:flex; flex-direction:column; gap:10px; align-items:flex-start; margin:12px 0 0}
-    .filterbar input[type="search"]{flex:1; min-width:220px; width:100%; max-width:700px; padding:10px 12px; border-radius:12px; border:1px solid rgba(15,23,32,.12)}
-    .chips{display:flex; gap:8px; flex-wrap:wrap}
-    .chip{padding:6px 10px; border-radius:999px; border:1px solid rgba(15,23,32,.12); cursor:pointer; user-select:none}
-    .chip[aria-pressed="true"]{background:rgba(0,102,255,.08); border-color:var(--aw-blue); color:var(--aw-blue); font-weight:700}
+    /* === Barre de recherche + chips sur une seule ligne et pleine largeur === */
+    .filterbar{
+      display:flex;
+      flex-direction:row;
+      align-items:center;
+      gap:12px;
+      margin:12px 0 0;
+      width:100%;
+    }
+    .filterbar input[type="search"]{
+      flex:1 1 auto;
+      min-width:260px;
+      width:100%;
+      max-width:none;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(15,23,32,.12);
+    }
+    .chips{
+      display:flex;
+      flex:0 0 auto;
+      gap:8px;
+      flex-wrap:nowrap;
+      justify-content:flex-start;
+    }
+    .chip{padding:6px 10px;border-radius:999px;border:1px solid rgba(15,23,32,.12);cursor:pointer;user-select:none;}
+    .chip[aria-pressed="true"]{background:rgba(0,102,255,.08);border-color:var(--aw-blue);color:var(--aw-blue);font-weight:700;}
 
-    /* Back to top */
-    .to-top{position:fixed; right:16px; bottom:16px; z-index:50; opacity:0; visibility:hidden; transform:translateY(12px); transition:all .3s ease}
-    .to-top.show{opacity:1; visibility:visible; transform:none}
+    /* Responsive : repasse en colonne si l'espace manque */
+    @media (max-width: 900px){
+      .filterbar{flex-direction:column; align-items:stretch;}
+      .chips{flex-wrap:wrap; justify-content:center;}
+    }
 
-    /* Animations */
+    .to-top{position:fixed;right:16px;bottom:16px;z-index:50;opacity:0;visibility:hidden;transform:translateY(12px);transition:all .3s ease}
+    .to-top.show{opacity:1;visibility:visible;transform:none}
+
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
-    .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
-    .reveal.is-visible{opacity:1;transform:none}
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);}
+    .reveal.is-visible{opacity:1;transform:none;}
+
+    /* ===== AMÉLIORATIONS : flèche, tags, scroll, tout ouvrir ===== */
+    summary{display:flex;align-items:center;gap:.5rem;font-weight:600;color:var(--aw-blue);cursor:pointer;user-select:none}
+    summary svg{width:16px;height:16px;transition:transform .25s ease}
+    details[open] summary svg{transform:rotate(90deg)}
+    .tags-preview{display:flex;gap:.4rem;margin:.4rem 0 .8rem 1.6rem}
+    .tag{font-size:.7rem;padding:.15rem .5rem;border-radius:999px;background:rgba(0,102,255,.08);color:var(--aw-blue)}
+    .check-list-scroll{max-height:200px;overflow-y:auto;scroll-behavior:smooth;padding-right:8px}
+    .check-list-scroll::-webkit-scrollbar{width:6px}
+    .check-list-scroll::-webkit-scrollbar-thumb{background-color:var(--aw-muted);border-radius:3px}
+    .bulk-toggle{margin:1rem 0 0 0;font-size:.8rem;padding:6px 10px;border-radius:8px;border:1px solid rgba(15,23,32,.12);background:var(--aw-panel);color:var(--aw-blue);cursor:pointer}
+    @media(max-width:980px){details summary{font-size:.9rem}}
   </style>
 </head>
+
 <body class="page-guides">
   <a class="skip-link" href="#main">Aller au contenu</a>
-
-  <!-- Header injecté -->
   <div id="header"></div>
 
-  <!-- HERO -->
   <section class="hero">
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="content">
       <h1 id="top">Guides & bonnes pratiques</h1>
-      <p class="lead">Passe à l’action avec des check-lists prêtes à l’emploi : <b>RGPD côté site</b>, <b>Accessibilité (WCAG/RGAA)</b>, <b>Mentions & e-commerce</b>, <b>Cookies/CMP</b>.</p>
-      <div class="cta-row">
-        <a class="btn" href="#rgpd" target="_self">Voir RGPD ↓</a>
-        <a class="btn ghost" href="#mentions" target="_self">Mentions & e-commerce</a>
-      </div>
+      <p class="lead">Passe à l’action avec des check-lists prêtes à l’emploi : <b>RGPD côté site</b>, <b>Accessibilité</b>, <b>Mentions & e-commerce</b>, <b>Cookies/CMP</b>.</p>
     </div>
   </section>
 
   <main id="main">
-    <!-- Accès rapide -->
     <section class="section">
       <div class="container">
         <h2 class="title">Accès rapide</h2>
 
-        <!-- Barre de filtre AU-DESSUS des bulles -->
         <div class="filterbar" role="search">
-          <input id="filterInput" type="search"
-                 placeholder="Filtrer par mots-clés (ex. RGPD, cookies, accessibilité)"
-                 aria-label="Filtrer les guides"/>
+          <input id="filterInput" type="search" placeholder="Filtrer par mots-clés (ex. RGPD, cookies, accessibilité)" aria-label="Filtrer les guides"/>
           <div class="chips" aria-label="Raccourcis de filtre">
             <button class="chip" data-chip="rgpd" aria-pressed="false" type="button">RGPD</button>
             <button class="chip" data-chip="accessibilité" aria-pressed="false" type="button">Accessibilité</button>
@@ -154,7 +168,6 @@
           </div>
         </div>
 
-        <!-- Les 4 bulles -->
         <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:18px">
           <a class="card reveal filter-item" data-tags="rgpd confidentialité données" href="#rgpd" target="_self">
             <span class="pill">RGPD</span>
@@ -180,7 +193,6 @@
       </div>
     </section>
 
-    <!-- Zone avec sommaire latéral (scrollspy) -->
     <section class="section alt">
       <div class="container with-aside">
         <aside class="toc">
@@ -198,12 +210,21 @@
           <!-- RGPD -->
           <section id="rgpd" class="reveal filter-scope" tabindex="-1">
             <h2 class="title">RGPD côté site — check-list</h2>
+            <button class="btn ghost bulk-toggle" data-section="rgpd">Tout ouvrir</button>
             <div class="grid cols-2">
               <article class="card filter-item" data-tags="rgpd confidentialité finalités bases légales durées droits dpo transferts">
                 <h3>Ce qu’il faut afficher</h3>
                 <details>
-                  <summary>Voir la liste</summary>
-                  <ul class="list">
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">finalités</span>
+                    <span class="tag">consentement</span>
+                    <span class="tag">durées</span>
+                  </div>
+                  <ul class="list check-list-scroll">
                     <li><b>Politique de confidentialité</b> accessible depuis toutes les pages (footer, header ou menu).</li>
                     <li><b>Finalités</b> de traitement clairement listées (contact, newsletter, analytics, paiement…).</li>
                     <li><b>Bases légales</b> correspondantes (consentement, contrat, intérêt légitime…).</li>
@@ -218,8 +239,16 @@
               <article class="card filter-item" data-tags="rgpd formulaire consentement preuve journalisation opt-in email cmp">
                 <h3>Formulaires & preuve</h3>
                 <details>
-                  <summary>Voir la liste</summary>
-                  <ul class="list">
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">consentement</span>
+                    <span class="tag">journalisation</span>
+                    <span class="tag">opt-in</span>
+                  </div>
+                  <ul class="list check-list-scroll">
                     <li><b>Information au point de collecte</b> : court paragraphe + lien vers la politique.</li>
                     <li><b>Consentement</b> si nécessaire : case non cochée par défaut, texte précis, journalisation.</li>
                     <li><b>Preuve</b> : logs ou référence CMP, date/version de la politique, trace des MAJ.</li>
@@ -237,12 +266,21 @@
           <!-- Accessibilité -->
           <section id="a11y" class="reveal filter-scope" tabindex="-1">
             <h2 class="title">Accessibilité (WCAG / RGAA) — check-list</h2>
+            <button class="btn ghost bulk-toggle" data-section="a11y">Tout ouvrir</button>
             <div class="grid cols-3">
               <article class="card filter-item" data-tags="accessibilité perceptible alt contrastes titres sémantique">
                 <h3>Perceptible</h3>
                 <details>
-                  <summary>Voir la liste</summary>
-                  <ul class="list">
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">alt</span>
+                    <span class="tag">contraste</span>
+                    <span class="tag">titres</span>
+                  </div>
+                  <ul class="list check-list-scroll">
                     <li><b>Textes alternatifs</b> pour les images porteuses d’info.</li>
                     <li><b>Contrastes</b> conformes (texte/fond, boutons, liens).</li>
                     <li><b>Hiérarchie sémantique</b> (h1→h2→h3), titres de pages pertinents.</li>
@@ -252,8 +290,16 @@
               <article class="card filter-item" data-tags="accessibilité utilisable clavier focus modales carrousels médias">
                 <h3>Utilisable</h3>
                 <details>
-                  <summary>Voir la liste</summary>
-                  <ul class="list">
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">clavier</span>
+                    <span class="tag">focus</span>
+                    <span class="tag">modales</span>
+                  </div>
+                  <ul class="list check-list-scroll">
                     <li><b>Navigation clavier</b> complète (focus visible, ordre logique).</li>
                     <li><b>Composants</b> utilisables sans souris (menus, modales, carrousels).</li>
                     <li><b>Médias</b> avec sous-titres/transcriptions (si applicable).</li>
@@ -263,8 +309,16 @@
               <article class="card filter-item" data-tags="accessibilité compréhensible robuste aria landmarks déclaration médiation">
                 <h3>Compréhensible & robuste</h3>
                 <details>
-                  <summary>Voir la liste</summary>
-                  <ul class="list">
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">libellés</span>
+                    <span class="tag">ARIA</span>
+                    <span class="tag">déclaration</span>
+                  </div>
+                  <ul class="list check-list-scroll">
                     <li><b>Libellés clairs</b> pour liens/boutons (« Télécharger le PDF » plutôt que « Cliquez ici »).</li>
                     <li><b>ARIA landmarks</b> (header, nav, main, footer) et rôles adaptés.</li>
                     <li><b>Déclaration d’accessibilité</b> + mécanisme de contact/médiation.</li>
@@ -280,12 +334,21 @@
           <!-- Mentions & e-commerce -->
           <section id="mentions" class="reveal filter-scope" tabindex="-1">
             <h2 class="title">Mentions légales & e-commerce — check-list</h2>
+            <button class="btn ghost bulk-toggle" data-section="mentions">Tout ouvrir</button>
             <div class="grid cols-2">
               <article class="card filter-item" data-tags="mentions légales éditeur hébergeur contact propriété intellectuelle">
                 <h3>Identification & contact</h3>
                 <details>
-                  <summary>Voir la liste</summary>
-                  <ul class="list">
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">éditeur</span>
+                    <span class="tag">hébergeur</span>
+                    <span class="tag">contact</span>
+                  </div>
+                  <ul class="list check-list-scroll">
                     <li><b>Éditeur</b> (raison sociale, adresse, RCS/SIREN, TVA intracommunautaire).</li>
                     <li><b>Hébergeur</b> (nom, adresse, téléphone ou email).</li>
                     <li><b>Contact</b> direct (email, formulaire, téléphone si prévu).</li>
@@ -296,8 +359,16 @@
               <article class="card filter-item" data-tags="ecommerce cgv cgu rétractation médiation prix ttc livraison">
                 <h3>Vente en ligne</h3>
                 <details>
-                  <summary>Voir la liste</summary>
-                  <ul class="list">
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">CGV</span>
+                    <span class="tag">rétractation</span>
+                    <span class="tag">prix</span>
+                  </div>
+                  <ul class="list check-list-scroll">
                     <li><b>CGV/CGU</b> accessibles, acceptation explicite.</li>
                     <li><b>Droit de rétractation</b> (délais, modalités, formulaire si B2C).</li>
                     <li><b>Médiation</b> à la consommation (si B2C, FR).</li>
@@ -315,12 +386,21 @@
           <!-- Cookies / CMP -->
           <section id="cookies" class="reveal filter-scope" tabindex="-1">
             <h2 class="title">Cookies & CMP — check-list</h2>
+            <button class="btn ghost bulk-toggle" data-section="cookies">Tout ouvrir</button>
             <div class="grid cols-3">
               <article class="card filter-item" data-tags="cookies cmp bandeau refus accepter preuve consentement">
                 <h3>Bandeau & choix</h3>
                 <details>
-                  <summary>Voir la liste</summary>
-                  <ul class="list">
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">refus</span>
+                    <span class="tag">consentement</span>
+                    <span class="tag">preuve</span>
+                  </div>
+                  <ul class="list check-list-scroll">
                     <li><b>Refus aussi simple</b> que l’acceptation (même niveau, même visibilité).</li>
                     <li><b>Continuer sans accepter</b> ou <b>Tout refuser</b> présent dès la 1ʳᵉ couche.</li>
                     <li><b>Preuve du consentement</b> (journal CMP, horodatage, version).</li>
@@ -330,8 +410,16 @@
               <article class="card filter-item" data-tags="cookies politique liste retrait modification versionnage">
                 <h3>Politique cookies</h3>
                 <details>
-                  <summary>Voir la liste</summary>
-                  <ul class="list">
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">liste</span>
+                    <span class="tag">retrait</span>
+                    <span class="tag">version</span>
+                  </div>
+                  <ul class="list check-list-scroll">
                     <li><b>Liste des cookies</b> (finalité, durée, tiers).</li>
                     <li><b>Retrait/modification</b> du consentement à tout moment.</li>
                     <li><b>Date de mise à jour</b> + versionnage.</li>
@@ -341,8 +429,16 @@
               <article class="card filter-item" data-tags="cookies technique blocage tags spa sous-domaines trace bannière">
                 <h3>Mise en conformité technique</h3>
                 <details>
-                  <summary>Voir la liste</summary>
-                  <ul class="list">
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">blocage</span>
+                    <span class="tag">SPA</span>
+                    <span class="tag">trace</span>
+                  </div>
+                  <ul class="list check-list-scroll">
                     <li><b>Blocage par défaut</b> des tags non essentiels avant consentement.</li>
                     <li><b>Consistance</b> des choix d’une page à l’autre (bannières SPA, sous-domaines).</li>
                     <li><b>Trace</b> de la bannière et des changements d’état.</li>
@@ -355,7 +451,7 @@
             </div>
           </section>
 
-          <!-- CTA final (même colonne, même souffle) -->
+          <!-- CTA finale -->
           <section id="plan" class="reveal" tabindex="-1">
             <h2 class="title" style="margin-bottom:10px">Besoin d’un plan d’actions priorisé ?</h2>
             <p class="lead" style="text-align:center;max-width:820px;margin:0 auto 18px">
@@ -371,23 +467,19 @@
     </section>
   </main>
 
-  <!-- Bouton retour haut -->
   <a class="btn to-top" id="toTop" href="#top" target="_self" aria-label="Revenir en haut">↑ Haut</a>
-
-  <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- Canvas hero -->
+  <!-- Scripts -->
   <script>
+    // Canvas animé
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     let w = canvas.width = innerWidth;
     let h = canvas.height = innerHeight;
     const particles = [];
     const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
-
     addEventListener('resize', () => { w = canvas.width = innerWidth; h = canvas.height = innerHeight; });
-
     class Particle{
       constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
       update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
@@ -397,10 +489,7 @@
     function init(){ particles.length=0; for(let i=0;i<opts.count;i++) particles.push(new Particle()); }
     function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); }
     init(); animate();
-  </script>
 
-  <!-- Reveal + in-view + scrollspy + toTop + accordéons + filtre + dates -->
-  <script>
     // Reveal
     const reveals = document.querySelectorAll('.reveal');
     const ioReveal = new IntersectionObserver(entries => {
@@ -408,20 +497,14 @@
     }, { threshold: 0.15 });
     reveals.forEach(el => ioReveal.observe(el));
 
-    // Section titles in-view
-    const sections = document.querySelectorAll('.section');
-    const ioView = new IntersectionObserver(entries => {
-      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in-view'); });
-    }, { threshold: 0.35 });
-    sections.forEach(s => ioView.observe(s));
-
     // Scrollspy
     const spyLinks = Array.from(document.querySelectorAll('[data-spy]'));
     const targets = spyLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
     const spy = new IntersectionObserver(entries => {
       entries.forEach(e => {
         const id = '#' + e.target.id;
-        const link = spyLinks.find(a => a.getAttribute('href') === id);
+        theLink = spyLinks.find(a => a.getAttribute('href') === id);
+        const link = theLink;
         if (!link) return;
         if (e.isIntersecting) {
           spyLinks.forEach(a => a.classList.remove('active'));
@@ -431,40 +514,37 @@
     }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
     targets.forEach(t => spy.observe(t));
 
-    // Back to top button
+    // To top
     const toTop = document.getElementById('toTop');
     const ioTop = new IntersectionObserver(([entry]) => {
       if(entry.isIntersecting){ toTop.classList.remove('show'); } else { toTop.classList.add('show'); }
     });
     ioTop.observe(document.querySelector('.hero'));
 
-    // Accordéons: ouverts par défaut sur desktop
-    function setDetailsDefault(){
-      const wide = matchMedia('(min-width: 981px)').matches;
-      document.querySelectorAll('details').forEach(d => { d.open = wide; });
-    }
-    setDetailsDefault();
-    addEventListener('resize', setDetailsDefault);
+    // Bulk toggle
+    document.querySelectorAll('.bulk-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const section = btn.dataset.section;
+        const details = document.querySelectorAll(`#${section} details`);
+        const open = btn.textContent.includes('ouvrir');
+        details.forEach(d => d.open = open);
+        btn.textContent = open ? 'Tout fermer' : 'Tout ouvrir';
+      });
+    });
 
-    // Filtre (sans compteur)
+    // Filtre
     const filterInput = document.getElementById('filterInput');
     const chips = document.querySelectorAll('.chip');
     const items = document.querySelectorAll('.filter-item');
-    // const counter = document.getElementById('filterCount'); // supprimé volontairement
-
     let activeTags = new Set();
     function applyFilter(){
       const q = (filterInput?.value || '').toLowerCase().trim();
-      let shown = 0;
       items.forEach(el => {
         const hay = (el.textContent + ' ' + (el.getAttribute('data-tags')||'')).toLowerCase();
         const tagMatch = activeTags.size ? [...activeTags].every(t => hay.includes(t)) : true;
         const qMatch = q ? hay.includes(q) : true;
-        const visible = tagMatch && qMatch;
-        el.style.display = visible ? '' : 'none';
-        if(visible) shown++;
+        el.style.display = tagMatch && qMatch ? '' : 'none';
       });
-      // if(counter) counter.textContent = `${shown} élément${shown>1?'s':''} visible${shown>1?'s':''}`;
     }
     filterInput?.addEventListener('input', () => { clearTimeout(applyFilter._t); applyFilter._t = setTimeout(applyFilter, 150); });
     chips.forEach(ch => ch.addEventListener('click', () => {
@@ -476,12 +556,13 @@
     }));
     applyFilter();
 
-    // Dernière mise à jour + meta/LD
+    // Last update
     const last = new Date(document.lastModified);
     const fmt = last.toLocaleDateString('fr-FR', { year:'numeric', month:'long', day:'2-digit' });
     const lastNode = document.getElementById('lastUpdated');
     if(lastNode){ lastNode.textContent = fmt; lastNode.setAttribute('datetime', last.toISOString()); }
 
+    // JSON-LD
     const meta = document.createElement('meta');
     meta.setAttribute('property','article:modified_time');
     meta.setAttribute('content', last.toISOString());
@@ -491,7 +572,7 @@
     const ldScript = document.createElement('script'); ldScript.type = 'application/ld+json'; ldScript.textContent = JSON.stringify(ld); document.head.appendChild(ldScript);
   </script>
 
-  <!-- Loader header/footer + nav -->
+  <!-- Loader header/footer -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header"); const footMount = document.getElementById("footer"); if (!headMount && !footMount) return;
