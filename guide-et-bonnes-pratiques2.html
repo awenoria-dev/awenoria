@@ -13,7 +13,7 @@
 
   <style>
     :root{
-      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
+      --aw-ink:#0D5488; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
       --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
       --shadow:0 25px 50px -12px rgba(0,0,0,.15);
       --transition:.6s cubic-bezier(.22,1,.36,1);
@@ -45,7 +45,6 @@
     .hero .content{position:relative;z-index:2;max-width:900px;padding:0 20px;animation:fadeInUp 1s both;}
     .hero h1{font-size:clamp(48px,6.5vw,72px);font-weight:800;line-height:1.05;letter-spacing:-.02em;}
     .hero .lead{font-size:1.25rem;font-weight:500;margin:18px auto 0;color:#e8f0ff;}
-    .hero .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
 
     .section{max-width:1200px;margin:0 auto;padding:120px 20px;}
     .section.alt{background:var(--aw-bg);}
@@ -86,9 +85,10 @@
     .toc a{display:block;padding:8px 10px;border-radius:10px;color:inherit;}
     .toc a.active{background:rgba(0,102,255,.08);color:var(--aw-blue);font-weight:700;}
 
-    .filterbar{display:flex;flex-direction:column;gap:10px;align-items:flex-start;margin:12px 0 0;}
+    /* Centrer la barre de recherche + chips */
+    .filterbar{display:flex;flex-direction:column;gap:10px;align-items:center;margin:12px 0 0;}
     .filterbar input[type="search"]{flex:1;min-width:220px;width:100%;max-width:700px;padding:10px 12px;border-radius:12px;border:1px solid rgba(15,23,32,.12);}
-    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
     .chip{padding:6px 10px;border-radius:999px;border:1px solid rgba(15,23,32,.12);cursor:pointer;user-select:none;}
     .chip[aria-pressed="true"]{background:rgba(0,102,255,.08);border-color:var(--aw-blue);color:var(--aw-blue);font-weight:700;}
 
@@ -122,10 +122,6 @@
     <div class="content">
       <h1 id="top">Guides & bonnes pratiques</h1>
       <p class="lead">Passe à l’action avec des check-lists prêtes à l’emploi : <b>RGPD côté site</b>, <b>Accessibilité</b>, <b>Mentions & e-commerce</b>, <b>Cookies/CMP</b>.</p>
-      <div class="cta-row">
-        <a class="btn" href="#rgpd" target="_self">Voir RGPD ↓</a>
-        <a class="btn ghost" href="#mentions" target="_self">Mentions & e-commerce</a>
-      </div>
     </div>
   </section>
 
