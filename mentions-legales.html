@@ -31,11 +31,11 @@
     .hero .content{position:relative;z-index:2;max-width:880px;padding:0 20px;animation:fadeInUp 1s both}
     .hero h1{font-size:clamp(44px,6vw,68px);font-weight:800;line-height:1.05;letter-spacing:-.02em}
     .hero .lead{font-size:1.2rem;font-weight:500;margin:16px auto 0;color:#e8f0ff}
-    .hero .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
 
     /* Sections */
     .section{max-width:1200px;margin:0 auto;padding:140px 20px}
     .section.alt{background:var(--aw-bg)}
+    .section.compact{padding-top:0}
 
     /* Titles */
     .title{margin:0 auto 10px;text-align:center;font-size:clamp(36px,5vw,48px);font-weight:800;background:linear-gradient(135deg,#0F5F9A 0%,#0d5285 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 4px rgba(0,0,0,.08);transition:transform .35s ease,opacity .35s ease}
@@ -47,8 +47,22 @@
     .cols-2{grid-template-columns:repeat(2,1fr)}
     .cols-3{grid-template-columns:repeat(3,1fr)}
     @media(max-width:980px){.cols-2,.cols-3{grid-template-columns:1fr}}
-    .card{background:var(--aw-panel);border:1px solid rgba(15,23,32,.08);border-radius:var(--aw-radius);box-shadow:var(--shadow);padding:24px;transition:all var(--transition);color:inherit}
-    .card:hover{transform:translateY(-2px)}
+
+    .card{
+      background:var(--aw-panel);
+      border:1px solid rgba(15,23,32,.08);
+      border-radius:var(--aw-radius);
+      box-shadow:var(--shadow);
+      padding:24px;
+      transition:all var(--transition);
+      color:inherit
+    }
+    .card:hover{
+      transform:translateY(-2px);
+      border-color:var(--aw-copper);
+      box-shadow:0 28px 56px rgba(0,0,0,.10);
+    }
+
     .muted{color:var(--aw-muted)}
     .btn{display:inline-block;padding:10px 14px;border-radius:10px;font-weight:800;color:#fff;background:var(--aw-blue);box-shadow:var(--shadow);font-size:14px;transition:all var(--transition)}
     .btn:hover{background:var(--aw-copper);transform:translateY(-2px)}
@@ -67,10 +81,29 @@
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
     .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
     .reveal.is-visible{opacity:1;transform:none}
+
+    /* Back to top */
+    .to-top{
+      position:fixed; right:16px; bottom:16px; z-index:50;
+      opacity:0; visibility:hidden; transform:translateY(12px);
+      transition:all .3s ease;
+    }
+    .to-top.show{ opacity:1; visibility:visible; transform:none }
+
+    /* Souffle entre rubriques (dans la même colonne) */
+    .with-aside > div > section + section{ margin-top:100px; }
+    .with-aside > div > section{ padding-bottom:24px; }
+    .with-aside > div > section .title{ margin-bottom:24px; }
+
+    /* Même souffle pour la rubrique finale (dans un nouveau with-aside) */
+    .with-aside .rubrique-gap{ margin-top:100px; }
   </style>
 </head>
 <body class="page-mentions">
   <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <!-- Header injecté (même schéma que la page Ressources) -->
+  <div id="header"></div>
 
   <!-- Hero -->
   <section class="hero">
@@ -78,18 +111,13 @@
     <div class="content">
       <h1>Mentions légales</h1>
       <p class="lead">Tout ce qu’un <b>site</b> ou une <b>boutique en ligne</b> doit afficher : contenu obligatoire, exemples prêts à l’emploi et erreurs fréquentes à éviter.</p>
-      <!-- Boutons supprimés à votre demande -->
-      <!-- <div class="cta-row">
-        <a class="btn" href="#obligatoires" target="_self">Voir le contenu obligatoire ↓</a>
-        <a class="btn ghost" href="modeles.html" target="_self">Ouvrir les modèles</a>
-      </div> -->
     </div>
   </section>
 
   <main id="main">
+    <!-- Bloc principal -->
     <section class="section alt">
       <div class="container with-aside">
-        <!-- Sommaire -->
         <aside class="toc">
           <h4>Sommaire</h4>
           <nav aria-label="Sommaire de la page">
@@ -103,9 +131,7 @@
           <div class="small" style="margin-top:10px">Dernière mise à jour : <time id="lastUpdated">—</time></div>
         </aside>
 
-        <!-- Contenu -->
         <div>
-          <!-- Contenu obligatoire -->
           <section id="obligatoires" class="reveal" tabindex="-1">
             <h2 class="title">Contenu obligatoire</h2>
             <div class="grid cols-2">
@@ -142,7 +168,6 @@
             </div>
           </section>
 
-          <!-- Selon le statut -->
           <section id="selon-statut" class="reveal" tabindex="-1">
             <h2 class="title">Adapter selon votre statut</h2>
             <div class="grid cols-3">
@@ -172,7 +197,6 @@
             </div>
           </section>
 
-          <!-- E-commerce -->
           <section id="ecommerce" class="reveal" tabindex="-1">
             <h2 class="title">e-commerce B2C</h2>
             <div class="grid cols-2">
@@ -193,7 +217,6 @@
             </div>
           </section>
 
-          <!-- Données & cookies -->
           <section id="donnees" class="reveal" tabindex="-1">
             <h2 class="title">Données personnelles & cookies</h2>
             <div class="grid cols-2">
@@ -210,7 +233,6 @@
             </div>
           </section>
 
-          <!-- Exemples & modèles -->
           <section id="exemples" class="reveal" tabindex="-1">
             <h2 class="title">Exemples & modèles</h2>
             <div class="grid cols-2">
@@ -241,7 +263,6 @@
             </div>
           </section>
 
-          <!-- FAQ erreurs fréquentes -->
           <section id="faq" class="reveal" tabindex="-1">
             <h2 class="title">Erreurs fréquentes & bonnes pratiques</h2>
             <div class="grid cols-2">
@@ -268,23 +289,29 @@
       </div>
     </section>
 
-    <!-- CTA final (déplacé à l'intérieur de <main> pour l'alignement) -->
-    <section class="section">
-      <div class="container" style="text-align:center">
-        <h2 class="title" style="margin-bottom:10px">Besoin d’un modèle adapté à votre cas ?</h2>
-        <p class="subtitle-center">On personnalise vos mentions légales (statut, secteur, B2C/B2B) et on les relie à vos politiques.</p>
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px">
-          <a class="btn" href="contact.html" target="_self">Parler à un expert</a>
-          <a class="btn ghost" href="modeles.html" target="_self">Voir les modèles</a>
+    <!-- Dernière rubrique alignée + même souffle -->
+    <section class="section alt compact">
+      <div class="container with-aside">
+        <div style="grid-column: 2 / 3;">
+          <section class="reveal rubrique-gap" tabindex="-1">
+            <h2 class="title">Besoin d’un modèle adapté à votre cas&nbsp;?</h2>
+            <p class="muted" style="max-width:700px;margin-bottom:24px;">
+              On personnalise vos mentions légales (statut, secteur, B2C/B2B) et on les relie à vos politiques.
+            </p>
+            <div class="btn-row">
+              <a class="btn" href="contact.html" target="_self">Parler à un expert</a>
+              <a class="btn ghost" href="modeles.html" target="_self">Voir les modèles</a>
+            </div>
+          </section>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- Canvas + reveal + toc + date + SEO -->
+  <!-- Canvas + reveal + toc + date + SEO + Back to top -->
   <script>
     // Canvas
     const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
@@ -320,11 +347,22 @@
     const fmt = last.toLocaleDateString('fr-FR', { year:'numeric', month:'long', day:'2-digit' });
     const lastNode = document.getElementById('lastUpdated'); if(lastNode){ lastNode.textContent = fmt; lastNode.setAttribute('datetime', last.toISOString()) }
     const meta = document.createElement('meta'); meta.setAttribute('property','article:modified_time'); meta.setAttribute('content', last.toISOString()); document.head.appendChild(meta);
-    const ld = { '@context':'https://schema.org ', '@type':'WebPage', name:'Mentions légales | Awenoria', url: location.href, dateModified: last.toISOString() };
+    const ld = { '@context':'https://schema.org', '@type':'WebPage', name:'Mentions légales | Awenoria', url: location.href, dateModified: last.toISOString() };
     const ldScript = document.createElement('script'); ldScript.type = 'application/ld+json'; ldScript.textContent = JSON.stringify(ld); document.head.appendChild(ldScript);
+
+    // Back to top
+    const toTop = document.getElementById('toTop');
+    const hero = document.querySelector('.hero');
+    if (toTop && hero){
+      const ioTop = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) { toTop.classList.remove('show'); }
+        else { toTop.classList.add('show'); }
+      });
+      ioTop.observe(hero);
+    }
   </script>
 
-  <!-- Loader header/footer + nav -->
+  <!-- Loader header/footer (identique au schéma existant) -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header"); const footMount = document.getElementById("footer"); if (!headMount && !footMount) return;
@@ -332,9 +370,12 @@
     const candidates = (p) => { const clean = p.replace(/^\//, ""); return [ base + clean, "./" + clean, "../" + clean ] };
     async function fetchAny(paths) { const queue = paths.flatMap(candidates); for (const u of queue) { try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text() } catch(_) {} } throw new Error("Aucun chemin valide parmi: " + paths.join(", ")) }
     function fixRootUrls(container) { container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]').forEach(el => { const attr = el.hasAttribute("href") ? "href" : "src"; const val = el.getAttribute(attr); if (/^\/\//.test(val)) return; el.setAttribute(attr, base + val.replace(/^\//, "")) }) }
-    if (headMount) { fetchAny(["header.html", "partials/header.html"]).then(html => { headMount.innerHTML = html; fixRootUrls(headMount); return fetchAny(["assets/nav.js", "nav.js"]) }).then(code => { const s = document.createElement("script"); if (/(import|export)/.test(code)) s.type = "module"; s.textContent = code; document.body.appendChild(s) }).catch(err => { console.error("Header load error:", err); headMount.innerHTML = "<!-- Header introuvable -->" }) }
+    if (headMount) { fetchAny(["header.html", "partials/header.html"]).then(html => { headMount.innerHTML = html; fixRootUrls(headMount); return fetchAny(["assets/nav.js", "nav.js"]) }).then(code => { const s = document.createElement("script"); if (/\b(import|export)\b/.test(code)) s.type = "module"; s.textContent = code; document.body.appendChild(s) }).catch(err => { console.error("Header load error:", err); headMount.innerHTML = "<!-- Header introuvable -->" }) }
     if (footMount) { fetchAny(["footer.html", "partials/footer.html"]).then(html => { footMount.innerHTML = html; fixRootUrls(footMount) }).catch(err => { console.error("Footer load error:", err); footMount.innerHTML = "<!-- Footer introuvable -->" }) }
   });
   </script>
+
+  <!-- Bouton retour haut -->
+  <a class="btn to-top" id="toTop" href="#top" target="_self" aria-label="Revenir en haut">↑ Haut</a>
 </body>
 </html>
