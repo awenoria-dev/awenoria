@@ -66,9 +66,8 @@
     .subtitle-center{font-size:1.2rem; color:var(--aw-muted); max-width:680px; margin:0 auto 56px; text-align:center;}
 
     .grid{display:grid; gap:24px; margin-top:18px}
-    .cols-2{grid-template-columns:repeat(2,1fr)}
     .cols-3{grid-template-columns:repeat(3,1fr)}
-    @media(max-width:980px){.cols-2,.cols-3{grid-template-columns:1fr}}
+    @media(max-width:980px){.cols-3{grid-template-columns:1fr}}
 
     .card{background:var(--aw-panel); border:1px solid rgba(15,23,32,.08);
       border-radius:var(--aw-radius); box-shadow:var(--shadow);
@@ -81,7 +80,7 @@
     .small{font-size:13px;color:var(--aw-muted)}
     .btn{display:inline-block; padding:10px 14px; border-radius:10px; font-weight:800; color:#fff; background:var(--aw-blue); box-shadow:var(--shadow); font-size:14px; transition:all var(--transition);}
     .btn:hover{background:var(--aw-copper); transform:translateY(-2px);}
-    .btn.ghost{background:var(--aw-panel); color:var(--aw-blue); border:1px solid rgba(15,23,32,.08);}    
+    .btn.ghost{background:var(--aw-panel); color:var(--aw-blue); border:1px solid rgba(15,23,32,.08);}
     .btn-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
     .list{margin:0;padding-left:18px}
 
@@ -107,6 +106,19 @@
     /* Back to top */
     .to-top{position:fixed; right:16px; bottom:16px; z-index:50; opacity:0; visibility:hidden; transform:translateY(12px); transition:all .3s ease}
     .to-top.show{opacity:1; visibility:visible; transform:none}
+
+    /* IA Act card expansion */
+    .ia-card{overflow:hidden}
+    .ia-summary{display:flex;flex-direction:column;cursor:pointer}
+    .ia-top{margin-bottom:auto}
+    .ia-bulb{width:28px;height:28px;fill:var(--aw-copper);margin:8px auto 0;animation:sway 1.2s ease-in-out infinite;animation-delay:.6s}
+    .ia-card[open] .ia-bulb{transform:rotate(45deg);animation:none}
+    @keyframes sway{
+      0%,100%{transform:translateX(0)}
+      25%{transform:translateX(-3px)}
+      75%{transform:translateX(3px)}
+    }
+    .ia-content{margin-top:16px}
   </style>
 </head>
 <body class="page-ressources">
@@ -120,7 +132,6 @@
     <div class="content">
       <h1>Ressources & documentation</h1>
       <p class="lead">Tout pour transformer un diagnostic en plan d’actions : guides, modèles, FAQ, et notre nouveau dossier <b>IA Act</b>.</p>
-      <!-- Boutons supprimés -->
     </div>
   </section>
 
@@ -130,7 +141,6 @@
       <div class="container">
         <h2 class="title">Accès rapide</h2>
 
-        <!-- Barre de filtre déplacée au-dessus des trois bulles -->
         <div class="filterbar" role="search">
           <input id="filterInput" type="search" placeholder="Filtrer les cartes (ex. RGPD, cookies, modèles)" aria-label="Filtrer les cartes"/>
           <div class="chips" aria-label="Raccourcis de filtre">
@@ -141,7 +151,6 @@
             <button class="chip" data-chip="modèles" aria-pressed="false" type="button">Modèles</button>
             <button class="chip" data-chip="ia act" aria-pressed="false" type="button">IA Act</button>
           </div>
-          <!-- compteur supprimé -->
         </div>
 
         <div class="grid cols-3">
@@ -258,48 +267,51 @@
             </p>
 
             <div class="grid cols-3">
-              <a class="card reveal filter-item" data-tags="ia act vue d'ensemble risques" href="#ia-bref" target="_self">
-                <span class="pill">En bref</span>
-                <h3>IA Act : vue d’ensemble</h3>
-                <p class="muted">Approche par risques, principes, notions-clés (fournisseur, déployeur, distributeur).</p>
-                <p class="btn-row"><span class="btn ghost">Lire le résumé →</span></p>
-              </a>
-              <a class="card reveal filter-item" data-tags="ia act obligations rôles" href="#ia-roles" target="_self">
-                <span class="pill">Par rôle</span>
-                <h3>Obligations principales</h3>
-                <p class="muted">Fournisseurs, déployeurs, distributeurs : responsabilités et contrôles.</p>
-                <p class="btn-row"><span class="btn ghost">Voir par rôle →</span></p>
-              </a>
-              <a class="card reveal filter-item" data-tags="ia act checklists matrices" href="#ia-kits" target="_self">
-                <span class="pill">Outils</span>
-                <h3>Check-lists & matrices</h3>
-                <p class="muted">Qualification, contrôles pré-mise en circulation, surveillance post-commercialisation.</p>
-                <p class="btn-row"><span class="btn ghost">Accéder aux kits →</span></p>
-              </a>
-            </div>
-
-            <div class="grid cols-2" style="margin-top:18px">
-              <details id="ia-bref" class="card reveal">
-                <summary>IA Act en bref — ce qu’il faut retenir</summary>
-                <div class="muted" style="margin-top:10px">
+              <!-- Carte 1 -->
+              <details class="card reveal ia-card filter-item" data-tags="ia act vue d'ensemble risques">
+                <summary class="ia-summary">
+                  <div class="ia-top">
+                    <span class="pill">En bref</span>
+                    <h3>IA Act : vue d’ensemble</h3>
+                    <p class="muted">Approche par risques, principes, notions-clés (fournisseur, déployeur, distributeur).</p>
+                  </div>
+                  <svg class="ia-bulb" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7zM9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+                </summary>
+                <div class="ia-content muted">
                   <p><b>Approche par les risques.</b> Interdiction pour certains usages (inacceptables), exigences strictes pour les systèmes à <b>haut risque</b>, obligations de transparence pour <b>risque limité</b>, bonnes pratiques pour <b>risque minimal</b>.</p>
                   <p><b>Objectif.</b> Déployer une IA digne de confiance sans freiner l’innovation, en protégeant les droits fondamentaux.</p>
                   <p><b>Conséquence pratique.</b> Dès la phase de cadrage, qualifier votre système et organiser vos preuves (qui fait quoi, quand, comment).</p>
                 </div>
               </details>
 
-              <details id="ia-roles" class="card reveal">
-                <summary>Obligations par rôle (fournisseur, déployeur, distributeur)</summary>
-                <div class="muted" style="margin-top:10px">
+              <!-- Carte 2 -->
+              <details class="card reveal ia-card filter-item" data-tags="ia act obligations rôles">
+                <summary class="ia-summary">
+                  <div class="ia-top">
+                    <span class="pill">Par rôle</span>
+                    <h3>Obligations principales</h3>
+                    <p class="muted">Fournisseurs, déployeurs, distributeurs : responsabilités et contrôles.</p>
+                  </div>
+                  <svg class="ia-bulb" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7zM9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+                </summary>
+                <div class="ia-content muted">
                   <p><b>Fournisseurs.</b> Système de gestion des risques, gouvernance des données, documentation technique complète, transparence, instructions d’utilisation, et <i>surveillance post-commercialisation</i>.</p>
                   <p><b>Déployeurs.</b> Vérifier les informations du fournisseur, qualifier l’usage réel, mettre en place la supervision humaine, informer les utilisateurs finaux et suivre les incidents.</p>
                   <p><b>Distributeurs/Intégrateurs.</b> Traçabilité, contrôles de conformité, étiquetage et information, gestion des versions/modèles et support aux clients.</p>
                 </div>
               </details>
 
-              <details id="ia-kits" class="card reveal">
-                <summary>Check-lists & matrices prêtes à l’emploi</summary>
-                <div class="muted" style="margin-top:10px">
+              <!-- Carte 3 -->
+              <details class="card reveal ia-card filter-item" data-tags="ia act checklists matrices">
+                <summary class="ia-summary">
+                  <div class="ia-top">
+                    <span class="pill">Outils</span>
+                    <h3>Check-lists & matrices</h3>
+                    <p class="muted">Qualification, contrôles pré-mise en circulation, surveillance post-commercialisation.</p>
+                  </div>
+                  <svg class="ia-bulb" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7zM9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
+                </summary>
+                <div class="ia-content muted">
                   <ul class="list">
                     <li><b>Qualification & risque :</b> grille de qualification (usage, données, contexte), détermination du niveau de risque.</li>
                     <li><b>Avant mise en circulation :</b> contrôles documentaires, tests, transparence, consignes utilisateurs.</li>
@@ -384,20 +396,15 @@
     const filterInput = document.getElementById('filterInput');
     const chips = document.querySelectorAll('.chip');
     const items = document.querySelectorAll('.filter-item');
-    const counter = document.getElementById('filterCount');
     let activeTags = new Set();
     function applyFilter(){
       const q = (filterInput?.value || '').toLowerCase().trim();
-      let shown = 0;
       items.forEach(el => {
         const hay = (el.textContent + ' ' + (el.getAttribute('data-tags')||'')).toLowerCase();
         const tagMatch = activeTags.size ? [...activeTags].every(t => hay.includes(t)) : true;
         const qMatch = q ? hay.includes(q) : true;
-        const visible = tagMatch && qMatch;
-        el.style.display = visible ? '' : 'none';
-        if(visible) shown++;
+        el.style.display = tagMatch && qMatch ? '' : 'none';
       });
-      if(counter) counter.textContent = `${shown} carte${shown>1?'s':''} visible${shown>1?'s':''}`;
     }
     filterInput?.addEventListener('input', () => { window.clearTimeout(applyFilter._t); applyFilter._t = setTimeout(applyFilter, 150); });
     chips.forEach(ch => ch.addEventListener('click', () => {
@@ -415,7 +422,7 @@
     const lastNode = document.getElementById('lastUpdated');
     if(lastNode){ lastNode.textContent = fmt; lastNode.setAttribute('datetime', last.toISOString()); }
     const meta = document.createElement('meta'); meta.setAttribute('property','article:modified_time'); meta.setAttribute('content', last.toISOString()); document.head.appendChild(meta);
-    const ld = { '@context':'https://schema.org', '@type':'WebPage', name:'Ressources — Awenoria', url: location.href, dateModified: last.toISOString() };
+    const ld = { '@context':'https://schema.org ', '@type':'WebPage', name:'Ressources — Awenoria', url: location.href, dateModified: last.toISOString() };
     const ldScript = document.createElement('script'); ldScript.type = 'application/ld+json'; ldScript.textContent = JSON.stringify(ld); document.head.appendChild(ldScript);
 
     /* Back to top */
@@ -423,78 +430,5 @@
     const ioTop = new IntersectionObserver(([entry]) => { if(entry.isIntersecting){ toTop.classList.remove('show'); } else { toTop.classList.add('show'); } });
     ioTop.observe(document.querySelector('.hero'));
   </script>
-
-  <!-- Loader header/footer + nav -->
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const headMount = document.getElementById("header");
-    const footMount = document.getElementById("footer");
-    if (!headMount && !footMount) return;
-
-    const isGh = /github\.io$/.test(location.hostname);
-    let base = "/";
-    if (isGh) {
-      const parts = location.pathname.split("/").filter(Boolean);
-      base = parts.length ? `/${parts[0]}/` : "/";
-    }
-
-    const candidates = (p) => {
-      const clean = p.replace(/^\//, "");
-      return [ base + clean, "./" + clean, "../" + clean ];
-    };
-
-    async function fetchAny(paths) {
-      const queue = paths.flatMap(candidates);
-      for (const u of queue) {
-        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
-      }
-      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
-    }
-
-    function fixRootUrls(container) {
-      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
-        .forEach(el => {
-          const attr = el.hasAttribute("href") ? "href" : "src";
-          const val = el.getAttribute(attr);
-          if (/^\/\//.test(val)) return;
-          el.setAttribute(attr, base + val.replace(/^\//, ""));
-        });
-    }
-
-    // HEADER
-    if (headMount) {
-      fetchAny(["header.html", "partials/header.html"])
-        .then(html => {
-          headMount.innerHTML = html;
-          fixRootUrls(headMount);
-          return fetchAny(["assets/nav.js", "nav.js"]);
-        })
-        .then(code => {
-          const s = document.createElement("script");
-          if (/\b(import|export)\b/.test(code)) s.type = "module";
-          s.textContent = code;
-          document.body.appendChild(s);
-          console.log("[awenoria] header + nav chargés");
-        })
-        .catch(err => {
-          console.error("Header load error:", err);
-          headMount.innerHTML = "<!-- Header introuvable -->";
-        });
-    }
-
-    // FOOTER
-    if (footMount) {
-      fetchAny(["footer.html", "partials/footer.html"])
-        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
-        .catch(err => {
-          console.error("Footer load error:", err);
-          footMount.innerHTML = "<!-- Footer introuvable -->";
-        });
-    }
-  });
-  </script>
-
-  <!-- Back to top button -->
-  <a class="btn to-top" id="toTop" href="#top" target="_self" aria-label="Revenir en haut">↑ Haut</a>
 </body>
 </html>
