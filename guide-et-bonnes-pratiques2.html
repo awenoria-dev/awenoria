@@ -85,12 +85,39 @@
     .toc a{display:block;padding:8px 10px;border-radius:10px;color:inherit;}
     .toc a.active{background:rgba(0,102,255,.08);color:var(--aw-blue);font-weight:700;}
 
-    /* Centrer la barre de recherche + chips */
-    .filterbar{display:flex;flex-direction:column;gap:10px;align-items:center;margin:12px 0 0;}
-    .filterbar input[type="search"]{flex:1;min-width:220px;width:100%;max-width:700px;padding:10px 12px;border-radius:12px;border:1px solid rgba(15,23,32,.12);}
-    .chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+    /* === Barre de recherche + chips sur une seule ligne et pleine largeur === */
+    .filterbar{
+      display:flex;
+      flex-direction:row;
+      align-items:center;
+      gap:12px;
+      margin:12px 0 0;
+      width:100%;
+    }
+    .filterbar input[type="search"]{
+      flex:1 1 auto;
+      min-width:260px;
+      width:100%;
+      max-width:none;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(15,23,32,.12);
+    }
+    .chips{
+      display:flex;
+      flex:0 0 auto;
+      gap:8px;
+      flex-wrap:nowrap;
+      justify-content:flex-start;
+    }
     .chip{padding:6px 10px;border-radius:999px;border:1px solid rgba(15,23,32,.12);cursor:pointer;user-select:none;}
     .chip[aria-pressed="true"]{background:rgba(0,102,255,.08);border-color:var(--aw-blue);color:var(--aw-blue);font-weight:700;}
+
+    /* Responsive : repasse en colonne si l'espace manque */
+    @media (max-width: 900px){
+      .filterbar{flex-direction:column; align-items:stretch;}
+      .chips{flex-wrap:wrap; justify-content:center;}
+    }
 
     .to-top{position:fixed;right:16px;bottom:16px;z-index:50;opacity:0;visibility:hidden;transform:translateY(12px);transition:all .3s ease}
     .to-top.show{opacity:1;visibility:visible;transform:none}
@@ -476,7 +503,8 @@
     const spy = new IntersectionObserver(entries => {
       entries.forEach(e => {
         const id = '#' + e.target.id;
-        const link = spyLinks.find(a => a.getAttribute('href') === id);
+        theLink = spyLinks.find(a => a.getAttribute('href') === id);
+        const link = theLink;
         if (!link) return;
         if (e.isIntersecting) {
           spyLinks.forEach(a => a.classList.remove('active'));
