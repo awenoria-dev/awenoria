@@ -47,13 +47,13 @@
     .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
     .hero .content{position:relative;z-index:2;max-width:900px;padding:0 20px;animation:fadeInUp 1s both}
     .hero h1{font-size:clamp(52px,7vw,72px);font-weight:800;line-height:1.05;letter-spacing:-.02em}
-    /* .hero .lead supprimé comme demandé */
 
     /* Sections / titres */
     .section{max-width:1200px;margin:0 auto;padding:100px 20px}
     .section.alt{background:var(--aw-bg)}
-    .title{margin:0 0 10px;text-align:center;font-size:clamp(36px,5vw,48px);font-weight:800;background:linear-gradient(135deg,#0F5F9A 0%,#0d5285 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 4px rgba(0,0,0,.08);transition:transform .35s ease,opacity .35s ease}
-    .section.in-view .title{transform:translateY(-2px);opacity:1}
+    .title{margin:0 0 10px;text-align:center;font-size:clamp(36px,5vw,48px);font-weight:800;background:linear-gradient(135deg,#0F5F9A 0%,#0d5285 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 4px rgba(0,0,0,.08)}
+    .title-center{margin:0 0 10px;text-align:center;font-size:clamp(32px,4.5vw,42px);font-weight:800;color:#0d5285}
+    .underline{width:60px;height:6px;border-radius:6px;margin:10px auto 24px;background:var(--aw-copper);opacity:.9}
     .subtitle-center{font-size:1.2rem;color:var(--aw-muted);max-width:840px;margin:0 auto 56px;text-align:center}
 
     /* Grids & cards */
@@ -61,9 +61,10 @@
     .cols-2{grid-template-columns:repeat(2,1fr)}
     .cols-3{grid-template-columns:repeat(3,1fr)}
     @media(max-width:980px){.cols-2,.cols-3{grid-template-columns:1fr}}
-    .card{background:var(--aw-panel);border:1px solid rgba(15,95,154,.12);border-radius:var(--aw-radius);box-shadow:var(--shadow);padding:24px;transition:all var(--transition);display:block;color:inherit}
+    .card{position:relative;background:var(--aw-panel);border:1px solid rgba(15,95,154,.12);border-radius:var(--aw-radius);box-shadow:var(--shadow);padding:24px;transition:all var(--transition);display:block;color:inherit}
     .card:hover{transform:translateY(-4px);box-shadow:0 28px 56px rgba(15,95,154,.15);border-color:var(--aw-copper)}
     .pill{display:inline-flex;align-items:center;justify-content:center;padding:6px 12px;margin:0 0 10px;border-radius:999px;background:var(--aw-blue);color:#fff;font:800 12px/1 "Inter"}
+    .badge-new{position:absolute;top:10px;right:12px;padding:6px 12px;border-radius:999px;background:var(--aw-copper);color:#fff;font:800 12px/1 "Inter"}
     .muted{color:var(--aw-muted)}
     .small{font-size:13px;color:var(--aw-muted)}
     .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;font-weight:800;color:#fff;background:var(--aw-blue);border:none;cursor:pointer;transition:all var(--transition);box-shadow:var(--shadow)}
@@ -93,25 +94,28 @@
     form.smart label{font-size:12px;color:var(--aw-muted)}
     form.smart input,form.smart select,form.smart textarea{width:100%;padding:10px 12px;border:1px solid rgba(15,23,32,.1);border-radius:12px;background:var(--aw-panel);font:500 14px/1.4 "Inter";color:var(--aw-ink)}
     .fieldset{border:1px dashed rgba(15,23,32,.15);border-radius:14px;padding:12px}
-    .fieldset legend{font-weight:800;font-size:12px;color:var(--aw-muted);padding:0 6px}
+    .fieldset legend{font-weight:800;font-size:12px;color:var(--aw-muted)}
     .req::after{content:' *';color:var(--aw-copper)}
     .hint{font-size:12px;color:var(--aw-muted)}
     .model{display:flex;flex-direction:column;gap:10px}
     .model textarea{width:100%;min-height:320px;resize:vertical;padding:14px;border:1px solid rgba(15,95,154,.12);border-radius:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:14px;line-height:1.55;background:var(--aw-bg);color:var(--aw-ink)}
 
+    /* FAQ details style (PJ) */
+    .faq-q{max-width:680px;margin:0 auto 1.2rem;border:1px solid rgba(15,23,32,.08);border-radius:var(--aw-radius);background:var(--aw-panel);box-shadow:var(--shadow)}
+    .faq-q summary{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;font-weight:800;cursor:pointer;list-style:none}
+    .faq-q summary::after{content:"+";font-size:1.4rem;color:var(--aw-copper);transition:transform .2s}
+    .faq-q[open] summary::after{transform:rotate(45deg)}
+    .faq-a{padding:0 1.4rem 1.4rem;color:var(--aw-muted)}
+
     /* Back to top */
     .to-top{position:fixed; right:16px; bottom:16px; z-index:50; opacity:0; visibility:hidden; transform:translateY(12px); transition:all .3s ease}
     .to-top.show{opacity:1; visibility:visible; transform:none}
-
-    /* Animations */
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
-    .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
-    .reveal.is-visible{opacity:1;transform:none}
   </style>
 </head>
 <body class="page-modeles">
   <a class="skip-link" href="#main">Aller au contenu</a>
 
+  <!-- Injection HEADER -->
   <div id="header"></div>
 
   <!-- HERO -->
@@ -119,7 +123,6 @@
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="content">
       <h1 id="top">Modèles juridiques</h1>
-      <!-- Texte PJ1 supprimé -->
     </div>
   </section>
 
@@ -128,7 +131,9 @@
     <section class="section">
       <div class="container">
         <h2 class="title">Éditer mon formulaire</h2>
-        <p class="subtitle-center">Choisis un modèle, filtre par thème, puis utilise l’éditeur intelligent pour pré-remplir les <b>[[…]]</b>.</p>
+        <p class="subtitle-center">
+          Cliquez sur un modèle, affinez votre sélection avec les filtres, puis remplissez le formulaire : les <b>[[…]]</b> deviennent instantanément vos mentions légales.
+        </p>
 
         <div class="filterbar" role="search">
           <input id="filterInput" type="search" placeholder="Filtrer (ex. RGPD, cookies, mentions, CGV)" aria-label="Filtrer les cartes"/>
@@ -140,11 +145,15 @@
             <button class="chip" data-chip="emailing" aria-pressed="false" type="button">Emailing</button>
             <button class="chip" data-chip="cgv" aria-pressed="false" type="button">CGV</button>
           </div>
-          <span id="filterCount" class="small" aria-live="polite" style="margin-left:auto"></span>
         </div>
 
         <div class="grid cols-3" style="margin-top:14px">
-          <a class="card reveal filter-item" data-tags="rgpd confidentialité politique" href="#polconf" target="_self"><span class="pill">RGPD</span><h3>Politique de confidentialité</h3><p class="muted">Site vitrine / lead gen</p></a>
+          <a class="card reveal filter-item" data-tags="rgpd confidentialité politique" href="#polconf" target="_self">
+            <span class="pill">RGPD</span>
+            <span class="badge-new">Nouveau</span>
+            <h3>Politique de confidentialité</h3>
+            <p class="muted">Site vitrine / lead gen</p>
+          </a>
           <a class="card reveal filter-item" data-tags="cookies cmp consentement politique" href="#polcookies" target="_self"><span class="pill">Cookies</span><h3>Politique cookies & CMP</h3><p class="muted">Transparence & preuve</p></a>
           <a class="card reveal filter-item" data-tags="mentions légales éditeur hébergeur" href="#mentions" target="_self"><span class="pill">Mentions</span><h3>Mentions légales</h3><p class="muted">Éditeur, hébergeur, RCS…</p></a>
           <a class="card reveal filter-item" data-tags="formulaire clause collecte" href="#form" target="_self"><span class="pill">Formulaires</span><h3>Clauses au point de collecte</h3><p class="muted">Contact, devis, newsletter</p></a>
@@ -169,6 +178,8 @@
             <a href="#cgv" data-spy>CGV (B2C)</a>
           </nav>
           <div class="small" style="margin-top:10px">Dernière mise à jour : <time id="lastUpdated">—</time></div>
+          <!-- Bouton reprise session -->
+          <button class="btn ghost" id="resumeBtn" style="margin-top:12px;width:100%;display:none">Reprendre ma dernière session</button>
         </aside>
 
         <div>
@@ -248,10 +259,6 @@
           </section>
 
           <!-- Modèles -->
-          <!-- (le reste de la page est inchangé) -->
-          <!-- ... TOUT TON CONTENU DE MODÈLES ICI (inchangé) ... -->
-
-          <!-- --- Début des sections modèles existantes --- -->
           <section id="polconf" class="section alt reveal" tabindex="-1" style="padding-top:0">
             <h2 class="title">Politique de confidentialité — modèle “site vitrine”</h2>
             <div class="card model">
@@ -430,12 +437,34 @@ Droit français. Tribunaux compétents selon le droit commun.
               <div class="btn-row"><button class="btn" data-copy="#mdl-cgv">Copier le modèle</button></div>
             </div>
           </section>
-          <!-- --- Fin des sections modèles existantes --- -->
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- ===== FAQ (déplacée avant la CTA) ===== -->
+    <section id="faq" class="section" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 id="faq-title" class="title-center">Questions fréquentes</h2>
+        <div class="underline" aria-hidden="true"></div>
+
+        <details class="faq-q">
+          <summary>Dois-je nommer un DPO&nbsp;?</summary>
+          <p class="faq-a">Obligatoire pour certains organismes (publics, suivi à grande échelle, traitements sensibles). Sinon, nommez un contact RGPD et documentez votre gouvernance.</p>
+        </details>
+
+        <details class="faq-q">
+          <summary>Puis-je mutualiser mentions légales &amp; CGV&nbsp;?</summary>
+          <p class="faq-a">Vous pouvez les lier, mais gardez des pages séparées : Mentions légales (identité, hébergeur), Politique de confidentialité (RGPD), CGV (contrat). C’est plus clair et plus simple à mettre à jour.</p>
+        </details>
+
+        <details class="faq-q">
+          <summary>Quand dois-je mettre à jour la date&nbsp;?</summary>
+          <p class="faq-a">À chaque modification substantielle (finalités, bases légales, destinataires, cookies, durées). Sinon, un contrôle trimestriel ou semestriel suffit.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA alignée comme les autres rubriques -->
     <section class="section alt">
       <div class="container" style="text-align:center">
         <h2 class="title">Besoin d’une relecture experte ?</h2>
@@ -448,13 +477,14 @@ Droit français. Tribunaux compétents selon le droit commun.
   <!-- Bouton ↑ Haut -->
   <a class="btn to-top" id="toTop" href="#top" target="_self" aria-label="Revenir en haut">↑ Haut</a>
 
+  <!-- Injection FOOTER -->
   <div id="footer"></div>
 
   <!-- JS libs pack zip -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <!-- JS: canvas + reveal + in-view + scrollspy + copier + éditeur + filtre + date + zip + toTop -->
+  <!-- JS: canvas + reveal + in-view + scrollspy + copier + éditeur + filtre + date + zip + toTop + reprise session -->
   <script>
     /* Canvas particles */
     const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
@@ -532,7 +562,30 @@ Droit français. Tribunaux compétents selon le droit commun.
     } }
     function fillTemplate(tpl,map){ return tpl.replace(/\[\[([^\]]+)\]\]/g,(m,t)=>{ const k=t.trim(); return (map[k]!==undefined && map[k]!== '')? map[k] : m }) }
     function updateAllModels(){ const data=getFormData(); const map=tokenMapFromData(data); modelAreas.forEach(ta=>ta.value=fillTemplate(ta.dataset.template,map)) }
-    fastForm.addEventListener('input',updateAllModels); advForm.addEventListener('input',updateAllModels); updateAllModels();
+
+    /* Sauvegarde/restauration de session */
+    const resumeBtn=document.getElementById('resumeBtn');
+    function saveFields(){
+      const fast=Object.fromEntries(new FormData(fastForm).entries());
+      const adv=advForm.hidden?null:Object.fromEntries(new FormData(advForm).entries());
+      localStorage.setItem('awenoriaFields', JSON.stringify({fast, adv}));
+    }
+    function restoreFields(data){
+      if(!data) return;
+      const setVals=(form, obj)=>{ if(!obj) return; Object.entries(obj).forEach(([k,v])=>{ const el=form.querySelector(`[name="${k}"]`); if(el) el.value=v; }); };
+      setVals(fastForm, data.fast||{});
+      if(data.adv){ switchTab('adv'); setVals(advForm, data.adv); }
+      updateAllModels();
+    }
+    fastForm.addEventListener('input', ()=>{ updateAllModels(); saveFields(); });
+    advForm.addEventListener('input',  ()=>{ updateAllModels(); saveFields(); });
+    updateAllModels();
+
+    const savedFields=localStorage.getItem('awenoriaFields');
+    if(savedFields){
+      resumeBtn.style.display='block';
+      resumeBtn.addEventListener('click', ()=>{ try{ restoreFields(JSON.parse(savedFields)); }catch(_){} });
+    }
 
     /* ZIP: pack fichiers */
     document.getElementById('btnPack').addEventListener('click', async ()=>{
@@ -570,10 +623,25 @@ Généré avec l'éditeur intelligent.
       const blob=await zip.generateAsync({type:'blob'}); saveAs(blob,'awenoria-modeles-juridiques.zip');
     });
 
-    /* Filtre cartes */
-    const filterInput=document.getElementById('filterInput'); const chips=document.querySelectorAll('.chip'); const items=document.querySelectorAll('.filter-item'); const counter=document.getElementById('filterCount'); let activeTags=new Set();
-    function applyFilter(){ const q=(filterInput?.value||'').toLowerCase().trim(); let shown=0; items.forEach(el=>{ const hay=(el.textContent+' '+(el.getAttribute('data-tags')||'')).toLowerCase(); const tagMatch=activeTags.size?[...activeTags].every(t=>hay.includes(t)):true; const qMatch=q?hay.includes(q):true; const visible=tagMatch && qMatch; el.style.display=visible?'':'none'; if(visible) shown++ }); if(counter) counter.textContent=`${shown} carte${shown>1?'s':''} visible${shown>1?'s':''}` }
-    filterInput?.addEventListener('input',()=>{ clearTimeout(applyFilter._t); applyFilter._t=setTimeout(applyFilter,150) }); chips.forEach(ch=>ch.addEventListener('click',()=>{ const val=(ch.dataset.chip||'').toLowerCase(); const p=ch.getAttribute('aria-pressed')==='true'; ch.setAttribute('aria-pressed',String(!p)); if(!p) activeTags.add(val); else activeTags.delete(val); applyFilter() })); applyFilter();
+    /* Filtre cartes (sans compteur visible) */
+    const filterInput=document.getElementById('filterInput');
+    const chips=document.querySelectorAll('.chip');
+    const items=document.querySelectorAll('.filter-item');
+    let activeTags=new Set();
+
+    function applyFilter(){
+      const q=(filterInput?.value||'').toLowerCase().trim();
+      items.forEach(el=>{
+        const hay=(el.textContent+' '+(el.getAttribute('data-tags')||'')).toLowerCase();
+        const tagMatch=activeTags.size?[...activeTags].every(t=>hay.includes(t)):true;
+        const qMatch=q?hay.includes(q):true;
+        const visible=tagMatch && qMatch;
+        el.style.display=visible?'':'none';
+      });
+    }
+    filterInput?.addEventListener('input',()=>{ clearTimeout(applyFilter._t); applyFilter._t=setTimeout(applyFilter,150) });
+    chips.forEach(ch=>ch.addEventListener('click',()=>{ const val=(ch.dataset.chip||'').toLowerCase(); const pressed=ch.getAttribute('aria-pressed')==='true'; ch.setAttribute('aria-pressed',String(!pressed)); if(!pressed) activeTags.add(val); else activeTags.delete(val); applyFilter() }));
+    applyFilter();
 
     /* Last updated + SEO */
     const last=new Date(document.lastModified); const fmt=last.toLocaleDateString('fr-FR',{year:'numeric',month:'long',day:'2-digit'}); const lastNode=document.getElementById('lastUpdated'); if(lastNode){ lastNode.textContent=fmt; lastNode.setAttribute('datetime',last.toISOString()) }
@@ -589,7 +657,7 @@ Généré avec l'éditeur intelligent.
     ioTop.observe(document.querySelector('.hero'));
   </script>
 
-  <!-- Loader header/footer + nav -->
+  <!-- Loader header/footer + nav (injection) -->
   <script>
   document.addEventListener('DOMContentLoaded',()=>{
     const headMount=document.getElementById('header'); const footMount=document.getElementById('footer'); if(!headMount && !footMount) return;
@@ -597,7 +665,7 @@ Généré avec l'éditeur intelligent.
     const candidates=p=>{ const clean=p.replace(/^\//,''); return [ base+clean, './'+clean, '../'+clean ] };
     async function fetchAny(paths){ const queue=paths.flatMap(candidates); for(const u of queue){ try{ const r=await fetch(u,{cache:'no-cache'}); if(r.ok) return r.text() }catch(_){} } throw new Error('Aucun chemin valide parmi: '+paths.join(', ')) }
     function fixRootUrls(container){ container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]').forEach(el=>{ const attr=el.hasAttribute('href')?'href':'src'; const val=el.getAttribute(attr); if(/^\/\//.test(val)) return; el.setAttribute(attr, base+val.replace(/^\//,'')) }) }
-    if(headMount){ fetchAny(['header.html','partials/header.html']).then(html=>{ headMount.innerHTML=html; fixRootUrls(headMount); return fetchAny(['assets/nav.js','nav.js']) }).then(code=>{ const s=document.createElement('script'); if(/\b(import|export)\b/.test(code)) s.type='module'; s.textContent=code; document.body.appendChild(s) }).catch(err=>{ console.error('Header load error:',err); headMount.innerHTML='<!-- Header introuvable -->' }) }
+    if(headMount){ fetchAny(['header.html','partials/header.html']).then(html=>{ headMount.innerHTML=html; fixRootUrls(headMount); return fetchAny(['assets/nav.js','nav.js']).catch(()=>null) }).then(code=>{ if(!code) return; const s=document.createElement('script'); if(/\b(import|export)\b/.test(code)) s.type='module'; s.textContent=code; document.body.appendChild(s) }).catch(err=>{ console.error('Header load error:',err); headMount.innerHTML='<!-- Header introuvable -->' }) }
     if(footMount){ fetchAny(['footer.html','partials/footer.html']).then(html=>{ footMount.innerHTML=html; fixRootUrls(footMount) }).catch(err=>{ console.error('Footer load error:',err); footMount.innerHTML='<!-- Footer introuvable -->' }) }
   });
   </script>
