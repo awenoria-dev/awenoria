@@ -56,7 +56,7 @@
       transition:all var(--transition);
       color:inherit
     }
-    /* Survol : contour orangé (aligné avec la page Ressources) */
+    /* Survol : contour orangé */
     .card:hover{
       transform:translateY(-2px);
       border-color:var(--aw-copper);
@@ -90,14 +90,16 @@
     }
     .to-top.show{ opacity:1; visibility:visible; transform:none }
 
-    /* Utilitaires (ancienne centrage non utilisé ici mais ok à garder si besoin) */
     .center{ text-align:center }
     .center-narrow{ max-width:900px; margin:0 auto }
 
-    /* ====== Souffle entre rubriques ====== */
+    /* Souffle entre rubriques (colonne contenu du with-aside) */
     .with-aside > div > section + section{ margin-top:100px; }
     .with-aside > div > section{ padding-bottom:24px; }
     .with-aside > div > section .title{ margin-bottom:24px; }
+
+    /* Même souffle pour une rubrique isolée dans un nouveau with-aside */
+    .with-aside .rubrique-gap{ margin-top:100px; }
   </style>
 </head>
 <body class="page-mentions">
@@ -295,11 +297,11 @@
       </div>
     </section>
 
-    <!-- Dernière rubrique alignée comme les autres (colonne 2 de with-aside) -->
+    <!-- Dernière rubrique alignée + même souffle -->
     <section class="section alt">
       <div class="container with-aside">
         <div style="grid-column: 2 / 3;">
-          <section class="reveal" tabindex="-1">
+          <section class="reveal rubrique-gap" tabindex="-1">
             <h2 class="title">Besoin d’un modèle adapté à votre cas&nbsp;?</h2>
             <p class="muted" style="max-width:700px;margin-bottom:24px;">
               On personnalise vos mentions légales (statut, secteur, B2C/B2B) et on les relie à vos politiques.
