@@ -110,9 +110,14 @@
     /* IA Act card expansion */
     .ia-card{overflow:hidden}
     .ia-summary{display:flex;align-items:center;justify-content:space-between;cursor:pointer}
-    .ia-icon{width:20px;height:20px;fill:var(--aw-copper);transition:transform var(--transition)}
-    .ia-card[open] .ia-icon{transform:rotate(45deg)}
+    .ia-icon{width:28px;height:28px;fill:var(--aw-copper);transition:transform var(--transition);animation:sway 1.2s ease-in-out infinite;animation-delay:.6s}
+    .ia-card[open] .ia-icon{transform:rotate(45deg);animation:none}
     .ia-content{margin-top:16px}
+    @keyframes sway{
+      0%,100%{transform:translateX(0)}
+      25%{transform:translateX(-3px)}
+      75%{transform:translateX(3px)}
+    }
   </style>
 </head>
 <body class="page-ressources">
@@ -268,12 +273,12 @@
                     <h3>IA Act : vue d’ensemble</h3>
                     <p class="muted">Approche par risques, principes, notions-clés (fournisseur, déployeur, distributeur).</p>
                   </div>
-                  <svg class="ia-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7zM9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
                 </summary>
                 <div class="ia-content muted">
                   <p><b>Approche par les risques.</b> Interdiction pour certains usages (inacceptables), exigences strictes pour les systèmes à <b>haut risque</b>, obligations de transparence pour <b>risque limité</b>, bonnes pratiques pour <b>risque minimal</b>.</p>
                   <p><b>Objectif.</b> Déployer une IA digne de confiance sans freiner l’innovation, en protégeant les droits fondamentaux.</p>
                   <p><b>Conséquence pratique.</b> Dès la phase de cadrage, qualifier votre système et organiser vos preuves (qui fait quoi, quand, comment).</p>
+                  <svg class="ia-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7zM9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
                 </div>
               </details>
 
@@ -284,12 +289,12 @@
                     <h3>Obligations principales</h3>
                     <p class="muted">Fournisseurs, déployeurs, distributeurs : responsabilités et contrôles.</p>
                   </div>
-                  <svg class="ia-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7zM9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
                 </summary>
                 <div class="ia-content muted">
                   <p><b>Fournisseurs.</b> Système de gestion des risques, gouvernance des données, documentation technique complète, transparence, instructions d’utilisation, et <i>surveillance post-commercialisation</i>.</p>
                   <p><b>Déployeurs.</b> Vérifier les informations du fournisseur, qualifier l’usage réel, mettre en place la supervision humaine, informer les utilisateurs finaux et suivre les incidents.</p>
                   <p><b>Distributeurs/Intégrateurs.</b> Traçabilité, contrôles de conformité, étiquetage et information, gestion des versions/modèles et support aux clients.</p>
+                  <svg class="ia-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7zM9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
                 </div>
               </details>
 
@@ -300,7 +305,6 @@
                     <h3>Check-lists & matrices</h3>
                     <p class="muted">Qualification, contrôles pré-mise en circulation, surveillance post-commercialisation.</p>
                   </div>
-                  <svg class="ia-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7zM9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
                 </summary>
                 <div class="ia-content muted">
                   <ul class="list">
@@ -309,6 +313,7 @@
                     <li><b>Après mise en circulation :</b> plan de surveillance, gestion des incidents, remontées et mises à jour.</li>
                   </ul>
                   <p><a class="btn" href="contact.html" target="_self">Recevoir les check-lists</a></p>
+                  <svg class="ia-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7zM9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
                 </div>
               </details>
             </div>
@@ -420,76 +425,6 @@
     const toTop = document.getElementById('toTop');
     const ioTop = new IntersectionObserver(([entry]) => { if(entry.isIntersecting){ toTop.classList.remove('show'); } else { toTop.classList.add('show'); } });
     ioTop.observe(document.querySelector('.hero'));
-  </script>
-
-  <!-- Loader header/footer + nav -->
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const headMount = document.getElementById("header");
-    const footMount = document.getElementById("footer");
-    if (!headMount && !footMount) return;
-
-    const isGh = /github\.io$/.test(location.hostname);
-    let base = "/";
-    if (isGh) {
-      const parts = location.pathname.split("/").filter(Boolean);
-      base = parts.length ? `/${parts[0]}/` : "/";
-    }
-
-    const candidates = (p) => {
-      const clean = p.replace(/^\//, "");
-      return [ base + clean, "./" + clean, "../" + clean ];
-    };
-
-    async function fetchAny(paths) {
-      const queue = paths.flatMap(candidates);
-      for (const u of queue) {
-        try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text(); } catch(_) {}
-      }
-      throw new Error("Aucun chemin valide parmi: " + paths.join(", "));
-    }
-
-    function fixRootUrls(container) {
-      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]')
-        .forEach(el => {
-          const attr = el.hasAttribute("href") ? "href" : "src";
-          const val = el.getAttribute(attr);
-          if (/^\/\//.test(val)) return;
-          el.setAttribute(attr, base + val.replace(/^\//, ""));
-        });
-    }
-
-    // HEADER
-    if (headMount) {
-      fetchAny(["header.html", "partials/header.html"])
-        .then(html => {
-          headMount.innerHTML = html;
-          fixRootUrls(headMount);
-          return fetchAny(["assets/nav.js", "nav.js"]);
-        })
-        .then(code => {
-          const s = document.createElement("script");
-          if (/\b(import|export)\b/.test(code)) s.type = "module";
-          s.textContent = code;
-          document.body.appendChild(s);
-          console.log("[awenoria] header + nav chargés");
-        })
-        .catch(err => {
-          console.error("Header load error:", err);
-          headMount.innerHTML = "<!-- Header introuvable -->";
-        });
-    }
-
-    // FOOTER
-    if (footMount) {
-      fetchAny(["footer.html", "partials/footer.html"])
-        .then(html => { footMount.innerHTML = html; fixRootUrls(footMount); })
-        .catch(err => {
-          console.error("Footer load error:", err);
-          footMount.innerHTML = "<!-- Footer introuvable -->";
-        });
-    }
-  });
   </script>
 </body>
 </html>
