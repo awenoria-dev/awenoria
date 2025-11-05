@@ -139,7 +139,7 @@
             <button class="chip" data-chip="emailing" aria-pressed="false" type="button">Emailing</button>
             <button class="chip" data-chip="cgv" aria-pressed="false" type="button">CGV</button>
           </div>
-          <span id="filterCount" class="small" aria-live="polite" style="margin-left:auto"></span>
+          <!-- compteur de cartes retiré -->
         </div>
 
         <div class="grid cols-3" style="margin-top:14px">
@@ -565,16 +565,51 @@ Généré avec l'éditeur intelligent.
       const blob=await zip.generateAsync({type:'blob'}); saveAs(blob,'awenoria-modeles-juridiques.zip');
     });
 
-    /* Filtre cartes */
-    const filterInput=document.getElementById('filterInput'); const chips=document.querySelectorAll('.chip'); const items=document.querySelectorAll('.filter-item'); const counter=document.getElementById('filterCount'); let activeTags=new Set();
-    function applyFilter(){ const q=(filterInput?.value||'').toLowerCase().trim(); let shown=0; items.forEach(el=>{ const hay=(el.textContent+' '+(el.getAttribute('data-tags')||'')).toLowerCase(); const tagMatch=activeTags.size?[...activeTags].every(t=>hay.includes(t)):true; const qMatch=q?hay.includes(q):true; const visible=tagMatch && qMatch; el.style.display=visible?'':'none'; if(visible) shown++ }); if(counter) counter.textContent=`${shown} carte${shown>1?'s':''} visible${shown>1?'s':''}` }
-    filterInput?.addEventListener('input',()=>{ clearTimeout(applyFilter._t); applyFilter._t=setTimeout(applyFilter,150) }); chips.forEach(ch=>ch.addEventListener('click',()=>{ const val=(ch.dataset.chip||'').toLowerCase(); const p=ch.getAttribute('aria-pressed')==='true'; ch.setAttribute('aria-pressed',String(!p)); if(!p) activeTags.add(val); else activeTags.delete(val); applyFilter() })); applyFilter();
+    /* Filtre cartes (sans compteur visible) */
+    const filterInput=document.getElementById('filterInput');
+    const chips=document.querySelectorAll('.chip');
+    const items=document.querySelectorAll('.filter-item');
+    let activeTags=new Set();
+
+    function applyFilter(){
+      const q=(filterInput?.value||'').toLowerCase().trim();
+      items.forEach(el=>{
+        const hay=(el.textContent+' '+(el.getAttribute('data-tags')||'')).toLowerCase();
+        const tagMatch=activeTags.size?[...activeTags].every(t=>hay.includes(t)):true;
+        const qMatch=q?hay.includes(q):true;
+        const visible=tagMatch && qMatch;
+        el.style.display=visible?'':'none';
+      });
+      // plus d'écriture dans #filterCount (supprimé)
+    }
+
+    filterInput?.addEventListener('input',()=>{
+      clearTimeout(applyFilter._t);
+      applyFilter._t=setTimeout(applyFilter,150);
+    });
+
+    chips.forEach(ch=>ch.addEventListener('click',()=>{
+      const val=(ch.dataset.chip||'').toLowerCase();
+      const pressed=ch.getAttribute('aria-pressed')==='true';
+      ch.setAttribute('aria-pressed',String(!pressed));
+      if(!pressed) activeTags.add(val); else activeTags.delete(val);
+      applyFilter();
+    }));
+
+    applyFilter();
 
     /* Last updated + SEO */
-    const last=new Date(document.lastModified); const fmt=last.toLocaleDateString('fr-FR',{year:'numeric',month:'long',day:'2-digit'}); const lastNode=document.getElementById('lastUpdated'); if(lastNode){ lastNode.textContent=fmt; lastNode.setAttribute('datetime',last.toISOString()) }
-    const meta=document.createElement('meta'); meta.setAttribute('property','article:modified_time'); meta.setAttribute('content',last.toISOString()); document.head.appendChild(meta);
+    const last=new Date(document.lastModified);
+    const fmt=last.toLocaleDateString('fr-FR',{year:'numeric',month:'long',day:'2-digit'});
+    const lastNode=document.getElementById('lastUpdated');
+    if(lastNode){ lastNode.textContent=fmt; lastNode.setAttribute('datetime',last.toISOString()) }
+    const meta=document.createElement('meta');
+    meta.setAttribute('property','article:modified_time');
+    meta.setAttribute('content',last.toISOString());
+    document.head.appendChild(meta);
     const ld={ '@context':'https://schema.org', '@type':'WebPage', name:'Modèles juridiques — Awenoria', url: location.href, dateModified: last.toISOString() };
-    const ldScript=document.createElement('script'); ldScript.type='application/ld+json'; ldScript.textContent=JSON.stringify(ld); document.head.appendChild(ldScript);
+    const ldScript=document.createElement('script'); ldScript.type='application/ld+json'; ldScript.textContent=JSON.stringify(ld);
+    document.head.appendChild(ldScript);
 
     /* Back to top */
     const toTop = document.getElementById('toTop');
@@ -587,13 +622,73 @@ Généré avec l'éditeur intelligent.
   <!-- Loader header/footer + nav (injection) -->
   <script>
   document.addEventListener('DOMContentLoaded',()=>{
-    const headMount=document.getElementById('header'); const footMount=document.getElementById('footer'); if(!headMount && !footMount) return;
-    const isGh=/github\.io$/.test(location.hostname); let base='/'; if(isGh){ const parts=location.pathname.split('/').filter(Boolean); base=parts.length?`/${parts[0]}/`:'/'; }
-    const candidates=p=>{ const clean=p.replace(/^\//,''); return [ base+clean, './'+clean, '../'+clean ] };
-    async function fetchAny(paths){ const queue=paths.flatMap(candidates); for(const u of queue){ try{ const r=await fetch(u,{cache:'no-cache'}); if(r.ok) return r.text() }catch(_){} } throw new Error('Aucun chemin valide parmi: '+paths.join(', ')) }
-    function fixRootUrls(container){ container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]').forEach(el=>{ const attr=el.hasAttribute('href')?'href':'src'; const val=el.getAttribute(attr); if(/^\/\//.test(val)) return; el.setAttribute(attr, base+val.replace(/^\//,'')) }) }
-    if(headMount){ fetchAny(['header.html','partials/header.html']).then(html=>{ headMount.innerHTML=html; fixRootUrls(headMount); return fetchAny(['assets/nav.js','nav.js']).catch(()=>null) }).then(code=>{ if(!code) return; const s=document.createElement('script'); if(/\b(import|export)\b/.test(code)) s.type='module'; s.textContent=code; document.body.appendChild(s) }).catch(err=>{ console.error('Header load error:',err); headMount.innerHTML='<!-- Header introuvable -->' }) }
-    if(footMount){ fetchAny(['footer.html','partials/footer.html']).then(html=>{ footMount.innerHTML=html; fixRootUrls(footMount) }).catch(err=>{ console.error('Footer load error:',err); footMount.innerHTML='<!-- Footer introuvable -->' }) }
+    const headMount=document.getElementById('header');
+    const footMount=document.getElementById('footer');
+    if(!headMount && !footMount) return;
+
+    const isGh=/github\.io$/.test(location.hostname);
+    let base='/';
+    if(isGh){
+      const parts=location.pathname.split('/').filter(Boolean);
+      base=parts.length?`/${parts[0]}/`:'/';
+    }
+
+    const candidates=p=>{
+      const clean=p.replace(/^\//,'');
+      return [ base+clean, './'+clean, '../'+clean ];
+    };
+
+    async function fetchAny(paths){
+      const queue=paths.flatMap(candidates);
+      for(const u of queue){
+        try{
+          const r=await fetch(u,{cache:'no-cache'});
+          if(r.ok) return r.text();
+        }catch(_){}
+      }
+      throw new Error('Aucun chemin valide parmi: '+paths.join(', '));
+    }
+
+    function fixRootUrls(container){
+      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]').forEach(el=>{
+        const attr=el.hasAttribute('href')?'href':'src';
+        const val=el.getAttribute(attr);
+        if(/^\/\//.test(val)) return;
+        el.setAttribute(attr, base+val.replace(/^\//,''));
+      });
+    }
+
+    if(headMount){
+      fetchAny(['header.html','partials/header.html'])
+        .then(html=>{
+          headMount.innerHTML=html;
+          fixRootUrls(headMount);
+          return fetchAny(['assets/nav.js','nav.js']).catch(()=>null);
+        })
+        .then(code=>{
+          if(!code) return;
+          const s=document.createElement('script');
+          if(/\b(import|export)\b/.test(code)) s.type='module';
+          s.textContent=code;
+          document.body.appendChild(s);
+        })
+        .catch(err=>{
+          console.error('Header load error:',err);
+          headMount.innerHTML='<!-- Header introuvable -->';
+        });
+    }
+
+    if(footMount){
+      fetchAny(['footer.html','partials/footer.html'])
+        .then(html=>{
+          footMount.innerHTML=html;
+          fixRootUrls(footMount);
+        })
+        .catch(err=>{
+          console.error('Footer load error:',err);
+          footMount.innerHTML='<!-- Footer introuvable -->';
+        });
+    }
   });
   </script>
 </body>
