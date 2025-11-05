@@ -72,7 +72,7 @@
     .btn.ghost{background:var(--aw-panel);color:var(--aw-blue);border:1px solid rgba(15,95,154,.12)}
     .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
 
-    /* Sommaire + filtre */
+    /* Sommaire + grille 2 colonnes */
     .with-aside{display:grid;grid-template-columns:260px 1fr;gap:24px}
     @media(max-width:1100px){.with-aside{grid-template-columns:1fr}}
     .toc{position:sticky;top:90px;align-self:start;background:var(--aw-panel);border:1px solid rgba(15,23,32,.08);border-radius:16px;padding:14px;box-shadow:var(--shadow)}
@@ -100,7 +100,7 @@
     .model{display:flex;flex-direction:column;gap:10px}
     .model textarea{width:100%;min-height:320px;resize:vertical;padding:14px;border:1px solid rgba(15,95,154,.12);border-radius:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:14px;line-height:1.55;background:var(--aw-bg);color:var(--aw-ink)}
 
-    /* FAQ details style (PJ) */
+    /* FAQ (style PJ) */
     .faq-q{max-width:680px;margin:0 auto 1.2rem;border:1px solid rgba(15,23,32,.08);border-radius:var(--aw-radius);background:var(--aw-panel);box-shadow:var(--shadow)}
     .faq-q summary{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;font-weight:800;cursor:pointer;list-style:none}
     .faq-q summary::after{content:"+";font-size:1.4rem;color:var(--aw-copper);transition:transform .2s}
@@ -163,7 +163,7 @@
       </div>
     </section>
 
-    <!-- Éditeur intelligent avec sommaire à gauche -->
+    <!-- Éditeur + Sommaire -->
     <section class="section alt">
       <div class="container with-aside">
         <aside class="toc">
@@ -178,10 +178,10 @@
             <a href="#cgv" data-spy>CGV (B2C)</a>
           </nav>
           <div class="small" style="margin-top:10px">Dernière mise à jour : <time id="lastUpdated">—</time></div>
-          <!-- Bouton reprise session -->
           <button class="btn ghost" id="resumeBtn" style="margin-top:12px;width:100%;display:none">Reprendre ma dernière session</button>
         </aside>
 
+        <!-- Colonne de droite : toutes les rubriques avec la même largeur -->
         <div>
           <!-- Bloc éditeur -->
           <section class="reveal" id="editor" tabindex="-1" style="padding-top:0">
@@ -437,39 +437,38 @@ Droit français. Tribunaux compétents selon le droit commun.
               <div class="btn-row"><button class="btn" data-copy="#mdl-cgv">Copier le modèle</button></div>
             </div>
           </section>
+
+          <!-- ===== FAQ (dans la même colonne pour alignement) ===== -->
+          <section id="faq" class="section" aria-labelledby="faq-title">
+            <h2 id="faq-title" class="title-center">Questions fréquentes</h2>
+            <div class="underline" aria-hidden="true"></div>
+
+            <details class="faq-q">
+              <summary>Dois-je nommer un DPO&nbsp;?</summary>
+              <p class="faq-a">Obligatoire pour certains organismes (publics, suivi à grande échelle, traitements sensibles). Sinon, nommez un contact RGPD et documentez votre gouvernance.</p>
+            </details>
+
+            <details class="faq-q">
+              <summary>Puis-je mutualiser mentions légales &amp; CGV&nbsp;?</summary>
+              <p class="faq-a">Vous pouvez les lier, mais gardez des pages séparées : Mentions légales (identité, hébergeur), Politique de confidentialité (RGPD), CGV (contrat). C’est plus clair et plus simple à mettre à jour.</p>
+            </details>
+
+            <details class="faq-q">
+              <summary>Quand dois-je mettre à jour la date&nbsp;?</summary>
+              <p class="faq-a">À chaque modification substantielle (finalités, bases légales, destinataires, cookies, durées). Sinon, un contrôle trimestriel ou semestriel suffit.</p>
+            </details>
+          </section>
+
+          <!-- ===== CTA (même largeur, centrée) ===== -->
+          <section class="section alt" id="cta-expert" style="text-align:center">
+            <h2 class="title">Besoin d’une relecture experte ?</h2>
+            <p class="subtitle-center">On adapte ces modèles à ton secteur et à tes outils (CMP, CRM, emailing) et on prépare les preuves utiles.</p>
+            <div class="btn-row" style="justify-content:center">
+              <a class="btn" href="contact.html">Parler à un expert</a>
+              <a class="btn ghost" href="tarifs.html">Voir les offres</a>
+            </div>
+          </section>
         </div>
-      </div>
-    </section>
-
-    <!-- ===== FAQ (déplacée avant la CTA) ===== -->
-    <section id="faq" class="section" aria-labelledby="faq-title">
-      <div class="container">
-        <h2 id="faq-title" class="title-center">Questions fréquentes</h2>
-        <div class="underline" aria-hidden="true"></div>
-
-        <details class="faq-q">
-          <summary>Dois-je nommer un DPO&nbsp;?</summary>
-          <p class="faq-a">Obligatoire pour certains organismes (publics, suivi à grande échelle, traitements sensibles). Sinon, nommez un contact RGPD et documentez votre gouvernance.</p>
-        </details>
-
-        <details class="faq-q">
-          <summary>Puis-je mutualiser mentions légales &amp; CGV&nbsp;?</summary>
-          <p class="faq-a">Vous pouvez les lier, mais gardez des pages séparées : Mentions légales (identité, hébergeur), Politique de confidentialité (RGPD), CGV (contrat). C’est plus clair et plus simple à mettre à jour.</p>
-        </details>
-
-        <details class="faq-q">
-          <summary>Quand dois-je mettre à jour la date&nbsp;?</summary>
-          <p class="faq-a">À chaque modification substantielle (finalités, bases légales, destinataires, cookies, durées). Sinon, un contrôle trimestriel ou semestriel suffit.</p>
-        </details>
-      </div>
-    </section>
-
-    <!-- CTA alignée comme les autres rubriques -->
-    <section class="section alt">
-      <div class="container" style="text-align:center">
-        <h2 class="title">Besoin d’une relecture experte ?</h2>
-        <p class="subtitle-center">On adapte ces modèles à ton secteur et à tes outils (CMP, CRM, emailing) et on prépare les preuves utiles.</p>
-        <div class="btn-row" style="justify-content:center"><a class="btn" href="contact.html">Parler à un expert</a><a class="btn ghost" href="tarifs.html">Voir les offres</a></div>
       </div>
     </section>
   </main>
@@ -484,7 +483,7 @@ Droit français. Tribunaux compétents selon le droit commun.
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <!-- JS: canvas + reveal + in-view + scrollspy + copier + éditeur + filtre + date + zip + toTop + reprise session -->
+  <!-- JS principal -->
   <script>
     /* Canvas particles */
     const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
@@ -509,85 +508,65 @@ Droit français. Tribunaux compétents selon le droit commun.
       try{ await navigator.clipboard.writeText(ta.value); const old=btn.textContent; btn.textContent='Copié ✓'; setTimeout(()=>btn.textContent=old,1500) }catch{ ta.select(); document.execCommand('copy'); const old=btn.textContent; btn.textContent='Copié ✓'; setTimeout(()=>btn.textContent=old,1500) }
     });
 
-    /* Tabs éditeur */
+    /* Tabs éditeur + date auto */
     const fastForm=document.getElementById('fastForm'); const advForm=document.getElementById('advForm');
     const tabFast=document.getElementById('tab-fast'); const tabAdv=document.getElementById('tab-adv');
     const pad=n=>String(n).padStart(2,'0'); const d=new Date(); const today=`${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()}`; document.getElementById('dateMaj').value=today;
-    function switchTab(which){ const fast=which==='fast'; fastForm.hidden=!fast; advForm.hidden=fast; tabFast.classList.toggle('ghost',!fast); tabFast.setAttribute('aria-selected',fast); tabAdv.classList.toggle('ghost',fast); tabAdv.setAttribute('aria-selected',!fast); document.getElementById('editor').scrollIntoView({behavior:'smooth',block:'start'}) }
-    tabFast.addEventListener('click',()=>switchTab('fast')); tabAdv.addEventListener('click',()=>switchTab('adv'));
+    function switchTab(which,{noScroll=false}={}){ const fast=which==='fast';
+      fastForm.hidden=!fast; advForm.hidden=fast;
+      tabFast.classList.toggle('ghost',!fast); tabFast.setAttribute('aria-selected',fast);
+      tabAdv.classList.toggle('ghost',fast);  tabAdv.setAttribute('aria-selected',!fast);
+      if(!noScroll) document.getElementById('editor').scrollIntoView({behavior:'smooth',block:'start'});
+      updateStore({activeTab:which});
+    }
+    tabFast.addEventListener('click',()=>switchTab('fast'));
+    tabAdv.addEventListener('click',()=>switchTab('adv'));
 
     /* Templates dynamiques */
     const modelAreas=[...document.querySelectorAll('.model textarea')]; modelAreas.forEach(ta=>ta.dataset.template=ta.value);
     function getFormData(){ const f1=Object.fromEntries(new FormData(fastForm).entries()); const f2=advForm.hidden?{}:Object.fromEntries(new FormData(advForm).entries()); const data={...f1,...f2}; data.raisonSociale=data.raison||''; data.formeJuridique=data.forme||''; data.capital=data.capital||''; data.adresse=data.adresse||''; data.emailRGPD=data.emailRGPD||''; data.siren=data.siren||''; data.hebergeur=data.hebergeur||''; data.analytics=(data.analytics && data.analytics!=='aucun')?data.analytics:''; data.JJMMYYYY=today; return data }
     function tokenMapFromData(data){ return {
-      'JJ/MM/AAAA': data.JJMMYYYY,
-      'Raison sociale': data.raisonSociale,
-      'forme juridique': data.formeJuridique,
-      'montant': data.capital,
-      'adresse': data.adresse,
-      'adresse complète': data.adresse,
-      'email RGPD': data.emailRGPD,
-      'email/tél': data.emailRGPD || (data.telephone||''),
-      'RCS/SIREN': data.siren,
-      'numéro RCS': data.siren,
-      'numéro': data.siren,
-      'n° intracom': data.tva || '',
-      'TVA': data.tva || '',
-      'outil analytics': data.analytics || '—',
-      'nom DPO / prestataire DPO': data.dpoNom || '—',
-      'email DPO': data.dpoEmail || (data.emailRGPD||''),
-      'hébergeur': data.hebergeur,
-      'Nom hébergeur': data.hebergeur,
-      'ville': data.rcsVille || '',
-      'téléphone': data.telephone || '',
-      'URL': data.siteURL || '',
-      'lien Politique de confidentialité': (data.siteURL ? new URL(data.siteURL).origin + '/confidentialite.html' : '/confidentialite.html'),
+      'JJ/MM/AAAA': data.JJMMYYYY,'Raison sociale': data.raisonSociale,'forme juridique': data.formeJuridique,'montant': data.capital,
+      'adresse': data.adresse,'adresse complète': data.adresse,'email RGPD': data.emailRGPD,'email/tél': data.emailRGPD || (data.telephone||''),
+      'RCS/SIREN': data.siren,'numéro RCS': data.siren,'numéro': data.siren,'n° intracom': data.tva || '','TVA': data.tva || '',
+      'outil analytics': data.analytics || '—','nom DPO / prestataire DPO': data.dpoNom || '—','email DPO': data.dpoEmail || (data.emailRGPD||''),
+      'hébergeur': data.hebergeur,'Nom hébergeur': data.hebergeur,'ville': data.rcsVille || '','téléphone': data.telephone || '',
+      'URL': data.siteURL || '','lien Politique de confidentialité': (data.siteURL ? new URL(data.siteURL).origin + '/confidentialite.html' : '/confidentialite.html'),
       '/politique-cookies': (data.siteURL ? new URL(data.siteURL).origin + '/politique-cookies' : '/politique-cookies'),
-      'lien “Gérer mes cookies”': '#preferences-cookies',
-      'lien ouvrir CMP': '#preferences-cookies',
-      'UE/hors UE avec garanties': data.paysHebergeur || 'UE',
-      'outil emailing/CMP/CRM': data.sousTraitants || '—',
-      'Nom / coordonnées / site du médiateur': data.mediateur || '—',
-      'Société': data.raisonSociale || '—',
-      'banque d’images / crédits': '—',
-      'crédits le cas échéant': '—',
-      'durée': '13 mois',
+      'lien “Gérer mes cookies”': '#preferences-cookies','lien ouvrir CMP': '#preferences-cookies',
+      'UE/hors UE avec garanties': data.paysHebergeur || 'UE','outil emailing/CMP/CRM': data.sousTraitants || '—',
+      'Nom / coordonnées / site du médiateur': data.mediateur || '—','Société': data.raisonSociale || '—',
+      'banque d’images / crédits': '—','crédits le cas échéant': '—','durée': '13 mois',
       'lien / joindre formulaire': (data.siteURL ? new URL(data.siteURL).origin + '/retractation.pdf' : '/retractation.pdf'),
-      'TTC/HT': 'TTC',
-      'devise': 'EUR',
-      'frais de livraison le cas échéant': 'frais de livraison le cas échéant',
-      'liste': 'CB, Visa, Mastercard',
-      'X jours ouvrés': '3 à 5',
-      'Nom, fonction': 'Directeur de la publication',
+      'TTC/HT': 'TTC','devise': 'EUR','frais de livraison le cas échéant': 'frais de livraison le cas échéant',
+      'liste': 'CB, Visa, Mastercard','X jours ouvrés': '3 à 5','Nom, fonction': 'Directeur de la publication',
     } }
     function fillTemplate(tpl,map){ return tpl.replace(/\[\[([^\]]+)\]\]/g,(m,t)=>{ const k=t.trim(); return (map[k]!==undefined && map[k]!== '')? map[k] : m }) }
     function updateAllModels(){ const data=getFormData(); const map=tokenMapFromData(data); modelAreas.forEach(ta=>ta.value=fillTemplate(ta.dataset.template,map)) }
 
-    /* Sauvegarde/restauration de session */
+    /* Sauvegarde/restauration */
+    function updateStore(patch){ const cur = JSON.parse(localStorage.getItem('awenoriaFields')||'{}'); localStorage.setItem('awenoriaFields', JSON.stringify({...cur, ...patch})); }
     const resumeBtn=document.getElementById('resumeBtn');
     function saveFields(){
       const fast=Object.fromEntries(new FormData(fastForm).entries());
-      const adv=advForm.hidden?null:Object.fromEntries(new FormData(advForm).entries());
-      localStorage.setItem('awenoriaFields', JSON.stringify({fast, adv}));
+      const adv =advForm.hidden?null:Object.fromEntries(new FormData(advForm).entries());
+      const activeTab = advForm.hidden ? 'fast' : 'adv';
+      updateStore({fast,adv,activeTab});
     }
     function restoreFields(data){
       if(!data) return;
-      const setVals=(form, obj)=>{ if(!obj) return; Object.entries(obj).forEach(([k,v])=>{ const el=form.querySelector(`[name="${k}"]`); if(el) el.value=v; }); };
-      setVals(fastForm, data.fast||{});
-      if(data.adv){ switchTab('adv'); setVals(advForm, data.adv); }
+      switchTab(data.activeTab==='adv'?'adv':'fast',{noScroll:true});
+      const setVals=(form,obj)=>{ if(!obj) return; Object.entries(obj).forEach(([k,v])=>{ const el=form.querySelector(`[name="${k}"]`); if(el) el.value=v; }); };
+      setVals(fastForm,data.fast||{}); if(data.activeTab==='adv') setVals(advForm,data.adv||{});
       updateAllModels();
     }
     fastForm.addEventListener('input', ()=>{ updateAllModels(); saveFields(); });
     advForm.addEventListener('input',  ()=>{ updateAllModels(); saveFields(); });
     updateAllModels();
-
     const savedFields=localStorage.getItem('awenoriaFields');
-    if(savedFields){
-      resumeBtn.style.display='block';
-      resumeBtn.addEventListener('click', ()=>{ try{ restoreFields(JSON.parse(savedFields)); }catch(_){} });
-    }
+    if(savedFields){ resumeBtn.style.display='block'; resumeBtn.addEventListener('click', ()=>{ try{ restoreFields(JSON.parse(savedFields)); }catch(_){} }); }
 
-    /* ZIP: pack fichiers */
+    /* ZIP pack */
     document.getElementById('btnPack').addEventListener('click', async ()=>{
       const data={...getFormData()}; const map=tokenMapFromData(data);
       const files={
@@ -623,20 +602,18 @@ Généré avec l'éditeur intelligent.
       const blob=await zip.generateAsync({type:'blob'}); saveAs(blob,'awenoria-modeles-juridiques.zip');
     });
 
-    /* Filtre cartes (sans compteur visible) */
+    /* Filtre cartes (sans compteur) */
     const filterInput=document.getElementById('filterInput');
     const chips=document.querySelectorAll('.chip');
     const items=document.querySelectorAll('.filter-item');
     let activeTags=new Set();
-
     function applyFilter(){
       const q=(filterInput?.value||'').toLowerCase().trim();
       items.forEach(el=>{
         const hay=(el.textContent+' '+(el.getAttribute('data-tags')||'')).toLowerCase();
         const tagMatch=activeTags.size?[...activeTags].every(t=>hay.includes(t)):true;
         const qMatch=q?hay.includes(q):true;
-        const visible=tagMatch && qMatch;
-        el.style.display=visible?'':'none';
+        el.style.display=(tagMatch && qMatch)?'':'none';
       });
     }
     filterInput?.addEventListener('input',()=>{ clearTimeout(applyFilter._t); applyFilter._t=setTimeout(applyFilter,150) });
