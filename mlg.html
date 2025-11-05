@@ -12,8 +12,50 @@
   <base target="_blank">
 
   <style>
-    :root{ --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280; --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px; --shadow:0 25px 50px -12px rgba(0,0,0,.15); --transition:.6s cubic-bezier(.22,1,.36,1) }
-    @media (prefers-color-scheme:dark){ :root{ --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0; --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45) } }
+    :root{ 
+      --aw-ink:#000000; 
+      --aw-blue:#0066ff; 
+      --aw-copper:#ff5c00; 
+      --aw-muted:#555555; 
+      --aw-panel:#ffffff; 
+      --aw-bg:#f5f7ff; 
+      --aw-radius:24px; 
+      --shadow:0 25px 50px -12px rgba(0,0,0,.15); 
+      --transition:.6s cubic-bezier(.22,1,.36,1) 
+    }
+    @media (prefers-color-scheme:dark){ 
+      :root{ 
+        --aw-ink:#000000; 
+        --aw-blue:#3d8bff; 
+        --aw-copper:#ff8a3d; 
+        --aw-muted:#777777; 
+        --aw-panel:#0b0f1a; 
+        --aw-bg:#0a0d14; 
+        --shadow:0 25px 50px -12px rgba(0,0,0,.45) 
+      } 
+    }
+
+    /* Textes globaux en noir */
+    body,
+    p,
+    li,
+    span,
+    summary,
+    pre,
+    time,
+    small,
+    div,
+    nav a,
+    .btn,
+    .btn.ghost {
+      color: #000000 !important;
+    }
+
+    /* Titres des cartes en bleu #0D558A */
+    .card h3 {
+      color: #0D558A !important;
+    }
+
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;line-height:1.7;color:var(--aw-ink);background:var(--aw-bg);-webkit-font-smoothing:antialiased}
@@ -124,7 +166,7 @@
             <h2 class="title">Contenu obligatoire</h2>
             <div class="grid cols-2">
               <article class="card">
-                <h3>Identification de l’éditeur</h3>
+                <h3>Identification de l'éditeur</h3>
                 <details>
                   <summary>
                     <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
@@ -137,7 +179,7 @@
                   </div>
                   <ul class="list check-list-scroll">
                     <li>Raison sociale / nom, forme juridique, capital (si société)</li>
-                    <li>Adresse du siège, <b>SIREN/SIRET</b>, RCS + ville d’immatriculation</li>
+                    <li>Adresse du siège, <b>SIREN/SIRET</b>, RCS + ville d'immatriculation</li>
                     <li>N° TVA intracommunautaire (le cas échéant)</li>
                     <li>Directeur·rice de la publication et contact</li>
                   </ul>
@@ -156,7 +198,7 @@
                     <span class="tag">contact</span>
                   </div>
                   <ul class="list check-list-scroll">
-                    <li>Nom de l’hébergeur (ex. GitHub Pages, OVH, Cloudflare…)</li>
+                    <li>Nom de l'hébergeur (ex. GitHub Pages, OVH, Cloudflare…)</li>
                     <li>Adresse postale et moyen de contact (mail/tel)</li>
                   </ul>
                 </details>
@@ -218,7 +260,7 @@
                   <ul class="list check-list-scroll">
                     <li>Forme + capital social</li>
                     <li>RCS + ville, SIREN</li>
-                    <li>Si activité réglementée : autorité / n° d’agrément</li>
+                    <li>Si activité réglementée : autorité / n° d'agrément</li>
                   </ul>
                 </details>
               </article>
@@ -339,7 +381,7 @@
                     <span class="tag">blocage</span>
                   </div>
                   <ul class="check-list-scroll">
-                    <li>Bandeau avec refus aussi simple que l’acceptation, preuve du consentement, blocage par défaut des tags non essentiels</li>
+                    <li>Bandeau avec refus aussi simple que l'acceptation, preuve du consentement, blocage par défaut des tags non essentiels</li>
                   </ul>
                 </details>
                 <p><a class="btn ghost" href="politique-cookies.html" target="_self">Voir le modèle cookies</a></p>
@@ -355,7 +397,7 @@
                 <details>
                   <summary>
                     <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
-                    <span>Afficher l’exemple</span>
+                    <span>Afficher l'exemple</span>
                   </summary>
                   <div class="tags-preview">
                     <span class="tag">vitrine</span>
@@ -366,7 +408,7 @@
 <b>Publication</b> — Directeur·rice : [[Nom]], contact : [[email]].
 <b>Hébergeur</b> — [[Nom hébergeur]], [[adresse]], [[contact]].
 <b>Propriété intellectuelle</b> — Tous droits réservés. Toute reproduction interdite sans autorisation.</pre>
-                  <button class="copy-btn" aria-label="Copier l’exemple">Copier</button>
+                  <button class="copy-btn" aria-label="Copier l'exemple">Copier</button>
                 </details>
               </article>
               <article class="card">
@@ -374,7 +416,7 @@
                 <details>
                   <summary>
                     <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
-                    <span>Afficher l’exemple</span>
+                    <span>Afficher l'exemple</span>
                   </summary>
                   <div class="tags-preview">
                     <span class="tag">e-commerce</span>
@@ -384,7 +426,7 @@
                   <pre class="small check-list-scroll" style="white-space:pre-wrap;background:var(--aw-bg);padding:12px;border-radius:8px;"><b>CGV</b> — accessibles ici : [[lien]]. Prix TTC, frais et délais précisés avant commande.
 <b>Rétractation</b> — Délai légal de [[14]] jours. Formulaire : [[lien]].
 <b>Médiation</b> — [[Nom du médiateur]] : [[coordonnées]].</pre>
-                  <button class="copy-btn" aria-label="Copier l’exemple">Copier</button>
+                  <button class="copy-btn" aria-label="Copier l'exemple">Copier</button>
                 </details>
                 <p class="small" style="margin-top:10px"><a class="btn" href="modeles.html" target="_self">Ouvrir tous les modèles</a></p>
               </article>
@@ -407,8 +449,8 @@
                     <span class="tag">modèle</span>
                   </div>
                   <ul class="list check-list-scroll">
-                    <li>Oublier l’hébergeur ou le RCS/SIREN</li>
-                    <li>Lier les mentions uniquement depuis la page d’accueil</li>
+                    <li>Oublier l'hébergeur ou le RCS/SIREN</li>
+                    <li>Lier les mentions uniquement depuis la page d'accueil</li>
                     <li>Utiliser un modèle générique non adapté au statut</li>
                   </ul>
                 </details>
@@ -437,7 +479,7 @@
           </section>
 
           <section id="besoin" class="reveal" tabindex="-1">
-            <h2 class="title">Besoin d’un modèle adapté à votre cas&nbsp;?</h2>
+            <h2 class="title">Besoin d'un modèle adapté à votre cas&nbsp;?</h2>
             <p class="muted" style="max-width:700px;margin:0 auto 24px;text-align:center;">
               On personnalise vos mentions légales (statut, secteur, B2C/B2B) et on les relie à vos politiques.
             </p>
@@ -536,7 +578,7 @@
         const btn = document.createElement('button');
         btn.className = 'copy-btn';
         btn.textContent = 'Copier';
-        btn.setAttribute('aria-label', 'Copier l’exemple');
+        btn.setAttribute('aria-label', 'Copier l\'exemple');
         btn.addEventListener('click', () => {
           navigator.clipboard.writeText(pre.textContent);
           btn.textContent = 'Copié !';
