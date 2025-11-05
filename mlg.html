@@ -68,6 +68,7 @@
     .btn:hover{background:var(--aw-copper);transform:translateY(-2px)}
     .btn.ghost{background:var(--aw-panel);color:var(--aw-blue);border:1px solid rgba(15,23,32,.08)}
     .small{font-size:13px;color:var(--aw-muted)}
+    .btn-row{display:flex;gap:12px;flex-wrap:wrap}
 
     /* TOC */
     .with-aside{display:grid;grid-template-columns:260px 1fr;gap:24px}
@@ -94,9 +95,6 @@
     .with-aside > div > section + section{ margin-top:100px; }
     .with-aside > div > section{ padding-bottom:24px; }
     .with-aside > div > section .title{ margin-bottom:24px; }
-
-    /* Même souffle pour la rubrique finale (dans un nouveau with-aside) */
-    .with-aside .rubrique-gap{ margin-top:100px; }
   </style>
 </head>
 <body class="page-mentions">
@@ -127,6 +125,7 @@
             <a href="#donnees" data-spy>Données & cookies</a>
             <a href="#exemples" data-spy>Exemples & modèles</a>
             <a href="#faq" data-spy>Erreurs fréquentes (FAQ)</a>
+            <a href="#besoin" data-spy>Besoin d’un modèle&nbsp;?</a>
           </nav>
           <div class="small" style="margin-top:10px">Dernière mise à jour : <time id="lastUpdated">—</time></div>
         </aside>
@@ -285,15 +284,9 @@
             </div>
             <p class="small" style="margin-top:8px">Ce contenu est fourni à titre informatif et ne constitue pas un conseil juridique.</p>
           </section>
-        </div>
-      </div>
-    </section>
 
-    <!-- Dernière rubrique alignée + même souffle -->
-    <section class="section alt compact">
-      <div class="container with-aside">
-        <div style="grid-column: 2 / 3;">
-          <section class="reveal rubrique-gap" tabindex="-1">
+          <!-- Nouvelle rubrique, intégrée dans la colonne de droite pour même largeur & même souffle -->
+          <section id="besoin" class="reveal" tabindex="-1">
             <h2 class="title">Besoin d’un modèle adapté à votre cas&nbsp;?</h2>
             <p class="muted" style="max-width:700px;margin-bottom:24px;">
               On personnalise vos mentions légales (statut, secteur, B2C/B2B) et on les relie à vos politiques.
