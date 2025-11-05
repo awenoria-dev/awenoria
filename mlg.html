@@ -35,7 +35,7 @@
     /* Sections */
     .section{max-width:1200px;margin:0 auto;padding:140px 20px}
     .section.alt{background:var(--aw-bg)}
-    .section.compact{padding-top:0} /* <-- supprime le gros pad au-dessus de la dernière rubrique */
+    .section.compact{padding-top:0}
 
     /* Titles */
     .title{margin:0 auto 10px;text-align:center;font-size:clamp(36px,5vw,48px);font-weight:800;background:linear-gradient(135deg,#0F5F9A 0%,#0d5285 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 4px rgba(0,0,0,.08);transition:transform .35s ease,opacity .35s ease}
@@ -101,6 +101,9 @@
 </head>
 <body class="page-mentions">
   <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <!-- Header injecté (même schéma que la page Ressources) -->
+  <div id="header"></div>
 
   <!-- Hero -->
   <section class="hero">
@@ -305,7 +308,7 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer injecté -->
   <div id="footer"></div>
 
   <!-- Canvas + reveal + toc + date + SEO + Back to top -->
@@ -359,7 +362,7 @@
     }
   </script>
 
-  <!-- Loader footer + nav -->
+  <!-- Loader header/footer (identique au schéma existant) -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header"); const footMount = document.getElementById("footer"); if (!headMount && !footMount) return;
