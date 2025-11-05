@@ -35,6 +35,7 @@
     /* Sections */
     .section{max-width:1200px;margin:0 auto;padding:140px 20px}
     .section.alt{background:var(--aw-bg)}
+    .section.compact{padding-top:0} /* <-- supprime le gros pad au-dessus de la dernière rubrique */
 
     /* Titles */
     .title{margin:0 auto 10px;text-align:center;font-size:clamp(36px,5vw,48px);font-weight:800;background:linear-gradient(135deg,#0F5F9A 0%,#0d5285 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 4px rgba(0,0,0,.08);transition:transform .35s ease,opacity .35s ease}
@@ -56,7 +57,6 @@
       transition:all var(--transition);
       color:inherit
     }
-    /* Survol : contour orangé */
     .card:hover{
       transform:translateY(-2px);
       border-color:var(--aw-copper);
@@ -82,7 +82,7 @@
     .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
     .reveal.is-visible{opacity:1;transform:none}
 
-    /* Bouton retour haut */
+    /* Back to top */
     .to-top{
       position:fixed; right:16px; bottom:16px; z-index:50;
       opacity:0; visibility:hidden; transform:translateY(12px);
@@ -90,15 +90,12 @@
     }
     .to-top.show{ opacity:1; visibility:visible; transform:none }
 
-    .center{ text-align:center }
-    .center-narrow{ max-width:900px; margin:0 auto }
-
-    /* Souffle entre rubriques (colonne contenu du with-aside) */
+    /* Souffle entre rubriques (dans la même colonne) */
     .with-aside > div > section + section{ margin-top:100px; }
     .with-aside > div > section{ padding-bottom:24px; }
     .with-aside > div > section .title{ margin-bottom:24px; }
 
-    /* Même souffle pour une rubrique isolée dans un nouveau with-aside */
+    /* Même souffle pour la rubrique finale (dans un nouveau with-aside) */
     .with-aside .rubrique-gap{ margin-top:100px; }
   </style>
 </head>
@@ -115,10 +112,9 @@
   </section>
 
   <main id="main">
-    <!-- Contenu principal (sommaire + rubriques) -->
+    <!-- Bloc principal -->
     <section class="section alt">
       <div class="container with-aside">
-        <!-- Sommaire -->
         <aside class="toc">
           <h4>Sommaire</h4>
           <nav aria-label="Sommaire de la page">
@@ -132,9 +128,7 @@
           <div class="small" style="margin-top:10px">Dernière mise à jour : <time id="lastUpdated">—</time></div>
         </aside>
 
-        <!-- Colonne de contenu -->
         <div>
-          <!-- Contenu obligatoire -->
           <section id="obligatoires" class="reveal" tabindex="-1">
             <h2 class="title">Contenu obligatoire</h2>
             <div class="grid cols-2">
@@ -171,7 +165,6 @@
             </div>
           </section>
 
-          <!-- Selon le statut -->
           <section id="selon-statut" class="reveal" tabindex="-1">
             <h2 class="title">Adapter selon votre statut</h2>
             <div class="grid cols-3">
@@ -201,7 +194,6 @@
             </div>
           </section>
 
-          <!-- E-commerce -->
           <section id="ecommerce" class="reveal" tabindex="-1">
             <h2 class="title">e-commerce B2C</h2>
             <div class="grid cols-2">
@@ -222,7 +214,6 @@
             </div>
           </section>
 
-          <!-- Données & cookies -->
           <section id="donnees" class="reveal" tabindex="-1">
             <h2 class="title">Données personnelles & cookies</h2>
             <div class="grid cols-2">
@@ -239,7 +230,6 @@
             </div>
           </section>
 
-          <!-- Exemples & modèles -->
           <section id="exemples" class="reveal" tabindex="-1">
             <h2 class="title">Exemples & modèles</h2>
             <div class="grid cols-2">
@@ -270,7 +260,6 @@
             </div>
           </section>
 
-          <!-- FAQ erreurs fréquentes -->
           <section id="faq" class="reveal" tabindex="-1">
             <h2 class="title">Erreurs fréquentes & bonnes pratiques</h2>
             <div class="grid cols-2">
@@ -298,7 +287,7 @@
     </section>
 
     <!-- Dernière rubrique alignée + même souffle -->
-    <section class="section alt">
+    <section class="section alt compact">
       <div class="container with-aside">
         <div style="grid-column: 2 / 3;">
           <section class="reveal rubrique-gap" tabindex="-1">
@@ -370,7 +359,7 @@
     }
   </script>
 
-  <!-- Loader footer + nav (header optionnel) -->
+  <!-- Loader footer + nav -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header"); const footMount = document.getElementById("footer"); if (!headMount && !footMount) return;
