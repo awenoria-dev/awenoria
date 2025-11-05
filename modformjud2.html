@@ -51,10 +51,9 @@
     /* Sections / titres */
     .section{max-width:1200px;margin:0 auto;padding:100px 20px}
     .section.alt{background:var(--aw-bg)}
-    .title{margin:0 0 10px;text-align:center;font-size:clamp(36px,5vw,48px);font-weight:800;background:linear-gradient(135deg,#0F5F9A 0%,#0d5285 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 4px rgba(0,0,0,.08);transition:transform .35s ease,opacity .35s ease}
+    .title{margin:0 0 10px;text-align:center;font-size:clamp(36px,5vw,48px);font-weight:800;background:linear-gradient(135deg,#0F5F9A 0%,#0d5285 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 4px rgba(0,0,0,.08)}
     .title-center{margin:0 0 10px;text-align:center;font-size:clamp(32px,4.5vw,42px);font-weight:800;color:#0d5285}
     .underline{width:60px;height:6px;border-radius:6px;margin:10px auto 24px;background:var(--aw-copper);opacity:.9}
-
     .subtitle-center{font-size:1.2rem;color:var(--aw-muted);max-width:840px;margin:0 auto 56px;text-align:center}
 
     /* Grids & cards */
@@ -95,20 +94,22 @@
     form.smart label{font-size:12px;color:var(--aw-muted)}
     form.smart input,form.smart select,form.smart textarea{width:100%;padding:10px 12px;border:1px solid rgba(15,23,32,.1);border-radius:12px;background:var(--aw-panel);font:500 14px/1.4 "Inter";color:var(--aw-ink)}
     .fieldset{border:1px dashed rgba(15,23,32,.15);border-radius:14px;padding:12px}
-    .fieldset legend{font-weight:800;font-size:12px;color:var(--aw-muted);padding:0 6px}
+    .fieldset legend{font-weight:800;font-size:12px;color:var(--aw-muted)}
     .req::after{content:' *';color:var(--aw-copper)}
     .hint{font-size:12px;color:var(--aw-muted)}
     .model{display:flex;flex-direction:column;gap:10px}
     .model textarea{width:100%;min-height:320px;resize:vertical;padding:14px;border:1px solid rgba(15,95,154,.12);border-radius:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:14px;line-height:1.55;background:var(--aw-bg);color:var(--aw-ink)}
 
+    /* FAQ details style (PJ) */
+    .faq-q{max-width:680px;margin:0 auto 1.2rem;border:1px solid rgba(15,23,32,.08);border-radius:var(--aw-radius);background:var(--aw-panel);box-shadow:var(--shadow)}
+    .faq-q summary{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;font-weight:800;cursor:pointer;list-style:none}
+    .faq-q summary::after{content:"+";font-size:1.4rem;color:var(--aw-copper);transition:transform .2s}
+    .faq-q[open] summary::after{transform:rotate(45deg)}
+    .faq-a{padding:0 1.4rem 1.4rem;color:var(--aw-muted)}
+
     /* Back to top */
     .to-top{position:fixed; right:16px; bottom:16px; z-index:50; opacity:0; visibility:hidden; transform:translateY(12px); transition:all .3s ease}
     .to-top.show{opacity:1; visibility:visible; transform:none}
-
-    /* Animations */
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
-    .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
-    .reveal.is-visible{opacity:1;transform:none}
   </style>
 </head>
 <body class="page-modeles">
@@ -147,7 +148,6 @@
         </div>
 
         <div class="grid cols-3" style="margin-top:14px">
-          <!-- Carte 1 avec badge NOUVEAU -->
           <a class="card reveal filter-item" data-tags="rgpd confidentialité politique" href="#polconf" target="_self">
             <span class="pill">RGPD</span>
             <span class="badge-new">Nouveau</span>
@@ -160,35 +160,6 @@
           <a class="card reveal filter-item" data-tags="emailing désinscription" href="#email" target="_self"><span class="pill">Emailing</span><h3>Pied de page désinscription</h3><p class="muted">Lien & mentions</p></a>
           <a class="card reveal filter-item" data-tags="cgv b2c ecommerce" href="#cgv" target="_self"><span class="pill">E-commerce</span><h3>Trame courte CGV</h3><p class="muted">B2C simplifié</p></a>
         </div>
-
-        <!-- ===== FAQ (style PJ2 en <details>) ===== -->
-        <section id="faq" class="section" aria-labelledby="faq-title" style="padding-top:60px;padding-bottom:0">
-          <h2 id="faq-title" class="title-center">Questions fréquentes</h2>
-          <div class="underline" aria-hidden="true"></div>
-
-          <style>
-            .faq-q{max-width:680px;margin:0 auto 1.2rem;border:1px solid rgba(15,23,32,.08);border-radius:var(--aw-radius);background:var(--aw-panel);box-shadow:var(--shadow)}
-            .faq-q summary{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;font-weight:800;cursor:pointer;list-style:none}
-            .faq-q summary::after{content:"+";font-size:1.4rem;color:var(--aw-copper);transition:transform .2s}
-            .faq-q[open] summary::after{transform:rotate(45deg)}
-            .faq-a{padding:0 1.4rem 1.4rem;color:var(--aw-muted)}
-          </style>
-
-          <details class="faq-q">
-            <summary>Dois-je nommer un DPO&nbsp;?</summary>
-            <p class="faq-a">Obligatoire pour certains organismes (publics, suivi à grande échelle, traitements sensibles). Sinon, nommez un contact RGPD et documentez votre gouvernance.</p>
-          </details>
-
-          <details class="faq-q">
-            <summary>Puis-je mutualiser mentions légales &amp; CGV&nbsp;?</summary>
-            <p class="faq-a">Vous pouvez les lier, mais gardez des pages séparées : Mentions légales (identité, hébergeur), Politique de confidentialité (RGPD), CGV (contrat). C’est plus clair et plus simple à mettre à jour.</p>
-          </details>
-
-          <details class="faq-q">
-            <summary>Quand dois-je mettre à jour la date&nbsp;?</summary>
-            <p class="faq-a">À chaque modification substantielle (finalités, bases légales, destinataires, cookies, durées). Sinon, un contrôle trimestriel ou semestriel suffit.</p>
-          </details>
-        </section>
       </div>
     </section>
 
@@ -207,6 +178,8 @@
             <a href="#cgv" data-spy>CGV (B2C)</a>
           </nav>
           <div class="small" style="margin-top:10px">Dernière mise à jour : <time id="lastUpdated">—</time></div>
+          <!-- Bouton reprise session -->
+          <button class="btn ghost" id="resumeBtn" style="margin-top:12px;width:100%;display:none">Reprendre ma dernière session</button>
         </aside>
 
         <div>
@@ -468,7 +441,30 @@ Droit français. Tribunaux compétents selon le droit commun.
       </div>
     </section>
 
-    <!-- CTA alignée -->
+    <!-- ===== FAQ (déplacée avant la CTA) ===== -->
+    <section id="faq" class="section" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 id="faq-title" class="title-center">Questions fréquentes</h2>
+        <div class="underline" aria-hidden="true"></div>
+
+        <details class="faq-q">
+          <summary>Dois-je nommer un DPO&nbsp;?</summary>
+          <p class="faq-a">Obligatoire pour certains organismes (publics, suivi à grande échelle, traitements sensibles). Sinon, nommez un contact RGPD et documentez votre gouvernance.</p>
+        </details>
+
+        <details class="faq-q">
+          <summary>Puis-je mutualiser mentions légales &amp; CGV&nbsp;?</summary>
+          <p class="faq-a">Vous pouvez les lier, mais gardez des pages séparées : Mentions légales (identité, hébergeur), Politique de confidentialité (RGPD), CGV (contrat). C’est plus clair et plus simple à mettre à jour.</p>
+        </details>
+
+        <details class="faq-q">
+          <summary>Quand dois-je mettre à jour la date&nbsp;?</summary>
+          <p class="faq-a">À chaque modification substantielle (finalités, bases légales, destinataires, cookies, durées). Sinon, un contrôle trimestriel ou semestriel suffit.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA alignée comme les autres rubriques -->
     <section class="section alt">
       <div class="container" style="text-align:center">
         <h2 class="title">Besoin d’une relecture experte ?</h2>
@@ -488,7 +484,7 @@ Droit français. Tribunaux compétents selon le droit commun.
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <!-- JS: canvas + reveal + in-view + scrollspy + copier + éditeur + filtre + date + zip + toTop -->
+  <!-- JS: canvas + reveal + in-view + scrollspy + copier + éditeur + filtre + date + zip + toTop + reprise session -->
   <script>
     /* Canvas particles */
     const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
@@ -566,7 +562,30 @@ Droit français. Tribunaux compétents selon le droit commun.
     } }
     function fillTemplate(tpl,map){ return tpl.replace(/\[\[([^\]]+)\]\]/g,(m,t)=>{ const k=t.trim(); return (map[k]!==undefined && map[k]!== '')? map[k] : m }) }
     function updateAllModels(){ const data=getFormData(); const map=tokenMapFromData(data); modelAreas.forEach(ta=>ta.value=fillTemplate(ta.dataset.template,map)) }
-    fastForm.addEventListener('input',updateAllModels); advForm.addEventListener('input',updateAllModels); updateAllModels();
+
+    /* Sauvegarde/restauration de session */
+    const resumeBtn=document.getElementById('resumeBtn');
+    function saveFields(){
+      const fast=Object.fromEntries(new FormData(fastForm).entries());
+      const adv=advForm.hidden?null:Object.fromEntries(new FormData(advForm).entries());
+      localStorage.setItem('awenoriaFields', JSON.stringify({fast, adv}));
+    }
+    function restoreFields(data){
+      if(!data) return;
+      const setVals=(form, obj)=>{ if(!obj) return; Object.entries(obj).forEach(([k,v])=>{ const el=form.querySelector(`[name="${k}"]`); if(el) el.value=v; }); };
+      setVals(fastForm, data.fast||{});
+      if(data.adv){ switchTab('adv'); setVals(advForm, data.adv); }
+      updateAllModels();
+    }
+    fastForm.addEventListener('input', ()=>{ updateAllModels(); saveFields(); });
+    advForm.addEventListener('input',  ()=>{ updateAllModels(); saveFields(); });
+    updateAllModels();
+
+    const savedFields=localStorage.getItem('awenoriaFields');
+    if(savedFields){
+      resumeBtn.style.display='block';
+      resumeBtn.addEventListener('click', ()=>{ try{ restoreFields(JSON.parse(savedFields)); }catch(_){} });
+    }
 
     /* ZIP: pack fichiers */
     document.getElementById('btnPack').addEventListener('click', async ()=>{
