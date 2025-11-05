@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Mentions légales | Awenoria</title>
   <meta name="description" content="Guide pratique pour rédiger vos mentions légales : contenus obligatoires selon votre statut, exemples, erreurs fréquentes, modèles téléchargeables.">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
@@ -21,23 +21,19 @@
     .container{max-width:1200px;margin:0 auto;padding:0 20px}
     img{max-width:100%;display:block}
 
-    /* Skip link */
     .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
     .skip-link:focus{left:10px;top:10px;width:auto;height:auto;z-index:1000;background:#000;color:#fff;padding:8px 10px;border-radius:8px}
 
-    /* Hero */
     .hero{position:relative;min-height:50vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;background:radial-gradient(140% 150% at 10% -20%,rgba(255,255,255,.15),transparent 60%),radial-gradient(120% 120% at 120% 10%,rgba(255,255,255,.10),transparent 60%),linear-gradient(180deg,#0033cc 0%,#0066ff 100%)}
     .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
     .hero .content{position:relative;z-index:2;max-width:880px;padding:0 20px;animation:fadeInUp 1s both}
     .hero h1{font-size:clamp(44px,6vw,68px);font-weight:800;line-height:1.05;letter-spacing:-.02em}
     .hero .lead{font-size:1.2rem;font-weight:500;margin:16px auto 0;color:#e8f0ff}
 
-    /* Sections */
     .section{max-width:1200px;margin:0 auto;padding:140px 20px}
     .section.alt{background:var(--aw-bg)}
     .section.compact{padding-top:0}
 
-    /* Titles */
     .title{margin:0 auto 10px;text-align:center;font-size:clamp(36px,5vw,48px);font-weight:800;background:linear-gradient(135deg,#0F5F9A 0%,#0d5285 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 4px rgba(0,0,0,.08);transition:transform .35s ease,opacity .35s ease}
     .section.in-view .title{transform:translateY(-2px);opacity:1}
     .title::after{content:'';display:block;width:60px;height:4px;background:var(--aw-copper);margin:10px auto 0;border-radius:3px}
@@ -48,20 +44,8 @@
     .cols-3{grid-template-columns:repeat(3,1fr)}
     @media(max-width:980px){.cols-2,.cols-3{grid-template-columns:1fr}}
 
-    .card{
-      background:var(--aw-panel);
-      border:1px solid rgba(15,23,32,.08);
-      border-radius:var(--aw-radius);
-      box-shadow:var(--shadow);
-      padding:24px;
-      transition:all var(--transition);
-      color:inherit
-    }
-    .card:hover{
-      border-color:var(--aw-copper);
-      box-shadow:0 28px 56px rgba(0,0,0,.10);
-    }
-
+    .card{background:var(--aw-panel);border:1px solid rgba(15,23,32,.08);border-radius:var(--aw-radius);box-shadow:var(--shadow);padding:24px;transition:all var(--transition);color:inherit}
+    .card:hover{border-color:var(--aw-copper);box-shadow:0 28px 56px rgba(0,0,0,.10);}
     .muted{color:var(--aw-muted)}
     .btn{display:inline-block;padding:10px 14px;border-radius:10px;font-weight:800;color:#fff;background:var(--aw-blue);box-shadow:var(--shadow);font-size:14px;transition:all var(--transition)}
     .btn:hover{background:var(--aw-copper);transform:translateY(-2px)}
@@ -69,7 +53,6 @@
     .small{font-size:13px;color:var(--aw-muted)}
     .btn-row{display:flex;gap:12px;flex-wrap:wrap}
 
-    /* TOC */
     .with-aside{display:grid;grid-template-columns:260px 1fr;gap:24px}
     @media(max-width:1100px){.with-aside{grid-template-columns:1fr}}
     .toc{position:sticky;top:90px;align-self:start;background:var(--aw-panel);border:1px solid rgba(15,23,32,.08);border-radius:16px;padding:14px;box-shadow:var(--shadow)}
@@ -77,25 +60,17 @@
     .toc a{display:block;padding:8px 10px;border-radius:10px;color:inherit}
     .toc a.active{background:rgba(0,102,255,.08);color:var(--aw-blue);font-weight:700}
 
-    /* Anim */
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
     .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
     .reveal.is-visible{opacity:1;transform:none}
 
-    /* Back to top */
-    .to-top{
-      position:fixed; right:16px; bottom:16px; z-index:50;
-      opacity:0; visibility:hidden; transform:translateY(12px);
-      transition:all .3s ease;
-    }
+    .to-top{position:fixed; right:16px; bottom:16px; z-index:50; opacity:0; visibility:hidden; transform:translateY(12px); transition:all .3s ease;}
     .to-top.show{ opacity:1; visibility:visible; transform:none }
 
-    /* Souffle entre rubriques (dans la même colonne) */
     .with-aside > div > section + section{ margin-top:100px; }
     .with-aside > div > section{ padding-bottom:24px; }
     .with-aside > div > section .title{ margin-bottom:24px; }
 
-    /* ===== AMÉLIORATIONS : flèche, tags, scroll, tout ouvrir, icônes, copier, accordéon, focus, compteur ===== */
     summary{display:flex;align-items:center;gap:.5rem;font-weight:600;color:var(--aw-blue);cursor:pointer;user-select:none}
     summary svg{width:16px;height:16px;transition:transform .25s ease}
     details[open] summary svg{transform:rotate(90deg)}
@@ -117,10 +92,8 @@
 <body class="page-mentions">
   <a class="skip-link" href="#main">Aller au contenu</a>
 
-  <!-- Header injecté -->
   <div id="header"></div>
 
-  <!-- Hero -->
   <section class="hero">
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="content">
@@ -149,7 +122,6 @@
         <div>
           <section id="obligatoires" class="reveal" tabindex="-1">
             <h2 class="title">Contenu obligatoire</h2>
-            <button class="btn ghost bulk-toggle" data-section="obligatoires">Tout ouvrir</button>
             <div class="grid cols-2">
               <article class="card">
                 <h3>Identification de l’éditeur</h3>
@@ -230,7 +202,6 @@
 
           <section id="selon-statut" class="reveal" tabindex="-1">
             <h2 class="title">Adapter selon votre statut</h2>
-            <button class="btn ghost bulk-toggle" data-section="selon-statut">Tout ouvrir</button>
             <div class="grid cols-3">
               <article class="card">
                 <h3>Société (SARL, SAS, SA…)</h3>
@@ -293,7 +264,6 @@
 
           <section id="ecommerce" class="reveal" tabindex="-1">
             <h2 class="title">e-commerce B2C</h2>
-            <button class="btn ghost bulk-toggle" data-section="ecommerce">Tout ouvrir</button>
             <div class="grid cols-2">
               <article class="card">
                 <h3>Avant achat</h3>
@@ -368,7 +338,7 @@
                     <span class="tag">consentement</span>
                     <span class="tag">blocage</span>
                   </div>
-                  <ul class="list check-list-scroll">
+                  <ul class="check-list-scroll">
                     <li>Bandeau avec refus aussi simple que l’acceptation, preuve du consentement, blocage par défaut des tags non essentiels</li>
                   </ul>
                 </details>
@@ -379,7 +349,6 @@
 
           <section id="exemples" class="reveal" tabindex="-1">
             <h2 class="title">Exemples & modèles</h2>
-            <button class="btn ghost bulk-toggle" data-section="exemples">Tout ouvrir</button>
             <div class="grid cols-2">
               <article class="card">
                 <h3>Exemple court (vitrine)</h3>
@@ -393,12 +362,10 @@
                     <span class="tag">court</span>
                     <span class="tag">exemple</span>
                   </div>
-                  <pre class="small check-list-scroll" style="white-space:pre-wrap;background:var(--aw-bg);padding:12px;border-radius:8px;">
-<b>Éditeur</b> — [[Nom entreprise]], [[forme]] au capital de [[€]], [[adresse]], SIREN [[xxxxx]], RCS [[Ville]], TVA [[FR..]].
+                  <pre class="small check-list-scroll" style="white-space:pre-wrap;background:var(--aw-bg);padding:12px;border-radius:8px;"><b>Éditeur</b> — [[Nom entreprise]], [[forme]] au capital de [[€]], [[adresse]], SIREN [[xxxxx]], RCS [[Ville]], TVA [[FR..]].
 <b>Publication</b> — Directeur·rice : [[Nom]], contact : [[email]].
 <b>Hébergeur</b> — [[Nom hébergeur]], [[adresse]], [[contact]].
-<b>Propriété intellectuelle</b> — Tous droits réservés. Toute reproduction interdite sans autorisation.
-                  </pre>
+<b>Propriété intellectuelle</b> — Tous droits réservés. Toute reproduction interdite sans autorisation.</pre>
                   <button class="copy-btn" aria-label="Copier l’exemple">Copier</button>
                 </details>
               </article>
@@ -414,11 +381,9 @@
                     <span class="tag">B2C</span>
                     <span class="tag">exemple</span>
                   </div>
-                  <pre class="small check-list-scroll" style="white-space:pre-wrap;background:var(--aw-bg);padding:12px;border-radius:8px;">
-<b>CGV</b> — accessibles ici : [[lien]]. Prix TTC, frais et délais précisés avant commande.
+                  <pre class="small check-list-scroll" style="white-space:pre-wrap;background:var(--aw-bg);padding:12px;border-radius:8px;"><b>CGV</b> — accessibles ici : [[lien]]. Prix TTC, frais et délais précisés avant commande.
 <b>Rétractation</b> — Délai légal de [[14]] jours. Formulaire : [[lien]].
-<b>Médiation</b> — [[Nom du médiateur]] : [[coordonnées]].
-                  </pre>
+<b>Médiation</b> — [[Nom du médiateur]] : [[coordonnées]].</pre>
                   <button class="copy-btn" aria-label="Copier l’exemple">Copier</button>
                 </details>
                 <p class="small" style="margin-top:10px"><a class="btn" href="modeles.html" target="_self">Ouvrir tous les modèles</a></p>
@@ -428,7 +393,6 @@
 
           <section id="faq" class="reveal" tabindex="-1">
             <h2 class="title">Erreurs fréquentes & bonnes pratiques</h2>
-            <button class="btn ghost bulk-toggle" data-section="faq">Tout ouvrir</button>
             <div class="grid cols-2">
               <article class="card">
                 <h3>Erreurs à éviter</h3>
@@ -474,10 +438,10 @@
 
           <section id="besoin" class="reveal" tabindex="-1">
             <h2 class="title">Besoin d’un modèle adapté à votre cas&nbsp;?</h2>
-            <p class="muted" style="max-width:700px;margin-bottom:24px;">
+            <p class="muted" style="max-width:700px;margin:0 auto 24px;text-align:center;">
               On personnalise vos mentions légales (statut, secteur, B2C/B2B) et on les relie à vos politiques.
             </p>
-            <div class="btn-row">
+            <div class="btn-row" style="justify-content:center;">
               <a class="btn" href="contact.html" target="_self">Parler à un expert</a>
               <a class="btn ghost" href="modeles.html" target="_self">Voir les modèles</a>
             </div>
@@ -490,9 +454,7 @@
   <a class="btn to-top" id="toTop" href="#top" target="_self" aria-label="Revenir en haut">↑ Haut</a>
   <div id="footer"></div>
 
-  <!-- Scripts -->
   <script>
-    // Canvas
     const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
     let w = canvas.width = innerWidth; let h = canvas.height = innerHeight;
     const particles = []; const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
@@ -505,7 +467,6 @@
     function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines() }); requestAnimationFrame(animate) }
     init(); animate();
 
-    // Reveal / in-view
     const reveals = document.querySelectorAll('.reveal');
     const ioReveal = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('is-visible') }) }, { threshold: .15 });
     reveals.forEach(el => ioReveal.observe(el));
@@ -513,7 +474,6 @@
     const ioView = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in-view') }) }, { threshold: .35 });
     sections.forEach(s => ioView.observe(s));
 
-    // Scrollspy
     const spyLinks = Array.from(document.querySelectorAll('[data-spy]'));
     const targets = spyLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
     const spy = new IntersectionObserver(entries => {
@@ -521,15 +481,13 @@
     }, { rootMargin:'-40% 0px -55% 0px', threshold: .01 });
     targets.forEach(t => spy.observe(t));
 
-    // Last updated + SEO
     const last = new Date(document.lastModified);
     const fmt = last.toLocaleDateString('fr-FR', { year:'numeric', month:'long', day:'2-digit' });
     const lastNode = document.getElementById('lastUpdated'); if(lastNode){ lastNode.textContent = fmt; lastNode.setAttribute('datetime', last.toISOString()) }
     const meta = document.createElement('meta'); meta.setAttribute('property','article:modified_time'); meta.setAttribute('content', last.toISOString()); document.head.appendChild(meta);
-    const ld = { '@context':'https://schema.org', '@type':'WebPage', name:'Mentions légales | Awenoria', url: location.href, dateModified: last.toISOString() };
+    const ld = { '@context':'https://schema.org ', '@type':'WebPage', name:'Mentions légales | Awenoria', url: location.href, dateModified: last.toISOString() };
     const ldScript = document.createElement('script'); ldScript.type = 'application/ld+json'; ldScript.textContent = JSON.stringify(ld); document.head.appendChild(ldScript);
 
-    // Back to top
     document.addEventListener('DOMContentLoaded', () => {
       const toTop = document.getElementById('toTop');
       const hero = document.querySelector('.hero');
@@ -541,18 +499,7 @@
       ioTop.observe(hero);
     });
 
-    // ===== AMÉLIORATIONS : flèche, tags, scroll, tout ouvrir, copier, accordéon, compteur =====
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Flèche dans summary
-      document.querySelectorAll('details summary').forEach(sum => {
-        if (sum.querySelector('svg')) return;
-        sum.insertAdjacentHTML('afterbegin', `
-          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
-          <span>Afficher la liste</span>
-        `);
-      });
-
-      // 2. Tags visuels
       document.querySelectorAll('details').forEach(detail => {
         const h3 = detail.querySelector('h3');
         if (!h3) return;
@@ -562,12 +509,10 @@
         detail.querySelector('summary').insertAdjacentHTML('afterend', `<div class="tags-preview">${tagHtml}</div>`);
       });
 
-      // 3. Scroll dans listes longues
       document.querySelectorAll('ul.list').forEach(ul => {
         if (ul.children.length > 5) ul.classList.add('check-list-scroll');
       });
 
-      // 4. Bouton « Tout ouvrir »
       document.querySelectorAll('section[id]').forEach(sec => {
         if (sec.querySelectorAll('details').length === 0) return;
         const btn = document.createElement('button');
@@ -577,7 +522,6 @@
         sec.querySelector('h2').insertAdjacentElement('afterend', btn);
       });
 
-      // 5. Toggle tout ouvrir
       document.querySelectorAll('.bulk-toggle').forEach(btn => {
         btn.addEventListener('click', () => {
           const section = btn.dataset.section;
@@ -588,7 +532,6 @@
         });
       });
 
-      // 6. Bouton copier
       document.querySelectorAll('pre').forEach(pre => {
         const btn = document.createElement('button');
         btn.className = 'copy-btn';
@@ -604,7 +547,6 @@
         pre.parentElement.appendChild(btn);
       });
 
-      // 7. Accordéon FAQ
       const faqCard = document.querySelector('#faq .card');
       if (faqCard) {
         const ul = faqCard.querySelector('ul');
@@ -621,7 +563,6 @@
         }
       }
 
-      // 8. Compteur d’items
       document.querySelectorAll('section[id] .card h3').forEach(h3 => {
         const ul = h3.parentElement.querySelector('ul');
         if (ul) {
@@ -635,7 +576,6 @@
     });
   </script>
 
-  <!-- Loader header/footer -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const headMount = document.getElementById("header"); const footMount = document.getElementById("footer"); if (!headMount && !footMount) return;
