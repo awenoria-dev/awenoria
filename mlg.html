@@ -26,7 +26,7 @@
     .skip-link:focus{left:10px;top:10px;width:auto;height:auto;z-index:1000;background:#000;color:#fff;padding:8px 10px;border-radius:8px}
 
     /* Hero */
-    .hero{position:relative;min-height:50vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;background:radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),linear-gradient(180deg, #0033cc 0%, #0066ff 100%)}
+    .hero{position:relative;min-height:50vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;background:radial-gradient(140% 150% at 10% -20%,rgba(255,255,255,.15),transparent 60%),radial-gradient(120% 120% at 120% 10%,rgba(255,255,255,.10),transparent 60%),linear-gradient(180deg,#0033cc 0%,#0066ff 100%)}
     .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
     .hero .content{position:relative;z-index:2;max-width:880px;padding:0 20px;animation:fadeInUp 1s both}
     .hero h1{font-size:clamp(44px,6vw,68px);font-weight:800;line-height:1.05;letter-spacing:-.02em}
@@ -58,7 +58,6 @@
       color:inherit
     }
     .card:hover{
-      transform:translateY(-2px);
       border-color:var(--aw-copper);
       box-shadow:0 28px 56px rgba(0,0,0,.10);
     }
@@ -95,8 +94,26 @@
     .with-aside > div > section + section{ margin-top:100px; }
     .with-aside > div > section{ padding-bottom:24px; }
     .with-aside > div > section .title{ margin-bottom:24px; }
+
+    /* ===== AMÉLIORATIONS : flèche, tags, scroll, tout ouvrir, icônes, copier, accordéon, focus, compteur ===== */
+    summary{display:flex;align-items:center;gap:.5rem;font-weight:600;color:var(--aw-blue);cursor:pointer;user-select:none}
+    summary svg{width:16px;height:16px;transition:transform .25s ease}
+    details[open] summary svg{transform:rotate(90deg)}
+    .tags-preview{display:flex;gap:.4rem;margin:.4rem 0 .8rem 1.6rem}
+    .tag{font-size:.7rem;padding:.15rem .5rem;border-radius:999px;background:rgba(0,102,255,.08);color:var(--aw-blue)}
+    .check-list-scroll{max-height:200px;overflow-y:auto;scroll-behavior:smooth;padding-right:8px}
+    .check-list-scroll::-webkit-scrollbar{width:6px}
+    .check-list-scroll::-webkit-scrollbar-thumb{background-color:var(--aw-muted);border-radius:3px}
+    .bulk-toggle{margin:1rem 0 0 0;font-size:.8rem;padding:6px 10px;border-radius:8px;border:1px solid rgba(15,23,32,.12);background:var(--aw-panel);color:var(--aw-blue);cursor:pointer}
+    @media(max-width:980px){details summary{font-size:.9rem}}
+    li::before{content:'✓';color:var(--aw-copper);margin-right:.5rem;font-weight:800}
+    a:focus,button:focus{outline:2px solid var(--aw-blue);outline-offset:2px}
+    .copy-btn{margin-left:auto;font-size:11px;padding:2px 6px;border-radius:4px;border:1px solid rgba(15,23,32,.12);background:var(--aw-panel);color:var(--aw-blue);cursor:pointer}
+    .copy-btn:hover{background:var(--aw-copper);color:#fff}
+    .item-count{display:inline-block;font-size:11px;color:var(--aw-muted);margin-left:.5rem}
   </style>
 </head>
+
 <body class="page-mentions">
   <a class="skip-link" href="#main">Aller au contenu</a>
 
@@ -108,12 +125,11 @@
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="content">
       <h1 id="top">Mentions légales</h1>
-      <p class="lead">Tout ce qu’un <b>site</b> ou une <b>boutique en ligne</b> doit afficher : contenu obligatoire, exemples prêts à l’emploi et erreurs fréquentes à éviter.</p>
+      <p class="lead">Tout ce qu’un <b>site</b> ou une <b>boutique en ligne</b> doit afficher : contenu obligatoire, exemples, erreurs fréquentes à éviter.</p>
     </div>
   </section>
 
   <main id="main">
-    <!-- Bloc principal -->
     <section class="section alt">
       <div class="container with-aside">
         <aside class="toc">
@@ -133,85 +149,187 @@
         <div>
           <section id="obligatoires" class="reveal" tabindex="-1">
             <h2 class="title">Contenu obligatoire</h2>
+            <button class="btn ghost bulk-toggle" data-section="obligatoires">Tout ouvrir</button>
             <div class="grid cols-2">
               <article class="card">
                 <h3>Identification de l’éditeur</h3>
-                <ul class="small">
-                  <li>Raison sociale / nom, forme juridique, capital (si société)</li>
-                  <li>Adresse du siège, <b>SIREN/SIRET</b>, RCS + ville d’immatriculation</li>
-                  <li>N° TVA intracommunautaire (le cas échéant)</li>
-                  <li>Directeur·rice de la publication et contact</li>
-                </ul>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la liste</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">raison sociale</span>
+                    <span class="tag">SIREN</span>
+                    <span class="tag">RCS</span>
+                  </div>
+                  <ul class="list check-list-scroll">
+                    <li>Raison sociale / nom, forme juridique, capital (si société)</li>
+                    <li>Adresse du siège, <b>SIREN/SIRET</b>, RCS + ville d’immatriculation</li>
+                    <li>N° TVA intracommunautaire (le cas échéant)</li>
+                    <li>Directeur·rice de la publication et contact</li>
+                  </ul>
+                </details>
               </article>
               <article class="card">
                 <h3>Hébergeur</h3>
-                <ul class="small">
-                  <li>Nom de l’hébergeur (ex. GitHub Pages, OVH, Cloudflare…)</li>
-                  <li>Adresse postale et moyen de contact (mail/tel)</li>
-                </ul>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la liste</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">nom</span>
+                    <span class="tag">adresse</span>
+                    <span class="tag">contact</span>
+                  </div>
+                  <ul class="list check-list-scroll">
+                    <li>Nom de l’hébergeur (ex. GitHub Pages, OVH, Cloudflare…)</li>
+                    <li>Adresse postale et moyen de contact (mail/tel)</li>
+                  </ul>
+                </details>
               </article>
               <article class="card">
                 <h3>Propriété intellectuelle</h3>
-                <ul class="small">
-                  <li>Textes, images, logos, codes : droits réservés, conditions de reproduction</li>
-                  <li>Crédits (photos, polices, icônes, templates)</li>
-                </ul>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la liste</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">textes</span>
+                    <span class="tag">images</span>
+                    <span class="tag">logos</span>
+                  </div>
+                  <ul class="list check-list-scroll">
+                    <li>Textes, images, logos, codes : droits réservés, conditions de reproduction</li>
+                    <li>Crédits (photos, polices, icônes, templates)</li>
+                  </ul>
+                </details>
               </article>
               <article class="card">
                 <h3>Médiation / réclamations</h3>
-                <ul class="small">
-                  <li>Si B2C en France : coordonnées du médiateur de la consommation</li>
-                  <li>Procédure de réclamation / contact</li>
-                </ul>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la liste</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">médiateur</span>
+                    <span class="tag">réclamation</span>
+                    <span class="tag">contact</span>
+                  </div>
+                  <ul class="list check-list-scroll">
+                    <li>Si B2C en France : coordonnées du médiateur de la consommation</li>
+                    <li>Procédure de réclamation / contact</li>
+                  </ul>
+                </details>
               </article>
             </div>
           </section>
 
           <section id="selon-statut" class="reveal" tabindex="-1">
             <h2 class="title">Adapter selon votre statut</h2>
+            <button class="btn ghost bulk-toggle" data-section="selon-statut">Tout ouvrir</button>
             <div class="grid cols-3">
               <article class="card">
                 <h3>Société (SARL, SAS, SA…)</h3>
-                <ul class="small">
-                  <li>Forme + capital social</li>
-                  <li>RCS + ville, SIREN</li>
-                  <li>Si activité réglementée : autorité / n° d’agrément</li>
-                </ul>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la liste</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">forme</span>
+                    <span class="tag">capital</span>
+                    <span class="tag">RCS</span>
+                  </div>
+                  <ul class="list check-list-scroll">
+                    <li>Forme + capital social</li>
+                    <li>RCS + ville, SIREN</li>
+                    <li>Si activité réglementée : autorité / n° d’agrément</li>
+                  </ul>
+                </details>
               </article>
               <article class="card">
                 <h3>Entreprise individuelle / micro</h3>
-                <ul class="small">
-                  <li>Nom & prénom, adresse pro (ou mention de domiciliation)</li>
-                  <li>Numéro SIREN/SIRET</li>
-                  <li>TVA : le cas échéant (franchise en base à préciser)</li>
-                </ul>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la liste</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">nom</span>
+                    <span class="tag">SIREN</span>
+                    <span class="tag">TVA</span>
+                  </div>
+                  <ul class="list check-list-scroll">
+                    <li>Nom & prénom, adresse pro (ou mention de domiciliation)</li>
+                    <li>Numéro SIREN/SIRET</li>
+                    <li>TVA : le cas échéant (franchise en base à préciser)</li>
+                  </ul>
+                </details>
               </article>
               <article class="card">
                 <h3>Association</h3>
-                <ul class="small">
-                  <li>Dénomination, siège, RNA ou SIREN</li>
-                  <li>Nom du/de la responsable de la publication</li>
-                </ul>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la liste</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">dénomination</span>
+                    <span class="tag">RNA</span>
+                    <span class="tag">responsable</span>
+                  </div>
+                  <ul class="list check-list-scroll">
+                    <li>Dénomination, siège, RNA ou SIREN</li>
+                    <li>Nom du/de la responsable de la publication</li>
+                  </ul>
+                </details>
               </article>
             </div>
           </section>
 
           <section id="ecommerce" class="reveal" tabindex="-1">
             <h2 class="title">e-commerce B2C</h2>
+            <button class="btn ghost bulk-toggle" data-section="ecommerce">Tout ouvrir</button>
             <div class="grid cols-2">
               <article class="card">
                 <h3>Avant achat</h3>
-                <ul class="small">
-                  <li>CGV accessibles, prix TTC/HT clairs, frais / délais de livraison</li>
-                  <li>Modalités de paiement, disponibilité, zones desservies</li>
-                </ul>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la liste</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">CGV</span>
+                    <span class="tag">prix</span>
+                    <span class="tag">délai</span>
+                  </div>
+                  <ul class="list check-list-scroll">
+                    <li>CGV accessibles, prix TTC/HT clairs, frais / délais de livraison</li>
+                    <li>Modalités de paiement, disponibilité, zones desservies</li>
+                  </ul>
+                </details>
               </article>
               <article class="card">
                 <h3>Après achat</h3>
-                <ul class="small">
-                  <li>Droit de rétractation (délais, formulaire), garanties</li>
-                  <li>Médiation de la consommation / litiges</li>
-                </ul>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la liste</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">rétractation</span>
+                    <span class="tag">garantie</span>
+                    <span class="tag">médiation</span>
+                  </div>
+                  <ul class="list check-list-scroll">
+                    <li>Droit de rétractation (délais, formulaire), garanties</li>
+                    <li>Médiation de la consommation / litiges</li>
+                  </ul>
+                </details>
               </article>
             </div>
           </section>
@@ -221,12 +339,39 @@
             <div class="grid cols-2">
               <article class="card">
                 <h3>Politique de confidentialité</h3>
-                <p class="small">Décrivez finalités, bases légales, durées, droits, contact, transferts. Liez-la depuis toutes les pages.</p>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la liste</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">finalités</span>
+                    <span class="tag">droits</span>
+                    <span class="tag">contact</span>
+                  </div>
+                  <ul class="list check-list-scroll">
+                    <li>Finalités, bases légales, durées, droits, contact, transferts</li>
+                    <li>Accessible depuis toutes les pages</li>
+                  </ul>
+                </details>
                 <p><a class="btn ghost" href="confidentialite.html" target="_self">Voir le modèle</a></p>
               </article>
               <article class="card">
                 <h3>Cookies & CMP</h3>
-                <p class="small">Bandeau avec refus aussi simple que l’acceptation, preuve du consentement, blocage par défaut des tags non essentiels.</p>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la liste</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">bandeau</span>
+                    <span class="tag">consentement</span>
+                    <span class="tag">blocage</span>
+                  </div>
+                  <ul class="list check-list-scroll">
+                    <li>Bandeau avec refus aussi simple que l’acceptation, preuve du consentement, blocage par défaut des tags non essentiels</li>
+                  </ul>
+                </details>
                 <p><a class="btn ghost" href="politique-cookies.html" target="_self">Voir le modèle cookies</a></p>
               </article>
             </div>
@@ -234,28 +379,47 @@
 
           <section id="exemples" class="reveal" tabindex="-1">
             <h2 class="title">Exemples & modèles</h2>
+            <button class="btn ghost bulk-toggle" data-section="exemples">Tout ouvrir</button>
             <div class="grid cols-2">
               <article class="card">
                 <h3>Exemple court (vitrine)</h3>
                 <details>
-                  <summary>Afficher l’exemple</summary>
-<pre class="small" style="white-space:pre-wrap;">
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher l’exemple</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">vitrine</span>
+                    <span class="tag">court</span>
+                    <span class="tag">exemple</span>
+                  </div>
+                  <pre class="small check-list-scroll" style="white-space:pre-wrap;background:var(--aw-bg);padding:12px;border-radius:8px;">
 <b>Éditeur</b> — [[Nom entreprise]], [[forme]] au capital de [[€]], [[adresse]], SIREN [[xxxxx]], RCS [[Ville]], TVA [[FR..]].
 <b>Publication</b> — Directeur·rice : [[Nom]], contact : [[email]].
 <b>Hébergeur</b> — [[Nom hébergeur]], [[adresse]], [[contact]].
 <b>Propriété intellectuelle</b> — Tous droits réservés. Toute reproduction interdite sans autorisation.
-</pre>
+                  </pre>
+                  <button class="copy-btn" aria-label="Copier l’exemple">Copier</button>
                 </details>
               </article>
               <article class="card">
                 <h3>Exemple e-commerce (B2C)</h3>
                 <details>
-                  <summary>Afficher l’exemple</summary>
-<pre class="small" style="white-space:pre-wrap;">
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher l’exemple</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">e-commerce</span>
+                    <span class="tag">B2C</span>
+                    <span class="tag">exemple</span>
+                  </div>
+                  <pre class="small check-list-scroll" style="white-space:pre-wrap;background:var(--aw-bg);padding:12px;border-radius:8px;">
 <b>CGV</b> — accessibles ici : [[lien]]. Prix TTC, frais et délais précisés avant commande.
 <b>Rétractation</b> — Délai légal de [[14]] jours. Formulaire : [[lien]].
 <b>Médiation</b> — [[Nom du médiateur]] : [[coordonnées]].
-</pre>
+                  </pre>
+                  <button class="copy-btn" aria-label="Copier l’exemple">Copier</button>
                 </details>
                 <p class="small" style="margin-top:10px"><a class="btn" href="modeles.html" target="_self">Ouvrir tous les modèles</a></p>
               </article>
@@ -264,28 +428,50 @@
 
           <section id="faq" class="reveal" tabindex="-1">
             <h2 class="title">Erreurs fréquentes & bonnes pratiques</h2>
+            <button class="btn ghost bulk-toggle" data-section="faq">Tout ouvrir</button>
             <div class="grid cols-2">
               <article class="card">
                 <h3>Erreurs à éviter</h3>
-                <ul class="small">
-                  <li>Oublier l’hébergeur ou le RCS/SIREN</li>
-                  <li>Lier les mentions uniquement depuis la page d’accueil</li>
-                  <li>Utiliser un modèle générique non adapté au statut</li>
-                </ul>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la liste</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">oubli</span>
+                    <span class="tag">RCS</span>
+                    <span class="tag">modèle</span>
+                  </div>
+                  <ul class="list check-list-scroll">
+                    <li>Oublier l’hébergeur ou le RCS/SIREN</li>
+                    <li>Lier les mentions uniquement depuis la page d’accueil</li>
+                    <li>Utiliser un modèle générique non adapté au statut</li>
+                  </ul>
+                </details>
               </article>
               <article class="card">
                 <h3>Bonnes pratiques</h3>
-                <ul class="small">
-                  <li>Mettre à jour la date et versionner les changements</li>
-                  <li>Regrouper dans le footer : Mentions, Confidentialité, Cookies, CGV/CGU</li>
-                  <li>Prévoir un contact direct (e-mail dédié)</li>
-                </ul>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la liste</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">version</span>
+                    <span class="tag">footer</span>
+                    <span class="tag">contact</span>
+                  </div>
+                  <ul class="list check-list-scroll">
+                    <li>Mettre à jour la date et versionner les changements</li>
+                    <li>Regrouper dans le footer : Mentions, Confidentialité, Cookies, CGV/CGU</li>
+                    <li>Prévoir un contact direct (e-mail dédié)</li>
+                  </ul>
+                </details>
               </article>
             </div>
             <p class="small" style="margin-top:8px">Ce contenu est fourni à titre informatif et ne constitue pas un conseil juridique.</p>
           </section>
 
-          <!-- Nouvelle rubrique, intégrée dans la colonne de droite pour même largeur & même souffle -->
           <section id="besoin" class="reveal" tabindex="-1">
             <h2 class="title">Besoin d’un modèle adapté à votre cas&nbsp;?</h2>
             <p class="muted" style="max-width:700px;margin-bottom:24px;">
@@ -301,13 +487,10 @@
     </section>
   </main>
 
-  <!-- Bouton retour haut (placé avant les scripts) -->
   <a class="btn to-top" id="toTop" href="#top" target="_self" aria-label="Revenir en haut">↑ Haut</a>
-
-  <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- Canvas + reveal + toc + date + SEO -->
+  <!-- Scripts -->
   <script>
     // Canvas
     const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
@@ -317,7 +500,7 @@
     class Particle{ constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed }
       update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1 }
       draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill() }
-      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x+p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke() } }) } }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke() } }) } }
     function init(){ for(let i=0;i<opts.count;i++) particles.push(new Particle()) }
     function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines() }); requestAnimationFrame(animate) }
     init(); animate();
@@ -338,7 +521,7 @@
     }, { rootMargin:'-40% 0px -55% 0px', threshold: .01 });
     targets.forEach(t => spy.observe(t));
 
-    // Last updated + SEO meta/LD
+    // Last updated + SEO
     const last = new Date(document.lastModified);
     const fmt = last.toLocaleDateString('fr-FR', { year:'numeric', month:'long', day:'2-digit' });
     const lastNode = document.getElementById('lastUpdated'); if(lastNode){ lastNode.textContent = fmt; lastNode.setAttribute('datetime', last.toISOString()) }
@@ -346,7 +529,7 @@
     const ld = { '@context':'https://schema.org', '@type':'WebPage', name:'Mentions légales | Awenoria', url: location.href, dateModified: last.toISOString() };
     const ldScript = document.createElement('script'); ldScript.type = 'application/ld+json'; ldScript.textContent = JSON.stringify(ld); document.head.appendChild(ldScript);
 
-    // Back to top (run after DOM is ready)
+    // Back to top
     document.addEventListener('DOMContentLoaded', () => {
       const toTop = document.getElementById('toTop');
       const hero = document.querySelector('.hero');
@@ -356,6 +539,99 @@
         else { toTop.classList.add('show'); }
       });
       ioTop.observe(hero);
+    });
+
+    // ===== AMÉLIORATIONS : flèche, tags, scroll, tout ouvrir, copier, accordéon, compteur =====
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Flèche dans summary
+      document.querySelectorAll('details summary').forEach(sum => {
+        if (sum.querySelector('svg')) return;
+        sum.insertAdjacentHTML('afterbegin', `
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+          <span>Afficher la liste</span>
+        `);
+      });
+
+      // 2. Tags visuels
+      document.querySelectorAll('details').forEach(detail => {
+        const h3 = detail.querySelector('h3');
+        if (!h3) return;
+        const text = h3.textContent.trim();
+        const tags = text.split(' ').slice(0, 3).map(w => w.replace(/[^\w]/g, '').toLowerCase()).slice(0, 3);
+        const tagHtml = tags.map(t => `<span class="tag">${t}</span>`).join('');
+        detail.querySelector('summary').insertAdjacentHTML('afterend', `<div class="tags-preview">${tagHtml}</div>`);
+      });
+
+      // 3. Scroll dans listes longues
+      document.querySelectorAll('ul.list').forEach(ul => {
+        if (ul.children.length > 5) ul.classList.add('check-list-scroll');
+      });
+
+      // 4. Bouton « Tout ouvrir »
+      document.querySelectorAll('section[id]').forEach(sec => {
+        if (sec.querySelectorAll('details').length === 0) return;
+        const btn = document.createElement('button');
+        btn.className = 'btn ghost bulk-toggle';
+        btn.dataset.section = sec.id;
+        btn.textContent = 'Tout ouvrir';
+        sec.querySelector('h2').insertAdjacentElement('afterend', btn);
+      });
+
+      // 5. Toggle tout ouvrir
+      document.querySelectorAll('.bulk-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const section = btn.dataset.section;
+          const details = document.querySelectorAll(`#${section} details`);
+          const open = btn.textContent.includes('ouvrir');
+          details.forEach(d => d.open = open);
+          btn.textContent = open ? 'Tout fermer' : 'Tout ouvrir';
+        });
+      });
+
+      // 6. Bouton copier
+      document.querySelectorAll('pre').forEach(pre => {
+        const btn = document.createElement('button');
+        btn.className = 'copy-btn';
+        btn.textContent = 'Copier';
+        btn.setAttribute('aria-label', 'Copier l’exemple');
+        btn.addEventListener('click', () => {
+          navigator.clipboard.writeText(pre.textContent);
+          btn.textContent = 'Copié !';
+          setTimeout(() => btn.textContent = 'Copier', 1500);
+        });
+        pre.parentElement.style.display = 'flex';
+        pre.parentElement.style.alignItems = 'flex-start';
+        pre.parentElement.appendChild(btn);
+      });
+
+      // 7. Accordéon FAQ
+      const faqCard = document.querySelector('#faq .card');
+      if (faqCard) {
+        const ul = faqCard.querySelector('ul');
+        if (ul) {
+          const details = document.createElement('details');
+          const summary = document.createElement('summary');
+          summary.innerHTML = `
+            <svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+            <span>Afficher la FAQ</span>
+          `;
+          details.appendChild(summary);
+          details.appendChild(ul);
+          faqCard.appendChild(details);
+        }
+      }
+
+      // 8. Compteur d’items
+      document.querySelectorAll('section[id] .card h3').forEach(h3 => {
+        const ul = h3.parentElement.querySelector('ul');
+        if (ul) {
+          const count = ul.children.length;
+          const span = document.createElement('span');
+          span.className = 'item-count';
+          span.textContent = `(${count})`;
+          h3.appendChild(span);
+        }
+      });
     });
   </script>
 
