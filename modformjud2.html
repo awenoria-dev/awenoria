@@ -52,7 +52,9 @@
     .section{max-width:1200px;margin:0 auto;padding:100px 20px}
     .section.alt{background:var(--aw-bg)}
     .title{margin:0 0 10px;text-align:center;font-size:clamp(36px,5vw,48px);font-weight:800;background:linear-gradient(135deg,#0F5F9A 0%,#0d5285 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 4px rgba(0,0,0,.08);transition:transform .35s ease,opacity .35s ease}
-    .section.in-view .title{transform:translateY(-2px);opacity:1}
+    .title-center{margin:0 0 10px;text-align:center;font-size:clamp(32px,4.5vw,42px);font-weight:800;color:#0d5285}
+    .underline{width:60px;height:6px;border-radius:6px;margin:10px auto 24px;background:var(--aw-copper);opacity:.9}
+
     .subtitle-center{font-size:1.2rem;color:var(--aw-muted);max-width:840px;margin:0 auto 56px;text-align:center}
 
     /* Grids & cards */
@@ -60,9 +62,10 @@
     .cols-2{grid-template-columns:repeat(2,1fr)}
     .cols-3{grid-template-columns:repeat(3,1fr)}
     @media(max-width:980px){.cols-2,.cols-3{grid-template-columns:1fr}}
-    .card{background:var(--aw-panel);border:1px solid rgba(15,95,154,.12);border-radius:var(--aw-radius);box-shadow:var(--shadow);padding:24px;transition:all var(--transition);display:block;color:inherit}
+    .card{position:relative;background:var(--aw-panel);border:1px solid rgba(15,95,154,.12);border-radius:var(--aw-radius);box-shadow:var(--shadow);padding:24px;transition:all var(--transition);display:block;color:inherit}
     .card:hover{transform:translateY(-4px);box-shadow:0 28px 56px rgba(15,95,154,.15);border-color:var(--aw-copper)}
     .pill{display:inline-flex;align-items:center;justify-content:center;padding:6px 12px;margin:0 0 10px;border-radius:999px;background:var(--aw-blue);color:#fff;font:800 12px/1 "Inter"}
+    .badge-new{position:absolute;top:10px;right:12px;padding:6px 12px;border-radius:999px;background:var(--aw-copper);color:#fff;font:800 12px/1 "Inter"}
     .muted{color:var(--aw-muted)}
     .small{font-size:13px;color:var(--aw-muted)}
     .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;font-weight:800;color:#fff;background:var(--aw-blue);border:none;cursor:pointer;transition:all var(--transition);box-shadow:var(--shadow)}
@@ -127,7 +130,9 @@
     <section class="section">
       <div class="container">
         <h2 class="title">Éditer mon formulaire</h2>
-        <p class="subtitle-center">Choisis un modèle, filtre par thème, puis utilise l’éditeur intelligent pour pré-remplir les <b>[[…]]</b>.</p>
+        <p class="subtitle-center">
+          Cliquez sur un modèle, affinez votre sélection avec les filtres, puis remplissez le formulaire : les <b>[[…]]</b> deviennent instantanément vos mentions légales.
+        </p>
 
         <div class="filterbar" role="search">
           <input id="filterInput" type="search" placeholder="Filtrer (ex. RGPD, cookies, mentions, CGV)" aria-label="Filtrer les cartes"/>
@@ -139,17 +144,51 @@
             <button class="chip" data-chip="emailing" aria-pressed="false" type="button">Emailing</button>
             <button class="chip" data-chip="cgv" aria-pressed="false" type="button">CGV</button>
           </div>
-          <!-- compteur de cartes retiré -->
         </div>
 
         <div class="grid cols-3" style="margin-top:14px">
-          <a class="card reveal filter-item" data-tags="rgpd confidentialité politique" href="#polconf" target="_self"><span class="pill">RGPD</span><h3>Politique de confidentialité</h3><p class="muted">Site vitrine / lead gen</p></a>
+          <!-- Carte 1 avec badge NOUVEAU -->
+          <a class="card reveal filter-item" data-tags="rgpd confidentialité politique" href="#polconf" target="_self">
+            <span class="pill">RGPD</span>
+            <span class="badge-new">Nouveau</span>
+            <h3>Politique de confidentialité</h3>
+            <p class="muted">Site vitrine / lead gen</p>
+          </a>
           <a class="card reveal filter-item" data-tags="cookies cmp consentement politique" href="#polcookies" target="_self"><span class="pill">Cookies</span><h3>Politique cookies & CMP</h3><p class="muted">Transparence & preuve</p></a>
           <a class="card reveal filter-item" data-tags="mentions légales éditeur hébergeur" href="#mentions" target="_self"><span class="pill">Mentions</span><h3>Mentions légales</h3><p class="muted">Éditeur, hébergeur, RCS…</p></a>
           <a class="card reveal filter-item" data-tags="formulaire clause collecte" href="#form" target="_self"><span class="pill">Formulaires</span><h3>Clauses au point de collecte</h3><p class="muted">Contact, devis, newsletter</p></a>
           <a class="card reveal filter-item" data-tags="emailing désinscription" href="#email" target="_self"><span class="pill">Emailing</span><h3>Pied de page désinscription</h3><p class="muted">Lien & mentions</p></a>
           <a class="card reveal filter-item" data-tags="cgv b2c ecommerce" href="#cgv" target="_self"><span class="pill">E-commerce</span><h3>Trame courte CGV</h3><p class="muted">B2C simplifié</p></a>
         </div>
+
+        <!-- ===== FAQ (style PJ2 en <details>) ===== -->
+        <section id="faq" class="section" aria-labelledby="faq-title" style="padding-top:60px;padding-bottom:0">
+          <h2 id="faq-title" class="title-center">Questions fréquentes</h2>
+          <div class="underline" aria-hidden="true"></div>
+
+          <style>
+            .faq-q{max-width:680px;margin:0 auto 1.2rem;border:1px solid rgba(15,23,32,.08);border-radius:var(--aw-radius);background:var(--aw-panel);box-shadow:var(--shadow)}
+            .faq-q summary{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;font-weight:800;cursor:pointer;list-style:none}
+            .faq-q summary::after{content:"+";font-size:1.4rem;color:var(--aw-copper);transition:transform .2s}
+            .faq-q[open] summary::after{transform:rotate(45deg)}
+            .faq-a{padding:0 1.4rem 1.4rem;color:var(--aw-muted)}
+          </style>
+
+          <details class="faq-q">
+            <summary>Dois-je nommer un DPO&nbsp;?</summary>
+            <p class="faq-a">Obligatoire pour certains organismes (publics, suivi à grande échelle, traitements sensibles). Sinon, nommez un contact RGPD et documentez votre gouvernance.</p>
+          </details>
+
+          <details class="faq-q">
+            <summary>Puis-je mutualiser mentions légales &amp; CGV&nbsp;?</summary>
+            <p class="faq-a">Vous pouvez les lier, mais gardez des pages séparées : Mentions légales (identité, hébergeur), Politique de confidentialité (RGPD), CGV (contrat). C’est plus clair et plus simple à mettre à jour.</p>
+          </details>
+
+          <details class="faq-q">
+            <summary>Quand dois-je mettre à jour la date&nbsp;?</summary>
+            <p class="faq-a">À chaque modification substantielle (finalités, bases légales, destinataires, cookies, durées). Sinon, un contrôle trimestriel ou semestriel suffit.</p>
+          </details>
+        </section>
       </div>
     </section>
 
@@ -429,7 +468,7 @@ Droit français. Tribunaux compétents selon le droit commun.
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- CTA alignée -->
     <section class="section alt">
       <div class="container" style="text-align:center">
         <h2 class="title">Besoin d’une relecture experte ?</h2>
@@ -580,36 +619,16 @@ Généré avec l'éditeur intelligent.
         const visible=tagMatch && qMatch;
         el.style.display=visible?'':'none';
       });
-      // plus d'écriture dans #filterCount (supprimé)
     }
-
-    filterInput?.addEventListener('input',()=>{
-      clearTimeout(applyFilter._t);
-      applyFilter._t=setTimeout(applyFilter,150);
-    });
-
-    chips.forEach(ch=>ch.addEventListener('click',()=>{
-      const val=(ch.dataset.chip||'').toLowerCase();
-      const pressed=ch.getAttribute('aria-pressed')==='true';
-      ch.setAttribute('aria-pressed',String(!pressed));
-      if(!pressed) activeTags.add(val); else activeTags.delete(val);
-      applyFilter();
-    }));
-
+    filterInput?.addEventListener('input',()=>{ clearTimeout(applyFilter._t); applyFilter._t=setTimeout(applyFilter,150) });
+    chips.forEach(ch=>ch.addEventListener('click',()=>{ const val=(ch.dataset.chip||'').toLowerCase(); const pressed=ch.getAttribute('aria-pressed')==='true'; ch.setAttribute('aria-pressed',String(!pressed)); if(!pressed) activeTags.add(val); else activeTags.delete(val); applyFilter() }));
     applyFilter();
 
     /* Last updated + SEO */
-    const last=new Date(document.lastModified);
-    const fmt=last.toLocaleDateString('fr-FR',{year:'numeric',month:'long',day:'2-digit'});
-    const lastNode=document.getElementById('lastUpdated');
-    if(lastNode){ lastNode.textContent=fmt; lastNode.setAttribute('datetime',last.toISOString()) }
-    const meta=document.createElement('meta');
-    meta.setAttribute('property','article:modified_time');
-    meta.setAttribute('content',last.toISOString());
-    document.head.appendChild(meta);
+    const last=new Date(document.lastModified); const fmt=last.toLocaleDateString('fr-FR',{year:'numeric',month:'long',day:'2-digit'}); const lastNode=document.getElementById('lastUpdated'); if(lastNode){ lastNode.textContent=fmt; lastNode.setAttribute('datetime',last.toISOString()) }
+    const meta=document.createElement('meta'); meta.setAttribute('property','article:modified_time'); meta.setAttribute('content',last.toISOString()); document.head.appendChild(meta);
     const ld={ '@context':'https://schema.org', '@type':'WebPage', name:'Modèles juridiques — Awenoria', url: location.href, dateModified: last.toISOString() };
-    const ldScript=document.createElement('script'); ldScript.type='application/ld+json'; ldScript.textContent=JSON.stringify(ld);
-    document.head.appendChild(ldScript);
+    const ldScript=document.createElement('script'); ldScript.type='application/ld+json'; ldScript.textContent=JSON.stringify(ld); document.head.appendChild(ldScript);
 
     /* Back to top */
     const toTop = document.getElementById('toTop');
@@ -622,73 +641,13 @@ Généré avec l'éditeur intelligent.
   <!-- Loader header/footer + nav (injection) -->
   <script>
   document.addEventListener('DOMContentLoaded',()=>{
-    const headMount=document.getElementById('header');
-    const footMount=document.getElementById('footer');
-    if(!headMount && !footMount) return;
-
-    const isGh=/github\.io$/.test(location.hostname);
-    let base='/';
-    if(isGh){
-      const parts=location.pathname.split('/').filter(Boolean);
-      base=parts.length?`/${parts[0]}/`:'/';
-    }
-
-    const candidates=p=>{
-      const clean=p.replace(/^\//,'');
-      return [ base+clean, './'+clean, '../'+clean ];
-    };
-
-    async function fetchAny(paths){
-      const queue=paths.flatMap(candidates);
-      for(const u of queue){
-        try{
-          const r=await fetch(u,{cache:'no-cache'});
-          if(r.ok) return r.text();
-        }catch(_){}
-      }
-      throw new Error('Aucun chemin valide parmi: '+paths.join(', '));
-    }
-
-    function fixRootUrls(container){
-      container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]').forEach(el=>{
-        const attr=el.hasAttribute('href')?'href':'src';
-        const val=el.getAttribute(attr);
-        if(/^\/\//.test(val)) return;
-        el.setAttribute(attr, base+val.replace(/^\//,''));
-      });
-    }
-
-    if(headMount){
-      fetchAny(['header.html','partials/header.html'])
-        .then(html=>{
-          headMount.innerHTML=html;
-          fixRootUrls(headMount);
-          return fetchAny(['assets/nav.js','nav.js']).catch(()=>null);
-        })
-        .then(code=>{
-          if(!code) return;
-          const s=document.createElement('script');
-          if(/\b(import|export)\b/.test(code)) s.type='module';
-          s.textContent=code;
-          document.body.appendChild(s);
-        })
-        .catch(err=>{
-          console.error('Header load error:',err);
-          headMount.innerHTML='<!-- Header introuvable -->';
-        });
-    }
-
-    if(footMount){
-      fetchAny(['footer.html','partials/footer.html'])
-        .then(html=>{
-          footMount.innerHTML=html;
-          fixRootUrls(footMount);
-        })
-        .catch(err=>{
-          console.error('Footer load error:',err);
-          footMount.innerHTML='<!-- Footer introuvable -->';
-        });
-    }
+    const headMount=document.getElementById('header'); const footMount=document.getElementById('footer'); if(!headMount && !footMount) return;
+    const isGh=/github\.io$/.test(location.hostname); let base='/'; if(isGh){ const parts=location.pathname.split('/').filter(Boolean); base=parts.length?`/${parts[0]}/`:'/'; }
+    const candidates=p=>{ const clean=p.replace(/^\//,''); return [ base+clean, './'+clean, '../'+clean ] };
+    async function fetchAny(paths){ const queue=paths.flatMap(candidates); for(const u of queue){ try{ const r=await fetch(u,{cache:'no-cache'}); if(r.ok) return r.text() }catch(_){} } throw new Error('Aucun chemin valide parmi: '+paths.join(', ')) }
+    function fixRootUrls(container){ container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]').forEach(el=>{ const attr=el.hasAttribute('href')?'href':'src'; const val=el.getAttribute(attr); if(/^\/\//.test(val)) return; el.setAttribute(attr, base+val.replace(/^\//,'')) }) }
+    if(headMount){ fetchAny(['header.html','partials/header.html']).then(html=>{ headMount.innerHTML=html; fixRootUrls(headMount); return fetchAny(['assets/nav.js','nav.js']).catch(()=>null) }).then(code=>{ if(!code) return; const s=document.createElement('script'); if(/\b(import|export)\b/.test(code)) s.type='module'; s.textContent=code; document.body.appendChild(s) }).catch(err=>{ console.error('Header load error:',err); headMount.innerHTML='<!-- Header introuvable -->' }) }
+    if(footMount){ fetchAny(['footer.html','partials/footer.html']).then(html=>{ footMount.innerHTML=html; fixRootUrls(footMount) }).catch(err=>{ console.error('Footer load error:',err); footMount.innerHTML='<!-- Footer introuvable -->' }) }
   });
   </script>
 </body>
