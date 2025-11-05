@@ -90,9 +90,14 @@
     .to-top{position:fixed;right:16px;bottom:16px;z-index:50;opacity:0;visibility:hidden;transform:translateY(12px);transition:all .3s ease}
     .to-top.show{opacity:1;visibility:visible;transform:none}
 
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
-    .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);}
-    .reveal.is-visible{opacity:1;transform:none;}
+    /* ===== AMÉLIORATIONS DETAILS ===== */
+    summary{display:flex;align-items:center;gap:.5rem;font-weight:600;color:var(--aw-blue);cursor:pointer;user-select:none}
+    summary svg{width:16px;height:16px;transition:transform .25s ease}
+    details[open] summary svg{transform:rotate(90deg)}
+    .tags-preview{display:flex;gap:.4rem;margin:.4rem 0 .8rem 1.6rem}
+    .tag{font-size:.7rem;padding:.15rem .5rem;border-radius:999px;background:rgba(0,102,255,.08);color:var(--aw-blue)}
+    .bulk-toggle{margin:1rem 0 0 0;font-size:.8rem;padding:6px 10px;border-radius:8px;border:1px solid rgba(15,23,32,.12);background:var(--aw-panel);color:var(--aw-blue);cursor:pointer}
+    @media(max-width:980px){details summary{font-size:.9rem}}
   </style>
 </head>
 
@@ -151,33 +156,263 @@
         </aside>
 
         <div>
-          <!-- Rubriques -->
+          <!-- RGPD -->
           <section id="rgpd" class="reveal" tabindex="-1">
             <h2 class="title">RGPD côté site — check-list</h2>
-            <!-- contenu RGPD inchangé -->
+            <button class="btn ghost bulk-toggle" data-section="rgpd">Tout ouvrir</button>
+            <div class="grid cols-2">
+              <article class="card">
+                <h3>Ce qu’il faut afficher</h3>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">finalités</span>
+                    <span class="tag">consentement</span>
+                    <span class="tag">durées</span>
+                  </div>
+                  <ul class="list">
+                    <li><b>Politique de confidentialité</b> accessible depuis toutes les pages (footer, header ou menu).</li>
+                    <li><b>Finalités</b> de traitement clairement listées (contact, newsletter, analytics, paiement…).</li>
+                    <li><b>Bases légales</b> correspondantes (consentement, contrat, intérêt légitime…).</li>
+                    <li><b>Durées de conservation</b> par finalité (valeurs ou critères de détermination).</li>
+                    <li><b>Droits des personnes</b> (accès, rectification, effacement, opposition, limitation, portabilité).</li>
+                    <li><b>Contact</b> (DPO ou référent) + canal de demande (email/formulaire).</li>
+                    <li><b>Transferts hors UE</b> (si applicable) et garanties.</li>
+                    <li><b>Dernière mise à jour</b> de la politique.</li>
+                  </ul>
+                </details>
+              </article>
+
+              <article class="card">
+                <h3>Formulaires & preuve</h3>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">consentement</span>
+                    <span class="tag">journalisation</span>
+                    <span class="tag">opt-in</span>
+                  </div>
+                  <ul class="list">
+                    <li><b>Information au point de collecte</b> : court paragraphe + lien vers la politique.</li>
+                    <li><b>Consentement</b> si nécessaire : case non cochée par défaut, texte précis, journalisation.</li>
+                    <li><b>Preuve</b> : logs ou référence CMP, date/version de la politique, trace des MAJ.</li>
+                    <li><b>Emails</b> : mention « se désinscrire » + lien fonctionnel, registre opt-in.</li>
+                  </ul>
+                </details>
+                <div class="dl">
+                  <a class="btn ghost" href="modeles.html" target="_self">Modèles de clauses →</a>
+                  <a class="btn" href="fonctionnalites.html#rgpd" target="_self">Ce que l’outil vérifie →</a>
+                </div>
+              </article>
+            </div>
           </section>
 
+          <!-- Accessibilité -->
           <section id="a11y" class="reveal" tabindex="-1">
             <h2 class="title">Accessibilité — check-list</h2>
-            <!-- contenu A11Y inchangé -->
+            <button class="btn ghost bulk-toggle" data-section="a11y">Tout ouvrir</button>
+            <div class="grid cols-3">
+              <article class="card">
+                <h3>Perceptible</h3>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">alt</span>
+                    <span class="tag">contraste</span>
+                    <span class="tag">titres</span>
+                  </div>
+                  <ul class="list">
+                    <li><b>Textes alternatifs</b> pour les images porteuses d’info.</li>
+                    <li><b>Contrastes</b> conformes (texte/fond, boutons, liens).</li>
+                    <li><b>Hiérarchie sémantique</b> (h1→h2→h3), titres de pages pertinents.</li>
+                  </ul>
+                </details>
+              </article>
+
+              <article class="card">
+                <h3>Utilisable</h3>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">clavier</span>
+                    <span class="tag">focus</span>
+                    <span class="tag">modales</span>
+                  </div>
+                  <ul class="list">
+                    <li><b>Navigation clavier</b> complète (focus visible, ordre logique).</li>
+                    <li><b>Composants</b> utilisables sans souris (menus, modales, carrousels).</li>
+                    <li><b>Médias</b> avec sous-titres/transcriptions (si applicable).</li>
+                  </ul>
+                </details>
+              </article>
+
+              <article class="card">
+                <h3>Compréhensible & robuste</h3>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">libellés</span>
+                    <span class="tag">ARIA</span>
+                    <span class="tag">déclaration</span>
+                  </div>
+                  <ul class="list">
+                    <li><b>Libellés clairs</b> pour liens/boutons (« Télécharger le PDF » plutôt que « Cliquez ici »).</li>
+                    <li><b>ARIA landmarks</b> (header, nav, main, footer) et rôles adaptés.</li>
+                    <li><b>Déclaration d’accessibilité</b> + mécanisme de contact/médiation.</li>
+                  </ul>
+                </details>
+                <div class="dl">
+                  <a class="btn ghost" href="fonctionnalites.html#accessibilite" target="_self">Vérifications automatiques →</a>
+                </div>
+              </article>
+            </div>
           </section>
 
+          <!-- Mentions & e-commerce -->
           <section id="mentions" class="reveal" tabindex="-1">
             <h2 class="title">Mentions légales & e-commerce — check-list</h2>
-            <!-- contenu mentions inchangé -->
+            <button class="btn ghost bulk-toggle" data-section="mentions">Tout ouvrir</button>
+            <div class="grid cols-2">
+              <article class="card">
+                <h3>Identification & contact</h3>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">éditeur</span>
+                    <span class="tag">hébergeur</span>
+                    <span class="tag">contact</span>
+                  </div>
+                  <ul class="list">
+                    <li><b>Éditeur</b> (raison sociale, adresse, RCS/SIREN, TVA intracommunautaire).</li>
+                    <li><b>Hébergeur</b> (nom, adresse, téléphone ou email).</li>
+                    <li><b>Contact</b> direct (email, formulaire, téléphone si prévu).</li>
+                    <li><b>Propriété intellectuelle</b> (textes, images, marques).</li>
+                  </ul>
+                </details>
+              </article>
+
+              <article class="card">
+                <h3>Vente en ligne</h3>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">CGV</span>
+                    <span class="tag">rétractation</span>
+                    <span class="tag">prix</span>
+                  </div>
+                  <ul class="list">
+                    <li><b>CGV/CGU</b> accessibles, acceptation explicite.</li>
+                    <li><b>Droit de rétractation</b> (délais, modalités, formulaire si B2C).</li>
+                    <li><b>Médiation</b> à la consommation (si B2C, FR).</li>
+                    <li><b>Prix</b> TTC/HT clairs, frais et délais de livraison (si applicable).</li>
+                  </ul>
+                </details>
+                <div class="dl">
+                  <a class="btn ghost" href="modeles.html" target="_self">Modèles : mentions & CGV →</a>
+                  <a class="btn" href="fonctionnalites.html#mentions" target="_self">Ce que l’outil vérifie →</a>
+                </div>
+              </article>
+            </div>
           </section>
 
+          <!-- Cookies / CMP -->
           <section id="cookies" class="reveal" tabindex="-1">
             <h2 class="title">Cookies & CMP — check-list</h2>
-            <!-- contenu cookies inchangé -->
+            <button class="btn ghost bulk-toggle" data-section="cookies">Tout ouvrir</button>
+            <div class="grid cols-3">
+              <article class="card">
+                <h3>Bandeau & choix</h3>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">refus</span>
+                    <span class="tag">consentement</span>
+                    <span class="tag">preuve</span>
+                  </div>
+                  <ul class="list">
+                    <li><b>Refus aussi simple</b> que l’acceptation (même niveau, même visibilité).</li>
+                    <li><b>Continuer sans accepter</b> ou <b>Tout refuser</b> présent dès la 1ʳᵉ couche.</li>
+                    <li><b>Preuve du consentement</b> (journal CMP, horodatage, version).</li>
+                  </ul>
+                </details>
+              </article>
+
+              <article class="card">
+                <h3>Politique cookies</h3>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">liste</span>
+                    <span class="tag">retrait</span>
+                    <span class="tag">version</span>
+                  </div>
+                  <ul class="list">
+                    <li><b>Liste des cookies</b> (finalité, durée, tiers).</li>
+                    <li><b>Retrait/modification</b> du consentement à tout moment.</li>
+                    <li><b>Date de mise à jour</b> + versionnage.</li>
+                  </ul>
+                </details>
+              </article>
+
+              <article class="card">
+                <h3>Mise en conformité technique</h3>
+                <details>
+                  <summary>
+                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M6 4v8l5-4z"/></svg>
+                    <span>Afficher la check-list</span>
+                  </summary>
+                  <div class="tags-preview">
+                    <span class="tag">blocage</span>
+                    <span class="tag">SPA</span>
+                    <span class="tag">trace</span>
+                  </div>
+                  <ul class="list">
+                    <li><b>Blocage par défaut</b> des tags non essentiels avant consentement.</li>
+                    <li><b>Consistance</b> des choix d’une page à l’autre (bannières SPA, sous-domaines).</li>
+                    <li><b>Trace</b> de la bannière et des changements d’état.</li>
+                  </ul>
+                </details>
+                <div class="dl">
+                  <a class="btn ghost" href="fonctionnalites.html#cookies" target="_self">Contrôles automatiques →</a>
+                </div>
+              </article>
+            </div>
           </section>
 
-          <section class="reveal rubrique-gap" tabindex="-1">
+          <!-- CTA finale -->
+          <section class="reveal" tabindex="-1">
             <h2 class="title">Besoin d’un plan d’actions priorisé ?</h2>
-            <p class="muted" style="max-width:700px;margin-bottom:24px;text-align:center;margin-inline:auto;">
+            <p class="muted" style="max-width:700px;margin:0 auto 24px;text-align:center;">
               On transforme ton diagnostic en feuille de route claire avec priorités, exemples et modèles prêts à l’emploi.
             </p>
-            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px">
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
               <a class="btn" href="contact.html" target="_self">Parler à un expert</a>
               <a class="btn ghost" href="tarifs.html" target="_self">Voir les offres</a>
             </div>
@@ -189,5 +424,92 @@
 
   <a class="btn to-top" id="toTop" href="#top" target="_self" aria-label="Revenir en haut">↑ Haut</a>
   <div id="footer"></div>
+
+  <!-- ===== PARTICULES HERO ===== -->
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = innerWidth;
+    let h = canvas.height = innerHeight;
+    const particles = [];
+    const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
+    addEventListener('resize', () => { w = canvas.width = innerWidth; h = canvas.height = innerHeight; });
+    class Particle{
+      constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
+      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); }
+    }
+    function init(){ particles.length=0; for(let i=0;i<opts.count;i++) particles.push(new Particle()); }
+    function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); }
+    init(); animate();
+  </script>
+
+  <!-- ===== REVEAL + SCROLLSPY + TO TOP + BULK TOGGLE ===== -->
+  <script>
+    // Reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const ioReveal = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('is-visible'); });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => ioReveal.observe(el));
+
+    // Scrollspy
+    const spyLinks = Array.from(document.querySelectorAll('[data-spy]'));
+    const targets = spyLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const id = '#' + e.target.id;
+        const link = spyLinks.find(a => a.getAttribute('href') === id);
+        if (!link) return;
+        if (e.isIntersecting) {
+          spyLinks.forEach(a => a.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+    targets.forEach(t => spy.observe(t));
+
+    // To top
+    const toTop = document.getElementById('toTop');
+    const ioTop = new IntersectionObserver(([entry]) => {
+      if(entry.isIntersecting){ toTop.classList.remove('show'); } else { toTop.classList.add('show'); }
+    });
+    ioTop.observe(document.querySelector('.hero'));
+
+    // Bulk toggle
+    document.querySelectorAll('.bulk-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const section = btn.dataset.section;
+        const details = document.querySelectorAll(`#${section} details`);
+        const open = btn.textContent.includes('ouvrir');
+        details.forEach(d => d.open = open);
+        btn.textContent = open ? 'Tout fermer' : 'Tout ouvrir';
+      });
+    });
+
+    // Filtre
+    const filterInput = document.getElementById('filterInput');
+    const chips = document.querySelectorAll('.chip');
+    const items = document.querySelectorAll('.card');
+    let activeTags = new Set();
+    function applyFilter(){
+      const q = (filterInput.value || '').toLowerCase().trim();
+      items.forEach(el => {
+        const hay = (el.textContent + ' ' + (el.getAttribute('data-tags')||'')).toLowerCase();
+        const tagMatch = activeTags.size ? [...activeTags].every(t => hay.includes(t)) : true;
+        const qMatch = q ? hay.includes(q) : true;
+        el.style.display = tagMatch && qMatch ? '' : 'none';
+      });
+    }
+    filterInput.addEventListener('input', () => { clearTimeout(applyFilter._t); applyFilter._t = setTimeout(applyFilter, 150); });
+    chips.forEach(ch => ch.addEventListener('click', () => {
+      const val = (ch.dataset.chip||'').toLowerCase();
+      const pressed = ch.getAttribute('aria-pressed') === 'true';
+      ch.setAttribute('aria-pressed', String(!pressed));
+      if(!pressed) activeTags.add(val); else activeTags.delete(val);
+      applyFilter();
+    }));
+  </script>
 </body>
 </html>
