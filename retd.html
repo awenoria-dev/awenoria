@@ -3,354 +3,326 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ressources — Awenoria</title>
-  <meta name="description" content="Guides, modèles, FAQ et dossier IA Act pour passer du diagnostic au plan d’actions : RGPD, accessibilité, mentions légales, cookies/CMP et IA.">
+  <title>Mentions légales | Awenoria</title>
+  <meta name="description" content="Guide pratique pour rédiger vos mentions légales : contenus obligatoires selon votre statut, exemples, erreurs fréquentes, modèles téléchargeables.">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400 ;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/awenoria.css">
   <base target="_blank">
 
   <style>
-    :root{
-      --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280;
-      --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px;
-      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
-      --transition:.6s cubic-bezier(.22,1,.36,1);
-    }
-    @media (prefers-color-scheme:dark){
-      :root{
-        --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0;
-        --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);
-      }
-    }
+    :root{ --aw-ink:#0a0a0a; --aw-blue:#0066ff; --aw-copper:#ff5c00; --aw-muted:#6b7280; --aw-panel:#ffffff; --aw-bg:#f5f7ff; --aw-radius:24px; --shadow:0 25px 50px -12px rgba(0,0,0,.15); --transition:.6s cubic-bezier(.22,1,.36,1) }
+    @media (prefers-color-scheme:dark){ :root{ --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-copper:#ff8a3d; --aw-muted:#a1a9c0; --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45) } }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
-    body{font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;line-height:1.7;color:var(--aw-ink);background:var(--aw-bg);-webkit-font-smoothing:antialiased;}
+    body{font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;line-height:1.7;color:var(--aw-ink);background:var(--aw-bg);-webkit-font-smoothing:antialiased}
     a{text-decoration:none;color:var(--aw-blue)}
-    img{max-width:100%;display:block}
     .container{max-width:1200px;margin:0 auto;padding:0 20px}
+    img{max-width:100%;display:block}
 
     /* Skip link */
     .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
     .skip-link:focus{left:10px;top:10px;width:auto;height:auto;z-index:1000;background:#000;color:#fff;padding:8px 10px;border-radius:8px}
 
     /* Hero */
-    .hero{
-      position:relative; min-height:60vh; display:flex; align-items:center; justify-content:center;
-      text-align:center; color:#fff; overflow:hidden;
-      background:
-        radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),
-        radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(180deg, #0033cc 0%, #0066ff 100%);
-    }
-    .hero canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
-    .hero .content{position:relative; z-index:2; max-width:800px; padding:0 20px; animation:fadeInUp 1s both;}
-    .hero h1{font-size:clamp(52px,7vw,72px); font-weight:800; line-height:1.05; letter-spacing:-.02em;}
-    .hero .lead{font-size:1.4rem; font-weight:500; margin:24px auto 0; color:#e8f0ff;}
+    .hero{position:relative;min-height:50vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;background:radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),linear-gradient(180deg, #0033cc 0%, #0066ff 100%)}
+    .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+    .hero .content{position:relative;z-index:2;max-width:880px;padding:0 20px;animation:fadeInUp 1s both}
+    .hero h1{font-size:clamp(44px,6vw,68px);font-weight:800;line-height:1.05;letter-spacing:-.02em}
+    .hero .lead{font-size:1.2rem;font-weight:500;margin:16px auto 0;color:#e8f0ff}
 
     /* Sections */
-    .section{max-width:1200px; margin:0 auto; padding:100px 20px;}
-    .section.alt{background:var(--aw-bg);}
+    .section{max-width:1200px;margin:0 auto;padding:140px 20px}
+    .section.alt{background:var(--aw-bg)}
+    .section.compact{padding-top:0}
 
-    /* Titres */
-    .title{
-      margin:0 auto 10px; text-align:center; font-size:clamp(36px,5vw,48px);
-      font-weight:800; background:linear-gradient(135deg, #0F5F9A 0%, #0d5285 100%);
-      -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 2px 4px rgba(0,0,0,.08);
-      transition:transform .35s ease,opacity .35s ease;
-    }
-    .title .amp{color:var(--aw-copper)}
-    .section.in-view .title{transform:translateY(-2px); opacity:1;}
-    .title::after{content:''; display:block; width:60px; height:4px; background:var(--aw-copper); margin:10px auto 0; border-radius:3px;}
-    .subtitle-center{font-size:1.2rem; color:var(--aw-muted); max-width:680px; margin:0 auto 56px; text-align:center;}
+    /* Titles */
+    .title{margin:0 auto 10px;text-align:center;font-size:clamp(36px,5vw,48px);font-weight:800;background:linear-gradient(135deg,#0F5F9A 0%,#0d5285 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 4px rgba(0,0,0,.08);transition:transform .35s ease,opacity .35s ease}
+    .section.in-view .title{transform:translateY(-2px);opacity:1}
+    .title::after{content:'';display:block;width:60px;height:4px;background:var(--aw-copper);margin:10px auto 0;border-radius:3px}
+    .subtitle-center{font-size:1.1rem;color:var(--aw-muted);max-width:740px;margin:0 auto 56px;text-align:center}
 
-    .grid{display:grid; gap:24px; margin-top:18px}
+    .grid{display:grid;gap:24px;margin-top:18px}
+    .cols-2{grid-template-columns:repeat(2,1fr)}
     .cols-3{grid-template-columns:repeat(3,1fr)}
-    @media(max-width:980px){.cols-3{grid-template-columns:1fr}}
+    @media(max-width:980px){.cols-2,.cols-3{grid-template-columns:1fr}}
 
-    .card{background:var(--aw-panel); border:1px solid rgba(15,23,32,.08);
-      border-radius:var(--aw-radius); box-shadow:var(--shadow);
-      padding:24px; transition:all var(--transition);
-      display:block; position:relative; color:inherit; text-align:left;}
-    .card:hover{transform:translateY(-4px); box-shadow:0 28px 56px rgba(0,0,0,.1); border-color:var(--aw-copper);}
+    .card{
+      background:var(--aw-panel);
+      border:1px solid rgba(15,23,32,.08);
+      border-radius:var(--aw-radius);
+      box-shadow:var(--shadow);
+      padding:24px;
+      transition:all var(--transition);
+      color:inherit;
 
-    .pill{display:inline-flex; align-items:center; justify-content:center; padding:6px 12px; border-radius:999px; background:var(--aw-blue); color:#fff; font:800 12px/1 "Inter",system-ui,-apple-system,Arial,sans-serif; margin:0 0 10px 0;}
+      /* ===== Correctifs d’alignement ampoules ===== */
+      display:flex;                 /* chaque carte devient un conteneur flex vertical */
+      flex-direction:column;
+    }
+    /* Au survol */
+    .card:hover{
+      transform:translateY(-2px);
+      border-color:var(--aw-copper);
+      box-shadow:0 28px 56px rgba(0,0,0,.10);
+    }
+
     .muted{color:var(--aw-muted)}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;font-weight:800;color:#fff;background:var(--aw-blue);box-shadow:var(--shadow);font-size:14px;transition:all var(--transition)}
+    .btn:hover{background:var(--aw-copper);transform:translateY(-2px)}
+    .btn.ghost{background:var(--aw-panel);color:var(--aw-blue);border:1px solid rgba(15,23,32,.08)}
     .small{font-size:13px;color:var(--aw-muted)}
-    .btn{display:inline-block; padding:10px 14px; border-radius:10px; font-weight:800; color:#fff; background:var(--aw-blue); box-shadow:var(--shadow); font-size:14px; transition:all var(--transition);}
-    .btn:hover{background:var(--aw-copper); transform:translateY(-2px);}
-    .btn.ghost{background:var(--aw-panel); color:var(--aw-blue); border:1px solid rgba(15,23,32,.08);}
-    .btn-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
-    .list{margin:0;padding-left:18px}
+    .btn-row{display:flex;gap:12px;flex-wrap:wrap}
+
+    /* TOC */
+    .with-aside{display:grid;grid-template-columns:260px 1fr;gap:24px}
+    @media(max-width:1100px){.with-aside{grid-template-columns:1fr}}
+    .toc{position:sticky;top:90px;align-self:start;background:var(--aw-panel);border:1px solid rgba(15,23,32,.08);border-radius:16px;padding:14px;box-shadow:var(--shadow)}
+    .toc h4{margin:0 0 8px;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--aw-muted)}
+    .toc a{display:block;padding:8px 10px;border-radius:10px;color:inherit}
+    .toc a.active{background:rgba(0,102,255,.08);color:var(--aw-blue);font-weight:700}
 
     /* Anim */
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
     .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
     .reveal.is-visible{opacity:1;transform:none}
 
-    /* Sommaire + filtre */
-    .with-aside{display:grid; grid-template-columns:260px 1fr; gap:24px}
-    @media(max-width:1100px){.with-aside{grid-template-columns:1fr}}
-    .toc{position:sticky; top:90px; align-self:start; background:var(--aw-panel); border:1px solid rgba(15,23,32,.08); border-radius:16px; padding:14px; box-shadow:var(--shadow)}
-    .toc h4{margin:0 0 8px 0; font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:var(--aw-muted)}
-    .toc a{display:block; padding:8px 10px; border-radius:10px; color:inherit}
-    .toc a.active{background:rgba(0,102,255,.08); color:var(--aw-blue); font-weight:700}
-
-    .filterbar{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:12px 0 0}
-    .filterbar input[type="search"]{flex:1; min-width:220px; padding:10px 12px; border-radius:12px; border:1px solid rgba(15,23,32,.12)}
-    .chips{display:flex; gap:8px; flex-wrap:wrap}
-    .chip{padding:6px 10px; border-radius:999px; border:1px solid rgba(15,23,32,.12); cursor:pointer; user-select:none}
-    .chip[aria-pressed="true"]{background:rgba(0,102,255,.08); border-color:var(--aw-blue); color:var(--aw-blue); font-weight:700}
-
     /* Back to top */
-    .to-top{position:fixed; right:16px; bottom:16px; z-index:50; opacity:0; visibility:hidden; transform:translateY(12px); transition:all .3s ease}
-    .to-top.show{opacity:1; visibility:visible; transform:none}
+    .to-top{
+      position:fixed; right:16px; bottom:16px; z-index:50;
+      opacity:0; visibility:hidden; transform:translateY(12px);
+      transition:all .3s ease;
+    }
+    .to-top.show{ opacity:1; visibility:visible; transform:none }
 
-    /* IA Act card expansion */
-    .ia-card{overflow:hidden}
-    .ia-summary{
-      display:flex;
-      flex-direction:column;
-      cursor:pointer;
-      align-items:center;   /* ← centre l’icône */
-    }
-    .ia-top{margin-bottom:auto}
-    .ia-bulb{
-      width:28px;
-      height:28px;
-      fill:var(--aw-copper);
-      margin:8px auto 0;   /* centrage horizontal */
-      animation:sway 1.2s ease-in-out infinite;
-      animation-delay:.6s
-    }
-    .ia-card[open] .ia-bulb{transform:rotate(45deg);animation:none}
-    @keyframes sway{
-      0%,100%{transform:translateX(0)}
-      25%{transform:translateX(-3px)}
-      75%{transform:translateX(3px)}
-    }
-    .ia-content{margin-top:16px}
+    /* Souffle entre rubriques (dans la même colonne) */
+    .with-aside > div > section + section{ margin-top:100px; }
+    .with-aside > div > section{ padding-bottom:24px; }
+    .with-aside > div > section .title{ margin-bottom:24px; }
+
+    /* ===== Alignement des cartes/bulles & ampoules =====
+       - étire toutes les cartes d’une même rangée
+       - pousse le dernier élément (ex: icône ampoule) en bas
+    */
+    .grid.cols-3{ align-items:stretch; }
+    .card > *:last-child{ margin-top:auto; }  /* l’ampoule (ou footer) descend en bas */
+
+    /* ===== Centrage de la section "Besoin d’un modèle…" ===== */
+    #besoin { text-align:center; }
+    #besoin .muted { margin-left:auto; margin-right:auto; }
+    #besoin .btn-row { justify-content:center; }
   </style>
 </head>
-<body class="page-ressources">
+<body class="page-mentions">
   <a class="skip-link" href="#main">Aller au contenu</a>
 
   <!-- Header injecté -->
   <div id="header"></div>
 
+  <!-- Hero -->
   <section class="hero">
     <canvas id="canvas" aria-hidden="true"></canvas>
     <div class="content">
-      <h1>Ressources & documentation</h1>
-      <p class="lead">Tout pour transformer un diagnostic en plan d’actions : guides, modèles, FAQ, et notre nouveau dossier <b>IA Act</b>.</p>
+      <h1 id="top">Mentions légales</h1>
+      <p class="lead">Tout ce qu’un <b>site</b> ou une <b>boutique en ligne</b> doit afficher : contenu obligatoire, exemples prêts à l’emploi et erreurs fréquentes à éviter.</p>
     </div>
   </section>
 
   <main id="main">
-    <!-- Accès rapide avec filtre -->
-    <section class="section">
-      <div class="container">
-        <h2 class="title">Accès rapide</h2>
-
-        <div class="filterbar" role="search">
-          <input id="filterInput" type="search" placeholder="Filtrer les cartes (ex. RGPD, cookies, modèles)" aria-label="Filtrer les cartes"/>
-          <div class="chips" aria-label="Raccourcis de filtre">
-            <button class="chip" data-chip="rgpd" aria-pressed="false" type="button">RGPD</button>
-            <button class="chip" data-chip="cookies" aria-pressed="false" type="button">Cookies</button>
-            <button class="chip" data-chip="accessibilité" aria-pressed="false" type="button">Accessibilité</button>
-            <button class="chip" data-chip="mentions" aria-pressed="false" type="button">Mentions</button>
-            <button class="chip" data-chip="modèles" aria-pressed="false" type="button">Modèles</button>
-            <button class="chip" data-chip="ia act" aria-pressed="false" type="button">IA Act</button>
-          </div>
-        </div>
-
-        <div class="grid cols-3">
-          <a class="card reveal filter-item" data-tags="guides bonnes pratiques rgpd cookies accessibilité mentions" href="#guides" target="_self">
-            <span class="pill">Guides</span>
-            <h3 style="color:#0D5387">Bonnes pratiques web</h3>
-            <p class="muted">RGPD, cookies/CMP, accessibilité (WCAG/RGAA) et mentions légales : check-lists opérationnelles.</p>
-            <p class="btn-row"><span class="btn">Parcourir les guides →</span></p>
-          </a>
-          <a class="card reveal filter-item" data-tags="modèles juridiques confidentialité cookies cgv mentions" href="#modeles" target="_self">
-            <span class="pill">Modèles</span>
-            <h3 style="color:#0D5387">Modèles juridiques</h3>
-            <p class="muted">Politique de confidentialité, politique cookies, mentions légales, formulaires droits.</p>
-            <p class="btn-row"><span class="btn">Voir les modèles →</span></p>
-          </a>
-          <a class="card reveal filter-item" data-tags="ia act dossier risques obligations fournisseurs déployeurs" href="#iaact" target="_self">
-            <span class="pill">IA Act</span>
-            <h3 style="color:#0D5387">Dossier thématique</h3>
-            <p class="muted">Obligations par rôle (fournisseur, déployeur, distributeur), matrices de risques et exemples.</p>
-            <p class="btn-row"><span class="btn">Ouvrir le dossier IA Act →</span></p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section avec sommaire latéral -->
+    <!-- Bloc principal -->
     <section class="section alt">
       <div class="container with-aside">
         <aside class="toc">
           <h4>Sommaire</h4>
           <nav aria-label="Sommaire de la page">
-            <a href="#guides" data-spy>Guides & bonnes pratiques</a>
-            <a href="#modeles" data-spy>Modèles juridiques</a>
-            <a href="#iaact" data-spy>Dossier IA Act</a>
-            <a href="#faq" data-spy>FAQ</a>
+            <a href="#obligatoires" data-spy>Contenu obligatoire</a>
+            <a href="#selon-statut" data-spy>Selon votre statut</a>
+            <a href="#ecommerce" data-spy>E-commerce (B2C)</a>
+            <a href="#donnees" data-spy>Données & cookies</a>
+            <a href="#exemples" data-spy>Exemples & modèles</a>
+            <a href="#faq" data-spy>Erreurs fréquentes (FAQ)</a>
+            <a href="#besoin" data-spy>Besoin d’un modèle&nbsp;?</a>
           </nav>
           <div class="small" style="margin-top:10px">Dernière mise à jour : <time id="lastUpdated">—</time></div>
         </aside>
 
         <div>
-          <!-- 2. Guides & bonnes pratiques -->
-          <section id="guides" class="section alt reveal" style="padding-top:0" tabindex="-1">
-            <h2 class="title">Guides <span class="amp">&</span> bonnes pratiques</h2>
-            <div class="grid cols-3">
-              <div class="card reveal filter-item" data-tags="rgpd confidentialité cookies formulaires">
-                <span class="pill">RGPD</span>
-                <h3 style="color:#0D5387">RGPD côté site</h3>
-                <ul class="list">
-                  <li>Informer clairement : finalités, bases légales, durées, droits, contact</li>
-                  <li>Mentions au point de collecte (formulaires)</li>
-                  <li>Preuve du consentement et trace des mises à jour</li>
-                </ul>
-                <div class="btn-row">
-                  <a class="btn ghost" href="guides.html" target="_self">Tous les guides →</a>
-                </div>
-              </div>
-              <div class="card reveal filter-item" data-tags="accessibilité wcag rgaa aria contrastes">
-                <span class="pill">Accessibilité</span>
-                <h3 style="color:#0D5387">Accessibilité (WCAG/RGAA)</h3>
-                <ul class="list">
-                  <li>ALT, contrastes, sémantique, focus, navigation clavier</li>
-                  <li>Déclaration d’accessibilité & plan d’amélioration</li>
-                  <li>Bonnes pratiques UI & composants ARIA</li>
-                </ul>
-                <div class="btn-row">
-                  <a class="btn ghost" href="guides.html" target="_self">Exemples & check-lists →</a>
-                </div>
-              </div>
-              <div class="card reveal filter-item" data-tags="ecommerce mentions légales cgv cgu médiation">
-                <span class="pill">E-commerce</span>
-                <h3 style="color:#0D5387">Mentions & e-commerce</h3>
-                <ul class="list">
-                  <li>Identification : éditeur, hébergeur, RCS/SIREN/TVA</li>
-                  <li>CGU/CGV, rétractation, médiation</li>
-                  <li>Liens visibles + dates de MAJ</li>
-                </ul>
-                <div class="btn-row">
-                  <a class="btn ghost" href="guides.html" target="_self">Cas pratiques →</a>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- 3. Modèles juridiques -->
-          <section id="modeles" class="section reveal" tabindex="-1">
-            <h2 class="title">Modèles juridiques</h2>
-            <div class="grid cols-3">
-              <a class="card reveal filter-item" data-tags="modèles politique confidentialité" href="modeles.html" target="_self">
-                <span class="pill">Confidentialité</span>
-                <h3 style="color:#0D5387">Politique de confidentialité</h3>
-                <p class="muted">Structure recommandée et sections obligatoires (finalités, bases, durées, droits, contact, transferts).</p>
-                <p class="btn-row"><span class="btn">Ouvrir les modèles →</span></p>
-              </a>
-              <a class="card reveal filter-item" data-tags="modèles cookies cmp consentement" href="modeles.html" target="_self">
-                <span class="pill">Cookies</span>
-                <h3 style="color:#0D5387">Politique cookies & CMP</h3>
-                <p class="muted">Modèle de politique cookies + exemples de libellés CMP (refus aussi simple, preuve du consentement).</p>
-                <p class="btn-row"><span class="btn">Télécharger →</span></p>
-              </a>
-              <a class="card reveal filter-item" data-tags="modèles mentions cgv ecommerce" href="modeles.html" target="_self">
-                <span class="pill">E-commerce</span>
-                <h3 style="color:#0D5387">Mentions légales & CGV</h3>
-                <p class="muted">Mentions obligatoires, CGU/CGV et clauses pratiques pour services/vente en ligne.</p>
-                <p class="btn-row"><span class="btn">Parcourir →</span></p>
-              </a>
-            </div>
-          </section>
-
-          <!-- 4. Dossier IA Act -->
-          <section id="iaact" class="section alt reveal" tabindex="-1">
-            <h2 class="title">Dossier IA Act</h2>
-            <p class="subtitle-center">
-              L’IA Act (UE) introduit des obligations selon le niveau de risque et le rôle des acteurs. Ce dossier regroupe l’essentiel pour cadrer vos projets.
-            </p>
-
-            <div class="grid cols-3">
-              <!-- Carte 1 -->
-              <details class="card reveal ia-card filter-item" data-tags="ia act vue d'ensemble risques">
-                <summary class="ia-summary">
-                  <div class="ia-top">
-                    <span class="pill">En bref</span>
-                    <h3 style="color:#0D5387">IA Act : vue d’ensemble</h3>
-                    <p class="muted">Approche par risques, principes, notions-clés (fournisseur, déployeur, distributeur).</p>
-                  </div>
-                  <svg class="ia-bulb" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7zM9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
-                </summary>
-                <div class="ia-content muted">
-                  <p><b>Approche par les risques.</b> Interdiction pour certains usages (inacceptables), exigences strictes pour les systèmes à <b>haut risque</b>, obligations de transparence pour <b>risque limité</b>, bonnes pratiques pour <b>risque minimal</b>.</p>
-                  <p><b>Objectif.</b> Déployer une IA digne de confiance sans freiner l’innovation, en protégeant les droits fondamentaux.</p>
-                  <p><b>Conséquence pratique.</b> Dès la phase de cadrage, qualifier votre système et organiser vos preuves (qui fait quoi, quand, comment).</p>
-                </div>
-              </details>
-
-              <!-- Carte 2 -->
-              <details class="card reveal ia-card filter-item" data-tags="ia act obligations rôles">
-                <summary class="ia-summary">
-                  <div class="ia-top">
-                    <span class="pill">Par rôle</span>
-                    <h3 style="color:#0D5387">Obligations principales</h3>
-                    <p class="muted">Fournisseurs, déployeurs, distributeurs : responsabilités et contrôles.</p>
-                  </div>
-                  <svg class="ia-bulb" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7zM9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
-                </summary>
-                <div class="ia-content muted">
-                  <p><b>Fournisseurs.</b> Système de gestion des risques, gouvernance des données, documentation technique complète, transparence, instructions d’utilisation, et <i>surveillance post-commercialisation</i>.</p>
-                  <p><b>Déployeurs.</b> Vérifier les informations du fournisseur, qualifier l’usage réel, mettre en place la supervision humaine, informer les utilisateurs finaux et suivre les incidents.</p>
-                  <p><b>Distributeurs/Intégrateurs.</b> Traçabilité, contrôles de conformité, étiquetage et information, gestion des versions/modèles et support aux clients.</p>
-                </div>
-              </details>
-
-              <!-- Carte 3 -->
-              <details class="card reveal ia-card filter-item" data-tags="ia act checklists matrices">
-                <summary class="ia-summary">
-                  <div class="ia-top">
-                    <span class="pill">Outils</span>
-                    <h3 style="color:#0D5387">Check-lists & matrices</h3>
-                    <p class="muted">Qualification, contrôles pré-mise en circulation, surveillance post-commercialisation.</p>
-                  </div>
-                  <svg class="ia-bulb" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7zM9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg>
-                </summary>
-                <div class="ia-content muted">
-                  <ul class="list">
-                    <li><b>Qualification & risque :</b> grille de qualification (usage, données, contexte), détermination du niveau de risque.</li>
-                    <li><b>Avant mise en circulation :</b> contrôles documentaires, tests, transparence, consignes utilisateurs.</li>
-                    <li><b>Après mise en circulation :</b> plan de surveillance, gestion des incidents, remontées et mises à jour.</li>
-                  </ul>
-                  <p><a class="btn" href="contact.html" target="_self">Recevoir les check-lists</a></p>
-                </div>
-              </details>
-            </div>
-          </section>
-
-          <!-- 6. FAQ -->
-          <section id="faq" class="section reveal" tabindex="-1">
-            <h2 class="title">FAQ</h2>
+          <section id="obligatoires" class="reveal" tabindex="-1">
+            <h2 class="title">Contenu obligatoire</h2>
             <div class="grid cols-2">
-              <a class="card reveal filter-item" data-tags="faq questions audit cms stockage support" href="faq.html" target="_self">
-                <span class="pill">Questions fréquentes</span>
-                <h3 style="color:#0D5387">FAQ complète</h3>
-                <p class="muted">Couverture de l’audit, limites, compatibilité CMS, stockage des données, accompagnement.</p>
-                <p class="btn-row"><span class="btn">Lire la FAQ →</span></p>
-              </a>
-              <a class="card reveal filter-item" data-tags="2026 échéances accessibilité information consommateurs europe" href="pourquoi-2026.html" target="_self">
-                <span class="pill">2026</span>
-                <h3 style="color:#0D5387">Pourquoi maintenant ?</h3>
-                <p class="muted">Échéances 2025–2026 (accessibilité, information consommateurs, cadre européen). Anticiper évite les non-conformités.</p>
-                <p class="btn-row"><span class="btn ghost">Voir l’article →</span></p>
-              </a>
+              <article class="card">
+                <h3>Identification de l’éditeur</h3>
+                <ul class="small">
+                  <li>Raison sociale / nom, forme juridique, capital (si société)</li>
+                  <li>Adresse du siège, <b>SIREN/SIRET</b>, RCS + ville d’immatriculation</li>
+                  <li>N° TVA intracommunautaire (le cas échéant)</li>
+                  <li>Directeur·rice de la publication et contact</li>
+                </ul>
+              </article>
+              <article class="card">
+                <h3>Hébergeur</h3>
+                <ul class="small">
+                  <li>Nom de l’hébergeur (ex. GitHub Pages, OVH, Cloudflare…)</li>
+                  <li>Adresse postale et moyen de contact (mail/tel)</li>
+                </ul>
+              </article>
+              <article class="card">
+                <h3>Propriété intellectuelle</h3>
+                <ul class="small">
+                  <li>Textes, images, logos, codes : droits réservés, conditions de reproduction</li>
+                  <li>Crédits (photos, polices, icônes, templates)</li>
+                </ul>
+              </article>
+              <article class="card">
+                <h3>Médiation / réclamations</h3>
+                <ul class="small">
+                  <li>Si B2C en France : coordonnées du médiateur de la consommation</li>
+                  <li>Procédure de réclamation / contact</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section id="selon-statut" class="reveal" tabindex="-1">
+            <h2 class="title">Adapter selon votre statut</h2>
+            <div class="grid cols-3">
+              <article class="card">
+                <h3>Société (SARL, SAS, SA…)</h3>
+                <ul class="small">
+                  <li>Forme + capital social</li>
+                  <li>RCS + ville, SIREN</li>
+                  <li>Si activité réglementée : autorité / n° d’agrément</li>
+                </ul>
+                <!-- ex. ampoule -->
+                <div aria-hidden="true">💡</div>
+              </article>
+              <article class="card">
+                <h3>Entreprise individuelle / micro</h3>
+                <ul class="small">
+                  <li>Nom & prénom, adresse pro (ou mention de domiciliation)</li>
+                  <li>Numéro SIREN/SIRET</li>
+                  <li>TVA : le cas échéant (franchise en base à préciser)</li>
+                </ul>
+                <div aria-hidden="true">💡</div>
+              </article>
+              <article class="card">
+                <h3>Association</h3>
+                <ul class="small">
+                  <li>Dénomination, siège, RNA ou SIREN</li>
+                  <li>Nom du/de la responsable de la publication</li>
+                </ul>
+                <div aria-hidden="true">💡</div>
+              </article>
+            </div>
+          </section>
+
+          <section id="ecommerce" class="reveal" tabindex="-1">
+            <h2 class="title">e-commerce B2C</h2>
+            <div class="grid cols-2">
+              <article class="card">
+                <h3>Avant achat</h3>
+                <ul class="small">
+                  <li>CGV accessibles, prix TTC/HT clairs, frais / délais de livraison</li>
+                  <li>Modalités de paiement, disponibilité, zones desservies</li>
+                </ul>
+                <div aria-hidden="true">💡</div>
+              </article>
+              <article class="card">
+                <h3>Après achat</h3>
+                <ul class="small">
+                  <li>Droit de rétractation (délais, formulaire), garanties</li>
+                  <li>Médiation de la consommation / litiges</li>
+                </ul>
+                <div aria-hidden="true">💡</div>
+              </article>
+            </div>
+          </section>
+
+          <section id="donnees" class="reveal" tabindex="-1">
+            <h2 class="title">Données personnelles & cookies</h2>
+            <div class="grid cols-2">
+              <article class="card">
+                <h3>Politique de confidentialité</h3>
+                <p class="small">Décrivez finalités, bases légales, durées, droits, contact, transferts. Liez-la depuis toutes les pages.</p>
+                <p><a class="btn ghost" href="confidentialite.html" target="_self">Voir le modèle</a></p>
+                <div aria-hidden="true">💡</div>
+              </article>
+              <article class="card">
+                <h3>Cookies & CMP</h3>
+                <p class="small">Bandeau avec refus aussi simple que l’acceptation, preuve du consentement, blocage par défaut des tags non essentiels.</p>
+                <p><a class="btn ghost" href="politique-cookies.html" target="_self">Voir le modèle cookies</a></p>
+                <div aria-hidden="true">💡</div>
+              </article>
+            </div>
+          </section>
+
+          <section id="exemples" class="reveal" tabindex="-1">
+            <h2 class="title">Exemples & modèles</h2>
+            <div class="grid cols-2">
+              <article class="card">
+                <h3>Exemple court (vitrine)</h3>
+                <details>
+                  <summary>Afficher l’exemple</summary>
+<pre class="small" style="white-space:pre-wrap;">
+<b>Éditeur</b> — [[Nom entreprise]], [[forme]] au capital de [[€]], [[adresse]], SIREN [[xxxxx]], RCS [[Ville]], TVA [[FR..]].
+<b>Publication</b> — Directeur·rice : [[Nom]], contact : [[email]].
+<b>Hébergeur</b> — [[Nom hébergeur]], [[adresse]], [[contact]].
+<b>Propriété intellectuelle</b> — Tous droits réservés. Toute reproduction interdite sans autorisation.
+</pre>
+                </details>
+                <div aria-hidden="true">💡</div>
+              </article>
+              <article class="card">
+                <h3>Exemple e-commerce (B2C)</h3>
+                <details>
+                  <summary>Afficher l’exemple</summary>
+<pre class="small" style="white-space:pre-wrap;">
+<b>CGV</b> — accessibles ici : [[lien]]. Prix TTC, frais et délais précisés avant commande.
+<b>Rétractation</b> — Délai légal de [[14]] jours. Formulaire : [[lien]].
+<b>Médiation</b> — [[Nom du médiateur]] : [[coordonnées]].
+</pre>
+                </details>
+                <p class="small" style="margin-top:10px"><a class="btn" href="modeles.html" target="_self">Ouvrir tous les modèles</a></p>
+                <div aria-hidden="true">💡</div>
+              </article>
+            </div>
+          </section>
+
+          <section id="faq" class="reveal" tabindex="-1">
+            <h2 class="title">Erreurs fréquentes & bonnes pratiques</h2>
+            <div class="grid cols-2">
+              <article class="card">
+                <h3>Erreurs à éviter</h3>
+                <ul class="small">
+                  <li>Oublier l’hébergeur ou le RCS/SIREN</li>
+                  <li>Lier les mentions uniquement depuis la page d’accueil</li>
+                  <li>Utiliser un modèle générique non adapté au statut</li>
+                </ul>
+                <div aria-hidden="true">💡</div>
+              </article>
+              <article class="card">
+                <h3>Bonnes pratiques</h3>
+                <ul class="small">
+                  <li>Mettre à jour la date et versionner les changements</li>
+                  <li>Regrouper dans le footer : Mentions, Confidentialité, Cookies, CGV/CGU</li>
+                  <li>Prévoir un contact direct (e-mail dédié)</li>
+                </ul>
+                <div aria-hidden="true">💡</div>
+              </article>
+            </div>
+            <p class="small" style="margin-top:8px">Ce contenu est fourni à titre informatif et ne constitue pas un conseil juridique.</p>
+          </section>
+
+          <!-- Rubrique centrée -->
+          <section id="besoin" class="reveal" tabindex="-1">
+            <h2 class="title">Besoin d’un modèle adapté à votre cas&nbsp;?</h2>
+            <p class="muted" style="max-width:700px;margin-bottom:24px;">
+              On personnalise vos mentions légales (statut, secteur, B2C/B2B) et on les relie à vos politiques.
+            </p>
+            <div class="btn-row">
+              <a class="btn" href="contact.html" target="_self">Parler à un expert</a>
+              <a class="btn ghost" href="modeles.html" target="_self">Voir les modèles</a>
             </div>
           </section>
         </div>
@@ -364,83 +336,69 @@
   <!-- Footer injecté -->
   <div id="footer"></div>
 
-  <!-- JS: canvas + reveal + in-view + scrollspy + filter + date + toTop -->
+  <!-- Canvas + reveal + toc + date + SEO -->
   <script>
-    /* Canvas */
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
+    // Canvas
+    const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
     let w = canvas.width = innerWidth; let h = canvas.height = innerHeight;
     const particles = []; const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
     addEventListener('resize', () => { w = canvas.width = innerWidth; h = canvas.height = innerHeight; });
-    class Particle{ constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed; }
-      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1; }
-      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill(); }
-      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke(); } }); } }
-    function init(){ for(let i=0;i<opts.count;i++) particles.push(new Particle()); }
-    function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines(); }); requestAnimationFrame(animate); }
+    class Particle{ constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed }
+      update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1 }
+      draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill() }
+      lines(){ particles.forEach(p=>{ const d=Math.hypot(this.x+p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke() } }) } }
+    function init(){ for(let i=0;i<opts.count;i++) particles.push(new Particle()) }
+    function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.update(); p.draw(); p.lines() }); requestAnimationFrame(animate) }
     init(); animate();
 
-    /* Reveal & in-view */
+    // Reveal / in-view
     const reveals = document.querySelectorAll('.reveal');
-    const ioReveal = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('is-visible'); }); }, { threshold: 0.2 });
+    const ioReveal = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('is-visible') }) }, { threshold: .15 });
     reveals.forEach(el => ioReveal.observe(el));
     const sections = document.querySelectorAll('.section');
-    const ioView = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in-view'); }); }, { threshold: 0.4 });
+    const ioView = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in-view') }) }, { threshold: .35 });
     sections.forEach(s => ioView.observe(s));
 
-    /* Scrollspy */
+    // Scrollspy
     const spyLinks = Array.from(document.querySelectorAll('[data-spy]'));
     const targets = spyLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
     const spy = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        const id = '#' + e.target.id;
-        const link = spyLinks.find(a => a.getAttribute('href') === id);
-        if (!link) return;
-        if (e.isIntersecting) {
-          spyLinks.forEach(a => a.classList.remove('active'));
-          link.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+      entries.forEach(e => { const id = '#' + e.target.id; const link = spyLinks.find(a => a.getAttribute('href') === id); if(!link) return; if(e.isIntersecting){ spyLinks.forEach(a => a.classList.remove('active')); link.classList.add('active') } })
+    }, { rootMargin:'-40% 0px -55% 0px', threshold: .01 });
     targets.forEach(t => spy.observe(t));
 
-    /* Filter */
-    const filterInput = document.getElementById('filterInput');
-    const chips = document.querySelectorAll('.chip');
-    const items = document.querySelectorAll('.filter-item');
-    let activeTags = new Set();
-    function applyFilter(){
-      const q = (filterInput?.value || '').toLowerCase().trim();
-      items.forEach(el => {
-        const hay = (el.textContent + ' ' + (el.getAttribute('data-tags')||'')).toLowerCase();
-        const tagMatch = activeTags.size ? [...activeTags].every(t => hay.includes(t)) : true;
-        const qMatch = q ? hay.includes(q) : true;
-        el.style.display = tagMatch && qMatch ? '' : 'none';
-      });
-    }
-    filterInput?.addEventListener('input', () => { window.clearTimeout(applyFilter._t); applyFilter._t = setTimeout(applyFilter, 150); });
-    chips.forEach(ch => ch.addEventListener('click', () => {
-      const val = (ch.dataset.chip||'').toLowerCase();
-      const pressed = ch.getAttribute('aria-pressed') === 'true';
-      ch.setAttribute('aria-pressed', String(!pressed));
-      if(!pressed) activeTags.add(val); else activeTags.delete(val);
-      applyFilter();
-    }));
-    applyFilter();
-
-    /* Last updated */
+    // Last updated + SEO meta/LD
     const last = new Date(document.lastModified);
     const fmt = last.toLocaleDateString('fr-FR', { year:'numeric', month:'long', day:'2-digit' });
-    const lastNode = document.getElementById('lastUpdated');
-    if(lastNode){ lastNode.textContent = fmt; lastNode.setAttribute('datetime', last.toISOString()); }
+    const lastNode = document.getElementById('lastUpdated'); if(lastNode){ lastNode.textContent = fmt; lastNode.setAttribute('datetime', last.toISOString()) }
     const meta = document.createElement('meta'); meta.setAttribute('property','article:modified_time'); meta.setAttribute('content', last.toISOString()); document.head.appendChild(meta);
-    const ld = { '@context':'https://schema.org  ', '@type':'WebPage', name:'Ressources — Awenoria', url: location.href, dateModified: last.toISOString() };
+    const ld = { '@context':'https://schema.org', '@type':'WebPage', name:'Mentions légales | Awenoria', url: location.href, dateModified: last.toISOString() };
     const ldScript = document.createElement('script'); ldScript.type = 'application/ld+json'; ldScript.textContent = JSON.stringify(ld); document.head.appendChild(ldScript);
 
-    /* Back to top */
-    const toTop = document.getElementById('toTop');
-    const ioTop = new IntersectionObserver(([entry]) => { if(entry.isIntersecting){ toTop.classList.remove('show'); } else { toTop.classList.add('show'); } });
-    ioTop.observe(document.querySelector('.hero'));
+    // Back to top
+    document.addEventListener('DOMContentLoaded', () => {
+      const toTop = document.getElementById('toTop');
+      const hero = document.querySelector('.hero');
+      if (!toTop || !hero) return;
+      const ioTop = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) { toTop.classList.remove('show'); }
+        else { toTop.classList.add('show'); }
+      });
+      ioTop.observe(hero);
+    });
+  </script>
+
+  <!-- Loader header/footer -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const headMount = document.getElementById("header"); const footMount = document.getElementById("footer"); if (!headMount && !footMount) return;
+    const isGh = /github\.io$/.test(location.hostname); let base = "/"; if (isGh) { const parts = location.pathname.split("/").filter(Boolean); base = parts.length ? `/${parts[0]}/` : "/" }
+    const candidates = (p) => { const clean = p.replace(/^\//, ""); return [ base + clean, "./" + clean, "../" + clean ] };
+    async function fetchAny(paths) { const queue = paths.flatMap(candidates); for (const u of queue) { try { const r = await fetch(u, { cache: "no-cache" }); if (r.ok) return r.text() } catch(_) {} } throw new Error("Aucun chemin valide parmi: " + paths.join(", ")) }
+    function fixRootUrls(container) { container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]').forEach(el => { const attr = el.hasAttribute("href") ? "href" : "src"; const val = el.getAttribute(attr); if (/^\/\//.test(val)) return; el.setAttribute(attr, base + val.replace(/^\//, "")) }) }
+    if (headMount) { fetchAny(["header.html", "partials/header.html"]).then(html => { headMount.innerHTML = html; fixRootUrls(headMount); return fetchAny(["assets/nav.js", "nav.js"]) }).then(code => { const s = document.createElement("script"); if (/\b(import|export)\b/.test(code)) s.type = "module"; s.textContent = code; document.body.appendChild(s) }).catch(err => { console.error("Header load error:", err); headMount.innerHTML = "<!-- Header introuvable -->" }) }
+    if (footMount) { fetchAny(["footer.html", "partials/footer.html"]).then(html => { footMount.innerHTML = html; fixRootUrls(footMount) }).catch(err => { console.error("Footer load error:", err); footMount.innerHTML = "<!-- Footer introuvable -->" }) }
+  });
   </script>
 </body>
 </html>
