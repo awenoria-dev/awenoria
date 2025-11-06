@@ -130,6 +130,21 @@
     #faq .card h3 {
       color:#0D5387;
     }
+
+    /* ======== OVERRIDE DEMANDÉ (listes des 3 bulles) ========
+       Applique #999EA7 sur le texte ET les puces pour :
+       - RGPD côté site
+       - Accessibilité (WCAG/RGAA)
+       - Mentions & e-commerce
+       On cible uniquement la section #guides pour ne pas impacter le reste.
+    */
+    #guides .grid.cols-3 .card .list,
+    #guides .grid.cols-3 .card .list li{
+      color:#999EA7 !important;
+    }
+    #guides .grid.cols-3 .card .list li::marker{
+      color:#999EA7 !important;
+    }
   </style>
 </head>
 <body class="page-ressources">
