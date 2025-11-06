@@ -84,6 +84,11 @@
     .btn-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
     .list{margin:0;padding-left:18px}
 
+    /* ✅ Couleur demandée pour les 3 listes des bulles (texte + puces) */
+    #guides .card .list,
+    #guides .card .list li{ color:#999EA7; }
+    #guides .card .list li::marker{ color:#999EA7; }
+
     /* Anim */
     @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none}}
     .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
@@ -209,8 +214,7 @@
               <div class="card reveal filter-item" data-tags="rgpd confidentialité cookies formulaires">
                 <span class="pill">RGPD</span>
                 <h3>RGPD côté site</h3>
-                <!-- ↓↓ Modif : on applique la couleur/effet muted comme dans la phrase de référence -->
-                <ul class="list muted">
+                <ul class="list">
                   <li>Informer clairement : finalités, bases légales, durées, droits, contact</li>
                   <li>Mentions au point de collecte (formulaires)</li>
                   <li>Preuve du consentement et trace des mises à jour</li>
@@ -222,8 +226,7 @@
               <div class="card reveal filter-item" data-tags="accessibilité wcag rgaa aria contrastes">
                 <span class="pill">Accessibilité</span>
                 <h3>Accessibilité (WCAG/RGAA)</h3>
-                <!-- ↓↓ Modif : muted -->
-                <ul class="list muted">
+                <ul class="list">
                   <li>ALT, contrastes, sémantique, focus, navigation clavier</li>
                   <li>Déclaration d’accessibilité & plan d’amélioration</li>
                   <li>Bonnes pratiques UI & composants ARIA</li>
@@ -235,8 +238,7 @@
               <div class="card reveal filter-item" data-tags="ecommerce mentions légales cgv cgu médiation">
                 <span class="pill">E-commerce</span>
                 <h3>Mentions & e-commerce</h3>
-                <!-- ↓↓ Modif : muted -->
-                <ul class="list muted">
+                <ul class="list">
                   <li>Identification : éditeur, hébergeur, RCS/SIREN/TVA</li>
                   <li>CGU/CGV, rétractation, médiation</li>
                   <li>Liens visibles + dates de MAJ</li>
