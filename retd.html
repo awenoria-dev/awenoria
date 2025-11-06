@@ -109,9 +109,21 @@
 
     /* IA Act card expansion */
     .ia-card{overflow:hidden}
-    .ia-summary{display:flex;flex-direction:column;cursor:pointer}
+    .ia-summary{
+      display:flex;
+      flex-direction:column;
+      cursor:pointer;
+      align-items:center;   /* ← centre l’icône */
+    }
     .ia-top{margin-bottom:auto}
-    .ia-bulb{width:28px;height:28px;fill:var(--aw-copper);margin:8px auto 0;animation:sway 1.2s ease-in-out infinite;animation-delay:.6s}
+    .ia-bulb{
+      width:28px;
+      height:28px;
+      fill:var(--aw-copper);
+      margin:8px auto 0;   /* centrage horizontal */
+      animation:sway 1.2s ease-in-out infinite;
+      animation-delay:.6s
+    }
     .ia-card[open] .ia-bulb{transform:rotate(45deg);animation:none}
     @keyframes sway{
       0%,100%{transform:translateX(0)}
