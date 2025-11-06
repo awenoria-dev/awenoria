@@ -131,19 +131,15 @@
       color:#0D5387;
     }
 
-    /* ======== OVERRIDE DEMANDÉ (listes des 3 bulles) ========
-       Applique #999EA7 sur le texte ET les puces pour :
-       - RGPD côté site
-       - Accessibilité (WCAG/RGAA)
-       - Mentions & e-commerce
-       On cible uniquement la section #guides pour ne pas impacter le reste.
-    */
+    /* === OVERRIDE : appliquer EXACTEMENT le style "muted" aux listes des 3 bulles === */
     #guides .grid.cols-3 .card .list,
     #guides .grid.cols-3 .card .list li{
-      color:#999EA7 !important;
+      color: var(--aw-muted) !important;   /* même couleur que la phrase de référence */
+      font-weight: 500;                    /* lisibilité proche de la PJ */
+      line-height: 1.65;
     }
     #guides .grid.cols-3 .card .list li::marker{
-      color:#999EA7 !important;
+      color: var(--aw-muted) !important;   /* même couleur pour les puces */
     }
   </style>
 </head>
