@@ -1,1 +1,942 @@
-xx
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Politique de confidentialité — modèles par usage | Awenoria</title>
+  <meta name="description" content="Générez en 2 min la politique de confidentialité, cookies, mentions légales, CGV… selon votre usage : site vitrine, e-commerce, SaaS, marketplace, recrutement, B2B."/>
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <base target="_blank">
+  <style>
+    :root{
+      --aw-ink:#0a0a0a;
+      --aw-blue:#0066ff;
+      --aw-blue-hover:#3d8bff;
+      --aw-copper:#ff5c00;
+      --aw-muted:#6b7280;
+      --aw-panel:#ffffff;
+      --aw-bg:#f5f7ff;
+      --aw-radius:24px;
+      --shadow:0 25px 50px -12px rgba(0,0,0,.15);
+      --transition:.6s cubic-bezier(.22,1,.36,1);
+    }
+    @media (prefers-color-scheme:dark){
+      :root{
+        --aw-ink:#f5f7ff; --aw-blue:#3d8bff; --aw-blue-hover:#5ca0ff; --aw-copper:#ff8a3d;
+        --aw-muted:#a1a9c0; --aw-panel:#0b0f1a; --aw-bg:#0a0d14; --shadow:0 25px 50px -12px rgba(0,0,0,.45);
+      }
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:"Inter",system-ui,-apple-system,Arial,sans-serif;line-height:1.7;color:var(--aw-ink);background:var(--aw-bg);-webkit-font-smoothing:antialiased}
+    a{text-decoration:none;color:var(--aw-blue)}
+    img{max-width:100%;display:block}
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
+    .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{left:10px;top:10px;width:auto;height:auto;z-index:1000;background:#000;color:#fff;padding:8px 10px;border-radius:8px}
+    .hero{position:relative;min-height:60svh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;background:radial-gradient(140% 150% at 10% -20%, rgba(255,255,255,.15), transparent 60%),radial-gradient(120% 120% at 120% 10%, rgba(255,255,255,.10), transparent 60%),linear-gradient(180deg,#0033cc 0%,#0066ff 100%)}
+    .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+    .hero .content{position:relative;z-index:2;max-width:900px;padding:0 20px;animation:fadeInUp 1s both}
+    .hero h1{font-size:clamp(52px,7vw,72px);font-weight:800;line-height:1.05;letter-spacing:-.02em}
+    .section{max-width:1200px;margin:0 auto;padding:100px 20px}
+    .section.alt{background:var(--aw-bg)}
+    .title{margin:0 0 10px;text-align:center;font-size:clamp(36px,5vw,48px);font-weight:800;background:linear-gradient(135deg,#0F5F9A 0%,#0d5285 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 4px rgba(0,0,0,.08)}
+    .title-center{margin:0 0 10px;text-align:center;font-size:clamp(32px,4.5vw,42px);font-weight:800;color:#0d5285}
+    .underline{width:60px;height:6px;border-radius:6px;margin:10px auto 24px;background:var(--aw-copper);opacity:.9}
+    .subtitle-center{font-size:1.2rem;color:var(--aw-muted);max-width:840px;margin:0 auto 56px;text-align:center}
+    .grid{display:grid;gap:24px;margin-top:18px}
+    .cols-2{grid-template-columns:repeat(2,1fr)}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    @media(max-width:980px){.cols-2,.cols-3{grid-template-columns:1fr}}
+    .card{position:relative;background:var(--aw-panel);border:1px solid rgba(15,95,154,.12);border-radius:var(--aw-radius);box-shadow:var(--shadow);padding:24px;transition:all var(--transition);display:block;color:inherit}
+    .card:hover{transform:translateY(-4px);box-shadow:0 28px 56px rgba(15,95,154,.15);border-color:var(--aw-copper)}
+    .pill{display:inline-flex;align-items:center;justify-content:center;padding:6px 12px;margin:0 0 10px;border-radius:999px;background:var(--aw-blue);color:#fff;font:800 12px/1 "Inter"}
+    .badge-new{position:absolute;top:10px;right:12px;padding:6px 12px;border-radius:999px;background:var(--aw-copper);color:#fff;font:800 12px/1 "Inter"}
+    .muted{color:var(--aw-muted)}
+    .small{font-size:13px;color:var(--aw-muted)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;font-weight:800;color:#fff;background:var(--aw-blue);border:none;cursor:pointer;transition:all var(--transition);box-shadow:var(--shadow)}
+    .btn:hover{background:var(--aw-copper);transform:translateY(-2px)}
+    .btn.ghost{background:var(--aw-panel);color:var(--aw-blue);border:1px solid rgba(15,95,154,.12)}
+    .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .with-aside{display:grid;grid-template-columns:260px 1fr;gap:24px}
+    @media(max-width:1100px){.with-aside{grid-template-columns:1fr}}
+    .toc{position:sticky;top:90px;align-self:start;background:var(--aw-panel);border:1px solid rgba(15,23,32,.08);border-radius:16px;padding:14px;box-shadow:var(--shadow)}
+    .toc h4{margin:0 0 8px;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--aw-muted)}
+    .toc a{display:block;padding:8px 10px;border-radius:10px;color:inherit}
+    .toc a.active{background:rgba(0,102,255,.08);color:var(--aw-blue);font-weight:700}
+    .editor-wrap{position:sticky;top:0;z-index:5;background:linear-gradient(180deg, rgba(245,247,255,.96), rgba(245,247,255,.92) 60%, transparent);backdrop-filter:saturate(1.2) blur(6px);padding:18px 14px;border:1px solid rgba(15,23,32,.06);border-radius:16px;margin-bottom:24px}
+    .tabs{display:flex;gap:10px;justify-content:center;margin-bottom:12px}
+    .tabs .btn{padding:10px 16px}
+    form.smart{display:grid;gap:12px}
+    form.smart .grid{gap:12px}
+    form.smart label{font-size:12px;color:var(--aw-muted)}
+    form.smart input,form.smart select,form.smart textarea{width:100%;padding:10px 12px;border:1px solid rgba(15,23,32,.1);border-radius:12px;background:var(--aw-panel);font:500 14px/1.4 "Inter";color:var(--aw-ink)}
+    .fieldset{border:1px dashed rgba(15,23,32,.15);border-radius:14px;padding:12px}
+    .fieldset legend{font-weight:800;font-size:12px;color:var(--aw-muted)}
+    .req::after{content:' *';color:var(--aw-copper)}
+    .hint{font-size:12px;color:var(--aw-muted)}
+    .model{display:flex;flex-direction:column;gap:10px}
+    .model textarea{width:100%;min-height:320px;resize:vertical;padding:14px;border:1px solid rgba(15,95,154,.12);border-radius:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:14px;line-height:1.55;background:var(--aw-bg);color:var(--aw-ink)}
+    /* NEW : presets chips */
+    .preset-chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    .preset-chip{padding:8px 14px;border-radius:999px;border:1px solid rgba(15,23,32,.12);cursor:pointer;background:var(--aw-panel);color:var(--aw-muted);font-weight:600}
+    .preset-chip[aria-pressed="true"]{background:var(--aw-blue);color:#fff;border-color:var(--aw-blue)}
+    /* NEW : layered notice */
+    .layered-notice{background:var(--aw-panel);border:1px solid rgba(15,23,32,.08);border-radius:var(--aw-radius);padding:18px;margin-bottom:20px;font-size:14px;color:var(--aw-muted)}
+    .layered-notice ul{padding-left:20px;margin:8px 0}
+    /* NEW : table */
+    .table-wrap{overflow:auto;border-radius:var(--aw-radius);border:1px solid rgba(15,23,32,.08);margin:20px 0}
+    table{width:100%;border-collapse:collapse;font-size:13px;background:var(--aw-panel)}
+    th,td{padding:8px 10px;text-align:left;border-bottom:1px solid rgba(15,23,32,.08)}
+    th{background:rgba(0,102,255,.05);font-weight:700}
+    /* NEW : alert box */
+    .alert{border-left:4px solid var(--aw-copper);background:rgba(255,92,0,.06);padding:10px 12px;border-radius:8px;font-size:13px;margin:10px 0}
+    /* NEW : prefers-reduced-motion */
+    @media (prefers-reduced-motion:reduce){.card,.btn,.hero .content{transition:none!important}.hero canvas{display:none}}
+    /* NEW : contrast copper on light mode */
+    @media (prefers-color-scheme:light){.pill,.badge-new{color:#fff}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <div id="header"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="canvas" aria-hidden="true"></canvas>
+    <div class="content">
+      <h1 id="top">Politique de confidentialité — modèles par usage</h1>
+      <p class="subtitle-center" style="color:#fff;margin-top:12px">Choisissez un preset (Site vitrine, Lead gen, E-commerce, SaaS/App, Marketplace, Recrutement, B2B) puis personnalisez.</p>
+    </div>
+  </section>
+
+  <main id="main">
+    <!-- QUICK FILTER -->
+    <section class="section">
+      <div class="container">
+        <h2 class="title">Éditer mon formulaire</h2>
+        <p class="subtitle-center">Remplissez le formulaire : les <b>[[…]]</b> deviennent instantanément vos mentions légales.</p>
+
+        <div class="filterbar" role="search">
+          <input id="filterInput" type="search" placeholder="Filtrer (ex. RGPD, cookies, mentions, CGV)" aria-label="Filtrer les cartes"/>
+          <div class="chips" aria-label="Raccourcis de filtre">
+            <button class="chip" data-chip="rgpd" aria-pressed="false" type="button">RGPD</button>
+            <button class="chip" data-chip="cookies" aria-pressed="false" type="button">Cookies</button>
+            <button class="chip" data-chip="mentions" aria-pressed="false" type="button">Mentions</button>
+            <button class="chip" data-chip="formulaire" aria-pressed="false" type="button">Formulaires</button>
+            <button class="chip" data-chip="emailing" aria-pressed="false" type="button">Emailing</button>
+            <button class="chip" data-chip="cgv" aria-pressed="false" type="button">CGV</button>
+          </div>
+        </div>
+
+        <div class="grid cols-3" style="margin-top:14px">
+          <a class="card reveal filter-item" data-tags="rgpd confidentialité politique" href="#polconf" target="_self">
+            <span class="pill">RGPD</span>
+            <span class="badge-new">Nouveau</span>
+            <h3>Politique de confidentialité</h3>
+            <p class="muted">Vitrine, lead gen, e-commerce, SaaS, marketplace, recrutement, B2B</p>
+          </a>
+          <a class="card reveal filter-item" data-tags="cookies cmp consentement politique" href="#polcookies" target="_self"><span class="pill">Cookies</span><h3>Politique cookies & CMP</h3><p class="muted">Transparence & preuve</p></a>
+          <a class="card reveal filter-item" data-tags="mentions légales éditeur hébergeur" href="#mentions" target="_self"><span class="pill">Mentions</span><h3>Mentions légales</h3><p class="muted">Éditeur, hébergeur, RCS…</p></a>
+          <a class="card reveal filter-item" data-tags="formulaire clause collecte" href="#form" target="_self"><span class="pill">Formulaires</span><h3>Clauses au point de collecte</h3><p class="muted">Contact, devis, newsletter, chat, jeu…</p></a>
+          <a class="card reveal filter-item" data-tags="emailing désinscription" href="#email" target="_self"><span class="pill">Emailing</span><h3>Pied de page désinscription</h3><p class="muted">Lien & mentions</p></a>
+          <a class="card reveal filter-item" data-tags="cgv b2c ecommerce" href="#cgv" target="_self"><span class="pill">E-commerce</span><h3>CGV (B2C & B2B)</h3><p class="muted">Trames courtes + rétractation</p></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDITEUR + SOMMAIRE -->
+    <section class="section alt">
+      <div class="container with-aside">
+        <aside class="toc">
+          <h4>Sommaire</h4>
+          <nav aria-label="Sommaire de la page">
+            <a href="#editor" data-spy>Éditeur</a>
+            <a href="#polconf" data-spy>Politique de confidentialité</a>
+            <a href="#polcookies" data-spy>Politique cookies</a>
+            <a href="#mentions" data-spy>Mentions légales</a>
+            <a href="#form" data-spy>Clauses formulaires</a>
+            <a href="#email" data-spy>Emailing</a>
+            <a href="#cgv" data-spy>CGV</a>
+          </nav>
+          <div class="small" style="margin-top:10px">Dernière mise à jour : <time id="lastUpdated">—</time></div>
+          <button class="btn ghost" id="resumeBtn" style="margin-top:12px;width:100%;display:none">Reprendre ma dernière session</button>
+        </aside>
+
+        <div>
+          <!-- EDITEUR -->
+          <section class="reveal" id="editor" tabindex="-1" style="padding-top:0">
+            <div class="editor-wrap is-visible">
+              <div class="tabs" role="tablist" aria-label="Modes d’édition">
+                <button id="tab-fast" class="btn" role="tab" aria-selected="true">Éditeur rapide (30 s)</button>
+                <button id="tab-adv" class="btn ghost" role="tab" aria-selected="false">Éditeur avancé (60 s)</button>
+              </div>
+
+              <!-- PRESETS -->
+              <div class="preset-chips" aria-label="Sélection par usage">
+                <button class="preset-chip" data-preset="vitrine" aria-pressed="false">Site vitrine</button>
+                <button class="preset-chip" data-preset="leadgen" aria-pressed="false">Lead gen</button>
+                <button class="preset-chip" data-preset="ecommerce" aria-pressed="false">E-commerce</button>
+                <button class="preset-chip" data-preset="saas" aria-pressed="false">SaaS / App</button>
+                <button class="preset-chip" data-preset="marketplace" aria-pressed="false">Marketplace</button>
+                <button class="preset-chip" data-preset="recrutement" aria-pressed="false">Recrutement</button>
+                <button class="preset-chip" data-preset="b2b" aria-pressed="false">B2B pur</button>
+              </div>
+
+              <!-- RAPIDE -->
+              <form id="fastForm" class="smart" autocomplete="on">
+                <fieldset class="fieldset"><legend>Champs obligatoires (8)</legend>
+                  <div class="grid cols-3">
+                    <div><label for="raison" class="req">Raison sociale</label><input id="raison" name="raison" required placeholder="Ex : Awenoria SAS"></div>
+                    <div><label for="forme" class="req">Forme juridique</label>
+                      <select id="forme" name="forme" required>
+                        <option value="">—</option><option>SAS</option><option>SARL</option><option>EI</option><option>EURL</option><option>SA</option>
+                      </select>
+                    </div>
+                    <div><label for="capital" class="req">Capital social (€)</label><input id="capital" name="capital" required placeholder="10000"></div>
+                  </div>
+                  <div class="grid cols-3">
+                    <div><label for="adresse" class="req">Adresse</label><input id="adresse" name="adresse" required placeholder="12 rue Exemple, 75000 Paris"></div>
+                    <div><label for="emailRGPD" class="req">Email RGPD</label><input id="emailRGPD" name="emailRGPD" type="email" required placeholder="privacy@exemple.fr"></div>
+                    <div><label for="siren" class="req">SIREN</label><input id="siren" name="siren" required placeholder="123 456 789"></div>
+                  </div>
+                  <div class="grid cols-3">
+                    <div><label for="hebergeur" class="req">Hébergeur</label><input id="hebergeur" name="hebergeur" required placeholder="Ex : OVHcloud"></div>
+                    <div>
+                      <label for="analytics" class="req">Analytics</label>
+                      <select id="analytics" name="analytics" required>
+                        <option value="aucun">Aucun</option><option>Google Analytics</option><option>Matomo</option><option>Plausible</option>
+                      </select>
+                    </div>
+                    <div><label for="dateMaj">Date (auto)</label><input id="dateMaj" name="dateMaj" readonly></div>
+                  </div>
+                </fieldset>
+              </form>
+
+              <!-- AVANCÉ -->
+              <form id="advForm" class="smart" hidden autocomplete="on">
+                <fieldset class="fieldset"><legend>Champs optionnels (12)</legend>
+                  <div class="grid cols-3">
+                    <div><label for="siret">SIRET</label><input id="siret" name="siret" placeholder="123 456 789 00012"></div>
+                    <div><label for="ape">Code APE</label><input id="ape" name="ape" placeholder="6201Z"></div>
+                    <div><label for="tva">TVA intracom.</label><input id="tva" name="tva" placeholder="FRxx 123456789"></div>
+                  </div>
+                  <div class="grid cols-3">
+                    <div><label for="dpoNom">DPO / Prestataire DPO</label><input id="dpoNom" name="dpoNom" placeholder="Nom ou société"></div>
+                    <div><label for="dpoEmail">Email DPO</label><input id="dpoEmail" name="dpoEmail" type="email" placeholder="dpo@exemple.fr"></div>
+                    <div><label for="mediateur">Médiateur conso (B2C)</label><input id="mediateur" name="mediateur" placeholder="Nom / coordonnées / URL"></div>
+                  </div>
+                  <div class="grid cols-3">
+                    <div><label for="paysHebergeur">Pays hébergeur</label><input id="paysHebergeur" name="paysHebergeur" placeholder="France / UE / hors UE"></div>
+                    <div><label for="cms">CMS</label><input id="cms" name="cms" placeholder="WordPress, Webflow…"></div>
+                    <div><label for="delaiRetractation">Délai rétractation (jours)</label><input id="delaiRetractation" name="delaiRetractation" placeholder="14"></div>
+                  </div>
+                  <div class="grid cols-3">
+                    <div><label for="clauseTransfert">Transferts hors UE</label><input id="clauseTransfert" name="clauseTransfert" placeholder="CCT + mesures sup."></div>
+                    <div><label for="sousTraitants">Sous-traitants</label><input id="sousTraitants" name="sousTraitants" placeholder="Emailing, CRM, CMP…"></div>
+                    <div><label for="finalitesMarketing">Finalités marketing</label><input id="finalitesMarketing" name="finalitesMarketing" placeholder="Prospection, retargeting…"></div>
+                  </div>
+                  <div class="grid cols-3">
+                    <div><label for="rcsVille">RCS (Ville)</label><input id="rcsVille" name="rcsVille" placeholder="Paris"></div>
+                    <div><label for="telephone">Téléphone</label><input id="telephone" name="telephone" placeholder="01 23 45 67 89"></div>
+                    <div><label for="siteURL">URL du site</label><input id="siteURL" name="siteURL" placeholder="https://exemple.fr "></div>
+                  </div>
+                  <!-- NEW champs spécifiques -->
+                  <div class="grid cols-3">
+                    <div><label for="psp">Paiement / PSP</label><input id="psp" name="psp" placeholder="Stripe, PayPal, Adyen…"></div>
+                    <div><label for="outilChat">Chat / Support</label><input id="outilChat" name="outilChat" placeholder="Intercom, Crisp…"></div>
+                    <div><label for="antiFraude">Outil anti-fraude</label><input id="antiFraude" name="antiFraude" placeholder="Riskified, Shield…"></div>
+                  </div>
+                  <div class="grid cols-3">
+                    <div><label for="marketplaceRoles">Rôle marketplace</label>
+                      <select id="marketplaceRoles" name="marketplaceRoles">
+                        <option value="">—</option>
+                        <option>Responsable conjoint</option>
+                        <option>Responsable indépendant</option>
+                      </select>
+                    </div>
+                    <div><label for="baseProspection">Base prospection</label>
+                      <select id="baseProspection" name="baseProspection">
+                        <option value="">—</option>
+                        <option>Consentement (B2C)</option>
+                        <option>Intérêt légitime (B2B)</option>
+                      </select>
+                    </div>
+                    <div><label for="dureeConservationCommande">Durée conservation commande</label><input id="dureeConservationCommande" name="dureeConservationCommande" placeholder="10 ans"></div>
+                  </div>
+                  <div class="grid cols-3">
+                    <div><label for="dureeCompteInactif">Durée compte inactif</label><input id="dureeCompteInactif" name="dureeCompteInactif" placeholder="3 ans"></div>
+                    <div><label for="dureeCandidature">Durée candidature</label><input id="dureeCandidature" name="dureeCandidature" placeholder="24 mois"></div>
+                    <div><label for="autoriteControle">Autorité de contrôle</label>
+                      <select id="autoriteControle" name="autoriteControle">
+                        <option value="CNIL">CNIL (France)</option>
+                        <option value="GarantePrivacy">Garante per la Protezione dei Dati (Italie)</option>
+                        <option value="AEPD">AEPD (Espagne)</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- NEW cases à cocher conditionnelles -->
+                  <div style="margin-top:12px">
+                    <label><input type="checkbox" name="hasCompte" id="hasCompte"> Compte utilisateur</label><br>
+                    <label><input type="checkbox" name="hasPaiement" id="hasPaiement"> Paiement en ligne</label><br>
+                    <label><input type="checkbox" name="hasSupport" id="hasSupport"> Support & ticketing</label><br>
+                    <label><input type="checkbox" name="hasChat" id="hasChat"> Chat en direct</label><br>
+                    <label><input type="checkbox" name="hasAds" id="hasAds"> Publicité / retargeting</label><br>
+                    <label><input type="checkbox" name="hasTransfert" id="hasTransfert"> Transferts hors UE</label><br>
+                    <label><input type="checkbox" name="hasMineurs" id="hasMineurs"> Mineurs</label><br>
+                    <label><input type="checkbox" name="hasMarketplace" id="hasMarketplace"> Marketplace (vendeurs tiers)</label>
+                  </div>
+                </fieldset>
+              </form>
+
+              <div class="btn-row" style="justify-content:flex-end">
+                <button class="btn" id="btnPack">Télécharger le pack (.zip)</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- POLITIQUE DE CONFIDENTIALITÉ -->
+          <section id="polconf" class="section alt reveal" tabindex="-1" style="padding-top:0">
+            <h2 class="title">Politique de confidentialité — modèle avec blocs optionnels (vitrine, e-commerce, SaaS, marketplace, recrutement)</h2>
+
+            <!-- NEW : layered notice -->
+            <div class="layered-notice">
+              <strong>Résumé</strong>
+              <ul>
+                <li><b>À qui s’adresse ce texte ?</b> Aux visiteurs, clients, candidats, vendeurs tiers et partenaires du site [[URL]].</li>
+                <li><b>Pourquoi traite-t-on vos données ?</b> Pour répondre à vos demandes, fournir nos services, améliorer notre site, vous proposer des contenus pertinents.</li>
+                <li><b>Quels sont vos principaux droits ?</b> Accès, rectification, effacement, opposition, limitation, portabilité.</li>
+                <li><b>Comment changer vos choix cookies ?</b> À tout moment : <a href="#preferences-cookies">Gérer mes cookies</a>.</li>
+              </ul>
+            </div>
+
+            <!-- NEW : tableau finalités -->
+            <div class="table-wrap">
+              <table aria-label="Tableau finalités / bases légales / données / durées / destinataires">
+                <thead>
+                  <tr>
+                    <th>Finalité</th><th>Base légale</th><th>Données principales</th><th>Durée</th><th>Destinataires</th>
+                  </tr>
+                </thead>
+                <tbody id="tableFinalites">
+                  <!-- rempli par JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card model">
+              <div class="small">💡 <b>À adapter</b> : cochez les options dans l’éditeur avancé pour afficher les blocs correspondants.</div>
+<textarea id="mdl-polconf" spellcheck="false">Dernière mise à jour : [[JJ/MM/AAAA]]
+
+1) Responsable de traitement
+[[Raison sociale]], [[forme juridique]], [[adresse]], RCS [[ville]] [[numéro RCS]], SIREN [[numéro]], [[TVA]].
+Contact : [[email RGPD]] | [[adresse]].
+[[IF:dpoNom]]Délégué à la Protection des Données : [[dpoNom]] – [[email DPO]].[END]
+
+2) Finalités & bases légales
+Voir tableau ci-dessus.
+
+[[IF:hasCompte]]
+3) Création et gestion de compte client
+Finalité : exécution du contrat.
+Données : identité, coordonnées, historique.
+Durée : [[dureeCompteInactif]] après dernière connexion.
+Destinataires : [[hébergeur]], [[CRM]], [[PSP]] si paiement.
+[END]
+
+[[IF:hasPaiement]]
+4) Paiement et lutte contre la fraude
+Finalité : exécution du contrat, légitime intérêt (fraude).
+Données : coordonnées bancaires partielles (token), facturation.
+Durée : [[dureeConservationCommande]].
+Destinataires : [[psp]], [[antiFraude]].
+[END]
+
+[[IF:hasSupport]]
+5) Support & ticketing
+Finalité : légitime intérêt.
+Données : échanges, logs.
+Durée : 36 mois.
+Destinataires : [[outilChat]], [[hébergeur]].
+[END]
+
+[[IF:hasMarketplace]]
+6) Marketplace — vendeurs tiers
+Statut : [[marketplaceRoles]].
+Données : identité, coordonnées bancaires, commandes.
+Durée : 10 ans.
+Destinataires : vendeurs, [[psp]], [[antiFraude]].
+[END]
+
+[[IF:hasTransfert]]
+7) Transferts hors UE
+Pays : [[paysHebergeur]]. Garanties : [[clauseTransfert]].
+[END]
+
+[[IF:hasMineurs]]
+<div class="alert">⚠️ Le site n’est pas destiné aux enfants de moins de 15 ans sans accord parental.</div>
+[END]
+
+8) Cookies
+Voir notre politique : [[/politique-cookies]]. Paramétrage via le bandeau / centre de préférences.
+
+9) Droits des personnes
+Accès, rectification, effacement, limitation, opposition, portabilité, directives post-mortem. Retrait du consentement. Exercer vos droits : [[email RGPD]] / formulaire. Réclamation : [[autoriteControle_nom]] ([[autoriteControle_url]]).
+
+10) Sécurité
+Mesures techniques et organisationnelles proportionnées.
+
+11) Contact
+[[email RGPD]] — [[adresse]].
+</textarea>
+              <div class="btn-row">
+                <button class="btn" data-copy="#mdl-polconf">Copier le modèle</button>
+                <button class="btn ghost" data-format="html">Copier en HTML</button>
+                <button class="btn ghost" data-format="md">Copier en Markdown</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- POLITIQUE COOKIES -->
+          <section id="polcookies" class="section reveal" tabindex="-1">
+            <h2 class="title">Politique cookies & CMP — modèle</h2>
+            <div class="card model">
+              <div class="small">💡 <b>À adapter</b> : liste des cookies (finalité, durée, tiers), preuve du consentement (journal CMP), lien « tout refuser ».</div>
+<textarea id="mdl-cookies" spellcheck="false">Dernière mise à jour : [[JJ/MM/AAAA]]
+
+1) Qu’est-ce qu’un cookie ?
+Fichier déposé sur votre terminal pour le fonctionnement du site, mesurer l’audience ou personnaliser.
+
+2) Cadre légal
+Nous ne déposons des cookies non essentiels qu’avec votre consentement. Le refus est aussi simple que l’acceptation. Vous pouvez modifier vos choix à tout moment via [[lien “Gérer mes cookies”]] ou le lien « Tout refuser » ci-dessous.
+
+3) Cookies exemptés (pas de consentement requis)
+• Équilibrage charge / sécurité
+• Session utilisateur (panier, auth)
+• Conservation du choix des cookies
+
+4) Cookies non exemptés (consentement requis)
+| Nom | Finalité | Tiers | Durée |
+| ---- | -------- | ----- | ----- |
+| [[_ga]] | Analytics | Google | 13 mois |
+| [[_fbp]] | Marketing | Meta | 3 mois |
+| [[...]] | [[...]] | [[...]] | [[...]] |
+
+5) Preuve du consentement
+Notre CMP [[nomCMP]] journalise votre choix (version, horodatage, empreinte). Contact : [[email RGPD]].
+
+6) Tout refuser
+<a href="#refuse-all">Refuser tous les cookies non essentiels</a> (aussi simple qu’accepter).
+
+7) Durées par catégorie
+• Analytics : [[dureeAnalytics]] mois
+• Marketing : [[dureeMarketing]] mois
+• Chat / A/B : [[dureeChat]] mois
+
+8) Contact / recours
+Exercer vos droits : [[email RGPD]]. Réclamation : [[autoriteControle_nom]] ([[autoriteControle_url]]).
+</textarea>
+              <div class="btn-row"><button class="btn" data-copy="#mdl-cookies">Copier le modèle</button></div>
+            </div>
+          </section>
+
+          <!-- MENTIONS LEGALES -->
+          <section id="mentions" class="section alt reveal" tabindex="-1">
+            <h2 class="title">Mentions légales — modèle</h2>
+            <div class="card model">
+              <div class="small">💡 <b>À adapter</b> : identifiants (RCS/SIREN/TVA), activité réglementée, ORIAS, propriété intellectuelle, médiation, accessibilité.</div>
+<textarea id="mdl-mentions" spellcheck="false">Éditeur
+[[Raison sociale]] [[forme juridique]] au capital de [[montant]] €, [[adresse complète]].
+RCS [[ville]] [[numéro RCS]] — SIREN [[numéro]] — TVA [[n° intracom]] — [[APE]].
+Contact : [[email]] / [[téléphone]].
+
+[[IF:activiteReglementee]]Activité réglementée : inscrit à [[registre]] sous le n° [[numeroRegistre]].[END]
+
+Directeur de la publication
+[[Nom, fonction]].
+
+Hébergeur
+[[Nom hébergeur]], [[adresse]], [[téléphone ou email]].
+
+Propriété intellectuelle
+Le site et son contenu (textes, images, typographies, logos) sont protégés. Crédits photos : [[crédits photos]]. Licences : [[licences]].
+
+Données personnelles
+Voir : [[/confidentialite.html]].
+
+Médiation à la consommation (B2C)
+Après démarche préalable auprès de [[Société]], médiateur : [[Nom / coordonnées / site]].
+
+Accessibilité
+Voir notre Déclaration d’accessibilité : [[/accessibilite]].
+
+Crédits techniques
+Design & développement : [[crédits dev]]. Icônes : [[crédits icônes]].
+</textarea>
+              <div class="btn-row"><button class="btn" data-copy="#mdl-mentions">Copier le modèle</button></div>
+            </div>
+          </section>
+
+          <!-- CLAUSES FORMULAIRES -->
+          <section id="form" class="section reveal" tabindex="-1">
+            <h2 class="title">Clauses au point de collecte — modèles</h2>
+            <div class="grid cols-2">
+              <div class="card model"><span class="pill">Contact / Devis</span>
+<textarea id="mdl-form-contact" spellcheck="false">Le responsable de traitement est [[Raison sociale]]. Vos données servent à traiter votre demande (base : mesures précontractuelles). Durée : [[duree]] ou archivage légal. Exercer vos droits : [[email RGPD]]. Plus d’infos : [[lien Politique de confidentialité]].
+</textarea>
+                <div class="btn-row"><button class="btn" data-copy="#mdl-form-contact">Copier</button></div>
+              </div>
+              <div class="card model"><span class="pill">Newsletter (consentement)</span>
+<textarea id="mdl-form-news" spellcheck="false">En cochant cette case, j’accepte de recevoir les actualités de [[Raison sociale]]. Je peux retirer mon consentement à tout moment via le lien de désinscription. Informations : [[lien Politique de confidentialité]].
+</textarea>
+                <div class="btn-row"><button class="btn" data-copy="#mdl-form-news">Copier</button></div>
+              </div>
+              <div class="card model"><span class="pill">Chat en direct</span>
+<textarea id="mdl-form-chat" spellcheck="false">Le responsable de traitement est [[Raison sociale]]. Les données saisies dans le chat servent à vous répondre (intérêt légitime). Logs conservés [[dureeChat]] mois. Exercer vos droits : [[email RGPD]].
+</textarea>
+                <div class="btn-row"><button class="btn" data-copy="#mdl-form-chat">Copier</button></div>
+              </div>
+              <div class="card model"><span class="pill">Jeu-concours</span>
+<textarea id="mdl-form-jeu" spellcheck="false">Le responsable de traitement est [[Raison sociale]]. Finalités : participation, livraison des lots, prospection si case cochée (consentement). Durée : [[duree]] ou 5 ans pour la comptabilité. Exercer vos droits : [[email RGPD]].
+</textarea>
+                <div class="btn-row"><button class="btn" data-copy="#mdl-form-jeu">Copier</button></div>
+              </div>
+            </div>
+            <div class="card model" style="margin-top:18px"><span class="pill">Recrutement</span>
+<textarea id="mdl-form-jobs" spellcheck="false">Le responsable de traitement est [[Raison sociale]]. Finalités : étude de candidature (intérêt légitime / mesures précontractuelles), vivier de talents (consentement). Conservation : [[dureeCandidature]] après dernier contact. Exercer vos droits : [[email RGPD]] / [[lien Politique]].
+</textarea>
+              <div class="btn-row"><button class="btn" data-copy="#mdl-form-jobs">Copier</button></div>
+            </div>
+          </section>
+
+          <!-- EMAILING -->
+          <section id="email" class="section alt reveal" tabindex="-1">
+            <h2 class="title">Emailing — pieds de page</h2>
+            <div class="grid cols-2">
+              <div class="card model"><span class="pill">Email marketing</span>
+                <div class="small">Lien de désinscription un-clic obligatoire. Conservez la preuve d’opt-in.</div>
+<textarea id="mdl-email" spellcheck="false">Vous recevez cet email de la part de [[Raison sociale]] car vous avez consenti à recevoir nos communications. Pour ne plus recevoir nos emails : [[Lien de désinscription]]. Gérez vos préférences : [[URL préférences]]. Politique de confidentialité : [[URL]]. Contact RGPD : [[email RGPD]]. Preuve d’opt-in conservée pendant [[duree]].
+</textarea>
+                <div class="btn-row"><button class="btn" data-copy="#mdl-email">Copier</button></div>
+              </div>
+              <div class="card model"><span class="pill">Email transactionnel</span>
+                <div class="small">Pas de lien de désabonnement requis, mais lien vers politique conseillé.</div>
+<textarea id="mdl-email-transac" spellcheck="false">Cet email vous est envoyé dans le cadre de votre relation contractuelle avec [[Raison sociale]]. Il ne contient pas de publicité. Politique de confidentialité : [[URL]]. Contact : [[email RGPD]].
+</textarea>
+                <div class="btn-row"><button class="btn" data-copy="#mdl-email-transac">Copier</button></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- CGV -->
+          <section id="cgv" class="section reveal" tabindex="-1">
+            <h2 class="title">CGV (B2C & B2B) — modèles</h2>
+            <div class="grid cols-2">
+              <div class="card model"><span class="pill">B2C (consommateur)</span>
+<textarea id="mdl-cgv-b2c" spellcheck="false">1) Identité du vendeur
+[[Raison sociale]], [[forme juridique]], [[adresse]], RCS [[ville]] [[numéro RCS]], SIREN [[numéro]], [[TVA]], contact : [[email/tél]].
+
+2) Produits & prix
+Descriptions et prix TTC sur le site. Frais de livraison indiqués avant validation.
+
+3) Commande & paiement
+Moyens : CB, Visa, Mastercard, PayPal. Commande ferme après confirmation paiement.
+
+4) Livraison
+Délai indicatif : [[X]] jours ouvrés. Zones : [[liste]]. Suivi transmis par email.
+
+5) Droit de rétractation
+14 jours à compter de la réception. Formulaire : [[lien retractation.pdf]]. Exceptions : produits personnalisés, contenu numérique démarré.
+
+6) Garanties
+Conformité (2 ans) et vices cachés. SAV : [[email/tél]].
+
+7) Médiation
+Après démarche préalable, médiateur : [[Nom / URL]].
+
+8) Données
+Voir Politique de confidentialité : [[URL]].
+
+9) Droit applicable
+Droit français.
+</textarea>
+                <div class="btn-row"><button class="btn" data-copy="#mdl-cgv-b2c">Copier</button></div>
+              </div>
+              <div class="card model"><span class="pill">B2B (professionnel)</span>
+<textarea id="mdl-cgv-b2b" spellcheck="false">1) Identité du vendeur
+[[Raison sociale]], [[forme juridique]], [[adresse]], RCS [[ville]] [[numéro RCS]], SIREN [[numéro]], [[TVA]], contact : [[email/tél]].
+
+2) Devis & commande
+Devis gratuits. Commande = acceptation écrite ou bon de commande signé.
+
+3) Prix & paiement
+Prix HT hors taxes. Pénalités de retard : 3 fois le taux d’intérêt légal. Réserve de propriété jusqu’au paiement intégral.
+
+4) Livraison / exécution
+Délai : [[X]] jours. Transporteur : [[transporteur]]. Risque : transfert à la remise.
+
+5) Garantie & responsabilité
+Garantie légale de conformité. Limitation de responsabilité : directement prévisible.
+
+6) Propriété intellectuelle
+Tous droits réservés. Licence d’utilisation limitée au contrat.
+
+7) Droit applicable & litiges
+Droit français. Tribunal de commerce de [[ville]].
+</textarea>
+                <div class="btn-row"><button class="btn" data-copy="#mdl-cgv-b2b">Copier</button></div>
+              </div>
+            </div>
+
+            <!-- Formulaire de rétractation -->
+            <div class="card model" style="margin-top:18px"><span class="pill">Formulaire de rétractation (B2C)</span>
+              <div class="small">À joindre ou à envoyer en PDF / HTML. Durée : 14 jours.</div>
+<textarea id="mdl-retractation" spellcheck="false">Formulaire de rétractation
+(Veuillez compléter et renvoyer ce formulaire uniquement si vous souhaitez vous rétracter.)
+
+À l’attention de [[Raison sociale]], [[adresse]], [[email]].
+
+Je / nous (*) notifie / notifions (*) par la présente ma / notre (*) rétractation du contrat portant sur la commande ci-dessous :
+
+• Commande du : _______________
+• Nom du consommateur : _______________
+• Adresse du consommateur : _______________
+• Signature (uniquement si envoyé en version papier) : _______________
+• Date : _______________
+
+(*) Cocher la case appropriée.
+</textarea>
+              <div class="btn-row">
+                <button class="btn" data-copy="#mdl-retractation">Copier</button>
+                <button class="btn ghost" id="btnRetractHtml">Télécharger retractation.html</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- FAQ -->
+          <section id="faq" class="section" aria-labelledby="faq-title">
+            <h2 id="faq-title" class="title-center">Questions fréquentes</h2>
+            <div class="underline" aria-hidden="true"></div>
+
+            <details class="faq-q">
+              <summary>Dois-je nommer un DPO&nbsp;?</summary>
+              <p class="faq-a">Obligatoire pour certains organismes (publics, suivi à grande échelle, traitements sensibles). Sinon, nommez un contact RGPD et documentez votre gouvernance.</p>
+            </details>
+
+            <details class="faq-q">
+              <summary>Puis-je mutualiser mentions légales &amp; CGV&nbsp;?</summary>
+              <p class="faq-a">Vous pouvez les lier, mais gardez des pages séparées : Mentions légales (identité, hébergeur), Politique de confidentialité (RGPD), CGV (contrat). C’est plus clair et plus simple à mettre à jour.</p>
+            </details>
+
+            <details class="faq-q">
+              <summary>Quand dois-je mettre à jour la date&nbsp;?</summary>
+              <p class="faq-a">À chaque modification substantielle (finalités, bases légales, destinataires, cookies, durées). Sinon, un contrôle trimestriel ou semestriel suffit.</p>
+            </details>
+          </section>
+
+          <!-- CTA expert -->
+          <section class="section alt" id="cta-expert" style="text-align:center">
+            <h2 class="title">Besoin d’une relecture experte ?</h2>
+            <p class="subtitle-center">On adapte ces modèles à ton secteur et à tes outils (CMP, CRM, emailing) et on prépare les preuves utiles.</p>
+            <div class="btn-row" style="justify-content:center">
+              <a class="btn" href="contact.html">Parler à un expert</a>
+              <a class="btn ghost" href="tarifs.html">Voir les offres</a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a class="btn to-top" id="toTop" href="#top" target="_self" aria-label="Revenir en haut">↑ Haut</a>
+  <div id="footer"></div>
+
+  <!-- Libs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- JS principal (v2) -->
+  <script>
+    /* ---------- 0. Canvas particles (inchangé) ---------- */
+    const canvas = document.getElementById('canvas'); const ctx = canvas.getContext('2d');
+    let w = canvas.width = innerWidth, h = canvas.height = innerHeight; const parts = []; const opts = {count:60,speed:.3,radius:2,distance:120,color:'rgba(255,255,255,.25)'};
+    addEventListener('resize', () => { w = canvas.width = innerWidth; h = canvas.height = innerHeight; });
+    class P{ constructor(){ this.x=Math.random()*w; this.y=Math.random()*h; this.vx=(Math.random()-.5)*opts.speed; this.vy=(Math.random()-.5)*opts.speed } update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>w) this.vx*=-1; if(this.y<0||this.y>h) this.vy*=-1 } draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,opts.radius,0,Math.PI*2); ctx.fillStyle=opts.color; ctx.fill() } lines(){ parts.forEach(p=>{ const d=Math.hypot(this.x-p.x,this.y-p.y); if(d<opts.distance){ ctx.beginPath(); ctx.moveTo(this.x,this.y); ctx.lineTo(p.x,p.y); ctx.strokeStyle=`rgba(255,255,255,${1-d/opts.distance})`; ctx.stroke() } }) } }
+    function init(){ for(let i=0;i<opts.count;i++) parts.push(new P()) } function anim(){ ctx.clearRect(0,0,w,h); parts.forEach(p=>{ p.update(); p.draw(); p.lines() }); requestAnimationFrame(anim) } init(); anim();
+
+    /* ---------- 1. Reveal / in-view ---------- */
+    const reveals = document.querySelectorAll('.reveal'); const io = new IntersectionObserver(es => es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('is-visible') }), {threshold:.2}); reveals.forEach(el=>io.observe(el));
+    const sections = document.querySelectorAll('.section'); const ioView = new IntersectionObserver(es => es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view') }), {threshold:.35}); sections.forEach(s=>ioView.observe(s));
+
+    /* ---------- 2. Scrollspy ---------- */
+    const spyLinks = Array.from(document.querySelectorAll('[data-spy]'));
+    const targets = spyLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const spy = new IntersectionObserver(entries=>{ entries.forEach(e=>{ const id='#'+e.target.id; const link=spyLinks.find(a=>a.getAttribute('href')===id); if(!link) return; if(e.isIntersecting){ spyLinks.forEach(a=>a.classList.remove('active')); link.classList.add('active') } }) }, {rootMargin:'-40% 0px -55% 0px', threshold:.01});
+    targets.forEach(t=>spy.observe(t));
+
+    /* ---------- 3. Utils ---------- */
+    const pad=n=>String(n).padStart(2,'0'); const today=`${pad(new Date().getDate())}/${pad(new Date().getMonth()+1)}/${new Date().getFullYear()}`;
+    document.getElementById('dateMaj').value=today;
+
+    /* ---------- 4. Presets ---------- */
+    const PRESETS = {
+      vitrine: {
+        hasCompte:false,hasPaiement:false,hasSupport:false,hasChat:false,hasAds:false,hasTransfert:false,hasMineurs:false,hasMarketplace:false,
+        baseProspection:'Intérêt légitime (B2B)',dureeConservationCommande:'—',dureeCompteInactif:'—',dureeCandidature:'—',
+        finalitesMarketing:'Prospection, mesure d’audience',sousTraitants:'Hébergeur, outil emailing, CMP',analytics:'Google Analytics'
+      },
+      leadgen:  { hasCompte:false,hasPaiement:false,hasSupport:true,hasChat:true,hasAds:true,hasTransfert:false,hasMineurs:false,hasMarketplace:false,baseProspection:'Consentement (B2C)',finalitesMarketing:'Prospection, retargeting, analytics',sousTraitants:'CRM, CMP, Intercom, Google Ads',analytics:'Google Analytics' },
+      ecommerce:{ hasCompte:true,hasPaiement:true,hasSupport:true,hasChat:true,hasAds:true,hasTransfert:false,hasMineurs:false,hasMarketplace:false,baseProspection:'Consentement (B2C)',dureeConservationCommande:'10 ans',dureeCompteInactif:'3 ans',finalitesMarketing:'Vente, livraison, analytics, retargeting',sousTraitants:'Stripe, PayPal, CRM, CMP, Google Ads',analytics:'Google Analytics' },
+      saas:     { hasCompte:true,hasPaiement:true,hasSupport:true,hasChat:true,hasAds:false,hasTransfert:true,hasMineurs:false,hasMarketplace:false,baseProspection:'Intérêt légitime (B2B)',dureeConservationCommande:'10 ans',dureeCompteInactif:'3 ans',finalitesMarketing:'Abonnement, support, analytics',sousTraitants:'AWS, Intercom, Stripe, CMP',analytics:'Plausible' },
+      marketplace:{ hasCompte:true,hasPaiement:true,hasSupport:true,hasChat:true,hasAds:false,hasTransfert:true,hasMineurs:false,hasMarketplace:true,marketplaceRoles:'Responsable conjoint',baseProspection:'Intérêt légitime (B2B)',dureeConservationCommande:'10 ans',dureeCompteInactif:'3 ans',finalitesMarketing:'Mise en relation, commission, support',sousTraitants:'Stripe, AWS, CMP',analytics:'Google Analytics' },
+      recrutement:{ hasCompte:false,hasPaiement:false,hasSupport:true,hasChat:false,hasAds:false,hasTransfert:false,hasMineurs:false,hasMarketplace:false,baseProspection:'Intérêt légitime',dureeCandidature:'24 mois',finalitesMarketing:'Gestion des candidatures, vivier',sousTraitants:'ATS, CMP',analytics:'Matomo' },
+      b2b:      { hasCompte:false,hasPaiement:false,hasSupport:false,hasChat:false,hasAds:false,hasTransfert:false,hasMineurs:false,hasMarketplace:false,baseProspection:'Intérêt légitime (B2B)',finalitesMarketing:'Prospection B2B, analytics',sousTraitants:'Hébergeur, CRM, CMP',analytics:'Google Analytics' }
+    };
+    let currentPreset = null;
+    function applyPreset(key){
+      currentPreset = key;
+      const p = PRESETS[key];
+      if(!p) return;
+      Object.entries(p).forEach(([k,v])=>{
+        const el = document.getElementById(k) || document.querySelector(`[name="${k}"]`);
+        if(el){
+          if(el.type==='checkbox') el.checked = !!v;
+          else el.value = v;
+        }
+      });
+      updateAllModels();
+      saveFields();
+    }
+    document.querySelectorAll('.preset-chip').forEach(chip=>{
+      chip.addEventListener('click',()=>{
+        const pressed = chip.getAttribute('aria-pressed')==='true';
+        document.querySelectorAll('.preset-chip').forEach(c=>c.setAttribute('aria-pressed','false'));
+        if(!pressed){ chip.setAttribute('aria-pressed','true'); applyPreset(chip.dataset.preset); }
+        else{ currentPreset = null; }
+      });
+    });
+
+    /* ---------- 5. Templates dynamiques + blocs conditionnels ---------- */
+    const modelAreas=[...document.querySelectorAll('.model textarea')];
+    modelAreas.forEach(ta=>ta.dataset.template=ta.value);
+    function getFormData(){
+      const f1=Object.fromEntries(new FormData(fastForm).entries());
+      const f2=advForm.hidden?{}:Object.fromEntries(new FormData(advForm).entries());
+      const data={...f1,...f2};
+      // cases
+      ['hasCompte','hasPaiement','hasSupport','hasChat','hasAds','hasTransfert','hasMineurs','hasMarketplace'].forEach(k=>{
+        data[k]=document.getElementById(k)?.checked||false;
+      });
+      data.JJMMYYYY=today;
+      // tokens i18n
+      const autoriteMap = {
+        CNIL: {nom:'CNIL',url:'https://www.cnil.fr'},
+        GarantePrivacy: {nom:'Garante per la Protezione dei Dati personali',url:'https://www.garanteprivacy.it'},
+        AEPD: {nom:'Agencia Española de Protección de Datos',url:'https://www.aepd.es'}
+      };
+      const sel = data.autoriteControle||'CNIL';
+      data.autoriteControle_nom = autoriteMap[sel].nom;
+      data.autoriteControle_url = autoriteMap[sel].url;
+      return data;
+    }
+    function tokenMapFromData(data){
+      // (même map qu’avant + nouveaux tokens)
+      return {
+        'JJ/MM/AAAA': data.JJMMYYYY,'Raison sociale': data.raison||'','forme juridique': data.forme||'','montant': data.capital||'',
+        'adresse': data.adresse||'','adresse complète': data.adresse||'','email RGPD': data.emailRGPD||'','email/tél': data.emailRGPD || (data.telephone||''),
+        'RCS/SIREN': data.siren||'','numéro RCS': data.siren||'','numéro': data.siren||'','n° intracom': data.tva || '','TVA': data.tva || '',
+        'outil analytics': data.analytics || '—','nom DPO / prestataire DPO': data.dpoNom || '—','email DPO': data.dpoEmail || (data.emailRGPD||''),
+        'hébergeur': data.hebergeur||'','Nom hébergeur': data.hebergeur||'','ville': data.rcsVille || '','téléphone': data.telephone || '',
+        'URL': data.siteURL || '','lien Politique de confidentialité': (data.siteURL ? new URL(data.siteURL).origin + '/confidentialite.html' : '/confidentialite.html'),
+        '/politique-cookies': (data.siteURL ? new URL(data.siteURL).origin + '/politique-cookies' : '/politique-cookies'),
+        'lien “Gérer mes cookies”': '#preferences-cookies','lien ouvrir CMP': '#preferences-cookies',
+        'UE/hors UE avec garanties': data.paysHebergeur || 'UE','outil emailing/CMP/CRM': data.sousTraitants || '—',
+        'Nom / coordonnées / site du médiateur': data.mediateur || '—','Société': data.raisonSociale || '—',
+        'banque d’images / crédits': '—','crédits le cas échéant': '—','durée': '13 mois',
+        'lien / joindre formulaire': (data.siteURL ? new URL(data.siteURL).origin + '/retractation.pdf' : '/retractation.pdf'),
+        'TTC/HT': 'TTC','devise': 'EUR','frais de livraison le cas échéant': 'frais de livraison le cas échéant',
+        'liste': 'CB, Visa, Mastercard','X jours ouvrés': '3 à 5','Nom, fonction': 'Directeur de la publication',
+        'psp': data.psp||'—','outilChat': data.outilChat||'—','antiFraude': data.antiFraude||'—',
+        'marketplaceRoles': data.marketplaceRoles||'—','baseProspection': data.baseProspection||'—',
+        'dureeConservationCommande': data.dureeConservationCommande||'—','dureeCompteInactif': data.dureeCompteInactif||'—','dureeCandidature': data.dureeCandidature||'—',
+        'autoriteControle_nom': data.autoriteControle_nom,'autoriteControle_url': data.autoriteControle_url,
+        'dureeAnalytics':'13','dureeMarketing':'13','dureeChat':'6','nomCMP':'Cookiebot','registre':'ORIAS','numeroRegistre':'','activiteReglementee':'','crédits photos':'—','licences':'—','transporteur':'DPD','crédits dev':'Awenoria','crédits icônes':'Feather Icons'
+      };
+    }
+    function fillTemplate(tpl,map){
+      // gestion des blocs [[IF:flag]]...[[END]]
+      const ifRegex = /\[\[IF:(\w+)\]\]([\s\S]*?)\[\[END\]\]/g;
+      tpl = tpl.replace(ifRegex,(m,flag,content)=>{
+        return map[flag] ? fillTemplate(content,map) : '';
+      });
+      return tpl.replace(/\[\[([^\]]+)\]\]/g,(m,t)=>{ const k=t.trim(); return (map[k]!==undefined && map[k]!=='')? map[k] : m });
+    }
+    function updateAllModels(){
+      const data=getFormData(); const map=tokenMapFromData(data);
+      modelAreas.forEach(ta=>ta.value=fillTemplate(ta.dataset.template,map));
+      // mise à jour tableau finalités
+      updateTableFinalites(data);
+    }
+    function updateTableFinalites(data){
+      const rows=[
+        {finalité:'Contact / devis',base:'Mesures précontractuelles',données:'Identité, coordonnées',duree:'13 mois',dest:data.sousTraitants||'—'},
+        {finalité:'Prospection (B2C/B2B)',base:data.baseProspection||'—',données:'Email, préférences',duree:'3 ans',dest:data.sousTraitants||'—'},
+        {finalité:'Analytics',base:'Consentement',données:'Cookies, logs',duree:'13 mois',dest:data.analytics||'—'}
+      ];
+      if(data.hasCompte) rows.push({finalité:'Compte client',base:'Exécution contrat',données:'Identité, historique',duree:data.dureeCompteInactif,dest:`${data.hebergeur}, ${data.psp||''}`});
+      if(data.hasPaiement) rows.push({finalité:'Paiement',base:'Exécution contrat',données:'Coord. bancaires (token)',duree:data.dureeConservationCommande,dest:`${data.psp}, ${data.antiFraude||''}`});
+      if(data.hasSupport) rows.push({finalité:'Support',base:'Intérêt légitime',données:'Échanges, logs',duree:'36 mois',dest:data.outilChat||'—'});
+      if(data.hasMarketplace) rows.push({finalité:'Marketplace',base:'Exécution contrat',données:'Identité, coord. bancaires',duree:'10 ans',dest:'Vendeurs tiers, '+data.psp});
+      const html=rows.map(r=>`<tr><td>${r.finalité}</td><td>${r.base}</td><td>${r.données}</td><td>${r.duree}</td><td>${r.dest}</td></tr>`).join('');
+      document.getElementById('tableFinalites').innerHTML=html;
+    }
+
+    /* ---------- 6. Sauvegarde / restauration ---------- */
+    function updateStore(patch){ const cur = JSON.parse(localStorage.getItem('awenoriaFields')||'{}'); localStorage.setItem('awenoriaFields', JSON.stringify({...cur, ...patch})); }
+    const resumeBtn=document.getElementById('resumeBtn');
+    function saveFields(){
+      const fast=Object.fromEntries(new FormData(fastForm).entries());
+      const adv =advForm.hidden?null:Object.fromEntries(new FormData(advForm).entries());
+      const activeTab = advForm.hidden ? 'fast' : 'adv';
+      const checks={};
+      ['hasCompte','hasPaiement','hasSupport','hasChat','hasAds','hasTransfert','hasMineurs','hasMarketplace'].forEach(k=>checks[k]=document.getElementById(k).checked);
+      updateStore({fast,adv,activeTab,checks,preset:currentPreset});
+    }
+    function restoreFields(data){
+      if(!data) return;
+      switchTab(data.activeTab==='adv'?'adv':'fast',{noScroll:true});
+      const setVals=(form,obj)=>{ if(!obj) return; Object.entries(obj).forEach(([k,v])=>{ const el=form.querySelector(`[name="${k}"]`); if(el) el.value=v; }); };
+      setVals(fastForm,data.fast||{}); if(data.activeTab==='adv') setVals(advForm,data.adv||{});
+      if(data.checks) Object.entries(data.checks).forEach(([k,v])=>{ const el=document.getElementById(k); if(el) el.checked=v; });
+      if(data.preset){ currentPreset=data.preset; document.querySelector(`.preset-chip[data-preset="${data.preset}"]`)?.setAttribute('aria-pressed','true'); }
+      updateAllModels();
+    }
+    fastForm.addEventListener('input', ()=>{ updateAllModels(); saveFields(); });
+    advForm.addEventListener('input',  ()=>{ updateAllModels(); saveFields(); });
+    updateAllModels();
+    const savedFields=localStorage.getItem('awenoriaFields');
+    if(savedFields){ resumeBtn.style.display='block'; resumeBtn.addEventListener('click', ()=>{ try{ restoreFields(JSON.parse(savedFields)); }catch(_){} }); }
+
+    /* ---------- 7. Copier HTML / Markdown ---------- */
+    document.addEventListener('click', async e=>{
+      const btn=e.target.closest('button[data-format]'); if(!btn) return;
+      const format=btn.dataset.format; const ta=document.querySelector(btn.getAttribute('data-copy')||'#mdl-polconf');
+      let content='';
+      if(format==='html'){
+        content=`<article>
+<h1>Politique de confidentialité</h1>
+<p><em>Dernière mise à jour : [[JJ/MM/AAAA]]</em></p>
+${ta.value.replace(/\n/g,'\n<br>')}
+</article>`;
+      }else if(format==='md'){
+        content=`# Politique de confidentialité\n\n*Dernière mise à jour : [[JJ/MM/AAAA]]*\n\n${ta.value}`;
+      }
+      const map=tokenMapFromData(getFormData());
+      content=fillTemplate(content,map);
+      try{ await navigator.clipboard.writeText(content); btn.textContent='Copié ✓'; setTimeout(()=>btn.textContent=format.toUpperCase(),1500) }catch{ console.error('Clipboard failed') }
+    });
+
+    /* ---------- 8. ZIP pack (v2) ---------- */
+    document.getElementById('btnPack').addEventListener('click', async ()=>{
+      const data={...getFormData()}; const map=tokenMapFromData(data);
+      const now = new Date().toISOString();
+      const files={
+        'politique-confidentialite.txt': fillTemplate(document.getElementById('mdl-polconf').dataset.template,map),
+        'politique-confidentialite.html': fillTemplate(`<article><h1>Politique de confidentialité</h1><p><em>Dernière mise à jour : [[JJ/MM/AAAA]]</em></p>${document.getElementById('mdl-polconf').dataset.template.replace(/\n/g,'\n<br>')}</article>`,map),
+        'politique-confidentialite.md': fillTemplate(`# Politique de confidentialité\n\n*Dernière mise à jour : [[JJ/MM/AAAA]]*\n\n${document.getElementById('mdl-polconf').dataset.template}`,map),
+        'politique-cookies.txt': fillTemplate(document.getElementById('mdl-cookies').dataset.template,map),
+        'politique-cookies.html': fillTemplate(`<article><h1>Politique cookies</h1><p><em>Dernière mise à jour : [[JJ/MM/AAAA]]</em></p>${document.getElementById('mdl-cookies').dataset.template.replace(/\n/g,'\n<br>')}</article>`,map),
+        'mentions-legales.txt': fillTemplate(document.getElementById('mdl-mentions').dataset.template,map),
+        'mentions-legales.html': fillTemplate(`<article><h1>Mentions légales</h1>${document.getElementById('mdl-mentions').dataset.template.replace(/\n/g,'\n<br>')}</article>`,map),
+        'clauses-contact.txt': fillTemplate(document.getElementById('mdl-form-contact').dataset.template,map),
+        'clauses-newsletter.txt': fillTemplate(document.getElementById('mdl-form-news').dataset.template,map),
+        'clauses-chat.txt': fillTemplate(document.getElementById('mdl-form-chat').dataset.template,map),
+        'clauses-jeu.txt': fillTemplate(document.getElementById('mdl-form-jeu').dataset.template,map),
+        'clauses-recrutement.txt': fillTemplate(document.getElementById('mdl-form-jobs').dataset.template,map),
+        'cgv-b2c.txt': fillTemplate(document.getElementById('mdl-cgv-b2c').dataset.template,map),
+        'cgv-b2b.txt': fillTemplate(document.getElementById('mdl-cgv-b2b').dataset.template,map),
+        'retractation.txt': fillTemplate(document.getElementById('mdl-retractation').dataset.template,map),
+        'retractation.html': fillTemplate(`<article><h1>Formulaire de rétractation</h1><pre>${document.getElementById('mdl-retractation').dataset.template}</pre></article>`,map),
+        'email-marketing.txt': fillTemplate(document.getElementById('mdl-email').dataset.template,map),
+        'email-transactionnel.txt': fillTemplate(document.getElementById('mdl-email-transac').dataset.template,map),
+        'CHANGELOG.md': `# Changelog généré le ${now}\n\n- ${today} : génération via Awenoria v2\n  - Presets : ${currentPreset||'personnalisé'}\n  - Blocs optionnels : compte=${data.hasCompte}, paiement=${data.hasPaiement}, support=${data.hasSupport}, chat=${data.hasChat}, ads=${data.hasAds}, transfert=${data.hasTransfert}, mineurs=${data.hasMineurs}, marketplace=${data.hasMarketplace}\n`,
+        'README_conformite.md': `# Check-list avant mise en production\n\n- [ ] Les champs [[…]] restants ont été vérifiés / remplacés\n- [ ] Les cookies réellement déposés sont listés (nom, finalité, durée, tiers)\n- [ ] La version de la CMP et l’empreinte sont journalisées\n- [ ] Le lien « Tout refuser » fonctionne\n- [ ] Les durées de conservation sont conformes à vos besoins métiers\n- [ ] Les transferts hors UE sont documentés (CCT, mesures)\n- [ ] Le formulaire de rétractation (B2C) est joignable\n- [ ] La Déclaration d’accessibilité est rédigée (ou lien vers modèle)\n- [ ] Les preuves d’opt-in emailing sont conservées\n- [ ] Les CGV B2B/B2C sont signées / acceptées\n`
+      };
+      const csv='token;valeur\n'+Object.entries(map).map(([k,v])=>`${JSON.stringify(k)};${JSON.stringify(v)}`).join('\n');
+      const zip=new JSZip(); Object.entries(files).forEach(([n,c])=>zip.file(n,c)); zip.file('tokens.csv',csv);
+      const blob=await zip.generateAsync({type:'blob'}); saveAs(blob,'awenoria-pack-juridique-v2.zip');
+    });
+
+    /* ---------- 9. Filtre cartes ---------- */
+    const filterInput=document.getElementById('filterInput');
+    const chips=document.querySelectorAll('.chip');
+    const items=document.querySelectorAll('.filter-item');
+    let activeTags=new Set();
+    function applyFilter(){
+      const q=(filterInput?.value||'').toLowerCase().trim();
+      items.forEach(el=>{
+        const hay=(el.textContent+' '+(el.getAttribute('data-tags')||'')).toLowerCase();
+        const tagMatch=activeTags.size?[...activeTags].every(t=>hay.includes(t)):true;
+        const qMatch=q?hay.includes(q):true;
+        el.style.display=(tagMatch && qMatch)?'':'none';
+      });
+    }
+    filterInput?.addEventListener('input',()=>{ clearTimeout(applyFilter._t); applyFilter._t=setTimeout(applyFilter,150) });
+    chips.forEach(ch=>ch.addEventListener('click',()=>{ const val=(ch.dataset.chip||'').toLowerCase(); const pressed=ch.getAttribute('aria-pressed')==='true'; ch.setAttribute('aria-pressed',String(!pressed)); if(!pressed) activeTags.add(val); else activeTags.delete(val); applyFilter() }));
+    applyFilter();
+
+    /* ---------- 10. Last updated + SEO ---------- */
+    const last=new Date(document.lastModified); const fmt=last.toLocaleDateString('fr-FR',{year:'numeric',month:'long',day:'2-digit'}); const lastNode=document.getElementById('lastUpdated'); if(lastNode){ lastNode.textContent=fmt; lastNode.setAttribute('datetime',last.toISOString()) }
+    const meta=document.createElement('meta'); meta.setAttribute('property','article:modified_time'); meta.setAttribute('content',last.toISOString()); document.head.appendChild(meta);
+    const ld={ '@context':'https://schema.org','@type':'WebPage', name:'Politique de confidentialité — modèles par usage | Awenoria', url:location.href, dateModified:last.toISOString() };
+    const ldScript=document.createElement('script'); ldScript.type='application/ld+json'; ldScript.textContent=JSON.stringify(ld); document.head.appendChild(ldScript);
+
+    /* ---------- 11. Back to top ---------- */
+    const toTop = document.getElementById('toTop');
+    const ioTop = new IntersectionObserver(([entry]) => {
+      if(entry.isIntersecting){ toTop.classList.remove('show'); } else { toTop.classList.add('show'); }
+    });
+    ioTop.observe(document.querySelector('.hero'));
+
+    /* ---------- 12. Tabs éditeur ---------- */
+    const tabFast=document.getElementById('tab-fast'); const tabAdv=document.getElementById('tab-adv');
+    const fastForm=document.getElementById('fastForm'); const advForm=document.getElementById('advForm');
+    function switchTab(which,{noScroll=false}={}){ const fast=which==='fast';
+      fastForm.hidden=!fast; advForm.hidden=fast;
+      tabFast.classList.toggle('ghost',!fast); tabFast.setAttribute('aria-selected',fast);
+      tabAdv.classList.toggle('ghost',fast);  tabAdv.setAttribute('aria-selected',!fast);
+      if(!noScroll) document.getElementById('editor').scrollIntoView({behavior:'smooth',block:'start'});
+      updateStore({activeTab:which});
+    }
+    tabFast.addEventListener('click',()=>switchTab('fast'));
+    tabAdv.addEventListener('click',()=>switchTab('adv'));
+
+    /* ---------- 13. Bouton copier simple ---------- */
+    document.addEventListener('click', async e=>{
+      const btn=e.target.closest('button[data-copy]'); if(!btn || btn.dataset.format) return;
+      const sel=btn.getAttribute('data-copy'); const ta=document.querySelector(sel); if(!ta) return;
+      try{ await navigator.clipboard.writeText(ta.value); const old=btn.textContent; btn.textContent='Copié ✓'; setTimeout(()=>btn.textContent=old,1500) }catch{ ta.select(); document.execCommand('copy'); const old=btn.textContent; btn.textContent='Copié ✓'; setTimeout(()=>btn.textContent=old,1500) }
+    });
+
+    /* ---------- 14. Export retractation.html ---------- */
+    document.getElementById('btnRetractHtml')?.addEventListener('click',()=>{
+      const map=tokenMapFromData(getFormData());
+      const html=fillTemplate(`<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><title>Formulaire de rétractation</title></head><body><h1>Formulaire de rétractation</h1><form><p>À l’attention de [[Raison sociale]], [[adresse]], [[email RGPD]].</p><label>Commande du : <input type="date" required></label><br><label>Nom : <input required></label><br><label>Adresse : <textarea required></textarea></label><br><label>Signature : <input placeholder="si envoi papier"></label><br><button type="submit">Envoyer</button></form></body></html>`,map);
+      const blob=new Blob([html],{type:'text/html'}); saveAs(blob,'retractation.html');
+    });
+
+    /* ---------- 15. Loader header/footer (inchangé) ---------- */
+    document.addEventListener('DOMContentLoaded',()=>{
+      const headMount=document.getElementById('header'); const footMount=document.getElementById('footer'); if(!headMount && !footMount) return;
+      const isGh=/github\.io$/.test(location.hostname); let base='/'; if(isGh){ const parts=location.pathname.split('/').filter(Boolean); base=parts.length?`/${parts[0]}/`:'/'; }
+      const candidates=p=>{ const clean=p.replace(/^\//,''); return [ base+clean, './'+clean, '../'+clean ] };
+      async function fetchAny(paths){ const queue=paths.flatMap(candidates); for(const u of queue){ try{ const r=await fetch(u,{cache:'no-cache'}); if(r.ok) return r.text() }catch(_){} } throw new Error('Aucun chemin valide parmi: '+paths.join(', ')) }
+      function fixRootUrls(container){ container.querySelectorAll('a[href^="/"], img[src^="/"], link[href^="/"], script[src^="/"]').forEach(el=>{ const attr=el.hasAttribute('href')?'href':'src'; const val=el.getAttribute(attr); if(/^\/\//.test(val)) return; el.setAttribute(attr, base+val.replace(/^\//,'')) }) }
+      if(headMount){ fetchAny(['header.html','partials/header.html']).then(html=>{ headMount.innerHTML=html; fixRootUrls(headMount); return fetchAny(['assets/nav.js','nav.js']).catch(()=>null) }).then(code=>{ if(!code) return; const s=document.createElement('script'); if(/\b(import|export)\b/.test(code)) s.type='module'; s.textContent=code; document.body.appendChild(s) }).catch(err=>{ console.error('Header load error:',err); headMount.innerHTML='<!-- Header introuvable -->' }) }
+      if(footMount){ fetchAny(['footer.html','partials/footer.html']).then(html=>{ footMount.innerHTML=html; fixRootUrls(footMount) }).catch(err=>{ console.error('Footer load error:',err); footMount.innerHTML='<!-- Footer introuvable -->' }) }
+    });
+  </script>
+</body>
+</html>
